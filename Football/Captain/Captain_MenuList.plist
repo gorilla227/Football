@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>RootMenu</key>
+	<array>
+		<string>我的比赛</string>
+		<string>我的球队</string>
+		<string>队费管理</string>
+	</array>
+	<key>0</key>
+	<array>
+		<string>比赛安排</string>
+		<string>球赛超市</string>
+		<string>比赛通知</string>
+		<string>比赛数据</string>
+	</array>
+</dict>
+</plist>

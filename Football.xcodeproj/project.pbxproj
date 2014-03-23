@@ -7,20 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A103338A18D419A300050A61 /* Captain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A103338918D419A300050A61 /* Captain.storyboard */; };
+		A103338D18D4F36000050A61 /* Captain_TitleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A103338C18D4F36000050A61 /* Captain_TitleMenu.m */; };
+		A103339018D4F3FA00050A61 /* Captain_RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A103338F18D4F3FA00050A61 /* Captain_RootViewController.m */; };
+		A103339318D6B49900050A61 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A103339218D6B49900050A61 /* Login.m */; };
+		A103339618D6BF7900050A61 /* LoginAccountIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A103339418D6BF7900050A61 /* LoginAccountIcon.jpg */; };
+		A103339718D6BF7900050A61 /* PasswordIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A103339518D6BF7900050A61 /* PasswordIcon.jpg */; };
+		A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */; };
+		A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */; };
 		A1D07BD218CC1E4800FA3A8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD118CC1E4800FA3A8D /* Foundation.framework */; };
 		A1D07BD418CC1E4800FA3A8D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */; };
 		A1D07BD618CC1E4800FA3A8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD518CC1E4800FA3A8D /* UIKit.framework */; };
 		A1D07BDC18CC1E4800FA3A8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1D07BDA18CC1E4800FA3A8D /* InfoPlist.strings */; };
 		A1D07BDE18CC1E4800FA3A8D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07BDD18CC1E4800FA3A8D /* main.m */; };
 		A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07BE118CC1E4800FA3A8D /* AppDelegate.m */; };
-		A1D07BE518CC1E4800FA3A8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D07BE318CC1E4800FA3A8D /* Main.storyboard */; };
-		A1D07BE818CC1E4800FA3A8D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07BE718CC1E4800FA3A8D /* ViewController.m */; };
 		A1D07BEA18CC1E4800FA3A8D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1D07BE918CC1E4800FA3A8D /* Images.xcassets */; };
 		A1D07BF118CC1E4900FA3A8D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BF018CC1E4900FA3A8D /* XCTest.framework */; };
 		A1D07BF218CC1E4900FA3A8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD118CC1E4800FA3A8D /* Foundation.framework */; };
 		A1D07BF318CC1E4900FA3A8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD518CC1E4800FA3A8D /* UIKit.framework */; };
 		A1D07BFB18CC1E4900FA3A8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1D07BF918CC1E4900FA3A8D /* InfoPlist.strings */; };
 		A1D07BFD18CC1E4900FA3A8D /* FootballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07BFC18CC1E4900FA3A8D /* FootballTests.m */; };
+		A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0618CD14B700FA3A8D /* Login.storyboard */; };
+		A1D07C0B18CD158500FA3A8D /* VC_Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07C0A18CD158500FA3A8D /* VC_Login.m */; };
+		A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0D18CD177F00FA3A8D /* Setting.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +43,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A103338918D419A300050A61 /* Captain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Captain.storyboard; sourceTree = "<group>"; };
+		A103338B18D4F36000050A61 /* Captain_TitleMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TitleMenu.h; path = Captain/Captain_TitleMenu.h; sourceTree = "<group>"; };
+		A103338C18D4F36000050A61 /* Captain_TitleMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TitleMenu.m; path = Captain/Captain_TitleMenu.m; sourceTree = "<group>"; };
+		A103338E18D4F3FA00050A61 /* Captain_RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_RootViewController.h; sourceTree = "<group>"; };
+		A103338F18D4F3FA00050A61 /* Captain_RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_RootViewController.m; sourceTree = "<group>"; };
+		A103339118D6B49900050A61 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login.h; path = Login/Login.h; sourceTree = "<group>"; };
+		A103339218D6B49900050A61 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = Login/Login.m; sourceTree = "<group>"; };
+		A103339418D6BF7900050A61 /* LoginAccountIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = LoginAccountIcon.jpg; path = Images.xcassets/LoginAccountIcon.jpg; sourceTree = "<group>"; };
+		A103339518D6BF7900050A61 /* PasswordIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = PasswordIcon.jpg; path = Images.xcassets/PasswordIcon.jpg; sourceTree = "<group>"; };
+		A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Captain_MenuList.plist; path = Captain/Captain_MenuList.plist; sourceTree = "<group>"; };
+		A1C8F9E018DAAA3400BE42D4 /* Captain_MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MainMenu.h; path = Captain/Captain_MainMenu.h; sourceTree = "<group>"; };
+		A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MainMenu.m; path = Captain/Captain_MainMenu.m; sourceTree = "<group>"; };
 		A1D07BCE18CC1E4800FA3A8D /* Football.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Football.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D07BD118CC1E4800FA3A8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -44,15 +65,16 @@
 		A1D07BDF18CC1E4800FA3A8D /* Football-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Football-Prefix.pch"; sourceTree = "<group>"; };
 		A1D07BE018CC1E4800FA3A8D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A1D07BE118CC1E4800FA3A8D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A1D07BE418CC1E4800FA3A8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A1D07BE618CC1E4800FA3A8D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A1D07BE718CC1E4800FA3A8D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A1D07BE918CC1E4800FA3A8D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A1D07BEF18CC1E4900FA3A8D /* FootballTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FootballTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D07BF018CC1E4900FA3A8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A1D07BF818CC1E4900FA3A8D /* FootballTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FootballTests-Info.plist"; sourceTree = "<group>"; };
 		A1D07BFA18CC1E4900FA3A8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1D07BFC18CC1E4900FA3A8D /* FootballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FootballTests.m; sourceTree = "<group>"; };
+		A1D07C0618CD14B700FA3A8D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		A1D07C0918CD158500FA3A8D /* VC_Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VC_Login.h; path = Login/VC_Login.h; sourceTree = "<group>"; };
+		A1D07C0A18CD158500FA3A8D /* VC_Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VC_Login.m; path = Login/VC_Login.m; sourceTree = "<group>"; };
+		A1D07C0D18CD177F00FA3A8D /* Setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setting.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +101,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A103339818D6BF8600050A61 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				A103339418D6BF7900050A61 /* LoginAccountIcon.jpg */,
+				A103339518D6BF7900050A61 /* PasswordIcon.jpg */,
+			);
+			name = Image;
+			sourceTree = "<group>";
+		};
 		A1D07BC518CC1E4800FA3A8D = {
 			isa = PBXGroup;
 			children = (
@@ -114,9 +145,8 @@
 			children = (
 				A1D07BE018CC1E4800FA3A8D /* AppDelegate.h */,
 				A1D07BE118CC1E4800FA3A8D /* AppDelegate.m */,
-				A1D07BE318CC1E4800FA3A8D /* Main.storyboard */,
-				A1D07BE618CC1E4800FA3A8D /* ViewController.h */,
-				A1D07BE718CC1E4800FA3A8D /* ViewController.m */,
+				A1D07C0C18CD162500FA3A8D /* Captain */,
+				A1D07C0818CD154600FA3A8D /* Login */,
 				A1D07BE918CC1E4800FA3A8D /* Images.xcassets */,
 				A1D07BD818CC1E4800FA3A8D /* Supporting Files */,
 			);
@@ -126,6 +156,7 @@
 		A1D07BD818CC1E4800FA3A8D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A1D07C0D18CD177F00FA3A8D /* Setting.plist */,
 				A1D07BD918CC1E4800FA3A8D /* Football-Info.plist */,
 				A1D07BDA18CC1E4800FA3A8D /* InfoPlist.strings */,
 				A1D07BDD18CC1E4800FA3A8D /* main.m */,
@@ -150,6 +181,34 @@
 				A1D07BF918CC1E4900FA3A8D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A1D07C0818CD154600FA3A8D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A103339818D6BF8600050A61 /* Image */,
+				A1D07C0618CD14B700FA3A8D /* Login.storyboard */,
+				A103339118D6B49900050A61 /* Login.h */,
+				A103339218D6B49900050A61 /* Login.m */,
+				A1D07C0918CD158500FA3A8D /* VC_Login.h */,
+				A1D07C0A18CD158500FA3A8D /* VC_Login.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		A1D07C0C18CD162500FA3A8D /* Captain */ = {
+			isa = PBXGroup;
+			children = (
+				A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */,
+				A103338918D419A300050A61 /* Captain.storyboard */,
+				A1C8F9E018DAAA3400BE42D4 /* Captain_MainMenu.h */,
+				A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */,
+				A103338E18D4F3FA00050A61 /* Captain_RootViewController.h */,
+				A103338F18D4F3FA00050A61 /* Captain_RootViewController.m */,
+				A103338B18D4F36000050A61 /* Captain_TitleMenu.h */,
+				A103338C18D4F36000050A61 /* Captain_TitleMenu.m */,
+			);
+			name = Captain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +287,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */,
+				A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */,
 				A1D07BEA18CC1E4800FA3A8D /* Images.xcassets in Resources */,
+				A103339718D6BF7900050A61 /* PasswordIcon.jpg in Resources */,
 				A1D07BDC18CC1E4800FA3A8D /* InfoPlist.strings in Resources */,
-				A1D07BE518CC1E4800FA3A8D /* Main.storyboard in Resources */,
+				A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */,
+				A103339618D6BF7900050A61 /* LoginAccountIcon.jpg in Resources */,
+				A103338A18D419A300050A61 /* Captain.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +313,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1D07BE818CC1E4800FA3A8D /* ViewController.m in Sources */,
+				A103338D18D4F36000050A61 /* Captain_TitleMenu.m in Sources */,
+				A1D07C0B18CD158500FA3A8D /* VC_Login.m in Sources */,
+				A103339018D4F3FA00050A61 /* Captain_RootViewController.m in Sources */,
+				A103339318D6B49900050A61 /* Login.m in Sources */,
 				A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */,
 				A1D07BDE18CC1E4800FA3A8D /* main.m in Sources */,
+				A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,14 +348,6 @@
 				A1D07BDB18CC1E4800FA3A8D /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A1D07BE318CC1E4800FA3A8D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A1D07BE418CC1E4800FA3A8D /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		A1D07BF918CC1E4900FA3A8D /* InfoPlist.strings */ = {
@@ -460,6 +520,7 @@
 				A1D07C0218CC1E4900FA3A8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A1D07C0318CC1E4900FA3A8D /* Build configuration list for PBXNativeTarget "FootballTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +529,7 @@
 				A1D07C0518CC1E4900FA3A8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
