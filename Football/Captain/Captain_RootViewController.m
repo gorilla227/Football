@@ -13,7 +13,6 @@
 @end
 
 @implementation Captain_RootViewController{
-    Captain_TitleMenu *titleMenu;
     Captain_MainMenu *mainMenu;
     UITabBarController *tabBar;
     CGPoint tabView_menuShowed;
@@ -21,7 +20,6 @@
     CGPoint mainMenu_menuShowed;
     CGPoint mainMenu_menuHidden;
 }
-@synthesize titleMenuView;
 @synthesize tabView;
 @synthesize mainMenuView;
 
@@ -38,13 +36,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    titleMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"TitleMenu"];
-//    [titleMenu.view setFrame:titleMenuView.bounds];
-//    [titleMenuView addSubview:titleMenu.view];
-    titleMenu = [[Captain_TitleMenu alloc] initWithStyle:UITableViewStylePlain];
     mainMenu = [[Captain_MainMenu alloc] init];
     tabBar = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBar"];
-    [self addChildViewController:titleMenu];
     [self addChildViewController:mainMenu];
     [self addChildViewController:tabBar];
 
@@ -58,18 +51,9 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    if (!titleMenu.view.isHidden) {
-        [titleMenu showHideMenu];
-    }
     if (CGPointEqualToPoint(tabView.center, tabView_menuShowed)) {
         [self menuSwitch:NO];
     }
-    
-}
-
--(IBAction)titleOnClicked:(id)sender
-{
-    [titleMenu showHideMenu];
 }
 
 -(IBAction)menuOnClicked:(id)sender
@@ -96,6 +80,7 @@
         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:mainMenuView cache:YES];
         [tabView setCenter:tabView_menuHidden];
         [mainMenuView setCenter:mainMenu_menuHidden];
+        [UIView commitAnimations];
     }
     [tabView setUserInteractionEnabled:!showMenu];
 }

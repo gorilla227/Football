@@ -4,85 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Captain Title Menu-->
-        <scene sceneID="eF5-UO-NFZ">
-            <objects>
-                <tableViewController storyboardIdentifier="TitleMenu" id="Qxu-Ap-FuX" customClass="Captain_TitleMenu" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" id="Bfg-Mz-8gM">
-                        <rect key="frame" x="0.0" y="0.0" width="80" height="90"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <color key="sectionIndexColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection id="XIP-SV-2M8">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="j2R-aL-MlP" rowHeight="30" style="IBUITableViewCellStyleDefault" id="emV-vK-IIs">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="emV-vK-IIs" id="uvy-ol-IxW">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="29"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="球队" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j2R-aL-MlP">
-                                                    <rect key="frame" x="15" y="0.0" width="50" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="LA1-ei-sNn" rowHeight="30" style="IBUITableViewCellStyleDefault" id="P6F-DX-tnK">
-                                        <rect key="frame" x="0.0" y="30" width="80" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P6F-DX-tnK" id="74S-pl-rEg">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="29"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="球员" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LA1-ei-sNn">
-                                                    <rect key="frame" x="15" y="0.0" width="50" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="LaB-Yr-qID" rowHeight="30" style="IBUITableViewCellStyleDefault" id="qm3-uQ-6lQ">
-                                        <rect key="frame" x="0.0" y="60" width="80" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qm3-uQ-6lQ" id="ZiJ-2k-55m">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="29"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="比赛" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LaB-Yr-qID">
-                                                    <rect key="frame" x="15" y="0.0" width="50" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="Qxu-Ap-FuX" id="qFh-cf-SWd"/>
-                            <outlet property="delegate" destination="Qxu-Ap-FuX" id="WP8-nI-cMV"/>
-                        </connections>
-                    </tableView>
-                    <keyCommands/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Teb-Sr-q7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="204" y="-97"/>
-        </scene>
         <!--Captain Root View Controller-->
         <scene sceneID="iCU-uj-phB">
             <objects>
@@ -101,13 +22,8 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="done" systemItem="flexibleSpace" id="7g7-aW-tWF"/>
-                                    <barButtonItem title="我要踢球" id="A91-FY-vtc">
-                                        <connections>
-                                            <action selector="titleOnClicked:" destination="d1l-if-TYo" id="W6T-U4-Ujb"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="我要踢球" style="done" id="A91-FY-vtc"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="LwR-nN-h1N"/>
-                                    <barButtonItem enabled="NO" id="hfK-0z-bRh"/>
                                 </items>
                             </toolbar>
                             <containerView contentMode="scaleToFill" id="qGW-F7-Nqu">
@@ -116,13 +32,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="KAj-Tw-HnP" kind="embed" id="QlN-kh-wpU"/>
-                                </connections>
-                            </containerView>
-                            <containerView contentMode="scaleToFill" id="ohJ-Vu-Fcd">
-                                <rect key="frame" x="120" y="64" width="80" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="Qxu-Ap-FuX" kind="embed" id="hRN-2J-0uy"/>
                                 </connections>
                             </containerView>
                             <containerView contentMode="scaleToFill" id="mfF-NX-2gg">
@@ -139,7 +48,6 @@
                     <connections>
                         <outlet property="mainMenuView" destination="mfF-NX-2gg" id="2IL-8f-nzH"/>
                         <outlet property="tabView" destination="qGW-F7-Nqu" id="WLj-FS-99f"/>
-                        <outlet property="titleMenuView" destination="ohJ-Vu-Fcd" id="v0w-x7-fJn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sED-Ge-oNx" userLabel="First Responder" sceneMemberID="firstResponder"/>

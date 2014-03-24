@@ -12,14 +12,14 @@
 
 @end
 
-@implementation Login
+@implementation Login{
+    Login_Content *loginContent;
+    Register_Captain *registerCaptain;
+    Register_Player *registerPlayer;
+    UIViewController *currentViewController;
+}
 @synthesize roleSegment;
-@synthesize accountField;
-@synthesize passwordField;
-@synthesize registerButton;
-@synthesize loginButton;
-@synthesize qqAccountButton;
-@synthesize sinaAccountButton;
+@synthesize contentView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,14 +34,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIImage *accountIcon = [UIImage imageNamed:@"LoginAccountIcon.jpg"];
-    UIImageView *accountIconView = [[UIImageView alloc] initWithImage:accountIcon];
-    [accountField setLeftView:accountIconView];
-    [accountField setLeftViewMode:UITextFieldViewModeAlways];
-    UIImage *passwordIcon = [UIImage imageNamed:@"PasswordIcon.jpg"];
-    UIImageView *passwordIconView = [[UIImageView alloc] initWithImage:passwordIcon];
-    [passwordField setLeftView:passwordIconView];
-    [passwordField setLeftViewMode:UITextFieldViewModeAlways];
+    loginContent = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginContent"];
+    registerCaptain = [self.storyboard instantiateViewControllerWithIdentifier:@"RegisterCaptain"];
+    registerPlayer = [self.storyboard instantiateViewControllerWithIdentifier:@"RegisterPlayer"];
+    [self addChildViewController:loginContent];
+    [self addChildViewController:registerCaptain];
+    [self addChildViewController:registerPlayer];
+    [contentView addSubview:loginContent.view];
+    currentViewController = loginContent;
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,24 +50,35 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)presentRegisterView
 {
-    [super touchesBegan:touches withEvent:event];
-    [accountField resignFirstResponder];
-    [passwordField resignFirstResponder];
+    switch (roleSegment.selectedSegmentIndex) {
+        case 0:
+            [self transitionFromViewController:currentViewController toViewController:registerCaptain duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:nil];
+            currentViewController = registerCaptain;
+            break;
+        case 1:
+            [self transitionFromViewController:currentViewController toViewController:registerPlayer duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:nil];
+            currentViewController = registerPlayer;
+        default:
+            break;
+    }
+    [roleSegment setUserInteractionEnabled:NO];
 }
 
--(IBAction)focusToPasswordTextField:(id)sender
+-(void)presentLoginView
 {
-    [passwordField becomeFirstResponder];
+    [self transitionFromViewController:currentViewController toViewController:loginContent duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:nil];
+    currentViewController = loginContent;
+    [roleSegment setUserInteractionEnabled:YES];
 }
 
--(IBAction)loginButtonOnClicked:(id)sender
-{
-    UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Captain" bundle:nil];
-    UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
-    [self presentViewController:mainController animated:YES completion:nil];
-}
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [super touchesBegan:touches withEvent:event];
+//    [loginContent dismissKeyboard];
+//}
+
 /*
 #pragma mark - Navigation
 

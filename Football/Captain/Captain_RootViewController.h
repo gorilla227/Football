@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Captain_TitleMenu.h"
 #import "Captain_MainMenu.h"
 
 @interface Captain_RootViewController : UIViewController<MenuSelected>
-@property IBOutlet UIView *titleMenuView;
 @property IBOutlet UIView *tabView;
 @property IBOutlet UIView *mainMenuView;
 @end
