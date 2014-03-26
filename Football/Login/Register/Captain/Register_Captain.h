@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "LoginAndRegisterView.h"
 
-@interface Register_Captain : UIViewController
-
+@interface Register_Captain : UIViewController<DismissKeyboard>
+@property IBOutlet UITextField *teamName;
+@property IBOutlet UITextField *cellphoneNumber;
+@property IBOutlet UITextField *password;
 @end

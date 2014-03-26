@@ -15,6 +15,7 @@
 @implementation Login_Content{
     Register_Captain *registerCaptain;
     id<LoginAndRegisterView>delegate;
+    NSArray *textFieldArray;
 }
 @synthesize accountField;
 @synthesize passwordField;
@@ -36,6 +37,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    textFieldArray = [[NSArray alloc] initWithObjects:accountField, passwordField, nil];
+    
     UIImage *accountIcon = [UIImage imageNamed:@"LoginAccountIcon.jpg"];
     UIImageView *accountIconView = [[UIImageView alloc] initWithImage:accountIcon];
     [accountField setLeftView:accountIconView];
@@ -52,9 +55,16 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)focusToPasswordTextField:(id)sender
+-(IBAction)changeTextFieldFocus:(id)sender
 {
-    [passwordField becomeFirstResponder];
+    NSInteger indexOfNextTextField = [textFieldArray indexOfObject:sender] + 1;
+    if (indexOfNextTextField >= textFieldArray.count) {
+        [self performSelector:@selector(loginButtonOnClicked:) withObject:loginButton];
+    }
+    else {
+        UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];
+        [nextResponder becomeFirstResponder];
+    }
 }
 
 -(void)dismissKeyboard

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Register/Captain/Register_Captain.h"
-#import "Register/Player/Register_Player.h"
+#import "Register_Captain.h"
+#import "Register_Player.h"
+#import "Register_Captain_Advance.h"
 #import "Login_Content.h"
 
 @interface Login : UIViewController<LoginAndRegisterView>

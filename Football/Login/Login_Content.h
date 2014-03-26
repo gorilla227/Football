@@ -10,13 +10,11 @@
 #import "Register_Captain.h"
 #import "LoginAndRegisterView.h"
 
-@interface Login_Content : UIViewController
+@interface Login_Content : UIViewController<DismissKeyboard>
 @property IBOutlet UITextField *accountField;
 @property IBOutlet UITextField *passwordField;
 @property IBOutlet UIButton *registerButton;
 @property IBOutlet UIButton *loginButton;
 @property IBOutlet UIButton *qqAccountButton;
 @property IBOutlet UIButton *sinaAccountButton;
-
--(void)dismissKeyboard;
 @end

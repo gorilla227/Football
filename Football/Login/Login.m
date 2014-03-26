@@ -14,8 +14,8 @@
 
 @implementation Login{
     Login_Content *loginContent;
-    Register_Captain *registerCaptain;
-    Register_Player *registerPlayer;
+    UINavigationController *registerCaptain;
+    UINavigationController *registerPlayer;
     UIViewController *currentViewController;
 }
 @synthesize roleSegment;
@@ -73,11 +73,23 @@
     [roleSegment setUserInteractionEnabled:YES];
 }
 
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    [super touchesBegan:touches withEvent:event];
-//    [loginContent dismissKeyboard];
-//}
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    id<DismissKeyboard>delegate;
+    if (currentViewController == loginContent) {
+        delegate = (id)currentViewController;
+    }
+    else {
+        UINavigationController *navigationController = (UINavigationController *)currentViewController;
+        delegate = (id)[navigationController.viewControllers firstObject];
+        if ([navigationController.topViewController isKindOfClass:[Register_Captain_Advance class]]) {
+            id<DismissCallFriendsMenu>delegateForCallFriendsMenu = (id)navigationController.topViewController;
+            [delegateForCallFriendsMenu dismissCallFriendsMenu];
+        }
+    }
+    [delegate dismissKeyboard];
+}
 
 /*
 #pragma mark - Navigation

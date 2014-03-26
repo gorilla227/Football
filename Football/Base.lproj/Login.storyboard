@@ -146,13 +146,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="gX3-15-EPD">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="gX3-15-EPD">
                                         <rect key="frame" x="20" y="61" width="280" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                         <connections>
-                                            <action selector="loginButtonOnClicked:" destination="P6b-ds-GMJ" eventType="editingDidEndOnExit" id="t4U-zO-mGW"/>
+                                            <action selector="changeTextFieldFocus:" destination="XQY-Jw-jZp" eventType="editingDidEndOnExit" id="NSY-X2-4dS"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="球队名字/手机/QQ" minimumFontSize="17" id="zRm-qO-gHM">
@@ -161,7 +161,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
-                                            <action selector="focusToPasswordTextField:" destination="XQY-Jw-jZp" eventType="editingDidEndOnExit" id="LB2-Eb-pIL"/>
+                                            <action selector="changeTextFieldFocus:" destination="XQY-Jw-jZp" eventType="editingDidEndOnExit" id="H9i-bg-Rcf"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="31Z-qI-8A0">
@@ -176,7 +176,7 @@
                                             <action selector="registerButtonOnClicked:" destination="XQY-Jw-jZp" eventType="touchUpInside" id="txP-PV-ArL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AFH-wu-67Q">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AFH-wu-67Q">
                                         <rect key="frame" x="161" y="104" width="159" height="56"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -267,10 +267,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="focusToPasswordTextField:" destination="P6b-ds-GMJ" eventType="editingDidEndOnExit" id="uG3-LC-vBp"/>
+                                    <action selector="changeTextFieldFocus:" destination="IJe-aT-V7J" eventType="editingDidEndOnExit" id="lmm-AG-Z5l"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7GR-xW-1fs">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7GR-xW-1fs">
                                 <rect key="frame" x="0.0" y="297" width="320" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -282,22 +282,22 @@
                                     <segue destination="qiv-rh-MT9" kind="push" id="oI9-ec-r1u"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="Ruw-ii-qkK">
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="Ruw-ii-qkK">
                                 <rect key="frame" x="20" y="155" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
-                                    <action selector="loginButtonOnClicked:" destination="P6b-ds-GMJ" eventType="editingDidEndOnExit" id="UHW-81-ovj"/>
+                                    <action selector="changeTextFieldFocus:" destination="IJe-aT-V7J" eventType="editingDidEndOnExit" id="Eof-OG-mdV"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号码" minimumFontSize="17" id="Spb-pf-yD7">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号码" minimumFontSize="17" id="Spb-pf-yD7">
                                 <rect key="frame" x="20" y="117" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="focusToPasswordTextField:" destination="P6b-ds-GMJ" eventType="editingDidEndOnExit" id="DZ4-HH-3rw"/>
+                                    <action selector="changeTextFieldFocus:" destination="IJe-aT-V7J" eventType="editingDidEndOnExit" id="zyU-Zd-HcA"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -311,6 +311,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cellphoneNumber" destination="Spb-pf-yD7" id="I6Q-yC-Dmp"/>
+                        <outlet property="password" destination="Ruw-ii-qkK" id="iCQ-3a-lpq"/>
+                        <outlet property="teamName" destination="YzJ-zc-XVZ" id="yN6-ow-IBU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xuh-er-AMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -498,7 +503,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="focusToPasswordTextField:" destination="P6b-ds-GMJ" eventType="editingDidEndOnExit" id="1Ac-mm-zAt"/>
+                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="iRv-eR-M57"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="un4-oi-tIa">
@@ -519,7 +524,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
-                                    <action selector="loginButtonOnClicked:" destination="P6b-ds-GMJ" eventType="editingDidEndOnExit" id="Kvn-8b-fDW"/>
+                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="jlN-o2-H0J"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号码" minimumFontSize="17" id="9xH-bO-6pR">
@@ -528,7 +533,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="focusToPasswordTextField:" destination="P6b-ds-GMJ" eventType="editingDidEndOnExit" id="o04-lD-z4x"/>
+                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="F4L-hI-KOT"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="QQ" minimumFontSize="17" id="Bft-lh-BxO">
@@ -537,7 +542,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="focusToPasswordTextField:" destination="P6b-ds-GMJ" eventType="editingDidEndOnExit" id="Hxg-nL-4t7"/>
+                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="Fx6-n1-FgR"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="出生日期" minimumFontSize="17" id="zej-gZ-443">
@@ -546,7 +551,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="focusToPasswordTextField:" destination="P6b-ds-GMJ" eventType="editingDidEndOnExit" id="PNN-Cm-CaV"/>
+                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="m8w-Qh-hRf"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="主要活动区域" minimumFontSize="17" id="j2F-V4-CSZ">
@@ -555,7 +560,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="focusToPasswordTextField:" destination="P6b-ds-GMJ" eventType="editingDidEndOnExit" id="3Ek-3h-LJY"/>
+                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="puv-YJ-PUI"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -569,6 +574,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="activityRegion" destination="j2F-V4-CSZ" id="PfN-I0-SKL"/>
+                        <outlet property="birthday" destination="zej-gZ-443" id="rNR-OF-aNz"/>
+                        <outlet property="cellphoneNumber" destination="9xH-bO-6pR" id="nSj-YX-tAd"/>
+                        <outlet property="password" destination="7I3-Lf-D0M" id="m4L-hD-VJa"/>
+                        <outlet property="personalID" destination="ED9-Fa-0Jq" id="a8g-aD-6Pw"/>
+                        <outlet property="qqNumber" destination="Bft-lh-BxO" id="V4m-lY-YiS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gZ-q2-J1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

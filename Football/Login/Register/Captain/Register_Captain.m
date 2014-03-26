@@ -14,7 +14,11 @@
 
 @implementation Register_Captain{
     id<LoginAndRegisterView>delegate;
+    NSArray *textFieldArray;
 }
+@synthesize teamName;
+@synthesize cellphoneNumber;
+@synthesize password;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +33,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    textFieldArray = [[NSArray alloc] initWithObjects:teamName, cellphoneNumber, password, nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +46,31 @@
 {
     delegate = (id)self.parentViewController.parentViewController;
     [delegate presentLoginView];
+}
+
+-(IBAction)changeTextFieldFocus:(id)sender
+{
+    NSInteger indexOfNextTextField = [textFieldArray indexOfObject:sender] + 1;
+    if (indexOfNextTextField >= textFieldArray.count) {
+
+    }
+    else {
+        UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];
+        [nextResponder becomeFirstResponder];
+    }
+}
+
+-(void)dismissKeyboard
+{
+    [teamName resignFirstResponder];
+    [cellphoneNumber resignFirstResponder];
+    [password resignFirstResponder];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self dismissKeyboard];
 }
 /*
 #pragma mark - Navigation

@@ -12,3 +12,11 @@
 -(void)presentLoginView;
 -(void)presentRegisterView;
 @end
+
+@protocol DismissKeyboard <NSObject>
+-(void)dismissKeyboard;
+@end
+
+@protocol DismissCallFriendsMenu <NSObject>
+-(void)dismissCallFriendsMenu;
+@end

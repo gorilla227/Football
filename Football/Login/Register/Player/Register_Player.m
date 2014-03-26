@@ -14,7 +14,9 @@
 
 @implementation Register_Player{
     id<LoginAndRegisterView>delegate;
+    NSArray *textFieldArray;
 }
+@synthesize personalID, cellphoneNumber, qqNumber, birthday, activityRegion, password;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +31,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    textFieldArray = [[NSArray alloc] initWithObjects:personalID, cellphoneNumber, qqNumber, birthday, activityRegion, password, nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +44,34 @@
 {
     delegate = (id)self.parentViewController.parentViewController;
     [delegate presentLoginView];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self dismissKeyboard];
+}
+
+-(IBAction)changeTextFieldFocus:(id)sender
+{
+    NSInteger indexOfNextTextField = [textFieldArray indexOfObject:sender] + 1;
+    if (indexOfNextTextField >= textFieldArray.count) {
+
+    }
+    else {
+        UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];
+        [nextResponder becomeFirstResponder];
+    }
+}
+
+-(void)dismissKeyboard
+{
+    [personalID resignFirstResponder];
+    [cellphoneNumber resignFirstResponder];
+    [qqNumber resignFirstResponder];
+    [birthday resignFirstResponder];
+    [activityRegion resignFirstResponder];
+    [password resignFirstResponder];
 }
 /*
 #pragma mark - Navigation
