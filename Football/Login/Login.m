@@ -91,6 +91,31 @@
     [delegate dismissKeyboard];
 }
 
+-(void)keyboardWillShow
+{
+    CGPoint center = contentView.center;
+    center.y = center.y - 200;
+    
+    //Animation
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3f];
+    [contentView setCenter:center];
+    [contentView setBackgroundColor:[UIColor whiteColor]];
+    [UIView commitAnimations];
+}
+
+-(void)keyboardWillHide
+{
+    CGPoint center = contentView.center;
+    center.y = center.y + 200;
+    
+    //Animation
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3f];
+    [contentView setCenter:center];
+    [contentView setBackgroundColor:[UIColor clearColor]];
+    [UIView commitAnimations];
+}
 /*
 #pragma mark - Navigation
 

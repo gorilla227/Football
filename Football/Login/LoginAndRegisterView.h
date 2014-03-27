@@ -11,6 +11,8 @@
 @protocol LoginAndRegisterView <NSObject>
 -(void)presentLoginView;
 -(void)presentRegisterView;
+-(void)keyboardWillShow;
+-(void)keyboardWillHide;
 @end
 
 @protocol DismissKeyboard <NSObject>

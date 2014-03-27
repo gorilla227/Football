@@ -16,9 +16,7 @@
     id<LoginAndRegisterView>delegate;
     NSArray *textFieldArray;
 }
-@synthesize teamName;
-@synthesize cellphoneNumber;
-@synthesize password;
+@synthesize teamName, cellphoneNumber, password, loginButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +31,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    delegate = (id)self.parentViewController.parentViewController;
     textFieldArray = [[NSArray alloc] initWithObjects:teamName, cellphoneNumber, password, nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:delegate selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:delegate selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,7 +46,6 @@
 
 -(IBAction)cancelButtonOnClicked:(id)sender
 {
-    delegate = (id)self.parentViewController.parentViewController;
     [delegate presentLoginView];
 }
 
@@ -52,7 +53,7 @@
 {
     NSInteger indexOfNextTextField = [textFieldArray indexOfObject:sender] + 1;
     if (indexOfNextTextField >= textFieldArray.count) {
-
+        [self performSegueWithIdentifier:@"CaptainRegisterAdvance" sender:loginButton];
     }
     else {
         UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];

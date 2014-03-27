@@ -103,11 +103,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" id="eMw-F9-tkY">
-                                <rect key="frame" x="0.0" y="215" width="320" height="353"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </containerView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="uhU-RM-H1H">
                                 <rect key="frame" x="100" y="46" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -122,6 +117,11 @@
                                     <segment title="我是球员"/>
                                 </segments>
                             </segmentedControl>
+                            <containerView contentMode="scaleToFill" id="eMw-F9-tkY">
+                                <rect key="frame" x="0.0" y="215" width="320" height="353"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -279,7 +279,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="qiv-rh-MT9" kind="push" id="oI9-ec-r1u"/>
+                                    <segue destination="qiv-rh-MT9" kind="push" identifier="CaptainRegisterAdvance" id="oI9-ec-r1u"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="Ruw-ii-qkK">
@@ -295,7 +295,7 @@
                                 <rect key="frame" x="20" y="117" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="changeTextFieldFocus:" destination="IJe-aT-V7J" eventType="editingDidEndOnExit" id="zyU-Zd-HcA"/>
                                 </connections>
@@ -313,6 +313,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cellphoneNumber" destination="Spb-pf-yD7" id="I6Q-yC-Dmp"/>
+                        <outlet property="loginButton" destination="7GR-xW-1fs" id="IQ1-WL-bxu"/>
                         <outlet property="password" destination="Ruw-ii-qkK" id="iCQ-3a-lpq"/>
                         <outlet property="teamName" destination="YzJ-zc-XVZ" id="yN6-ow-IBU"/>
                     </connections>
@@ -515,7 +516,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="g7m-aZ-iN8" kind="push" id="jUe-aG-mqD"/>
+                                    <segue destination="g7m-aZ-iN8" kind="push" identifier="PlayerRegisterAdvance" id="jUe-aG-mqD"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="7I3-Lf-D0M">
@@ -531,7 +532,7 @@
                                 <rect key="frame" x="20" y="107" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="F4L-hI-KOT"/>
                                 </connections>
@@ -540,7 +541,7 @@
                                 <rect key="frame" x="20" y="145" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="Fx6-n1-FgR"/>
                                 </connections>
@@ -549,7 +550,7 @@
                                 <rect key="frame" x="20" y="183" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="m8w-Qh-hRf"/>
                                 </connections>
@@ -558,7 +559,7 @@
                                 <rect key="frame" x="20" y="221" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="puv-YJ-PUI"/>
                                 </connections>

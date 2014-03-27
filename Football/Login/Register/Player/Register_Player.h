@@ -16,4 +16,5 @@
 @property IBOutlet UITextField *birthday;
 @property IBOutlet UITextField *activityRegion;
 @property IBOutlet UITextField *password;
+@property IBOutlet UIButton *loginButton;
 @end
