@@ -16,7 +16,7 @@
     id<LoginAndRegisterView>delegate;
     NSArray *textFieldArray;
 }
-@synthesize teamName, cellphoneNumber, password, loginButton;
+@synthesize teamName, cellphoneNumber, password, registerButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,7 +53,7 @@
 {
     NSInteger indexOfNextTextField = [textFieldArray indexOfObject:sender] + 1;
     if (indexOfNextTextField >= textFieldArray.count) {
-        [self performSegueWithIdentifier:@"CaptainRegisterAdvance" sender:loginButton];
+        [self performSegueWithIdentifier:@"CaptainRegisterAdvance" sender:registerButton];
     }
     else {
         UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];

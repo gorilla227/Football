@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "LoginAndRegisterView.h"
 
-@interface Register_Player : UIViewController<DismissKeyboard>
+@interface Register_Player : UIViewController<DismissKeyboard, UIPickerViewDataSource, UIPickerViewDelegate>
 @property IBOutlet UITextField *personalID;
 @property IBOutlet UITextField *cellphoneNumber;
 @property IBOutlet UITextField *qqNumber;
 @property IBOutlet UITextField *birthday;
 @property IBOutlet UITextField *activityRegion;
 @property IBOutlet UITextField *password;
-@property IBOutlet UIButton *loginButton;
+@property IBOutlet UIButton *registerButton;
 @end

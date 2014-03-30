@@ -12,6 +12,8 @@
 		A103339318D6B49900050A61 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A103339218D6B49900050A61 /* Login.m */; };
 		A103339618D6BF7900050A61 /* LoginAccountIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A103339418D6BF7900050A61 /* LoginAccountIcon.jpg */; };
 		A103339718D6BF7900050A61 /* PasswordIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A103339518D6BF7900050A61 /* PasswordIcon.jpg */; };
+		A11F052518E68EE900109870 /* UITextField_WithoutContextMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F052418E68EE900109870 /* UITextField_WithoutContextMenu.m */; };
+		A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */ = {isa = PBXBuildFile; fileRef = A11F052618E68FBE00109870 /* ActivityRegion.plist */; };
 		A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */; };
 		A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */; };
 		A1C8F9E918DE895C00BE42D4 /* Register_Captain.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E818DE895C00BE42D4 /* Register_Captain.m */; };
@@ -55,6 +57,9 @@
 		A103339218D6B49900050A61 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = Login/Login.m; sourceTree = "<group>"; };
 		A103339418D6BF7900050A61 /* LoginAccountIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = LoginAccountIcon.jpg; path = Images.xcassets/LoginAccountIcon.jpg; sourceTree = "<group>"; };
 		A103339518D6BF7900050A61 /* PasswordIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = PasswordIcon.jpg; path = Images.xcassets/PasswordIcon.jpg; sourceTree = "<group>"; };
+		A11F052318E68EE900109870 /* UITextField_WithoutContextMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextField_WithoutContextMenu.h; path = Login/Register/UITextField_WithoutContextMenu.h; sourceTree = "<group>"; };
+		A11F052418E68EE900109870 /* UITextField_WithoutContextMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITextField_WithoutContextMenu.m; path = Login/Register/UITextField_WithoutContextMenu.m; sourceTree = "<group>"; };
+		A11F052618E68FBE00109870 /* ActivityRegion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActivityRegion.plist; path = Login/Register/ActivityRegion.plist; sourceTree = "<group>"; };
 		A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Captain_MenuList.plist; path = Captain/Captain_MenuList.plist; sourceTree = "<group>"; };
 		A1C8F9E018DAAA3400BE42D4 /* Captain_MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MainMenu.h; path = Captain/Captain_MainMenu.h; sourceTree = "<group>"; };
 		A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MainMenu.m; path = Captain/Captain_MainMenu.m; sourceTree = "<group>"; };
@@ -129,6 +134,9 @@
 		A1C8FA3D18DFB1C500BE42D4 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				A11F052318E68EE900109870 /* UITextField_WithoutContextMenu.h */,
+				A11F052418E68EE900109870 /* UITextField_WithoutContextMenu.m */,
+				A11F052618E68FBE00109870 /* ActivityRegion.plist */,
 				A1C8FA4618DFEA0B00BE42D4 /* Player */,
 				A1C8FA4518DFE9F700BE42D4 /* Captain */,
 			);
@@ -342,6 +350,7 @@
 				A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */,
 				A1D07BEA18CC1E4800FA3A8D /* Images.xcassets in Resources */,
 				A103339718D6BF7900050A61 /* PasswordIcon.jpg in Resources */,
+				A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */,
 				A1D07BDC18CC1E4800FA3A8D /* InfoPlist.strings in Resources */,
 				A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */,
 				A103339618D6BF7900050A61 /* LoginAccountIcon.jpg in Resources */,
@@ -376,6 +385,7 @@
 				A1C8FA4918DFEADD00BE42D4 /* Register_Player.m in Sources */,
 				A1C8FA4C18DFEAFE00BE42D4 /* Register_Player_Advance.m in Sources */,
 				A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */,
+				A11F052518E68EE900109870 /* UITextField_WithoutContextMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -313,8 +313,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cellphoneNumber" destination="Spb-pf-yD7" id="I6Q-yC-Dmp"/>
-                        <outlet property="loginButton" destination="7GR-xW-1fs" id="IQ1-WL-bxu"/>
                         <outlet property="password" destination="Ruw-ii-qkK" id="iCQ-3a-lpq"/>
+                        <outlet property="registerButton" destination="7GR-xW-1fs" id="DhQ-CG-9Lc"/>
                         <outlet property="teamName" destination="YzJ-zc-XVZ" id="yN6-ow-IBU"/>
                     </connections>
                 </viewController>
@@ -546,22 +546,24 @@
                                     <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="Fx6-n1-FgR"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="出生日期" minimumFontSize="17" id="zej-gZ-443">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="出生日期" minimumFontSize="17" id="zej-gZ-443" customClass="UITextField_WithoutContextMenu">
                                 <rect key="frame" x="20" y="183" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="m8w-Qh-hRf"/>
+                                    <outlet property="delegate" destination="Noe-j6-azG" id="y8B-eB-jEt"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="主要活动区域" minimumFontSize="17" id="j2F-V4-CSZ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="主要活动区域" minimumFontSize="17" id="j2F-V4-CSZ" customClass="UITextField_WithoutContextMenu">
                                 <rect key="frame" x="20" y="221" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="puv-YJ-PUI"/>
+                                    <outlet property="delegate" destination="Noe-j6-azG" id="Zqh-XP-6NY"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -582,6 +584,7 @@
                         <outlet property="password" destination="7I3-Lf-D0M" id="m4L-hD-VJa"/>
                         <outlet property="personalID" destination="ED9-Fa-0Jq" id="a8g-aD-6Pw"/>
                         <outlet property="qqNumber" destination="Bft-lh-BxO" id="V4m-lY-YiS"/>
+                        <outlet property="registerButton" destination="un4-oi-tIa" id="9jH-xo-7lC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gZ-q2-J1X" userLabel="First Responder" sceneMemberID="firstResponder"/>

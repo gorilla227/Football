@@ -13,5 +13,5 @@
 @property IBOutlet UITextField *teamName;
 @property IBOutlet UITextField *cellphoneNumber;
 @property IBOutlet UITextField *password;
-@property IBOutlet UIButton *loginButton;
+@property IBOutlet UIButton *registerButton;
 @end

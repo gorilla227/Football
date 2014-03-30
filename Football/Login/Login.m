@@ -17,6 +17,8 @@
     UINavigationController *registerCaptain;
     UINavigationController *registerPlayer;
     UIViewController *currentViewController;
+    CGPoint contentViewCenter_ShowKeyboard;
+    CGPoint contentViewCenter_HideKeyboard;
 }
 @synthesize roleSegment;
 @synthesize contentView;
@@ -42,6 +44,9 @@
     [self addChildViewController:registerPlayer];
     [contentView addSubview:loginContent.view];
     currentViewController = loginContent;
+    
+    contentViewCenter_ShowKeyboard = CGPointMake(contentView.center.x, contentView.center.y - 195);
+    contentViewCenter_HideKeyboard = contentView.center;
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,26 +98,20 @@
 
 -(void)keyboardWillShow
 {
-    CGPoint center = contentView.center;
-    center.y = center.y - 200;
-    
     //Animation
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3f];
-    [contentView setCenter:center];
+    [contentView setCenter:contentViewCenter_ShowKeyboard];
     [contentView setBackgroundColor:[UIColor whiteColor]];
     [UIView commitAnimations];
 }
 
 -(void)keyboardWillHide
 {
-    CGPoint center = contentView.center;
-    center.y = center.y + 200;
-    
     //Animation
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3f];
-    [contentView setCenter:center];
+    [contentView setCenter:contentViewCenter_HideKeyboard];
     [contentView setBackgroundColor:[UIColor clearColor]];
     [UIView commitAnimations];
 }
