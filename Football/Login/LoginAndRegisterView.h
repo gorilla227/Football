@@ -13,6 +13,7 @@
 -(void)presentRegisterView;
 -(void)keyboardWillShow;
 -(void)keyboardWillHide;
+-(void)greyBackground:(BOOL)isCallFriendsMenuShowed inFrame:(CGRect)frame;
 @end
 
 @protocol DismissKeyboard <NSObject>

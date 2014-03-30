@@ -17,6 +17,7 @@
     UIViewController *blankView;
     CallFriendsMenu *callFriendsMenu;
     UIViewController *currentView;
+    CGRect greyFrame;
 }
 @synthesize callFriendsMenuView;
 
@@ -33,6 +34,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    delegate = (id)self.parentViewController.parentViewController;
     blankView = [[UIViewController alloc] init];
     [blankView.view setBackgroundColor:[UIColor clearColor]];
     [self addChildViewController:blankView];
@@ -41,6 +43,8 @@
     
     callFriendsMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"CallFriendsMenu"];
     [self addChildViewController:callFriendsMenu];
+    
+    greyFrame = CGRectMake(0, 0, 320, self.view.frame.size.height - callFriendsMenuView.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,7 +55,6 @@
 
 -(IBAction)cancelButtonOnClicked:(id)sender
 {
-    delegate = (id)self.parentViewController.parentViewController;
     [delegate presentLoginView];
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
@@ -65,12 +68,16 @@
         }
     }
     currentView = callFriendsMenu;
+    
+    //Grey the background
+    [delegate greyBackground:YES inFrame:greyFrame];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
     [self dismissCallFriendsMenu];
+    [delegate greyBackground:NO inFrame:greyFrame];
 }
 
 -(void)dismissCallFriendsMenu

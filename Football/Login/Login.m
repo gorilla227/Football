@@ -19,6 +19,7 @@
     UIViewController *currentViewController;
     CGPoint contentViewCenter_ShowKeyboard;
     CGPoint contentViewCenter_HideKeyboard;
+    CALayer *greyBackgroundLayer;
 }
 @synthesize roleSegment;
 @synthesize contentView;
@@ -47,6 +48,11 @@
     
     contentViewCenter_ShowKeyboard = CGPointMake(contentView.center.x, contentView.center.y - 195);
     contentViewCenter_HideKeyboard = contentView.center;
+    
+    //Set layer for grey background
+    greyBackgroundLayer = [CALayer layer];
+    [greyBackgroundLayer setBackgroundColor:[UIColor blackColor].CGColor];
+    [greyBackgroundLayer setOpacity:0.5f];
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,6 +120,17 @@
     [contentView setCenter:contentViewCenter_HideKeyboard];
     [contentView setBackgroundColor:[UIColor clearColor]];
     [UIView commitAnimations];
+}
+
+-(void)greyBackground:(BOOL)isCallFriendsMenuShowed inFrame:(CGRect)frame
+{
+    [greyBackgroundLayer setFrame:frame];
+    if (isCallFriendsMenuShowed) {
+        [self.view.layer addSublayer:greyBackgroundLayer];
+    }
+    else {
+        [greyBackgroundLayer removeFromSuperlayer];
+    }
 }
 /*
 #pragma mark - Navigation
