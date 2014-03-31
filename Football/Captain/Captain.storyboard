@@ -17,7 +17,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="KAj-Tw-HnP" kind="embed" id="QlN-kh-wpU"/>
+                                    <segue destination="KAj-Tw-HnP" kind="embed" identifier="" id="KU1-1f-Op4"/>
                                 </connections>
                             </containerView>
                             <containerView contentMode="scaleToFill" id="mfF-NX-2gg">
@@ -61,7 +61,7 @@
         <!--Captain Main Menu-->
         <scene sceneID="hm2-EQ-llU">
             <objects>
-                <tableViewController id="krd-eN-QWK" customClass="Captain_MainMenu" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Captain_MainMenu" useStoryboardIdentifierAsRestorationIdentifier="YES" id="krd-eN-QWK" customClass="Captain_MainMenu" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SnM-jj-EnU">
                         <rect key="frame" x="0.0" y="0.0" width="124" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -158,11 +158,15 @@
             </objects>
             <point key="canvasLocation" x="738" y="-256"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Captain Tab Bar Controller-->
         <scene sceneID="IiA-Md-9wD">
             <objects>
-                <tabBarController storyboardIdentifier="TabBar" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KAj-Tw-HnP" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KAj-Tw-HnP" customClass="Captain_TabBarController" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="504"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cfv-6q-Bsd">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -175,7 +179,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ufA-oq-zvd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204" y="101"/>
+            <point key="canvasLocation" x="214" y="101"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="OVt-6Q-6lA">

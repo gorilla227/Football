@@ -8,13 +8,9 @@
 
 #import "Captain_RootViewController.h"
 
-@interface Captain_RootViewController ()
-
-@end
-
 @implementation Captain_RootViewController{
     Captain_MainMenu *mainMenu;
-    UITabBarController *tabBar;
+    Captain_TabBarController *tabBar;
     CGPoint tabView_menuShowed;
     CGPoint tabView_menuHidden;
     CGPoint mainMenu_menuShowed;
@@ -36,10 +32,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    mainMenu = [[Captain_MainMenu alloc] init];
-    tabBar = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBar"];
-    [self addChildViewController:mainMenu];
-    [self addChildViewController:tabBar];
+    for (UIViewController *viewController in self.childViewControllers) {
+        if ([viewController.restorationIdentifier  isEqual: @"Captain_MainMenu"]) {
+            mainMenu = (Captain_MainMenu *)viewController;
+        }
+        else if ([viewController.restorationIdentifier isEqual: @"TabBar"]) {
+            tabBar = (Captain_TabBarController *)viewController;
+        }
+    }
+    [tabBar setMainMenuDelegate:mainMenu];
 
     tabView_menuHidden = tabView.center;
     tabView_menuShowed = CGPointMake(tabView.center.x + mainMenuView.frame.size.width, tabView.center.y);
@@ -90,7 +91,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 

@@ -36,20 +36,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //Get menu list
-    NSString *menuListFile = [[NSBundle mainBundle] pathForResource:@"Captain_MenuList" ofType:@"plist"];
-    NSDictionary *menuListDictionary = [[NSDictionary alloc] initWithContentsOfFile:menuListFile];
-    NSArray *rootMenu = [menuListDictionary objectForKey:@"RootMenu"];
-    menuList = [[NSMutableArray alloc] init];
-    for (int i = 0; i < rootMenu.count; i++) {
-        NSDictionary *menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:rootMenu[i], @"Title", @"Root", @"Type", nil];
-        [menuList addObject:menuItem];
-        NSArray *lesserMenu = [menuListDictionary objectForKey:[NSString stringWithFormat:@"%i", i]];
-        for (int j = 0; j < [lesserMenu count]; j++) {
-            menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:lesserMenu[j], @"Title", @"Lesser", @"Type", nil];
-            [menuList addObject:menuItem];
-        }
-    }
+    [self menuListGeneration:0];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,6 +77,23 @@
     NSLog([menuList[indexPath.row] objectForKey:@"Title"]);
     delegate = (id)self.parentViewController;
     [delegate menuSwitch:NO];
+}
+
+-(void)menuListGeneration:(NSInteger)rootMenuIndex
+{
+    //Get part menu list
+    NSString *menuListFile = [[NSBundle mainBundle] pathForResource:@"Captain_MenuList" ofType:@"plist"];
+    NSDictionary *menuListDictionary = [[NSDictionary alloc] initWithContentsOfFile:menuListFile];
+    NSArray *rootMenu = [menuListDictionary objectForKey:@"RootMenu"];
+    menuList = [[NSMutableArray alloc] init];
+    NSDictionary *menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:rootMenu[rootMenuIndex], @"Title", @"Root", @"Type", nil];
+    [menuList addObject:menuItem];
+    NSArray *lesserMenu = [menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", (long)rootMenuIndex]];
+    for (NSString *menuItemName in lesserMenu) {
+        menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:menuItemName, @"Title", @"Lesser", @"Type", nil];
+        [menuList addObject:menuItem];
+    }
+    [self.tableView reloadData];
 }
 /*
 // Override to support conditional editing of the table view.

@@ -14,6 +14,7 @@
 		A103339718D6BF7900050A61 /* PasswordIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A103339518D6BF7900050A61 /* PasswordIcon.jpg */; };
 		A11F052518E68EE900109870 /* UITextField_WithoutContextMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F052418E68EE900109870 /* UITextField_WithoutContextMenu.m */; };
 		A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */ = {isa = PBXBuildFile; fileRef = A11F052618E68FBE00109870 /* ActivityRegion.plist */; };
+		A1B0D9D218E8CA5700671383 /* Captain_TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0D9D118E8CA5700671383 /* Captain_TabBarController.m */; };
 		A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */; };
 		A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */; };
 		A1C8F9E918DE895C00BE42D4 /* Register_Captain.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E818DE895C00BE42D4 /* Register_Captain.m */; };
@@ -60,6 +61,9 @@
 		A11F052318E68EE900109870 /* UITextField_WithoutContextMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextField_WithoutContextMenu.h; path = Login/Register/UITextField_WithoutContextMenu.h; sourceTree = "<group>"; };
 		A11F052418E68EE900109870 /* UITextField_WithoutContextMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITextField_WithoutContextMenu.m; path = Login/Register/UITextField_WithoutContextMenu.m; sourceTree = "<group>"; };
 		A11F052618E68FBE00109870 /* ActivityRegion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActivityRegion.plist; path = Login/Register/ActivityRegion.plist; sourceTree = "<group>"; };
+		A1B0D9D018E8CA5700671383 /* Captain_TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TabBarController.h; path = Captain/Captain_TabBarController.h; sourceTree = "<group>"; };
+		A1B0D9D118E8CA5700671383 /* Captain_TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TabBarController.m; path = Captain/Captain_TabBarController.m; sourceTree = "<group>"; };
+		A1B0DA1418E8D10700671383 /* Captain_Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Captain_Protocol.h; path = Captain/Captain_Protocol.h; sourceTree = "<group>"; };
 		A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Captain_MenuList.plist; path = Captain/Captain_MenuList.plist; sourceTree = "<group>"; };
 		A1C8F9E018DAAA3400BE42D4 /* Captain_MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MainMenu.h; path = Captain/Captain_MainMenu.h; sourceTree = "<group>"; };
 		A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MainMenu.m; path = Captain/Captain_MainMenu.m; sourceTree = "<group>"; };
@@ -260,12 +264,15 @@
 		A1D07C0C18CD162500FA3A8D /* Captain */ = {
 			isa = PBXGroup;
 			children = (
+				A1B0DA1418E8D10700671383 /* Captain_Protocol.h */,
 				A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */,
 				A103338918D419A300050A61 /* Captain.storyboard */,
 				A1C8F9E018DAAA3400BE42D4 /* Captain_MainMenu.h */,
 				A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */,
 				A103338E18D4F3FA00050A61 /* Captain_RootViewController.h */,
 				A103338F18D4F3FA00050A61 /* Captain_RootViewController.m */,
+				A1B0D9D018E8CA5700671383 /* Captain_TabBarController.h */,
+				A1B0D9D118E8CA5700671383 /* Captain_TabBarController.m */,
 			);
 			name = Captain;
 			sourceTree = "<group>";
@@ -375,6 +382,7 @@
 			files = (
 				A1D07C0B18CD158500FA3A8D /* VC_Login.m in Sources */,
 				A103339018D4F3FA00050A61 /* Captain_RootViewController.m in Sources */,
+				A1B0D9D218E8CA5700671383 /* Captain_TabBarController.m in Sources */,
 				A103339318D6B49900050A61 /* Login.m in Sources */,
 				A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */,
 				A1C8FA4418DFBBA800BE42D4 /* CallFriendsMenu.m in Sources */,

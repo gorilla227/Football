@@ -37,13 +37,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    loginContent = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginContent"];
     registerCaptain = [self.storyboard instantiateViewControllerWithIdentifier:@"RegisterCaptain"];
     registerPlayer = [self.storyboard instantiateViewControllerWithIdentifier:@"RegisterPlayer"];
-    [self addChildViewController:loginContent];
     [self addChildViewController:registerCaptain];
     [self addChildViewController:registerPlayer];
-    [contentView addSubview:loginContent.view];
+    for (UIViewController *viewController in self.childViewControllers) {
+        if ([viewController.restorationIdentifier isEqualToString: @"LoginContent"]) {
+            loginContent = (Login_Content *)viewController;
+        }
+    }
     currentViewController = loginContent;
     
     contentViewCenter_ShowKeyboard = CGPointMake(contentView.center.x, contentView.center.y - 195);

@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol MenuSelected <NSObject>
+#import "Captain_Protocol.h"
 
--(void)menuSwitch:(BOOL)showMenu;
-
-@end
-@interface Captain_MainMenu : UITableViewController
+@interface Captain_MainMenu : UITableViewController<Captain_MainMenuDelegate>
 @property id<MenuSelected>delegate;
 @end
