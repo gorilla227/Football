@@ -375,6 +375,9 @@
                                 <rect key="frame" x="0.0" y="203" width="320" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="OL8-gq-SP2" kind="embed" id="3Sz-Bl-mDj"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -460,7 +463,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="150"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scD-lk-zNS" userLabel="First Responder" sceneMemberID="firstResponder"/>
