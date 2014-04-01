@@ -69,6 +69,8 @@
     
     // Configure the cell...
     [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
+    [cell.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [cell.layer setBorderWidth:0.5f];
     return cell;
 }
 

@@ -62,7 +62,7 @@
         <scene sceneID="hm2-EQ-llU">
             <objects>
                 <tableViewController storyboardIdentifier="Captain_MainMenu" useStoryboardIdentifierAsRestorationIdentifier="YES" id="krd-eN-QWK" customClass="Captain_MainMenu" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SnM-jj-EnU">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SnM-jj-EnU">
                         <rect key="frame" x="0.0" y="0.0" width="124" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,11 +72,11 @@
                                 <rect key="frame" x="0.0" y="22" width="124" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cmw-YE-gEX" id="Ro5-hG-neT">
-                                    <rect key="frame" x="0.0" y="0.0" width="124" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="124" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T9b-VQ-w3K">
-                                            <rect key="frame" x="15" y="0.0" width="94" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="94" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,11 +91,11 @@
                                 <rect key="frame" x="0.0" y="66" width="124" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AdW-7y-UvV" id="UIS-qm-Cbo">
-                                    <rect key="frame" x="0.0" y="0.0" width="124" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="124" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TdF-Qk-laW">
-                                            <rect key="frame" x="15" y="0.0" width="94" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="94" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -117,10 +117,10 @@
             </objects>
             <point key="canvasLocation" x="-509" y="101"/>
         </scene>
-        <!--View Controller - 我的比赛-->
+        <!--Captain My Matches - 我的比赛-->
         <scene sceneID="uqB-Nd-wsA">
             <objects>
-                <viewController id="dbN-VF-g7q" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Captain_MyMatches" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dbN-VF-g7q" customClass="Captain_MyMatches" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MLg-zi-12g">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -133,20 +133,20 @@
                                     <segue destination="snG-yk-fRi" kind="embed" id="E2K-p1-evK"/>
                                 </connections>
                             </containerView>
-                            <containerView contentMode="scaleToFill" id="MdI-nA-9Tz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="nG6-3i-hqG" kind="embed" id="t8T-sq-cai"/>
-                                </connections>
-                            </containerView>
                             <containerView contentMode="scaleToFill" id="XPr-nv-blK">
                                 <rect key="frame" x="0.0" y="140" width="320" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="ZXY-I2-adG" kind="embed" id="SgH-JZ-JXr"/>
+                                </connections>
+                            </containerView>
+                            <containerView contentMode="scaleToFill" id="MdI-nA-9Tz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="nG6-3i-hqG" kind="embed" id="t8T-sq-cai"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -459,7 +459,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tmK-05-qJK">
-                                                    <rect key="frame" x="260" y="18.5" width="50" height="50"/>
+                                                    <rect key="frame" x="260" y="19" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -506,25 +506,48 @@
             </objects>
             <point key="canvasLocation" x="738" y="357"/>
         </scene>
-        <!--View Controller - Past Matches-->
+        <!--Captain Team Info-->
         <scene sceneID="oKu-k8-6IA">
             <objects>
-                <viewController title="Past Matches" automaticallyAdjustsScrollViewInsets="NO" id="nG6-3i-hqG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamInfo" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nG6-3i-hqG" customClass="Captain_TeamInfo" sceneMemberID="viewController">
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KUJ-Qo-JlQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Matches" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iKG-VE-3ow">
-                                <rect key="frame" x="104" y="59" width="112" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="u69-Z4-Rpk">
+                                <rect key="frame" x="40" y="10" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="基友球队" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6u6-lb-wkB">
+                                <rect key="frame" x="168" y="33" width="132" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Utj-lC-5wF">
+                                <rect key="frame" x="168" y="62" width="58" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pY0-4U-ko9">
+                                <rect key="frame" x="234" y="93" width="21" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="numberOfTeamMembers" destination="Utj-lC-5wF" id="ewP-dJ-eSl"/>
+                        <outlet property="teamIcon" destination="u69-Z4-Rpk" id="yQ2-0H-qSV"/>
+                        <outlet property="teamName" destination="6u6-lb-wkB" id="ih5-iq-Iqn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIu-y0-diG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

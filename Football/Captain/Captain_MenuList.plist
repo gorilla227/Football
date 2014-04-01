@@ -15,5 +15,11 @@
 		<string>比赛通知</string>
 		<string>比赛数据</string>
 	</array>
+	<key>1</key>
+	<array>
+		<string>我的队员</string>
+		<string>新人入队</string>
+		<string>球队资料</string>
+	</array>
 </dict>
 </plist>
