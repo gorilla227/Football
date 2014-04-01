@@ -14,6 +14,9 @@
 
 @implementation Captain_MainMenu{
     NSMutableArray *menuList;
+    UIFont *selectedFont;
+    UIFont *unselectedFont;
+    NSIndexPath *lastSelection;
 }
 @synthesize delegate;
 
@@ -35,9 +38,18 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Lesser"];
+    unselectedFont = cell.textLabel.font;
+    NSString *fontName = cell.textLabel.font.fontName;
+    CGFloat fontSize = cell.textLabel.font.pointSize + 5.0f;
+    selectedFont = [UIFont fontWithName:fontName size:fontSize];
     
     [self menuListGeneration:0];
-    [self.tableView reloadData];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self selectDefaultCell];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,14 +83,32 @@
     [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
     [cell.layer setBorderColor:[UIColor whiteColor].CGColor];
     [cell.layer setBorderWidth:0.5f];
+    if ([cell.reuseIdentifier isEqualToString: @"Lesser"]) {
+        [self formatCell:cell withFont:unselectedFont];
+    }
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog([menuList[indexPath.row] objectForKey:@"Title"]);
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self formatCell:cell withFont:selectedFont];
+    
     delegate = (id)self.parentViewController;
     [delegate menuSwitch:NO];
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self formatCell:cell withFont:unselectedFont];
+}
+
+-(void)changeRootMenuToIndex:(NSInteger)rootMenuIndex
+{
+    [self menuListGeneration:rootMenuIndex];
+    [self viewWillAppear:NO];
 }
 
 -(void)menuListGeneration:(NSInteger)rootMenuIndex
@@ -96,6 +126,18 @@
         [menuList addObject:menuItem];
     }
     [self.tableView reloadData];
+}
+
+-(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font
+{
+    [cell.textLabel setFont:font];
+}
+
+-(void)selectDefaultCell
+{
+    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    [self.tableView selectRowAtIndexPath:firstIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self tableView:self.tableView didSelectRowAtIndexPath:firstIndexPath];
 }
 /*
 // Override to support conditional editing of the table view.

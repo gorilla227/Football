@@ -35,7 +35,7 @@
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
     NSInteger selectedItemIndex = [tabBar.items indexOfObject:item];
-    [mainMenuDelegate menuListGeneration:selectedItemIndex];
+    [mainMenuDelegate changeRootMenuToIndex:selectedItemIndex];
 }
 /*
 #pragma mark - Navigation

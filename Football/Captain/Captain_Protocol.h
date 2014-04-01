@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol Captain_MainMenuDelegate <NSObject>
--(void)menuListGeneration:(NSInteger)rootMenuIndex;
+-(void)changeRootMenuToIndex:(NSInteger)rootMenuIndex;
 @end
 
 @protocol MenuSelected <NSObject>
