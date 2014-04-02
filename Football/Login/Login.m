@@ -55,6 +55,10 @@
     greyBackgroundLayer = [CALayer layer];
     [greyBackgroundLayer setBackgroundColor:[UIColor blackColor].CGColor];
     [greyBackgroundLayer setOpacity:0.5f];
+    
+    //Set the background image
+    UIImage *backgroundImage = [UIImage imageNamed:@"Background.jpg"];
+    [self.view setBackgroundColor:[[UIColor alloc] initWithPatternImage:backgroundImage]];
 }
 
 - (void)didReceiveMemoryWarning

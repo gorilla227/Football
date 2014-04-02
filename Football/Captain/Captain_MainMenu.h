@@ -12,6 +12,5 @@
 @interface Captain_MainMenu : UITableViewController<Captain_MainMenuDelegate>
 @property id<MenuSelected>delegate;
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font;
--(void)selectDefaultCell;
 -(void)menuListGeneration:(NSInteger)rootMenuIndex;
 @end

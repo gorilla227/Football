@@ -43,13 +43,16 @@
     NSString *fontName = cell.textLabel.font.fontName;
     CGFloat fontSize = cell.textLabel.font.pointSize + 5.0f;
     selectedFont = [UIFont fontWithName:fontName size:fontSize];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     [self menuListGeneration:0];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self selectDefaultCell];
+    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    [self.tableView selectRowAtIndexPath:firstIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self tableView:self.tableView didSelectRowAtIndexPath:firstIndexPath];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,8 +84,6 @@
     
     // Configure the cell...
     [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
-    [cell.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [cell.layer setBorderWidth:0.5f];
     if ([cell.reuseIdentifier isEqualToString: @"Lesser"]) {
         [self formatCell:cell withFont:unselectedFont];
     }
@@ -131,13 +132,6 @@
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font
 {
     [cell.textLabel setFont:font];
-}
-
--(void)selectDefaultCell
-{
-    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-    [self.tableView selectRowAtIndexPath:firstIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [self tableView:self.tableView didSelectRowAtIndexPath:firstIndexPath];
 }
 /*
 // Override to support conditional editing of the table view.

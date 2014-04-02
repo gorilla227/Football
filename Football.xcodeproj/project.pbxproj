@@ -41,6 +41,7 @@
 		A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0618CD14B700FA3A8D /* Login.storyboard */; };
 		A1D07C0B18CD158500FA3A8D /* VC_Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07C0A18CD158500FA3A8D /* VC_Login.m */; };
 		A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0D18CD177F00FA3A8D /* Setting.plist */; };
+		B2C6BF0D18EB86F200083537 /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2C6BF0C18EB86F200083537 /* Background.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		A1D07C0918CD158500FA3A8D /* VC_Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VC_Login.h; path = Login/VC_Login.h; sourceTree = "<group>"; };
 		A1D07C0A18CD158500FA3A8D /* VC_Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VC_Login.m; path = Login/VC_Login.m; sourceTree = "<group>"; };
 		A1D07C0D18CD177F00FA3A8D /* Setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setting.plist; sourceTree = "<group>"; };
+		B2C6BF0C18EB86F200083537 /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Background.jpg; path = Images.xcassets/Background.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		A103339818D6BF8600050A61 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				B2C6BF0C18EB86F200083537 /* Background.jpg */,
 				A103339418D6BF7900050A61 /* LoginAccountIcon.jpg */,
 				A103339518D6BF7900050A61 /* PasswordIcon.jpg */,
 			);
@@ -233,6 +236,7 @@
 			children = (
 				A1D07BE018CC1E4800FA3A8D /* AppDelegate.h */,
 				A1D07BE118CC1E4800FA3A8D /* AppDelegate.m */,
+				A103339818D6BF8600050A61 /* Image */,
 				A1D07C0C18CD162500FA3A8D /* Captain */,
 				A1D07C0818CD154600FA3A8D /* Login&Register */,
 				A1D07BE918CC1E4800FA3A8D /* Images.xcassets */,
@@ -275,7 +279,6 @@
 			isa = PBXGroup;
 			children = (
 				A1C8FA3D18DFB1C500BE42D4 /* Register */,
-				A103339818D6BF8600050A61 /* Image */,
 				A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterView.h */,
 				A1D07C0618CD14B700FA3A8D /* Login.storyboard */,
 				A103339118D6B49900050A61 /* Login.h */,
@@ -383,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */,
+				B2C6BF0D18EB86F200083537 /* Background.jpg in Resources */,
 				A1B0DA1618EA767F00671383 /* TeamIcon.jpg in Resources */,
 				A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */,
 				A1D07BEA18CC1E4800FA3A8D /* Images.xcassets in Resources */,

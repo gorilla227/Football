@@ -47,6 +47,10 @@
     mainMenu_menuShowed = mainMenuView.center;
     mainMenu_menuHidden = CGPointMake(mainMenuView.center.x - mainMenuView.frame.size.width, mainMenuView.center.y);
     [mainMenuView setCenter:mainMenu_menuHidden];
+    
+    //Set the background image
+    UIImage *backgroundImage = [UIImage imageNamed:@"Background.jpg"];
+    [self.view setBackgroundColor:[[UIColor alloc] initWithPatternImage:backgroundImage]];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
