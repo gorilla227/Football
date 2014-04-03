@@ -19,7 +19,6 @@
     UIViewController *currentViewController;
     CGPoint contentViewCenter_ShowKeyboard;
     CGPoint contentViewCenter_HideKeyboard;
-    CALayer *greyBackgroundLayer;
 }
 @synthesize roleSegment;
 @synthesize contentView;
@@ -51,11 +50,6 @@
     contentViewCenter_ShowKeyboard = CGPointMake(contentView.center.x, contentView.center.y - 195);
     contentViewCenter_HideKeyboard = contentView.center;
     
-    //Set layer for grey background
-    greyBackgroundLayer = [CALayer layer];
-    [greyBackgroundLayer setBackgroundColor:[UIColor blackColor].CGColor];
-    [greyBackgroundLayer setOpacity:0.5f];
-    
     //Set the background image
     UIImage *backgroundImage = [UIImage imageNamed:@"Background.jpg"];
     [self.view setBackgroundColor:[[UIColor alloc] initWithPatternImage:backgroundImage]];
@@ -80,14 +74,14 @@
         default:
             break;
     }
-    [roleSegment setUserInteractionEnabled:NO];
+    [roleSegment setHidden:YES];
 }
 
 -(void)presentLoginView
 {
     [self transitionFromViewController:currentViewController toViewController:loginContent duration:0.3f options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:nil];
     currentViewController = loginContent;
-    [roleSegment setUserInteractionEnabled:YES];
+    [roleSegment setHidden:NO];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -118,17 +112,6 @@
     [contentView setCenter:contentViewCenter_HideKeyboard];
     [contentView setBackgroundColor:[UIColor clearColor]];
     [UIView commitAnimations];
-}
-
--(void)greyBackground:(BOOL)isCallFriendsMenuShowed inFrame:(CGRect)frame
-{
-    [greyBackgroundLayer setFrame:frame];
-    if (isCallFriendsMenuShowed) {
-        [self.view.layer addSublayer:greyBackgroundLayer];
-    }
-    else {
-        [greyBackgroundLayer removeFromSuperlayer];
-    }
 }
 /*
 #pragma mark - Navigation
