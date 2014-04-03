@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol DismissCallFriendsMenu <NSObject>
--(void)dismissCallFriendsMenu;
-@end
+#import "LoginAndRegisterView.h"
 
 @interface CallFriendsMenu : UIViewController
 

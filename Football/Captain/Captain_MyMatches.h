@@ -10,7 +10,7 @@
 #import "Captain_TeamInfo.h"
 
 @interface Captain_MyMatches : UIViewController
-//@property IBOutlet UIView *teamInfoView;
-//@property IBOutlet UIView *matchesView;
-//@property IBOutlet UIView *otherInfoView;
+@property IBOutlet UIView *teamInfoView;
+@property IBOutlet UIView *matchesView;
+@property IBOutlet UIView *otherInfoView;
 @end

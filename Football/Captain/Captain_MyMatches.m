@@ -15,9 +15,9 @@
 @implementation Captain_MyMatches{
     Captain_TeamInfo *teamInfo;
 }
-//@synthesize teamInfoView;
-//@synthesize matchesView;
-//@synthesize otherInfoView;
+@synthesize teamInfoView;
+@synthesize matchesView;
+@synthesize otherInfoView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,7 +37,6 @@
             teamInfo = (Captain_TeamInfo *)viewController;
         }
     }
-//    [teamInfo.view setBackgroundColor:[UIColor yellowColor]];
 }
 
 - (void)didReceiveMemoryWarning
