@@ -418,9 +418,8 @@
                     <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="singleLineEtched" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="z0b-H1-aHG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <searchBar key="tableHeaderView" opaque="NO" contentMode="redraw" placeholder="关键词搜索" id="UEU-oH-w3z">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="关键词搜索" id="UEU-oH-w3z">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -488,7 +487,6 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="我的球队" id="WIn-x7-Rl9"/>
                     <connections>
-                        <outlet property="searchBar" destination="UEU-oH-w3z" id="zWe-Jb-Fmg"/>
                         <outlet property="searchDisplayController" destination="Gp4-gT-sXk" id="syO-25-SDe"/>
                     </connections>
                 </tableViewController>

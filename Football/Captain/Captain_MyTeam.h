@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface Captain_MyTeam : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate>
-@property IBOutlet UISearchBar *searchBar;
+
 @end
