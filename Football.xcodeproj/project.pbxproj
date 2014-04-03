@@ -23,7 +23,6 @@
 		A1C8F9E918DE895C00BE42D4 /* Register_Captain.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E818DE895C00BE42D4 /* Register_Captain.m */; };
 		A1C8F9EC18DE90B400BE42D4 /* Login_Content.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9EB18DE90B400BE42D4 /* Login_Content.m */; };
 		A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8FA3B18DFB17300BE42D4 /* Register_Captain_Advance.m */; };
-		A1C8FA4418DFBBA800BE42D4 /* CallFriendsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8FA4318DFBBA800BE42D4 /* CallFriendsMenu.m */; };
 		A1C8FA4918DFEADD00BE42D4 /* Register_Player.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8FA4818DFEADD00BE42D4 /* Register_Player.m */; };
 		A1C8FA4C18DFEAFE00BE42D4 /* Register_Player_Advance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8FA4B18DFEAFE00BE42D4 /* Register_Player_Advance.m */; };
 		A1D07BD218CC1E4800FA3A8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD118CC1E4800FA3A8D /* Foundation.framework */; };
@@ -42,6 +41,7 @@
 		A1D07C0B18CD158500FA3A8D /* VC_Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07C0A18CD158500FA3A8D /* VC_Login.m */; };
 		A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0D18CD177F00FA3A8D /* Setting.plist */; };
 		B2C6BF0D18EB86F200083537 /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2C6BF0C18EB86F200083537 /* Background.jpg */; };
+		B2D096EF18EE01D4005221F2 /* CallFriendsMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2D096EE18EE01D4005221F2 /* CallFriendsMenu.plist */; };
 		B2D6981618ECC3F700603B87 /* Captain_MyTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D6981518ECC3F700603B87 /* Captain_MyTeam.m */; };
 /* End PBXBuildFile section */
 
@@ -84,8 +84,6 @@
 		A1C8FA3A18DFB17300BE42D4 /* Register_Captain_Advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Captain_Advance.h; path = Login/Register/Captain/Register_Captain_Advance.h; sourceTree = "<group>"; };
 		A1C8FA3B18DFB17300BE42D4 /* Register_Captain_Advance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Captain_Advance.m; path = Login/Register/Captain/Register_Captain_Advance.m; sourceTree = "<group>"; };
 		A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoginAndRegisterView.h; path = Login/LoginAndRegisterView.h; sourceTree = "<group>"; };
-		A1C8FA4218DFBBA800BE42D4 /* CallFriendsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CallFriendsMenu.h; path = Login/Register/Captain/CallFriendsMenu.h; sourceTree = "<group>"; };
-		A1C8FA4318DFBBA800BE42D4 /* CallFriendsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CallFriendsMenu.m; path = Login/Register/Captain/CallFriendsMenu.m; sourceTree = "<group>"; };
 		A1C8FA4718DFEADD00BE42D4 /* Register_Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Player.h; path = Login/Register/Player/Register_Player.h; sourceTree = "<group>"; };
 		A1C8FA4818DFEADD00BE42D4 /* Register_Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Player.m; path = Login/Register/Player/Register_Player.m; sourceTree = "<group>"; };
 		A1C8FA4A18DFEAFE00BE42D4 /* Register_Player_Advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Player_Advance.h; path = Login/Register/Player/Register_Player_Advance.h; sourceTree = "<group>"; };
@@ -111,6 +109,7 @@
 		A1D07C0A18CD158500FA3A8D /* VC_Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VC_Login.m; path = Login/VC_Login.m; sourceTree = "<group>"; };
 		A1D07C0D18CD177F00FA3A8D /* Setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setting.plist; sourceTree = "<group>"; };
 		B2C6BF0C18EB86F200083537 /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Background.jpg; path = Images.xcassets/Background.jpg; sourceTree = "<group>"; };
+		B2D096EE18EE01D4005221F2 /* CallFriendsMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CallFriendsMenu.plist; path = Login/Register/Captain/CallFriendsMenu.plist; sourceTree = "<group>"; };
 		B2D6981418ECC3F700603B87 /* Captain_MyTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MyTeam.h; path = Captain/Captain_MyTeam.h; sourceTree = "<group>"; };
 		B2D6981518ECC3F700603B87 /* Captain_MyTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MyTeam.m; path = Captain/Captain_MyTeam.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,12 +182,11 @@
 		A1C8FA4518DFE9F700BE42D4 /* Captain */ = {
 			isa = PBXGroup;
 			children = (
+				B2D096EE18EE01D4005221F2 /* CallFriendsMenu.plist */,
 				A1C8F9E718DE895C00BE42D4 /* Register_Captain.h */,
 				A1C8F9E818DE895C00BE42D4 /* Register_Captain.m */,
 				A1C8FA3A18DFB17300BE42D4 /* Register_Captain_Advance.h */,
 				A1C8FA3B18DFB17300BE42D4 /* Register_Captain_Advance.m */,
-				A1C8FA4218DFBBA800BE42D4 /* CallFriendsMenu.h */,
-				A1C8FA4318DFBBA800BE42D4 /* CallFriendsMenu.m */,
 			);
 			name = Captain;
 			sourceTree = "<group>";
@@ -401,6 +399,7 @@
 				A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */,
 				B2C6BF0D18EB86F200083537 /* Background.jpg in Resources */,
 				A1B0DA1618EA767F00671383 /* TeamIcon.jpg in Resources */,
+				B2D096EF18EE01D4005221F2 /* CallFriendsMenu.plist in Resources */,
 				A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */,
 				A1D07BEA18CC1E4800FA3A8D /* Images.xcassets in Resources */,
 				A103339718D6BF7900050A61 /* PasswordIcon.jpg in Resources */,
@@ -432,7 +431,6 @@
 				A1B0D9D218E8CA5700671383 /* Captain_TabBarController.m in Sources */,
 				A103339318D6B49900050A61 /* Login.m in Sources */,
 				A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */,
-				A1C8FA4418DFBBA800BE42D4 /* CallFriendsMenu.m in Sources */,
 				A1B0DA1A18EA76F900671383 /* Captain_TeamInfo.m in Sources */,
 				A1D07BDE18CC1E4800FA3A8D /* main.m in Sources */,
 				A1B0DA1D18EA785C00671383 /* Captain_MyMatches.m in Sources */,

@@ -14,12 +14,8 @@
 
 @implementation Register_Captain_Advance{
     id<LoginAndRegisterView>delegate;
-    CallFriendsMenu *callFriendsMenu;
-    CGRect greyFrame;
-    CGPoint callFriendsMenu_menuShowed;
-    CGPoint callFriendsMenu_menuHidden;
+    NSArray *callFriendsMenuList;
 }
-@synthesize callFriendsMenuView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,16 +31,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     delegate = (id)self.parentViewController.parentViewController;
-    for (UIViewController *viewController in self.childViewControllers) {
-        if ([viewController.restorationIdentifier isEqualToString:@"CallFriendsMenu"]) {
-            callFriendsMenu = (CallFriendsMenu *)viewController;
-        }
-    }
-    callFriendsMenu_menuShowed = callFriendsMenuView.center;
-    callFriendsMenu_menuHidden = CGPointMake(callFriendsMenuView.center.x, callFriendsMenuView.center.y + callFriendsMenuView.frame.size.height);
-    [callFriendsMenuView setCenter:callFriendsMenu_menuHidden];
-    
-    greyFrame = CGRectMake(0, 0, 320, self.view.frame.size.height - callFriendsMenuView.frame.size.height);
+    NSString *callFriendsMenuListFile = [[NSBundle mainBundle] pathForResource:@"CallFriendsMenu" ofType:@"plist"];
+    callFriendsMenuList = [[NSArray alloc] initWithContentsOfFile:callFriendsMenuListFile];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,39 +49,23 @@
 
 -(IBAction)callFriendsButtonOnClicked:(id)sender
 {
-    [UIView beginAnimations:@"showMenu" context:nil];
-    [UIView setAnimationDuration:0.2f];
-    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:callFriendsMenuView cache:YES];
-    [callFriendsMenuView setCenter:callFriendsMenu_menuShowed];
-    [UIView commitAnimations];
-    
-    //Grey the background
-    [delegate greyBackground:YES inFrame:greyFrame];
-    
-    for (UIView *view in self.view.subviews) {
-        [view setUserInteractionEnabled:(view == callFriendsMenuView)];
+    UIActionSheet *callFriendsMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    for (NSString *menuItem in callFriendsMenuList) {
+        [callFriendsMenu addButtonWithTitle:menuItem];
     }
+    [callFriendsMenu addButtonWithTitle:@"取消"];
+    [callFriendsMenu setCancelButtonIndex:callFriendsMenuList.count];
+    [callFriendsMenu showInView:self.parentViewController.parentViewController.view];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [super touchesBegan:touches withEvent:event];
-    [self dismissCallFriendsMenu];
-}
-
--(void)dismissCallFriendsMenu
-{
-    [UIView beginAnimations:@"hideMenu" context:nil];
-    [UIView setAnimationDuration:0.2f];
-    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:callFriendsMenuView cache:YES];
-    [callFriendsMenuView setCenter:callFriendsMenu_menuHidden];
-    [UIView commitAnimations];
-    for (UIView *view in self.view.subviews) {
-        [view setUserInteractionEnabled:YES];
+    if (buttonIndex < callFriendsMenuList.count) {
+        NSLog(@"%@", [callFriendsMenuList objectAtIndex:buttonIndex]);
     }
-    [delegate greyBackground:NO inFrame:greyFrame];
+    else {
+        NSLog(@"取消");
+    }
 }
 /*
 #pragma mark - Navigation

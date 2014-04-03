@@ -97,14 +97,6 @@
     if (currentViewController == loginContent) {
         delegate = (id)currentViewController;
     }
-    else {
-        UINavigationController *navigationController = (UINavigationController *)currentViewController;
-        delegate = (id)[navigationController.viewControllers firstObject];
-        if ([navigationController.topViewController isKindOfClass:[Register_Captain_Advance class]]) {
-            id<DismissCallFriendsMenu>delegateForCallFriendsMenu = (id)navigationController.topViewController;
-            [delegateForCallFriendsMenu dismissCallFriendsMenu];
-        }
-    }
     [delegate dismissKeyboard];
 }
 

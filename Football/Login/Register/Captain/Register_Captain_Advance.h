@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginAndRegisterView.h"
-#import "CallFriendsMenu.h"
 
-@interface Register_Captain_Advance : UIViewController<DismissCallFriendsMenu, DismissCallFriendsMenu>
-@property IBOutlet UIView *callFriendsMenuView;
+@interface Register_Captain_Advance : UIViewController<UIActionSheetDelegate>
 @end
