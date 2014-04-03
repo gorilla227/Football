@@ -53,19 +53,13 @@
     for (NSString *menuItem in callFriendsMenuList) {
         [callFriendsMenu addButtonWithTitle:menuItem];
     }
-    [callFriendsMenu addButtonWithTitle:@"取消"];
-    [callFriendsMenu setCancelButtonIndex:callFriendsMenuList.count];
+    [callFriendsMenu setCancelButtonIndex:[callFriendsMenu addButtonWithTitle:@"取消"]];
     [callFriendsMenu showInView:self.parentViewController.parentViewController.view];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex < callFriendsMenuList.count) {
-        NSLog(@"%@", [callFriendsMenuList objectAtIndex:buttonIndex]);
-    }
-    else {
-        NSLog(@"取消");
-    }
+    NSLog(@"%@", [callFriendsMenuList objectAtIndex:buttonIndex]);
 }
 /*
 #pragma mark - Navigation

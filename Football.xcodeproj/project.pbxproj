@@ -38,7 +38,6 @@
 		A1D07BFB18CC1E4900FA3A8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1D07BF918CC1E4900FA3A8D /* InfoPlist.strings */; };
 		A1D07BFD18CC1E4900FA3A8D /* FootballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07BFC18CC1E4900FA3A8D /* FootballTests.m */; };
 		A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0618CD14B700FA3A8D /* Login.storyboard */; };
-		A1D07C0B18CD158500FA3A8D /* VC_Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07C0A18CD158500FA3A8D /* VC_Login.m */; };
 		A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0D18CD177F00FA3A8D /* Setting.plist */; };
 		B2C6BF0D18EB86F200083537 /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2C6BF0C18EB86F200083537 /* Background.jpg */; };
 		B2D096EF18EE01D4005221F2 /* CallFriendsMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2D096EE18EE01D4005221F2 /* CallFriendsMenu.plist */; };
@@ -105,8 +104,6 @@
 		A1D07BFA18CC1E4900FA3A8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1D07BFC18CC1E4900FA3A8D /* FootballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FootballTests.m; sourceTree = "<group>"; };
 		A1D07C0618CD14B700FA3A8D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
-		A1D07C0918CD158500FA3A8D /* VC_Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VC_Login.h; path = Login/VC_Login.h; sourceTree = "<group>"; };
-		A1D07C0A18CD158500FA3A8D /* VC_Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VC_Login.m; path = Login/VC_Login.m; sourceTree = "<group>"; };
 		A1D07C0D18CD177F00FA3A8D /* Setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setting.plist; sourceTree = "<group>"; };
 		B2C6BF0C18EB86F200083537 /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Background.jpg; path = Images.xcassets/Background.jpg; sourceTree = "<group>"; };
 		B2D096EE18EE01D4005221F2 /* CallFriendsMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CallFriendsMenu.plist; path = Login/Register/Captain/CallFriendsMenu.plist; sourceTree = "<group>"; };
@@ -286,8 +283,6 @@
 				A103339218D6B49900050A61 /* Login.m */,
 				A1C8F9EA18DE90B400BE42D4 /* Login_Content.h */,
 				A1C8F9EB18DE90B400BE42D4 /* Login_Content.m */,
-				A1D07C0918CD158500FA3A8D /* VC_Login.h */,
-				A1D07C0A18CD158500FA3A8D /* VC_Login.m */,
 			);
 			name = "Login&Register";
 			sourceTree = "<group>";
@@ -426,7 +421,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1D07C0B18CD158500FA3A8D /* VC_Login.m in Sources */,
 				A103339018D4F3FA00050A61 /* Captain_RootViewController.m in Sources */,
 				A1B0D9D218E8CA5700671383 /* Captain_TabBarController.m in Sources */,
 				A103339318D6B49900050A61 /* Login.m in Sources */,

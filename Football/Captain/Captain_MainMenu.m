@@ -87,6 +87,9 @@
     if ([cell.reuseIdentifier isEqualToString: @"Lesser"]) {
         [self formatCell:cell withFont:unselectedFont];
     }
+    if ([cell.textLabel.text isEqualToString:@"登出"]) {
+        [cell setUserInteractionEnabled:YES];
+    }
     return cell;
 }
 
@@ -94,10 +97,15 @@
 {
     NSLog([menuList[indexPath.row] objectForKey:@"Title"]);
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self formatCell:cell withFont:selectedFont];
+    if ([cell.reuseIdentifier isEqualToString:@"Lesser"]) {
+        [self formatCell:cell withFont:selectedFont];
     
-    delegate = (id)self.parentViewController;
-    [delegate menuSwitch:NO];
+        delegate = (id)self.parentViewController;
+        [delegate menuSwitch:NO];
+    }
+    else if ([cell.textLabel.text isEqualToString:@"登出"]) {
+        [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -126,6 +134,8 @@
         menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:menuItemName, @"Title", @"Lesser", @"Type", nil];
         [menuList addObject:menuItem];
     }
+    menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:@"登出", @"Title", @"Root", @"Type", nil];
+    [menuList addObject:menuItem];
     [self.tableView reloadData];
 }
 
