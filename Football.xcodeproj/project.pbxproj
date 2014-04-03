@@ -141,13 +141,6 @@
 				B2C6BF0C18EB86F200083537 /* Background.jpg */,
 				A103339418D6BF7900050A61 /* LoginAccountIcon.jpg */,
 				A103339518D6BF7900050A61 /* PasswordIcon.jpg */,
-			);
-			name = Image;
-			sourceTree = "<group>";
-		};
-		A1B0DA1718EA768900671383 /* Image */ = {
-			isa = PBXGroup;
-			children = (
 				A1B0DA1518EA767F00671383 /* TeamIcon.jpg */,
 			);
 			name = Image;
@@ -292,7 +285,6 @@
 			children = (
 				B2D6981318ECC35500603B87 /* MyTeam */,
 				A1B0DA1E18EA786600671383 /* MyMatches */,
-				A1B0DA1718EA768900671383 /* Image */,
 				A103338918D419A300050A61 /* Captain.storyboard */,
 				A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */,
 				A1B0DA1418E8D10700671383 /* Captain_Protocol.h */,

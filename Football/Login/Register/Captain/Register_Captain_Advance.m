@@ -52,6 +52,8 @@
     UIActionSheet *callFriendsMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     for (NSString *menuItem in callFriendsMenuList) {
         [callFriendsMenu addButtonWithTitle:menuItem];
+        UIImage *image = [UIImage imageNamed:@"LoginAccountIcon.jpg"];
+        [[[callFriendsMenu valueForKey:@"_buttons"] lastObject] setImage:image forState:UIControlStateNormal];
     }
     [callFriendsMenu setCancelButtonIndex:[callFriendsMenu addButtonWithTitle:@"取消"]];
     [callFriendsMenu showInView:self.parentViewController.parentViewController.view];
@@ -59,7 +61,12 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"%@", [callFriendsMenuList objectAtIndex:buttonIndex]);
+    if (buttonIndex < callFriendsMenuList.count) {
+        NSLog(@"%@", [callFriendsMenuList objectAtIndex:buttonIndex]);
+    }
+    else {
+        NSLog(@"取消");
+    }
 }
 /*
 #pragma mark - Navigation
