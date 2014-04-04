@@ -10,16 +10,51 @@
 	</array>
 	<key>0</key>
 	<array>
-		<string>比赛安排</string>
-		<string>球赛超市</string>
-		<string>比赛通知</string>
-		<string>比赛数据</string>
+		<dict>
+			<key>Title</key>
+			<string>比赛安排</string>
+			<key>Identifier</key>
+			<string>Captain_MatchArrangement</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>比赛超市</string>
+			<key>Identifier</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>比赛通知</string>
+			<key>Identifier</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>比赛数据</string>
+			<key>Identifier</key>
+			<string></string>
+		</dict>
 	</array>
 	<key>1</key>
 	<array>
-		<string>我的队员</string>
-		<string>新人入队</string>
-		<string>球队资料</string>
+		<dict>
+			<key>Title</key>
+			<string>我的队员</string>
+			<key>Identifier</key>
+			<string>Captain_MyPlayers</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>新人入队</string>
+			<key>Identifier</key>
+			<string>Captain_NewPlayer</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>球队资料</string>
+			<key>Identifier</key>
+			<string></string>
+		</dict>
 	</array>
 </dict>
 </plist>

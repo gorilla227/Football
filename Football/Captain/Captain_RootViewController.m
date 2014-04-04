@@ -90,6 +90,12 @@
     [tabView setUserInteractionEnabled:!showMenu];
 }
 
+-(void)switchSelectMenuView:(NSString *)selectedView
+{
+    id<SwitchSelectedMenuView>delegate = (id)tabBar;
+    [delegate switchSelectMenuView:selectedView];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

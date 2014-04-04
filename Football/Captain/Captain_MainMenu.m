@@ -16,9 +16,8 @@
     NSMutableArray *menuList;
     UIFont *selectedFont;
     UIFont *unselectedFont;
-    NSIndexPath *lastSelection;
+    id<MenuSelected>delegateOfRootView;
 }
-@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -98,14 +97,21 @@
     NSLog([menuList[indexPath.row] objectForKey:@"Title"]);
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell.reuseIdentifier isEqualToString:@"Lesser"]) {
+        //Format the cell
         [self formatCell:cell withFont:selectedFont];
-    
-        delegate = (id)self.parentViewController;
-        [delegate menuSwitch:NO];
+        
+        //Close the menu
+        delegateOfRootView = (id)self.parentViewController;
+        [delegateOfRootView menuSwitch:NO];
+        
+        //Call the parentcontroller to switch lesser view
+        NSString *selectedView = [menuList[indexPath.row] objectForKey:@"Identifier"];
+        [delegateOfRootView switchSelectMenuView:selectedView];
     }
     else if ([cell.textLabel.text isEqualToString:@"登出"]) {
         [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
     }
+    
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,8 +136,8 @@
     NSDictionary *menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:rootMenu[rootMenuIndex], @"Title", @"Root", @"Type", nil];
     [menuList addObject:menuItem];
     NSArray *lesserMenu = [menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", (long)rootMenuIndex]];
-    for (NSString *menuItemName in lesserMenu) {
-        menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:menuItemName, @"Title", @"Lesser", @"Type", nil];
+    for (NSDictionary *menuItemInLesserMenu in lesserMenu) {
+        menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:[menuItemInLesserMenu objectForKey:@"Title"], @"Title", @"Lesser", @"Type", [menuItemInLesserMenu objectForKey:@"Identifier"], @"Identifier", nil];
         [menuList addObject:menuItem];
     }
     menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:@"登出", @"Title", @"Root", @"Type", nil];

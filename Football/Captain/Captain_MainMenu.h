@@ -10,7 +10,6 @@
 #import "Captain_Protocol.h"
 
 @interface Captain_MainMenu : UITableViewController<Captain_MainMenuDelegate>
-@property id<MenuSelected>delegate;
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font;
 -(void)menuListGeneration:(NSInteger)rootMenuIndex;
 @end

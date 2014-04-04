@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Captain_Protocol.h"
+#import "Captain_MatchArrangement.h"
+#import "Captain_MyTeam.h"
 
-@interface Captain_TabBarController : UITabBarController
+@interface Captain_TabBarController : UITabBarController<SwitchSelectedMenuView>
 @property id<Captain_MainMenuDelegate>mainMenuDelegate;
 @end

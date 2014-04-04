@@ -114,11 +114,37 @@
             <point key="canvasLocation" x="-509" y="101"/>
         </scene>
         <!--Captain My Matches - 我的比赛-->
+        <scene sceneID="Trr-xc-eXF">
+            <objects>
+                <viewController storyboardIdentifier="Captain_MyMatches" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XXg-GR-tWD" customClass="Captain_MyMatches" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dUJ-J7-5Hy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <containerView contentMode="scaleToFill" id="dPs-7E-MiW">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="dbN-VF-g7q" kind="embed" id="NbE-Yr-yoR"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="我的比赛" id="egk-IK-YUH"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iAS-6Z-8ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="738" y="-256"/>
+        </scene>
+        <!--Captain Match Arrangement - 比赛安排-->
         <scene sceneID="uqB-Nd-wsA">
             <objects>
-                <viewController storyboardIdentifier="Captain_MyMatches" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dbN-VF-g7q" customClass="Captain_MyMatches" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Captain_MatchArrangement" title="比赛安排" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dbN-VF-g7q" customClass="Captain_MatchArrangement" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MLg-zi-12g">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" id="q3A-kO-nzq">
@@ -157,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yvd-0k-N2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="738" y="-256"/>
+            <point key="canvasLocation" x="1201" y="-256"/>
         </scene>
         <!--Captain Tab Bar Controller-->
         <scene sceneID="IiA-Md-9wD">
@@ -170,8 +196,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </tabBar>
                     <connections>
-                        <segue destination="dbN-VF-g7q" kind="relationship" relationship="viewControllers" id="UZe-eW-h2g"/>
-                        <segue destination="p9t-Bn-Ph0" kind="relationship" relationship="viewControllers" id="Eum-fI-chP"/>
+                        <segue destination="XXg-GR-tWD" kind="relationship" relationship="viewControllers" id="Ms8-Ia-gGs"/>
+                        <segue destination="z4p-fI-NjN" kind="relationship" relationship="viewControllers" id="eRf-iN-AL8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ufA-oq-zvd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -385,7 +411,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTg-5Q-3Te" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="-104"/>
+            <point key="canvasLocation" x="1621" y="-105"/>
         </scene>
         <!--View Controller - Other Information-->
         <scene sceneID="rrD-pf-rlX">
@@ -409,130 +435,157 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eK8-WP-fIC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="181"/>
+            <point key="canvasLocation" x="1621" y="180"/>
         </scene>
-        <!--View Controller-->
+        <!--Captain New Player - 新人入队-->
         <scene sceneID="QIw-Sm-tLY">
             <objects>
-                <viewController storyboardIdentifier="Captain_NewPlayer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1KA-6F-QpJ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Captain_NewPlayer" title="新人入队" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1KA-6F-QpJ" customClass="Captain_NewPlayer" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YZC-8C-KBv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" id="5CZ-Tl-5ll">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="359"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="42u-p8-6hm" kind="embed" id="r1h-Sb-zAX"/>
-                                </connections>
-                            </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XKH-m7-onj">
-                                <rect key="frame" x="20" y="367" width="121" height="30"/>
+                                <rect key="frame" x="29" y="367" width="145" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="通过微信添加" image="LoginAccountIcon.jpg">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pHW-z4-o5R">
-                                <rect key="frame" x="179" y="367" width="121" height="30"/>
+                                <rect key="frame" x="188" y="367" width="119" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="通过QQ添加" image="LoginAccountIcon.jpg">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0mi-XO-SMD">
-                                <rect key="frame" x="20" y="405" width="165" height="30"/>
+                                <rect key="frame" x="29" y="405" width="145" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="通过手机通讯录添加" image="LoginAccountIcon.jpg">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kAT-Tw-cRm">
-                                <rect key="frame" x="179" y="405" width="121" height="30"/>
+                                <rect key="frame" x="188" y="405" width="119" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="在野球员超市" image="LoginAccountIcon.jpg">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <containerView contentMode="scaleToFill" id="DYY-kh-EoR">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="359"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="NiU-Tx-clL" kind="embed" id="o1P-fU-b6e"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="504"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <size key="freeformSize" width="320" height="455"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O64-Kw-K49" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="434"/>
+            <point key="canvasLocation" x="1201" y="1025"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="GLn-hG-Nah">
+        <!--Captain New Player List-->
+        <scene sceneID="Bpr-l3-rj6">
             <objects>
-                <tableViewController id="42u-p8-6hm" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tat-Jg-zkN">
+                <tableViewController storyboardIdentifier="Captain_NewPlayerList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NiU-Tx-clL" customClass="Captain_NewPlayerList" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1sl-wI-DxZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="359"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="tUF-j2-Jol">
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="关键词搜索" id="8KZ-te-xfF">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
-                                <outlet property="delegate" destination="42u-p8-6hm" id="suH-Be-wOA"/>
+                                <outlet property="delegate" destination="NiU-Tx-clL" id="KKQ-cz-COT"/>
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0eA-cH-G0m">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oZZ-1i-qgK">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0eA-cH-G0m" id="xjF-GL-Kgk">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mql-gR-SwJ">
-                                <rect key="frame" x="0.0" y="110" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mql-gR-SwJ" id="BFq-9z-xiY">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oZZ-1i-qgK" id="MW3-Xm-JNE">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="42u-p8-6hm" id="hKO-Db-gfB"/>
-                            <outlet property="delegate" destination="42u-p8-6hm" id="zre-0s-jjY"/>
+                            <outlet property="dataSource" destination="NiU-Tx-clL" id="woT-p6-cUW"/>
+                            <outlet property="delegate" destination="NiU-Tx-clL" id="IGw-zo-8mt"/>
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="searchDisplayController" destination="gmy-kI-D0U" id="gW7-nY-KF9"/>
+                        <outlet property="searchDisplayController" destination="Zwx-h9-GMM" id="d1M-GF-R9p"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DYj-F3-Wme" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="gmy-kI-D0U">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DD4-Po-3oO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Zwx-h9-GMM">
                     <connections>
-                        <outlet property="delegate" destination="42u-p8-6hm" id="z7b-ol-3ul"/>
-                        <outlet property="searchBar" destination="tUF-j2-Jol" id="HvD-Ho-h9b"/>
-                        <outlet property="searchContentsController" destination="42u-p8-6hm" id="l5b-xP-Igf"/>
-                        <outlet property="searchResultsDataSource" destination="42u-p8-6hm" id="WxB-GH-GXE"/>
-                        <outlet property="searchResultsDelegate" destination="42u-p8-6hm" id="pz8-zZ-G0k"/>
+                        <outlet property="delegate" destination="NiU-Tx-clL" id="OAM-XT-bx7"/>
+                        <outlet property="searchBar" destination="8KZ-te-xfF" id="jF3-VT-qZ0"/>
+                        <outlet property="searchContentsController" destination="NiU-Tx-clL" id="ECg-6v-gaf"/>
+                        <outlet property="searchResultsDataSource" destination="NiU-Tx-clL" id="qGP-d2-h3W"/>
+                        <outlet property="searchResultsDelegate" destination="NiU-Tx-clL" id="K0C-9n-2I7"/>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1615" y="434"/>
+            <point key="canvasLocation" x="1621" y="1025"/>
         </scene>
         <!--Captain My Team - 我的球队-->
+        <scene sceneID="JVV-7Y-BkH">
+            <objects>
+                <viewController storyboardIdentifier="Captain_MyTeam" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z4p-fI-NjN" customClass="Captain_MyTeam" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Me2-Kf-tVC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <containerView contentMode="scaleToFill" id="8Is-aH-aIj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="p9t-Bn-Ph0" kind="embed" id="MYx-VV-aWy"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="我的球队" id="P5l-xs-Src"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x8H-LW-uCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="738" y="434"/>
+        </scene>
+        <!--Captain My Players - 我的队员-->
         <scene sceneID="Rzq-Mv-jvm">
             <objects>
-                <tableViewController storyboardIdentifier="Captain_MyTeam" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p9t-Bn-Ph0" customClass="Captain_MyTeam" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Captain_MyPlayers" title="我的队员" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p9t-Bn-Ph0" customClass="Captain_MyPlayers" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="singleLineEtched" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="z0b-H1-aHG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="关键词搜索" id="UEU-oH-w3z">
@@ -601,7 +654,7 @@
                             <outlet property="delegate" destination="p9t-Bn-Ph0" id="Ywb-Yc-ZCS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="我的球队" id="WIn-x7-Rl9"/>
+                    <size key="freeformSize" width="320" height="455"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="Gp4-gT-sXk" id="syO-25-SDe"/>
                     </connections>
@@ -617,7 +670,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="738" y="434"/>
+            <point key="canvasLocation" x="1201" y="434"/>
         </scene>
         <!--Captain Team Info-->
         <scene sceneID="oKu-k8-6IA">
@@ -664,7 +717,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIu-y0-diG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="-334"/>
+            <point key="canvasLocation" x="1621" y="-335"/>
         </scene>
     </scenes>
     <resources>

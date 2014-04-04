@@ -1,17 +1,23 @@
 //
-//  Captain_TabBarController.m
+//  Captain_MatchArrangement.m
 //  Football
 //
-//  Created by Andy on 14-3-30.
+//  Created by Andy on 14-3-31.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "Captain_TabBarController.h"
+#import "Captain_MatchArrangement.h"
 
-@implementation Captain_TabBarController{
-    NSInteger currentViewControllerIndex;
+@interface Captain_MatchArrangement ()
+
+@end
+
+@implementation Captain_MatchArrangement{
+    Captain_TeamInfo *teamInfo;
 }
-@synthesize mainMenuDelegate;
+@synthesize teamInfoView;
+@synthesize matchesView;
+@synthesize otherInfoView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +32,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    currentViewControllerIndex = 0;
+    for (UIViewController *viewController in self.childViewControllers) {
+        if ([viewController.restorationIdentifier isEqualToString: @"TeamInfo"]) {
+            teamInfo = (Captain_TeamInfo *)viewController;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,20 +45,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    NSInteger selectedItemIndex = [tabBar.items indexOfObject:item];
-    if (currentViewControllerIndex != selectedItemIndex) {
-        [mainMenuDelegate changeRootMenuToIndex:selectedItemIndex];
-        currentViewControllerIndex = selectedItemIndex;
-    }
-}
-
--(void)switchSelectMenuView:(NSString *)selectedView
-{
-    id<MenuSelected>delegate = (id)self.selectedViewController;
-    [delegate switchSelectMenuView:selectedView];
-}
 /*
 #pragma mark - Navigation
 

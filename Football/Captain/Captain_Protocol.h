@@ -14,4 +14,9 @@
 
 @protocol MenuSelected <NSObject>
 -(void)menuSwitch:(BOOL)showMenu;
+-(void)switchSelectMenuView:(NSString *)selectedView;
+@end
+
+@protocol SwitchSelectedMenuView <NSObject>
+-(void)switchSelectMenuView:(NSString *)selectedView;
 @end

@@ -1,17 +1,20 @@
 //
-//  Captain_TabBarController.m
+//  Captain_NewPlayer.m
 //  Football
 //
-//  Created by Andy on 14-3-30.
+//  Created by Andy on 14-4-3.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "Captain_TabBarController.h"
+#import "Captain_NewPlayer.h"
 
-@implementation Captain_TabBarController{
-    NSInteger currentViewControllerIndex;
+@interface Captain_NewPlayer ()
+
+@end
+
+@implementation Captain_NewPlayer{
+    Captain_NewPlayerList *newPlayerList;
 }
-@synthesize mainMenuDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +29,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    currentViewControllerIndex = 0;
+    for (UIViewController *viewController in self.childViewControllers) {
+        if ([viewController.restorationIdentifier isEqualToString:@"Captain_NewPlayerList"]) {
+            newPlayerList = (Captain_NewPlayerList *)viewController;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,20 +42,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    NSInteger selectedItemIndex = [tabBar.items indexOfObject:item];
-    if (currentViewControllerIndex != selectedItemIndex) {
-        [mainMenuDelegate changeRootMenuToIndex:selectedItemIndex];
-        currentViewControllerIndex = selectedItemIndex;
-    }
-}
-
--(void)switchSelectMenuView:(NSString *)selectedView
-{
-    id<MenuSelected>delegate = (id)self.selectedViewController;
-    [delegate switchSelectMenuView:selectedView];
-}
 /*
 #pragma mark - Navigation
 
