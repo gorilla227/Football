@@ -9,6 +9,7 @@
 #import "Captain_MyPlayerCell.h"
 
 @implementation Captain_MyPlayerCell
+@synthesize playerIcon, playerName, signUpStatusOfNextMatch, signUpTitleOfLeague, signUpStatusOfLeague, likeScore;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
