@@ -14,6 +14,8 @@
 		A103339718D6BF7900050A61 /* PasswordIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A103339518D6BF7900050A61 /* PasswordIcon.jpg */; };
 		A11F052518E68EE900109870 /* UITextField_WithoutContextMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F052418E68EE900109870 /* UITextField_WithoutContextMenu.m */; };
 		A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */ = {isa = PBXBuildFile; fileRef = A11F052618E68FBE00109870 /* ActivityRegion.plist */; };
+		A145670318F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */; };
+		A145670918F1064E006E158E /* Captain_NewPlayer_InviteeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */; };
 		A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A18E469518EE678500784A48 /* Captain_NewPlayer.m */; };
 		A1B0D9D218E8CA5700671383 /* Captain_TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0D9D118E8CA5700671383 /* Captain_TabBarController.m */; };
 		A1B0DA1618EA767F00671383 /* TeamIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1B0DA1518EA767F00671383 /* TeamIcon.jpg */; };
@@ -69,6 +71,10 @@
 		A11F052318E68EE900109870 /* UITextField_WithoutContextMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextField_WithoutContextMenu.h; path = Login/Register/UITextField_WithoutContextMenu.h; sourceTree = "<group>"; };
 		A11F052418E68EE900109870 /* UITextField_WithoutContextMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITextField_WithoutContextMenu.m; path = Login/Register/UITextField_WithoutContextMenu.m; sourceTree = "<group>"; };
 		A11F052618E68FBE00109870 /* ActivityRegion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActivityRegion.plist; path = Login/Register/ActivityRegion.plist; sourceTree = "<group>"; };
+		A145670118F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayer_ApplicantCell.h; path = Captain/Captain_NewPlayer_ApplicantCell.h; sourceTree = "<group>"; };
+		A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer_ApplicantCell.m; path = Captain/Captain_NewPlayer_ApplicantCell.m; sourceTree = "<group>"; };
+		A145670718F1064E006E158E /* Captain_NewPlayer_InviteeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_NewPlayer_InviteeCell.h; sourceTree = "<group>"; };
+		A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_NewPlayer_InviteeCell.m; sourceTree = "<group>"; };
 		A18E469418EE678500784A48 /* Captain_NewPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayer.h; path = Captain/Captain_NewPlayer.h; sourceTree = "<group>"; };
 		A18E469518EE678500784A48 /* Captain_NewPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer.m; path = Captain/Captain_NewPlayer.m; sourceTree = "<group>"; };
 		A1B0D9D018E8CA5700671383 /* Captain_TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TabBarController.h; path = Captain/Captain_TabBarController.h; sourceTree = "<group>"; };
@@ -323,6 +329,10 @@
 				A18E469518EE678500784A48 /* Captain_NewPlayer.m */,
 				B276E0EB18EF638700DEB116 /* Captain_NewPlayerList.h */,
 				B276E0EC18EF638700DEB116 /* Captain_NewPlayerList.m */,
+				A145670118F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.h */,
+				A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */,
+				A145670718F1064E006E158E /* Captain_NewPlayer_InviteeCell.h */,
+				A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */,
 			);
 			name = MyTeam;
 			sourceTree = "<group>";
@@ -445,6 +455,8 @@
 				A1C8F9E918DE895C00BE42D4 /* Register_Captain.m in Sources */,
 				A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */,
 				B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */,
+				A145670318F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m in Sources */,
+				A145670918F1064E006E158E /* Captain_NewPlayer_InviteeCell.m in Sources */,
 				B276E0EA18EF585800DEB116 /* Captain_MyMatches.m in Sources */,
 				B276E0E718EF296600DEB116 /* Captain_MyTeam.m in Sources */,
 				A1C8FA4918DFEADD00BE42D4 /* Register_Player.m in Sources */,

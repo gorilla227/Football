@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Captain_NewPlayer_ApplicantCell.h"
+#import "Captain_NewPlayer_InviteeCell.h"
 
 @interface Captain_NewPlayerList : UITableViewController
 
