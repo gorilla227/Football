@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Captain_MyPlayerCell.h"
 
 @interface Captain_MyPlayers : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate>
 

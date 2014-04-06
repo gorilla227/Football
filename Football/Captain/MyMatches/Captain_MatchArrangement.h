@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Captain_TeamInfo.h"
+#import "Captain_MatchArrangementList.h"
 
 @interface Captain_MatchArrangement : UIViewController
 @property IBOutlet UIView *teamInfoView;

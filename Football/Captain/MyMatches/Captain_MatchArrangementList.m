@@ -1,18 +1,18 @@
 //
-//  Captain_MyPlayers.m
+//  Captain_MatchArrangementList.m
 //  Football
 //
-//  Created by Andy Xu on 14-4-2.
+//  Created by Andy on 14-4-6.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "Captain_MyPlayers.h"
+#import "Captain_MatchArrangementList.h"
 
-@interface Captain_MyPlayers ()
+@interface Captain_MatchArrangementList ()
 
 @end
 
-@implementation Captain_MyPlayers
+@implementation Captain_MatchArrangementList
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,9 +32,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
-    [self setEdgesForExtendedLayout:UIRectEdgeNone];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,16 +53,28 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return 5;
 }
 
 
-- (Captain_MyPlayerCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (Captain_MatchArrangementListCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Captain_MyPlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MyPlayerCell"];
+    Captain_MatchArrangementListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MatchArrangementListCell"];
     
     // Configure the cell...
-    
+    [cell.numberOfAcceptPlayers setText:[NSString stringWithFormat:@"%li/10", (long)indexPath.row]];
+    [cell.progressOfAcceptPlayers setProgress:indexPath.row / 10];
+    NSDateFormatter *matchDateFormatter = [[NSDateFormatter alloc] init];
+    [matchDateFormatter setDateFormat:@"YYYY.MM.dd"];
+    NSDateFormatter *matchTimeFormatter = [[NSDateFormatter alloc] init];
+    [matchTimeFormatter setDateFormat:@"HH:MM"];
+
+    [cell.matchDate setText:[matchDateFormatter stringFromDate:[NSDate date]]];
+    [cell.matchTime setText:[matchTimeFormatter stringFromDate:[NSDate date]]];
+    [cell.matchOpponent setText:@"Inter Milan"];
+    [cell.matchPlace setText:@"San Siro"];
+    [cell.matchType setText:@"11人制"];
+    [cell.noticePlayer setEnabled:(indexPath.row%2 == 0)?YES:NO];
     return cell;
 }
 
