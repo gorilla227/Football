@@ -783,7 +783,7 @@
         <scene sceneID="Rzq-Mv-jvm">
             <objects>
                 <tableViewController storyboardIdentifier="Captain_MyPlayers" title="我的队员" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p9t-Bn-Ph0" customClass="Captain_MyPlayers" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="z0b-H1-aHG">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="z0b-H1-aHG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -796,59 +796,56 @@
                                 <outlet property="delegate" destination="p9t-Bn-Ph0" id="Nv0-m6-vB3"/>
                             </connections>
                         </searchBar>
-                        <sections>
-                            <tableViewSection id="K5E-mj-lQ1">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0wl-fN-t86">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="88"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0wl-fN-t86" id="2hs-N8-Aa5">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="dDf-tG-bw2">
-                                                    <rect key="frame" x="5" y="5" width="60" height="60"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="队内名字" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="muz-fS-ayY">
-                                                    <rect key="frame" x="3" y="64" width="65" height="23"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下一场比赛：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Y1L-5o-q9j">
-                                                    <rect key="frame" x="68" y="19" width="151" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tmK-05-qJK">
-                                                    <rect key="frame" x="260" y="19" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Usa-cZ-iTr">
-                                                    <rect key="frame" x="227" y="35" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match Name/Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4tL-65-tLw">
-                                                    <rect key="frame" x="68" y="48" width="151" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0wl-fN-t86">
+                                <rect key="frame" x="0.0" y="66" width="320" height="88"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0wl-fN-t86" id="2hs-N8-Aa5">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="dDf-tG-bw2">
+                                            <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="队内名字" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="muz-fS-ayY">
+                                            <rect key="frame" x="3" y="64" width="65" height="23"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下一场比赛：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Y1L-5o-q9j">
+                                            <rect key="frame" x="68" y="19" width="151" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tmK-05-qJK">
+                                            <rect key="frame" x="260" y="19" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Usa-cZ-iTr">
+                                            <rect key="frame" x="227" y="35" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match Name/Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4tL-65-tLw">
+                                            <rect key="frame" x="68" y="48" width="151" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="p9t-Bn-Ph0" id="RY8-1B-Sij"/>
                             <outlet property="delegate" destination="p9t-Bn-Ph0" id="Ywb-Yc-ZCS"/>
