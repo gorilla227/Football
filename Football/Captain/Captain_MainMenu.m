@@ -42,6 +42,12 @@
     NSString *fontName = cell.textLabel.font.fontName;
     CGFloat fontSize = cell.textLabel.font.pointSize + 5.0f;
     selectedFont = [UIFont fontWithName:fontName size:fontSize];
+
+    CGRect headerFrame = self.tableView.tableHeaderView.frame;
+    //    headerFrame.size.height = self.tableView.sectionHeaderHeight;
+    headerFrame.size.height = self.tableView.rowHeight;
+    headerFrame.size.width = self.tableView.bounds.size.width;
+    [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:headerFrame]];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     [self menuListGeneration:0];
@@ -49,7 +55,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView selectRowAtIndexPath:firstIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     [self tableView:self.tableView didSelectRowAtIndexPath:firstIndexPath];
 }
@@ -66,50 +72,74 @@
 {
 //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return menuList.count;
+    NSInteger numberOfRows;
+    if (section == 0) {
+        numberOfRows = menuList.count;
+    }
+    else {
+        numberOfRows = 2;
+    }
+    return numberOfRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *menuItem = menuList[indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[menuItem objectForKey:@"Type"]];
-    
-    // Configure the cell...
-    [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
-    if ([cell.reuseIdentifier isEqualToString: @"Lesser"]) {
-        [self formatCell:cell withFont:unselectedFont];
+    UITableViewCell *cell;
+    if (indexPath.section == 0) {
+        NSDictionary *menuItem = menuList[indexPath.row];
+        cell = [tableView dequeueReusableCellWithIdentifier:[menuItem objectForKey:@"Type"]];
+        
+        // Configure the cell...
+        [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
+//        if ([cell.reuseIdentifier isEqualToString: @"Lesser"]) {
+            [self formatCell:cell withFont:unselectedFont];
+//        }
+//        if ([cell.textLabel.text isEqualToString:@"登出"]) {
+//            [cell setUserInteractionEnabled:YES];
+//        }
     }
-    if ([cell.textLabel.text isEqualToString:@"登出"]) {
-        [cell setUserInteractionEnabled:YES];
+    else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Root"];
+        if (indexPath.row == 0) {
+            [cell.textLabel setText:@"设置"];
+        }
+        else {
+            [cell.textLabel setText:@"登出"];
+        }
     }
+
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog([menuList[indexPath.row] objectForKey:@"Title"]);
+    delegateOfRootView = (id)self.parentViewController;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell.reuseIdentifier isEqualToString:@"Lesser"]) {
         //Format the cell
         [self formatCell:cell withFont:selectedFont];
         
         //Close the menu
-        delegateOfRootView = (id)self.parentViewController;
         [delegateOfRootView menuSwitch:NO];
         
         //Call the parentcontroller to switch lesser view
         NSString *selectedView = [menuList[indexPath.row] objectForKey:@"Identifier"];
         [delegateOfRootView switchSelectMenuView:selectedView];
+        NSLog([menuList[indexPath.row] objectForKey:@"Title"]);
     }
     else if ([cell.textLabel.text isEqualToString:@"登出"]) {
         [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else if ([cell.textLabel.text isEqualToString:@"设置"]) {
+        //Close the menu
+        [delegateOfRootView menuSwitch:NO];
     }
     
 }
@@ -134,17 +164,41 @@
     NSArray *rootMenu = [menuListDictionary objectForKey:@"RootMenu"];
     menuList = [[NSMutableArray alloc] init];
     NSDictionary *menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:rootMenu[rootMenuIndex], @"Title", @"Root", @"Type", nil];
-    [menuList addObject:menuItem];
+//    [menuList addObject:menuItem];
+    
+    CGRect headerLabelFrame = self.tableView.tableHeaderView.bounds;
+    headerLabelFrame.origin.x = 10.0f;
+    UILabel *tableHeaderLabel = [[UILabel alloc] initWithFrame:headerLabelFrame];
+    [tableHeaderLabel setText:[menuItem objectForKey:@"Title"]];
+    [tableHeaderLabel setFont:[UIFont fontWithName:@"Helvetica" size:18]];
+    [tableHeaderLabel setTextColor:[UIColor whiteColor]];
+    [self.tableView.tableHeaderView setBackgroundColor:[UIColor lightGrayColor]];
+    [self.tableView.tableHeaderView.subviews.firstObject removeFromSuperview];
+    [self.tableView.tableHeaderView addSubview:tableHeaderLabel];
+    
     NSArray *lesserMenu = [menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", (long)rootMenuIndex]];
     for (NSDictionary *menuItemInLesserMenu in lesserMenu) {
         menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:[menuItemInLesserMenu objectForKey:@"Title"], @"Title", @"Lesser", @"Type", [menuItemInLesserMenu objectForKey:@"Identifier"], @"Identifier", nil];
         [menuList addObject:menuItem];
     }
-    menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:@"登出", @"Title", @"Root", @"Type", nil];
-    [menuList addObject:menuItem];
+//    menuItem = [[NSDictionary alloc] initWithObjectsAndKeys:@"登出", @"Title", @"Root", @"Type", nil];
+//    [menuList addObject:menuItem];
     [self.tableView reloadData];
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *sectionHeader = [[UIView alloc] init];
+    [sectionHeader setBackgroundColor:[UIColor grayColor]];
+    return sectionHeader;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *sectionFooter = [[UIView alloc] init];
+    [sectionFooter setBackgroundColor:[UIColor grayColor]];
+    return sectionFooter;
+}
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font
 {
     [cell.textLabel setFont:font];
