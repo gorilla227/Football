@@ -10,6 +10,7 @@
 #import "Captain_Protocol.h"
 #import "Captain_MyPlayers.h"
 #import "Captain_NewPlayer.h"
+#import "Captain_TeamProfile.h"
 
 @interface Captain_MyTeam : UIViewController<SwitchSelectedMenuView>
 

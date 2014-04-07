@@ -15,6 +15,7 @@
 @implementation Captain_MyTeam{
     Captain_MyPlayers *myPlayers;
     Captain_NewPlayer *newPlayer;
+    Captain_TeamProfile *teamProfile;
     UIViewController *currentViewController;
     NSMutableDictionary *myTeamViewControllers;
 }
@@ -33,8 +34,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     myTeamViewControllers = [[NSMutableDictionary alloc] init];
+
     newPlayer = [self.storyboard instantiateViewControllerWithIdentifier:@"Captain_NewPlayer"];
     [self addChildViewController:newPlayer];
+    teamProfile = [self.storyboard instantiateViewControllerWithIdentifier:@"Captain_TeamProfile"];
+    [self addChildViewController:teamProfile];
+    
     for (UIViewController *viewController in self.childViewControllers) {
         if ([viewController.restorationIdentifier isEqualToString:@"Captain_MyPlayers"]) {
             myPlayers = (Captain_MyPlayers *)viewController;

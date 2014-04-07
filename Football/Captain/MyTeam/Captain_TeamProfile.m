@@ -1,21 +1,22 @@
 //
-//  Captain_TeamInfo.m
+//  Captain_TeamProfile.m
 //  Football
 //
-//  Created by Andy on 14-3-31.
+//  Created by Andy on 14-4-6.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "Captain_TeamInfo.h"
+#import "Captain_TeamProfile.h"
 
-@interface Captain_TeamInfo ()
+@interface Captain_TeamProfile ()
 
 @end
 
-@implementation Captain_TeamInfo
-@synthesize teamIcon;
-@synthesize teamName;
-@synthesize numberOfTeamMembers;
+@implementation Captain_TeamProfile
+@synthesize teamIcon, teamName, averageAge, activityRegion, pronouncement;
+@synthesize qqTwoDimensionalCode, wechatTwoDimensionalCode;
+@synthesize recruitSwitch, recruitComment;
+@synthesize totalMatches, winMatchesAndRate, totalGoal, totalLost;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,9 +31,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //Set the default Team Icon
-    [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [teamIcon.layer setBorderWidth:1.0f];
+//    [teamIcon setImage:[UIImage imageNamed:@"TeamIcon.jpg"]];
+    [teamIcon.layer setBorderWidth:2.0f];
+    [teamIcon.layer setBorderColor:[UIColor grayColor].CGColor];
     [teamIcon.layer setCornerRadius:teamIcon.bounds.size.width/2];
     [teamIcon.layer setMasksToBounds:YES];
 }

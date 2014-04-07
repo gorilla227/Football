@@ -15,13 +15,14 @@
 		A114301C18F1F50400A39F13 /* Captain_MyPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A114301B18F1F50400A39F13 /* Captain_MyPlayerCell.m */; };
 		A114301F18F1FDFF00A39F13 /* Captain_MatchArrangementListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A114301E18F1FDFF00A39F13 /* Captain_MatchArrangementListCell.m */; };
 		A114302218F1FE6D00A39F13 /* Captain_MatchArrangementList.m in Sources */ = {isa = PBXBuildFile; fileRef = A114302118F1FE6D00A39F13 /* Captain_MatchArrangementList.m */; };
+		A114302518F2545100A39F13 /* Captain_TeamProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A114302418F2545100A39F13 /* Captain_TeamProfile.m */; };
+		A114302A18F26D2900A39F13 /* TeamIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A114302918F26D2900A39F13 /* TeamIcon.jpg */; };
 		A11F052518E68EE900109870 /* UITextField_WithoutContextMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F052418E68EE900109870 /* UITextField_WithoutContextMenu.m */; };
 		A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */ = {isa = PBXBuildFile; fileRef = A11F052618E68FBE00109870 /* ActivityRegion.plist */; };
 		A145670318F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */; };
 		A145670918F1064E006E158E /* Captain_NewPlayer_InviteeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */; };
 		A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A18E469518EE678500784A48 /* Captain_NewPlayer.m */; };
 		A1B0D9D218E8CA5700671383 /* Captain_TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0D9D118E8CA5700671383 /* Captain_TabBarController.m */; };
-		A1B0DA1618EA767F00671383 /* TeamIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1B0DA1518EA767F00671383 /* TeamIcon.jpg */; };
 		A1B0DA1A18EA76F900671383 /* Captain_TeamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1918EA76F900671383 /* Captain_TeamInfo.m */; };
 		A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */; };
 		A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */; };
@@ -77,6 +78,9 @@
 		A114301E18F1FDFF00A39F13 /* Captain_MatchArrangementListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MatchArrangementListCell.m; path = Captain/MyMatches/Captain_MatchArrangementListCell.m; sourceTree = "<group>"; };
 		A114302018F1FE6D00A39F13 /* Captain_MatchArrangementList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MatchArrangementList.h; path = Captain/MyMatches/Captain_MatchArrangementList.h; sourceTree = "<group>"; };
 		A114302118F1FE6D00A39F13 /* Captain_MatchArrangementList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MatchArrangementList.m; path = Captain/MyMatches/Captain_MatchArrangementList.m; sourceTree = "<group>"; };
+		A114302318F2545100A39F13 /* Captain_TeamProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TeamProfile.h; path = Captain/MyTeam/Captain_TeamProfile.h; sourceTree = "<group>"; };
+		A114302418F2545100A39F13 /* Captain_TeamProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TeamProfile.m; path = Captain/MyTeam/Captain_TeamProfile.m; sourceTree = "<group>"; };
+		A114302918F26D2900A39F13 /* TeamIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TeamIcon.jpg; path = Images.xcassets/TeamIcon.jpg; sourceTree = "<group>"; };
 		A11F052318E68EE900109870 /* UITextField_WithoutContextMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextField_WithoutContextMenu.h; path = Login/Register/UITextField_WithoutContextMenu.h; sourceTree = "<group>"; };
 		A11F052418E68EE900109870 /* UITextField_WithoutContextMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITextField_WithoutContextMenu.m; path = Login/Register/UITextField_WithoutContextMenu.m; sourceTree = "<group>"; };
 		A11F052618E68FBE00109870 /* ActivityRegion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActivityRegion.plist; path = Login/Register/ActivityRegion.plist; sourceTree = "<group>"; };
@@ -89,7 +93,6 @@
 		A1B0D9D018E8CA5700671383 /* Captain_TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TabBarController.h; path = Captain/Captain_TabBarController.h; sourceTree = "<group>"; };
 		A1B0D9D118E8CA5700671383 /* Captain_TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TabBarController.m; path = Captain/Captain_TabBarController.m; sourceTree = "<group>"; };
 		A1B0DA1418E8D10700671383 /* Captain_Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Captain_Protocol.h; path = Captain/Captain_Protocol.h; sourceTree = "<group>"; };
-		A1B0DA1518EA767F00671383 /* TeamIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TeamIcon.jpg; path = Captain/TeamIcon.jpg; sourceTree = "<group>"; };
 		A1B0DA1818EA76F900671383 /* Captain_TeamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TeamInfo.h; path = Captain/MyMatches/Captain_TeamInfo.h; sourceTree = "<group>"; };
 		A1B0DA1918EA76F900671383 /* Captain_TeamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TeamInfo.m; path = Captain/MyMatches/Captain_TeamInfo.m; sourceTree = "<group>"; };
 		A1B0DA1B18EA785C00671383 /* Captain_MatchArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MatchArrangement.h; path = Captain/MyMatches/Captain_MatchArrangement.h; sourceTree = "<group>"; };
@@ -168,7 +171,7 @@
 				B2C6BF0C18EB86F200083537 /* Background.jpg */,
 				A103339418D6BF7900050A61 /* LoginAccountIcon.jpg */,
 				A103339518D6BF7900050A61 /* PasswordIcon.jpg */,
-				A1B0DA1518EA767F00671383 /* TeamIcon.jpg */,
+				A114302918F26D2900A39F13 /* TeamIcon.jpg */,
 			);
 			name = Image;
 			sourceTree = "<group>";
@@ -348,6 +351,8 @@
 				A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */,
 				A145670718F1064E006E158E /* Captain_NewPlayer_InviteeCell.h */,
 				A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */,
+				A114302318F2545100A39F13 /* Captain_TeamProfile.h */,
+				A114302418F2545100A39F13 /* Captain_TeamProfile.m */,
 			);
 			name = MyTeam;
 			sourceTree = "<group>";
@@ -430,12 +435,12 @@
 			files = (
 				A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */,
 				B2C6BF0D18EB86F200083537 /* Background.jpg in Resources */,
-				A1B0DA1618EA767F00671383 /* TeamIcon.jpg in Resources */,
 				B2D096EF18EE01D4005221F2 /* CallFriendsMenu.plist in Resources */,
 				A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */,
 				A1D07BEA18CC1E4800FA3A8D /* Images.xcassets in Resources */,
 				A103339718D6BF7900050A61 /* PasswordIcon.jpg in Resources */,
 				A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */,
+				A114302A18F26D2900A39F13 /* TeamIcon.jpg in Resources */,
 				A1D07BDC18CC1E4800FA3A8D /* InfoPlist.strings in Resources */,
 				A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */,
 				A103339618D6BF7900050A61 /* LoginAccountIcon.jpg in Resources */,
@@ -480,6 +485,7 @@
 				B276E0ED18EF638700DEB116 /* Captain_NewPlayerList.m in Sources */,
 				A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */,
 				A114302218F1FE6D00A39F13 /* Captain_MatchArrangementList.m in Sources */,
+				A114302518F2545100A39F13 /* Captain_TeamProfile.m in Sources */,
 				A11F052518E68EE900109870 /* UITextField_WithoutContextMenu.m in Sources */,
 				A114301C18F1F50400A39F13 /* Captain_MyPlayerCell.m in Sources */,
 			);

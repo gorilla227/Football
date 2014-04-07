@@ -53,7 +53,7 @@
 			<key>Title</key>
 			<string>球队资料</string>
 			<key>Identifier</key>
-			<string></string>
+			<string>Captain_TeamProfile</string>
 		</dict>
 	</array>
 </dict>
