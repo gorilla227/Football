@@ -34,4 +34,8 @@
     // Configure the view for the selected state
 }
 
+-(IBAction)noticePlayerButtonOnClicked:(id)sender
+{
+    NSLog(@"通知球员");
+}
 @end

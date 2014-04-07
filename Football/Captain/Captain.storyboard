@@ -241,6 +241,9 @@
                                             <state key="disabled">
                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="noticePlayerButtonOnClicked:" destination="RNH-YR-2A9" eventType="touchUpInside" id="ImD-Yr-XTt"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4/10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C4g-Kq-tcR">
                                             <rect key="frame" x="194" y="4" width="36" height="21"/>
