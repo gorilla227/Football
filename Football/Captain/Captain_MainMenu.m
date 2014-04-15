@@ -17,10 +17,8 @@
     UIFont *selectedFont;
     UIFont *unselectedFont;
     id<MenuSelected>delegateOfRootView;
-    NSArray *fixedMenuList;
-    NSString *lesserMenuCellIdentifier;
-    NSString *optionMenuCellIdentifier;
-    NSInteger lastMenuIndex;
+    NSString *menuCellIdentifier;
+    NSInteger lastRootMenuIndex;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -43,36 +41,26 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //Set the static string for cell identifiers
-    lesserMenuCellIdentifier = @"LesserMenu";
-    optionMenuCellIdentifier = @"Option";
+    menuCellIdentifier = @"Menu";
     
     //Set the font for selected/unselected menu cell.
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:lesserMenuCellIdentifier];
-    unselectedFont = cell.textLabel.font;
-    NSString *fontName = cell.textLabel.font.fontName;
-    CGFloat fontSize = cell.textLabel.font.pointSize + 5.0f;
-    selectedFont = [UIFont fontWithName:fontName size:fontSize];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:menuCellIdentifier];
+    unselectedFont = cell.detailTextLabel.font;
+    CGFloat fontSize = cell.detailTextLabel.font.pointSize + 3.0f;
+    selectedFont = [UIFont boldSystemFontOfSize:fontSize];
 
     //Set the tableheaderview and tablefooterview
     CGRect headerFrame = self.tableView.tableHeaderView.frame;
-    headerFrame.size.height = self.tableView.rowHeight;
-    headerFrame.size.width = self.tableView.bounds.size.width;
+    headerFrame.size.height = self.tableView.sectionFooterHeight;
     [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:headerFrame]];
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    
+
     //Generate the initial menulist
     [self menuListGeneration:0];
-    
-    //Generate the menulist for options
-    fixedMenuList = [NSArray arrayWithObjects:@"设置", @"登出", nil];
-
-    //Set the initial selected menu index
-    lastMenuIndex = 0;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:lastMenuIndex inSection:0];
+    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:lastRootMenuIndex + 1 inSection:0];
     [self.tableView selectRowAtIndexPath:firstIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     [self tableView:self.tableView didSelectRowAtIndexPath:firstIndexPath];
 }
@@ -87,47 +75,38 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-//#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    NSInteger numberOfRows = 0;
-    switch (section) {
-        case 0:
-            numberOfRows = menuList.count;
-            break;
-        case 1:
-            numberOfRows = fixedMenuList.count;
-            break;
-        default:
-            break;
-    }
-    return numberOfRows;
+    return menuList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
     NSDictionary *menuItem;
-    switch (indexPath.section) {
-        case 0:
-            menuItem = menuList[indexPath.row];
-            cell = [tableView dequeueReusableCellWithIdentifier:lesserMenuCellIdentifier];
-            [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
-            [self formatCell:cell withFont:unselectedFont];
-            break;
-        case 1:
-            cell = [tableView dequeueReusableCellWithIdentifier:optionMenuCellIdentifier];
-            [cell.textLabel setText:[fixedMenuList objectAtIndex:indexPath.row]];
-            break;
-        default:
-            break;
+
+    //Menu List
+    menuItem = menuList[indexPath.row];
+    cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier];
+    if ([[menuItem objectForKey:@"Level"] isEqualToString:@"Root"]) {
+        //Root Menu Item
+        [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
+        [cell.detailTextLabel setText:nil];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
+    else if ([[menuItem objectForKey:@"Level"] isEqualToString:@"Lesser"]) {
+        //Lesser Menu Item
+        [cell.textLabel setText:nil];
+        [cell.detailTextLabel setText:[menuItem objectForKey:@"Title"]];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [self formatCell:cell withFont:unselectedFont];
+    }
+    [cell setUserInteractionEnabled:(indexPath.row != lastRootMenuIndex)];
     return cell;
 }
 
@@ -135,11 +114,15 @@
 {
     delegateOfRootView = (id)self.parentViewController;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSDictionary *menuItem = [menuList objectAtIndex:indexPath.row];
     
-    //Close the menu
-    [delegateOfRootView menuSwitch:NO];
-    
-    if ([cell.reuseIdentifier isEqualToString:lesserMenuCellIdentifier]) {
+    if ([[menuItem objectForKey:@"Level"] isEqualToString:@"Root"]) {
+        if (indexPath.row != lastRootMenuIndex) {
+            [self menuListGeneration:[[menuItem objectForKey:@"RootMenuIndex"] integerValue]];
+            [self viewWillAppear:NO];
+        }
+    }
+    else if ([[menuItem objectForKey:@"Level"] isEqualToString:@"Lesser"]) {
         //Format the cell
         [self formatCell:cell withFont:selectedFont];
         
@@ -147,16 +130,10 @@
         NSString *selectedView = [menuList[indexPath.row] objectForKey:@"Identifier"];
         [delegateOfRootView switchSelectMenuView:selectedView];
         NSLog([menuList[indexPath.row] objectForKey:@"Title"]);
-        lastMenuIndex = indexPath.row;
+
+        //Close the menu
+        [delegateOfRootView menuSwitch:NO];
     }
-    else if ([cell.textLabel.text isEqualToString:@"登出"]) {
-        [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
-    }
-    else if ([cell.textLabel.text isEqualToString:@"设置"]) {
-        NSLog(@"设置");
-        [self viewWillAppear:NO];
-    }
-    
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -165,54 +142,56 @@
     [self formatCell:cell withFont:unselectedFont];
 }
 
--(void)changeRootMenuToIndex:(NSInteger)rootMenuIndex
-{
-    [self menuListGeneration:rootMenuIndex];
-    lastMenuIndex = 0;
-    [self viewWillAppear:NO];
-}
+//-(void)changeRootMenuToIndex:(NSInteger)rootMenuIndex
+//{
+//    [self menuListGeneration:rootMenuIndex];
+//    [self viewWillAppear:NO];
+//}
 
 -(void)menuListGeneration:(NSInteger)rootMenuIndex
 {
+    lastRootMenuIndex = rootMenuIndex;
+
     //Get data from plist file
     NSString *menuListFile = [[NSBundle mainBundle] pathForResource:@"Captain_MenuList" ofType:@"plist"];
     NSDictionary *menuListDictionary = [[NSDictionary alloc] initWithContentsOfFile:menuListFile];
-    NSArray *rootMenu = [menuListDictionary objectForKey:@"RootMenu"];
 
-    //Set the title for tableHeaderView
-    CGRect headerLabelFrame = self.tableView.tableHeaderView.bounds;
-    headerLabelFrame.origin.x = 10.0f;
-    UILabel *tableHeaderLabel = [[UILabel alloc] initWithFrame:headerLabelFrame];
-    [tableHeaderLabel setText:[rootMenu objectAtIndex:rootMenuIndex]];
-    [tableHeaderLabel setFont:[UIFont fontWithName:@"Helvetica" size:18]];
-    [tableHeaderLabel setTextColor:[UIColor whiteColor]];
-    [self.tableView.tableHeaderView setBackgroundColor:[UIColor lightGrayColor]];
-    [self.tableView.tableHeaderView.subviews.firstObject removeFromSuperview];
-    [self.tableView.tableHeaderView addSubview:tableHeaderLabel];
-    
     //Generate the menuList
-    menuList = [menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", (long)rootMenuIndex]];
+    menuList = [[NSMutableArray alloc] init];
+    NSArray *rootMenu = [menuListDictionary objectForKey:@"RootMenu"];
+    for (NSString *rootMenuItem in rootMenu) {
+        //Add the rootMenuItem
+        NSMutableDictionary *menuItem = [[NSMutableDictionary alloc] initWithObjectsAndKeys:rootMenuItem, @"Title", @"Root", @"Level", [NSNumber numberWithInteger:[rootMenu indexOfObject:rootMenuItem]], @"RootMenuIndex", nil];
+        [menuList addObject:menuItem];
+        if ([rootMenu indexOfObject:rootMenuItem] == rootMenuIndex) {
+            //Add the lesserMenuItem
+            for (NSDictionary *lesserMenuItem in [menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", (long)rootMenuIndex]]) {
+                menuItem = [[NSMutableDictionary alloc] initWithDictionary:lesserMenuItem];
+                [menuItem setObject:@"Lesser" forKey:@"Level"];
+                [menuList addObject:menuItem];
+            }
+        }
+    }
     
     //Reload the table view
     [self.tableView reloadData];
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *sectionHeader = [[UIView alloc] init];
-    [sectionHeader setBackgroundColor:[UIColor grayColor]];
-    return sectionHeader;
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView *sectionFooter = [[UIView alloc] init];
-    [sectionFooter setBackgroundColor:[UIColor grayColor]];
-    return sectionFooter;
-}
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font
 {
-    [cell.textLabel setFont:font];
+    [cell.detailTextLabel setFont:font];
+}
+
+-(IBAction)logoutButtonOnClicked:(id)sender
+{
+    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(IBAction)optionButtonOnClicked:(id)sender
+{
+    delegateOfRootView = (id)self.parentViewController;
+    NSLog(@"设置");
+    [delegateOfRootView menuSwitch:NO];
 }
 /*
 // Override to support conditional editing of the table view.

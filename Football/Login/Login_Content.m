@@ -8,6 +8,8 @@
 
 #import "Login_Content.h"
 
+#define kSoccerColor [UIColor colorWithRed:59/255.0 green:175/255.0 blue:218/255.0 alpha:1]
+
 @interface Login_Content ()
 
 @end
@@ -39,14 +41,29 @@
     // Do any additional setup after loading the view.
     textFieldArray = [[NSArray alloc] initWithObjects:accountField, passwordField, nil];
     
-    UIImage *accountIcon = [UIImage imageNamed:@"LoginAccountIcon.jpg"];
-    UIImageView *accountIconView = [[UIImageView alloc] initWithImage:accountIcon];
+    UIImageView *accountIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_textfield_title_user.png"]];
+    UIView *accountIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 34)];
+    [accountIconImageView setFrame:CGRectMake(12, 7, 20, 20)];
+    [accountIconView addSubview:accountIconImageView];
+    [accountIconView setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
     [accountField setLeftView:accountIconView];
     [accountField setLeftViewMode:UITextFieldViewModeAlways];
-    UIImage *passwordIcon = [UIImage imageNamed:@"PasswordIcon.jpg"];
-    UIImageView *passwordIconView = [[UIImageView alloc] initWithImage:passwordIcon];
+
+    UIImageView *passwordIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_textfield_title_pwd.png"]];
+    UIView *passwordIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 34)];
+    [passwordIconImageView setFrame:CGRectMake(14.5, 7, 15, 20)];
+    [passwordIconView setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
+    [passwordIconView addSubview:passwordIconImageView];
     [passwordField setLeftView:passwordIconView];
     [passwordField setLeftViewMode:UITextFieldViewModeAlways];
+    
+    [accountField.layer setBorderColor:kSoccerColor.CGColor];
+    [accountField.layer setBorderWidth:1.0f];
+    [accountField.layer setCornerRadius:3.0f];
+    
+    [passwordField.layer setBorderColor:[UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1].CGColor];
+    [passwordField.layer setBorderWidth:1.0f];
+    [passwordField.layer setCornerRadius:3.0f];
 }
 
 - (void)didReceiveMemoryWarning

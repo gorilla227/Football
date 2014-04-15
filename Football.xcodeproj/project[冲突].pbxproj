@@ -11,23 +11,25 @@
 		A103339018D4F3FA00050A61 /* Captain_RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A103338F18D4F3FA00050A61 /* Captain_RootViewController.m */; };
 		A103339318D6B49900050A61 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A103339218D6B49900050A61 /* Login.m */; };
 		A114301C18F1F50400A39F13 /* Captain_MyPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A114301B18F1F50400A39F13 /* Captain_MyPlayerCell.m */; };
+		A114301F18F1FDFF00A39F13 /* Captain_MatchArrangementListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A114301E18F1FDFF00A39F13 /* Captain_MatchArrangementListCell.m */; };
+		A114302218F1FE6D00A39F13 /* Captain_MatchArrangementList.m in Sources */ = {isa = PBXBuildFile; fileRef = A114302118F1FE6D00A39F13 /* Captain_MatchArrangementList.m */; };
 		A114302518F2545100A39F13 /* Captain_TeamProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A114302418F2545100A39F13 /* Captain_TeamProfile.m */; };
 		A11F052518E68EE900109870 /* UITextField_WithoutContextMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A11F052418E68EE900109870 /* UITextField_WithoutContextMenu.m */; };
 		A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */ = {isa = PBXBuildFile; fileRef = A11F052618E68FBE00109870 /* ActivityRegion.plist */; };
 		A145670318F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */; };
 		A145670918F1064E006E158E /* Captain_NewPlayer_InviteeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */; };
-		A173033C18FB5A0400702015 /* WebUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A173033B18FB5A0400702015 /* WebUtils.m */; };
+		A15F809118F66144004AB0C2 /* login_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A15F808818F66144004AB0C2 /* login_logo.png */; };
+		A15F809218F66144004AB0C2 /* login_textfield_title_pwd.png in Resources */ = {isa = PBXBuildFile; fileRef = A15F808918F66144004AB0C2 /* login_textfield_title_pwd.png */; };
+		A15F809318F66144004AB0C2 /* login_textfield_title_user.png in Resources */ = {isa = PBXBuildFile; fileRef = A15F808A18F66144004AB0C2 /* login_textfield_title_user.png */; };
+		A15F809418F66144004AB0C2 /* register_area.png in Resources */ = {isa = PBXBuildFile; fileRef = A15F808B18F66144004AB0C2 /* register_area.png */; };
+		A15F809518F66144004AB0C2 /* register_birthday.png in Resources */ = {isa = PBXBuildFile; fileRef = A15F808C18F66144004AB0C2 /* register_birthday.png */; };
+		A15F809618F66144004AB0C2 /* register_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = A15F808D18F66144004AB0C2 /* register_phone.png */; };
+		A15F809718F66144004AB0C2 /* register_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = A15F808E18F66144004AB0C2 /* register_qq.png */; };
+		A15F809818F66144004AB0C2 /* soccer_grass_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A15F808F18F66144004AB0C2 /* soccer_grass_bg.png */; };
+		A15F809918F66144004AB0C2 /* soccer_grass_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A15F809018F66144004AB0C2 /* soccer_grass_bg@2x.png */; };
 		A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A18E469518EE678500784A48 /* Captain_NewPlayer.m */; };
+		A1B0DA1A18EA76F900671383 /* Captain_TeamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1918EA76F900671383 /* Captain_TeamInfo.m */; };
 		A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */; };
-		A1C2802D18F79CED004C644E /* login_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802418F79CED004C644E /* login_logo.png */; };
-		A1C2802E18F79CED004C644E /* login_textfield_title_pwd.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802518F79CED004C644E /* login_textfield_title_pwd.png */; };
-		A1C2802F18F79CED004C644E /* login_textfield_title_user.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802618F79CED004C644E /* login_textfield_title_user.png */; };
-		A1C2803018F79CED004C644E /* register_area.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802718F79CED004C644E /* register_area.png */; };
-		A1C2803118F79CED004C644E /* register_birthday.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802818F79CED004C644E /* register_birthday.png */; };
-		A1C2803218F79CED004C644E /* register_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802918F79CED004C644E /* register_phone.png */; };
-		A1C2803318F79CED004C644E /* register_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802A18F79CED004C644E /* register_qq.png */; };
-		A1C2803418F79CED004C644E /* soccer_grass_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802B18F79CED004C644E /* soccer_grass_bg.png */; };
-		A1C2803518F79CED004C644E /* soccer_grass_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802C18F79CED004C644E /* soccer_grass_bg@2x.png */; };
 		A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */; };
 		A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */; };
 		A1C8F9E918DE895C00BE42D4 /* Register_Captain.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E818DE895C00BE42D4 /* Register_Captain.m */; };
@@ -75,6 +77,10 @@
 		A103339218D6B49900050A61 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = Login/Login.m; sourceTree = "<group>"; };
 		A114301A18F1F50400A39F13 /* Captain_MyPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MyPlayerCell.h; path = Captain/MyTeam/Captain_MyPlayerCell.h; sourceTree = "<group>"; };
 		A114301B18F1F50400A39F13 /* Captain_MyPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MyPlayerCell.m; path = Captain/MyTeam/Captain_MyPlayerCell.m; sourceTree = "<group>"; };
+		A114301D18F1FDFF00A39F13 /* Captain_MatchArrangementListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MatchArrangementListCell.h; path = Captain/MyMatches/Captain_MatchArrangementListCell.h; sourceTree = "<group>"; };
+		A114301E18F1FDFF00A39F13 /* Captain_MatchArrangementListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MatchArrangementListCell.m; path = Captain/MyMatches/Captain_MatchArrangementListCell.m; sourceTree = "<group>"; };
+		A114302018F1FE6D00A39F13 /* Captain_MatchArrangementList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MatchArrangementList.h; path = Captain/MyMatches/Captain_MatchArrangementList.h; sourceTree = "<group>"; };
+		A114302118F1FE6D00A39F13 /* Captain_MatchArrangementList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MatchArrangementList.m; path = Captain/MyMatches/Captain_MatchArrangementList.m; sourceTree = "<group>"; };
 		A114302318F2545100A39F13 /* Captain_TeamProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TeamProfile.h; path = Captain/MyTeam/Captain_TeamProfile.h; sourceTree = "<group>"; };
 		A114302418F2545100A39F13 /* Captain_TeamProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TeamProfile.m; path = Captain/MyTeam/Captain_TeamProfile.m; sourceTree = "<group>"; };
 		A11F052318E68EE900109870 /* UITextField_WithoutContextMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextField_WithoutContextMenu.h; path = Login/Register/UITextField_WithoutContextMenu.h; sourceTree = "<group>"; };
@@ -84,22 +90,22 @@
 		A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer_ApplicantCell.m; path = Captain/MyTeam/Captain_NewPlayer_ApplicantCell.m; sourceTree = "<group>"; };
 		A145670718F1064E006E158E /* Captain_NewPlayer_InviteeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayer_InviteeCell.h; path = Captain/MyTeam/Captain_NewPlayer_InviteeCell.h; sourceTree = "<group>"; };
 		A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer_InviteeCell.m; path = Captain/MyTeam/Captain_NewPlayer_InviteeCell.m; sourceTree = "<group>"; };
-		A173033A18FB5A0400702015 /* WebUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebUtils.h; path = Football/Utils/WebUtils.h; sourceTree = "<group>"; };
-		A173033B18FB5A0400702015 /* WebUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebUtils.m; path = Football/Utils/WebUtils.m; sourceTree = "<group>"; };
+		A15F808818F66144004AB0C2 /* login_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_logo.png; path = Resource/login_logo.png; sourceTree = "<group>"; };
+		A15F808918F66144004AB0C2 /* login_textfield_title_pwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_textfield_title_pwd.png; path = Resource/login_textfield_title_pwd.png; sourceTree = "<group>"; };
+		A15F808A18F66144004AB0C2 /* login_textfield_title_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_textfield_title_user.png; path = Resource/login_textfield_title_user.png; sourceTree = "<group>"; };
+		A15F808B18F66144004AB0C2 /* register_area.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = register_area.png; path = Resource/register_area.png; sourceTree = "<group>"; };
+		A15F808C18F66144004AB0C2 /* register_birthday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = register_birthday.png; path = Resource/register_birthday.png; sourceTree = "<group>"; };
+		A15F808D18F66144004AB0C2 /* register_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = register_phone.png; path = Resource/register_phone.png; sourceTree = "<group>"; };
+		A15F808E18F66144004AB0C2 /* register_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = register_qq.png; path = Resource/register_qq.png; sourceTree = "<group>"; };
+		A15F808F18F66144004AB0C2 /* soccer_grass_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = soccer_grass_bg.png; path = Resource/soccer_grass_bg.png; sourceTree = "<group>"; };
+		A15F809018F66144004AB0C2 /* soccer_grass_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "soccer_grass_bg@2x.png"; path = "Resource/soccer_grass_bg@2x.png"; sourceTree = "<group>"; };
 		A18E469418EE678500784A48 /* Captain_NewPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayer.h; path = Captain/MyTeam/Captain_NewPlayer.h; sourceTree = "<group>"; };
 		A18E469518EE678500784A48 /* Captain_NewPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer.m; path = Captain/MyTeam/Captain_NewPlayer.m; sourceTree = "<group>"; };
 		A1B0DA1418E8D10700671383 /* Captain_Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Captain_Protocol.h; path = Captain/Captain_Protocol.h; sourceTree = "<group>"; };
+		A1B0DA1818EA76F900671383 /* Captain_TeamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TeamInfo.h; path = Captain/MyMatches/Captain_TeamInfo.h; sourceTree = "<group>"; };
+		A1B0DA1918EA76F900671383 /* Captain_TeamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TeamInfo.m; path = Captain/MyMatches/Captain_TeamInfo.m; sourceTree = "<group>"; };
 		A1B0DA1B18EA785C00671383 /* Captain_MatchArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MatchArrangement.h; path = Captain/MyMatches/Captain_MatchArrangement.h; sourceTree = "<group>"; };
 		A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MatchArrangement.m; path = Captain/MyMatches/Captain_MatchArrangement.m; sourceTree = "<group>"; };
-		A1C2802418F79CED004C644E /* login_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_logo.png; path = Resource/login_logo.png; sourceTree = "<group>"; };
-		A1C2802518F79CED004C644E /* login_textfield_title_pwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_textfield_title_pwd.png; path = Resource/login_textfield_title_pwd.png; sourceTree = "<group>"; };
-		A1C2802618F79CED004C644E /* login_textfield_title_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_textfield_title_user.png; path = Resource/login_textfield_title_user.png; sourceTree = "<group>"; };
-		A1C2802718F79CED004C644E /* register_area.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = register_area.png; path = Resource/register_area.png; sourceTree = "<group>"; };
-		A1C2802818F79CED004C644E /* register_birthday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = register_birthday.png; path = Resource/register_birthday.png; sourceTree = "<group>"; };
-		A1C2802918F79CED004C644E /* register_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = register_phone.png; path = Resource/register_phone.png; sourceTree = "<group>"; };
-		A1C2802A18F79CED004C644E /* register_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = register_qq.png; path = Resource/register_qq.png; sourceTree = "<group>"; };
-		A1C2802B18F79CED004C644E /* soccer_grass_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = soccer_grass_bg.png; path = Resource/soccer_grass_bg.png; sourceTree = "<group>"; };
-		A1C2802C18F79CED004C644E /* soccer_grass_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "soccer_grass_bg@2x.png"; path = "Resource/soccer_grass_bg@2x.png"; sourceTree = "<group>"; };
 		A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Captain_MenuList.plist; path = Captain/Captain_MenuList.plist; sourceTree = "<group>"; };
 		A1C8F9E018DAAA3400BE42D4 /* Captain_MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MainMenu.h; path = Captain/Captain_MainMenu.h; sourceTree = "<group>"; };
 		A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MainMenu.m; path = Captain/Captain_MainMenu.m; sourceTree = "<group>"; };
@@ -172,27 +178,17 @@
 		A103339818D6BF8600050A61 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				A1C2802418F79CED004C644E /* login_logo.png */,
-				A1C2802518F79CED004C644E /* login_textfield_title_pwd.png */,
-				A1C2802618F79CED004C644E /* login_textfield_title_user.png */,
-				A1C2802718F79CED004C644E /* register_area.png */,
-				A1C2802818F79CED004C644E /* register_birthday.png */,
-				A1C2802918F79CED004C644E /* register_phone.png */,
-				A1C2802A18F79CED004C644E /* register_qq.png */,
-				A1C2802B18F79CED004C644E /* soccer_grass_bg.png */,
-				A1C2802C18F79CED004C644E /* soccer_grass_bg@2x.png */,
+				A15F808818F66144004AB0C2 /* login_logo.png */,
+				A15F808918F66144004AB0C2 /* login_textfield_title_pwd.png */,
+				A15F808A18F66144004AB0C2 /* login_textfield_title_user.png */,
+				A15F808B18F66144004AB0C2 /* register_area.png */,
+				A15F808C18F66144004AB0C2 /* register_birthday.png */,
+				A15F808D18F66144004AB0C2 /* register_phone.png */,
+				A15F808E18F66144004AB0C2 /* register_qq.png */,
+				A15F808F18F66144004AB0C2 /* soccer_grass_bg.png */,
+				A15F809018F66144004AB0C2 /* soccer_grass_bg@2x.png */,
 			);
 			name = Resource;
-			sourceTree = "<group>";
-		};
-		A173033D18FB5A0A00702015 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				A173033A18FB5A0400702015 /* WebUtils.h */,
-				A173033B18FB5A0400702015 /* WebUtils.m */,
-			);
-			name = Utils;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		A1B0DA1E18EA786600671383 /* MyMatches */ = {
@@ -202,6 +198,12 @@
 				B276E0E918EF585800DEB116 /* Captain_MyMatches.m */,
 				A1B0DA1B18EA785C00671383 /* Captain_MatchArrangement.h */,
 				A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */,
+				A114302018F1FE6D00A39F13 /* Captain_MatchArrangementList.h */,
+				A114302118F1FE6D00A39F13 /* Captain_MatchArrangementList.m */,
+				A114301D18F1FDFF00A39F13 /* Captain_MatchArrangementListCell.h */,
+				A114301E18F1FDFF00A39F13 /* Captain_MatchArrangementListCell.m */,
+				A1B0DA1818EA76F900671383 /* Captain_TeamInfo.h */,
+				A1B0DA1918EA76F900671383 /* Captain_TeamInfo.m */,
 			);
 			name = MyMatches;
 			sourceTree = "<group>";
@@ -276,7 +278,6 @@
 			children = (
 				A1D07BE018CC1E4800FA3A8D /* AppDelegate.h */,
 				A1D07BE118CC1E4800FA3A8D /* AppDelegate.m */,
-				A173033D18FB5A0A00702015 /* Utils */,
 				A103339818D6BF8600050A61 /* Resource */,
 				A1D07C0C18CD162500FA3A8D /* Captain */,
 				A1D07C0818CD154600FA3A8D /* Login&Register */,
@@ -449,20 +450,20 @@
 			files = (
 				A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */,
 				B2D096EF18EE01D4005221F2 /* CallFriendsMenu.plist in Resources */,
-				A1C2803518F79CED004C644E /* soccer_grass_bg@2x.png in Resources */,
-				A1C2802E18F79CED004C644E /* login_textfield_title_pwd.png in Resources */,
-				A1C2803218F79CED004C644E /* register_phone.png in Resources */,
+				A15F809918F66144004AB0C2 /* soccer_grass_bg@2x.png in Resources */,
+				A15F809218F66144004AB0C2 /* login_textfield_title_pwd.png in Resources */,
+				A15F809618F66144004AB0C2 /* register_phone.png in Resources */,
 				A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */,
 				A1D07BEA18CC1E4800FA3A8D /* Images.xcassets in Resources */,
-				A1C2803318F79CED004C644E /* register_qq.png in Resources */,
-				A1C2803018F79CED004C644E /* register_area.png in Resources */,
+				A15F809718F66144004AB0C2 /* register_qq.png in Resources */,
+				A15F809418F66144004AB0C2 /* register_area.png in Resources */,
 				A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */,
 				A1D07BDC18CC1E4800FA3A8D /* InfoPlist.strings in Resources */,
-				A1C2802F18F79CED004C644E /* login_textfield_title_user.png in Resources */,
+				A15F809318F66144004AB0C2 /* login_textfield_title_user.png in Resources */,
 				A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */,
-				A1C2803418F79CED004C644E /* soccer_grass_bg.png in Resources */,
-				A1C2802D18F79CED004C644E /* login_logo.png in Resources */,
-				A1C2803118F79CED004C644E /* register_birthday.png in Resources */,
+				A15F809818F66144004AB0C2 /* soccer_grass_bg.png in Resources */,
+				A15F809118F66144004AB0C2 /* login_logo.png in Resources */,
+				A15F809518F66144004AB0C2 /* register_birthday.png in Resources */,
 				A103338A18D419A300050A61 /* Captain.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,13 +487,14 @@
 				A103339318D6B49900050A61 /* Login.m in Sources */,
 				A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */,
 				A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */,
-				A173033C18FB5A0400702015 /* WebUtils.m in Sources */,
+				A1B0DA1A18EA76F900671383 /* Captain_TeamInfo.m in Sources */,
 				A1D07BDE18CC1E4800FA3A8D /* main.m in Sources */,
 				A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */,
 				A1C8F9EC18DE90B400BE42D4 /* Login_Content.m in Sources */,
 				A1C8F9E918DE895C00BE42D4 /* Register_Captain.m in Sources */,
 				A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */,
 				B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */,
+				A114301F18F1FDFF00A39F13 /* Captain_MatchArrangementListCell.m in Sources */,
 				A145670318F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m in Sources */,
 				A145670918F1064E006E158E /* Captain_NewPlayer_InviteeCell.m in Sources */,
 				B276E0EA18EF585800DEB116 /* Captain_MyMatches.m in Sources */,
@@ -501,6 +503,7 @@
 				A1C8FA4C18DFEAFE00BE42D4 /* Register_Player_Advance.m in Sources */,
 				B276E0ED18EF638700DEB116 /* Captain_NewPlayerList.m in Sources */,
 				A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */,
+				A114302218F1FE6D00A39F13 /* Captain_MatchArrangementList.m in Sources */,
 				A114302518F2545100A39F13 /* Captain_TeamProfile.m in Sources */,
 				A11F052518E68EE900109870 /* UITextField_WithoutContextMenu.m in Sources */,
 				B203F7A018F61D1D00284112 /* Captain_TabBarController.m in Sources */,
@@ -624,7 +627,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Football/Football-Prefix.pch";
 				INFOPLIST_FILE = "Football/Football-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -638,7 +640,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Football/Football-Prefix.pch";
 				INFOPLIST_FILE = "Football/Football-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

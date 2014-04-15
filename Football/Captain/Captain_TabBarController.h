@@ -12,5 +12,5 @@
 #import "Captain_MyTeam.h"
 
 @interface Captain_TabBarController : UITabBarController<SwitchSelectedMenuView>
-@property id<Captain_MainMenuDelegate>mainMenuDelegate;
+//@property id<Captain_MainMenuDelegate>mainMenuDelegate;
 @end

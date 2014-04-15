@@ -11,7 +11,7 @@
 @implementation Captain_TabBarController{
     NSInteger currentViewControllerIndex;
 }
-@synthesize mainMenuDelegate;
+//@synthesize mainMenuDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,7 +39,7 @@
 {
     NSInteger selectedItemIndex = [tabBar.items indexOfObject:item];
     if (currentViewControllerIndex != selectedItemIndex) {
-        [mainMenuDelegate changeRootMenuToIndex:selectedItemIndex];
+//        [mainMenuDelegate changeRootMenuToIndex:selectedItemIndex];
         currentViewControllerIndex = selectedItemIndex;
     }
 }

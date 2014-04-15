@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol Captain_MainMenuDelegate <NSObject>
--(void)changeRootMenuToIndex:(NSInteger)rootMenuIndex;
-@end
+//@protocol Captain_MainMenuDelegate <NSObject>
+//-(void)changeRootMenuToIndex:(NSInteger)rootMenuIndex;
+//@end
 
 @protocol MenuSelected <NSObject>
 -(void)menuSwitch:(BOOL)showMenu;

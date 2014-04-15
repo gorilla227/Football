@@ -10,7 +10,6 @@
 
 @implementation Captain_RootViewController{
     Captain_MainMenu *mainMenu;
-    Captain_TabBarController *tabBar;
     CGPoint tabView_menuShowed;
     CGPoint tabView_menuHidden;
     CGPoint mainMenu_menuShowed;
@@ -37,10 +36,10 @@
             mainMenu = (Captain_MainMenu *)viewController;
         }
         else if ([viewController.restorationIdentifier isEqual: @"TabBar"]) {
-            tabBar = (Captain_TabBarController *)viewController;
+//            tabBar = (Captain_TabBarController *)viewController;
         }
     }
-    [tabBar setMainMenuDelegate:mainMenu];
+//    [tabBar setMainMenuDelegate:mainMenu];
 
     tabView_menuHidden = tabView.center;
     tabView_menuShowed = CGPointMake(tabView.center.x + mainMenuView.frame.size.width, tabView.center.y);
@@ -92,8 +91,8 @@
 
 -(void)switchSelectMenuView:(NSString *)selectedView
 {
-    id<SwitchSelectedMenuView>delegate = (id)tabBar;
-    [delegate switchSelectMenuView:selectedView];
+//    id<SwitchSelectedMenuView>delegate = (id)tabBar;
+//    [delegate switchSelectMenuView:selectedView];
 }
 
 - (void)didReceiveMemoryWarning

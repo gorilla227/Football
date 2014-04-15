@@ -36,6 +36,17 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:delegate selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:delegate selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
+    
+    //Add icon for each textfield
+    UIImage *teamNameImage = [UIImage imageNamed:@"login_textfield_title_user.png"];
+    [teamName setLeftView:[[UIImageView alloc] initWithImage:teamNameImage]];
+    [teamName setLeftViewMode:UITextFieldViewModeAlways];
+    UIImage *cellphoneNumberImage = [UIImage imageNamed:@"register_phone.png"];
+    [cellphoneNumber setLeftView:[[UIImageView alloc] initWithImage:cellphoneNumberImage]];
+    [cellphoneNumber setLeftViewMode:UITextFieldViewModeAlways];
+    UIImage *passwordImage = [UIImage imageNamed:@"login_textfield_title_pwd.png"];
+    [password setLeftView:[[UIImageView alloc] initWithImage:passwordImage]];
+    [password setLeftViewMode:UITextFieldViewModeAlways];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,6 +57,8 @@
 
 -(IBAction)cancelButtonOnClicked:(id)sender
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:delegate name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:delegate name:UIKeyboardDidHideNotification object:nil];
     [delegate presentLoginView];
 }
 
