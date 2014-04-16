@@ -27,6 +27,11 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [teamName setText:[[myUserInfo objectForKey:@"team"] objectForKey:@"teamName"]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
