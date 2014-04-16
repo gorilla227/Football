@@ -96,12 +96,28 @@
     [self dismissKeyboard];
 }
 
--(IBAction)loginButtonOnClicked:(id)sender
+-(void)loginWithUser:(NSData *)userData
 {
+    extern NSDictionary *myUserInfo;
+    myUserInfo = [NSJSONSerialization JSONObjectWithData:userData options:NSJSONReadingMutableContainers error:nil];
+    
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Captain" bundle:nil];
     UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
     [mainController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:mainController animated:YES completion:nil];
+}
+
+-(void)retrieveData:(NSData *)data forSelector:(SEL)selector
+{
+    if ([self canPerformAction:selector withSender:self]) {
+        [self performSelectorOnMainThread:selector withObject:data waitUntilDone:YES];
+    }
+}
+
+-(IBAction)loginButtonOnClicked:(id)sender
+{
+    WebUtils *requestUserInfo = [[WebUtils alloc] initWithServerURL:def_serverURL andDelegate:self];
+    [requestUserInfo requestData:[def_JSONSuffix_userInfo stringByAppendingString:@"1"] forSelector:@selector(loginWithUser:)];
 }
 
 -(IBAction)registerButtonOnClicked:(id)sender

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Pre_Define.h"
 #import "Captain_Protocol.h"
 #import "Captain_MainMenu.h"
 #import "Captain_MatchArrangement.h"

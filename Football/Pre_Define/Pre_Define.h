@@ -17,3 +17,7 @@
 
 #define def_serverURL @"http://inomind.de:8080/SoccerServer"
 #define def_JSONSuffix_allMatches @"matches.json"
+#define def_JSONSuffix_userInfo @"user?id="
+
+//Global variables
+NSDictionary *myUserInfo;

@@ -18,6 +18,5 @@
 @property id<WebUtilsDelegate>delegate;
 -(id)initWithServerURL:(NSString *)serverURLString andDelegate:(id)delegateOfData;
 -(void)configServerURL:(NSString *)serverURLString;
--(BOOL)checkURLAvailable;
 -(void)requestData:(NSString *)suffix forSelector:(SEL)selector;
 @end

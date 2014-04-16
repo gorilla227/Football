@@ -143,7 +143,7 @@
 -(void)retrieveData:(NSData *)data forSelector:(SEL)selector
 {
     if ([self canPerformAction:selector withSender:self]) {
-        [self performSelector:selector withObject:data];
+        [self performSelectorInBackground:selector withObject:data];
     }
 }
 
