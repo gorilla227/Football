@@ -1,4 +1,4 @@
-//
+    //
 //  Captain_MatchArrangement.m
 //  Football
 //
@@ -7,17 +7,6 @@
 //
 
 #import "Captain_MatchArrangement.h"
-#define def_typeOfPlayerNumber_SignUp @"报名人数"
-#define def_typeOfPlayerNumber_ShowUp @"出场人数"
-#define def_backgroundColor_BeforeMatch [UIColor colorWithRed:78/255.0 green:191/255.0 blue:231/255.0 alpha:1]
-#define def_backgroundColor_AfterMatch [UIColor colorWithRed:57/255.0 green:174/255.0 blue:218/255.0 alpha:1]
-#define def_backgroundColor_FilledDetail [UIColor colorWithRed:180/255.0 green:180/255.0 blue:180/255.0 alpha:1]
-#define def_actionButtonColor_BeforeMatch [UIColor colorWithRed:57/255.0 green:174/255.0 blue:218/255.0 alpha:1]
-#define def_actionButtonColor_AfterMatch [UIColor colorWithRed:78/255.0 green:191/255.0 blue:231/255.0 alpha:1]
-#define def_actionButtonColor_FilledDetail [UIColor colorWithRed:144/255.0 green:144/255.0 blue:144/255.0 alpha:1]
-
-#define def_serverURL @"http://inomind.de:8080/SoccerServer"
-#define def_JSONSuffix_allMatches @"matches.json"
 
 #pragma Captain_TeamInfo
 @interface Captain_TeamInfo ()
@@ -130,7 +119,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     WebUtils *getDataConnection = [[WebUtils alloc] initWithServerURL:def_serverURL andDelegate:self];
-    [getDataConnection requestData:def_JSONSuffix_allMatches];
+    [getDataConnection requestData:def_JSONSuffix_allMatches forSelector:@selector(matchesListDataReceived:)];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"下拉刷新"]];
@@ -145,11 +134,17 @@
     }
 }
 
--(void)retrievalData:(NSData *)data
+-(void)matchesListDataReceived:(NSData *)data
 {
     matchData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    NSLog([[matchData.firstObject objectForKey:@"teamB"] objectForKey:@"teamName"]);
     [self.tableView reloadData];
+}
+
+-(void)retrieveData:(NSData *)data forSelector:(SEL)selector
+{
+    if ([self canPerformAction:selector withSender:self]) {
+        [self performSelector:selector withObject:data];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -180,13 +175,6 @@
     
     // Configure the cell...
     [cell.numberOfPlayers setText:[NSString stringWithFormat:@"%li/10", (long)indexPath.row]];
-//    NSDateFormatter *matchDateFormatter = [[NSDateFormatter alloc] init];
-//    [matchDateFormatter setDateFormat:@"YYYY.MM.dd"];
-//    NSDateFormatter *matchTimeFormatter = [[NSDateFormatter alloc] init];
-//    [matchTimeFormatter setDateFormat:@"HH:MM"];
-    
-//    [cell.matchDate setText:[matchDateFormatter stringFromDate:[NSDate date]]];
-//    [cell.matchTime setText:[matchTimeFormatter stringFromDate:[NSDate date]]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
     [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
@@ -194,7 +182,7 @@
     NSDateFormatter *outputDateFormatter = [[NSDateFormatter alloc] init];
     [outputDateFormatter setDateFormat:@"yyyy.MM.dd"];
     NSDateFormatter *outputTimeFormatter = [[NSDateFormatter alloc] init];
-    [outputDateFormatter setDateFormat:@"HH:mm"];
+    [outputTimeFormatter setDateFormat:@"HH:mm"];
     [cell.matchDate setText:[outputDateFormatter stringFromDate:matchDate]];
     [cell.matchTime setText:[outputTimeFormatter stringFromDate:matchDate]];
     

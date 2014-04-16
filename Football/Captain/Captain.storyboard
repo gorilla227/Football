@@ -47,7 +47,7 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="mainMenuView" destination="mfF-NX-2gg" id="2IL-8f-nzH"/>
-                        <outlet property="tabView" destination="qGW-F7-Nqu" id="WLj-FS-99f"/>
+                        <outlet property="mainView" destination="qGW-F7-Nqu" id="GcE-iV-Rlc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sED-Ge-oNx" userLabel="First Responder" sceneMemberID="firstResponder"/>

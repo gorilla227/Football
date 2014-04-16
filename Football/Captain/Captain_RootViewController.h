@@ -15,6 +15,6 @@
 #import "Captain_TeamProfile.h"
 
 @interface Captain_RootViewController : UIViewController<MenuSelected>
-@property IBOutlet UIView *tabView;
+@property IBOutlet UIView *mainView;
 @property IBOutlet UIView *mainMenuView;
 @end

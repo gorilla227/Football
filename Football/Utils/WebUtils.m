@@ -9,7 +9,7 @@
 #import "WebUtils.h"
 
 @implementation WebUtils{
-    NSURL *serverURL;
+    NSString *serverURL;
 }
 @synthesize delegate;
 
@@ -23,30 +23,15 @@
 
 -(void)configServerURL:(NSString *)serverURLString
 {
-    serverURL = [NSURL URLWithString:serverURLString];
+    serverURL = serverURLString;
 }
 
--(BOOL)checkURLAvailable
-{
-    NSError *err;
-    if (!serverURL) {
-        return NO;
-    }
-    if ([serverURL checkResourceIsReachableAndReturnError:&err]) {
-        return YES;
-    }
-    else {
-        NSLog([err localizedDescription]);
-        return NO;
-    }
-}
-
--(void)requestData:(NSString *)suffix
+-(void)requestData:(NSString *)suffix forSelector:(SEL)selector
 {
     if (!serverURL) {
         return;
     }
-    NSURL *requestURL = [serverURL URLByAppendingPathComponent:suffix];
+    NSURL *requestURL = [NSURL URLWithString:[serverURL stringByAppendingPathComponent:suffix]];
     NSURLRequest *request = [NSURLRequest requestWithURL:requestURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5.0];
     NSURLSession *requestSession = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [requestSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -54,8 +39,9 @@
             NSLog(error.localizedDescription);
         }
         else {
-            NSLog(@"拿到数据了");
-            [delegate retrievalData:data];
+            NSLog(@"Data Retrieved");
+            [dataTask cancel];
+            [delegate retrieveData:data forSelector:selector];
         }
     }];
     [dataTask resume];

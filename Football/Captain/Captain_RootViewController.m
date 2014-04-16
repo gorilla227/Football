@@ -10,12 +10,13 @@
 
 @implementation Captain_RootViewController{
     Captain_MainMenu *mainMenu;
-    CGPoint tabView_menuShowed;
-    CGPoint tabView_menuHidden;
+    Captain_MatchArrangement *matchArrangement;
+    CGPoint mainView_menuShowed;
+    CGPoint mainView_menuHidden;
     CGPoint mainMenu_menuShowed;
     CGPoint mainMenu_menuHidden;
 }
-@synthesize tabView;
+@synthesize mainView;
 @synthesize mainMenuView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,14 +36,14 @@
         if ([viewController.restorationIdentifier  isEqual: @"Captain_MainMenu"]) {
             mainMenu = (Captain_MainMenu *)viewController;
         }
-        else if ([viewController.restorationIdentifier isEqual: @"TabBar"]) {
-//            tabBar = (Captain_TabBarController *)viewController;
+        else if ([viewController.restorationIdentifier isEqual: @"Captain_MatchArrangement"]) {
+            matchArrangement = (Captain_MatchArrangement *)viewController;
         }
     }
 //    [tabBar setMainMenuDelegate:mainMenu];
 
-    tabView_menuHidden = tabView.center;
-    tabView_menuShowed = CGPointMake(tabView.center.x + mainMenuView.frame.size.width, tabView.center.y);
+    mainView_menuHidden = mainView.center;
+    mainView_menuShowed = CGPointMake(mainView.center.x + mainMenuView.frame.size.width, mainView.center.y);
     mainMenu_menuShowed = mainMenuView.center;
     mainMenu_menuHidden = CGPointMake(mainMenuView.center.x - mainMenuView.frame.size.width, mainMenuView.center.y);
     [mainMenuView setCenter:mainMenu_menuHidden];
@@ -55,14 +56,14 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    if (CGPointEqualToPoint(tabView.center, tabView_menuShowed)) {
+    if (CGPointEqualToPoint(mainView.center, mainView_menuShowed)) {
         [self menuSwitch:NO];
     }
 }
 
 -(IBAction)menuOnClicked:(id)sender
 {
-    [self menuSwitch:CGPointEqualToPoint(tabView.center, tabView_menuHidden)];
+    [self menuSwitch:CGPointEqualToPoint(mainView.center, mainView_menuHidden)];
 }
 
 -(void)menuSwitch:(BOOL)showMenu
@@ -71,22 +72,22 @@
         [UIView beginAnimations:@"showMenu" context:nil];
         [UIView setAnimationDuration:0.2f];
         [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-        [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:tabView cache:YES];
+        [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:mainView cache:YES];
         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:mainMenuView cache:YES];
-        [tabView setCenter:tabView_menuShowed];
+        [mainView setCenter:mainView_menuShowed];
         [mainMenuView setCenter:mainMenu_menuShowed];
         [UIView commitAnimations];
     } else {
         [UIView beginAnimations:@"hideMenu" context:nil];
         [UIView setAnimationDuration:0.2f];
         [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-        [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:tabView cache:YES];
+        [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:mainView cache:YES];
         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:mainMenuView cache:YES];
-        [tabView setCenter:tabView_menuHidden];
+        [mainView setCenter:mainView_menuHidden];
         [mainMenuView setCenter:mainMenu_menuHidden];
         [UIView commitAnimations];
     }
-    [tabView setUserInteractionEnabled:!showMenu];
+    [mainView setUserInteractionEnabled:!showMenu];
 }
 
 -(void)switchSelectMenuView:(NSString *)selectedView

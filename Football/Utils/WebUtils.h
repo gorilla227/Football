@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 @class WebUtils;
-@protocol DataReady <NSObject>
+@protocol WebUtilsDelegate <NSObject>
 
--(void)retrievalData:(NSData *)data;
+-(void)retrieveData:(NSData *)data forSelector:(SEL)selector;
 
 @end
 
 @interface WebUtils : NSObject
-@property id<DataReady>delegate;
+@property id<WebUtilsDelegate>delegate;
 -(id)initWithServerURL:(NSString *)serverURLString andDelegate:(id)delegateOfData;
 -(void)configServerURL:(NSString *)serverURLString;
 -(BOOL)checkURLAvailable;
--(void)requestData:(NSString *)suffix;
+-(void)requestData:(NSString *)suffix forSelector:(SEL)selector;
 @end

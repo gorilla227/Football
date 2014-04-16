@@ -86,6 +86,7 @@
 		A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer_InviteeCell.m; path = Captain/MyTeam/Captain_NewPlayer_InviteeCell.m; sourceTree = "<group>"; };
 		A173033A18FB5A0400702015 /* WebUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebUtils.h; path = Football/Utils/WebUtils.h; sourceTree = "<group>"; };
 		A173033B18FB5A0400702015 /* WebUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebUtils.m; path = Football/Utils/WebUtils.m; sourceTree = "<group>"; };
+		A178CED718FE343A007A3CA6 /* Pre_Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Pre_Define.h; path = Pre_Define/Pre_Define.h; sourceTree = "<group>"; };
 		A18E469418EE678500784A48 /* Captain_NewPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayer.h; path = Captain/MyTeam/Captain_NewPlayer.h; sourceTree = "<group>"; };
 		A18E469518EE678500784A48 /* Captain_NewPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer.m; path = Captain/MyTeam/Captain_NewPlayer.m; sourceTree = "<group>"; };
 		A1B0DA1418E8D10700671383 /* Captain_Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Captain_Protocol.h; path = Captain/Captain_Protocol.h; sourceTree = "<group>"; };
@@ -274,6 +275,7 @@
 		A1D07BD718CC1E4800FA3A8D /* Football */ = {
 			isa = PBXGroup;
 			children = (
+				A178CED718FE343A007A3CA6 /* Pre_Define.h */,
 				A1D07BE018CC1E4800FA3A8D /* AppDelegate.h */,
 				A1D07BE118CC1E4800FA3A8D /* AppDelegate.m */,
 				A173033D18FB5A0A00702015 /* Utils */,

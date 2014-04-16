@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Pre_Define.h"
 #import "WebUtils.h"
 
 @interface Captain_TeamInfo : UIViewController
@@ -28,8 +29,9 @@
 @property IBOutlet UILabel *matchResult;
 @end
 
-@interface Captain_MatchArrangementList : UITableViewController<DataReady>
+@interface Captain_MatchArrangementList : UITableViewController<WebUtilsDelegate>
 -(void)refreshData;
+-(void)matchesListDataReceived:(NSData *)data;
 @end
 
 @interface Captain_MatchArrangement : UIViewController
