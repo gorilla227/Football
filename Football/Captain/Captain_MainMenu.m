@@ -13,7 +13,7 @@
 @end
 
 @implementation Captain_MainMenu{
-    NSMutableArray *menuList;
+    NSDictionary *menuListDictionary;
     UIFont *selectedFont;
     UIFont *unselectedFont;
     id<MenuSelected>delegateOfRootView;
@@ -55,7 +55,8 @@
     [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:headerFrame]];
 
     //Generate the initial menulist
-    [self menuListGeneration:0];
+    [self menuListGeneration];
+    lastRootMenuIndex = 0;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -76,60 +77,68 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return [[menuListDictionary objectForKey:@"RootMenu"] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return menuList.count;
+    return [[menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", section]] count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
-    NSDictionary *menuItem;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier];
 
-    //Menu List
-    menuItem = menuList[indexPath.row];
-    cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier];
-    if ([[menuItem objectForKey:@"Level"] isEqualToString:@"Root"]) {
+    if (indexPath.row == 0) {
         //Root Menu Item
-        [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
+        [cell.textLabel setText:[[menuListDictionary objectForKey:@"RootMenu"] objectAtIndex:indexPath.section]];
         [cell.detailTextLabel setText:nil];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
-    else if ([[menuItem objectForKey:@"Level"] isEqualToString:@"Lesser"]) {
+    else {
+        NSDictionary *menuItem = [[menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", indexPath.section]] objectAtIndex:indexPath.row - 1];
+        
         //Lesser Menu Item
         [cell.textLabel setText:nil];
         [cell.detailTextLabel setText:[menuItem objectForKey:@"Title"]];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         [self formatCell:cell withFont:unselectedFont];
     }
-    [cell setUserInteractionEnabled:(indexPath.row != lastRootMenuIndex)];
+
+    [cell setUserInteractionEnabled:(indexPath.row != 0)];
+//    [cell setHidden:(indexPath.section != lastRootMenuIndex && indexPath.row != 0)];
+//    [cell setUserInteractionEnabled:!(indexPath.section == lastRootMenuIndex && indexPath.row == 0)];
+
     return cell;
 }
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (indexPath.section != lastRootMenuIndex && indexPath.row != 0) {
+//        return 0;
+//    }
+//    return tableView.rowHeight;
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     delegateOfRootView = (id)self.parentViewController;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSDictionary *menuItem = [menuList objectAtIndex:indexPath.row];
     
-    if ([[menuItem objectForKey:@"Level"] isEqualToString:@"Root"]) {
-        if (indexPath.row != lastRootMenuIndex) {
-            [self menuListGeneration:[[menuItem objectForKey:@"RootMenuIndex"] integerValue]];
-            [self viewWillAppear:NO];
-        }
+    if (indexPath.row == 0) {
+        lastRootMenuIndex = indexPath.section;
+        [self.tableView reloadData];
     }
-    else if ([[menuItem objectForKey:@"Level"] isEqualToString:@"Lesser"]) {
+    else {
         //Format the cell
         [self formatCell:cell withFont:selectedFont];
         
         //Call the parentcontroller to switch lesser view
-        NSString *selectedView = [menuList[indexPath.row] objectForKey:@"Identifier"];
+        NSDictionary *menuItem = [[menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", indexPath.section]] objectAtIndex:indexPath.row - 1];
+        NSString *selectedView = [menuItem objectForKey:@"Identifier"];
         [delegateOfRootView switchSelectMenuView:selectedView];
-        NSLog([menuList[indexPath.row] objectForKey:@"Title"]);
+        NSLog([menuItem objectForKey:@"Title"]);
 
         //Close the menu
         [delegateOfRootView menuSwitch:NO];
@@ -142,39 +151,11 @@
     [self formatCell:cell withFont:unselectedFont];
 }
 
-//-(void)changeRootMenuToIndex:(NSInteger)rootMenuIndex
-//{
-//    [self menuListGeneration:rootMenuIndex];
-//    [self viewWillAppear:NO];
-//}
-
--(void)menuListGeneration:(NSInteger)rootMenuIndex
+-(void)menuListGeneration
 {
-    lastRootMenuIndex = rootMenuIndex;
-
     //Get data from plist file
     NSString *menuListFile = [[NSBundle mainBundle] pathForResource:@"Captain_MenuList" ofType:@"plist"];
-    NSDictionary *menuListDictionary = [[NSDictionary alloc] initWithContentsOfFile:menuListFile];
-
-    //Generate the menuList
-    menuList = [[NSMutableArray alloc] init];
-    NSArray *rootMenu = [menuListDictionary objectForKey:@"RootMenu"];
-    for (NSString *rootMenuItem in rootMenu) {
-        //Add the rootMenuItem
-        NSMutableDictionary *menuItem = [[NSMutableDictionary alloc] initWithObjectsAndKeys:rootMenuItem, @"Title", @"Root", @"Level", [NSNumber numberWithInteger:[rootMenu indexOfObject:rootMenuItem]], @"RootMenuIndex", nil];
-        [menuList addObject:menuItem];
-        if ([rootMenu indexOfObject:rootMenuItem] == rootMenuIndex) {
-            //Add the lesserMenuItem
-            for (NSDictionary *lesserMenuItem in [menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", (long)rootMenuIndex]]) {
-                menuItem = [[NSMutableDictionary alloc] initWithDictionary:lesserMenuItem];
-                [menuItem setObject:@"Lesser" forKey:@"Level"];
-                [menuList addObject:menuItem];
-            }
-        }
-    }
-    
-    //Reload the table view
-    [self.tableView reloadData];
+    menuListDictionary = [[NSDictionary alloc] initWithContentsOfFile:menuListFile];
 }
 
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font

@@ -10,11 +10,11 @@
 
 @implementation Captain_RootViewController{
     Captain_MainMenu *mainMenu;
-    Captain_MatchArrangement *matchArrangement;
     CGPoint mainView_menuShowed;
     CGPoint mainView_menuHidden;
     CGPoint mainMenu_menuShowed;
     CGPoint mainMenu_menuHidden;
+    UIViewController *currentViewController;
 }
 @synthesize mainView;
 @synthesize mainMenuView;
@@ -33,14 +33,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     for (UIViewController *viewController in self.childViewControllers) {
-        if ([viewController.restorationIdentifier  isEqual: @"Captain_MainMenu"]) {
+        if ([viewController.restorationIdentifier  isEqualToString: @"Captain_MainMenu"]) {
             mainMenu = (Captain_MainMenu *)viewController;
         }
-        else if ([viewController.restorationIdentifier isEqual: @"Captain_MatchArrangement"]) {
-            matchArrangement = (Captain_MatchArrangement *)viewController;
+        else {
+            currentViewController = viewController;
         }
     }
-//    [tabBar setMainMenuDelegate:mainMenu];
 
     mainView_menuHidden = mainView.center;
     mainView_menuShowed = CGPointMake(mainView.center.x + mainMenuView.frame.size.width, mainView.center.y);
@@ -92,8 +91,21 @@
 
 -(void)switchSelectMenuView:(NSString *)selectedView
 {
-//    id<SwitchSelectedMenuView>delegate = (id)tabBar;
-//    [delegate switchSelectMenuView:selectedView];
+    if(![currentViewController.restorationIdentifier isEqualToString:selectedView]) {
+        UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:selectedView];
+        [self addChildViewController:targetViewController];
+        [self transitionFromViewController:currentViewController
+                          toViewController:targetViewController
+                                  duration:0.3f
+                                   options:UIViewAnimationOptionTransitionCrossDissolve
+                                animations:nil
+                                completion:^(BOOL finished) {
+                                    if (finished) {
+                                        [currentViewController removeFromParentViewController];
+                                        currentViewController = targetViewController;
+                                    }
+                                }];
+    }
 }
 
 - (void)didReceiveMemoryWarning

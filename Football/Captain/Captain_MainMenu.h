@@ -11,5 +11,5 @@
 
 @interface Captain_MainMenu : UITableViewController
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font;
--(void)menuListGeneration:(NSInteger)rootMenuIndex;
+-(void)menuListGeneration;
 @end

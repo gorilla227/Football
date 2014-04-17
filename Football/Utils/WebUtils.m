@@ -32,7 +32,7 @@
         return;
     }
     NSURL *requestURL = [NSURL URLWithString:[serverURL stringByAppendingPathComponent:suffix]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:requestURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5.0];
+    NSURLRequest *request = [NSURLRequest requestWithURL:requestURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2.0];
     NSURLSession *requestSession = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [requestSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
@@ -44,6 +44,7 @@
             [delegate retrieveData:data forSelector:selector];
         }
     }];
+    NSLog(@"Started");
     [dataTask resume];
 }
 @end

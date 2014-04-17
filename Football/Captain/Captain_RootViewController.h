@@ -10,10 +10,6 @@
 #import "Pre_Define.h"
 #import "Captain_Protocol.h"
 #import "Captain_MainMenu.h"
-#import "Captain_MatchArrangement.h"
-#import "Captain_MyPlayers.h"
-#import "Captain_NewPlayer.h"
-#import "Captain_TeamProfile.h"
 
 @interface Captain_RootViewController : UIViewController<MenuSelected>
 @property IBOutlet UIView *mainView;
