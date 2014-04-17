@@ -67,6 +67,7 @@
 @synthesize numberOfPlayers, typeOfPlayerNumber;
 @synthesize matchDate, matchTime, matchOpponent, matchPlace, matchType;
 @synthesize actionButton, actionIcon, matchResult;
+@synthesize announcable, recordable;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -101,7 +102,7 @@
 @end
 
 @implementation Captain_MatchArrangementList{
-    NSArray *matchData;
+    NSMutableArray *matchData;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -125,18 +126,6 @@
     
     WebUtils *getDataConnection = [[WebUtils alloc] initWithServerURL:def_serverURL andDelegate:self];
     [getDataConnection requestData:def_JSONSuffix_allMatches forSelector:@selector(matchesListDataReceived:)];
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"下拉刷新"]];
-    [refreshControl addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
-    [self setRefreshControl:refreshControl];
-}
-
--(void)refreshData
-{
-    if (self.refreshControl.refreshing) {
-        [self.refreshControl setAttributedTitle:[[NSAttributedString alloc] initWithString:@"加载中..."]];
-    }
 }
 
 -(void)matchesListDataReceived:(NSData *)data
@@ -169,7 +158,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+    return matchData.count;
 }
 
 
@@ -178,6 +167,8 @@
     Captain_MatchArrangementListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MatchArrangementListCell"];
     NSDictionary *cellData = [matchData objectAtIndex:indexPath.row];
     
+    NSLog(@"%li, %@", indexPath.row, [cellData objectForKey:@"announcable"]);
+
     // Configure the cell...
     [cell.numberOfPlayers setText:[NSString stringWithFormat:@"%li/10", (long)indexPath.row]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -194,6 +185,7 @@
     [cell.matchOpponent setText:[[cellData objectForKey:@"teamB"] objectForKey:@"teamName"]];
     [cell.matchPlace setText:[cellData objectForKey:@"place"]];
     [cell.matchType setText:@"11人制"];
+    [cell.actionButton.layer setCornerRadius:3.0f];
     switch (indexPath.row%3) {
         case 0:
             [cell.actionButton setTitle:@"通知球员" forState:UIControlStateNormal];
@@ -202,6 +194,8 @@
             [cell setBackgroundColor:def_backgroundColor_BeforeMatch];
             [cell.matchResult setHidden:YES];
             [cell.actionIcon setHidden:NO];
+            [cell setAnnouncable:YES];
+            [cell setRecordable:NO];
             break;
         case 1:
             [cell.actionButton setTitle:@"数据记录" forState:UIControlStateNormal];
@@ -210,6 +204,8 @@
             [cell setBackgroundColor:def_backgroundColor_AfterMatch];
             [cell.matchResult setHidden:YES];
             [cell.actionIcon setHidden:NO];
+            [cell setAnnouncable:NO];
+            [cell setRecordable:YES];
             break;
         case 2:
             [cell.actionButton setTitle:@"详细" forState:UIControlStateNormal];
@@ -218,6 +214,8 @@
             [cell setBackgroundColor:def_backgroundColor_FilledDetail];
             [cell.matchResult setHidden:NO];
             [cell.actionIcon setHidden:YES];
+            [cell setAnnouncable:NO];
+            [cell setRecordable:NO];
             break;
         default:
             break;
@@ -225,28 +223,31 @@
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    BOOL announcable = (indexPath.row % 3 == 0);
+    if (announcable) {
+        return YES;
+    }
+    return NO;
+}
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [matchData removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
 
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"取消比赛";
+}
 /*
  // Override to support rearranging the table view.
  - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath

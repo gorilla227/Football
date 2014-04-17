@@ -111,6 +111,7 @@
 {
     if ([self canPerformAction:selector withSender:self]) {
         [self performSelectorOnMainThread:selector withObject:data waitUntilDone:YES];
+        [self.parentViewController.view setUserInteractionEnabled:YES];
     }
 }
 
@@ -118,6 +119,7 @@
 {
     WebUtils *requestUserInfo = [[WebUtils alloc] initWithServerURL:def_serverURL andDelegate:self];
     [requestUserInfo requestData:[def_JSONSuffix_userInfo stringByAppendingString:@"1"] forSelector:@selector(loginWithUser:)];
+    [self.parentViewController.view setUserInteractionEnabled:NO];
 }
 
 -(IBAction)registerButtonOnClicked:(id)sender

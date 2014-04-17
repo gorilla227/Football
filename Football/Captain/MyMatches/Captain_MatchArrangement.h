@@ -27,10 +27,11 @@
 @property IBOutlet UIImageView *actionIcon;
 @property IBOutlet UIButton *actionButton;
 @property IBOutlet UILabel *matchResult;
+@property BOOL announcable;
+@property BOOL recordable;
 @end
 
 @interface Captain_MatchArrangementList : UITableViewController<WebUtilsDelegate>
--(void)refreshData;
 -(void)matchesListDataReceived:(NSData *)data;
 @end
 
