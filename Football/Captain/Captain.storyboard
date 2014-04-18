@@ -48,6 +48,7 @@
                     <connections>
                         <outlet property="mainMenuView" destination="mfF-NX-2gg" id="2IL-8f-nzH"/>
                         <outlet property="mainView" destination="qGW-F7-Nqu" id="GcE-iV-Rlc"/>
+                        <outlet property="navigationItem" destination="Ene-GP-TMc" id="jaF-gF-v0R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sED-Ge-oNx" userLabel="First Responder" sceneMemberID="firstResponder"/>

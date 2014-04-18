@@ -31,7 +31,7 @@
 @property BOOL recordable;
 @end
 
-@interface Captain_MatchArrangementList : UITableViewController<WebUtilsDelegate>
+@interface Captain_MatchArrangementList : UITableViewController<WebUtilsDelegate, UIAlertViewDelegate>
 -(void)matchesListDataReceived:(NSData *)data;
 @end
 

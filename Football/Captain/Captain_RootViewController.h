@@ -14,4 +14,5 @@
 @interface Captain_RootViewController : UIViewController<MenuSelected>
 @property IBOutlet UIView *mainView;
 @property IBOutlet UIView *mainMenuView;
+@property IBOutlet UINavigationItem *navigationItem;
 @end

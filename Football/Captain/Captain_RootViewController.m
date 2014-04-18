@@ -18,6 +18,7 @@
 }
 @synthesize mainView;
 @synthesize mainMenuView;
+@synthesize navigationItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +39,7 @@
         }
         else {
             currentViewController = viewController;
+            [navigationItem setTitle:currentViewController.title];
         }
     }
 
@@ -102,6 +104,7 @@
                                 completion:^(BOOL finished) {
                                     if (finished) {
                                         [currentViewController removeFromParentViewController];
+                                        [navigationItem setTitle:targetViewController.title];
                                         currentViewController = targetViewController;
                                     }
                                 }];

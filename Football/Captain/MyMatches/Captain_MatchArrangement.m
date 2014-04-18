@@ -103,6 +103,7 @@
 
 @implementation Captain_MatchArrangementList{
     NSMutableArray *matchData;
+    NSIndexPath *indexPathOfCancelMatch;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -167,7 +168,7 @@
     Captain_MatchArrangementListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MatchArrangementListCell"];
     NSDictionary *cellData = [matchData objectAtIndex:indexPath.row];
     
-    NSLog(@"%li, %@", indexPath.row, [cellData objectForKey:@"announcable"]);
+//    NSLog(@"%li, %@", indexPath.row, [cellData objectForKey:@"announcable"]);
 
     // Configure the cell...
     [cell.numberOfPlayers setText:[NSString stringWithFormat:@"%li/10", (long)indexPath.row]];
@@ -237,8 +238,10 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [matchData removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        UIAlertView *confirmMatchCancel = [[UIAlertView alloc] initWithTitle:nil message:@"确定要取消比赛？"  delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",@"取消", nil];
+        [confirmMatchCancel setCancelButtonIndex:1];
+        indexPathOfCancelMatch = indexPath;
+        [confirmMatchCancel show];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
@@ -247,6 +250,18 @@
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return @"取消比赛";
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        //Cancel the match
+        [matchData removeObjectAtIndex:indexPathOfCancelMatch.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPathOfCancelMatch] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else {
+        [self.tableView setEditing:NO animated:YES];
+    }
 }
 /*
  // Override to support rearranging the table view.
