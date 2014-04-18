@@ -113,6 +113,7 @@
     [contentView setBackgroundColor:[UIColor clearColor]];
     [UIView commitAnimations];
 }
+
 /*
 #pragma mark - Navigation
 

@@ -36,6 +36,7 @@
                             </segmentedControl>
                         </subviews>
                     </view>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="contentView" destination="eMw-F9-tkY" id="b2o-1h-7MG"/>
                         <outlet property="roleSegment" destination="lzG-IO-M5t" id="owL-EE-CUh"/>
