@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Captain_MainMenu.h"
 
-@interface Captain_RootNavigationController : UINavigationController<MainMenuSwitchViewControllerDelegate>
+@interface Captain_RootNavigationController : UINavigationController<MainMenuSwitchViewControllerDelegate, MainMenuAppearenceDelegate>
 
 @end

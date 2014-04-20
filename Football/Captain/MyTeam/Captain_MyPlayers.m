@@ -7,7 +7,34 @@
 //
 
 #import "Captain_MyPlayers.h"
+#pragma Captain_MyPlayerCell
+@implementation Captain_MyPlayerCell
+@synthesize playerIcon, playerName, signUpStatusOfNextMatch, signUpTitleOfLeague, signUpStatusOfLeague, likeScore;
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+- (void)awakeFromNib
+{
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
+
+@end
+
+#pragma Captain_MyPlayer
 @interface Captain_MyPlayers ()
 
 @end
@@ -34,7 +61,15 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
-    [self setEdgesForExtendedLayout:UIRectEdgeNone];
+//    [self setEdgesForExtendedLayout:UIRectEdgeNone];
+}
+
+-(IBAction)menuButtonOnClicked:(id)sender
+{
+    id<MainMenuAppearenceDelegate>delegateOfMenuAppearance = (id)self.navigationController;
+    if (delegateOfMenuAppearance) {
+        [delegateOfMenuAppearance menuSwitch];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,14 +82,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 1;
 }

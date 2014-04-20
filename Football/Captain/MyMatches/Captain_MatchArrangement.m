@@ -283,7 +283,6 @@
 
 @implementation Captain_MatchArrangement{
     Captain_TeamInfo *teamInfo;
-    Captain_MainMenu *mainMenu;
 }
 @synthesize teamInfoView;
 @synthesize matchesView;
@@ -306,37 +305,13 @@
             teamInfo = (Captain_TeamInfo *)viewController;
         }
     }
-    mainMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"Captain_MainMenu"];
-    [self addChildViewController:mainMenu];
-    [self.view addSubview:mainMenu.view];
 }
 
--(void)menuSwitch
+-(IBAction)menuButtonOnClicked:(id)sender
 {
-    [UIView beginAnimations:@"ShowMenu" context:nil];
-    [UIView setAnimationDuration:0.3f];
-    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(124, 0);
-    if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
-        for (UIView *view in self.view.subviews) {
-            [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
-            [view setUserInteractionEnabled:view != mainMenu.view];
-        }
-    }
-    else {
-        for (UIView *view in self.view.subviews) {
-            [view setTransform:showMenu];
-            [view setUserInteractionEnabled:view == mainMenu.view];
-        }
-    }
-    [UIView commitAnimations];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesBegan:touches withEvent:event];
-    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(124, 0);
-    if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
-        [self menuSwitch];
+    id<MainMenuAppearenceDelegate>delegateOfMenuAppearance = (id)self.navigationController;
+    if (delegateOfMenuAppearance) {
+        [delegateOfMenuAppearance menuSwitch];
     }
 }
 

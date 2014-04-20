@@ -34,8 +34,8 @@
 {
     [super viewDidLoad];
     [self.view setFrame:CGRectMake(-124, 0, 124, 568)];
-    [self setDelegateOfViewSwitch:(id)self.navigationController];
-    [self setDelegateOfMenuAppearance:(id)self.parentViewController];
+//    [self setDelegateOfViewSwitch:(id)self.navigationController];
+//    [self setDelegateOfMenuAppearance:(id)self.navigationController];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -51,10 +51,10 @@
     CGFloat fontSize = cell.detailTextLabel.font.pointSize + 3.0f;
     selectedFont = [UIFont boldSystemFontOfSize:fontSize];
 
-    //Set the tableheaderview and tablefooterview
-    CGRect headerFrame = self.tableView.tableHeaderView.frame;
-    headerFrame.size.height = self.tableView.sectionFooterHeight;
-    [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:headerFrame]];
+//    //Set the tableheaderview and tablefooterview
+//    CGRect headerFrame = self.tableView.tableHeaderView.frame;
+//    headerFrame.size.height = self.tableView.sectionFooterHeight;
+//    [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:headerFrame]];
 
     //Generate the initial menulist
     [self menuListGeneration];

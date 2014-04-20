@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Captain_MyPlayerCell.h"
+#import "Captain_MainMenu.h"
+
+@interface Captain_MyPlayerCell : UITableViewCell
+@property IBOutlet UIImageView *playerIcon;
+@property IBOutlet UILabel *playerName;
+@property IBOutlet UILabel *signUpStatusOfNextMatch;
+@property IBOutlet UILabel *signUpTitleOfLeague;
+@property IBOutlet UILabel *signUpStatusOfLeague;
+@property IBOutlet UILabel *likeScore;
+@end
 
 @interface Captain_MyPlayers : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate>
 

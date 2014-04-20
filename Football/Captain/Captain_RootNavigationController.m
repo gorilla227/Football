@@ -12,7 +12,10 @@
 
 @end
 
-@implementation Captain_RootNavigationController
+@implementation Captain_RootNavigationController{
+    Captain_MainMenu *mainMenu;
+    UIView *contentView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +33,41 @@
     //Set the background image
     UIImage *backgroundImage = [UIImage imageNamed:@"soccer_grass_bg@2x.png"];
     [self.view setBackgroundColor:[[UIColor alloc] initWithPatternImage:backgroundImage]];
+
+    contentView = self.view.subviews.firstObject;
+    mainMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"Captain_MainMenu"];
+    [mainMenu setDelegateOfMenuAppearance:self];
+    [mainMenu setDelegateOfViewSwitch:self];
+    [self.view addSubview:mainMenu.view];
+}
+
+-(void)menuSwitch
+{
+    [UIView beginAnimations:@"ShowMenu" context:nil];
+    [UIView setAnimationDuration:0.3f];
+    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(124, 0);
+    if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
+        for (UIView *view in self.view.subviews) {
+            [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
+            [view setUserInteractionEnabled:view != mainMenu.view];
+        }
+    }
+    else {
+        for (UIView *view in self.view.subviews) {
+            [view setTransform:showMenu];
+            [view setUserInteractionEnabled:view == mainMenu.view];
+        }
+    }
+    [UIView commitAnimations];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(124, 0);
+    if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
+        [self menuSwitch];
+    }
 }
 
 - (void)didReceiveMemoryWarning
