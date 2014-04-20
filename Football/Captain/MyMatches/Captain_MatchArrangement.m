@@ -264,31 +264,15 @@
     }
 }
 /*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
+#pragma mark - Navigation
 
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+// Get the new view controller using [segue destinationViewController].
+// Pass the selected object to the new view controller.
+}
+*/
 
 @end
 
@@ -299,6 +283,7 @@
 
 @implementation Captain_MatchArrangement{
     Captain_TeamInfo *teamInfo;
+    Captain_MainMenu *mainMenu;
 }
 @synthesize teamInfoView;
 @synthesize matchesView;
@@ -321,6 +306,38 @@
             teamInfo = (Captain_TeamInfo *)viewController;
         }
     }
+    mainMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"Captain_MainMenu"];
+    [self addChildViewController:mainMenu];
+    [self.view addSubview:mainMenu.view];
+}
+
+-(void)menuSwitch
+{
+    [UIView beginAnimations:@"ShowMenu" context:nil];
+    [UIView setAnimationDuration:0.3f];
+    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(124, 0);
+    if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
+        for (UIView *view in self.view.subviews) {
+            [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
+            [view setUserInteractionEnabled:view != mainMenu.view];
+        }
+    }
+    else {
+        for (UIView *view in self.view.subviews) {
+            [view setTransform:showMenu];
+            [view setUserInteractionEnabled:view == mainMenu.view];
+        }
+    }
+    [UIView commitAnimations];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(124, 0);
+    if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
+        [self menuSwitch];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -333,6 +350,7 @@
 {
     NSLog(@"建立比赛");
 }
+
 /*
 #pragma mark - Navigation
 

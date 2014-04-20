@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Captain_Protocol.h"
+
+@protocol MainMenuAppearenceDelegate <NSObject>
+-(void)menuSwitch;
+@end
+
+@protocol MainMenuSwitchViewControllerDelegate <NSObject>
+-(void)switchSelectMenuView:(NSString *)selectedView;
+@end
 
 @interface Captain_MainMenu : UITableViewController
+@property id<MainMenuAppearenceDelegate>delegateOfMenuAppearance;
+@property id<MainMenuSwitchViewControllerDelegate>delegateOfViewSwitch;
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font;
 -(void)menuListGeneration;
 @end

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnterOpponent_1</key>
+	<string>1、如果对手不再“我要踢球”中，可手动输入对手名称，并点击“邀请对手”邀请对方队长加入“我要踢球”。 2、如果目前没有对手，可点击“球队超市”，寻找合适球队。</string>
+	<key>EnterOpponent_2</key>
+	<string>可邀请对手加入“我要踢球”，基数越大，基友越多，约球更容易，你懂的。</string>
+	<key>EnterScore</key>
+	<string>请输入比分，系统会根据比分自动生成进球、助攻人数。</string>
+	<key>EnterTime</key>
+	<string>请选择比赛开始时间。如果该比赛已经开始，则进入比赛数据记录界面；如果该比赛未开始，则进入新建比赛界面。</string>
+	<key>EnterOpponent_NewMatch</key>
+	<string>请输入比赛对手，有两种方式： 1、对手球队不在“我要踢球”中，手动输入对手，可以直接建立比赛；
+2、对手球队已加入“我要踢球”，从“球队超市”中选择对手，需要等待对手反馈。</string>
+</dict>
+</plist>

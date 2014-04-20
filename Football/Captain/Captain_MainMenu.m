@@ -16,10 +16,10 @@
     NSDictionary *menuListDictionary;
     UIFont *selectedFont;
     UIFont *unselectedFont;
-    id<MenuSelected>delegateOfRootView;
     NSString *menuCellIdentifier;
     NSInteger lastRootMenuIndex;
 }
+@synthesize delegateOfMenuAppearance, delegateOfViewSwitch;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,7 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.view setFrame:CGRectMake(-124, 0, 124, 568)];
+    [self setDelegateOfViewSwitch:(id)self.navigationController];
+    [self setDelegateOfMenuAppearance:(id)self.parentViewController];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -59,12 +61,12 @@
     lastRootMenuIndex = 0;
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:lastRootMenuIndex + 1 inSection:0];
-    [self.tableView selectRowAtIndexPath:firstIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [self tableView:self.tableView didSelectRowAtIndexPath:firstIndexPath];
-}
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:lastRootMenuIndex + 1 inSection:0];
+//    [self.tableView selectRowAtIndexPath:firstIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+//    [self tableView:self.tableView didSelectRowAtIndexPath:firstIndexPath];
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -107,23 +109,12 @@
     }
 
     [cell setUserInteractionEnabled:(indexPath.row != 0)];
-//    [cell setHidden:(indexPath.section != lastRootMenuIndex && indexPath.row != 0)];
-//    [cell setUserInteractionEnabled:!(indexPath.section == lastRootMenuIndex && indexPath.row == 0)];
-
     return cell;
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (indexPath.section != lastRootMenuIndex && indexPath.row != 0) {
-//        return 0;
-//    }
-//    return tableView.rowHeight;
-//}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    delegateOfRootView = (id)self.parentViewController;
+//    id<MainMenuAppearenceDelegate>delegateMenuAppearance = (id)self.parentViewController;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     if (indexPath.row == 0) {
@@ -137,11 +128,11 @@
         //Call the parentcontroller to switch lesser view
         NSDictionary *menuItem = [[menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", indexPath.section]] objectAtIndex:indexPath.row - 1];
         NSString *selectedView = [menuItem objectForKey:@"Identifier"];
-        [delegateOfRootView switchSelectMenuView:selectedView];
+        [delegateOfViewSwitch switchSelectMenuView:selectedView];
         NSLog([menuItem objectForKey:@"Title"]);
 
         //Close the menu
-        [delegateOfRootView menuSwitch:NO];
+        [delegateOfMenuAppearance menuSwitch];
     }
 }
 
@@ -170,57 +161,9 @@
 
 -(IBAction)optionButtonOnClicked:(id)sender
 {
-    delegateOfRootView = (id)self.parentViewController;
+//    delegateOfMenuAppearance = (id)self.parentViewController;
     NSLog(@"设置");
-    [delegateOfRootView menuSwitch:NO];
+    [delegateOfMenuAppearance menuSwitch];
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

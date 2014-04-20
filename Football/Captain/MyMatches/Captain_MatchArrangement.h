@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Pre_Define.h"
 #import "WebUtils.h"
+#import "Captain_NavigationItem.h"
 
 @interface Captain_TeamInfo : UIViewController
 @property IBOutlet UIImageView *teamIcon;
@@ -35,7 +36,7 @@
 -(void)matchesListDataReceived:(NSData *)data;
 @end
 
-@interface Captain_MatchArrangement : UIViewController
+@interface Captain_MatchArrangement : UIViewController<MainMenuAppearenceDelegate>
 @property IBOutlet UIView *teamInfoView;
 @property IBOutlet UIView *matchesView;
 @end
