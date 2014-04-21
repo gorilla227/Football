@@ -16,7 +16,7 @@
     UIDatePicker *matchTimePicker;
     TintTextView *tintView;
 }
-@synthesize matchTime;
+@synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,8 +31,29 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:[UIColor clearColor]];
     [self initialMatchTime];
+    [self initialMatchOpponent];
+    [self initialMatchPlace];
+    [self initialNumOfPlayers];
+    [self initialCost];
     [self.view addSubview:tintView];
+}
+
+-(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
+{
+    CGRect leftViewFrame = textFieldNeedLeftView.bounds;
+    UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
+    UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftIcon.frame.size.width, 0, 45, leftViewFrame.size.height)];
+    leftViewFrame.size.width = leftIcon.frame.size.width + leftLabel.frame.size.width;
+    [leftLabel setText:labelName];
+    [leftLabel setTextAlignment:NSTextAlignmentCenter];
+    UIView *leftView = [[UIView alloc] initWithFrame:leftViewFrame];
+    [leftView addSubview:leftIcon];
+    [leftView addSubview:leftLabel];
+    [textFieldNeedLeftView setLeftView:leftView];
+    [textFieldNeedLeftView setLeftViewMode:UITextFieldViewModeAlways];
+    [textFieldNeedLeftView setPlaceholder:nil];
 }
 
 -(void)initialMatchTime
@@ -53,21 +74,30 @@
     [matchTimePicker addTarget:self action:@selector(matchTimeSelected) forControlEvents:UIControlEventValueChanged];
     [matchTime setInputView:matchTimePicker];
     
-    //Set left view for matchTime
-    CGRect matchTimeLeftViewFrame = matchTime.bounds;
-    UIImageView *matchTimeIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leftIcon_createMatch_time.png"]];
-    UILabel *matchTimeTitle = [[UILabel alloc] initWithFrame:CGRectMake(matchTimeIcon.frame.size.width, 0, 40, matchTimeLeftViewFrame.size.height)];
-    matchTimeLeftViewFrame.size.width = matchTimeIcon.frame.size.width + 40;
-    [matchTimeTitle setText:def_createMatch_time];
-    [matchTimeTitle setTextAlignment:NSTextAlignmentCenter];
-    UIView *matchTimeLeftView = [[UIView alloc] initWithFrame:matchTimeLeftViewFrame];
-    [matchTimeLeftView addSubview:matchTimeIcon];
-    [matchTimeLeftView addSubview:matchTimeTitle];
-    [matchTime setLeftView:matchTimeLeftView];
-    [matchTime setLeftViewMode:UITextFieldViewModeAlways];
+    [self initialLeftViewForTextField:matchTime labelName:def_createMatch_time iconImage:@"leftIcon_createMatch_time.png"];
     
     //Initial tint
-    tintView = [[TintTextView alloc] initWithTextKey:@"EnterTime" underView:matchTime];
+//    tintView = [[TintTextView alloc] initWithTextKey:@"EnterTime" underView:matchTime];
+}
+
+-(void)initialMatchOpponent
+{
+    [self initialLeftViewForTextField:matchOpponent labelName:def_createMatch_opponent iconImage:@"leftIcon_createMatch_opponent.png"];
+}
+
+-(void)initialMatchPlace
+{
+    [self initialLeftViewForTextField:matchPlace labelName:def_createMatch_place iconImage:@"leftIcon_createMatch_place.png"];
+}
+
+-(void)initialNumOfPlayers
+{
+    [self initialLeftViewForTextField:numOfPlayers labelName:def_createMatch_numOfPlayers iconImage:@"leftIcon_createMatch_numOfPlayers.png"];
+}
+
+-(void)initialCost
+{
+    [self initialLeftViewForTextField:cost labelName:def_createMatch_cost iconImage:@"leftIcon_createMatch_cost.png"];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -75,7 +105,7 @@
     if ([textField isEqual:matchTime]) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-        [matchTime setText:[dateFormatter stringFromDate:[NSDate date]]];
+        [textField setText:[dateFormatter stringFromDate:[NSDate date]]];
     }
 }
 

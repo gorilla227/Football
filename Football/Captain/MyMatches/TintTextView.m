@@ -52,7 +52,7 @@
         frame.origin.x += 5;
         frame.origin.y += frame.size.height + arrow.size.height;
         frame.size.width = 320 - frame.origin.x * 2;
-        frame.size.height = [self sizeThatFits:CGSizeMake(def_TintTextViewWidth, FLT_MAX)].height;
+        frame.size.height = [self sizeThatFits:CGSizeMake(frame.size.width, FLT_MAX)].height;
         [self setFrame:frame];
         [self addSubview:arrowView];
         
