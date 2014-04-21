@@ -140,6 +140,7 @@
             [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_SignUp];
             [cell setBackgroundColor:def_backgroundColor_BeforeMatch];
             [cell.matchResult setHidden:YES];
+            [cell.actionIcon setImage:[UIImage imageNamed:@"icon_noticePlayers.png"]];
             [cell.actionIcon setHidden:NO];
             [cell setAnnouncable:YES];
             [cell setRecordable:NO];
@@ -150,6 +151,7 @@
             [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_ShowUp];
             [cell setBackgroundColor:def_backgroundColor_AfterMatch];
             [cell.matchResult setHidden:YES];
+            [cell.actionIcon setImage:[UIImage imageNamed:@"icon_fillMatchData.png"]];
             [cell.actionIcon setHidden:NO];
             [cell setAnnouncable:NO];
             [cell setRecordable:YES];
