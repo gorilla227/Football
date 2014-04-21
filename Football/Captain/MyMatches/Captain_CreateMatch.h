@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Pre_Define.h"
+#import "TintTextView.h"
 
-@interface Captain_CreateMatch : UIViewController
-
+@interface Captain_CreateMatch : UIViewController<UITextFieldDelegate>
+@property IBOutlet UITextField *matchTime;
+-(void)matchTimeSelected;
+-(void)initialMatchTime;
 @end

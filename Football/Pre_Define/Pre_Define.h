@@ -9,6 +9,13 @@
 //UI Strings
 #define def_typeOfPlayerNumber_SignUp @"报名人数"
 #define def_typeOfPlayerNumber_ShowUp @"出场人数"
+#define def_createMatch_time @"时间"
+#define def_createMatch_opponent @"对手"
+#define def_createMatch_place @"场地"
+#define def_createMatch_numOfPlayers @"人数"
+#define def_createMatch_cost @"费用"
+#define def_createMatch_costOption1 @"裁判"
+#define def_createMatch_costOption2 @"水"
 
 //Color
 #define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]

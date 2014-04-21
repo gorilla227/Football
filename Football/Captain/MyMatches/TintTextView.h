@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TintTextView : UITextView
-
+- (id)initWithTextKey:(NSString *)keyOfTintText underView:(UIView *)dockView;
 @end

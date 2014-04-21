@@ -5,7 +5,6 @@
 //  Created by Andy on 14-4-18.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
-#define def_TintTextViewWidth 280
 #import "TintTextView.h"
 
 @implementation TintTextView
@@ -36,21 +35,23 @@
         NSDictionary *tintList = [[NSDictionary alloc] initWithContentsOfFile:tintListFile];
         NSString *textString = [tintList objectForKey:keyOfTintText];
         [self setText:textString];
+        [self setTextColor:[UIColor whiteColor]];
+        [self setFont:[UIFont fontWithName:self.font.fontName size:14]];
         
         //Get arrow
         UIImage *arrow = [UIImage imageNamed:@"tint_background_arrow.png"];
         UIImageView *arrowView = [[UIImageView alloc] initWithImage:arrow];
         [self.layer setMasksToBounds:NO];
         CGRect arrowFrame = arrowView.frame;
-        arrowFrame.origin.x = 10;
+        arrowFrame.origin.x = 20;
         arrowFrame.origin.y = -arrow.size.height;
         [arrowView setFrame:arrowFrame];
         
         //Get frame
         CGRect frame = dockView.frame;
-        frame.origin.x += 10;
+        frame.origin.x += 5;
         frame.origin.y += frame.size.height + arrow.size.height;
-        frame.size.width = def_TintTextViewWidth;
+        frame.size.width = 320 - frame.origin.x * 2;
         frame.size.height = [self sizeThatFits:CGSizeMake(def_TintTextViewWidth, FLT_MAX)].height;
         [self setFrame:frame];
         [self addSubview:arrowView];
@@ -59,6 +60,11 @@
         [self setBackgroundColor:[UIColor blackColor]];
         [self setAlpha:0.5f];
         [self.layer setCornerRadius:5.0f];
+        
+        //Set attributes
+        [self setSelectable:NO];
+        [self setEditable:NO];
+        [self setScrollEnabled:NO];
     }
     return self;
 }
