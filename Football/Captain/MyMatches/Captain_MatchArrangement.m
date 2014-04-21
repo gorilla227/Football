@@ -8,60 +8,6 @@
 
 #import "Captain_MatchArrangement.h"
 
-#pragma Captain_TeamInfo
-@interface Captain_TeamInfo ()
-
-@end
-
-@implementation Captain_TeamInfo
-@synthesize teamIcon;
-@synthesize teamName;
-@synthesize numberOfTeamMembers;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [teamName setText:[[myUserInfo objectForKey:@"team"] objectForKey:@"teamName"]];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //Set the default Team Icon
-    [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [teamIcon.layer setBorderWidth:2.0f];
-    [teamIcon.layer setCornerRadius:teamIcon.bounds.size.width/2];
-    [teamIcon.layer setMasksToBounds:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-@end
-
 #pragma Captain_MatchArrangementListCell
 @implementation Captain_MatchArrangementListCell
 @synthesize numberOfPlayers, typeOfPlayerNumber;
@@ -281,11 +227,8 @@
 
 @end
 
-@implementation Captain_MatchArrangement{
-    Captain_TeamInfo *teamInfo;
-}
-@synthesize teamInfoView;
-@synthesize matchesView;
+@implementation Captain_MatchArrangement
+@synthesize teamIcon, teamName, numberOfTeamMembers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -300,11 +243,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    for (UIViewController *viewController in self.childViewControllers) {
-        if ([viewController.restorationIdentifier isEqualToString: @"TeamInfo"]) {
-            teamInfo = (Captain_TeamInfo *)viewController;
-        }
-    }
+    
+    //Set TeamInfo
+    [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [teamIcon.layer setBorderWidth:2.0f];
+    [teamIcon.layer setCornerRadius:teamIcon.bounds.size.width/2];
+    [teamIcon.layer setMasksToBounds:YES];
+    [teamName setText:[[myUserInfo objectForKey:@"team"] objectForKey:@"teamName"]];
 }
 
 -(IBAction)menuButtonOnClicked:(id)sender

@@ -11,12 +11,6 @@
 #import "WebUtils.h"
 #import "Captain_MainMenu.h"
 
-@interface Captain_TeamInfo : UIViewController
-@property IBOutlet UIImageView *teamIcon;
-@property IBOutlet UILabel *teamName;
-@property IBOutlet UILabel *numberOfTeamMembers;
-@end
-
 @interface Captain_MatchArrangementListCell : UITableViewCell
 @property IBOutlet UILabel *numberOfPlayers;
 @property IBOutlet UILabel *typeOfPlayerNumber;
@@ -37,6 +31,7 @@
 @end
 
 @interface Captain_MatchArrangement : UIViewController
-@property IBOutlet UIView *teamInfoView;
-@property IBOutlet UIView *matchesView;
+@property IBOutlet UIImageView *teamIcon;
+@property IBOutlet UILabel *teamName;
+@property IBOutlet UILabel *numberOfTeamMembers;
 @end
