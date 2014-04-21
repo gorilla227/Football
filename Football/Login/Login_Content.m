@@ -103,7 +103,7 @@
     
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Captain" bundle:nil];
     UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
-    [mainController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+//    [mainController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:mainController animated:YES completion:nil];
 }
 
@@ -119,7 +119,7 @@
 {
     WebUtils *requestUserInfo = [[WebUtils alloc] initWithServerURL:def_serverURL andDelegate:self];
     [requestUserInfo requestData:[def_JSONSuffix_userInfo stringByAppendingString:@"1"] forSelector:@selector(loginWithUser:)];
-    [self.parentViewController.view setUserInteractionEnabled:NO];
+//    [self.parentViewController.view setUserInteractionEnabled:NO];
 }
 
 -(IBAction)registerButtonOnClicked:(id)sender

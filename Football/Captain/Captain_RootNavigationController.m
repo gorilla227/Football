@@ -39,6 +39,12 @@
     [mainMenu setDelegateOfMenuAppearance:self];
     [mainMenu setDelegateOfViewSwitch:self];
     [self.view addSubview:mainMenu.view];
+    [self.visibleViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)logout
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)menuSwitch

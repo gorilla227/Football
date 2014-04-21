@@ -51,22 +51,24 @@
     CGFloat fontSize = cell.detailTextLabel.font.pointSize + 3.0f;
     selectedFont = [UIFont boldSystemFontOfSize:fontSize];
 
-//    //Set the tableheaderview and tablefooterview
-//    CGRect headerFrame = self.tableView.tableHeaderView.frame;
+    //Set the tableheaderview and tablefooterview
+    CGRect headerFrame = self.tableView.tableHeaderView.frame;
 //    headerFrame.size.height = self.tableView.sectionFooterHeight;
-//    [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:headerFrame]];
+    headerFrame.size.height = 64;
+    [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:headerFrame]];
 
     //Generate the initial menulist
     [self menuListGeneration];
     lastRootMenuIndex = 0;
 }
 
-//-(void)viewWillAppear:(BOOL)animated
-//{
-//    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:lastRootMenuIndex + 1 inSection:0];
-//    [self.tableView selectRowAtIndexPath:firstIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-//    [self tableView:self.tableView didSelectRowAtIndexPath:firstIndexPath];
-//}
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:lastRootMenuIndex + 1 inSection:0];
+    [self.tableView selectRowAtIndexPath:firstIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:firstIndexPath];
+    [self formatCell:cell withFont:selectedFont];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -97,6 +99,7 @@
         [cell.textLabel setText:[[menuListDictionary objectForKey:@"RootMenu"] objectAtIndex:indexPath.section]];
         [cell.detailTextLabel setText:nil];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setBackgroundColor:[UIColor grayColor]];
     }
     else {
         NSDictionary *menuItem = [[menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", indexPath.section]] objectAtIndex:indexPath.row - 1];
@@ -114,7 +117,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    id<MainMenuAppearenceDelegate>delegateMenuAppearance = (id)self.parentViewController;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     if (indexPath.row == 0) {
@@ -156,7 +158,8 @@
 
 -(IBAction)logoutButtonOnClicked:(id)sender
 {
-    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+    [delegateOfViewSwitch logout];
+//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(IBAction)optionButtonOnClicked:(id)sender
