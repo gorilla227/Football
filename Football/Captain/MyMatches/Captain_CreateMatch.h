@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Pre_Define.h"
 #import "TintTextView.h"
+#import "Captain_CreateMatch_EnterOpponent.h"
 
-@interface Captain_CreateMatch : UIViewController<UITextFieldDelegate>
+@interface Captain_CreateMatch : UIViewController<UITextFieldDelegate, EnterOpponent>
 @property IBOutlet UITextField *matchTime, *matchOpponent, *matchPlace, *numOfPlayers, *cost;
 @property IBOutlet UIView *costOptions;
 @property IBOutlet UISwitch *costOption_Judge, *costOption_Water;

@@ -267,12 +267,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
--(IBAction)createMatchButtonOnClicked:(id)sender
-{
-    NSLog(@"建立比赛");
-}
-
 /*
 #pragma mark - Navigation
 

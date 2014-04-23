@@ -103,7 +103,6 @@
     
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Captain" bundle:nil];
     UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
-//    [mainController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:mainController animated:YES completion:nil];
 }
 

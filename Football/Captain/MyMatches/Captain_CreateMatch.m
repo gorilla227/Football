@@ -15,6 +15,8 @@
 @implementation Captain_CreateMatch{
     UIDatePicker *matchTimePicker;
     TintTextView *tintView;
+    NSMutableArray *enteringControllers;
+    BOOL matchStarted;
 }
 @synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water;
 
@@ -31,13 +33,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    enteringControllers = [[NSMutableArray alloc] init];
     [self.view setBackgroundColor:[UIColor clearColor]];
     [self initialMatchTime];
     [self initialMatchOpponent];
     [self initialMatchPlace];
     [self initialNumOfPlayers];
     [self initialCost];
-    [self.view addSubview:tintView];
 }
 
 -(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
@@ -54,6 +56,7 @@
     [textFieldNeedLeftView setLeftView:leftView];
     [textFieldNeedLeftView setLeftViewMode:UITextFieldViewModeAlways];
     [textFieldNeedLeftView setPlaceholder:nil];
+    [enteringControllers addObject:textFieldNeedLeftView];
 }
 
 -(void)initialMatchTime
@@ -77,7 +80,8 @@
     [self initialLeftViewForTextField:matchTime labelName:def_createMatch_time iconImage:@"leftIcon_createMatch_time.png"];
     
     //Initial tint
-//    tintView = [[TintTextView alloc] initWithTextKey:@"EnterTime" underView:matchTime];
+    tintView = [[TintTextView alloc] initWithTextKey:@"EnterTime" underView:matchTime];
+    [self.view addSubview:tintView];
 }
 
 -(void)initialMatchOpponent
@@ -103,18 +107,66 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if ([textField isEqual:matchTime]) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-        [textField setText:[dateFormatter stringFromDate:[NSDate date]]];
+        if (![textField hasText]) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+            [textField setText:[dateFormatter stringFromDate:[NSDate date]]];
+        }
+    }
+    if ([textField isEqual:matchOpponent]) {
+        [textField endEditing:YES];
     }
 }
 
 #pragma DatePicker
 -(void)matchTimeSelected
 {
+    //Fill the date to matchTime textfield
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
     [matchTime setText:[dateFormatter stringFromDate:matchTimePicker.date]];
+
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    //Remove the tint
+    if (tintView && [textField hasText] && [tintView.boundedView isEqual:textField]) {
+        [tintView removeFromSuperview];
+    }
+    
+    //Refresh controller status after matchTime entered
+    if ([textField isEqual:matchTime]) {
+        NSTimeInterval timeInterval = [matchTimePicker.date timeIntervalSinceNow];
+        matchStarted = timeInterval < 0;
+        if (matchStarted) {
+            //Match started
+            [matchOpponent setHidden:NO];
+        }
+        else {
+            //Match not start
+            [matchOpponent setHidden:NO];
+            
+            //Initial tint
+            if (![self.view.subviews containsObject:tintView]) {
+                tintView = [[TintTextView alloc] initWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent];
+                [self.view addSubview:tintView];
+            }
+        }
+    }
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    for (UIControl *controller in enteringControllers) {
+        [controller resignFirstResponder];
+    }
+}
+
+-(void)receiveOpponent:(NSString *)opponentName
+{
+    [matchOpponent setText:opponentName];
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,7 +175,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -131,7 +182,8 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    Captain_CreateMatch_EnterOpponent *enterOpponentController = segue.destinationViewController;
+    [enterOpponentController setMatchStarted:matchStarted];
+    [enterOpponentController setDelegate:self];
 }
-*/
-
 @end

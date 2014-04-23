@@ -8,6 +8,7 @@
 #import "TintTextView.h"
 
 @implementation TintTextView
+@synthesize boundedView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -65,6 +66,9 @@
         [self setSelectable:NO];
         [self setEditable:NO];
         [self setScrollEnabled:NO];
+        
+        //Set the boundedView
+        boundedView = dockView;
     }
     return self;
 }
