@@ -1,13 +1,13 @@
 //
-//  TintTextView.m
+//  HintTextView.m
 //  Football
 //
 //  Created by Andy on 14-4-18.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
-#import "TintTextView.h"
+#import "HintTextView.h"
 
-@implementation TintTextView
+@implementation HintTextView
 @synthesize boundedView;
 
 - (id)initWithFrame:(CGRect)frame
@@ -27,14 +27,14 @@
     // Drawing code
 }
 */
-- (id)initWithTextKey:(NSString *)keyOfTintText underView:(UIView *)dockView;
+- (id)initWithTextKey:(NSString *)keyOfHintText underView:(UIView *)dockView;
 {
     self = [super init];
     if(self) {
         //Get String
-        NSString *tintListFile = [[NSBundle mainBundle] pathForResource:@"Tint_List" ofType:@"plist"];
-        NSDictionary *tintList = [[NSDictionary alloc] initWithContentsOfFile:tintListFile];
-        NSString *textString = [tintList objectForKey:keyOfTintText];
+        NSString *hintListFile = [[NSBundle mainBundle] pathForResource:@"Hint_List" ofType:@"plist"];
+        NSDictionary *hintList = [[NSDictionary alloc] initWithContentsOfFile:hintListFile];
+        NSString *textString = [hintList objectForKey:keyOfHintText];
         [self setText:textString];
         [self setTextColor:[UIColor whiteColor]];
         [self setFont:[UIFont fontWithName:self.font.fontName size:14]];

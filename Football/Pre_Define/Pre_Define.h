@@ -16,6 +16,7 @@
 #define def_createMatch_cost @"费用"
 #define def_createMatch_costOption1 @"裁判"
 #define def_createMatch_costOption2 @"水"
+#define def_createMatch__notStarted_cost_ph @"输入该场比赛我队承担的费用"
 
 //Color
 #define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]

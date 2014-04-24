@@ -19,8 +19,8 @@
 		A1370A5D1904D7CC00E64949 /* leftIcon_createMatch_time.png in Resources */ = {isa = PBXBuildFile; fileRef = A1370A581904D7CC00E64949 /* leftIcon_createMatch_time.png */; };
 		A145670318F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */; };
 		A145670918F1064E006E158E /* Captain_NewPlayer_InviteeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */; };
-		A153ACBB19023ECF0062EB44 /* TintTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACBA19023ECF0062EB44 /* TintTextView.m */; };
-		A153ACBD19023F640062EB44 /* Tint_List.plist in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBC19023F640062EB44 /* Tint_List.plist */; };
+		A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACBA19023ECF0062EB44 /* HintTextView.m */; };
+		A153ACBD19023F640062EB44 /* Hint_List.plist in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBC19023F640062EB44 /* Hint_List.plist */; };
 		A153ACBF190244880062EB44 /* tint_background_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBE190244880062EB44 /* tint_background_arrow.png */; };
 		A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */; };
 		A173033C18FB5A0400702015 /* WebUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A173033B18FB5A0400702015 /* WebUtils.m */; };
@@ -95,9 +95,9 @@
 		A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer_ApplicantCell.m; path = Captain/MyTeam/Captain_NewPlayer_ApplicantCell.m; sourceTree = "<group>"; };
 		A145670718F1064E006E158E /* Captain_NewPlayer_InviteeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayer_InviteeCell.h; path = Captain/MyTeam/Captain_NewPlayer_InviteeCell.h; sourceTree = "<group>"; };
 		A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer_InviteeCell.m; path = Captain/MyTeam/Captain_NewPlayer_InviteeCell.m; sourceTree = "<group>"; };
-		A153ACB919023ECF0062EB44 /* TintTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TintTextView.h; path = Captain/MyMatches/TintTextView.h; sourceTree = "<group>"; };
-		A153ACBA19023ECF0062EB44 /* TintTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TintTextView.m; path = Captain/MyMatches/TintTextView.m; sourceTree = "<group>"; };
-		A153ACBC19023F640062EB44 /* Tint_List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Tint_List.plist; path = Captain/MyMatches/Tint_List.plist; sourceTree = "<group>"; };
+		A153ACB919023ECF0062EB44 /* HintTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HintTextView.h; path = Captain/MyMatches/HintTextView.h; sourceTree = "<group>"; };
+		A153ACBA19023ECF0062EB44 /* HintTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HintTextView.m; path = Captain/MyMatches/HintTextView.m; sourceTree = "<group>"; };
+		A153ACBC19023F640062EB44 /* Hint_List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Hint_List.plist; path = Captain/MyMatches/Hint_List.plist; sourceTree = "<group>"; };
 		A153ACBE190244880062EB44 /* tint_background_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tint_background_arrow.png; path = Resource/tint_background_arrow.png; sourceTree = "<group>"; };
 		A153ACC0190248F80062EB44 /* Captain_CreateMatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_CreateMatch.h; path = Captain/MyMatches/Captain_CreateMatch.h; sourceTree = "<group>"; };
 		A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_CreateMatch.m; path = Captain/MyMatches/Captain_CreateMatch.m; sourceTree = "<group>"; };
@@ -281,9 +281,9 @@
 				A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */,
 				A1C41F3119062943001A2EFD /* Captain_CreateMatch_EnterOpponent.h */,
 				A1C41F3219062943001A2EFD /* Captain_CreateMatch_EnterOpponent.m */,
-				A153ACBC19023F640062EB44 /* Tint_List.plist */,
-				A153ACB919023ECF0062EB44 /* TintTextView.h */,
-				A153ACBA19023ECF0062EB44 /* TintTextView.m */,
+				A153ACBC19023F640062EB44 /* Hint_List.plist */,
+				A153ACB919023ECF0062EB44 /* HintTextView.h */,
+				A153ACBA19023ECF0062EB44 /* HintTextView.m */,
 			);
 			name = MyMatches;
 			sourceTree = "<group>";
@@ -550,7 +550,7 @@
 				A1C2802D18F79CED004C644E /* login_logo.png in Resources */,
 				A1C2803118F79CED004C644E /* register_birthday.png in Resources */,
 				A103338A18D419A300050A61 /* Captain.storyboard in Resources */,
-				A153ACBD19023F640062EB44 /* Tint_List.plist in Resources */,
+				A153ACBD19023F640062EB44 /* Hint_List.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +578,7 @@
 				A1C8F9EC18DE90B400BE42D4 /* Login_Content.m in Sources */,
 				A18D7F7A1903912D003028FE /* Captain_RootNavigationController.m in Sources */,
 				A1C8F9E918DE895C00BE42D4 /* Register_Captain.m in Sources */,
-				A153ACBB19023ECF0062EB44 /* TintTextView.m in Sources */,
+				A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */,
 				A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */,
 				B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */,
 				A145670318F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m in Sources */,

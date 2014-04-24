@@ -1,5 +1,5 @@
 //
-//  TintTextView.h
+//  HintTextView.h
 //  Football
 //
 //  Created by Andy on 14-4-18.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TintTextView : UITextView
+@interface HintTextView : UITextView
 @property UIView *boundedView;
-- (id)initWithTextKey:(NSString *)keyOfTintText underView:(UIView *)dockView;
+- (id)initWithTextKey:(NSString *)keyOfHintText underView:(UIView *)dockView;
 @end

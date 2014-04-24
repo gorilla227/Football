@@ -14,7 +14,7 @@
 
 @implementation Captain_CreateMatch{
     UIDatePicker *matchTimePicker;
-    TintTextView *tintView;
+    HintTextView *hintView;
     NSMutableArray *enteringControllers;
     BOOL matchStarted;
 }
@@ -40,6 +40,13 @@
     [self initialMatchPlace];
     [self initialNumOfPlayers];
     [self initialCost];
+    
+    //Hide controllers except matchTime
+    [matchOpponent setHidden:YES];
+    [matchPlace setHidden:YES];
+    [numOfPlayers setHidden:YES];
+    [cost setHidden:YES];
+    [costOptions setHidden:YES];
 }
 
 -(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
@@ -79,9 +86,9 @@
     
     [self initialLeftViewForTextField:matchTime labelName:def_createMatch_time iconImage:@"leftIcon_createMatch_time.png"];
     
-    //Initial tint
-    tintView = [[TintTextView alloc] initWithTextKey:@"EnterTime" underView:matchTime];
-    [self.view addSubview:tintView];
+    //Initial hint
+    hintView = [[HintTextView alloc] initWithTextKey:@"EnterTime" underView:matchTime];
+    [self.view addSubview:hintView];
 }
 
 -(void)initialMatchOpponent
@@ -131,8 +138,8 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     //Remove the tint
-    if (tintView && [textField hasText] && [tintView.boundedView isEqual:textField]) {
-        [tintView removeFromSuperview];
+    if (hintView && [textField hasText] && [hintView.boundedView isEqual:textField]) {
+        [hintView removeFromSuperview];
     }
     
     //Refresh controller status after matchTime entered
@@ -148,9 +155,9 @@
             [matchOpponent setHidden:NO];
             
             //Initial tint
-            if (![self.view.subviews containsObject:tintView]) {
-                tintView = [[TintTextView alloc] initWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent];
-                [self.view addSubview:tintView];
+            if (![self.view.subviews containsObject:hintView]) {
+                hintView = [[HintTextView alloc] initWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent];
+                [self.view addSubview:hintView];
             }
         }
     }
@@ -166,7 +173,20 @@
 
 -(void)receiveOpponent:(NSString *)opponentName
 {
+    //Fill opponent
     [matchOpponent setText:opponentName];
+    
+    //Show other controllers
+    [matchPlace setHidden:NO];
+    [numOfPlayers setHidden:NO];
+    [cost setHidden:NO];
+    [costOptions setHidden:NO];
+    [cost setPlaceholder:def_createMatch__notStarted_cost_ph];
+    
+    //Remove hint
+    if ([self.view.subviews containsObject:hintView]) {
+        [hintView removeFromSuperview];
+    }
 }
 
 - (void)didReceiveMemoryWarning

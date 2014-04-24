@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Pre_Define.h"
-#import "TintTextView.h"
+#import "HintTextView.h"
 #import "Captain_CreateMatch_EnterOpponent.h"
 
 @interface Captain_CreateMatch : UIViewController<UITextFieldDelegate, EnterOpponent>
