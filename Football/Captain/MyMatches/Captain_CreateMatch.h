@@ -15,7 +15,8 @@
 @property IBOutlet UITextField *matchTime, *matchOpponent, *matchPlace, *numOfPlayers, *cost;
 @property IBOutlet UIView *costOptions;
 @property IBOutlet UISwitch *costOption_Judge, *costOption_Water;
-@property IBOutlet UIBarButtonItem *confirmCreateMatchButton;
+@property IBOutlet UIBarButtonItem *actionButton;
+@property IBOutlet UIToolbar *toolBar;
 -(void)matchTimeSelected;
 -(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName;
 -(void)initialMatchTime;

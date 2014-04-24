@@ -18,9 +18,9 @@
     HintTextView *hintView;
     NSMutableArray *enteringControllers;
     BOOL matchStarted;
-    BOOL opponentExisted;
+    enum SelectedOpponentType selectedOpponentType;
 }
-@synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water, confirmCreateMatchButton;
+@synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water, actionButton, toolBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +37,7 @@
     // Do any additional setup after loading the view.
     enteringControllers = [[NSMutableArray alloc] init];
     hintView = [[HintTextView alloc] init];
+    selectedOpponentType = None;
     [self.view addSubview:hintView];
     [self.view setBackgroundColor:[UIColor clearColor]];
     [self initialMatchTime];
@@ -51,6 +52,7 @@
     [numOfPlayers setHidden:YES];
     [cost setHidden:YES];
     [costOptions setHidden:YES];
+    [toolBar setHidden:YES];
 }
 
 -(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
@@ -58,7 +60,7 @@
     CGRect leftViewFrame = textFieldNeedLeftView.bounds;
     UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
     UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftIcon.frame.size.width, 0, 45, leftViewFrame.size.height)];
-    leftViewFrame.size.width = leftIcon.frame.size.width + leftLabel.frame.size.width;
+    leftViewFrame.size.width = leftIcon.frame.size.width + leftLabel.frame.size.width + 40;
     [leftLabel setText:labelName];
     [leftLabel setTextAlignment:NSTextAlignmentCenter];
     UIView *leftView = [[UIView alloc] initWithFrame:leftViewFrame];
@@ -190,25 +192,44 @@
     }
 }
 
--(void)receiveOpponent:(NSString *)opponentName opponentExisted:(BOOL)existed
+-(void)receiveOpponent:(NSString *)opponentName opponentType:(enum SelectedOpponentType)type
 {
     //Fill opponent
     [matchOpponent setText:opponentName];
+    
+    //Save the selected opponent type
+    selectedOpponentType = type;
     
     //Show other controllers
     [matchPlace setHidden:NO];
     [numOfPlayers setHidden:NO];
     [cost setHidden:NO];
     [costOptions setHidden:NO];
-    [cost setPlaceholder:def_createMatch__notStarted_cost_ph];
     
     //Hide hint
     [hintView showOrHideHint:NO];
+    
+    //Update controllers' status and action button name
+    [toolBar setHidden:NO];
+    if (matchStarted) {
+        [actionButton setTitle:def_createMatch_actionButton_started];
+        [cost setPlaceholder:def_createMatch_cost_ph_self];
+    }
+    else {
+        if (type == New) {
+            [actionButton setTitle:def_createMatch_actionButton_new];
+            [cost setPlaceholder:def_createMatch_cost_ph_self];
+        }
+        else if (type == Existed){
+            [actionButton setTitle:def_createMatch_actionButton_existed];
+            [cost setPlaceholder:def_createMatch_cost_ph_opponent];
+        }
+    }
 }
 
 -(IBAction)confirmCreateMatchButtonSetEnabled:(id)sender
 {
-    [confirmCreateMatchButton setEnabled:[matchTime hasText] && [matchOpponent hasText] && [matchPlace hasText] && [numOfPlayers hasText] && [cost hasText]];
+    [actionButton setEnabled:[matchTime hasText] && [matchOpponent hasText] && [matchPlace hasText] && [numOfPlayers hasText] && [cost hasText]];
 }
 
 -(void)numberOfPlayersStepperChanged
@@ -232,6 +253,7 @@
     if ([segue.identifier isEqualToString:@"EnterOpponent"]) {
         Captain_CreateMatch_EnterOpponent *enterOpponentController = segue.destinationViewController;
         [enterOpponentController setMatchStarted:matchStarted];
+        [enterOpponentController setType:selectedOpponentType];
         [enterOpponentController setDelegate:self];
     }
     

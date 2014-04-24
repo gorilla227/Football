@@ -433,7 +433,7 @@
                     <navigationItem key="navigationItem" id="7DI-on-Rae"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="confirmCreateMatchButton" destination="Lps-HG-YoU" id="6do-yf-MAO"/>
+                        <outlet property="actionButton" destination="Lps-HG-YoU" id="cve-W7-G48"/>
                         <outlet property="cost" destination="qbP-tt-1kj" id="Yq8-9t-jYO"/>
                         <outlet property="costOption_Judge" destination="sR2-ha-5nT" id="5dP-Eg-Ynq"/>
                         <outlet property="costOption_Water" destination="YBs-lD-QGd" id="zbJ-W2-4cF"/>
@@ -442,6 +442,7 @@
                         <outlet property="matchPlace" destination="Hwb-56-4Tz" id="lTS-2m-ZY1"/>
                         <outlet property="matchTime" destination="gHj-aE-BkZ" id="nOb-mn-XIO"/>
                         <outlet property="numOfPlayers" destination="jSA-jH-6tk" id="Cb2-gP-Lrr"/>
+                        <outlet property="toolBar" destination="kNK-M7-pjf" id="Jub-8x-C07"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CLb-Oe-g3R" userLabel="First Responder" sceneMemberID="firstResponder"/>

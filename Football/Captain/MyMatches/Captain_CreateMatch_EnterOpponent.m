@@ -15,7 +15,7 @@
 @implementation Captain_CreateMatch_EnterOpponent{
     HintTextView *hintView;
 }
-@synthesize matchStarted, delegate;
+@synthesize matchStarted, delegate, type;
 @synthesize inviteOpponentButton, teamMarketButton, toolBar, matchOpponent, saveButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,20 +32,34 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor clearColor]];
+    hintView = [[HintTextView alloc] init];
+    [self.view addSubview:hintView];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     if (matchStarted) {
         //Match started
         [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace]];
+        
+        //Show hint
+        [hintView settingHintWithTextKey:@"EnterOpponent_MatchStarted" underView:matchOpponent wantShow:YES];
     }
     else {
         //Match not started
-        [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace, flexibleSpace, teamMarketButton, flexibleSpace]];
-        
-        //Show hint
-        hintView = [[HintTextView alloc] init];
-        [self.view addSubview:hintView];
-        [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted_Subpage" underView:matchOpponent wantShow:YES];
-        
+        switch (type) {
+            case None:
+                [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace, flexibleSpace, teamMarketButton, flexibleSpace]];
+                
+                //Show hint
+                [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted_Subpage" underView:matchOpponent wantShow:YES];
+                break;
+            case New:
+                [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace]];
+                
+                //Show hint
+                [hintView settingHintWithTextKey:@"EnterOpponent_MatchStarted" underView:matchOpponent wantShow:YES];
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -61,7 +75,7 @@
 }
 -(IBAction)saveOpponent:(id)sender
 {
-    [delegate receiveOpponent:matchOpponent.text opponentExisted:NO];
+    [delegate receiveOpponent:matchOpponent.text opponentType:New];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

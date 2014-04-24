@@ -7,16 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Pre_Define.h"
 #import "HintTextView.h"
 #import "Captain_CreateMatch_TeamMarket.h"
 
 @protocol EnterOpponent <NSObject>
--(void)receiveOpponent:(NSString *)opponentName opponentExisted:(BOOL)existed;
+-(void)receiveOpponent:(NSString *)opponentName opponentType:(enum SelectedOpponentType)type;
 @end
 
 @interface Captain_CreateMatch_EnterOpponent : UIViewController
 @property id<EnterOpponent>delegate;
 @property BOOL matchStarted;
+@property enum SelectedOpponentType type;
 @property IBOutlet UIToolbar *toolBar;
 @property IBOutlet UIBarButtonItem *inviteOpponentButton;
 @property IBOutlet UIBarButtonItem *teamMarketButton;
