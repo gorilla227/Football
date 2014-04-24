@@ -339,6 +339,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="confirmCreateMatchButtonSetEnabled:" destination="R6J-gK-DLQ" eventType="editingChanged" id="qBn-wm-zkw"/>
                                     <outlet property="delegate" destination="R6J-gK-DLQ" id="X6p-mF-9pb"/>
                                 </connections>
                             </textField>
@@ -349,6 +350,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="confirmCreateMatchButtonSetEnabled:" destination="R6J-gK-DLQ" eventType="editingChanged" id="zV3-Z6-xhb"/>
                                     <outlet property="delegate" destination="R6J-gK-DLQ" id="CbV-8H-QrQ"/>
                                     <segue destination="D47-h1-sYj" kind="push" identifier="EnterOpponent" id="cWd-aQ-Q7N"/>
                                 </connections>
@@ -360,6 +362,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="confirmCreateMatchButtonSetEnabled:" destination="R6J-gK-DLQ" eventType="editingChanged" id="yA3-YN-g5J"/>
                                     <outlet property="delegate" destination="R6J-gK-DLQ" id="Xcw-eE-94j"/>
                                 </connections>
                             </textField>
@@ -370,6 +373,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="confirmCreateMatchButtonSetEnabled:" destination="R6J-gK-DLQ" eventType="editingChanged" id="hpQ-Pm-pHr"/>
                                     <outlet property="delegate" destination="R6J-gK-DLQ" id="qOT-2I-9mA"/>
                                 </connections>
                             </textField>
@@ -380,6 +384,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="confirmCreateMatchButtonSetEnabled:" destination="R6J-gK-DLQ" eventType="editingChanged" id="nfh-fL-xgN"/>
                                     <outlet property="delegate" destination="R6J-gK-DLQ" id="Rke-cx-TQl"/>
                                 </connections>
                             </textField>
@@ -427,6 +432,7 @@
                     <navigationItem key="navigationItem" id="7DI-on-Rae"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="confirmCreateMatchButton" destination="Lps-HG-YoU" id="6do-yf-MAO"/>
                         <outlet property="cost" destination="qbP-tt-1kj" id="Yq8-9t-jYO"/>
                         <outlet property="costOption_Judge" destination="sR2-ha-5nT" id="5dP-Eg-Ynq"/>
                         <outlet property="costOption_Water" destination="YBs-lD-QGd" id="zbJ-W2-4cF"/>

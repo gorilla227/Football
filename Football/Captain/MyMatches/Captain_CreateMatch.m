@@ -14,11 +14,12 @@
 
 @implementation Captain_CreateMatch{
     UIDatePicker *matchTimePicker;
+    UIStepper *numOfPlayersStepper;
     HintTextView *hintView;
     NSMutableArray *enteringControllers;
     BOOL matchStarted;
 }
-@synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water;
+@synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water, confirmCreateMatchButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -104,6 +105,19 @@
 -(void)initialNumOfPlayers
 {
     [self initialLeftViewForTextField:numOfPlayers labelName:def_createMatch_numOfPlayers iconImage:@"leftIcon_createMatch_numOfPlayers.png"];
+    
+    //Set UIStepper as rightView
+    numOfPlayersStepper = [[UIStepper alloc] init];
+    CGRect frame = numOfPlayersStepper.frame;
+    [numOfPlayersStepper setTintColor:[UIColor blackColor]];
+    [numOfPlayersStepper setMinimumValue:1];
+    [numOfPlayersStepper setMaximumValue:30];
+    [numOfPlayersStepper setStepValue:1];
+    [numOfPlayersStepper setValue:11];
+    [numOfPlayersStepper addTarget:self action:@selector(numberOfPlayersStepperChanged) forControlEvents:UIControlEventValueChanged];
+    [self numberOfPlayersStepperChanged];
+    [numOfPlayers setRightView:numOfPlayersStepper];
+    [numOfPlayers setRightViewMode:UITextFieldViewModeAlways];
 }
 
 -(void)initialCost
@@ -120,7 +134,10 @@
             [textField setText:[dateFormatter stringFromDate:[NSDate date]]];
         }
     }
-    if ([textField isEqual:matchOpponent]) {
+    else if ([textField isEqual:matchOpponent]) {
+        [textField endEditing:YES];
+    }
+    else if ([textField isEqual:numOfPlayers]) {
         [textField endEditing:YES];
     }
 }
@@ -189,6 +206,16 @@
     }
 }
 
+-(IBAction)confirmCreateMatchButtonSetEnabled:(id)sender
+{
+    [confirmCreateMatchButton setEnabled:[matchTime hasText] && [matchOpponent hasText] && [matchPlace hasText] && [numOfPlayers hasText] && [cost hasText]];
+}
+
+-(void)numberOfPlayersStepperChanged
+{
+    [numOfPlayers setText:[NSNumber numberWithDouble:numOfPlayersStepper.value].stringValue];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -202,8 +229,11 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    Captain_CreateMatch_EnterOpponent *enterOpponentController = segue.destinationViewController;
-    [enterOpponentController setMatchStarted:matchStarted];
-    [enterOpponentController setDelegate:self];
+    if ([segue.identifier isEqualToString:@"EnterOpponent"]) {
+        Captain_CreateMatch_EnterOpponent *enterOpponentController = segue.destinationViewController;
+        [enterOpponentController setMatchStarted:matchStarted];
+        [enterOpponentController setDelegate:self];
+    }
+    
 }
 @end
