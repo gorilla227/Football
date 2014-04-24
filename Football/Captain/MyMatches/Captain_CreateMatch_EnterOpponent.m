@@ -12,7 +12,9 @@
 
 @end
 
-@implementation Captain_CreateMatch_EnterOpponent
+@implementation Captain_CreateMatch_EnterOpponent{
+    HintTextView *hintView;
+}
 @synthesize matchStarted, delegate;
 @synthesize inviteOpponentButton, teamMarketButton, toolBar, matchOpponent, saveButton;
 
@@ -37,8 +39,13 @@
     else {
         //Match not started
         [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace, flexibleSpace, teamMarketButton, flexibleSpace]];
+        
+        //Show hint
+        hintView = [[HintTextView alloc] init];
+        [self.view addSubview:hintView];
+        [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted_Subpage" underView:matchOpponent wantShow:YES];
+        
     }
-//    [matchOpponent addTarget:self action:@selector(test) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,7 +69,7 @@
     [super touchesBegan:touches withEvent:event];
     [matchOpponent resignFirstResponder];
 }
-/*
+
 #pragma mark - Navigation
  
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -70,7 +77,10 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"TeamMarket"]) {
+        Captain_CreateMatch_TeamMarket *teamMarket = segue.destinationViewController;
+    }
 }
-*/
+
 
 @end

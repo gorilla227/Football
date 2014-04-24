@@ -10,5 +10,7 @@
 
 @interface HintTextView : UITextView
 @property UIView *boundedView;
-- (id)initWithTextKey:(NSString *)keyOfHintText underView:(UIView *)dockView;
+//- (id)initWithTextKey:(NSString *)keyOfHintText underView:(UIView *)dockView;
+- (void)settingHintWithTextKey:(NSString *)keyOfHintText underView:(UIView *)dockView wantShow:(BOOL)showNow;
+- (void)showOrHideHint:(BOOL)flag;
 @end

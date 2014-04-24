@@ -5,12 +5,14 @@
 //  Created by Andy on 14-4-21.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
-@protocol EnterOpponent <NSObject>
 
--(void)receiveOpponent:(NSString *)opponentName;
-
-@end
 #import <UIKit/UIKit.h>
+#import "HintTextView.h"
+#import "Captain_CreateMatch_TeamMarket.h"
+
+@protocol EnterOpponent <NSObject>
+-(void)receiveOpponent:(NSString *)opponentName;
+@end
 
 @interface Captain_CreateMatch_EnterOpponent : UIViewController
 @property id<EnterOpponent>delegate;

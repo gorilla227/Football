@@ -23,6 +23,7 @@
 		A153ACBD19023F640062EB44 /* Hint_List.plist in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBC19023F640062EB44 /* Hint_List.plist */; };
 		A153ACBF190244880062EB44 /* tint_background_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBE190244880062EB44 /* tint_background_arrow.png */; };
 		A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */; };
+		A172432B1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */; };
 		A173033C18FB5A0400702015 /* WebUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A173033B18FB5A0400702015 /* WebUtils.m */; };
 		A18D7F7A1903912D003028FE /* Captain_RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D7F791903912D003028FE /* Captain_RootNavigationController.m */; };
 		A18D7F831904A0F6003028FE /* icon_fillMatchData.png in Resources */ = {isa = PBXBuildFile; fileRef = A18D7F811904A0F6003028FE /* icon_fillMatchData.png */; };
@@ -101,6 +102,8 @@
 		A153ACBE190244880062EB44 /* tint_background_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tint_background_arrow.png; path = Resource/tint_background_arrow.png; sourceTree = "<group>"; };
 		A153ACC0190248F80062EB44 /* Captain_CreateMatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_CreateMatch.h; path = Captain/MyMatches/Captain_CreateMatch.h; sourceTree = "<group>"; };
 		A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_CreateMatch.m; path = Captain/MyMatches/Captain_CreateMatch.m; sourceTree = "<group>"; };
+		A17243291908CF04008F4948 /* Captain_CreateMatch_TeamMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_CreateMatch_TeamMarket.h; path = Captain/MyMatches/Captain_CreateMatch_TeamMarket.h; sourceTree = "<group>"; };
+		A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_CreateMatch_TeamMarket.m; path = Captain/MyMatches/Captain_CreateMatch_TeamMarket.m; sourceTree = "<group>"; };
 		A173033A18FB5A0400702015 /* WebUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebUtils.h; path = Football/Utils/WebUtils.h; sourceTree = "<group>"; };
 		A173033B18FB5A0400702015 /* WebUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebUtils.m; path = Football/Utils/WebUtils.m; sourceTree = "<group>"; };
 		A178CED718FE343A007A3CA6 /* Pre_Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Pre_Define.h; path = Pre_Define/Pre_Define.h; sourceTree = "<group>"; };
@@ -281,6 +284,8 @@
 				A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */,
 				A1C41F3119062943001A2EFD /* Captain_CreateMatch_EnterOpponent.h */,
 				A1C41F3219062943001A2EFD /* Captain_CreateMatch_EnterOpponent.m */,
+				A17243291908CF04008F4948 /* Captain_CreateMatch_TeamMarket.h */,
+				A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */,
 				A153ACBC19023F640062EB44 /* Hint_List.plist */,
 				A153ACB919023ECF0062EB44 /* HintTextView.h */,
 				A153ACBA19023ECF0062EB44 /* HintTextView.m */,
@@ -582,6 +587,7 @@
 				A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */,
 				B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */,
 				A145670318F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m in Sources */,
+				A172432B1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m in Sources */,
 				A145670918F1064E006E158E /* Captain_NewPlayer_InviteeCell.m in Sources */,
 				A1C8FA4918DFEADD00BE42D4 /* Register_Player.m in Sources */,
 				A1C8FA4C18DFEAFE00BE42D4 /* Register_Player_Advance.m in Sources */,

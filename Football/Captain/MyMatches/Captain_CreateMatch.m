@@ -35,6 +35,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     enteringControllers = [[NSMutableArray alloc] init];
+    hintView = [[HintTextView alloc] init];
+    [self.view addSubview:hintView];
     [self.view setBackgroundColor:[UIColor clearColor]];
     [self initialMatchTime];
     [self initialMatchOpponent];
@@ -88,8 +90,7 @@
     [self initialLeftViewForTextField:matchTime labelName:def_createMatch_time iconImage:@"leftIcon_createMatch_time.png"];
     
     //Initial hint
-    hintView = [[HintTextView alloc] initWithTextKey:@"EnterTime" underView:matchTime];
-    [self.view addSubview:hintView];
+    [hintView settingHintWithTextKey:@"EnterTime" underView:matchTime wantShow:YES];
 }
 
 -(void)initialMatchOpponent
@@ -137,6 +138,9 @@
     else if ([textField isEqual:matchOpponent]) {
         [textField endEditing:YES];
     }
+    else if ([textField isEqual:matchPlace]) {
+        [textField endEditing:YES];
+    }
     else if ([textField isEqual:numOfPlayers]) {
         [textField endEditing:YES];
     }
@@ -156,7 +160,7 @@
 {
     //Remove the tint
     if (hintView && [textField hasText] && [hintView.boundedView isEqual:textField]) {
-        [hintView removeFromSuperview];
+        [hintView showOrHideHint:NO];
     }
     
     //Refresh controller status after matchTime entered
@@ -172,10 +176,7 @@
             [matchOpponent setHidden:NO];
             
             //Initial tint
-            if (![self.view.subviews containsObject:hintView]) {
-                hintView = [[HintTextView alloc] initWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent];
-                [self.view addSubview:hintView];
-            }
+            [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent wantShow:YES];
         }
     }
 }
@@ -200,10 +201,8 @@
     [costOptions setHidden:NO];
     [cost setPlaceholder:def_createMatch__notStarted_cost_ph];
     
-    //Remove hint
-    if ([self.view.subviews containsObject:hintView]) {
-        [hintView removeFromSuperview];
-    }
+    //Hide hint
+    [hintView showOrHideHint:NO];
 }
 
 -(IBAction)confirmCreateMatchButtonSetEnabled:(id)sender
