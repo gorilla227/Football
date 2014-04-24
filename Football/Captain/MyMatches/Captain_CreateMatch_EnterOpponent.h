@@ -11,7 +11,7 @@
 #import "Captain_CreateMatch_TeamMarket.h"
 
 @protocol EnterOpponent <NSObject>
--(void)receiveOpponent:(NSString *)opponentName;
+-(void)receiveOpponent:(NSString *)opponentName opponentExisted:(BOOL)existed;
 @end
 
 @interface Captain_CreateMatch_EnterOpponent : UIViewController

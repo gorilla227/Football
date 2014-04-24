@@ -31,6 +31,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:[UIColor clearColor]];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     if (matchStarted) {
         //Match started
@@ -60,7 +61,7 @@
 }
 -(IBAction)saveOpponent:(id)sender
 {
-    [delegate receiveOpponent:matchOpponent.text];
+    [delegate receiveOpponent:matchOpponent.text opponentExisted:NO];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -38,8 +38,9 @@
     [self setFont:[UIFont fontWithName:self.font.fontName size:14]];
     
     //Get arrow
-    UIImage *arrow = [UIImage imageNamed:@"tint_background_arrow.png"];
+    UIImage *arrow = [UIImage imageNamed:@"hint_background_arrow.png"];
     UIImageView *arrowView = [[UIImageView alloc] initWithImage:arrow];
+    [arrowView setAlpha:0.5f];
     [self.layer setMasksToBounds:NO];
     CGRect arrowFrame = arrowView.frame;
     arrowFrame.origin.x = 20;
@@ -56,8 +57,7 @@
     [self addSubview:arrowView];
     
     //Set backgroundcolor and cornerRadius
-    [self setBackgroundColor:[UIColor blackColor]];
-    [self setAlpha:0.5f];
+    [self setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5f]];
     [self.layer setCornerRadius:5.0f];
     
     //Set attributes

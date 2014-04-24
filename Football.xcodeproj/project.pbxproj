@@ -21,7 +21,7 @@
 		A145670918F1064E006E158E /* Captain_NewPlayer_InviteeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */; };
 		A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACBA19023ECF0062EB44 /* HintTextView.m */; };
 		A153ACBD19023F640062EB44 /* Hint_List.plist in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBC19023F640062EB44 /* Hint_List.plist */; };
-		A153ACBF190244880062EB44 /* tint_background_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBE190244880062EB44 /* tint_background_arrow.png */; };
+		A153ACBF190244880062EB44 /* hint_background_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBE190244880062EB44 /* hint_background_arrow.png */; };
 		A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */; };
 		A172432B1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */; };
 		A173033C18FB5A0400702015 /* WebUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A173033B18FB5A0400702015 /* WebUtils.m */; };
@@ -99,7 +99,7 @@
 		A153ACB919023ECF0062EB44 /* HintTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HintTextView.h; path = Captain/MyMatches/HintTextView.h; sourceTree = "<group>"; };
 		A153ACBA19023ECF0062EB44 /* HintTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HintTextView.m; path = Captain/MyMatches/HintTextView.m; sourceTree = "<group>"; };
 		A153ACBC19023F640062EB44 /* Hint_List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Hint_List.plist; path = Captain/MyMatches/Hint_List.plist; sourceTree = "<group>"; };
-		A153ACBE190244880062EB44 /* tint_background_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tint_background_arrow.png; path = Resource/tint_background_arrow.png; sourceTree = "<group>"; };
+		A153ACBE190244880062EB44 /* hint_background_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hint_background_arrow.png; path = Resource/hint_background_arrow.png; sourceTree = "<group>"; };
 		A153ACC0190248F80062EB44 /* Captain_CreateMatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_CreateMatch.h; path = Captain/MyMatches/Captain_CreateMatch.h; sourceTree = "<group>"; };
 		A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_CreateMatch.m; path = Captain/MyMatches/Captain_CreateMatch.m; sourceTree = "<group>"; };
 		A17243291908CF04008F4948 /* Captain_CreateMatch_TeamMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_CreateMatch_TeamMarket.h; path = Captain/MyMatches/Captain_CreateMatch_TeamMarket.h; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 		A1370A481904D52000E64949 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A153ACBE190244880062EB44 /* tint_background_arrow.png */,
+				A153ACBE190244880062EB44 /* hint_background_arrow.png */,
 				A1C2802B18F79CED004C644E /* soccer_grass_bg.png */,
 				A1C2802C18F79CED004C644E /* soccer_grass_bg@2x.png */,
 			);
@@ -549,7 +549,7 @@
 				A1D07BDC18CC1E4800FA3A8D /* InfoPlist.strings in Resources */,
 				A1C2802F18F79CED004C644E /* login_textfield_title_user.png in Resources */,
 				A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */,
-				A153ACBF190244880062EB44 /* tint_background_arrow.png in Resources */,
+				A153ACBF190244880062EB44 /* hint_background_arrow.png in Resources */,
 				A19F8D151900E61E00AC8459 /* soccer_title_bar_bg@2x.png in Resources */,
 				A1C2803418F79CED004C644E /* soccer_grass_bg.png in Resources */,
 				A1C2802D18F79CED004C644E /* login_logo.png in Resources */,

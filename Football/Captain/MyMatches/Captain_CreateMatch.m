@@ -18,6 +18,7 @@
     HintTextView *hintView;
     NSMutableArray *enteringControllers;
     BOOL matchStarted;
+    BOOL opponentExisted;
 }
 @synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water, confirmCreateMatchButton;
 
@@ -189,7 +190,7 @@
     }
 }
 
--(void)receiveOpponent:(NSString *)opponentName
+-(void)receiveOpponent:(NSString *)opponentName opponentExisted:(BOOL)existed
 {
     //Fill opponent
     [matchOpponent setText:opponentName];
