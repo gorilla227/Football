@@ -138,14 +138,16 @@
             [textField setText:[dateFormatter stringFromDate:[NSDate date]]];
         }
     }
-    else if ([textField isEqual:matchOpponent]) {
-        [textField endEditing:YES];
-    }
-    else if ([textField isEqual:matchPlace]) {
-        [textField endEditing:YES];
-    }
-    else if ([textField isEqual:numOfPlayers]) {
-        [textField endEditing:YES];
+    else{
+        if ([textField isEqual:matchOpponent]) {
+            [textField endEditing:YES];
+        }
+        else if ([textField isEqual:matchPlace]) {
+            [textField endEditing:YES];
+        }
+        else if ([textField isEqual:numOfPlayers]) {
+            [textField endEditing:YES];
+        }
     }
 }
 
@@ -170,6 +172,15 @@
     if ([textField isEqual:matchTime]) {
         NSTimeInterval timeInterval = [matchTimePicker.date timeIntervalSinceNow];
         matchStarted = timeInterval < 0;
+        selectedOpponentType = None;
+        [matchPlace setHidden:YES];
+        [numOfPlayers setHidden:YES];
+        [cost setHidden:YES];
+        [costOptions setHidden:YES];
+        [toolBar setHidden:YES];
+        [matchOpponent setText:nil];
+        [matchPlace setText:nil];
+
         if (matchStarted) {
             //Match started
             [matchOpponent setHidden:NO];
@@ -192,13 +203,13 @@
     }
 }
 
--(void)receiveOpponent:(NSString *)opponentName opponentType:(enum SelectedOpponentType)type
+-(void)receiveNewOpponent:(NSString *)opponentName
 {
     //Fill opponent
     [matchOpponent setText:opponentName];
     
     //Save the selected opponent type
-    selectedOpponentType = type;
+    selectedOpponentType = New;
     
     //Show other controllers
     [matchPlace setHidden:NO];
@@ -213,18 +224,34 @@
     [toolBar setHidden:NO];
     if (matchStarted) {
         [actionButton setTitle:def_createMatch_actionButton_started];
-        [cost setPlaceholder:def_createMatch_cost_ph_self];
     }
     else {
-        if (type == New) {
-            [actionButton setTitle:def_createMatch_actionButton_new];
-            [cost setPlaceholder:def_createMatch_cost_ph_self];
-        }
-        else if (type == Existed){
-            [actionButton setTitle:def_createMatch_actionButton_existed];
-            [cost setPlaceholder:def_createMatch_cost_ph_opponent];
-        }
+        [actionButton setTitle:def_createMatch_actionButton_new];
     }
+    [cost setPlaceholder:def_createMatch_cost_ph_self];
+}
+
+-(void)receiveSelectedOpponent:(NSDictionary *)opponentTeam
+{
+    //Fill opponent
+    [matchOpponent setText:[opponentTeam objectForKey:@"teamName"]];
+    
+    //Save the selected opponent type
+    selectedOpponentType = Existed;
+    
+    //Show other controllers
+    [matchPlace setHidden:NO];
+    [numOfPlayers setHidden:NO];
+    [cost setHidden:NO];
+    [costOptions setHidden:NO];
+    
+    //Hide hint
+    [hintView showOrHideHint:NO];
+    
+    //Update controllers' status and action button name
+    [toolBar setHidden:NO];
+    [actionButton setTitle:def_createMatch_actionButton_existed];
+    [cost setPlaceholder:def_createMatch_cost_ph_opponent];
 }
 
 -(IBAction)confirmCreateMatchButtonSetEnabled:(id)sender
@@ -250,12 +277,44 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+//    if (matchStarted) {
+//        //Match started
+//    }
+//    else {
+//        //Match not started
+//        switch (selectedOpponentType) {
+//            case None:
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//    }
     if ([segue.identifier isEqualToString:@"EnterOpponent"]) {
         Captain_CreateMatch_EnterOpponent *enterOpponentController = segue.destinationViewController;
         [enterOpponentController setMatchStarted:matchStarted];
         [enterOpponentController setType:selectedOpponentType];
+        [enterOpponentController setSelectedTeamName:matchOpponent.text];
         [enterOpponentController setDelegate:self];
     }
-    
+    if ([segue.identifier isEqualToString:@"SelectOpponent"]) {
+        Captain_CreateMatch_TeamMarket *selectOpponentController = segue.destinationViewController;
+        [selectOpponentController setDelegate:self];
+    }
+}
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if (selectedOpponentType == Existed && [identifier isEqualToString:@"EnterOpponent"]) {
+        return NO;
+    }
+    return YES;
+}
+
+-(IBAction)matchOpponentOnClick:(id)sender
+{
+    if (selectedOpponentType == Existed) {
+        [self performSegueWithIdentifier:@"SelectOpponent" sender:self];
+    }
 }
 @end

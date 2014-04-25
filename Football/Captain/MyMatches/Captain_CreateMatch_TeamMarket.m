@@ -8,11 +8,26 @@
 
 #import "Captain_CreateMatch_TeamMarket.h"
 
-@interface Captain_CreateMatch_TeamMarket ()
+#pragma Captain_CreateMatch_TeamMarket_Cell
+@implementation Captain_CreateMatch_TeamMarket_Cell
+@synthesize teamName, averAge, slogan, teamLogo, inviteButton;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 @end
 
-@implementation Captain_CreateMatch_TeamMarket
+#pragma Captain_CreateMatch_TeamMarket
+@implementation Captain_CreateMatch_TeamMarket{
+    NSMutableArray *teamList;
+}
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,6 +47,40 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    WebUtils *getDataConnection = [[WebUtils alloc] initWithServerURL:def_serverURL andDelegate:self];
+    [getDataConnection requestData:def_JSONSuffix_allTeams forSelector:@selector(teamListDataReceived:)];
+}
+
+-(void)teamListDataReceived:(NSData *)data
+{
+    teamList = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    //Remove self team
+    for (NSDictionary *team in teamList) {
+        if ([[team objectForKey:@"id"] isEqual:[[myUserInfo objectForKey:@"team"] objectForKey:@"id"]]) {
+            [teamList removeObject:team];
+            break;
+        }
+    }
+    [self.tableView reloadData];
+}
+
+-(void)retrieveData:(NSData *)data forSelector:(SEL)selector
+{
+    if ([self canPerformAction:selector withSender:self]) {
+        [self performSelectorInBackground:selector withObject:data];
+    }
+}
+
+-(IBAction)inviteButtonOnClicked:(id)sender
+{
+    for (Captain_CreateMatch_TeamMarket_Cell *cell in self.tableView.visibleCells) {
+        if ([cell.inviteButton isEqual:sender]) {
+            [delegate receiveSelectedOpponent:[teamList objectAtIndex:[self.tableView indexPathForCell:cell].row]];
+            break;
+        }
+    }
+    [self.navigationController popToViewController:(UIViewController *)delegate animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,26 +95,28 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return teamList.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    Captain_CreateMatch_TeamMarket_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"TeamMarketCell"];
     
     // Configure the cell...
-    
+    NSDictionary *teamData = [teamList objectAtIndex:indexPath.row];
+    [cell.teamName setText:[teamData objectForKey:@"teamName"]];
+    if (indexPath.row == 0) {
+        [cell.teamName setHighlighted:YES];
+    }
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.

@@ -1,5 +1,5 @@
 //
-//  Captain_CreateMatch_SelectPlace.h
+//  Captain_CreateMatch_TeamMarket.h
 //  Football
 //
 //  Created by Andy on 14-4-23.
@@ -7,10 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol TeamMarket <NSObject>
--(void)receiveTeam:(NSString *)teamName;
+#import "Pre_Define.h"
+#import "WebUtils.h"
+
+@protocol SelectOpponent <NSObject>
+-(void)receiveSelectedOpponent:(NSDictionary *)opponentTeam;
 @end
 
-@interface Captain_CreateMatch_TeamMarket : UITableViewController
-@property id<TeamMarket>delegate;
+@interface Captain_CreateMatch_TeamMarket_Cell : UITableViewCell
+@property IBOutlet UILabel *teamName;
+@property IBOutlet UILabel *averAge;
+@property IBOutlet UILabel *slogan;
+@property IBOutlet UIImageView *teamLogo;
+@property IBOutlet UIButton *inviteButton;
+@end
+
+@interface Captain_CreateMatch_TeamMarket : UITableViewController<WebUtilsDelegate, UISearchDisplayDelegate>
+@property id<SelectOpponent>delegate;
+@property NSDictionary *selectedTeam;
+
+-(void)teamListDataReceived:(NSData *)data;
 @end

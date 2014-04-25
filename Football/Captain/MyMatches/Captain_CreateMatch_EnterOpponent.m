@@ -15,7 +15,7 @@
 @implementation Captain_CreateMatch_EnterOpponent{
     HintTextView *hintView;
 }
-@synthesize matchStarted, delegate, type;
+@synthesize matchStarted, delegate, type, selectedTeamName;
 @synthesize inviteOpponentButton, teamMarketButton, toolBar, matchOpponent, saveButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,6 +35,9 @@
     hintView = [[HintTextView alloc] init];
     [self.view addSubview:hintView];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [matchOpponent setText:selectedTeamName];
+    [saveButton setEnabled:[matchOpponent hasText]];
+    
     if (matchStarted) {
         //Match started
         [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace]];
@@ -75,7 +78,7 @@
 }
 -(IBAction)saveOpponent:(id)sender
 {
-    [delegate receiveOpponent:matchOpponent.text opponentType:New];
+    [delegate receiveNewOpponent:matchOpponent.text];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -94,6 +97,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"TeamMarket"]) {
         Captain_CreateMatch_TeamMarket *teamMarket = segue.destinationViewController;
+        [teamMarket setDelegate:(id)delegate];
     }
 }
 

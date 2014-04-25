@@ -12,13 +12,14 @@
 #import "Captain_CreateMatch_TeamMarket.h"
 
 @protocol EnterOpponent <NSObject>
--(void)receiveOpponent:(NSString *)opponentName opponentType:(enum SelectedOpponentType)type;
+-(void)receiveNewOpponent:(NSString *)opponentName;
 @end
 
 @interface Captain_CreateMatch_EnterOpponent : UIViewController
 @property id<EnterOpponent>delegate;
 @property BOOL matchStarted;
 @property enum SelectedOpponentType type;
+@property NSString *selectedTeamName;
 @property IBOutlet UIToolbar *toolBar;
 @property IBOutlet UIBarButtonItem *inviteOpponentButton;
 @property IBOutlet UIBarButtonItem *teamMarketButton;
