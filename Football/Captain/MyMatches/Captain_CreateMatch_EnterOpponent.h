@@ -15,7 +15,7 @@
 -(void)receiveNewOpponent:(NSString *)opponentName;
 @end
 
-@interface Captain_CreateMatch_EnterOpponent : UIViewController
+@interface Captain_CreateMatch_EnterOpponent : UIViewController<UIActionSheetDelegate>
 @property id<EnterOpponent>delegate;
 @property BOOL matchStarted;
 @property enum SelectedOpponentType type;

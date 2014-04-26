@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CallFriendsMenu</key>
+	<dict>
+		<key>MenuList</key>
+		<array>
+			<dict>
+				<key>Title</key>
+				<string>微信/微信群</string>
+				<key>Icon</key>
+				<string>register_area.png</string>
+			</dict>
+			<dict>
+				<key>Title</key>
+				<string>QQ/QQ群</string>
+				<key>Icon</key>
+				<string>register_qq.png</string>
+			</dict>
+			<dict>
+				<key>Title</key>
+				<string>手机通讯录</string>
+				<key>Icon</key>
+				<string>register_phone.png</string>
+			</dict>
+		</array>
+	</dict>
+	<key>InviteOpponentMenu</key>
+	<dict>
+		<key>MenuList</key>
+		<array>
+			<dict>
+				<key>Title</key>
+				<string>通过微信添加</string>
+				<key>Icon</key>
+				<string>register_area.png</string>
+			</dict>
+			<dict>
+				<key>Title</key>
+				<string>通过手机通讯录添加</string>
+				<key>Icon</key>
+				<string>register_phone.png</string>
+			</dict>
+			<dict>
+				<key>Title</key>
+				<string>通过QQ添加</string>
+				<key>Icon</key>
+				<string>register_qq.png</string>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>

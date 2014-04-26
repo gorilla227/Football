@@ -187,7 +187,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="V8n-Lz-4Ko">
-                                            <rect key="frame" x="254.5" y="19" width="30" height="30"/>
+                                            <rect key="frame" x="255" y="19" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VUp-8z-X17">
@@ -466,6 +466,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="VzO-fu-ugI"/>
                                     <barButtonItem title="邀请对手" id="6E2-Sv-85J">
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="inviteOpponentButtonOnClicked:" destination="D47-h1-sYj" id="nyr-Zb-9Ok"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="RIY-95-n8H"/>
                                     <barButtonItem title="球队超市" id="dbB-ce-k1U">
@@ -1275,7 +1278,7 @@
     <resources>
         <image name="LoginAccountIcon.jpg" width="30" height="30"/>
         <image name="PasswordIcon.jpg" width="30" height="30"/>
-        <image name="TeamIcon.jpg" width="300" height="300"/>
+        <image name="TeamIcon.jpg" width="97" height="99"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -1283,6 +1286,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mkN-NA-bmm"/>
+        <segue reference="5WW-Lp-Owi"/>
     </inferredMetricsTieBreakers>
 </document>

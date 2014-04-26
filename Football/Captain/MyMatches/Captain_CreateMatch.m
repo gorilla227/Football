@@ -330,19 +330,6 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-//    if (matchStarted) {
-//        //Match started
-//    }
-//    else {
-//        //Match not started
-//        switch (selectedOpponentType) {
-//            case None:
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//    }
     if ([segue.identifier isEqualToString:@"EnterOpponent"]) {
         Captain_CreateMatch_EnterOpponent *enterOpponentController = segue.destinationViewController;
         [enterOpponentController setMatchStarted:matchStarted];

@@ -31,8 +31,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     delegate = (id)self.parentViewController.parentViewController;
-    NSString *callFriendsMenuListFile = [[NSBundle mainBundle] pathForResource:@"CallFriendsMenu" ofType:@"plist"];
-    callFriendsMenuList = [[NSArray alloc] initWithContentsOfFile:callFriendsMenuListFile];
+    NSString *callFriendsMenuListFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
+    callFriendsMenuList = [[[[NSDictionary alloc] initWithContentsOfFile:callFriendsMenuListFile] objectForKey:@"CallFriendsMenu"] objectForKey:@"MenuList"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,10 +50,9 @@
 -(IBAction)callFriendsButtonOnClicked:(id)sender
 {
     UIActionSheet *callFriendsMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    for (NSString *menuItem in callFriendsMenuList) {
-        [callFriendsMenu addButtonWithTitle:menuItem];
-        UIImage *image = [UIImage imageNamed:@"LoginAccountIcon.jpg"];
-        [[[callFriendsMenu valueForKey:@"_buttons"] lastObject] setImage:image forState:UIControlStateNormal];
+    for (NSDictionary *menuItem in callFriendsMenuList) {
+        [callFriendsMenu addButtonWithTitle:[menuItem objectForKey:@"Title"]];
+        [[callFriendsMenu.subviews lastObject] setImage:[UIImage imageNamed:[menuItem objectForKey:@"Icon"]] forState:UIControlStateNormal];
     }
     [callFriendsMenu setCancelButtonIndex:[callFriendsMenu addButtonWithTitle:@"取消"]];
     [callFriendsMenu showInView:self.parentViewController.parentViewController.view];
@@ -62,7 +61,7 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex < callFriendsMenuList.count) {
-        NSLog(@"%@", [callFriendsMenuList objectAtIndex:buttonIndex]);
+        NSLog(@"%@", [[callFriendsMenuList objectAtIndex:buttonIndex] objectForKey:@"Title"]);
     }
     else {
         NSLog(@"取消");

@@ -14,6 +14,7 @@
 
 @implementation Captain_CreateMatch_EnterOpponent{
     HintTextView *hintView;
+    NSArray *inviteOpponentMenuList;
 }
 @synthesize matchStarted, delegate, type, selectedTeamName;
 @synthesize inviteOpponentButton, teamMarketButton, toolBar, matchOpponent, saveButton;
@@ -64,6 +65,10 @@
                 break;
         }
     }
+    
+    //Initial inviteOpponentMenuList
+    NSString *menuListFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
+    inviteOpponentMenuList = [[[[NSDictionary alloc] initWithContentsOfFile:menuListFile] objectForKey:@"InviteOpponentMenu"] objectForKey:@"MenuList"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +91,28 @@
 {
     [super touchesBegan:touches withEvent:event];
     [matchOpponent resignFirstResponder];
+}
+
+-(IBAction)inviteOpponentButtonOnClicked:(id)sender
+{
+    UIActionSheet *inviteActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    for (NSDictionary *menuItem in inviteOpponentMenuList) {
+        [inviteActionSheet addButtonWithTitle:[menuItem objectForKey:@"Title"]];
+        [[inviteActionSheet.subviews lastObject] setImage:[UIImage imageNamed:[menuItem objectForKey:@"Icon"]] forState:UIControlStateNormal];
+    }
+    [inviteActionSheet setCancelButtonIndex:[inviteActionSheet addButtonWithTitle:@"取消"]];
+    
+    [inviteActionSheet showFromBarButtonItem:inviteOpponentButton animated:YES];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex < inviteOpponentMenuList.count) {
+        NSLog([[inviteOpponentMenuList objectAtIndex:buttonIndex] objectForKey:@"Title"]);
+    }
+    else {
+        NSLog(@"取消");
+    }
 }
 
 #pragma mark - Navigation
