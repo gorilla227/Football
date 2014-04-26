@@ -62,6 +62,13 @@
             break;
         }
     }
+    
+    //Move the selected team to the first object.
+    if (self.selectedTeam) {
+        [teamList removeObject:self.selectedTeam];
+        [teamList insertObject:self.selectedTeam atIndex:0];
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -112,8 +119,10 @@
     // Configure the cell...
     NSDictionary *teamData = [teamList objectAtIndex:indexPath.row];
     [cell.teamName setText:[teamData objectForKey:@"teamName"]];
-    if (indexPath.row == 0) {
+    if (self.selectedTeam && indexPath.row == 0) {
         [cell.teamName setHighlighted:YES];
+        [cell.inviteButton setSelected:YES];
+        [cell.inviteButton setEnabled:NO];
     }
     return cell;
 }

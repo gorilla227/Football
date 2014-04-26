@@ -351,9 +351,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="confirmCreateMatchButtonSetEnabled:" destination="R6J-gK-DLQ" eventType="editingChanged" id="zV3-Z6-xhb"/>
-                                    <action selector="matchOpponentOnClick:" destination="R6J-gK-DLQ" eventType="editingDidEnd" id="iKG-Tb-agU"/>
                                     <outlet property="delegate" destination="R6J-gK-DLQ" id="CbV-8H-QrQ"/>
-                                    <segue destination="D47-h1-sYj" kind="push" identifier="EnterOpponent" customClass="SelectOpponentSegue" id="cWd-aQ-Q7N"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择场地" minimumFontSize="17" id="Hwb-56-4Tz">
@@ -445,6 +443,7 @@
                         <outlet property="numOfPlayers" destination="jSA-jH-6tk" id="Cb2-gP-Lrr"/>
                         <outlet property="toolBar" destination="kNK-M7-pjf" id="Jub-8x-C07"/>
                         <segue destination="TJj-lJ-1UK" kind="push" identifier="SelectOpponent" id="mkN-NA-bmm"/>
+                        <segue destination="D47-h1-sYj" kind="push" identifier="EnterOpponent" id="XYH-IY-a8N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CLb-Oe-g3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -559,7 +558,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7yL-f6-u4E">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="7yL-f6-u4E">
                                             <rect key="frame" x="215" y="65" width="90" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -567,6 +566,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <state key="selected" title="已选择该队"/>
                                             <connections>
                                                 <action selector="inviteButtonOnClicked:" destination="TJj-lJ-1UK" eventType="touchUpInside" id="2Lf-67-ah0"/>
                                             </connections>

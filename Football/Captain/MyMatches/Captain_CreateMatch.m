@@ -19,6 +19,7 @@
     NSMutableArray *enteringControllers;
     BOOL matchStarted;
     enum SelectedOpponentType selectedOpponentType;
+    NSDictionary *selectedOpponentTeam;
 }
 @synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water, actionButton, toolBar;
 
@@ -112,7 +113,6 @@
     
     //Set UIStepper as rightView
     numOfPlayersStepper = [[UIStepper alloc] init];
-    CGRect frame = numOfPlayersStepper.frame;
     [numOfPlayersStepper setTintColor:[UIColor blackColor]];
     [numOfPlayersStepper setMinimumValue:1];
     [numOfPlayersStepper setMaximumValue:30];
@@ -129,7 +129,7 @@
     [self initialLeftViewForTextField:cost labelName:def_createMatch_cost iconImage:@"leftIcon_createMatch_cost.png"];
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if ([textField isEqual:matchTime]) {
         if (![textField hasText]) {
@@ -139,26 +139,29 @@
         }
     }
     else{
-        if ([textField isEqual:matchOpponent]) {
-            [textField endEditing:YES];
-        }
-        else if ([textField isEqual:matchPlace]) {
-            [textField endEditing:YES];
-        }
-        else if ([textField isEqual:numOfPlayers]) {
-            [textField endEditing:YES];
+        
+    }
+    if ([textField isEqual:matchOpponent]) {
+        //        [textField endEditing:YES];
+        switch (selectedOpponentType) {
+            case None:
+            case New:
+                [self performSegueWithIdentifier:@"EnterOpponent" sender:self];
+                break;
+            case Existed:
+                [self performSegueWithIdentifier:@"SelectOpponent" sender:self];
+            default:
+                break;
         }
     }
-}
-
-#pragma DatePicker
--(void)matchTimeSelected
-{
-    //Fill the date to matchTime textfield
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-    [matchTime setText:[dateFormatter stringFromDate:matchTimePicker.date]];
-
+    else if ([textField isEqual:matchPlace]) {
+        //        [textField endEditing:YES];
+        
+    }
+    else if ([textField isEqual:numOfPlayers]) {
+        
+    }
+    return YES;
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -180,10 +183,16 @@
         [toolBar setHidden:YES];
         [matchOpponent setText:nil];
         [matchPlace setText:nil];
-
+        
         if (matchStarted) {
             //Match started
             [matchOpponent setHidden:NO];
+            [matchPlace setHidden:NO];
+            [numOfPlayers setHidden:NO];
+            [cost setHidden:NO];
+            [costOptions setHidden:NO];
+            [toolBar setHidden:NO];
+            [actionButton setTitle:def_createMatch_actionButton_started];
         }
         else {
             //Match not start
@@ -222,10 +231,7 @@
     
     //Update controllers' status and action button name
     [toolBar setHidden:NO];
-    if (matchStarted) {
-        [actionButton setTitle:def_createMatch_actionButton_started];
-    }
-    else {
+    if (!matchStarted) {
         [actionButton setTitle:def_createMatch_actionButton_new];
     }
     [cost setPlaceholder:def_createMatch_cost_ph_self];
@@ -235,6 +241,9 @@
 {
     //Fill opponent
     [matchOpponent setText:[opponentTeam objectForKey:@"teamName"]];
+    
+    //Set selectedOpponentTeam
+    selectedOpponentTeam = opponentTeam;
     
     //Save the selected opponent type
     selectedOpponentType = Existed;
@@ -270,6 +279,50 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma DatePicker
+-(void)matchTimeSelected
+{
+    //Fill the date to matchTime textfield
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    [matchTime setText:[dateFormatter stringFromDate:matchTimePicker.date]];
+    
+    //Remove the tint
+    if (hintView) {
+        [hintView showOrHideHint:NO];
+    }
+    
+    //Refresh controller status after matchTime entered
+    NSTimeInterval timeInterval = [matchTimePicker.date timeIntervalSinceNow];
+    matchStarted = timeInterval < 0;
+    selectedOpponentType = None;
+    [matchPlace setHidden:YES];
+    [numOfPlayers setHidden:YES];
+    [cost setHidden:YES];
+    [costOptions setHidden:YES];
+    [toolBar setHidden:YES];
+    [matchOpponent setText:nil];
+    [matchPlace setText:nil];
+    
+    if (matchStarted) {
+        //Match started
+        [matchOpponent setHidden:NO];
+        [matchPlace setHidden:NO];
+        [numOfPlayers setHidden:NO];
+        [cost setHidden:NO];
+        [costOptions setHidden:NO];
+        [toolBar setHidden:NO];
+        [actionButton setTitle:def_createMatch_actionButton_started];
+    }
+    else {
+        //Match not start
+        [matchOpponent setHidden:NO];
+        
+        //Initial tint
+        [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent wantShow:YES];
+    }
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -297,24 +350,10 @@
         [enterOpponentController setSelectedTeamName:matchOpponent.text];
         [enterOpponentController setDelegate:self];
     }
-    if ([segue.identifier isEqualToString:@"SelectOpponent"]) {
+    else if ([segue.identifier isEqualToString:@"SelectOpponent"]) {
         Captain_CreateMatch_TeamMarket *selectOpponentController = segue.destinationViewController;
         [selectOpponentController setDelegate:self];
-    }
-}
-
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    if (selectedOpponentType == Existed && [identifier isEqualToString:@"EnterOpponent"]) {
-        return NO;
-    }
-    return YES;
-}
-
--(IBAction)matchOpponentOnClick:(id)sender
-{
-    if (selectedOpponentType == Existed) {
-        [self performSegueWithIdentifier:@"SelectOpponent" sender:self];
+        [selectOpponentController setSelectedTeam:selectedOpponentTeam];
     }
 }
 @end
