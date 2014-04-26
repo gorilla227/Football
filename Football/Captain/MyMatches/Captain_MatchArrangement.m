@@ -72,7 +72,9 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     WebUtils *getDataConnection = [[WebUtils alloc] initWithServerURL:def_serverURL andDelegate:self];
-    [getDataConnection requestData:def_JSONSuffix_allMatches forSelector:@selector(matchesListDataReceived:)];
+    NSNumber *userId = [myUserInfo objectForKey:@"id"];
+    
+    [getDataConnection requestData:[def_JSONSuffix_allMatchesOfUser stringByAppendingString:userId.stringValue] forSelector:@selector(matchesListDataReceived:)];
 }
 
 -(void)matchesListDataReceived:(NSData *)data

@@ -42,6 +42,8 @@ enum SelectedOpponentType
 //JSON variables
 #define def_serverURL @"http://inomind.de:8080/SoccerServer"
 #define def_JSONSuffix_allMatches @"matches.json"
+#define def_JSONSuffix_allMatchesOfTeam @"matches?teamId="
+#define def_JSONSuffix_allMatchesOfUser @"matches?userId="
 #define def_JSONSuffix_allTeams @"teams.json"
 #define def_JSONSuffix_userInfo @"user?id="
 
