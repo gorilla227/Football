@@ -14,10 +14,10 @@
 
 @implementation Captain_CreateMatch_SelectPlayground{
     NSArray *mainPlaygroundList;
-    NSInteger indexOfSelectedMainPlayground;
     HintTextView *hintView;
 }
-@synthesize mainPlayground, matchPlaceTextField;
+@synthesize mainPlayground, matchPlaceTextField, saveButton;
+@synthesize delegate, selectedPlace, indexOfSelectedMainPlayground;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,12 +36,12 @@
     [mainPlayground setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     mainPlaygroundList = [[NSArray alloc] initWithObjects:@"北京邮电大学操场", @"北京大学一体", nil];
     [mainPlayground setHidden:mainPlaygroundList.count == 0];
-    indexOfSelectedMainPlayground = -1;
+    [matchPlaceTextField setText:selectedPlace];
     
     //Initial HintView;
     hintView = [[HintTextView alloc] init];
     [self.view addSubview:hintView];
-    [hintView settingHintWithTextKey:@"SelectPlayground" underView:matchPlaceTextField wantShow:YES];
+    [hintView settingHintWithTextKey:@"SelectPlayground" underView:matchPlaceTextField wantShow:![matchPlaceTextField hasText]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,14 +85,28 @@
     if (indexOfSelectedMainPlayground == indexPath.row) {
         indexOfSelectedMainPlayground = -1;
         [matchPlaceTextField setText:nil];
-        [hintView showOrHideHint:YES];
     }
     else {
         indexOfSelectedMainPlayground = indexPath.row;
         [matchPlaceTextField setText:[mainPlaygroundList objectAtIndex:indexPath.row]];
-        [hintView showOrHideHint:NO];
     }
     [tableView reloadData];
+    [saveButton setEnabled:[matchPlaceTextField hasText]];
+    [hintView showOrHideHint:![matchPlaceTextField hasText]];
+}
+
+-(IBAction)saveButtonOnClicked:(id)sender
+{
+    [delegate receiveSelectedPlayground:matchPlaceTextField.text indexOfMainPlayground:indexOfSelectedMainPlayground];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)matchPlaceChanged:(id)sender
+{
+    [saveButton setEnabled:[matchPlaceTextField hasText]];
+    [hintView showOrHideHint:![matchPlaceTextField hasText]];
+    indexOfSelectedMainPlayground = -1;
+    [mainPlayground reloadData];
 }
 /*
 #pragma mark - Navigation

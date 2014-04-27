@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "HintTextView.h"
+@protocol SelectPlayground<NSObject>
+-(void)receiveSelectedPlayground:(NSString *)playgroundName indexOfMainPlayground:(NSInteger)index;
+@end
 
-@interface Captain_CreateMatch_SelectPlayground : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface Captain_CreateMatch_SelectPlayground : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@property id<SelectPlayground>delegate;
+@property NSInteger indexOfSelectedMainPlayground;
+@property NSString *selectedPlace;
 @property IBOutlet UITableView *mainPlayground;
 @property IBOutlet UITextField *matchPlaceTextField;
+@property IBOutlet UIBarButtonItem *saveButton;
+
 @end

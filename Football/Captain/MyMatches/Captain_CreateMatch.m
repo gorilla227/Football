@@ -21,6 +21,7 @@
     BOOL matchStarted;
     enum SelectedOpponentType selectedOpponentType;
     NSDictionary *selectedOpponentTeam;
+    NSInteger indexOfSelectedMainPlayground;
 }
 @synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water, actionButton, toolBar;
 
@@ -40,6 +41,7 @@
     enteringControllers = [[NSMutableArray alloc] init];
     hintView = [[HintTextView alloc] init];
     selectedOpponentType = None;
+    indexOfSelectedMainPlayground = -1;
     [self.view addSubview:hintView];
     [self.view setBackgroundColor:[UIColor clearColor]];
     [self initialMatchTime];
@@ -162,7 +164,7 @@
         [self performSegueWithIdentifier:@"SelectPlayground" sender:self];
     }
     else if ([textField isEqual:numOfPlayers]) {
-        
+        return NO;
     }
     return YES;
 }
@@ -173,7 +175,7 @@
     for (UIControl *controller in enteringControllers) {
         [controller resignFirstResponder];
     }
-    if ([matchOpponent isHidden]) {
+    if ([matchOpponent isHidden] && [matchTime hasText]) {
         [self matchTimeSelected];
     }
 }
@@ -227,6 +229,15 @@
     [toolBar setHidden:NO];
     [actionButton setTitle:def_createMatch_actionButton_existed];
     [cost setPlaceholder:def_createMatch_cost_ph_opponent];
+}
+
+-(void)receiveSelectedPlayground:(NSString *)playgroundName indexOfMainPlayground:(NSInteger)index
+{
+    //Fill matchPlace;
+    [matchPlace setText:playgroundName];
+    
+    //Save the indexOfMainPlayground
+    indexOfSelectedMainPlayground = index;
 }
 
 -(IBAction)confirmCreateMatchButtonSetEnabled:(id)sender
@@ -295,6 +306,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"EnterOpponent"]) {
+        //Enter Opponent
         Captain_CreateMatch_EnterOpponent *enterOpponentController = segue.destinationViewController;
         [enterOpponentController setMatchStarted:matchStarted];
         [enterOpponentController setType:selectedOpponentType];
@@ -302,9 +314,17 @@
         [enterOpponentController setDelegate:self];
     }
     else if ([segue.identifier isEqualToString:@"SelectOpponent"]) {
+        //Select Opponent
         Captain_CreateMatch_TeamMarket *selectOpponentController = segue.destinationViewController;
         [selectOpponentController setDelegate:self];
         [selectOpponentController setSelectedTeam:selectedOpponentTeam];
+    }
+    else if ([segue.identifier isEqualToString:@"SelectPlayground"]) {
+        //Select Playground
+        Captain_CreateMatch_SelectPlayground *selectPlayground = segue.destinationViewController;
+        [selectPlayground setDelegate:self];
+        [selectPlayground setIndexOfSelectedMainPlayground:indexOfSelectedMainPlayground];
+        [selectPlayground setSelectedPlace:matchPlace.text];
     }
 }
 @end
