@@ -26,4 +26,5 @@
 -(void)initialNumOfPlayers;
 -(void)initialCost;
 -(void)numberOfPlayersStepperChanged;
+-(void)checkActionButtonStatus;
 @end

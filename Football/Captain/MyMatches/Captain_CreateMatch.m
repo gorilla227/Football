@@ -169,11 +169,25 @@
     return YES;
 }
 
+-(void)checkActionButtonStatus
+{
+    for (UITextField *textField in enteringControllers) {
+        if (![textField hasText]) {
+            return;
+        }
+    }
+    [actionButton setEnabled:YES];
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self checkActionButtonStatus];
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    for (UIControl *controller in enteringControllers) {
-        [controller resignFirstResponder];
+    for (UITextField *textField in enteringControllers) {
+        [textField resignFirstResponder];
     }
     if ([matchOpponent isHidden] && [matchTime hasText]) {
         [self matchTimeSelected];
@@ -203,6 +217,7 @@
         [actionButton setTitle:def_createMatch_actionButton_new];
     }
     [cost setPlaceholder:def_createMatch_cost_ph_self];
+    [self checkActionButtonStatus];
 }
 
 -(void)receiveSelectedOpponent:(NSDictionary *)opponentTeam
@@ -229,6 +244,7 @@
     [toolBar setHidden:NO];
     [actionButton setTitle:def_createMatch_actionButton_existed];
     [cost setPlaceholder:def_createMatch_cost_ph_opponent];
+    [self checkActionButtonStatus];
 }
 
 -(void)receiveSelectedPlayground:(NSString *)playgroundName indexOfMainPlayground:(NSInteger)index
@@ -238,6 +254,9 @@
     
     //Save the indexOfMainPlayground
     indexOfSelectedMainPlayground = index;
+    
+    //Update action button status
+    [self checkActionButtonStatus];
 }
 
 -(IBAction)confirmCreateMatchButtonSetEnabled:(id)sender
