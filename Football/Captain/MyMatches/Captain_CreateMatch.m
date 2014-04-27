@@ -13,6 +13,7 @@
 @end
 
 @implementation Captain_CreateMatch{
+    NSDateFormatter *dateFormatter;
     UIDatePicker *matchTimePicker;
     UIStepper *numOfPlayersStepper;
     HintTextView *hintView;
@@ -54,6 +55,10 @@
     [cost setHidden:YES];
     [costOptions setHidden:YES];
     [toolBar setHidden:YES];
+    
+    //Set dateformatter
+     dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
 }
 
 -(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
@@ -133,9 +138,8 @@
 {
     if ([textField isEqual:matchTime]) {
         if (![textField hasText]) {
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
             [textField setText:[dateFormatter stringFromDate:[NSDate date]]];
+//            [self matchTimeSelected];
         }
     }
     else{
@@ -155,8 +159,7 @@
         }
     }
     else if ([textField isEqual:matchPlace]) {
-        //        [textField endEditing:YES];
-        
+        [self performSegueWithIdentifier:@"SelectPlayground" sender:self];
     }
     else if ([textField isEqual:numOfPlayers]) {
         
@@ -164,51 +167,14 @@
     return YES;
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    //Remove the tint
-    if (hintView && [textField hasText] && [hintView.boundedView isEqual:textField]) {
-        [hintView showOrHideHint:NO];
-    }
-    
-    //Refresh controller status after matchTime entered
-    if ([textField isEqual:matchTime]) {
-        NSTimeInterval timeInterval = [matchTimePicker.date timeIntervalSinceNow];
-        matchStarted = timeInterval < 0;
-        selectedOpponentType = None;
-        [matchPlace setHidden:YES];
-        [numOfPlayers setHidden:YES];
-        [cost setHidden:YES];
-        [costOptions setHidden:YES];
-        [toolBar setHidden:YES];
-        [matchOpponent setText:nil];
-        [matchPlace setText:nil];
-        
-        if (matchStarted) {
-            //Match started
-            [matchOpponent setHidden:NO];
-            [matchPlace setHidden:NO];
-            [numOfPlayers setHidden:NO];
-            [cost setHidden:NO];
-            [costOptions setHidden:NO];
-            [toolBar setHidden:NO];
-            [actionButton setTitle:def_createMatch_actionButton_started];
-        }
-        else {
-            //Match not start
-            [matchOpponent setHidden:NO];
-            
-            //Initial tint
-            [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent wantShow:YES];
-        }
-    }
-}
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
     for (UIControl *controller in enteringControllers) {
         [controller resignFirstResponder];
+    }
+    if ([matchOpponent isHidden]) {
+        [self matchTimeSelected];
     }
 }
 
@@ -283,8 +249,6 @@
 -(void)matchTimeSelected
 {
     //Fill the date to matchTime textfield
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
     [matchTime setText:[dateFormatter stringFromDate:matchTimePicker.date]];
     
     //Remove the tint

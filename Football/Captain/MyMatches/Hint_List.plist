@@ -13,5 +13,7 @@
 	<key>EnterOpponent_MatchNotStarted</key>
 	<string>请输入比赛对手，有两种方式： 1、对手球队不在“我要踢球”中，手动输入对手，可以直接建立比赛；
 2、对手球队已加入“我要踢球”，从“球队超市”中选择对手，需要等待对手反馈。</string>
+	<key>SelectPlayground</key>
+	<string>1、直接输入场地名称 2、点击“选择球场”进行选择 3、从球队主场中选择</string>
 </dict>
 </plist>

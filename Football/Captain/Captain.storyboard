@@ -363,7 +363,6 @@
                                 <connections>
                                     <action selector="confirmCreateMatchButtonSetEnabled:" destination="R6J-gK-DLQ" eventType="editingChanged" id="yA3-YN-g5J"/>
                                     <outlet property="delegate" destination="R6J-gK-DLQ" id="Xcw-eE-94j"/>
-                                    <segue destination="1jn-PF-RVR" kind="push" identifier="SelectPlace" id="VtK-Y1-7Ey"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择人数" minimumFontSize="17" id="jSA-jH-6tk">
@@ -444,11 +443,12 @@
                         <outlet property="toolBar" destination="kNK-M7-pjf" id="Jub-8x-C07"/>
                         <segue destination="TJj-lJ-1UK" kind="push" identifier="SelectOpponent" id="mkN-NA-bmm"/>
                         <segue destination="D47-h1-sYj" kind="push" identifier="EnterOpponent" id="XYH-IY-a8N"/>
+                        <segue destination="1jn-PF-RVR" kind="push" identifier="SelectPlayground" id="RUA-fL-RiB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CLb-Oe-g3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1165" y="197"/>
+            <point key="canvasLocation" x="1178" y="153"/>
         </scene>
         <!--Captain Create Match Enter Opponent - 输入对手-->
         <scene sceneID="pXq-Zs-pv5">
@@ -616,16 +616,89 @@
             </objects>
             <point key="canvasLocation" x="2051" y="-169"/>
         </scene>
-        <!--View Controller-->
+        <!--Captain Create Match Select Playground - 选择球场-->
         <scene sceneID="JZ7-X3-4Qd">
             <objects>
-                <viewController id="1jn-PF-RVR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Captain_CreateMatch_SelectPlayground" title="选择球场" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1jn-PF-RVR" customClass="Captain_CreateMatch_SelectPlayground" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y85-KS-gNH">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="O54-Zm-ch1">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e8W-cw-hu9"/>
+                                    <barButtonItem title="保存" id="6Ek-c4-uPh"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="eaT-dF-rFP"/>
+                                </items>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入场地名" minimumFontSize="17" id="DE2-8u-1a7">
+                                <rect key="frame" x="0.0" y="20" width="320" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" hint=""/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TBb-sK-goH">
+                                <rect key="frame" x="0.0" y="248" width="320" height="212"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <label key="tableHeaderView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="球队主场" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gdw-1p-zQU">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                </label>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainPlaygroundCell" textLabel="Zl9-3L-eij" style="IBUITableViewCellStyleDefault" id="uy2-j3-bhh">
+                                        <rect key="frame" x="0.0" y="52" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uy2-j3-bhh" id="NVf-Bz-lsb">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="球队主场名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zl9-3L-eij">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" hint=""/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1jn-PF-RVR" id="vPS-e9-2KA"/>
+                                    <outlet property="delegate" destination="1jn-PF-RVR" id="MEf-bX-P9m"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8na-5h-avx">
+                                <rect key="frame" x="110.5" y="166" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="选择球场">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2u0-zX-xVl"/>
+                    <navigationItem key="navigationItem" title="选择球场" id="2u0-zX-xVl"/>
+                    <connections>
+                        <outlet property="mainPlayground" destination="TBb-sK-goH" id="VOa-aJ-lnl"/>
+                        <outlet property="matchPlaceTextField" destination="DE2-8u-1a7" id="gUI-Z8-Wyg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drR-IM-VrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1286,6 +1359,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5WW-Lp-Owi"/>
+        <segue reference="mkN-NA-bmm"/>
     </inferredMetricsTieBreakers>
 </document>
