@@ -8,8 +8,8 @@
 
 #import "Captain_CreateMatch.h"
 
-@interface Captain_CreateMatch ()
-
+@implementation Captain_CreateMatch_MatchScoreTableView_Cell
+@synthesize goalPlayerName, assistPlayerName;
 @end
 
 @implementation Captain_CreateMatch{
@@ -22,8 +22,11 @@
     enum SelectedOpponentType selectedOpponentType;
     NSDictionary *selectedOpponentTeam;
     NSInteger indexOfSelectedMainPlayground;
+    NSArray *matchScoreDetail;
+    NSString *matchScoreResult;
 }
 @synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water, actionButton, toolBar;
+@synthesize matchScore, matchScoreTableView, matchScoreTableViewHeader, matchScoreHeader_Goal, matchScoreHeader_Assist;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +45,7 @@
     hintView = [[HintTextView alloc] init];
     selectedOpponentType = None;
     indexOfSelectedMainPlayground = -1;
+    matchScoreDetail = [[NSArray alloc] init];
     [self.view addSubview:hintView];
     [self.view setBackgroundColor:[UIColor clearColor]];
     [self initialMatchTime];
@@ -49,6 +53,8 @@
     [self initialMatchPlace];
     [self initialNumOfPlayers];
     [self initialCost];
+    [self initialMatchScore];
+    [matchScoreTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     //Hide controllers except matchTime
     [matchOpponent setHidden:YES];
@@ -56,6 +62,9 @@
     [numOfPlayers setHidden:YES];
     [cost setHidden:YES];
     [costOptions setHidden:YES];
+    [matchScore setHidden:YES];
+    [matchScoreTableViewHeader setHidden:YES];
+    [matchScoreTableView setHidden:YES];
     [toolBar setHidden:YES];
     
     //Set dateformatter
@@ -136,19 +145,19 @@
     [self initialLeftViewForTextField:cost labelName:def_createMatch_cost iconImage:@"leftIcon_createMatch_cost.png"];
 }
 
+-(void)initialMatchScore
+{
+    [self initialLeftViewForTextField:matchScore labelName:def_createMatch_score iconImage:@"leftIcon_createMatch_score.png"];
+}
+
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if ([textField isEqual:matchTime]) {
         if (![textField hasText]) {
             [textField setText:[dateFormatter stringFromDate:[NSDate date]]];
-//            [self matchTimeSelected];
         }
     }
-    else{
-        
-    }
-    if ([textField isEqual:matchOpponent]) {
-        //        [textField endEditing:YES];
+    else if ([textField isEqual:matchOpponent]) {
         switch (selectedOpponentType) {
             case None:
             case New:
@@ -165,6 +174,9 @@
     }
     else if ([textField isEqual:numOfPlayers]) {
         return NO;
+    }
+    else if ([textField isEqual:matchScore]) {
+        
     }
     return YES;
 }
@@ -290,11 +302,6 @@
     NSTimeInterval timeInterval = [matchTimePicker.date timeIntervalSinceNow];
     matchStarted = timeInterval < 0;
     selectedOpponentType = None;
-    [matchPlace setHidden:YES];
-    [numOfPlayers setHidden:YES];
-    [cost setHidden:YES];
-    [costOptions setHidden:YES];
-    [toolBar setHidden:YES];
     [matchOpponent setText:nil];
     [matchPlace setText:nil];
     
@@ -306,15 +313,43 @@
         [cost setHidden:NO];
         [costOptions setHidden:NO];
         [toolBar setHidden:NO];
+        [matchScore setHidden:NO];
+        [matchScoreTableViewHeader setHidden:NO];
+        [matchScoreTableView setHidden:NO];
         [actionButton setTitle:def_createMatch_actionButton_started];
     }
     else {
         //Match not start
         [matchOpponent setHidden:NO];
+        [matchPlace setHidden:YES];
+        [numOfPlayers setHidden:YES];
+        [cost setHidden:YES];
+        [costOptions setHidden:YES];
+        [matchScore setHidden:YES];
+        [matchScoreTableViewHeader setHidden:YES];
+        [matchScoreTableView setHidden:YES];
+        [toolBar setHidden:YES];
         
         //Initial tint
         [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent wantShow:YES];
     }
+}
+#pragma matchScore tableview
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return matchScoreDetail.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Captain_CreateMatch_MatchScoreTableView_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchScoreCell"];
+    [cell.goalPlayerName setText:[[matchScoreDetail objectAtIndex:indexPath.row] objectForKey:@"goalPlayerName"]];
+    [cell.assistPlayerName setText:[[matchScoreDetail objectAtIndex:indexPath.row] objectForKey:@"assistPlayerName"]];
+    return cell;
 }
 
 #pragma mark - Navigation

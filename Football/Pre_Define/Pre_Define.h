@@ -16,6 +16,7 @@
 #define def_createMatch_cost @"费用"
 #define def_createMatch_costOption1 @"裁判"
 #define def_createMatch_costOption2 @"水"
+#define def_createMatch_score @"比分"
 #define def_createMatch_cost_ph_self @"输入该场比赛我队承担的费用"
 #define def_createMatch_cost_ph_opponent @"输入该场比赛对手承担的费用"
 #define def_createMatch_actionButton_started @"保存比赛数据"
