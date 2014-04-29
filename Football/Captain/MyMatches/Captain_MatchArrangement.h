@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Pre_Define.h"
-#import "WebUtils.h"
 #import "Captain_MainMenu.h"
 
 @interface Captain_MatchArrangementListCell : UITableViewCell

@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Pre_Define.h"
-#import "WebUtils.h"
 
 @protocol SelectOpponent <NSObject>
 -(void)receiveSelectedOpponent:(NSDictionary *)opponentTeam;

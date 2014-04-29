@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Pre_Define.h"
-#import "WebUtils.h"
 #import "Register_Captain.h"
 #import "LoginAndRegisterView.h"
 

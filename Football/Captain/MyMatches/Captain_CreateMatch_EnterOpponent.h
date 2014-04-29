@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Pre_Define.h"
 #import "HintTextView.h"
 #import "Captain_CreateMatch_TeamMarket.h"
 
