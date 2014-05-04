@@ -45,8 +45,9 @@ enum SelectedOpponentType
 
 //Dateformat
 #define def_JSONDateformat @"yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-#define def_MatchDateformat @"yyyy.MM.dd"
+#define def_MatchDateformat @"yyyy-MM-dd"
 #define def_MatchTimeformat @"HH:mm"
+#define def_MatchDateAndTimeformat @"YYYY-MM-dd HH:mm"
 
 //Global variables
 UserInfo *myUserInfo;

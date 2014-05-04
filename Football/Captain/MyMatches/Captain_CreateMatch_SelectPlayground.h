@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "HintTextView.h"
-@protocol SelectPlayground<NSObject>
+
+@protocol SelectPlayground <NSObject>
 -(void)receiveSelectedPlayground:(NSString *)playgroundName indexOfMainPlayground:(NSInteger)index;
 @end
 

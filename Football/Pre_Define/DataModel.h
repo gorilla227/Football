@@ -58,7 +58,16 @@
 -(NSDictionary *)exportToDictionary;
 @end
 
-
+@interface MatchScore : NSObject
+@property Team *home;
+@property NSString *awayTeamName;
+@property NSNumber *homeScore;
+@property NSNumber *awayScore;
+@property NSArray *goalPlayers;
+@property NSArray *assistPlayers;
+-(id)initWithData:(NSDictionary *)data;
+-(NSDictionary *)exportToDictionary;
+@end
 #pragma data keys
 //UserInfo
 #define kUserInfo_name @"name"
@@ -95,3 +104,10 @@
 #define kMatch_rating @"rating"
 #define kMatch_contactPersonId @"contactPerson"
 #define kMatch_matchType @"type"
+//MatchScore
+#define kMatchScore_homeTeam @"homeTeam"
+#define kMatchScore_awayTeam @"awayTeam"
+#define kMatchScore_homeScore @"homeScore"
+#define kMatchScore_awayScore @"awayScore"
+#define kMatchScore_goalPlayers @"goalPlayers"
+#define kMatchScore_assistPlayers @"assistPlayers"

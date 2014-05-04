@@ -10,19 +10,21 @@
 #import "HintTextView.h"
 #import "Captain_CreateMatch_EnterOpponent.h"
 #import "Captain_CreateMatch_SelectPlayground.h"
+#import "Captain_CreateMatch_EnterScore.h"
 
 @interface Captain_CreateMatch_MatchScoreTableView_Cell : UITableViewCell
 @property IBOutlet UILabel *goalPlayerName;
 @property IBOutlet UILabel *assistPlayerName;
 @end
-@interface Captain_CreateMatch : UIViewController<UITextFieldDelegate, EnterOpponent, SelectOpponent, SelectPlayground, UITableViewDataSource, UITableViewDelegate>
+
+@interface Captain_CreateMatch : UIViewController<UITextFieldDelegate, EnterOpponent, SelectOpponent, SelectPlayground, EnterScore, UITableViewDataSource, UITableViewDelegate>
 @property IBOutlet UITextField *matchTime, *matchOpponent, *matchPlace, *numOfPlayers, *cost;
 @property IBOutlet UIView *costOptions;
 @property IBOutlet UISwitch *costOption_Judge, *costOption_Water;
 @property IBOutlet UIBarButtonItem *actionButton;
 @property IBOutlet UIToolbar *toolBar;
 //Controls for score
-@property IBOutlet UITextField *matchScore;
+@property IBOutlet UITextField *matchScoreTextField;
 @property IBOutlet UITableView *matchScoreTableView;
 @property IBOutlet UIView *matchScoreTableViewHeader;
 @property IBOutlet UILabel *matchScoreHeader_Goal;

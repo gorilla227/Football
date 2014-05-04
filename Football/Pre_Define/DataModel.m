@@ -5,7 +5,6 @@
 //  Created by Andy on 14-4-27.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
-#define def_dateFormat @"yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 #import "DataModel.h"
 
 #pragma Team
@@ -17,7 +16,7 @@
     self = [super init];
     if (self) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:def_dateFormat];
+        [dateFormatter setDateFormat:def_JSONDateformat];
         
         [self setName:[data objectForKey:kTeam_name]];
         [self setDescription:[data objectForKey:kTeam_description]];
@@ -35,7 +34,7 @@
 -(NSDictionary *)exportToDictionary
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:def_dateFormat];
+    [dateFormatter setDateFormat:def_JSONDateformat];
     
     NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
     [output setObject:name forKey:kTeam_teamName];
@@ -110,7 +109,7 @@
     self = [super init];
     if (self) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:def_dateFormat];
+        [dateFormatter setDateFormat:def_JSONDateformat];
         
         [self setName:[data objectForKey:kMatch_name]];
         [self setDescription:[data objectForKey:kMatch_description]];
@@ -138,7 +137,7 @@
 -(NSDictionary *)exportToDictionary
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:def_dateFormat];
+    [dateFormatter setDateFormat:def_JSONDateformat];
     
     NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
     [output setObject:name forKey:kMatch_name];
@@ -155,4 +154,51 @@
     [output setObject:matchType forKey:kMatch_matchType];
     return output;
 }
+@end
+
+@implementation MatchScore
+@synthesize home, awayTeamName, homeScore, awayScore, goalPlayers, assistPlayers;
+
+-(id)initWithData:(NSDictionary *)data
+{
+    self = [super init];
+    if (self) {
+        [self setHome:[[Team alloc] initWithData:[data objectForKey:kMatchScore_homeTeam]]];
+        [self setAwayTeamName:[data objectForKey:kMatchScore_awayTeam]];
+        [self setHomeScore:[data objectForKey:kMatchScore_homeScore]];
+        [self setAwayScore:[data objectForKey:kMatchScore_awayScore]];
+        NSMutableArray *goalPlayersArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *player in [data objectForKey:kMatchScore_goalPlayers]) {
+            [goalPlayersArray addObject:[[UserInfo alloc] initWithData:player]];
+        }
+        [self setGoalPlayers:goalPlayersArray];
+        NSMutableArray *assistPlayersArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *player in [data objectForKey:kMatchScore_assistPlayers]) {
+            [assistPlayersArray addObject:[[UserInfo alloc] initWithData:player]];
+        }
+        [self setAssistPlayers:assistPlayersArray];
+    }
+    return self;
+}
+
+-(NSDictionary *)exportToDictionary
+{
+    NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
+    [output setObject:[home exportToDictionary] forKey:kMatchScore_homeTeam];
+    [output setObject:awayTeamName forKey:kMatchScore_awayTeam];
+    [output setObject:homeScore forKey:kMatchScore_homeScore];
+    [output setObject:awayScore forKey:kMatchScore_awayScore];
+    NSMutableArray *goalPlayersArray = [[NSMutableArray alloc] init];
+    for (UserInfo *player in goalPlayers) {
+        [goalPlayersArray addObject:[player exportToDictionary]];
+    }
+    [output setObject:goalPlayersArray forKey:kMatchScore_goalPlayers];
+    NSMutableArray *assistPlayersArray = [[NSMutableArray alloc] init];
+    for (UserInfo *player in assistPlayers) {
+        [assistPlayersArray addObject:[player exportToDictionary]];
+    }
+    [output setObject:assistPlayersArray forKey:kMatchScore_assistPlayers];
+    return output;
+}
+
 @end

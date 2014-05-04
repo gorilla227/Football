@@ -82,6 +82,10 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="y7G-a0-1B4">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="dbN-VF-g7q" kind="relationship" relationship="rootViewController" id="VOw-AO-toE"/>
                     </connections>
@@ -470,7 +474,6 @@
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="建立比赛" id="7DI-on-Rae"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="actionButton" destination="Lps-HG-YoU" id="cve-W7-G48"/>
                         <outlet property="cost" destination="qbP-tt-1kj" id="Yq8-9t-jYO"/>
@@ -479,22 +482,23 @@
                         <outlet property="costOptions" destination="Ti4-TZ-zGb" id="xcm-Jp-0C6"/>
                         <outlet property="matchOpponent" destination="l7m-d1-2C2" id="mMX-0a-kLa"/>
                         <outlet property="matchPlace" destination="Hwb-56-4Tz" id="lTS-2m-ZY1"/>
-                        <outlet property="matchScore" destination="Dyv-iz-CSq" id="tVC-nN-YbS"/>
                         <outlet property="matchScoreHeader_Assist" destination="h1b-oX-yWA" id="cZc-rI-9BT"/>
                         <outlet property="matchScoreHeader_Goal" destination="kJx-vd-eBx" id="His-WA-46h"/>
                         <outlet property="matchScoreTableView" destination="gln-sy-DJH" id="SP2-NS-LhO"/>
                         <outlet property="matchScoreTableViewHeader" destination="SXq-An-XfV" id="q9I-4e-0Kq"/>
+                        <outlet property="matchScoreTextField" destination="Dyv-iz-CSq" id="lof-8R-ikh"/>
                         <outlet property="matchTime" destination="gHj-aE-BkZ" id="nOb-mn-XIO"/>
                         <outlet property="numOfPlayers" destination="jSA-jH-6tk" id="Cb2-gP-Lrr"/>
                         <outlet property="toolBar" destination="kNK-M7-pjf" id="Jub-8x-C07"/>
                         <segue destination="TJj-lJ-1UK" kind="push" identifier="SelectOpponent" id="mkN-NA-bmm"/>
                         <segue destination="D47-h1-sYj" kind="push" identifier="EnterOpponent" id="XYH-IY-a8N"/>
                         <segue destination="1jn-PF-RVR" kind="push" identifier="SelectPlayground" id="RUA-fL-RiB"/>
+                        <segue destination="lPb-eJ-rbZ" kind="push" identifier="EnterScore" id="5jG-vh-hle"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CLb-Oe-g3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1178" y="153"/>
+            <point key="canvasLocation" x="745" y="197"/>
         </scene>
         <!--Captain Create Match Enter Opponent - 输入对手-->
         <scene sceneID="pXq-Zs-pv5">
@@ -556,7 +560,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQ4-zs-LUv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="-169"/>
+            <point key="canvasLocation" x="1169" y="-125"/>
         </scene>
         <!--Captain Create Match Team Market - 球队超市-->
         <scene sceneID="9eR-qX-PNd">
@@ -660,7 +664,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2051" y="-169"/>
+            <point key="canvasLocation" x="1618" y="-125"/>
         </scene>
         <!--Captain Create Match Select Playground - 选择球场-->
         <scene sceneID="JZ7-X3-4Qd">
@@ -737,7 +741,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8na-5h-avx">
-                                <rect key="frame" x="110.5" y="166" width="100" height="30"/>
+                                <rect key="frame" x="111" y="166" width="100" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="选择球场">
@@ -757,7 +761,156 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drR-IM-VrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="501"/>
+            <point key="canvasLocation" x="1169" y="545"/>
+        </scene>
+        <!--Captain Create Match Enter Score - 输入比分-->
+        <scene sceneID="YAb-AF-HMC">
+            <objects>
+                <viewController storyboardIdentifier="Captain_CreateMatch_EnterScore" title="输入比分" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lPb-eJ-rbZ" customClass="Captain_CreateMatch_EnterScore" sceneMemberID="viewController">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="xy2-nZ-SlI">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Ue7-IK-kR8">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Vs6-1T-wSC"/>
+                                    <barButtonItem enabled="NO" title="保存" id="WVF-2K-Nhy">
+                                        <connections>
+                                            <action selector="saveButtonOnClicked:" destination="lPb-eJ-rbZ" id="72Y-0x-FiL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="fWx-MN-f3g"/>
+                                </items>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                            <view contentMode="scaleToFill" id="W7q-yl-f5g">
+                                <rect key="frame" x="5" y="9" width="310" height="110"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TeamA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="PU7-44-XUh">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TeamB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="SVa-R2-jp4">
+                                        <rect key="frame" x="185" y="0.0" width="125" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="mhD-wx-An6">
+                                        <rect key="frame" x="0.0" y="51" width="125" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="lPb-eJ-rbZ" id="6Jx-Al-2TS"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="zUm-Tc-B3D">
+                                        <rect key="frame" x="185" y="51" width="125" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="lPb-eJ-rbZ" id="jd0-MC-bnD"/>
+                                        </connections>
+                                    </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="enterScore_VS.png" id="qbf-GX-qPb">
+                                        <rect key="frame" x="125.5" y="0.0" width="60" height="110"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="35" sectionHeaderHeight="22" sectionFooterHeight="22" id="aaV-6e-gyD">
+                                <rect key="frame" x="20" y="255" width="280" height="111"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MatchScoreCell" id="XHK-K9-4YW" customClass="Captain_CreateMatch_EnterScoreTableView_Cell">
+                                        <rect key="frame" x="0.0" y="22" width="280" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XHK-K9-4YW" id="6dr-bf-2MC">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="34"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择球员" textAlignment="center" minimumFontSize="17" id="wfm-ga-8Wq">
+                                                    <rect key="frame" x="0.0" y="2" width="132" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择球员" textAlignment="center" minimumFontSize="17" id="puh-Uo-SON">
+                                                    <rect key="frame" x="148" y="2" width="132" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="assistPlayerName" destination="puh-Uo-SON" id="Ga8-J9-yRx"/>
+                                            <outlet property="goalPlayerName" destination="wfm-ga-8Wq" id="XZR-aL-LkT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lPb-eJ-rbZ" id="eLe-Za-uAe"/>
+                                    <outlet property="delegate" destination="lPb-eJ-rbZ" id="kg8-Fn-eiw"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" id="RMk-Oh-SMv">
+                                <rect key="frame" x="20" y="220" width="280" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="助攻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uoV-9l-jio">
+                                        <rect key="frame" x="140" y="0.0" width="140" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进球" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GTv-yB-Hbh">
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="输入比分" id="tEP-9q-QXB"/>
+                    <connections>
+                        <outlet property="awayTeamLabel" destination="SVa-R2-jp4" id="AcO-lO-Rlh"/>
+                        <outlet property="awayTeamScoreTextField" destination="zUm-Tc-B3D" id="f1c-kJ-RbD"/>
+                        <outlet property="homeTeamLabel" destination="PU7-44-XUh" id="8Fu-Uo-wxc"/>
+                        <outlet property="homeTeamScoreTextField" destination="mhD-wx-An6" id="uPk-IJ-3cw"/>
+                        <outlet property="scoreDetailsTableView" destination="aaV-6e-gyD" id="ISw-IR-2jl"/>
+                        <outlet property="summaryView" destination="W7q-yl-f5g" id="zDe-IX-qXp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dwy-9Y-gXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1618" y="545"/>
         </scene>
         <!--Captain New Player - 新人入队-->
         <scene sceneID="QIw-Sm-tLY">
@@ -1407,6 +1560,7 @@
         <image name="LoginAccountIcon.jpg" width="30" height="30"/>
         <image name="PasswordIcon.jpg" width="30" height="30"/>
         <image name="TeamIcon.jpg" width="97" height="99"/>
+        <image name="enterScore_VS.png" width="60" height="110"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

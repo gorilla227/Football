@@ -22,11 +22,12 @@
     enum SelectedOpponentType selectedOpponentType;
     Team *selectedOpponentTeam;
     NSInteger indexOfSelectedMainPlayground;
-    NSArray *matchScoreDetail;
-    NSString *matchScoreResult;
+//    NSArray *matchScoreDetail;
+//    NSString *matchScoreResult;
+    MatchScore *matchScore;
 }
 @synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water, actionButton, toolBar;
-@synthesize matchScore, matchScoreTableView, matchScoreTableViewHeader, matchScoreHeader_Goal, matchScoreHeader_Assist;
+@synthesize matchScoreTextField, matchScoreTableView, matchScoreTableViewHeader, matchScoreHeader_Goal, matchScoreHeader_Assist;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,7 +46,9 @@
     hintView = [[HintTextView alloc] init];
     selectedOpponentType = None;
     indexOfSelectedMainPlayground = -1;
-    matchScoreDetail = [[NSArray alloc] init];
+//    matchScoreDetail = [[NSArray alloc] init];
+    matchScore = [[MatchScore alloc] init];
+    matchScore.home = myUserInfo.team;
     [self.view addSubview:hintView];
     [self.view setBackgroundColor:[UIColor clearColor]];
     [self initialMatchTime];
@@ -62,14 +65,14 @@
     [numOfPlayers setHidden:YES];
     [cost setHidden:YES];
     [costOptions setHidden:YES];
-    [matchScore setHidden:YES];
+    [matchScoreTextField setHidden:YES];
     [matchScoreTableViewHeader setHidden:YES];
     [matchScoreTableView setHidden:YES];
     [toolBar setHidden:YES];
     
     //Set dateformatter
     dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    [dateFormatter setDateFormat:def_MatchDateAndTimeformat];
 }
 
 -(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
@@ -147,7 +150,7 @@
 
 -(void)initialMatchScore
 {
-    [self initialLeftViewForTextField:matchScore labelName:def_createMatch_score iconImage:@"leftIcon_createMatch_score.png"];
+    [self initialLeftViewForTextField:matchScoreTextField labelName:def_createMatch_score iconImage:@"leftIcon_createMatch_score.png"];
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -175,8 +178,8 @@
     else if ([textField isEqual:numOfPlayers]) {
         return NO;
     }
-    else if ([textField isEqual:matchScore]) {
-        
+    else if ([textField isEqual:matchScoreTextField]) {
+        [self performSegueWithIdentifier:@"EnterScore" sender:self];
     }
     return YES;
 }
@@ -271,6 +274,13 @@
     [self checkActionButtonStatus];
 }
 
+-(void)receiveScore:(MatchScore *)score
+{
+    matchScore = score;
+    [matchScoreTextField setText:[NSString stringWithFormat:@"%@:%@", matchScore.homeScore, matchScore.awayScore]];
+    [matchScoreTableView reloadData];
+}
+
 -(IBAction)confirmCreateMatchButtonSetEnabled:(id)sender
 {
     [actionButton setEnabled:[matchTime hasText] && [matchOpponent hasText] && [matchPlace hasText] && [numOfPlayers hasText] && [cost hasText]];
@@ -313,9 +323,9 @@
         [cost setHidden:NO];
         [costOptions setHidden:NO];
         [toolBar setHidden:NO];
-        [matchScore setHidden:NO];
-        [matchScoreTableViewHeader setHidden:NO];
-        [matchScoreTableView setHidden:NO];
+        [matchScoreTextField setHidden:NO];
+        [matchScoreTableViewHeader setHidden:YES];
+        [matchScoreTableView setHidden:YES];
         [actionButton setTitle:def_createMatch_actionButton_started];
     }
     else {
@@ -325,7 +335,7 @@
         [numOfPlayers setHidden:YES];
         [cost setHidden:YES];
         [costOptions setHidden:YES];
-        [matchScore setHidden:YES];
+        [matchScoreTextField setHidden:YES];
         [matchScoreTableViewHeader setHidden:YES];
         [matchScoreTableView setHidden:YES];
         [toolBar setHidden:YES];
@@ -334,6 +344,7 @@
         [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent wantShow:YES];
     }
 }
+
 #pragma matchScore tableview
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -341,14 +352,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return matchScoreDetail.count;
+    return matchScore.homeScore.integerValue;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Captain_CreateMatch_MatchScoreTableView_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchScoreCell"];
-    [cell.goalPlayerName setText:[[matchScoreDetail objectAtIndex:indexPath.row] objectForKey:@"goalPlayerName"]];
-    [cell.assistPlayerName setText:[[matchScoreDetail objectAtIndex:indexPath.row] objectForKey:@"assistPlayerName"]];
+    [cell.goalPlayerName setText:[[matchScore.goalPlayers objectAtIndex:indexPath.row] userName]];
+    [cell.assistPlayerName setText:[[matchScore.assistPlayers objectAtIndex:indexPath.row] userName]];
     return cell;
 }
 
@@ -379,6 +390,18 @@
         [selectPlayground setDelegate:self];
         [selectPlayground setIndexOfSelectedMainPlayground:indexOfSelectedMainPlayground];
         [selectPlayground setSelectedPlace:matchPlace.text];
+    }
+    else if ([segue.identifier isEqualToString:@"EnterScore"]) {
+        //Enter Score
+        Captain_CreateMatch_EnterScore *enterScore = segue.destinationViewController;
+        [enterScore setDelegate:self];
+        if (selectedOpponentTeam) {
+            [matchScore setAwayTeamName:selectedOpponentTeam.teamName];
+        }
+        else {
+            [matchScore setAwayTeamName:matchOpponent.text];
+        }
+        [enterScore setMatchScore:matchScore];
     }
 }
 @end
