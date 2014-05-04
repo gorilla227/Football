@@ -13,28 +13,30 @@
 @property NSString *name;
 @property NSString *description;
 @property NSDate *creationDate;
-@property NSInteger teamId;
-@property NSInteger balance;
+@property NSNumber *teamId;
+@property NSNumber *balance;
 @property NSData *logo;
-@property NSInteger captainId;
+@property NSNumber *captainId;
 @property NSString *slogan;
 @property NSString *teamName;
 -(id)initWithData:(NSDictionary *)data;
+-(NSDictionary *)exportToDictionary;
 @end
 
 #pragma UserInfo
 @interface UserInfo : NSObject
-@property NSInteger userId;
+@property NSNumber *userId;
 @property NSString *userName;
 @property NSData *picture;
 @property NSString *userType;
 @property NSString *loginType;
 @property NSString *city;
 @property NSString *name;
-@property NSInteger age;
-@property BOOL gender;//YES-Male NO-Female
+@property NSNumber *age;
+@property NSString *gender;//YES-Male NO-Female
 @property Team *team;
 -(id)initWithData:(NSDictionary *)data;
+-(NSDictionary *)exportToDictionary;
 @end
 
 #pragma Match
@@ -42,17 +44,18 @@
 @property NSString *name;
 @property NSString *description;
 @property NSDate *creationDate;
-@property NSInteger matchId;
+@property NSNumber *matchId;
 @property NSString *matchPlace;
 @property NSDate *matchDate;
 @property BOOL announcable;
 @property BOOL recordable;
 @property Team *teamA;
 @property Team *teamB;
-@property NSInteger rating;
-@property NSInteger contactPersonId;
-@property NSInteger matchType;
+@property NSString *rating;
+@property NSString *contactPersonId;
+@property NSString *matchType;
 -(id)initWithData:(NSDictionary *)data;
+-(NSDictionary *)exportToDictionary;
 @end
 
 

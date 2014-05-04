@@ -10,7 +10,7 @@
 #import "Register_Captain.h"
 #import "LoginAndRegisterView.h"
 
-@interface Login_Content : UIViewController<DismissKeyboard, WebUtilsDelegate>
+@interface Login_Content : UIViewController<DismissKeyboard, JSONConnectDelegate>
 @property IBOutlet UITextField *accountField;
 @property IBOutlet UITextField *passwordField;
 @property IBOutlet UIButton *registerButton;
@@ -18,5 +18,5 @@
 @property IBOutlet UIButton *qqAccountButton;
 @property IBOutlet UIButton *sinaAccountButton;
 
--(void)loginWithUser:(NSData *)userData;
+//-(void)loginWithUser:(NSData *)userData;
 @end

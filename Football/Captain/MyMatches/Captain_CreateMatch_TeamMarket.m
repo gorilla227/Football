@@ -26,6 +26,7 @@
 #pragma Captain_CreateMatch_TeamMarket
 @implementation Captain_CreateMatch_TeamMarket{
     NSMutableArray *teamList;
+    JSONConnect *connection;
 }
 @synthesize delegate;
 
@@ -47,22 +48,21 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    WebUtils *getDataConnection = [[WebUtils alloc] initWithServerURL:def_serverURL andDelegate:self];
-    [getDataConnection requestData:def_JSONSuffix_allTeams forSelector:@selector(teamListDataReceived:)];
+    connection = [[JSONConnect alloc] initWithDelegate:self];
+    teamList = [[NSMutableArray alloc] init];
+    
+    [connection requestAllTeamsWithCount:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
 }
 
--(void)teamListDataReceived:(NSData *)data
+-(void)receiveAllTemas:(NSArray *)teams
 {
-    teamList = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    
     //Remove self team
-    for (NSDictionary *team in teamList) {
-        if ([[team objectForKey:@"id"] isEqual:[[myUserInfo objectForKey:@"team"] objectForKey:@"id"]]) {
-            [teamList removeObject:team];
-            break;
+    for (Team *team in teams) {
+        if (![team.teamId isEqual:myUserInfo.team.teamId]) {
+            [teamList addObject:team];
         }
     }
-    
+
     //Move the selected team to the first object.
     if (self.selectedTeam) {
         [teamList removeObject:self.selectedTeam];
@@ -70,13 +70,6 @@
     }
     
     [self.tableView reloadData];
-}
-
--(void)retrieveData:(NSData *)data forSelector:(SEL)selector
-{
-    if ([self canPerformAction:selector withSender:self]) {
-        [self performSelectorInBackground:selector withObject:data];
-    }
 }
 
 -(IBAction)inviteButtonOnClicked:(id)sender
@@ -100,14 +93,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return teamList.count;
 }
@@ -117,8 +108,8 @@
     Captain_CreateMatch_TeamMarket_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"TeamMarketCell"];
     
     // Configure the cell...
-    NSDictionary *teamData = [teamList objectAtIndex:indexPath.row];
-    [cell.teamName setText:[teamData objectForKey:@"teamName"]];
+    Team *teamData = [teamList objectAtIndex:indexPath.row];
+    [cell.teamName setText:teamData.teamName];
     if (self.selectedTeam && indexPath.row == 0) {
         [cell.teamName setHighlighted:YES];
         [cell.inviteButton setSelected:YES];

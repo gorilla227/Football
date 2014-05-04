@@ -22,6 +22,9 @@
 #define def_createMatch_actionButton_started @"保存比赛数据"
 #define def_createMatch_actionButton_new @"确定建立"
 #define def_createMatch_actionButton_existed @"发送约赛请求"
+#define def_MA_actionButton_announce @"通知队员"
+#define def_MA_actionButton_record @"数据记录"
+#define def_MA_actionButton_detail @"详细"
 
 //Color
 #define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]
@@ -40,13 +43,10 @@ enum SelectedOpponentType
     New
 };
 
-//JSON variables
-#define def_serverURL @"http://inomind.de:8080/SoccerServer"
-#define def_JSONSuffix_allMatches @"matches.json"
-#define def_JSONSuffix_allMatchesOfTeam @"matches?teamId="
-#define def_JSONSuffix_allMatchesOfUser @"matches?userId="
-#define def_JSONSuffix_allTeams @"teams.json"
-#define def_JSONSuffix_userInfo @"user?id="
+//Dateformat
+#define def_JSONDateformat @"yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+#define def_MatchDateformat @"yyyy.MM.dd"
+#define def_MatchTimeformat @"HH:mm"
 
 //Global variables
-NSDictionary *myUserInfo;
+UserInfo *myUserInfo;

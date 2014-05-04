@@ -24,11 +24,8 @@
 @property BOOL recordable;
 @end
 
-@interface Captain_MatchArrangementList : UITableViewController<WebUtilsDelegate, UIAlertViewDelegate>
--(void)matchesListDataReceived:(NSData *)data;
-@end
-
-@interface Captain_MatchArrangement : UIViewController
+@interface Captain_MatchArrangement : UIViewController<JSONConnectDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@property IBOutlet UITableView *matchesTableView;
 @property IBOutlet UIImageView *teamIcon;
 @property IBOutlet UILabel *teamName;
 @property IBOutlet UILabel *numberOfTeamMembers;

@@ -42,19 +42,21 @@
 }
 @end
 
-#pragma Captain_MatchArrangmentList
-@interface Captain_MatchArrangementList ()
+#pragma Captain_MatchArrangement
+@interface Captain_MatchArrangement ()
 
 @end
 
-@implementation Captain_MatchArrangementList{
-    NSMutableArray *matchData;
+@implementation Captain_MatchArrangement{
+    NSMutableArray *matchesList;
     NSIndexPath *indexPathOfCancelMatch;
+    JSONConnect *connection;
 }
+@synthesize teamIcon, teamName, numberOfTeamMembers, matchesTableView;
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -64,29 +66,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    matchesList = [[NSMutableArray alloc] init];
+    //Set TeamInfo
+    [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [teamIcon.layer setBorderWidth:2.0f];
+    [teamIcon.layer setCornerRadius:teamIcon.bounds.size.width/2];
+    [teamIcon.layer setMasksToBounds:YES];
+    [teamName setText:myUserInfo.team.teamName];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    WebUtils *getDataConnection = [[WebUtils alloc] initWithServerURL:def_serverURL andDelegate:self];
-    NSNumber *userId = [myUserInfo objectForKey:@"id"];
-    
-    [getDataConnection requestData:[def_JSONSuffix_allMatchesOfUser stringByAppendingString:userId.stringValue] forSelector:@selector(matchesListDataReceived:)];
+    //Request matches
+    connection = [[JSONConnect alloc] initWithDelegate:self];
+    [connection requestMatchesByUserId:myUserInfo.userId count:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
 }
 
--(void)matchesListDataReceived:(NSData *)data
+-(void)receiveMatches:(NSArray *)matches
 {
-    matchData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    [self.tableView reloadData];
+    [matchesList addObjectsFromArray:matches];
+    [matchesTableView reloadData];
 }
 
--(void)retrieveData:(NSData *)data forSelector:(SEL)selector
+-(IBAction)menuButtonOnClicked:(id)sender
 {
-    if ([self canPerformAction:selector withSender:self]) {
-        [self performSelectorInBackground:selector withObject:data];
+    id<MainMenuAppearenceDelegate>delegateOfMenuAppearance = (id)self.navigationController;
+    if (delegateOfMenuAppearance) {
+        [delegateOfMenuAppearance menuSwitch];
     }
 }
 
@@ -107,37 +111,48 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return matchData.count;
+    return matchesList.count;
 }
 
 
 - (Captain_MatchArrangementListCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Captain_MatchArrangementListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MatchArrangementListCell"];
-    NSDictionary *cellData = [matchData objectAtIndex:indexPath.row];
+    Match *matchData = [matchesList objectAtIndex:indexPath.row];
+    Team *opponentTeam;
+    if ([matchData.teamA.teamId isEqual:myUserInfo.team.teamId]) {
+        opponentTeam = matchData.teamB;
+    }
+    else {
+        opponentTeam = matchData.teamA;
+    }
     
-//    NSLog(@"%li, %@", indexPath.row, [cellData objectForKey:@"announcable"]);
-
+    //    NSLog(@"%li, %@", indexPath.row, [cellData objectForKey:@"announcable"]);
+    
     // Configure the cell...
     [cell.numberOfPlayers setText:[NSString stringWithFormat:@"%li/10", (long)indexPath.row]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    [dateFormatter setDateFormat:def_JSONDateformat];
     [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
-    NSDate *matchDate = [dateFormatter dateFromString:[cellData objectForKey:@"date"]];
     NSDateFormatter *outputDateFormatter = [[NSDateFormatter alloc] init];
-    [outputDateFormatter setDateFormat:@"yyyy.MM.dd"];
+    [outputDateFormatter setDateFormat:def_MatchDateformat];
     NSDateFormatter *outputTimeFormatter = [[NSDateFormatter alloc] init];
-    [outputTimeFormatter setDateFormat:@"HH:mm"];
-    [cell.matchDate setText:[outputDateFormatter stringFromDate:matchDate]];
-    [cell.matchTime setText:[outputTimeFormatter stringFromDate:matchDate]];
+    [outputTimeFormatter setDateFormat:def_MatchTimeformat];
+    [cell.matchDate setText:[outputDateFormatter stringFromDate:matchData.matchDate]];
+    [cell.matchTime setText:[outputTimeFormatter stringFromDate:matchData.matchDate]];
     
-    [cell.matchOpponent setText:[[cellData objectForKey:@"teamB"] objectForKey:@"teamName"]];
-    [cell.matchPlace setText:[cellData objectForKey:@"place"]];
-    [cell.matchType setText:@"11人制"];
+    [cell.matchOpponent setText:opponentTeam.teamName];
+    [cell.matchPlace setText:matchData.matchPlace];
+    if ([matchData.matchType isEqual:[NSNull null]]) {
+        [cell.matchType setText:@"未知类型"];
+    }
+    else {
+        [cell.matchType setText:matchData.matchType];
+    }
     [cell.actionButton.layer setCornerRadius:3.0f];
     switch (indexPath.row%3) {
         case 0:
-            [cell.actionButton setTitle:@"通知球员" forState:UIControlStateNormal];
+            [cell.actionButton setTitle:def_MA_actionButton_announce forState:UIControlStateNormal];
             [cell.actionButton setBackgroundColor:def_actionButtonColor_BeforeMatch];
             [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_SignUp];
             [cell setBackgroundColor:def_backgroundColor_BeforeMatch];
@@ -148,7 +163,7 @@
             [cell setRecordable:NO];
             break;
         case 1:
-            [cell.actionButton setTitle:@"数据记录" forState:UIControlStateNormal];
+            [cell.actionButton setTitle:def_MA_actionButton_record forState:UIControlStateNormal];
             [cell.actionButton setBackgroundColor:def_actionButtonColor_AfterMatch];
             [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_ShowUp];
             [cell setBackgroundColor:def_backgroundColor_AfterMatch];
@@ -159,7 +174,7 @@
             [cell setRecordable:YES];
             break;
         case 2:
-            [cell.actionButton setTitle:@"详细" forState:UIControlStateNormal];
+            [cell.actionButton setTitle:def_MA_actionButton_detail forState:UIControlStateNormal];
             [cell.actionButton setBackgroundColor:def_actionButtonColor_FilledDetail];
             [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_ShowUp];
             [cell setBackgroundColor:def_backgroundColor_FilledDetail];
@@ -206,68 +221,12 @@
 {
     if (buttonIndex == 0) {
         //Cancel the match
-        [matchData removeObjectAtIndex:indexPathOfCancelMatch.row];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPathOfCancelMatch] withRowAnimation:UITableViewRowAnimationFade];
+        [matchesList removeObjectAtIndex:indexPathOfCancelMatch.row];
+        [matchesTableView deleteRowsAtIndexPaths:@[indexPathOfCancelMatch] withRowAnimation:UITableViewRowAnimationFade];
     }
     else {
-        [self.tableView setEditing:NO animated:YES];
+        [matchesTableView setEditing:NO animated:YES];
     }
-}
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-// Get the new view controller using [segue destinationViewController].
-// Pass the selected object to the new view controller.
-}
-*/
-
-@end
-
-#pragma Captain_MatchArrangement
-@interface Captain_MatchArrangement ()
-
-@end
-
-@implementation Captain_MatchArrangement
-@synthesize teamIcon, teamName, numberOfTeamMembers;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    //Set TeamInfo
-    [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [teamIcon.layer setBorderWidth:2.0f];
-    [teamIcon.layer setCornerRadius:teamIcon.bounds.size.width/2];
-    [teamIcon.layer setMasksToBounds:YES];
-    [teamName setText:[[myUserInfo objectForKey:@"team"] objectForKey:@"teamName"]];
-}
-
--(IBAction)menuButtonOnClicked:(id)sender
-{
-    id<MainMenuAppearenceDelegate>delegateOfMenuAppearance = (id)self.navigationController;
-    if (delegateOfMenuAppearance) {
-        [delegateOfMenuAppearance menuSwitch];
-    }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 /*
 #pragma mark - Navigation

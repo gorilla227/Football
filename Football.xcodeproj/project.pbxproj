@@ -26,7 +26,6 @@
 		A153ACBF190244880062EB44 /* hint_background_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBE190244880062EB44 /* hint_background_arrow.png */; };
 		A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */; };
 		A172432B1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */; };
-		A173033C18FB5A0400702015 /* WebUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A173033B18FB5A0400702015 /* WebUtils.m */; };
 		A18D7F7A1903912D003028FE /* Captain_RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D7F791903912D003028FE /* Captain_RootNavigationController.m */; };
 		A18D7F831904A0F6003028FE /* icon_fillMatchData.png in Resources */ = {isa = PBXBuildFile; fileRef = A18D7F811904A0F6003028FE /* icon_fillMatchData.png */; };
 		A18D7F841904A0F6003028FE /* icon_noticePlayers.png in Resources */ = {isa = PBXBuildFile; fileRef = A18D7F821904A0F6003028FE /* icon_noticePlayers.png */; };
@@ -66,6 +65,16 @@
 		A1D07BFD18CC1E4900FA3A8D /* FootballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07BFC18CC1E4900FA3A8D /* FootballTests.m */; };
 		A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0618CD14B700FA3A8D /* Login.storyboard */; };
 		A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0D18CD177F00FA3A8D /* Setting.plist */; };
+		A1F428DC191209DB00567A02 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428C9191209DB00567A02 /* AFHTTPRequestOperation.m */; };
+		A1F428DD191209DB00567A02 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428CB191209DB00567A02 /* AFHTTPRequestOperationManager.m */; };
+		A1F428DE191209DB00567A02 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428CD191209DB00567A02 /* AFHTTPSessionManager.m */; };
+		A1F428DF191209DB00567A02 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428D0191209DB00567A02 /* AFNetworkReachabilityManager.m */; };
+		A1F428E0191209DB00567A02 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428D2191209DB00567A02 /* AFSecurityPolicy.m */; };
+		A1F428E1191209DB00567A02 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428D4191209DB00567A02 /* AFURLConnectionOperation.m */; };
+		A1F428E2191209DB00567A02 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428D6191209DB00567A02 /* AFURLRequestSerialization.m */; };
+		A1F428E3191209DB00567A02 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428D8191209DB00567A02 /* AFURLResponseSerialization.m */; };
+		A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428DA191209DB00567A02 /* AFURLSessionManager.m */; };
+		A1F428E8191215A000567A02 /* JSONConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428E7191215A000567A02 /* JSONConnect.m */; };
 		B276E0ED18EF638700DEB116 /* Captain_NewPlayerList.m in Sources */ = {isa = PBXBuildFile; fileRef = B276E0EC18EF638700DEB116 /* Captain_NewPlayerList.m */; };
 		B2D096EF18EE01D4005221F2 /* ActionSheetMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */; };
 		B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D6981518ECC3F700603B87 /* Captain_MyPlayers.m */; };
@@ -110,8 +119,6 @@
 		A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_CreateMatch.m; path = Captain/MyMatches/Captain_CreateMatch.m; sourceTree = "<group>"; };
 		A17243291908CF04008F4948 /* Captain_CreateMatch_TeamMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_CreateMatch_TeamMarket.h; path = Captain/MyMatches/Captain_CreateMatch_TeamMarket.h; sourceTree = "<group>"; };
 		A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_CreateMatch_TeamMarket.m; path = Captain/MyMatches/Captain_CreateMatch_TeamMarket.m; sourceTree = "<group>"; };
-		A173033A18FB5A0400702015 /* WebUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebUtils.h; path = Football/Utils/WebUtils.h; sourceTree = "<group>"; };
-		A173033B18FB5A0400702015 /* WebUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebUtils.m; path = Football/Utils/WebUtils.m; sourceTree = "<group>"; };
 		A178CED718FE343A007A3CA6 /* Pre_Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Pre_Define.h; path = Pre_Define/Pre_Define.h; sourceTree = "<group>"; };
 		A18D7F781903912D003028FE /* Captain_RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_RootNavigationController.h; path = Captain/Captain_RootNavigationController.h; sourceTree = "<group>"; };
 		A18D7F791903912D003028FE /* Captain_RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_RootNavigationController.m; path = Captain/Captain_RootNavigationController.m; sourceTree = "<group>"; };
@@ -168,6 +175,28 @@
 		A1D07BFC18CC1E4900FA3A8D /* FootballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FootballTests.m; sourceTree = "<group>"; };
 		A1D07C0618CD14B700FA3A8D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		A1D07C0D18CD177F00FA3A8D /* Setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setting.plist; sourceTree = "<group>"; };
+		A1F428C8191209DB00567A02 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		A1F428C9191209DB00567A02 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		A1F428CA191209DB00567A02 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		A1F428CB191209DB00567A02 /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		A1F428CC191209DB00567A02 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		A1F428CD191209DB00567A02 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		A1F428CE191209DB00567A02 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		A1F428CF191209DB00567A02 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		A1F428D0191209DB00567A02 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		A1F428D1191209DB00567A02 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		A1F428D2191209DB00567A02 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		A1F428D3191209DB00567A02 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		A1F428D4191209DB00567A02 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		A1F428D5191209DB00567A02 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		A1F428D6191209DB00567A02 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		A1F428D7191209DB00567A02 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		A1F428D8191209DB00567A02 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		A1F428D9191209DB00567A02 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		A1F428DA191209DB00567A02 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		A1F428E519120C3700567A02 /* JSONConnectionParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSONConnectionParameters.h; path = Football/Utils/JSONConnectionParameters.h; sourceTree = "<group>"; };
+		A1F428E6191215A000567A02 /* JSONConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONConnect.h; path = Football/Utils/JSONConnect.h; sourceTree = "<group>"; };
+		A1F428E7191215A000567A02 /* JSONConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONConnect.m; path = Football/Utils/JSONConnect.m; sourceTree = "<group>"; };
 		B276E0EB18EF638700DEB116 /* Captain_NewPlayerList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayerList.h; path = Captain/MyTeam/Captain_NewPlayerList.h; sourceTree = "<group>"; };
 		B276E0EC18EF638700DEB116 /* Captain_NewPlayerList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayerList.m; path = Captain/MyTeam/Captain_NewPlayerList.m; sourceTree = "<group>"; };
 		B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActionSheetMenu.plist; path = Pre_Define/ActionSheetMenu.plist; sourceTree = "<group>"; };
@@ -277,8 +306,10 @@
 		A173033D18FB5A0A00702015 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				A173033A18FB5A0400702015 /* WebUtils.h */,
-				A173033B18FB5A0400702015 /* WebUtils.m */,
+				A1F428C7191209DB00567A02 /* AFNetworking */,
+				A1F428E6191215A000567A02 /* JSONConnect.h */,
+				A1F428E7191215A000567A02 /* JSONConnect.m */,
+				A1F428E519120C3700567A02 /* JSONConnectionParameters.h */,
 			);
 			name = Utils;
 			path = ..;
@@ -446,6 +477,33 @@
 			name = Captain;
 			sourceTree = "<group>";
 		};
+		A1F428C7191209DB00567A02 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				A1F428C8191209DB00567A02 /* AFHTTPRequestOperation.h */,
+				A1F428C9191209DB00567A02 /* AFHTTPRequestOperation.m */,
+				A1F428CA191209DB00567A02 /* AFHTTPRequestOperationManager.h */,
+				A1F428CB191209DB00567A02 /* AFHTTPRequestOperationManager.m */,
+				A1F428CC191209DB00567A02 /* AFHTTPSessionManager.h */,
+				A1F428CD191209DB00567A02 /* AFHTTPSessionManager.m */,
+				A1F428CE191209DB00567A02 /* AFNetworking.h */,
+				A1F428CF191209DB00567A02 /* AFNetworkReachabilityManager.h */,
+				A1F428D0191209DB00567A02 /* AFNetworkReachabilityManager.m */,
+				A1F428D1191209DB00567A02 /* AFSecurityPolicy.h */,
+				A1F428D2191209DB00567A02 /* AFSecurityPolicy.m */,
+				A1F428D3191209DB00567A02 /* AFURLConnectionOperation.h */,
+				A1F428D4191209DB00567A02 /* AFURLConnectionOperation.m */,
+				A1F428D5191209DB00567A02 /* AFURLRequestSerialization.h */,
+				A1F428D6191209DB00567A02 /* AFURLRequestSerialization.m */,
+				A1F428D7191209DB00567A02 /* AFURLResponseSerialization.h */,
+				A1F428D8191209DB00567A02 /* AFURLResponseSerialization.m */,
+				A1F428D9191209DB00567A02 /* AFURLSessionManager.h */,
+				A1F428DA191209DB00567A02 /* AFURLSessionManager.m */,
+			);
+			name = AFNetworking;
+			path = Football/Utils/AFNetworking;
+			sourceTree = "<group>";
+		};
 		B2D6981318ECC35500603B87 /* MyTeam */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,23 +646,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1F428DC191209DB00567A02 /* AFHTTPRequestOperation.m in Sources */,
 				A103339318D6B49900050A61 /* Login.m in Sources */,
 				A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */,
 				A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */,
-				A173033C18FB5A0400702015 /* WebUtils.m in Sources */,
+				A1F428E3191209DB00567A02 /* AFURLResponseSerialization.m in Sources */,
 				A1D07BDE18CC1E4800FA3A8D /* main.m in Sources */,
 				A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.m in Sources */,
 				A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */,
+				A1F428E1191209DB00567A02 /* AFURLConnectionOperation.m in Sources */,
+				A1F428DD191209DB00567A02 /* AFHTTPRequestOperationManager.m in Sources */,
 				A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */,
 				A1C8F9EC18DE90B400BE42D4 /* Login_Content.m in Sources */,
 				A18D7F7A1903912D003028FE /* Captain_RootNavigationController.m in Sources */,
 				A1C8F9E918DE895C00BE42D4 /* Register_Captain.m in Sources */,
 				A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */,
 				A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */,
+				A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */,
 				B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */,
+				A1F428E8191215A000567A02 /* JSONConnect.m in Sources */,
+				A1F428E0191209DB00567A02 /* AFSecurityPolicy.m in Sources */,
 				A145670318F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m in Sources */,
 				A172432B1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m in Sources */,
+				A1F428DF191209DB00567A02 /* AFNetworkReachabilityManager.m in Sources */,
 				A145670918F1064E006E158E /* Captain_NewPlayer_InviteeCell.m in Sources */,
+				A1F428DE191209DB00567A02 /* AFHTTPSessionManager.m in Sources */,
+				A1F428E2191209DB00567A02 /* AFURLRequestSerialization.m in Sources */,
 				A1C8FA4918DFEADD00BE42D4 /* Register_Player.m in Sources */,
 				A1C8FA4C18DFEAFE00BE42D4 /* Register_Player_Advance.m in Sources */,
 				B276E0ED18EF638700DEB116 /* Captain_NewPlayerList.m in Sources */,

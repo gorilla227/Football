@@ -20,7 +20,7 @@
     NSMutableArray *enteringControllers;
     BOOL matchStarted;
     enum SelectedOpponentType selectedOpponentType;
-    NSDictionary *selectedOpponentTeam;
+    Team *selectedOpponentTeam;
     NSInteger indexOfSelectedMainPlayground;
     NSArray *matchScoreDetail;
     NSString *matchScoreResult;
@@ -68,7 +68,7 @@
     [toolBar setHidden:YES];
     
     //Set dateformatter
-     dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
 }
 
@@ -232,10 +232,10 @@
     [self checkActionButtonStatus];
 }
 
--(void)receiveSelectedOpponent:(NSDictionary *)opponentTeam
+-(void)receiveSelectedOpponent:(Team *)opponentTeam
 {
     //Fill opponent
-    [matchOpponent setText:[opponentTeam objectForKey:@"teamName"]];
+    [matchOpponent setText:opponentTeam.teamName];
     
     //Set selectedOpponentTeam
     selectedOpponentTeam = opponentTeam;

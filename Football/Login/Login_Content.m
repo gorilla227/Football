@@ -18,6 +18,7 @@
     Register_Captain *registerCaptain;
     id<LoginAndRegisterView>delegate;
     NSArray *textFieldArray;
+    JSONConnect *connection;
 }
 @synthesize accountField;
 @synthesize passwordField;
@@ -64,6 +65,8 @@
     [passwordField.layer setBorderColor:[UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1].CGColor];
     [passwordField.layer setBorderWidth:1.0f];
     [passwordField.layer setCornerRadius:3.0f];
+    
+    connection = [[JSONConnect alloc] initWithDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,29 +99,20 @@
     [self dismissKeyboard];
 }
 
--(void)loginWithUser:(NSData *)userData
+-(IBAction)loginButtonOnClicked:(id)sender
 {
-    extern NSDictionary *myUserInfo;
-    myUserInfo = [NSJSONSerialization JSONObjectWithData:userData options:NSJSONReadingMutableContainers error:nil];
+    [connection requestUserInfoById:[NSNumber numberWithInteger:1]];
     
+//    [self.parentViewController.view setUserInteractionEnabled:NO];
+}
+
+-(void)receiveUserInfo:(UserInfo *)userInfo
+{
+//    extern UserInfo *myUserInfo;
+    myUserInfo = userInfo;
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Captain" bundle:nil];
     UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
     [self presentViewController:mainController animated:YES completion:nil];
-}
-
--(void)retrieveData:(NSData *)data forSelector:(SEL)selector
-{
-    if ([self canPerformAction:selector withSender:self]) {
-        [self performSelectorOnMainThread:selector withObject:data waitUntilDone:YES];
-        [self.parentViewController.view setUserInteractionEnabled:YES];
-    }
-}
-
--(IBAction)loginButtonOnClicked:(id)sender
-{
-    WebUtils *requestUserInfo = [[WebUtils alloc] initWithServerURL:def_serverURL andDelegate:self];
-    [requestUserInfo requestData:[def_JSONSuffix_userInfo stringByAppendingString:@"1"] forSelector:@selector(loginWithUser:)];
-//    [self.parentViewController.view setUserInteractionEnabled:NO];
 }
 
 -(IBAction)registerButtonOnClicked:(id)sender

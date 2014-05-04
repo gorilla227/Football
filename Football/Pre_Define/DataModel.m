@@ -5,7 +5,7 @@
 //  Created by Andy on 14-4-27.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
-
+#define def_dateFormat @"yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 #import "DataModel.h"
 
 #pragma Team
@@ -16,20 +16,43 @@
 {
     self = [super init];
     if (self) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:def_dateFormat];
+        
         [self setName:[data objectForKey:kTeam_name]];
         [self setDescription:[data objectForKey:kTeam_description]];
-        [self setCreationDate:[data objectForKey:kTeam_creationDate]];
-        NSNumber *dataId = [data objectForKey:kTeam_teamId];
-        [self setTeamId:dataId.integerValue];
-        NSNumber *dataBalance = [data objectForKey:kTeam_balance];
-        [self setBalance:dataBalance.integerValue];
+        [self setCreationDate:[dateFormatter dateFromString:[data objectForKey:kTeam_creationDate]]];
+        [self setTeamId:[data objectForKey:kTeam_teamId]];
+        [self setBalance:[data objectForKey:kTeam_balance]];
         [self setLogo:[data objectForKey:kTeam_logo]];
-        NSNumber *dataCaptain = [data objectForKey:kTeam_captain];
-        [self setCaptainId:dataCaptain.integerValue];
+        [self setCaptainId:[data objectForKey:kTeam_captain]];
         [self setSlogan:[data objectForKey:kTeam_slogan]];
         [self setTeamName:[data objectForKey:kTeam_teamName]];
     }
     return self;
+}
+
+-(NSDictionary *)exportToDictionary
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:def_dateFormat];
+    
+    NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
+    [output setObject:name forKey:kTeam_teamName];
+    [output setObject:description forKey:kTeam_description];
+    [output setObject:[dateFormatter stringFromDate:creationDate] forKey:kTeam_creationDate];
+    [output setObject:teamId forKey:kTeam_teamId];
+    [output setObject:balance forKey:kTeam_balance];
+    if ([logo isEqual:[NSNull null]]) {
+        [output setObject:[NSNull null] forKey:kTeam_logo];
+    }
+    else {
+        [output setObject:[logo base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn] forKey:kTeam_logo];
+    }
+    [output setObject:captainId forKey:kTeam_captain];
+    [output setObject:slogan forKey:kTeam_slogan];
+    [output setObject:teamName forKey:kTeam_teamName];
+    return output;
 }
 @end
 
@@ -42,14 +65,11 @@
     self = [super init];
     if (self) {
         [self setName:[data objectForKey:kUserInfo_name]];
-        NSNumber *dataAge = [data objectForKey:kUserInfo_age];
-        [self setAge:dataAge.integerValue];
-        NSNumber *dataGender = [data objectForKey:kUserInfo_gender];
-        [self setGender:dataGender.boolValue];
+        [self setAge:[data objectForKey:kUserInfo_age]];
+        [self setGender:[data objectForKey:kUserInfo_gender]];
         NSDictionary *dataTeam = [data objectForKey:kUserInfo_team];
         [self setTeam:[[Team alloc] initWithData:dataTeam]];
-        NSNumber *dataId = [data objectForKey:kUserInfo_userId];
-        [self setUserId:dataId.integerValue];
+        [self setUserId:[data objectForKey:kUserInfo_userId]];
         [self setUserName:[data objectForKey:kUserInfo_userName]];
         [self setPicture:[data objectForKey:kUserInfo_picture]];
         [self setUserType:[data objectForKey:kUserInfo_userType]];
@@ -57,6 +77,27 @@
         [self setCity:[data objectForKey:kUserInfo_city]];
     }
     return self;
+}
+
+-(NSDictionary *)exportToDictionary
+{
+    NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
+    [output setObject:name forKey:kUserInfo_name];
+    [output setObject:age forKey:kUserInfo_age];
+    [output setObject:gender forKey:kUserInfo_gender];
+    [output setObject:[team exportToDictionary] forKey:kUserInfo_team];
+    [output setObject:userId forKey:kUserInfo_userId];
+    [output setObject:userName forKey:kUserInfo_userName];
+    if ([picture isEqual:[NSNull null]]) {
+        [output setObject:[NSNull null] forKey:kUserInfo_picture];
+    }
+    else {
+        [output setObject:[picture base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn] forKey:kUserInfo_picture];
+    }
+    [output setObject:userType forKey:kUserInfo_userType];
+    [output setObject:loginType forKey:kUserInfo_loginType];
+    [output setObject:city forKey:kUserInfo_city];
+    return output;
 }
 @end
 
@@ -68,13 +109,17 @@
 {
     self = [super init];
     if (self) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:def_dateFormat];
+        
         [self setName:[data objectForKey:kMatch_name]];
         [self setDescription:[data objectForKey:kMatch_description]];
-        [self setCreationDate:[data objectForKey:kMatch_creationDate]];
-        NSNumber *dataId = [data objectForKey:kMatch_matchId];
-        [self setMatchId:dataId.integerValue];
+        NSString *dataCreationDate = [data objectForKey:kMatch_creationDate];
+        [self setCreationDate:[dateFormatter dateFromString:dataCreationDate]];
+        [self setMatchId:[data objectForKey:kMatch_matchId]];
         [self setMatchPlace:[data objectForKey:kMatch_matchPlace]];
-        [self setMatchDate:[data objectForKey:kMatch_matchDate]];
+        NSString *dataMatchDate = [data objectForKey:kMatch_matchDate];
+        [self setMatchDate:[dateFormatter dateFromString:dataMatchDate]];
         NSNumber *dataAnnouncable = [data objectForKey:kMatch_announcable];
         [self setAnnouncable:dataAnnouncable.boolValue];
         NSNumber *dataRecordable = [data objectForKey:kMatch_recordable];
@@ -83,13 +128,31 @@
         [self setTeamA:[[Team alloc] initWithData:dataTeamA]];
         NSDictionary *dataTeamB = [data objectForKey:kMatch_teamB];
         [self setTeamB:[[Team alloc] initWithData:dataTeamB]];
-        NSNumber *dataRating = [data objectForKey:kMatch_rating];
-        [self setRating:dataRating.integerValue];
-        NSNumber *dataContactPerson = [data objectForKey:kMatch_contactPersonId];
-        [self setContactPersonId:dataContactPerson.integerValue];
-        NSNumber *dataType = [data objectForKey:kMatch_matchType];
-        [self setMatchType:dataType.integerValue];
+        [self setRating:[data objectForKey:kMatch_rating]];
+        [self setContactPersonId:[data objectForKey:kMatch_contactPersonId]];
+        [self setMatchType:[data objectForKey:kMatch_matchType]];
     }
     return self;
+}
+
+-(NSDictionary *)exportToDictionary
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:def_dateFormat];
+    
+    NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
+    [output setObject:name forKey:kMatch_name];
+    [output setObject:description forKey:kMatch_description];
+    [output setObject:[dateFormatter stringFromDate:creationDate] forKey:kMatch_creationDate];
+    [output setObject:[NSNumber numberWithInteger:matchId.integerValue] forKey:kMatch_matchId];
+    [output setObject:matchPlace forKey:kMatch_matchPlace];
+    [output setObject:[dateFormatter stringFromDate:matchDate] forKey:kMatch_matchDate];
+    [output setObject:[NSNumber numberWithBool:announcable] forKey:kMatch_announcable];
+    [output setObject:[NSNumber numberWithBool:recordable] forKey:kMatch_recordable];
+    [output setObject:[teamA exportToDictionary] forKey:kMatch_teamA];
+    [output setObject:[teamB exportToDictionary] forKey:kMatch_teamB];
+    [output setObject:rating forKey:kMatch_rating];
+    [output setObject:matchType forKey:kMatch_matchType];
+    return output;
 }
 @end

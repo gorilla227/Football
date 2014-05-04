@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol SelectOpponent <NSObject>
--(void)receiveSelectedOpponent:(NSDictionary *)opponentTeam;
+-(void)receiveSelectedOpponent:(Team *)opponentTeam;
 @end
 
 @interface Captain_CreateMatch_TeamMarket_Cell : UITableViewCell
@@ -20,9 +20,7 @@
 @property IBOutlet UIButton *inviteButton;
 @end
 
-@interface Captain_CreateMatch_TeamMarket : UITableViewController<WebUtilsDelegate, UISearchDisplayDelegate>
+@interface Captain_CreateMatch_TeamMarket : UITableViewController<JSONConnectDelegate, UISearchDisplayDelegate>
 @property id<SelectOpponent>delegate;
-@property NSDictionary *selectedTeam;
-
--(void)teamListDataReceived:(NSData *)data;
+@property Team *selectedTeam;
 @end
