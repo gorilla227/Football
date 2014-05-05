@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma Stadium
+@interface Stadium : NSObject
+@property NSNumber *stadiumId;
+@property NSString *stadiumName;
+@property NSString *address;
+@property NSString *phoneNumber;
+@property NSString *contactPerson;
+-(id)initWithData:(NSDictionary *)data;
+-(NSDictionary *)exportToDictionary;
+@end
+
 #pragma Team
 @interface Team : NSObject
 @property NSString *name;
@@ -33,7 +44,7 @@
 @property NSString *city;
 @property NSString *name;
 @property NSNumber *age;
-@property NSString *gender;//YES-Male NO-Female
+@property NSString *gender;
 @property Team *team;
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)exportToDictionary;
@@ -69,6 +80,12 @@
 -(NSDictionary *)exportToDictionary;
 @end
 #pragma data keys
+//Stadium
+#define kStadium_id @"id"
+#define kStadium_name @"name"
+#define kStadium_address @"address"
+#define kStadium_phoneNumber @"phoneNumber"
+#define kStadium_contactPerson @"contactPerson"
 //UserInfo
 #define kUserInfo_name @"name"
 #define kUserInfo_age @"age"

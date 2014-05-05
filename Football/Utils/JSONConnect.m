@@ -12,6 +12,7 @@
     AFHTTPRequestOperationManager *manager;
 }
 @synthesize delegate;
+
 -(id)initWithDelegate:(id)responser
 {
     self = [super init];
@@ -33,7 +34,7 @@
         UserInfo *userInfo = [[UserInfo alloc] initWithData:responseObject];
         [delegate receiveUserInfo:userInfo];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@",error);
+        [self showErrorAlertView:error];
     }];
 }
 
@@ -54,7 +55,7 @@
         }
         [delegate receiveMatches:matches];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@",error);
+        [self showErrorAlertView:error];
     }];
 }
 
@@ -75,7 +76,13 @@
         }
         [delegate receiveAllTemas:teams];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@",error);
+        [self showErrorAlertView:error];
     }];
+}
+
+-(void)showErrorAlertView:(NSError *)error
+{
+    UIAlertView *errorAlertViw = [[UIAlertView alloc] initWithTitle:@"杯具了" message:error.localizedDescription delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
+    [errorAlertViw show];
 }
 @end

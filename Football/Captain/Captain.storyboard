@@ -560,7 +560,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQ4-zs-LUv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1169" y="-125"/>
+            <point key="canvasLocation" x="1169" y="-467"/>
         </scene>
         <!--Captain Create Match Team Market - 球队超市-->
         <scene sceneID="9eR-qX-PNd">
@@ -664,7 +664,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1618" y="-125"/>
+            <point key="canvasLocation" x="1618" y="-467"/>
         </scene>
         <!--Captain Create Match Select Playground - 选择球场-->
         <scene sceneID="JZ7-X3-4Qd">
@@ -761,7 +761,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drR-IM-VrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1169" y="545"/>
+            <point key="canvasLocation" x="1169" y="197"/>
         </scene>
         <!--Captain Create Match Enter Score - 输入比分-->
         <scene sceneID="YAb-AF-HMC">
@@ -827,7 +827,7 @@
                                         </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="enterScore_VS.png" id="qbf-GX-qPb">
-                                        <rect key="frame" x="125.5" y="0.0" width="60" height="110"/>
+                                        <rect key="frame" x="126" y="0.0" width="60" height="110"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
@@ -910,7 +910,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwy-9Y-gXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1618" y="545"/>
+            <point key="canvasLocation" x="1169" y="855"/>
         </scene>
         <!--Captain New Player - 新人入队-->
         <scene sceneID="QIw-Sm-tLY">
@@ -1568,6 +1568,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mkN-NA-bmm"/>
+        <segue reference="5WW-Lp-Owi"/>
     </inferredMetricsTieBreakers>
 </document>

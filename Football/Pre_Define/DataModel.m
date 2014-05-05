@@ -7,6 +7,35 @@
 //
 #import "DataModel.h"
 
+#pragma Stadium
+@implementation Stadium
+@synthesize stadiumId, stadiumName, address, phoneNumber, contactPerson;
+
+-(id)initWithData:(NSDictionary *)data
+{
+    self = [super init];
+    if (self) {
+        [self setStadiumId:[data objectForKey:kStadium_id]];
+        [self setStadiumName:[data objectForKey:kStadium_name]];
+        [self setAddress:[data objectForKey:kStadium_address]];
+        [self setPhoneNumber:[data objectForKey:kStadium_phoneNumber]];
+        [self setContactPerson:[data objectForKey:contactPerson]];
+    }
+    return self;
+}
+
+-(NSDictionary *)exportToDictionary
+{
+    NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
+    [output setObject:stadiumId forKey:kStadium_id];
+    [output setObject:stadiumName forKey:kStadium_name];
+    [output setObject:address forKey:kStadium_address];
+    [output setObject:phoneNumber forKey:kStadium_phoneNumber];
+    [output setObject:contactPerson forKey:kStadium_contactPerson];
+    return output;
+}
+@end
+
 #pragma Team
 @implementation Team
 @synthesize name, description, creationDate, teamId, balance, logo, captainId, slogan, teamName;
