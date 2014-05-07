@@ -22,6 +22,8 @@
 -(id)initWithDelegate:(id)responser;
 -(void)requestUserInfoById:(NSNumber *)userId;
 -(void)requestMatchesByUserId:(NSNumber *)userId count:(NSInteger)count startIndex:(NSInteger)startIndex;
+-(void)requestMatchesByTeamId:(NSNumber *)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex;
 -(void)requestAllTeamsWithCount:(NSInteger)count startIndex:(NSInteger)startIndex;
+
 -(void)showErrorAlertView:(NSError *)error;
 @end

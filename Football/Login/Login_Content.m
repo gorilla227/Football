@@ -108,7 +108,6 @@
 
 -(void)receiveUserInfo:(UserInfo *)userInfo
 {
-//    extern UserInfo *myUserInfo;
     myUserInfo = userInfo;
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Captain" bundle:nil];
     UIViewController *mainController = [captainStoryboard instantiateInitialViewController];

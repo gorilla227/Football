@@ -95,8 +95,8 @@
         [self setName:[data objectForKey:kUserInfo_name]];
         [self setAge:[data objectForKey:kUserInfo_age]];
         [self setGender:[data objectForKey:kUserInfo_gender]];
-        NSDictionary *dataTeam = [data objectForKey:kUserInfo_team];
-        [self setTeam:[[Team alloc] initWithData:dataTeam]];
+//        NSDictionary *dataTeam = [data objectForKey:kUserInfo_team];
+//        [self setTeam:[[Team alloc] initWithData:dataTeam]];
         [self setUserId:[data objectForKey:kUserInfo_userId]];
         [self setUserName:[data objectForKey:kUserInfo_userName]];
         [self setPicture:[data objectForKey:kUserInfo_picture]];
@@ -113,7 +113,7 @@
     [output setObject:name forKey:kUserInfo_name];
     [output setObject:age forKey:kUserInfo_age];
     [output setObject:gender forKey:kUserInfo_gender];
-    [output setObject:[team exportToDictionary] forKey:kUserInfo_team];
+//    [output setObject:[team exportToDictionary] forKey:kUserInfo_team];
     [output setObject:userId forKey:kUserInfo_userId];
     [output setObject:userName forKey:kUserInfo_userName];
     if ([picture isEqual:[NSNull null]]) {
@@ -145,7 +145,7 @@
         NSString *dataCreationDate = [data objectForKey:kMatch_creationDate];
         [self setCreationDate:[dateFormatter dateFromString:dataCreationDate]];
         [self setMatchId:[data objectForKey:kMatch_matchId]];
-        [self setMatchPlace:[data objectForKey:kMatch_matchPlace]];
+//        [self setMatchPlace:[data objectForKey:kMatch_matchPlace]];
         NSString *dataMatchDate = [data objectForKey:kMatch_matchDate];
         [self setMatchDate:[dateFormatter dateFromString:dataMatchDate]];
         NSNumber *dataAnnouncable = [data objectForKey:kMatch_announcable];
@@ -173,7 +173,7 @@
     [output setObject:description forKey:kMatch_description];
     [output setObject:[dateFormatter stringFromDate:creationDate] forKey:kMatch_creationDate];
     [output setObject:[NSNumber numberWithInteger:matchId.integerValue] forKey:kMatch_matchId];
-    [output setObject:matchPlace forKey:kMatch_matchPlace];
+//    [output setObject:matchPlace forKey:kMatch_matchPlace];
     [output setObject:[dateFormatter stringFromDate:matchDate] forKey:kMatch_matchDate];
     [output setObject:[NSNumber numberWithBool:announcable] forKey:kMatch_announcable];
     [output setObject:[NSNumber numberWithBool:recordable] forKey:kMatch_recordable];

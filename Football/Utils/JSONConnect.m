@@ -59,6 +59,27 @@
     }];
 }
 
+-(void)requestMatchesByTeamId:(NSNumber *)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString= [JSON_serverURL stringByAppendingPathComponent:JSON_suffix_matchesByTeamIdOrUserId];
+    NSArray *parameterKeys = [[NSArray alloc] initWithObjects:JSON_parameter_matches_teamId, JSON_parameter_common_count, JSON_parameter_common_startIndex, nil];
+    NSArray *parameterValues = [[NSArray alloc] initWithObjects:teamId, [NSNumber numberWithInteger:count], [NSNumber numberWithInteger:startIndex], nil];
+    NSDictionary *parameters = [[NSDictionary alloc] initWithObjects:parameterValues forKeys:parameterKeys];
+    
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *originalMatches = responseObject;
+        NSMutableArray *matches = [[NSMutableArray alloc] init];
+        for (NSDictionary *singleMatch in originalMatches) {
+            Match *match = [[Match alloc] initWithData:singleMatch];
+            [matches addObject:match];
+        }
+        [delegate receiveMatches:matches];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error];
+    }];
+}
+
 -(void)requestAllTeamsWithCount:(NSInteger)count startIndex:(NSInteger)startIndex
 {
     [manager.operationQueue cancelAllOperations];

@@ -7,6 +7,7 @@
 		<string>我的比赛</string>
 		<string>我的球队</string>
 		<string>队费管理</string>
+		<string>超市</string>
 	</array>
 	<key>0</key>
 	<array>
@@ -18,19 +19,7 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>比赛超市</string>
-			<key>Identifier</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>比赛通知</string>
-			<key>Identifier</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>比赛数据</string>
+			<string>热身赛</string>
 			<key>Identifier</key>
 			<string></string>
 		</dict>
@@ -54,6 +43,42 @@
 			<string>球队资料</string>
 			<key>Identifier</key>
 			<string>Captain_TeamProfile</string>
+		</dict>
+	</array>
+	<key>2</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>收入</string>
+			<key>Identifier</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>支出</string>
+			<key>Identifier</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>收支表</string>
+			<key>Identifier</key>
+			<string></string>
+		</dict>
+	</array>
+	<key>3</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>球队</string>
+			<key>Identifier</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>球员</string>
+			<key>Identifier</key>
+			<string></string>
 		</dict>
 	</array>
 </dict>

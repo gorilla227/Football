@@ -50,18 +50,22 @@
 {
     [UIView beginAnimations:@"ShowMenu" context:nil];
     [UIView setAnimationDuration:0.3f];
-    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(124, 0);
+    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0);
     if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
-        for (UIView *view in self.view.subviews) {
+        for (UIView *view in self.visibleViewController.view.subviews) {
             [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
-            [view setUserInteractionEnabled:view != mainMenu.view];
+            [view setUserInteractionEnabled:YES];
         }
+        [mainMenu.view setTransform:CGAffineTransformMakeTranslation(0, 0)];
+        [mainMenu.view setUserInteractionEnabled:NO];
     }
     else {
-        for (UIView *view in self.view.subviews) {
+        for (UIView *view in self.visibleViewController.view.subviews) {
             [view setTransform:showMenu];
-            [view setUserInteractionEnabled:view == mainMenu.view];
+            [view setUserInteractionEnabled:NO];
         }
+        [mainMenu.view setTransform:showMenu];
+        [mainMenu.view setUserInteractionEnabled:YES];
     }
     [UIView commitAnimations];
 }
@@ -69,7 +73,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(124, 0);
+    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0);
     if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
         [self menuSwitch];
     }

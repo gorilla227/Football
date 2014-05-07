@@ -67,6 +67,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [matchesTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     matchesList = [[NSMutableArray alloc] init];
     //Set TeamInfo
     [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
@@ -127,8 +128,6 @@
         opponentTeam = matchData.teamA;
     }
     
-    //    NSLog(@"%li, %@", indexPath.row, [cellData objectForKey:@"announcable"]);
-    
     // Configure the cell...
     [cell.numberOfPlayers setText:[NSString stringWithFormat:@"%li/10", (long)indexPath.row]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -142,7 +141,7 @@
     [cell.matchTime setText:[outputTimeFormatter stringFromDate:matchData.matchDate]];
     
     [cell.matchOpponent setText:opponentTeam.teamName];
-    [cell.matchPlace setText:matchData.matchPlace];
+//    [cell.matchPlace setText:matchData.matchPlace];
     if ([matchData.matchType isEqual:[NSNull null]]) {
         [cell.matchType setText:@"未知类型"];
     }

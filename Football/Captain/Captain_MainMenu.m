@@ -16,7 +16,8 @@
     NSDictionary *menuListDictionary;
     UIFont *selectedFont;
     UIFont *unselectedFont;
-    NSString *menuCellIdentifier;
+    NSString *menuCellIdentifier_root;
+    NSString *menuCellIdentifier_lesser;
     NSInteger lastRootMenuIndex;
 }
 @synthesize delegateOfMenuAppearance, delegateOfViewSwitch;
@@ -33,9 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view setFrame:CGRectMake(-124, 0, 124, 568)];
-//    [self setDelegateOfViewSwitch:(id)self.navigationController];
-//    [self setDelegateOfMenuAppearance:(id)self.navigationController];
+    [self.view setFrame:CGRectMake(-150, 64, 150, 504)];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -43,24 +42,33 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //Set the static string for cell identifiers
-    menuCellIdentifier = @"Menu";
+    menuCellIdentifier_root = @"RootMenu";
+    menuCellIdentifier_lesser = @"LesserMenu";
     
     //Set the font for selected/unselected menu cell.
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:menuCellIdentifier];
-    unselectedFont = cell.detailTextLabel.font;
-    CGFloat fontSize = cell.detailTextLabel.font.pointSize + 3.0f;
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:menuCellIdentifier_lesser];
+    unselectedFont = cell.textLabel.font;
+    CGFloat fontSize = cell.textLabel.font.pointSize;
     selectedFont = [UIFont boldSystemFontOfSize:fontSize];
 
     //Set the tableheaderview and tablefooterview
     CGRect headerFrame = self.tableView.tableHeaderView.frame;
 //    headerFrame.size.height = self.tableView.sectionFooterHeight;
-    headerFrame.size.height = 64;
+    headerFrame.size.height = 0.1;
     [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:headerFrame]];
 
     //Generate the initial menulist
     [self menuListGeneration];
     lastRootMenuIndex = 0;
 }
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (indexPath.section != 0 && indexPath.row != 0) {
+//        return 0;
+//    }
+//    return 35;
+//}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -92,23 +100,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier];
+    UITableViewCell *cell;
 
     if (indexPath.row == 0) {
         //Root Menu Item
+        cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier_root];
         [cell.textLabel setText:[[menuListDictionary objectForKey:@"RootMenu"] objectAtIndex:indexPath.section]];
-        [cell.detailTextLabel setText:nil];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        [cell setBackgroundColor:[UIColor grayColor]];
+//        [cell.detailTextLabel setText:nil];
+//        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+//        [cell setBackgroundColor:[UIColor grayColor]];
     }
     else {
         NSDictionary *menuItem = [[menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", indexPath.section]] objectAtIndex:indexPath.row - 1];
         
         //Lesser Menu Item
-        [cell.textLabel setText:nil];
-        [cell.detailTextLabel setText:[menuItem objectForKey:@"Title"]];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier_lesser];
+//        [cell.textLabel setText:nil];
+        [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
+//        [cell setAccessoryType:UITableViewCellAccessoryNone];
         [self formatCell:cell withFont:unselectedFont];
+        [cell.imageView setAlpha:0];
     }
 
     [cell setUserInteractionEnabled:(indexPath.row != 0)];
@@ -130,7 +141,9 @@
         //Call the parentcontroller to switch lesser view
         NSDictionary *menuItem = [[menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", indexPath.section]] objectAtIndex:indexPath.row - 1];
         NSString *selectedView = [menuItem objectForKey:@"Identifier"];
-        [delegateOfViewSwitch switchSelectMenuView:selectedView];
+        if (selectedView.length != 0) {
+            [delegateOfViewSwitch switchSelectMenuView:selectedView];
+        }
         NSLog([menuItem objectForKey:@"Title"]);
 
         //Close the menu
@@ -153,7 +166,7 @@
 
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font
 {
-    [cell.detailTextLabel setFont:font];
+    [cell.textLabel setFont:font];
 }
 
 -(IBAction)logoutButtonOnClicked:(id)sender
