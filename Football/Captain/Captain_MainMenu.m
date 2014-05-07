@@ -19,6 +19,7 @@
     NSString *menuCellIdentifier_root;
     NSString *menuCellIdentifier_lesser;
     NSInteger lastRootMenuIndex;
+    NSIndexPath *visibleViewIndexPath;
 }
 @synthesize delegateOfMenuAppearance, delegateOfViewSwitch;
 
@@ -48,7 +49,7 @@
     //Set the font for selected/unselected menu cell.
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:menuCellIdentifier_lesser];
     unselectedFont = cell.textLabel.font;
-    CGFloat fontSize = cell.textLabel.font.pointSize;
+    CGFloat fontSize = cell.textLabel.font.pointSize + 3.0f;
     selectedFont = [UIFont boldSystemFontOfSize:fontSize];
 
     //Set the tableheaderview and tablefooterview
@@ -60,21 +61,24 @@
     //Generate the initial menulist
     [self menuListGeneration];
     lastRootMenuIndex = 0;
+    
+    visibleViewIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (indexPath.section != 0 && indexPath.row != 0) {
-//        return 0;
-//    }
-//    return 35;
-//}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section != lastRootMenuIndex && indexPath.row != 0) {
+        return 0;
+    }
+    return 35;
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:lastRootMenuIndex + 1 inSection:0];
-    [self.tableView selectRowAtIndexPath:firstIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:firstIndexPath];
+//    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:lastRootMenuIndex + 1 inSection:0];
+//    NSIndexPath *visibleViewIndexPath = [NSIndexPath indexPathForRow:visibleViewRow inSection:visibleViewSection];
+    [self.tableView selectRowAtIndexPath:visibleViewIndexPath animated:animated scrollPosition:UITableViewScrollPositionNone];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:visibleViewIndexPath];
     [self formatCell:cell withFont:selectedFont];
 }
 
@@ -121,8 +125,7 @@
         [self formatCell:cell withFont:unselectedFont];
         [cell.imageView setAlpha:0];
     }
-
-    [cell setUserInteractionEnabled:(indexPath.row != 0)];
+//    [cell setUserInteractionEnabled:(indexPath.row != 0)];
     return cell;
 }
 
@@ -133,6 +136,7 @@
     if (indexPath.row == 0) {
         lastRootMenuIndex = indexPath.section;
         [self.tableView reloadData];
+        [self viewWillAppear:NO];
     }
     else {
         //Format the cell
@@ -148,6 +152,8 @@
 
         //Close the menu
         [delegateOfMenuAppearance menuSwitch];
+        
+        visibleViewIndexPath = indexPath;
     }
 }
 
@@ -166,7 +172,7 @@
 
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font
 {
-    [cell.textLabel setFont:font];
+//    [cell.textLabel setFont:font];
 }
 
 -(IBAction)logoutButtonOnClicked:(id)sender
@@ -182,4 +188,10 @@
     [delegateOfMenuAppearance menuSwitch];
 }
 
+-(void)resetMenuFolder
+{
+    lastRootMenuIndex = visibleViewIndexPath.section;
+    [self.tableView reloadData];
+    [self viewWillAppear:NO];
+}
 @end

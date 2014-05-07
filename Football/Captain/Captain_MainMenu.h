@@ -22,4 +22,5 @@
 @property id<MainMenuSwitchViewControllerDelegate>delegateOfViewSwitch;
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font;
 -(void)menuListGeneration;
+-(void)resetMenuFolder;
 @end

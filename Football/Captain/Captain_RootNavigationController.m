@@ -52,20 +52,23 @@
     [UIView setAnimationDuration:0.3f];
     CGAffineTransform showMenu = CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0);
     if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
+        //Hide menu
         for (UIView *view in self.visibleViewController.view.subviews) {
             [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
-            [view setUserInteractionEnabled:YES];
         }
+        [self.visibleViewController.view setUserInteractionEnabled:YES];
         [mainMenu.view setTransform:CGAffineTransformMakeTranslation(0, 0)];
         [mainMenu.view setUserInteractionEnabled:NO];
     }
     else {
+        //Show menu
         for (UIView *view in self.visibleViewController.view.subviews) {
             [view setTransform:showMenu];
-            [view setUserInteractionEnabled:NO];
         }
+        [self.visibleViewController.view setUserInteractionEnabled:NO];
         [mainMenu.view setTransform:showMenu];
         [mainMenu.view setUserInteractionEnabled:YES];
+        [mainMenu resetMenuFolder];
     }
     [UIView commitAnimations];
 }
