@@ -52,7 +52,7 @@
     
     //Set the background image
     UIImage *backgroundImage = [UIImage imageNamed:@"soccer_grass_bg@2x.png"];
-    [self.view setBackgroundColor:[[UIColor alloc] initWithPatternImage:backgroundImage]];
+    [self.view.layer setContents:(id)backgroundImage.CGImage];
 }
 
 - (void)didReceiveMemoryWarning

@@ -35,12 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view setFrame:CGRectMake(-150, 64, 150, 504)];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //Set the original frame
+    [self.view setFrame:def_mainMenuFrame];
     
     //Set the static string for cell identifiers
     menuCellIdentifier_root = @"RootMenu";
@@ -58,11 +55,14 @@
     headerFrame.size.height = 0.1;
     [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:headerFrame]];
 
-    //Generate the initial menulist
+    //Generate the menulist
     [self menuListGeneration];
-    lastRootMenuIndex = 0;
+    lastRootMenuIndex = 0;//Unfolder root menu index
+    visibleViewIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];//Select lessor menu item index
     
-    visibleViewIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    //Set background
+    UIImage *backgroundImage = [UIImage imageNamed:@"menu_bg@2x.png"];
+    [self.view.layer setContents:(id)backgroundImage.CGImage];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,7 +70,7 @@
     if (indexPath.section != lastRootMenuIndex && indexPath.row != 0) {
         return 0;
     }
-    return 35;
+    return tableView.rowHeight;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -107,8 +107,9 @@
     if (indexPath.row == 0) {
         //Root Menu Item
         cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier_root];
-        [cell.textLabel setText:[[menuListDictionary objectForKey:@"RootMenu"] objectAtIndex:indexPath.section]];
-//        [cell.detailTextLabel setText:nil];
+        [cell.textLabel setText:[[[menuListDictionary objectForKey:@"RootMenu"] objectAtIndex:indexPath.section] objectForKey:@"Title"]];
+        [cell.imageView setImage:[UIImage imageNamed:[[[menuListDictionary objectForKey:@"RootMenu"] objectAtIndex:indexPath.section] objectForKey:@"Icon"]]];
+        [cell.imageView setContentMode:UIViewContentModeScaleToFill];
 //        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 //        [cell setBackgroundColor:[UIColor grayColor]];
     }
@@ -117,7 +118,6 @@
         
         //Lesser Menu Item
         cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier_lesser];
-//        [cell.textLabel setText:nil];
         [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
 //        [cell setAccessoryType:UITableViewCellAccessoryNone];
         [self formatCell:cell withFont:unselectedFont];

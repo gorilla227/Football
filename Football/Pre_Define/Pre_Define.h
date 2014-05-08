@@ -6,6 +6,9 @@
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
+//Main Menu Frame
+#define def_mainMenuFrame CGRectMake(-150, 64, 150, 504)
+
 //UI Strings
 #define def_typeOfPlayerNumber_SignUp @"报名人数"
 #define def_typeOfPlayerNumber_ShowUp @"出场人数"

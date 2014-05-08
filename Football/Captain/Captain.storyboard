@@ -7,8 +7,8 @@
         <!--Captain Main Menu-->
         <scene sceneID="hm2-EQ-llU">
             <objects>
-                <tableViewController storyboardIdentifier="Captain_MainMenu" useStoryboardIdentifierAsRestorationIdentifier="YES" id="krd-eN-QWK" customClass="Captain_MainMenu" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" alpha="0.80000000000000004" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="35" sectionHeaderHeight="1" sectionFooterHeight="1" id="SnM-jj-EnU">
+                <tableViewController storyboardIdentifier="Captain_MainMenu" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="krd-eN-QWK" customClass="Captain_MainMenu" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="35" sectionHeaderHeight="1" sectionFooterHeight="1" id="SnM-jj-EnU">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,14 +39,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TdF-Qk-laW">
-                                            <rect key="frame" x="54" y="0.0" width="81" height="35"/>
+                                            <rect key="frame" x="50" y="0.0" width="85" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="leftIcon_createMatch_numOfPlayers.png" id="sA0-Zi-tuy">
-                                            <rect key="frame" x="15" y="0.0" width="24" height="35"/>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="menuIcon_myMatches.png" id="sA0-Zi-tuy">
+                                            <rect key="frame" x="15" y="7" width="20" height="20"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -90,7 +90,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFP-Dp-waU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-284" y="261"/>
+            <point key="canvasLocation" x="-299" y="261"/>
         </scene>
         <!--Captain Root Navigation Controller-->
         <scene sceneID="Z2u-1O-9hN">
@@ -1648,6 +1648,7 @@
         <image name="TeamIcon.jpg" width="97" height="99"/>
         <image name="enterScore_VS.png" width="60" height="110"/>
         <image name="leftIcon_createMatch_numOfPlayers.png" width="27" height="40"/>
+        <image name="menuIcon_myMatches.png" width="20" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -4,10 +4,30 @@
 <dict>
 	<key>RootMenu</key>
 	<array>
-		<string>我的比赛</string>
-		<string>我的球队</string>
-		<string>队费管理</string>
-		<string>超市</string>
+		<dict>
+			<key>Title</key>
+			<string>我的比赛</string>
+			<key>Icon</key>
+			<string>menuIcon_myMatches.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>我的球队</string>
+			<key>Icon</key>
+			<string>menuIcon_myTeams.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>队费管理</string>
+			<key>Icon</key>
+			<string>menuIcon_finance.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>超市</string>
+			<key>Icon</key>
+			<string>menuIcon_superMarket.png</string>
+		</dict>
 	</array>
 	<key>0</key>
 	<array>

@@ -77,6 +77,12 @@
 		A1F428E3191209DB00567A02 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428D8191209DB00567A02 /* AFURLResponseSerialization.m */; };
 		A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428DA191209DB00567A02 /* AFURLSessionManager.m */; };
 		A1F428E8191215A000567A02 /* JSONConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428E7191215A000567A02 /* JSONConnect.m */; };
+		B20264B4191BF081004B8D74 /* menu_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B20264B3191BF081004B8D74 /* menu_bg@2x.png */; };
+		B20264B7191BF59C004B8D74 /* menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B20264B6191BF59C004B8D74 /* menu_bg.png */; };
+		B2026505191C25E7004B8D74 /* menuIcon_finance.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026501191C25E7004B8D74 /* menuIcon_finance.png */; };
+		B2026506191C25E7004B8D74 /* menuIcon_myMatches.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026502191C25E7004B8D74 /* menuIcon_myMatches.png */; };
+		B2026507191C25E7004B8D74 /* menuIcon_myTeams.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026503191C25E7004B8D74 /* menuIcon_myTeams.png */; };
+		B202650A191C273D004B8D74 /* menuIcon_superMarket.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026509191C273D004B8D74 /* menuIcon_superMarket.png */; };
 		B276E0ED18EF638700DEB116 /* Captain_NewPlayerList.m in Sources */ = {isa = PBXBuildFile; fileRef = B276E0EC18EF638700DEB116 /* Captain_NewPlayerList.m */; };
 		B2D096EF18EE01D4005221F2 /* ActionSheetMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */; };
 		B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D6981518ECC3F700603B87 /* Captain_MyPlayers.m */; };
@@ -203,6 +209,12 @@
 		A1F428E519120C3700567A02 /* JSONConnectionParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSONConnectionParameters.h; path = Football/Utils/JSONConnectionParameters.h; sourceTree = "<group>"; };
 		A1F428E6191215A000567A02 /* JSONConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONConnect.h; path = Football/Utils/JSONConnect.h; sourceTree = "<group>"; };
 		A1F428E7191215A000567A02 /* JSONConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONConnect.m; path = Football/Utils/JSONConnect.m; sourceTree = "<group>"; };
+		B20264B3191BF081004B8D74 /* menu_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu_bg@2x.png"; path = "Resource/menu_bg@2x.png"; sourceTree = "<group>"; };
+		B20264B6191BF59C004B8D74 /* menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_bg.png; path = Resource/menu_bg.png; sourceTree = "<group>"; };
+		B2026501191C25E7004B8D74 /* menuIcon_finance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_finance.png; path = Resource/menuIcon_finance.png; sourceTree = "<group>"; };
+		B2026502191C25E7004B8D74 /* menuIcon_myMatches.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_myMatches.png; path = Resource/menuIcon_myMatches.png; sourceTree = "<group>"; };
+		B2026503191C25E7004B8D74 /* menuIcon_myTeams.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_myTeams.png; path = Resource/menuIcon_myTeams.png; sourceTree = "<group>"; };
+		B2026509191C273D004B8D74 /* menuIcon_superMarket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_superMarket.png; path = Resource/menuIcon_superMarket.png; sourceTree = "<group>"; };
 		B276E0EB18EF638700DEB116 /* Captain_NewPlayerList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayerList.h; path = Captain/MyTeam/Captain_NewPlayerList.h; sourceTree = "<group>"; };
 		B276E0EC18EF638700DEB116 /* Captain_NewPlayerList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayerList.m; path = Captain/MyTeam/Captain_NewPlayerList.m; sourceTree = "<group>"; };
 		B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActionSheetMenu.plist; path = Pre_Define/ActionSheetMenu.plist; sourceTree = "<group>"; };
@@ -239,6 +251,7 @@
 		A103339818D6BF8600050A61 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				B20264B5191BF08B004B8D74 /* MainMenu */,
 				A1370A491904D53400E64949 /* CreateMatch */,
 				A1370A481904D52000E64949 /* Common */,
 				A1370A471904D50700E64949 /* MatchArrangement */,
@@ -517,6 +530,19 @@
 			path = Football/Utils/AFNetworking;
 			sourceTree = "<group>";
 		};
+		B20264B5191BF08B004B8D74 /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				B20264B6191BF59C004B8D74 /* menu_bg.png */,
+				B20264B3191BF081004B8D74 /* menu_bg@2x.png */,
+				B2026502191C25E7004B8D74 /* menuIcon_myMatches.png */,
+				B2026503191C25E7004B8D74 /* menuIcon_myTeams.png */,
+				B2026501191C25E7004B8D74 /* menuIcon_finance.png */,
+				B2026509191C273D004B8D74 /* menuIcon_superMarket.png */,
+			);
+			name = MainMenu;
+			sourceTree = "<group>";
+		};
 		B2D6981318ECC35500603B87 /* MyTeam */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,11 +649,14 @@
 				A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */,
 				A1D07BEA18CC1E4800FA3A8D /* Images.xcassets in Resources */,
 				A1370A5A1904D7CC00E64949 /* leftIcon_createMatch_numOfPlayers.png in Resources */,
+				B2026505191C25E7004B8D74 /* menuIcon_finance.png in Resources */,
 				A1370A5B1904D7CC00E64949 /* leftIcon_createMatch_opponent.png in Resources */,
 				A1C2803318F79CED004C644E /* register_qq.png in Resources */,
+				B2026507191C25E7004B8D74 /* menuIcon_myTeams.png in Resources */,
 				A1C2803018F79CED004C644E /* register_area.png in Resources */,
 				A10BACB7190D9AA1000FA5A7 /* leftIcon_createMatch_score.png in Resources */,
 				A1370A5D1904D7CC00E64949 /* leftIcon_createMatch_time.png in Resources */,
+				B2026506191C25E7004B8D74 /* menuIcon_myMatches.png in Resources */,
 				A169F7421915F3AF00361796 /* enterScore_VS.png in Resources */,
 				A18D7F831904A0F6003028FE /* icon_fillMatchData.png in Resources */,
 				A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */,
@@ -635,9 +664,12 @@
 				A1D07BDC18CC1E4800FA3A8D /* InfoPlist.strings in Resources */,
 				A1C2802F18F79CED004C644E /* login_textfield_title_user.png in Resources */,
 				A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */,
+				B20264B4191BF081004B8D74 /* menu_bg@2x.png in Resources */,
+				B202650A191C273D004B8D74 /* menuIcon_superMarket.png in Resources */,
 				A153ACBF190244880062EB44 /* hint_background_arrow.png in Resources */,
 				A19F8D151900E61E00AC8459 /* soccer_title_bar_bg@2x.png in Resources */,
 				A1C2803418F79CED004C644E /* soccer_grass_bg.png in Resources */,
+				B20264B7191BF59C004B8D74 /* menu_bg.png in Resources */,
 				A1C2802D18F79CED004C644E /* login_logo.png in Resources */,
 				A1C2803118F79CED004C644E /* register_birthday.png in Resources */,
 				A103338A18D419A300050A61 /* Captain.storyboard in Resources */,

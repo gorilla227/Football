@@ -43,19 +43,17 @@
     textFieldArray = [[NSArray alloc] initWithObjects:accountField, passwordField, nil];
     
     UIImageView *accountIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_textfield_title_user.png"]];
-    UIView *accountIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 34)];
-    [accountIconImageView setFrame:CGRectMake(12, 7, 20, 20)];
-    [accountIconView addSubview:accountIconImageView];
-    [accountIconView setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
-    [accountField setLeftView:accountIconView];
+    [accountIconImageView setFrame:CGRectMake(0, 0, 44, 34)];
+    [accountIconImageView setContentMode:UIViewContentModeCenter];
+    [accountIconImageView setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
+    [accountField setLeftView:accountIconImageView];
     [accountField setLeftViewMode:UITextFieldViewModeAlways];
 
     UIImageView *passwordIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_textfield_title_pwd.png"]];
-    UIView *passwordIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 34)];
-    [passwordIconImageView setFrame:CGRectMake(14.5, 7, 15, 20)];
-    [passwordIconView setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
-    [passwordIconView addSubview:passwordIconImageView];
-    [passwordField setLeftView:passwordIconView];
+    [passwordIconImageView setFrame:CGRectMake(0, 0, 44, 34)];
+    [passwordIconImageView setContentMode:UIViewContentModeCenter];
+    [passwordIconImageView setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
+    [passwordField setLeftView:passwordIconImageView];
     [passwordField setLeftViewMode:UITextFieldViewModeAlways];
     
     [accountField.layer setBorderColor:kSoccerColor.CGColor];
