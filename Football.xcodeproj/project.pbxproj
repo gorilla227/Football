@@ -21,6 +21,7 @@
 		A1370A5D1904D7CC00E64949 /* leftIcon_createMatch_time.png in Resources */ = {isa = PBXBuildFile; fileRef = A1370A581904D7CC00E64949 /* leftIcon_createMatch_time.png */; };
 		A145670318F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */; };
 		A145670918F1064E006E158E /* Captain_NewPlayer_InviteeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */; };
+		A146685F191B53A600589785 /* Captain_CreateMatch_StadiumList.m in Sources */ = {isa = PBXBuildFile; fileRef = A146685E191B53A600589785 /* Captain_CreateMatch_StadiumList.m */; };
 		A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACBA19023ECF0062EB44 /* HintTextView.m */; };
 		A153ACBD19023F640062EB44 /* Hint_List.plist in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBC19023F640062EB44 /* Hint_List.plist */; };
 		A153ACBF190244880062EB44 /* hint_background_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBE190244880062EB44 /* hint_background_arrow.png */; };
@@ -113,6 +114,8 @@
 		A145670218F0BDDB006E158E /* Captain_NewPlayer_ApplicantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer_ApplicantCell.m; path = Captain/MyTeam/Captain_NewPlayer_ApplicantCell.m; sourceTree = "<group>"; };
 		A145670718F1064E006E158E /* Captain_NewPlayer_InviteeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayer_InviteeCell.h; path = Captain/MyTeam/Captain_NewPlayer_InviteeCell.h; sourceTree = "<group>"; };
 		A145670818F1064E006E158E /* Captain_NewPlayer_InviteeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer_InviteeCell.m; path = Captain/MyTeam/Captain_NewPlayer_InviteeCell.m; sourceTree = "<group>"; };
+		A146685D191B53A600589785 /* Captain_CreateMatch_StadiumList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_CreateMatch_StadiumList.h; path = Captain/MyMatches/Captain_CreateMatch_StadiumList.h; sourceTree = "<group>"; };
+		A146685E191B53A600589785 /* Captain_CreateMatch_StadiumList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_CreateMatch_StadiumList.m; path = Captain/MyMatches/Captain_CreateMatch_StadiumList.m; sourceTree = "<group>"; };
 		A153ACB919023ECF0062EB44 /* HintTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HintTextView.h; path = Captain/MyMatches/HintTextView.h; sourceTree = "<group>"; };
 		A153ACBA19023ECF0062EB44 /* HintTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HintTextView.m; path = Captain/MyMatches/HintTextView.m; sourceTree = "<group>"; };
 		A153ACBC19023F640062EB44 /* Hint_List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Hint_List.plist; path = Captain/MyMatches/Hint_List.plist; sourceTree = "<group>"; };
@@ -334,6 +337,8 @@
 				A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */,
 				A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.h */,
 				A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.m */,
+				A146685D191B53A600589785 /* Captain_CreateMatch_StadiumList.h */,
+				A146685E191B53A600589785 /* Captain_CreateMatch_StadiumList.m */,
 				B2FEC5E21915CADD00B8B74D /* Captain_CreateMatch_EnterScore.h */,
 				B2FEC5E31915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m */,
 				A153ACBC19023F640062EB44 /* Hint_List.plist */,
@@ -661,6 +666,7 @@
 				A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */,
 				A1F428E3191209DB00567A02 /* AFURLResponseSerialization.m in Sources */,
 				A1D07BDE18CC1E4800FA3A8D /* main.m in Sources */,
+				A146685F191B53A600589785 /* Captain_CreateMatch_StadiumList.m in Sources */,
 				A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.m in Sources */,
 				A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */,
 				A1F428E1191209DB00567A02 /* AFURLConnectionOperation.m in Sources */,

@@ -20,5 +20,5 @@
 @property IBOutlet UITableView *mainPlayground;
 @property IBOutlet UITextField *matchPlaceTextField;
 @property IBOutlet UIBarButtonItem *saveButton;
-
+@property IBOutlet UIView *stadiumListView;
 @end

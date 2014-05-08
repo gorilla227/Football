@@ -769,7 +769,17 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="selectStadiumButtonOnClicked:" destination="1jn-PF-RVR" eventType="touchUpInside" id="Zhb-Zg-s2N"/>
+                                </connections>
                             </button>
+                            <containerView hidden="YES" contentMode="scaleToFill" id="JYZ-WA-oL4">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="DDy-ZV-qbL" kind="embed" id="70L-6v-UA9"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -778,6 +788,7 @@
                         <outlet property="mainPlayground" destination="TBb-sK-goH" id="VOa-aJ-lnl"/>
                         <outlet property="matchPlaceTextField" destination="DE2-8u-1a7" id="gUI-Z8-Wyg"/>
                         <outlet property="saveButton" destination="6Ek-c4-uPh" id="pMe-zn-AhZ"/>
+                        <outlet property="stadiumListView" destination="JYZ-WA-oL4" id="opU-kn-WGV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drR-IM-VrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1575,6 +1586,60 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="325" y="896"/>
+        </scene>
+        <!--Captain Create Match Stadium List-->
+        <scene sceneID="EC3-Py-5M0">
+            <objects>
+                <viewController storyboardIdentifier="Captain_CreateMatch_StadiumList" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DDy-ZV-qbL" customClass="Captain_CreateMatch_StadiumList" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eLz-hF-G3X">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3KD-ng-YZt">
+                                <rect key="frame" x="0.0" y="72" width="320" height="321"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StadiumCell" textLabel="x1x-PR-92x" detailTextLabel="lKo-aR-BG3" style="IBUITableViewCellStyleValue1" id="sgx-Gv-HHT">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sgx-Gv-HHT" id="N9v-Ge-7Z6">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x1x-PR-92x">
+                                                    <rect key="frame" x="15" y="11" width="33" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lKo-aR-BG3">
+                                                    <rect key="frame" x="261" y="11" width="44" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="DDy-ZV-qbL" id="OYh-SQ-Ukm"/>
+                                    <outlet property="delegate" destination="DDy-ZV-qbL" id="Lag-X2-LBd"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="stadiumTable" destination="3KD-ng-YZt" id="8fg-g2-Lp6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9eH-CE-Hxl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1618" y="261"/>
         </scene>
     </scenes>
     <resources>

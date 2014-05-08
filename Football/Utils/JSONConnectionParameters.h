@@ -42,3 +42,6 @@
 #define JSON_parameter_players_teamId @"teamId"
 //Post a user
 #define JSON_suffix_postUser @"addUser"
+
+//Get Stadiums
+#define JSON_suffix_allStadiums @"stadiums"

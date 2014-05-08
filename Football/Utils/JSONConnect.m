@@ -101,6 +101,24 @@
     }];
 }
 
+-(void)requestAllStadiums
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [JSON_serverURL stringByAppendingPathComponent:JSON_suffix_allStadiums];
+
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *originalStadiums = responseObject;
+        NSMutableArray *stadiums = [[NSMutableArray alloc] init];
+        for (NSDictionary *singleStadium in originalStadiums) {
+            Stadium *stadium = [[Stadium alloc] initWithData:singleStadium];
+            [stadiums addObject:stadium];
+        }
+        [delegate receiveStadiums:stadiums];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error];
+    }];
+}
+
 -(void)showErrorAlertView:(NSError *)error
 {
     UIAlertView *errorAlertViw = [[UIAlertView alloc] initWithTitle:@"杯具了" message:error.localizedDescription delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];

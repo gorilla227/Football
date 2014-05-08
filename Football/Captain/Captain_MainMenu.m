@@ -75,8 +75,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:lastRootMenuIndex + 1 inSection:0];
-//    NSIndexPath *visibleViewIndexPath = [NSIndexPath indexPathForRow:visibleViewRow inSection:visibleViewSection];
     [self.tableView selectRowAtIndexPath:visibleViewIndexPath animated:animated scrollPosition:UITableViewScrollPositionNone];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:visibleViewIndexPath];
     [self formatCell:cell withFont:selectedFont];
@@ -172,7 +170,7 @@
 
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font
 {
-//    [cell.textLabel setFont:font];
+    [cell.textLabel setFont:font];
 }
 
 -(IBAction)logoutButtonOnClicked:(id)sender

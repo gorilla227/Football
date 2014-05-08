@@ -15,6 +15,7 @@
 -(void)receiveUserInfo:(UserInfo *)userInfo;
 -(void)receiveMatches:(NSArray *)matches;
 -(void)receiveAllTemas:(NSArray *)teams;
+-(void)receiveStadiums:(NSArray *)stadiums;
 @end
 
 @interface JSONConnect : NSObject
@@ -24,6 +25,7 @@
 -(void)requestMatchesByUserId:(NSNumber *)userId count:(NSInteger)count startIndex:(NSInteger)startIndex;
 -(void)requestMatchesByTeamId:(NSNumber *)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex;
 -(void)requestAllTeamsWithCount:(NSInteger)count startIndex:(NSInteger)startIndex;
+-(void)requestAllStadiums;
 
 -(void)showErrorAlertView:(NSError *)error;
 @end

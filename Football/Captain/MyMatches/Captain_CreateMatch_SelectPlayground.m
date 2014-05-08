@@ -16,7 +16,7 @@
     NSArray *mainPlaygroundList;
     HintTextView *hintView;
 }
-@synthesize mainPlayground, matchPlaceTextField, saveButton;
+@synthesize mainPlayground, matchPlaceTextField, saveButton, stadiumListView;
 @synthesize delegate, selectedPlace, indexOfSelectedMainPlayground;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -107,6 +107,12 @@
     [hintView showOrHideHint:![matchPlaceTextField hasText]];
     indexOfSelectedMainPlayground = -1;
     [mainPlayground reloadData];
+}
+
+-(IBAction)selectStadiumButtonOnClicked:(id)sender
+{
+    [self.view bringSubviewToFront:stadiumListView];
+    [stadiumListView setHidden:NO];
 }
 /*
 #pragma mark - Navigation
