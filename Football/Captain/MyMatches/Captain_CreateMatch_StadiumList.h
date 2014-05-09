@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Captain_CreateMatch_StadiumList;
+
 @protocol SelectStadium <NSObject>
--(void)notSelectStadium;
+-(void)notSelectStadium:(Captain_CreateMatch_StadiumList *)sender;
 -(void)stadiumSelected:(Stadium *)selectedStadium;
 @end
 
@@ -18,7 +20,10 @@
 @property IBOutlet UIButton *phoneIcon;
 @end
 
-@interface Captain_CreateMatch_StadiumList : UIViewController<UITableViewDataSource, UITableViewDelegate, JSONConnectDelegate, UISearchDisplayDelegate>
-@property IBOutlet UITableView *stadiumTable;
+@interface Captain_CreateMatch_StadiumList : UITableViewController<JSONConnectDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
+@property id<SelectStadium>delegate;
+@end
+
+@interface Captain_CreateMatch_StadiumList_Base : UIViewController
 @property id<SelectStadium>delegate;
 @end
