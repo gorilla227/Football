@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "HintTextView.h"
+#import "Captain_CreateMatch_StadiumList.h"
 
 @protocol SelectPlayground <NSObject>
 -(void)receiveSelectedPlayground:(NSString *)playgroundName indexOfMainPlayground:(NSInteger)index;
 @end
 
-@interface Captain_CreateMatch_SelectPlayground : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface Captain_CreateMatch_SelectPlayground : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SelectStadium>
 @property id<SelectPlayground>delegate;
 @property NSInteger indexOfSelectedMainPlayground;
 @property NSString *selectedPlace;

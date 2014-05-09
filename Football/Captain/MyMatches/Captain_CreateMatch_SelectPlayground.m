@@ -42,6 +42,14 @@
     hintView = [[HintTextView alloc] init];
     [self.view addSubview:hintView];
     [hintView settingHintWithTextKey:@"SelectPlayground" underView:matchPlaceTextField wantShow:![matchPlaceTextField hasText]];
+    
+    //Set delegate for StadiumList
+    for (UIViewController *controller in self.childViewControllers) {
+        if ([controller isKindOfClass:[Captain_CreateMatch_StadiumList class]]) {
+            Captain_CreateMatch_StadiumList *stadiumListController = (Captain_CreateMatch_StadiumList *)controller;
+            [stadiumListController setDelegate:self];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,7 +100,7 @@
     }
     [tableView reloadData];
     [saveButton setEnabled:[matchPlaceTextField hasText]];
-    [hintView showOrHideHint:![matchPlaceTextField hasText]];
+//    [hintView showOrHideHint:![matchPlaceTextField hasText]];
 }
 
 -(IBAction)saveButtonOnClicked:(id)sender
@@ -104,15 +112,29 @@
 -(IBAction)matchPlaceChanged:(id)sender
 {
     [saveButton setEnabled:[matchPlaceTextField hasText]];
-    [hintView showOrHideHint:![matchPlaceTextField hasText]];
+//    [hintView showOrHideHint:![matchPlaceTextField hasText]];
     indexOfSelectedMainPlayground = -1;
     [mainPlayground reloadData];
 }
 
 -(IBAction)selectStadiumButtonOnClicked:(id)sender
 {
+    [matchPlaceTextField resignFirstResponder];
     [self.view bringSubviewToFront:stadiumListView];
     [stadiumListView setHidden:NO];
+}
+
+#pragma Select Stadium
+-(void)notSelectStadium
+{
+    [stadiumListView setHidden:YES];
+}
+
+-(void)stadiumSelected:(Stadium *)selectedStadium
+{
+    [stadiumListView setHidden:YES];
+    [matchPlaceTextField setText:selectedStadium.stadiumName];
+    [saveButton setEnabled:[matchPlaceTextField hasText]];
 }
 /*
 #pragma mark - Navigation

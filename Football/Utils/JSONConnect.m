@@ -111,7 +111,9 @@
         NSMutableArray *stadiums = [[NSMutableArray alloc] init];
         for (NSDictionary *singleStadium in originalStadiums) {
             Stadium *stadium = [[Stadium alloc] initWithData:singleStadium];
-            [stadiums addObject:stadium];
+            if (![stadium.stadiumName isEqual:[NSNull null]]) {
+                [stadiums addObject:stadium];
+            }
         }
         [delegate receiveStadiums:stadiums];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

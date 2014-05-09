@@ -8,14 +8,22 @@
 
 #import "Captain_CreateMatch_StadiumList.h"
 
-@interface Captain_CreateMatch_StadiumList ()
+@implementation Captain_CreateMatch_StadiumList_Cell
+@synthesize stadiumName, phoneNumber, phoneIcon;
 
+-(IBAction)callPhone:(id)sender
+{
+    NSString *callNumber = [NSString stringWithFormat:@"telprompt://%@", phoneNumber];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callNumber]];
+}
 @end
 
 @implementation Captain_CreateMatch_StadiumList{
     NSArray *stadiumsList;
+    NSArray *filterStadiumsList;
 }
 @synthesize stadiumTable;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +38,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setEdgesForExtendedLayout:UIRectEdgeTop];
     [self.view setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5f]];
     
     //Get stadiums
@@ -49,40 +58,81 @@
     [stadiumTable reloadData];
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [delegate notSelectStadium];
+}
+
 #pragma TableView Methods
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return stadiumsList.count;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
+        return filterStadiumsList.count;
+    }
+    else {
+        return stadiumsList.count;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = @"StadiumCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    Captain_CreateMatch_StadiumList_Cell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        cell = [[Captain_CreateMatch_StadiumList_Cell alloc] init];
+        [cell setRestorationIdentifier:cellIdentifier];
     }
     
     //Configure Cell
-    Stadium *stadiumData = [stadiumsList objectAtIndex:indexPath.row];
-    if (![stadiumData.stadiumName isEqual:[NSNull null]]) {
-        [cell.textLabel setText:stadiumData.stadiumName];
+    Stadium *stadiumData;
+    if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
+        stadiumData = [filterStadiumsList objectAtIndex:indexPath.row];
     }
     else {
-        [cell.textLabel setText:@"No Name"];
-    }
-    if (![stadiumData.phoneNumber isEqual:[NSNull null]]) {
-        [cell.detailTextLabel setText:stadiumData.phoneNumber];
-    }
-    else {
-        [cell.detailTextLabel setText:nil];
+        stadiumData = [stadiumsList objectAtIndex:indexPath.row];
     }
     
+    [cell.stadiumName setText:stadiumData.stadiumName];
+
+    if (![stadiumData.phoneNumber isEqual:[NSNull null]]) {
+        [cell.phoneNumber setText:stadiumData.phoneNumber];
+    }
+    else {
+        [cell.phoneNumber setText:nil];
+    }
+    [cell.phoneIcon setHidden:[stadiumData.phoneNumber isEqual:[NSNull null]]];
+    
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [delegate stadiumSelected:[stadiumsList objectAtIndex:indexPath.row]];
+}
+
+#pragma Search Methods
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSMutableArray *stadiumsName = [[NSMutableArray alloc] init];
+    for (Stadium *stadium in stadiumsList) {
+        [stadiumsName addObject:stadium.stadiumName];
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self contains[c] %@", searchString];
+    NSArray *filterStadiumsName = [stadiumsName filteredArrayUsingPredicate:predicate];
+    NSMutableArray *filterStadiums = [[NSMutableArray alloc] init];
+    for (Stadium *stadium in stadiumsList) {
+        if ([filterStadiumsName containsObject:stadium.stadiumName]) {
+            [filterStadiums addObject:stadium];
+        }
+    }
+    filterStadiumsList = filterStadiums;
+    return YES;
 }
 /*
 #pragma mark - Navigation
