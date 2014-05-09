@@ -54,7 +54,7 @@
     [connection requestAllTeamsWithCount:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
 }
 
--(void)receiveAllTemas:(NSArray *)teams
+-(void)receiveTeams:(NSArray *)teams
 {
     //Remove self team
     for (Team *team in teams) {

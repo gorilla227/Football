@@ -1,23 +1,20 @@
 //
-//  Captain_CreateMatch_SelectPlayground.m
+//  Captain_CreateMatch_SelectMatchStadium.m
 //  Football
 //
 //  Created by Andy on 14-4-26.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "Captain_CreateMatch_SelectPlayground.h"
+#import "Captain_CreateMatch_SelectMatchStadium.h"
 
-@interface Captain_CreateMatch_SelectPlayground ()
-
-@end
-
-@implementation Captain_CreateMatch_SelectPlayground{
-    NSArray *mainPlaygroundList;
+@implementation Captain_CreateMatch_SelectMatchStadium{
+    NSArray *homeStadiumList;
     HintTextView *hintView;
+    JSONConnect *connection;
 }
-@synthesize mainPlayground, matchPlaceTextField, saveButton, stadiumListView;
-@synthesize delegate, selectedPlace, indexOfSelectedMainPlayground;
+@synthesize homeStadiumTableView, matchPlaceTextField, saveButton, stadiumListView;
+@synthesize delegate, matchStadium, indexOfSelectedHomeStadium;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,10 +30,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor clearColor]];
-    [mainPlayground setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    mainPlaygroundList = [[NSArray alloc] initWithObjects:@"北京邮电大学操场", @"北京大学一体", nil];
-    [mainPlayground setHidden:mainPlaygroundList.count == 0];
-    [matchPlaceTextField setText:selectedPlace];
+    [homeStadiumTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
+    //Fake MainStadiums
+    connection = [[JSONConnect alloc] initWithDelegate:self];
+    [connection requestStadiumById:[NSNumber numberWithInteger:1]];
+//    [connection requestStadiumById:[NSNumber numberWithInteger:4]];
+//    homeStadiumList = [[NSArray alloc] initWithObjects:@"北京邮电大学操场", @"北京大学一体", nil];
+    homeStadiumList = [[NSArray alloc]init];
+    if (matchStadium) {
+        [matchPlaceTextField setText:matchStadium.stadiumName];
+    }
     
     //Initial HintView;
     hintView = [[HintTextView alloc] init];
@@ -64,6 +68,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)receiveStadiums:(NSArray *)stadiums
+{
+    if (stadiums.count > 0) {
+        homeStadiumList = [homeStadiumList arrayByAddingObjectsFromArray:stadiums];
+        [homeStadiumTableView reloadData];
+    }
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
@@ -78,14 +90,16 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return mainPlaygroundList.count;
+    [homeStadiumTableView setHidden:homeStadiumList.count == 0];
+    return homeStadiumList.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainPlaygroundCell"];
-    [cell.textLabel setText:[mainPlaygroundList objectAtIndex:indexPath.row]];
-    if (indexOfSelectedMainPlayground == indexPath.row) {
+    Stadium *stadiumData = [homeStadiumList objectAtIndex:indexPath.row];
+    [cell.textLabel setText:stadiumData.stadiumName];
+    if (indexOfSelectedHomeStadium == indexPath.row) {
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     }
     else {
@@ -96,13 +110,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexOfSelectedMainPlayground == indexPath.row) {
-        indexOfSelectedMainPlayground = -1;
+    if (indexOfSelectedHomeStadium == indexPath.row) {
+        indexOfSelectedHomeStadium = -1;
         [matchPlaceTextField setText:nil];
+        matchStadium = nil;
     }
     else {
-        indexOfSelectedMainPlayground = indexPath.row;
-        [matchPlaceTextField setText:[mainPlaygroundList objectAtIndex:indexPath.row]];
+        indexOfSelectedHomeStadium = indexPath.row;
+        Stadium *stadiumData = [homeStadiumList objectAtIndex:indexPath.row];
+        [matchPlaceTextField setText:stadiumData.stadiumName];
+        matchStadium = stadiumData;
     }
     [tableView reloadData];
     [saveButton setEnabled:[matchPlaceTextField hasText]];
@@ -111,7 +128,7 @@
 
 -(IBAction)saveButtonOnClicked:(id)sender
 {
-    [delegate receiveSelectedPlayground:matchPlaceTextField.text indexOfMainPlayground:indexOfSelectedMainPlayground];
+    [delegate receiveSelectedStadium:matchStadium indexOfHomeStadium:indexOfSelectedHomeStadium];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -119,8 +136,10 @@
 {
     [saveButton setEnabled:[matchPlaceTextField hasText]];
 //    [hintView showOrHideHint:![matchPlaceTextField hasText]];
-    indexOfSelectedMainPlayground = -1;
-    [mainPlayground reloadData];
+    indexOfSelectedHomeStadium = -1;
+    matchStadium = [[Stadium alloc] init];
+    [matchStadium setStadiumName:matchPlaceTextField.text];
+    [homeStadiumTableView reloadData];
 }
 
 -(IBAction)selectStadiumButtonOnClicked:(id)sender
@@ -140,6 +159,18 @@
 {
     [stadiumListView setHidden:YES];
     [matchPlaceTextField setText:selectedStadium.stadiumName];
+    matchStadium = selectedStadium;
+    
+    for (Stadium *homeStadium in homeStadiumList) {
+        if (homeStadium.stadiumId == selectedStadium.stadiumId) {
+            indexOfSelectedHomeStadium = [homeStadiumList indexOfObject:homeStadium];
+            [homeStadiumTableView reloadData];
+            break;
+        }
+        else {
+            indexOfSelectedHomeStadium = -1;
+        }
+    }
     [saveButton setEnabled:[matchPlaceTextField hasText]];
 }
 /*

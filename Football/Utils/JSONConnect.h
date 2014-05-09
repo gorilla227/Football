@@ -14,7 +14,7 @@
 @optional
 -(void)receiveUserInfo:(UserInfo *)userInfo;
 -(void)receiveMatches:(NSArray *)matches;
--(void)receiveAllTemas:(NSArray *)teams;
+-(void)receiveTeams:(NSArray *)teams;
 -(void)receiveStadiums:(NSArray *)stadiums;
 @end
 
@@ -26,6 +26,8 @@
 -(void)requestMatchesByTeamId:(NSNumber *)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex;
 -(void)requestAllTeamsWithCount:(NSInteger)count startIndex:(NSInteger)startIndex;
 -(void)requestAllStadiums;
+-(void)requestStadiumsOfTeam:(NSNumber *)teamId;
+-(void)requestStadiumById:(NSNumber *)stadiumId;
 
 -(void)showErrorAlertView:(NSError *)error;
 @end

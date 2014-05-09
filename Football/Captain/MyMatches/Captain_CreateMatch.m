@@ -21,9 +21,8 @@
     BOOL matchStarted;
     enum SelectedOpponentType selectedOpponentType;
     Team *selectedOpponentTeam;
-    NSInteger indexOfSelectedMainPlayground;
-//    NSArray *matchScoreDetail;
-//    NSString *matchScoreResult;
+    NSInteger indexOfSelectedHomeStadium;
+    Stadium *matchStadium;
     MatchScore *matchScore;
 }
 @synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water, actionButton, toolBar;
@@ -42,13 +41,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //Set variables
     enteringControllers = [[NSMutableArray alloc] init];
     hintView = [[HintTextView alloc] init];
     selectedOpponentType = None;
-    indexOfSelectedMainPlayground = -1;
-//    matchScoreDetail = [[NSArray alloc] init];
+    indexOfSelectedHomeStadium = -1;
+    matchStadium = [[Stadium alloc] init];
     matchScore = [[MatchScore alloc] init];
     matchScore.home = myUserInfo.team;
+    
+    //Set controls
     [self.view addSubview:hintView];
     [self.view setBackgroundColor:[UIColor clearColor]];
     [self initialMatchTime];
@@ -173,7 +175,7 @@
         }
     }
     else if ([textField isEqual:matchPlace]) {
-        [self performSegueWithIdentifier:@"SelectPlayground" sender:self];
+        [self performSegueWithIdentifier:@"SelectMatchStadium" sender:self];
     }
     else if ([textField isEqual:numOfPlayers]) {
         return NO;
@@ -262,13 +264,14 @@
     [self checkActionButtonStatus];
 }
 
--(void)receiveSelectedPlayground:(NSString *)playgroundName indexOfMainPlayground:(NSInteger)index
+-(void)receiveSelectedStadium:(Stadium *)selectedStadium indexOfHomeStadium:(NSInteger)index
 {
     //Fill matchPlace;
-    [matchPlace setText:playgroundName];
+    [matchPlace setText:selectedStadium.stadiumName];
+    matchStadium = selectedStadium;
     
     //Save the indexOfMainPlayground
-    indexOfSelectedMainPlayground = index;
+    indexOfSelectedHomeStadium = index;
     
     //Update action button status
     [self checkActionButtonStatus];
@@ -384,12 +387,12 @@
         [selectOpponentController setDelegate:self];
         [selectOpponentController setSelectedTeam:selectedOpponentTeam];
     }
-    else if ([segue.identifier isEqualToString:@"SelectPlayground"]) {
+    else if ([segue.identifier isEqualToString:@"SelectMatchStadium"]) {
         //Select Playground
-        Captain_CreateMatch_SelectPlayground *selectPlayground = segue.destinationViewController;
-        [selectPlayground setDelegate:self];
-        [selectPlayground setIndexOfSelectedMainPlayground:indexOfSelectedMainPlayground];
-        [selectPlayground setSelectedPlace:matchPlace.text];
+        Captain_CreateMatch_SelectMatchStadium *selectMatchStadium = segue.destinationViewController;
+        [selectMatchStadium setDelegate:self];
+        [selectMatchStadium setIndexOfSelectedHomeStadium:indexOfSelectedHomeStadium];
+        [selectMatchStadium setMatchStadium:matchStadium];
     }
     else if ([segue.identifier isEqualToString:@"EnterScore"]) {
         //Enter Score

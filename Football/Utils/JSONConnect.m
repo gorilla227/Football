@@ -95,7 +95,7 @@
             Team *team = [[Team alloc] initWithData:singleTeam];
             [teams addObject:team];
         }
-        [delegate receiveAllTemas:teams];
+        [delegate receiveTeams:teams];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error];
     }];
@@ -104,7 +104,7 @@
 -(void)requestAllStadiums
 {
     [manager.operationQueue cancelAllOperations];
-    NSString *urlString = [JSON_serverURL stringByAppendingPathComponent:JSON_suffix_allStadiums];
+    NSString *urlString = [JSON_serverURL stringByAppendingPathComponent:JSON_suffix_stadiums];
 
     [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *originalStadiums = responseObject;
@@ -116,6 +116,46 @@
             }
         }
         [delegate receiveStadiums:stadiums];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error];
+    }];
+}
+
+-(void)requestStadiumsOfTeam:(NSNumber *)teamId
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [JSON_serverURL stringByAppendingPathComponent:JSON_suffix_stadiums];
+    NSDictionary *parameters = [[NSDictionary alloc] initWithObjectsAndKeys:teamId, JSON_parameter_stadiums_teamId, nil];
+    
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *originalStadiums = responseObject;
+        NSMutableArray *stadiums = [[NSMutableArray alloc] init];
+        for (NSDictionary *singleStadium in originalStadiums) {
+            Stadium *stadium = [[Stadium alloc] initWithData:singleStadium];
+            if (![stadium.stadiumName isEqual:[NSNull null]]) {
+                [stadiums addObject:stadium];
+            }
+        }
+        [delegate receiveStadiums:stadiums];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error];
+    }];
+}
+
+-(void)requestStadiumById:(NSNumber *)stadiumId
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [JSON_serverURL stringByAppendingPathComponent:JSON_suffix_stadiumById];
+    NSDictionary *parameters = [[NSDictionary alloc] initWithObjectsAndKeys:stadiumId, JSON_parameter_stadiumId, nil];
+    
+    [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        Stadium *stadium = [[Stadium alloc] initWithData:responseObject];
+        if ([stadium.stadiumName isEqual:[NSNull null]]) {
+            [delegate receiveStadiums:nil];
+        }
+        else {
+            [delegate receiveStadiums:@[stadium]];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error];
     }];

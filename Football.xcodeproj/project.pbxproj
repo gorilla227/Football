@@ -35,7 +35,7 @@
 		A19F8D141900E61E00AC8459 /* soccer_title_bar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A19F8D121900E61E00AC8459 /* soccer_title_bar_bg.png */; };
 		A19F8D151900E61E00AC8459 /* soccer_title_bar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A19F8D131900E61E00AC8459 /* soccer_title_bar_bg@2x.png */; };
 		A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */; };
-		A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.m */; };
+		A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */; };
 		A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */; };
 		A1C2802D18F79CED004C644E /* login_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802418F79CED004C644E /* login_logo.png */; };
 		A1C2802E18F79CED004C644E /* login_textfield_title_pwd.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802518F79CED004C644E /* login_textfield_title_pwd.png */; };
@@ -141,8 +141,8 @@
 		A19F8D121900E61E00AC8459 /* soccer_title_bar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = soccer_title_bar_bg.png; path = Resource/soccer_title_bar_bg.png; sourceTree = "<group>"; };
 		A19F8D131900E61E00AC8459 /* soccer_title_bar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "soccer_title_bar_bg@2x.png"; path = "Resource/soccer_title_bar_bg@2x.png"; sourceTree = "<group>"; };
 		A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_CreateMatch_EnterOpponent.m; path = Captain/MyMatches/Captain_CreateMatch_EnterOpponent.m; sourceTree = "<group>"; };
-		A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_CreateMatch_SelectPlayground.h; path = Captain/MyMatches/Captain_CreateMatch_SelectPlayground.h; sourceTree = "<group>"; };
-		A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_CreateMatch_SelectPlayground.m; path = Captain/MyMatches/Captain_CreateMatch_SelectPlayground.m; sourceTree = "<group>"; };
+		A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_CreateMatch_SelectMatchStadium.h; path = Captain/MyMatches/Captain_CreateMatch_SelectMatchStadium.h; sourceTree = "<group>"; };
+		A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_CreateMatch_SelectMatchStadium.m; path = Captain/MyMatches/Captain_CreateMatch_SelectMatchStadium.m; sourceTree = "<group>"; };
 		A1B0DA1B18EA785C00671383 /* Captain_MatchArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MatchArrangement.h; path = Captain/MyMatches/Captain_MatchArrangement.h; sourceTree = "<group>"; };
 		A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MatchArrangement.m; path = Captain/MyMatches/Captain_MatchArrangement.m; sourceTree = "<group>"; };
 		A1C2802418F79CED004C644E /* login_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_logo.png; path = Resource/login_logo.png; sourceTree = "<group>"; };
@@ -348,8 +348,8 @@
 				A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */,
 				A17243291908CF04008F4948 /* Captain_CreateMatch_TeamMarket.h */,
 				A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */,
-				A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.h */,
-				A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.m */,
+				A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.h */,
+				A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */,
 				A146685D191B53A600589785 /* Captain_CreateMatch_StadiumList.h */,
 				A146685E191B53A600589785 /* Captain_CreateMatch_StadiumList.m */,
 				B2FEC5E21915CADD00B8B74D /* Captain_CreateMatch_EnterScore.h */,
@@ -699,7 +699,7 @@
 				A1F428E3191209DB00567A02 /* AFURLResponseSerialization.m in Sources */,
 				A1D07BDE18CC1E4800FA3A8D /* main.m in Sources */,
 				A146685F191B53A600589785 /* Captain_CreateMatch_StadiumList.m in Sources */,
-				A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectPlayground.m in Sources */,
+				A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */,
 				A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */,
 				A1F428E1191209DB00567A02 /* AFURLConnectionOperation.m in Sources */,
 				A1F428DD191209DB00567A02 /* AFHTTPRequestOperationManager.m in Sources */,

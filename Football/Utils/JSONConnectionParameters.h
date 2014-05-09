@@ -44,4 +44,7 @@
 #define JSON_suffix_postUser @"addUser"
 
 //Get Stadiums
-#define JSON_suffix_allStadiums @"stadiums"
+#define JSON_suffix_stadiums @"stadiums"
+#define JSON_suffix_stadiumById @"stadium"
+#define JSON_parameter_stadiumId @"id"
+#define JSON_parameter_stadiums_teamId @"team_id"

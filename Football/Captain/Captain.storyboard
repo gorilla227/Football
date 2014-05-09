@@ -513,7 +513,7 @@
                         <outlet property="toolBar" destination="kNK-M7-pjf" id="Jub-8x-C07"/>
                         <segue destination="TJj-lJ-1UK" kind="push" identifier="SelectOpponent" id="mkN-NA-bmm"/>
                         <segue destination="D47-h1-sYj" kind="push" identifier="EnterOpponent" id="XYH-IY-a8N"/>
-                        <segue destination="1jn-PF-RVR" kind="push" identifier="SelectPlayground" id="RUA-fL-RiB"/>
+                        <segue destination="1jn-PF-RVR" kind="push" identifier="SelectMatchStadium" id="RUA-fL-RiB"/>
                         <segue destination="lPb-eJ-rbZ" kind="push" identifier="EnterScore" id="5jG-vh-hle"/>
                     </connections>
                 </viewController>
@@ -687,10 +687,10 @@
             </objects>
             <point key="canvasLocation" x="1618" y="-467"/>
         </scene>
-        <!--Captain Create Match Select Playground - 选择球场-->
+        <!--Captain Create Match Select Match Stadium - 选择球场-->
         <scene sceneID="JZ7-X3-4Qd">
             <objects>
-                <viewController storyboardIdentifier="Captain_CreateMatch_SelectPlayground" title="选择球场" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1jn-PF-RVR" customClass="Captain_CreateMatch_SelectPlayground" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Captain_CreateMatch_SelectPlayground" title="选择球场" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1jn-PF-RVR" customClass="Captain_CreateMatch_SelectMatchStadium" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y85-KS-gNH">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -785,7 +785,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="选择球场" id="2u0-zX-xVl"/>
                     <connections>
-                        <outlet property="mainPlayground" destination="TBb-sK-goH" id="VOa-aJ-lnl"/>
+                        <outlet property="homeStadiumTableView" destination="TBb-sK-goH" id="p2x-FJ-Et5"/>
                         <outlet property="matchPlaceTextField" destination="DE2-8u-1a7" id="gUI-Z8-Wyg"/>
                         <outlet property="saveButton" destination="6Ek-c4-uPh" id="pMe-zn-AhZ"/>
                         <outlet property="stadiumListView" destination="JYZ-WA-oL4" id="opU-kn-WGV"/>
