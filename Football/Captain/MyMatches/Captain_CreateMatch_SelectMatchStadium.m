@@ -163,14 +163,14 @@
     
     for (Stadium *homeStadium in homeStadiumList) {
         if (homeStadium.stadiumId == selectedStadium.stadiumId) {
-            indexOfSelectedHomeStadium = [homeStadiumList indexOfObject:homeStadium];
-            [homeStadiumTableView reloadData];
+            indexOfSelectedHomeStadium = [homeStadiumList indexOfObject:homeStadium];            
             break;
         }
         else {
             indexOfSelectedHomeStadium = -1;
         }
     }
+    [homeStadiumTableView reloadData];
     [saveButton setEnabled:[matchPlaceTextField hasText]];
 }
 /*

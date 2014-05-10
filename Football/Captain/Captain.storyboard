@@ -809,7 +809,7 @@
                                 <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Vs6-1T-wSC"/>
-                                    <barButtonItem enabled="NO" title="保存" id="WVF-2K-Nhy">
+                                    <barButtonItem title="保存" id="WVF-2K-Nhy">
                                         <connections>
                                             <action selector="saveButtonOnClicked:" destination="lPb-eJ-rbZ" id="72Y-0x-FiL"/>
                                         </connections>
@@ -879,17 +879,23 @@
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="34"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择球员" textAlignment="center" minimumFontSize="17" id="wfm-ga-8Wq">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="GoalPlayerCandidate" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择球员" textAlignment="center" minimumFontSize="17" id="wfm-ga-8Wq">
                                                     <rect key="frame" x="0.0" y="2" width="132" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="lPb-eJ-rbZ" id="ysz-7I-az0"/>
+                                                    </connections>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择球员" textAlignment="center" minimumFontSize="17" id="puh-Uo-SON">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AssistPlayerCandidate" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择球员" textAlignment="center" minimumFontSize="17" id="puh-Uo-SON">
                                                     <rect key="frame" x="148" y="2" width="132" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="lPb-eJ-rbZ" id="3VW-gJ-aHa"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>

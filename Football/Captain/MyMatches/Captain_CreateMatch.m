@@ -355,14 +355,18 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    [matchScoreTableView setHidden:matchScore.homeScore.integerValue==0];
+    [matchScoreTableViewHeader setHidden:matchScore.homeScore.integerValue==0];
     return matchScore.homeScore.integerValue;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Captain_CreateMatch_MatchScoreTableView_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchScoreCell"];
-    [cell.goalPlayerName setText:[[matchScore.goalPlayers objectAtIndex:indexPath.row] userName]];
-    [cell.assistPlayerName setText:[[matchScore.assistPlayers objectAtIndex:indexPath.row] userName]];
+    UserInfo *goalPlayer = [matchScore.goalPlayers objectAtIndex:indexPath.row];
+    UserInfo *assistPlayer = [matchScore.assistPlayers objectAtIndex:indexPath.row];
+    [cell.goalPlayerName setText:goalPlayer.name];
+    [cell.assistPlayerName setText:assistPlayer.name];
     return cell;
 }
 

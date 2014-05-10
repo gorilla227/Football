@@ -161,6 +161,25 @@
     }];
 }
 
+-(void)requestPlayersByTeamId:(NSNumber *)teamId
+{
+    //Fake code to request all users
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [JSON_serverURL stringByAppendingPathComponent:JSON_suffix_allUsers];
+    
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *originalPlayers = responseObject;
+        NSMutableArray *players = [[NSMutableArray alloc] init];
+        for (NSDictionary *singlePlayer in originalPlayers) {
+            UserInfo *player = [[UserInfo alloc] initWithData:singlePlayer];
+            [players addObject:player];
+        }
+        [delegate receivePlayers:players];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error];
+    }];
+}
+
 -(void)showErrorAlertView:(NSError *)error
 {
     UIAlertView *errorAlertViw = [[UIAlertView alloc] initWithTitle:@"杯具了" message:error.localizedDescription delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
