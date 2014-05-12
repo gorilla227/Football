@@ -16,7 +16,7 @@
     HintTextView *hintView;
     NSArray *inviteOpponentMenuList;
 }
-@synthesize matchStarted, delegate, type, selectedTeamName;
+@synthesize matchStarted, delegate, selectedTeamName;
 @synthesize inviteOpponentButton, teamMarketButton, toolBar, matchOpponent, saveButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -48,21 +48,19 @@
     }
     else {
         //Match not started
-        switch (type) {
-            case None:
-                [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace, flexibleSpace, teamMarketButton, flexibleSpace]];
-                
-                //Show hint
-                [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted_Subpage" underView:matchOpponent wantShow:YES];
-                break;
-            case New:
-                [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace]];
-                
-                //Show hint
-                [hintView settingHintWithTextKey:@"EnterOpponent_MatchStarted" underView:matchOpponent wantShow:YES];
-                break;
-            default:
-                break;
+        if (selectedTeamName.length != 0) {
+            //Opponent Team is not in system
+            [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace]];
+
+            //Show hint
+            [hintView settingHintWithTextKey:@"EnterOpponent_MatchStarted" underView:matchOpponent wantShow:YES];
+        }
+        else {
+            //No opponent selected
+            [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace, flexibleSpace, teamMarketButton, flexibleSpace]];
+
+            //Show hint
+            [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted_Subpage" underView:matchOpponent wantShow:YES];
         }
     }
     

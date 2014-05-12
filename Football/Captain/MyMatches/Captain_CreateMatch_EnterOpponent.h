@@ -17,7 +17,6 @@
 @interface Captain_CreateMatch_EnterOpponent : UIViewController<UIActionSheetDelegate>
 @property id<EnterOpponent>delegate;
 @property BOOL matchStarted;
-@property enum SelectedOpponentType type;
 @property NSString *selectedTeamName;
 @property IBOutlet UIToolbar *toolBar;
 @property IBOutlet UIBarButtonItem *inviteOpponentButton;

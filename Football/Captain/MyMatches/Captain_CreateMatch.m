@@ -19,7 +19,7 @@
     HintTextView *hintView;
     NSMutableArray *enteringControllers;
     BOOL matchStarted;
-    enum SelectedOpponentType selectedOpponentType;
+    BOOL isOpponentTeamInSystem;
     Team *selectedOpponentTeam;
     NSInteger indexOfSelectedHomeStadium;
     Stadium *matchStadium;
@@ -44,7 +44,6 @@
     //Set variables
     enteringControllers = [[NSMutableArray alloc] init];
     hintView = [[HintTextView alloc] init];
-    selectedOpponentType = None;
     indexOfSelectedHomeStadium = -1;
     matchStadium = [[Stadium alloc] init];
     matchScore = [[MatchScore alloc] init];
@@ -163,15 +162,11 @@
         }
     }
     else if ([textField isEqual:matchOpponent]) {
-        switch (selectedOpponentType) {
-            case None:
-            case New:
-                [self performSegueWithIdentifier:@"EnterOpponent" sender:self];
-                break;
-            case Existed:
-                [self performSegueWithIdentifier:@"SelectOpponent" sender:self];
-            default:
-                break;
+        if (isOpponentTeamInSystem) {
+            [self performSegueWithIdentifier:@"SelectOpponent" sender:self];
+        }
+        else {
+            [self performSegueWithIdentifier:@"EnterOpponent" sender:self];
         }
     }
     else if ([textField isEqual:matchPlace]) {
@@ -216,9 +211,6 @@
     //Fill opponent
     [matchOpponent setText:opponentName];
     
-    //Save the selected opponent type
-    selectedOpponentType = New;
-    
     //Show other controllers
     [matchPlace setHidden:NO];
     [numOfPlayers setHidden:NO];
@@ -246,7 +238,7 @@
     selectedOpponentTeam = opponentTeam;
     
     //Save the selected opponent type
-    selectedOpponentType = Existed;
+    isOpponentTeamInSystem = YES;
     
     //Show other controllers
     [matchPlace setHidden:NO];
@@ -314,7 +306,6 @@
     //Refresh controller status after matchTime entered
     NSTimeInterval timeInterval = [matchTimePicker.date timeIntervalSinceNow];
     matchStarted = timeInterval < 0;
-    selectedOpponentType = None;
     [matchOpponent setText:nil];
     [matchPlace setText:nil];
     
@@ -381,7 +372,6 @@
         //Enter Opponent
         Captain_CreateMatch_EnterOpponent *enterOpponentController = segue.destinationViewController;
         [enterOpponentController setMatchStarted:matchStarted];
-        [enterOpponentController setType:selectedOpponentType];
         [enterOpponentController setSelectedTeamName:matchOpponent.text];
         [enterOpponentController setDelegate:self];
     }
