@@ -27,6 +27,7 @@
 }
 @synthesize matchTime, matchOpponent, matchPlace, numOfPlayers, cost, costOptions, costOption_Judge, costOption_Water, actionButton, toolBar;
 @synthesize matchScoreTextField, matchScoreTableView, matchScoreTableViewHeader, matchScoreHeader_Goal, matchScoreHeader_Assist;
+@synthesize viewMatchData, segueIdentifier;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,6 +50,10 @@
     matchScore = [[MatchScore alloc] init];
     matchScore.home = myUserInfo.team;
     
+    //Set dateformatter
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:def_MatchDateAndTimeformat];
+    
     //Set controls
     [self.view addSubview:hintView];
     [self.view setBackgroundColor:[UIColor clearColor]];
@@ -60,6 +65,20 @@
     [self initialMatchScore];
     [matchScoreTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
+    //Initial View base on different source
+    if ([segueIdentifier isEqualToString:@"CreateMatch"]) {
+        [self initialCreateMatchView];
+    }
+    else if([segueIdentifier isEqualToString:@"FillRecord"]) {
+        [self initialFillRecordView];
+    }
+    else if([segueIdentifier isEqualToString:@"ViewRecord"]) {
+        [self initialViewRecordView];
+    }
+}
+
+-(void)initialCreateMatchView
+{
     //Hide controllers except matchTime
     [matchOpponent setHidden:YES];
     [matchPlace setHidden:YES];
@@ -70,10 +89,50 @@
     [matchScoreTableViewHeader setHidden:YES];
     [matchScoreTableView setHidden:YES];
     [toolBar setHidden:YES];
+}
+
+-(void)initialFillRecordView
+{
+    [matchTime setEnabled:NO];
+    [matchOpponent setHidden:NO];
+    [matchOpponent setEnabled:NO];
+    [matchPlace setHidden:NO];
+    [matchPlace setEnabled:NO];
+    [numOfPlayers setHidden:NO];
+    [numOfPlayers setEnabled:NO];
+    [cost setHidden:NO];
+    [costOptions setHidden:NO];
+    [matchScoreTextField setHidden:NO];
+    [matchScoreTableViewHeader setHidden:NO];
+    [matchScoreTableView setHidden:NO];
+    [toolBar setHidden:NO];
+    [actionButton setTitle:def_createMatch_actionButton_started];
+    [hintView showOrHideHint:NO];
     
-    //Set dateformatter
-    dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:def_MatchDateAndTimeformat];
+    //Fill data
+    [matchTime setText:[dateFormatter stringFromDate:viewMatchData.matchDate]];
+}
+
+-(void)initialViewRecordView
+{
+    [matchTime setEnabled:NO];
+    [matchOpponent setHidden:NO];
+    [matchOpponent setEnabled:NO];
+    [matchPlace setHidden:NO];
+    [matchPlace setEnabled:NO];
+    [numOfPlayers setHidden:NO];
+    [numOfPlayers setEnabled:NO];
+    [cost setHidden:NO];
+    [costOptions setHidden:NO];
+    [matchScoreTextField setHidden:NO];
+    [matchScoreTableViewHeader setHidden:NO];
+    [matchScoreTableView setHidden:NO];
+    [toolBar setHidden:NO];
+    [actionButton setTitle:def_createMatch_actionButton_started];
+    [hintView showOrHideHint:NO];
+    
+    //Fill data
+    [matchTime setText:[dateFormatter stringFromDate:viewMatchData.matchDate]];
 }
 
 -(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName

@@ -29,6 +29,9 @@
 @property IBOutlet UIView *matchScoreTableViewHeader;
 @property IBOutlet UILabel *matchScoreHeader_Goal;
 @property IBOutlet UILabel *matchScoreHeader_Assist;
+//Variable for view/fill record
+@property Match *viewMatchData;
+@property NSString *segueIdentifier;
 
 -(void)matchTimeSelected;
 -(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName;
@@ -40,4 +43,7 @@
 -(void)initialMatchScore;
 -(void)numberOfPlayersStepperChanged;
 -(void)checkActionButtonStatus;
+-(void)initialCreateMatchView;
+-(void)initialViewRecordView;
+-(void)initialFillRecordView;
 @end

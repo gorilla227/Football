@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Captain_MainMenu.h"
+#import "Captain_CreateMatch.h"
 
 @interface Captain_MatchArrangementListCell : UITableViewCell
 @property IBOutlet UILabel *numberOfPlayers;
@@ -29,4 +30,8 @@
 @property IBOutlet UIImageView *teamIcon;
 @property IBOutlet UILabel *teamName;
 @property IBOutlet UILabel *numberOfTeamMembers;
+
+-(void)actionButtonOnClicked_announce:(UIButton *)sender;
+-(void)actionButtonOnClicked_viewRecord:(UIButton *)sender;
+-(void)actionButtonOnClicked_fillRecord:(UIButton *)sender;
 @end

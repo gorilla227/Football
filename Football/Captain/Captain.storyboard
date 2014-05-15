@@ -155,7 +155,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Mrk-54-shm"/>
                                     <barButtonItem title="＋ 建立比赛" id="7Ry-kd-4dd">
                                         <connections>
-                                            <segue destination="R6J-gK-DLQ" kind="push" id="j6Y-Xq-J4M"/>
+                                            <segue destination="R6J-gK-DLQ" kind="push" identifier="CreateMatch" id="j6Y-Xq-J4M"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="BNj-Qm-1Au"/>
@@ -192,9 +192,6 @@
                                                     <state key="disabled">
                                                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="actionButtonOnClicked:" destination="RNH-YR-2A9" eventType="touchUpInside" id="dlP-Jg-hot"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04/10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C4g-Kq-tcR">
                                                     <rect key="frame" x="20" y="6" width="78" height="35"/>
@@ -311,6 +308,8 @@
                         <outlet property="numberOfTeamMembers" destination="sOE-ga-aKz" id="oK8-LO-Wt5"/>
                         <outlet property="teamIcon" destination="ZCj-jR-EvV" id="SCY-VB-CTa"/>
                         <outlet property="teamName" destination="UL1-Xs-zEP" id="whA-vQ-NfR"/>
+                        <segue destination="R6J-gK-DLQ" kind="push" identifier="ViewRecord" id="cUV-cu-CyG"/>
+                        <segue destination="R6J-gK-DLQ" kind="push" identifier="FillRecord" id="FTS-oN-6nj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yvd-0k-N2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1713,6 +1712,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5WW-Lp-Owi"/>
+        <segue reference="j6Y-Xq-J4M"/>
+        <segue reference="mkN-NA-bmm"/>
     </inferredMetricsTieBreakers>
 </document>

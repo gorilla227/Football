@@ -28,18 +28,19 @@
 {
     // Initialization code
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
-
--(IBAction)actionButtonOnClicked:(id)sender
-{
-    NSLog([[(UIButton *)sender titleLabel] text]);
-}
+//
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+//{
+//    [super setSelected:selected animated:animated];
+//    
+//    // Configure the view for the selected state
+//}
+//
+//-(IBAction)actionButtonOnClicked:(id)sender
+//{
+//    UIButton *actionButton = (UIButton *)sender;
+//    NSLog(actionButton.titleLabel.text);
+//}
 @end
 
 #pragma Captain_MatchArrangement
@@ -153,6 +154,8 @@
         case 0:
             [cell.actionButton setTitle:def_MA_actionButton_announce forState:UIControlStateNormal];
             [cell.actionButton setBackgroundColor:def_actionButtonColor_BeforeMatch];
+            [cell.actionButton addTarget:self action:@selector(actionButtonOnClicked_announce:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.actionButton setTag:indexPath.row];
             [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_SignUp];
             [cell setBackgroundColor:def_backgroundColor_BeforeMatch];
             [cell.matchResult setHidden:YES];
@@ -164,6 +167,8 @@
         case 1:
             [cell.actionButton setTitle:def_MA_actionButton_record forState:UIControlStateNormal];
             [cell.actionButton setBackgroundColor:def_actionButtonColor_AfterMatch];
+            [cell.actionButton addTarget:self action:@selector(actionButtonOnClicked_fillRecord:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.actionButton setTag:indexPath.row];
             [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_ShowUp];
             [cell setBackgroundColor:def_backgroundColor_AfterMatch];
             [cell.matchResult setHidden:YES];
@@ -175,6 +180,8 @@
         case 2:
             [cell.actionButton setTitle:def_MA_actionButton_detail forState:UIControlStateNormal];
             [cell.actionButton setBackgroundColor:def_actionButtonColor_FilledDetail];
+            [cell.actionButton addTarget:self action:@selector(actionButtonOnClicked_viewRecord:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.actionButton setTag:indexPath.row];
             [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_ShowUp];
             [cell setBackgroundColor:def_backgroundColor_FilledDetail];
             [cell.matchResult setHidden:NO];
@@ -227,15 +234,45 @@
         [matchesTableView setEditing:NO animated:YES];
     }
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+-(void)actionButtonOnClicked_announce:(UIButton *)sender
+{
+    Match *selectMatch = [matchesList objectAtIndex:sender.tag];
+    NSLog(@"Announce: %@", selectMatch.matchId);
+}
+
+-(void)actionButtonOnClicked_fillRecord:(UIButton *)sender
+{
+    Match *selectMatch = [matchesList objectAtIndex:sender.tag];
+    NSLog(@"%@", selectMatch.matchId);
+    [self performSegueWithIdentifier:@"FillRecord" sender:selectMatch];
+}
+
+-(void)actionButtonOnClicked_viewRecord:(UIButton *)sender
+{
+    Match *selectMatch = [matchesList objectAtIndex:sender.tag];
+    [self performSegueWithIdentifier:@"ViewRecord" sender:selectMatch];
+}
+
+#pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"CreateMatch"]) {
+        Captain_CreateMatch *matchView = segue.destinationViewController;
+        [matchView setSegueIdentifier:segue.identifier];
+    }
+    else if ([segue.identifier isEqualToString:@"FillRecord"]) {
+        Captain_CreateMatch *matchView = segue.destinationViewController;
+        [matchView setSegueIdentifier:segue.identifier];
+        [matchView setViewMatchData:sender];
+    }
+    else if ([segue.identifier isEqualToString:@"ViewRecord"]) {
+        Captain_CreateMatch *matchView = segue.destinationViewController;
+        [matchView setSegueIdentifier:segue.identifier];
+        [matchView setViewMatchData:sender];
+    }
+    
 }
-*/
+
 
 @end

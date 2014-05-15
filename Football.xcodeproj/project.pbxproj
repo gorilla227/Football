@@ -340,20 +340,7 @@
 		A1B0DA1E18EA786600671383 /* MyMatches */ = {
 			isa = PBXGroup;
 			children = (
-				A1B0DA1B18EA785C00671383 /* Captain_MatchArrangement.h */,
-				A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */,
-				A153ACC0190248F80062EB44 /* Captain_CreateMatch.h */,
-				A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */,
-				A1C41F3119062943001A2EFD /* Captain_CreateMatch_EnterOpponent.h */,
-				A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */,
-				A17243291908CF04008F4948 /* Captain_CreateMatch_TeamMarket.h */,
-				A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */,
-				A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.h */,
-				A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */,
-				A146685D191B53A600589785 /* Captain_CreateMatch_StadiumList.h */,
-				A146685E191B53A600589785 /* Captain_CreateMatch_StadiumList.m */,
-				B2FEC5E21915CADD00B8B74D /* Captain_CreateMatch_EnterScore.h */,
-				B2FEC5E31915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m */,
+				A1E8F2961921E0260047483C /* MatchArrangement */,
 				A153ACBC19023F640062EB44 /* Hint_List.plist */,
 				A153ACB919023ECF0062EB44 /* HintTextView.h */,
 				A153ACBA19023ECF0062EB44 /* HintTextView.m */,
@@ -501,6 +488,27 @@
 				A1B0DA1E18EA786600671383 /* MyMatches */,
 			);
 			name = Captain;
+			sourceTree = "<group>";
+		};
+		A1E8F2961921E0260047483C /* MatchArrangement */ = {
+			isa = PBXGroup;
+			children = (
+				A1B0DA1B18EA785C00671383 /* Captain_MatchArrangement.h */,
+				A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */,
+				A153ACC0190248F80062EB44 /* Captain_CreateMatch.h */,
+				A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */,
+				A1C41F3119062943001A2EFD /* Captain_CreateMatch_EnterOpponent.h */,
+				A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */,
+				A17243291908CF04008F4948 /* Captain_CreateMatch_TeamMarket.h */,
+				A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */,
+				A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.h */,
+				A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */,
+				A146685D191B53A600589785 /* Captain_CreateMatch_StadiumList.h */,
+				A146685E191B53A600589785 /* Captain_CreateMatch_StadiumList.m */,
+				B2FEC5E21915CADD00B8B74D /* Captain_CreateMatch_EnterScore.h */,
+				B2FEC5E31915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m */,
+			);
+			name = MatchArrangement;
 			sourceTree = "<group>";
 		};
 		A1F428C7191209DB00567A02 /* AFNetworking */ = {
