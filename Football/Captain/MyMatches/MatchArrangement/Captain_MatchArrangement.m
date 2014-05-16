@@ -68,8 +68,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //Set menu button
+    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
+    
     [matchesTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     matchesList = [[NSMutableArray alloc] init];
+
     //Set TeamInfo
     [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
     [teamIcon.layer setBorderWidth:2.0f];
@@ -86,14 +90,6 @@
 {
     [matchesList addObjectsFromArray:matches];
     [matchesTableView reloadData];
-}
-
--(IBAction)menuButtonOnClicked:(id)sender
-{
-    id<MainMenuAppearenceDelegate>delegateOfMenuAppearance = (id)self.navigationController;
-    if (delegateOfMenuAppearance) {
-        [delegateOfMenuAppearance menuSwitch];
-    }
 }
 
 - (void)didReceiveMemoryWarning

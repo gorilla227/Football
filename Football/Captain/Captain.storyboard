@@ -96,22 +96,26 @@
         <scene sceneID="Z2u-1O-9hN">
             <objects>
                 <navigationController storyboardIdentifier="Captain_RootNavigationController" definesPresentationContext="YES" modalTransitionStyle="flipHorizontal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TjK-OM-Yjn" customClass="Captain_RootNavigationController" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="oA4-LM-88w">
+                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="y7G-a0-1B4">
-                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
                     <connections>
+                        <outlet property="menuButton" destination="kWV-e6-GiH" id="Rk0-z5-LuV"/>
                         <segue destination="dbN-VF-g7q" kind="relationship" relationship="rootViewController" id="VOw-AO-toE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AnL-dq-0BF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="菜单" id="kWV-e6-GiH">
+                    <connections>
+                        <action selector="menuButtonOnClicked:" destination="TjK-OM-Yjn" id="c6X-iF-HSC"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="-89" y="197"/>
         </scene>
@@ -295,13 +299,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="比赛安排" id="9dN-Rj-epV">
-                        <barButtonItem key="leftBarButtonItem" title="菜单" id="u10-My-8qb">
-                            <connections>
-                                <action selector="menuButtonOnClicked:" destination="dbN-VF-g7q" id="Xpb-A6-epS"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="比赛安排" id="9dN-Rj-epV"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="matchesTableView" destination="QRb-13-lxr" id="MnU-Hw-StV"/>
@@ -1008,7 +1006,6 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="aoE-nw-lhq" customClass="Captain_NavigationItem"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <size key="freeformSize" width="320" height="455"/>
                 </viewController>
@@ -1566,13 +1563,6 @@
                             <outlet property="delegate" destination="p9t-Bn-Ph0" id="Ywb-Yc-ZCS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="我的队员" id="0pG-4I-4eB">
-                        <barButtonItem key="leftBarButtonItem" title="菜单" id="tdD-bO-gnJ">
-                            <connections>
-                                <action selector="menuButtonOnClicked:" destination="p9t-Bn-Ph0" id="FvD-id-H82"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <size key="freeformSize" width="320" height="455"/>
                     <connections>

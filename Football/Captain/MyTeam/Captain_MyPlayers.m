@@ -61,15 +61,9 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
-//    [self setEdgesForExtendedLayout:UIRectEdgeNone];
-}
 
--(IBAction)menuButtonOnClicked:(id)sender
-{
-    id<MainMenuAppearenceDelegate>delegateOfMenuAppearance = (id)self.navigationController;
-    if (delegateOfMenuAppearance) {
-        [delegateOfMenuAppearance menuSwitch];
-    }
+    //Set menu button
+    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
 }
 
 - (void)didReceiveMemoryWarning

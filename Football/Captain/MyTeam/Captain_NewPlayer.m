@@ -34,6 +34,9 @@
             newPlayerList = (Captain_NewPlayerList *)viewController;
         }
     }
+    
+    //Set menu button
+    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
 }
 
 - (void)didReceiveMemoryWarning

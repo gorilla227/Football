@@ -16,6 +16,7 @@
     Captain_MainMenu *mainMenu;
     UIView *contentView;
 }
+@synthesize menuButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +40,9 @@
     [mainMenu setDelegateOfMenuAppearance:self];
     [mainMenu setDelegateOfViewSwitch:self];
     [self.view addSubview:mainMenu.view];
+    
+    //Set Menu button
+    [self.navigationBar.topItem setLeftBarButtonItem:menuButton];
 }
 
 -(void)logout
@@ -94,6 +98,11 @@
         UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:selectedView];
         [self setViewControllers:@[targetViewController] animated:YES];
     }
+}
+
+-(IBAction)menuButtonOnClicked:(id)sender
+{
+    [self menuSwitch];
 }
 
 /*

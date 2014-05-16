@@ -31,6 +31,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //Set menu button
+    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
+    
 //    [teamIcon setImage:[UIImage imageNamed:@"TeamIcon.jpg"]];
     [teamIcon.layer setBorderWidth:2.0f];
     [teamIcon.layer setBorderColor:[UIColor grayColor].CGColor];
