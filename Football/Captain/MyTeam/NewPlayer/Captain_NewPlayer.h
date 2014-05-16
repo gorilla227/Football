@@ -7,8 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Captain_NewPlayerList.h"
+@interface Captain_NewPlayer_ApplicantCell : UITableViewCell<UIAlertViewDelegate>
+@property IBOutlet UILabel *playerID;
+@property IBOutlet UILabel *postion;
+@property IBOutlet UILabel *age;
+@property IBOutlet UILabel *team;
+@property IBOutlet UITextView *comment;
+@property IBOutlet UILabel *status;
+@property IBOutlet UISegmentedControl *agreementSegment;
+@end
 
-@interface Captain_NewPlayer : UIViewController
+@interface Captain_NewPlayer_InviteeCell : UITableViewCell<UIAlertViewDelegate>
+@property IBOutlet UILabel *playerName;
+@property IBOutlet UILabel *postion;
+@property IBOutlet UILabel *age;
+@property IBOutlet UILabel *team;
+@property IBOutlet UITextView *comment;
+@property IBOutlet UILabel *status;
+@property IBOutlet UIButton *cancelInvitationButton;
+@end
 
+@interface Captain_NewPlayer : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@property IBOutlet UITableView *playerNewTableView;
 @end

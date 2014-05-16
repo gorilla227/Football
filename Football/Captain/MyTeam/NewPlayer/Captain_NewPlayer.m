@@ -8,13 +8,122 @@
 
 #import "Captain_NewPlayer.h"
 
-@interface Captain_NewPlayer ()
+#pragma Captain_NewPlayer_ApplicantCell
+@implementation Captain_NewPlayer_ApplicantCell
+@synthesize playerID, postion, age, team, comment, status, agreementSegment;
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+- (void)awakeFromNib
+{
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
+
+-(IBAction)agreementOnClicked:(id)sender
+{
+    UIAlertView *confirmAgreement = [[UIAlertView alloc] init];
+    [confirmAgreement setDelegate:self];
+    switch (agreementSegment.selectedSegmentIndex) {
+        case 0:
+            [confirmAgreement setTitle:@"同意入队确认"];
+            [confirmAgreement setMessage:[NSString stringWithFormat:@"确认同意%@入队？", playerID.text]];
+            [confirmAgreement addButtonWithTitle:@"取消"];
+            [confirmAgreement addButtonWithTitle:@"同意入队"];
+            [confirmAgreement setCancelButtonIndex:0];
+            break;
+        case 1:
+            [confirmAgreement setTitle:@"拒绝入队确认"];
+            [confirmAgreement setMessage:[NSString stringWithFormat:@"确认拒绝%@入队？", playerID.text]];
+            [confirmAgreement addButtonWithTitle:@"取消"];
+            [confirmAgreement addButtonWithTitle:@"拒绝入队"];
+            [confirmAgreement setCancelButtonIndex:0];
+            break;
+        default:
+            break;
+    }
+    [confirmAgreement show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        switch (agreementSegment.selectedSegmentIndex) {
+            case 0:
+                NSLog(@"同意入队");
+                break;
+            case 1:
+                NSLog(@"拒绝入队");
+                break;
+            default:
+                break;
+        }
+        [agreementSegment setEnabled:NO];
+    }
+    else {
+        [agreementSegment setSelectedSegmentIndex:-1];
+    }
+    
+}
 @end
 
-@implementation Captain_NewPlayer{
-    Captain_NewPlayerList *newPlayerList;
+#pragma Captain_NewPlayer_InviteeCell
+@implementation Captain_NewPlayer_InviteeCell
+@synthesize playerName, postion, age, team, comment, status, cancelInvitationButton;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
 }
+
+- (void)awakeFromNib
+{
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
+
+-(IBAction)cancelInvitationButtonOnClicked:(id)sender
+{
+    UIAlertView *confirmCancel = [[UIAlertView alloc] initWithTitle:@"取消邀请" message:[NSString stringWithFormat:@"确定要取消对%@的邀请吗？", playerName.text] delegate:self cancelButtonTitle:@"撤销操作" otherButtonTitles:@"确定", nil];
+    [confirmCancel show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [cancelInvitationButton setEnabled:NO];
+        [cancelInvitationButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+        NSLog(@"取消邀请");
+    }
+}
+@end
+
+#pragma Captain_NewPlayer
+@implementation Captain_NewPlayer
+@synthesize playerNewTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,14 +138,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    for (UIViewController *viewController in self.childViewControllers) {
-        if ([viewController.restorationIdentifier isEqualToString:@"Captain_NewPlayerList"]) {
-            newPlayerList = (Captain_NewPlayerList *)viewController;
-        }
-    }
-    
     //Set menu button
     [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
+    
+    //Set tableView
+    [playerNewTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,6 +151,43 @@
     // Dispose of any resources that can be recreated.
 }
 
+//TableView methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return 2;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        Captain_NewPlayer_ApplicantCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_NewPlayer_ApplicantCell"];
+        
+        // Configure the cell...
+        [cell.comment setText:@"一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十"];
+        [cell.comment setContentInset:UIEdgeInsetsZero];
+        return cell;
+    }
+    else if (indexPath.row == 1) {
+        Captain_NewPlayer_InviteeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_NewPlayer_InviteeCell"];
+        
+        // Configure the cell...
+        [cell.cancelInvitationButton.layer setBorderWidth:1.0f];
+        [cell.cancelInvitationButton.layer setBorderColor:[UIColor magentaColor].CGColor];
+        [cell.cancelInvitationButton.layer setCornerRadius:5.0f];
+        return cell;
+    }
+    return nil;
+}
 /*
 #pragma mark - Navigation
 

@@ -44,9 +44,6 @@
 @end
 
 #pragma Captain_MatchArrangement
-@interface Captain_MatchArrangement ()
-
-@end
 
 @implementation Captain_MatchArrangement{
     NSMutableArray *matchesList;
