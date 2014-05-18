@@ -41,7 +41,7 @@
 			<key>Title</key>
 			<string>热身赛</string>
 			<key>Identifier</key>
-			<string></string>
+			<string>Captain_WarmupMatch</string>
 		</dict>
 	</array>
 	<key>1</key>

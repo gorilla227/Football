@@ -37,6 +37,11 @@
 #define def_actionButtonColor_BeforeMatch [UIColor colorWithRed:57/255.0 green:174/255.0 blue:218/255.0 alpha:1]
 #define def_actionButtonColor_AfterMatch [UIColor colorWithRed:78/255.0 green:191/255.0 blue:231/255.0 alpha:1]
 #define def_actionButtonColor_FilledDetail [UIColor colorWithRed:144/255.0 green:144/255.0 blue:144/255.0 alpha:1]
+#define def_warmUpMatch_statusBarBG_Enable [UIColor colorWithRed:59/255.0 green:174/255.0 blue:218/255.0 alpha:1]
+#define def_warmUpMatch_statusBarBG_Disable [UIColor colorWithRed:180/255.0 green:180/255.0 blue:180/255.0 alpha:1]
+#define def_warmUpMatch_announcementBarBG [UIColor colorWithRed:79/255.0 green:192/255.0 blue:232/255.0 alpha:1]
+#define def_warmUpMatch_actionButtonBG_Enable [UIColor colorWithRed:59/255.0 green:174/255.0 blue:218/255.0 alpha:1]
+#define def_warmUpMatch_actionButtonBG_Disable [UIColor colorWithRed:189/255.0 green:192/255.0 blue:197/255.0 alpha:1]
 
 //Selected Opponent Type
 enum SelectedOpponentType
