@@ -14,7 +14,9 @@
 @end
 
 #pragma Captain_WarmupMatch
-@implementation Captain_WarmupMatch
+@implementation Captain_WarmupMatch{
+    HintTextView *hintView;
+}
 @synthesize announcementBar, invitaionTableView, announcementTextView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,12 +37,24 @@
     
     //Set menu button
     [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
+    
+    //Show hintview when announcement is null
+    hintView = [[HintTextView alloc] init];
+    [self.view addSubview:hintView];
+    [hintView settingHintWithTextKey:@"WarmupMatch" underView:announcementBar wantShow:YES];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)updateAnnouncement:(NSString *)announcement
+{
+    [announcementTextView setText:announcement];
+    [announcementTextView setHidden:NO];
+    [hintView showOrHideHint:NO];
 }
 
 #pragma TableView Methods
@@ -150,15 +164,18 @@
     }
     return cell;
 }
-/*
-#pragma mark - Navigation
 
+#pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"UpdateAnnouncement"]) {
+        Captain_WarmupMatch_UpdateAnnouncement *targetController = segue.destinationViewController;
+        [targetController setDelegate:self];
+        [targetController setAnnouncementText:announcementTextView.text];
+    }
 }
-*/
 
 @end

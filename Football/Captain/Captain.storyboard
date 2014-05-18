@@ -342,6 +342,9 @@
                                         <state key="normal" title="修改" image="rightArrow_white.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="wLB-tk-O5f" kind="push" identifier="UpdateAnnouncement" id="4BR-1D-qfG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -556,7 +559,7 @@
                                     <outlet property="delegate" destination="C9b-P3-Oec" id="DTe-od-TGj"/>
                                 </connections>
                             </tableView>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="公告" selectable="NO" id="oX1-Oy-lLF">
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" id="oX1-Oy-lLF">
                                 <rect key="frame" x="20" y="43" width="280" height="89"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -587,6 +590,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7lG-qO-AZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="325" y="886"/>
+        </scene>
+        <!--Captain Warmup Match Update Announcement - 约球公告-->
+        <scene sceneID="XNI-Xz-Aft">
+            <objects>
+                <viewController storyboardIdentifier="Captain_WarmupMatch_UpdateAnnouncement" title="约球公告" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wLB-tk-O5f" customClass="Captain_WarmupMatch_UpdateAnnouncement" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lib-bU-aaG">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="JZ9-bv-54i">
+                                <rect key="frame" x="0.0" y="20" width="320" height="150"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wLB-tk-O5f" id="5Py-Fr-d9M"/>
+                                </connections>
+                            </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Z6w-9J-VvY">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9kt-bU-WhT"/>
+                                    <barButtonItem enabled="NO" title="保存" id="uGk-fi-bV5">
+                                        <connections>
+                                            <action selector="saveButtonOnClicked:" destination="wLB-tk-O5f" id="zYZ-G6-105"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="QtQ-0J-qDA"/>
+                                </items>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tya-eX-6Cq"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="announcementTextView" destination="JZ9-bv-54i" id="7zK-gH-kdw"/>
+                        <outlet property="saveButton" destination="uGk-fi-bV5" id="AcU-cP-bkb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="orR-JT-JqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="745" y="886"/>
         </scene>
         <!--Captain Create Match - 建立比赛-->
         <scene sceneID="cTr-pM-BwB">
@@ -1220,7 +1270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwy-9Y-gXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1169" y="855"/>
+            <point key="canvasLocation" x="1169" y="886"/>
         </scene>
         <!--Captain New Player - 新人入队-->
         <scene sceneID="QIw-Sm-tLY">
