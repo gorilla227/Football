@@ -44,6 +44,9 @@
 @end
 
 #pragma Captain_MatchArrangement
+@interface Captain_MatchArrangement ()
+
+@end
 
 @implementation Captain_MatchArrangement{
     NSMutableArray *matchesList;
@@ -65,12 +68,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //Set menu button
-    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
-    
     [matchesTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     matchesList = [[NSMutableArray alloc] init];
-
     //Set TeamInfo
     [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
     [teamIcon.layer setBorderWidth:2.0f];
@@ -81,6 +80,9 @@
     //Request matches
     connection = [[JSONConnect alloc] initWithDelegate:self];
     [connection requestMatchesByUserId:myUserInfo.userId count:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
+    
+    //Set menu button
+    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
 }
 
 -(void)receiveMatches:(NSArray *)matches
@@ -88,6 +90,14 @@
     [matchesList addObjectsFromArray:matches];
     [matchesTableView reloadData];
 }
+
+//-(IBAction)menuButtonOnClicked:(id)sender
+//{
+//    id<MainMenuAppearenceDelegate>delegateOfMenuAppearance = (id)self.navigationController;
+//    if (delegateOfMenuAppearance) {
+//        [delegateOfMenuAppearance menuSwitch];
+//    }
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -266,4 +276,6 @@
     }
     
 }
+
+
 @end

@@ -10,7 +10,7 @@
 
 #pragma Captain_WarmupMatch_Cell
 @implementation Captain_WarmupMatch_Cell
-@synthesize opponentTeamIcon, invitationStatusText, matchPlace, matchDate, matchTime, matchType, matchCost, actionView_beInvited, actionView_invitationAccepted, actionView_invitationRejected, stamp_cancelled, stamp_rejected, beInvited, acceptInvitation, rejectInvitation, invitationStatusBackgroundView;
+@synthesize opponentTeamIcon, invitationStatusText, matchPlace, matchDate, matchTime, matchType, matchCost, actionView_beInvited, actionView_invitationAccepted, actionView_invitationRejected, stamp_cancelled, stamp_rejected, beInvited, acceptInvitation, rejectInvitation, invitationStatusBackgroundView, acceptOrRejectInvitationTextView, invitationDetailsView;
 @end
 
 #pragma Captain_WarmupMatch
@@ -32,6 +32,9 @@
     // Do any additional setup after loading the view.
     [invitaionTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [announcementBar setBackgroundColor:def_warmUpMatch_announcementBarBG];
+    
+    //Set menu button
+    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,7 +51,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 6;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -64,8 +67,10 @@
     switch (indexPath.row) {
         case 0:
             //Be invited, not accept not reject
-            [cell.invitationStatusText setText:[NSString stringWithFormat:@"%@邀请我队比赛", @"Inter Milan"]];
+            [cell.invitationStatusText setText:def_WM_statusText_beInvited(@"Inter Milan")];
             [cell.invitationStatusBackgroundView setBackgroundColor:def_warmUpMatch_statusBarBG_Enable];
+            [cell.invitationDetailsView setHidden:NO];
+            [cell.acceptOrRejectInvitationTextView setHidden:YES];
             [cell.actionView_beInvited setHidden:NO];
             [cell.beInvited setEnabled:YES];
             [cell.acceptInvitation setEnabled:YES];
@@ -79,8 +84,10 @@
             break;
         case 1:
             //Be invited, other team accepted, so this invitation is cancelled by system
-            [cell.invitationStatusText setText:[NSString stringWithFormat:@"%@已经和其他球队约赛", @"Inter Milan"]];
+            [cell.invitationStatusText setText:def_WM_statusText_beInvited_cancelled(@"Inter Milan")];
             [cell.invitationStatusBackgroundView setBackgroundColor:def_warmUpMatch_statusBarBG_Disable];
+            [cell.invitationDetailsView setHidden:NO];
+            [cell.acceptOrRejectInvitationTextView setHidden:YES];
             [cell.actionView_beInvited setHidden:NO];
             [cell.beInvited setEnabled:NO];
             [cell.acceptInvitation setEnabled:NO];
@@ -91,8 +98,54 @@
             [cell.actionView_invitationRejected setHidden:YES];
             [cell.stamp_rejected setHidden:YES];
             [cell.stamp_cancelled setHidden:NO];
-            UIImage *greyImage = [UIImage convertImageToGreyScale:cell.opponentTeamIcon.image];
-            [cell.opponentTeamIcon setImage:greyImage];
+            [cell.opponentTeamIcon setImage:[UIImage convertImageToGreyScale:cell.opponentTeamIcon.image]];
+            break;
+        case 2:
+            //Be invited, accepted
+            [cell.invitationStatusText setText:def_WM_statusText_beInvited(@"Inter Milan")];
+            [cell.invitationStatusBackgroundView setBackgroundColor:def_warmUpMatch_statusBarBG_Enable];
+            [cell.invitationDetailsView setHidden:YES];
+            [cell.acceptOrRejectInvitationTextView setHidden:NO];
+            [cell.acceptOrRejectInvitationTextView setText:def_WM_acceptInvitationText(@"Inter Milan")];
+            [cell.stamp_rejected setHidden:YES];
+            [cell.stamp_cancelled setHidden:YES];
+            break;
+        case 3:
+            //Be invited, rejected
+            [cell.invitationStatusText setText:def_WM_statusText_beInvited(@"Inter Milan")];
+            [cell.invitationStatusBackgroundView setBackgroundColor:def_warmUpMatch_statusBarBG_Enable];
+            [cell.invitationDetailsView setHidden:YES];
+            [cell.acceptOrRejectInvitationTextView setHidden:NO];
+            [cell.acceptOrRejectInvitationTextView setText:def_WM_rejectInvitationText(@"Inter Milan")];
+            [cell.stamp_rejected setHidden:YES];
+            [cell.stamp_cancelled setHidden:YES];
+            break;
+        case 4:
+            //My invitation be accepted
+            [cell.invitationStatusText setText:def_WM_statusText_myInvitationAccepted(@"Inter Milan")];
+            [cell.invitationStatusBackgroundView setBackgroundColor:def_warmUpMatch_statusBarBG_Enable];
+            [cell.invitationDetailsView setHidden:NO];
+            [cell.acceptOrRejectInvitationTextView setHidden:YES];
+            [cell.actionView_beInvited setHidden:YES];
+            [cell.actionView_invitationAccepted setHidden:NO];
+            [cell.actionView_invitationRejected setHidden:YES];
+            [cell.stamp_rejected setHidden:YES];
+            [cell.stamp_cancelled setHidden:YES];
+            break;
+        case 5:
+            //My invitation be rejected
+            [cell.invitationStatusText setText:def_WM_statusText_myInvitationRejected(@"Inter Milan")];
+            [cell.invitationStatusBackgroundView setBackgroundColor:def_warmUpMatch_statusBarBG_Disable];
+            [cell.invitationDetailsView setHidden:NO];
+            [cell.acceptOrRejectInvitationTextView setHidden:YES];
+            [cell.actionView_beInvited setHidden:YES];
+            [cell.actionView_invitationAccepted setHidden:YES];
+            [cell.actionView_invitationRejected setHidden:NO];
+            [cell.stamp_rejected setHidden:NO];
+            [cell.stamp_cancelled setHidden:YES];
+            [cell.opponentTeamIcon setImage:[UIImage convertImageToGreyScale:cell.opponentTeamIcon.image]];
+            break;
+        default:
             break;
     }
     return cell;

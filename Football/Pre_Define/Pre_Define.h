@@ -28,6 +28,13 @@
 #define def_MA_actionButton_announce @"通知队员"
 #define def_MA_actionButton_record @"数据记录"
 #define def_MA_actionButton_detail @"详细"
+#define def_WM_statusText_beInvited(teamName) [NSString stringWithFormat:@"%@邀请我队比赛", teamName]
+#define def_WM_statusText_beInvited_cancelled(teamName) [NSString stringWithFormat:@"%@已经和其他球队约赛", teamName]
+#define def_WM_statusText_myInvitationAccepted(teamName) [NSString stringWithFormat:@"%@已同意约球，请通知小伙伴", teamName]
+#define def_WM_statusText_myInvitationRejected(teamName) [NSString stringWithFormat:@"%@已拒绝约球", teamName]
+#define def_WM_acceptInvitationText(teamName) [NSString stringWithFormat:@"已同意%@队约赛请求，请在“比赛安排”中查看具体信息和通知队员，比赛开始前48小时之内不得取消比赛", teamName]
+#define def_WM_rejectInvitationText(teamName) [NSString stringWithFormat:@"已拒绝%@队约赛请求", teamName]
+#define def_WM_myInvitationAcceptedText(teamName) [NSString stringWithFormat:@"%@已同意约球，请通知小伙伴", teamName]
 
 //Color
 #define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]

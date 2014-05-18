@@ -26,6 +26,8 @@
 @property IBOutlet UIButton *rejectInvitation;
 @property IBOutlet UIImageView *stamp_cancelled;
 @property IBOutlet UIImageView *stamp_rejected;
+@property IBOutlet UITextView *acceptOrRejectInvitationTextView;
+@property IBOutlet UIView *invitationDetailsView;
 @end
 
 @interface Captain_WarmupMatch : UIViewController <UITableViewDataSource, UITableViewDelegate>
