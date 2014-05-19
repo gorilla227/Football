@@ -20,7 +20,6 @@
     }
     return self;
 }
-
 @end
 
 #pragma Captain_CreateMatch_TeamMarket
@@ -76,6 +75,11 @@
 {
     for (Captain_CreateMatch_TeamMarket_Cell *cell in self.tableView.visibleCells) {
         if ([cell.inviteButton isEqual:sender]) {
+            if (!delegate) {
+                Captain_CreateMatch *createMatch = [self.storyboard instantiateViewControllerWithIdentifier:@"Captain_CreateMatch"];
+                [self.navigationController setViewControllers:[self.navigationController.viewControllers arrayByAddingObject:createMatch]];
+                delegate = (id)createMatch;
+            }
             [delegate receiveSelectedOpponent:[teamList objectAtIndex:[self.tableView indexPathForCell:cell].row]];
             break;
         }

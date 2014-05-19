@@ -16,6 +16,11 @@
 #pragma Captain_WarmupMatch
 @implementation Captain_WarmupMatch{
     HintTextView *hintView;
+    NSArray *originalAnnouncementBarItems;
+    UIBarButtonItem *addButton;
+    UIBarButtonItem *editButton;
+    UIBarButtonItem *saveButton;
+    NSString *announcementString;
 }
 @synthesize announcementBar, invitaionTableView, announcementTextView;
 
@@ -32,16 +37,34 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [invitaionTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [announcementBar setBackgroundColor:def_warmUpMatch_announcementBarBG];
-    
-    //Set menu button
-    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
-    
     //Show hintview when announcement is null
     hintView = [[HintTextView alloc] init];
     [self.view addSubview:hintView];
-    [hintView settingHintWithTextKey:@"WarmupMatch" underView:announcementBar wantShow:YES];
+    [hintView settingHintWithTextKey:@"WarmupMatch" underView:self.navigationController.navigationBar wantShow:YES];
+    
+    //Initial announcementBar and action buttons
+    [invitaionTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [announcementBar setBarTintColor:def_warmUpMatch_announcementBarBG];
+    originalAnnouncementBarItems = announcementBar.items;
+    addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(announcementAddButton_OnClicked)];
+    [addButton setTintColor:[UIColor whiteColor]];
+    editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(announcementEditButton_OnClicked)];
+    [editButton setTintColor:[UIColor whiteColor]];
+    saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(announcementSaveButton_OnClicked)];
+    [saveButton setTintColor:[UIColor whiteColor]];
+    if ([announcementTextView hasText]) {
+        [announcementTextView setHidden:NO];
+        [hintView showOrHideHint:NO];
+        [announcementBar setItems:[originalAnnouncementBarItems arrayByAddingObject:editButton]];
+    }
+    else {
+        [announcementTextView setHidden:YES];
+        [hintView showOrHideHint:YES];
+        [announcementBar setItems:[originalAnnouncementBarItems arrayByAddingObject:addButton]];
+    }
+    
+    //Set menu button
+    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,11 +73,56 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)updateAnnouncement:(NSString *)announcement
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [announcementTextView setText:announcement];
+    [super touchesBegan:touches withEvent:event];
+    [announcementTextView resignFirstResponder];
+    [announcementTextView setText:announcementString];
+    [announcementTextView setEditable:NO];
+    [announcementTextView setSelectable:NO];
+    if ([announcementTextView hasText]) {
+        [announcementBar setItems:[originalAnnouncementBarItems arrayByAddingObject:editButton]];
+    }
+    else {
+        [announcementTextView setHidden:YES];
+        [hintView showOrHideHint:YES];
+        [announcementBar setItems:[originalAnnouncementBarItems arrayByAddingObject:addButton]];
+    }
+    
+}
+
+-(void)announcementAddButton_OnClicked
+{
     [announcementTextView setHidden:NO];
     [hintView showOrHideHint:NO];
+    [announcementTextView setEditable:YES];
+    [announcementTextView setSelectable:YES];
+    [announcementTextView becomeFirstResponder];
+    [announcementBar setItems:[originalAnnouncementBarItems arrayByAddingObject:saveButton]];
+}
+
+-(void)announcementEditButton_OnClicked
+{
+    [announcementTextView setEditable:YES];
+    [announcementTextView setSelectable:YES];
+    [announcementTextView becomeFirstResponder];
+    [announcementBar setItems:[originalAnnouncementBarItems arrayByAddingObject:saveButton]];
+}
+
+-(void)announcementSaveButton_OnClicked
+{
+    announcementString = announcementTextView.text;
+    [announcementTextView resignFirstResponder];
+    [announcementTextView setEditable:NO];
+    [announcementTextView setSelectable:NO];
+    if ([announcementTextView hasText]) {
+        [announcementBar setItems:[originalAnnouncementBarItems arrayByAddingObject:editButton]];
+    }
+    else {
+        [announcementTextView setHidden:YES];
+        [hintView showOrHideHint:YES];
+        [announcementBar setItems:[originalAnnouncementBarItems arrayByAddingObject:addButton]];
+    }
 }
 
 #pragma TableView Methods
@@ -172,9 +240,16 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"UpdateAnnouncement"]) {
-        Captain_WarmupMatch_UpdateAnnouncement *targetController = segue.destinationViewController;
-        [targetController setDelegate:self];
-        [targetController setAnnouncementText:announcementTextView.text];
+//        Captain_WarmupMatch_UpdateAnnouncement *targetController = segue.destinationViewController;
+//        [targetController setDelegate:self];
+//        [targetController setAnnouncementText:announcementTextView.text];
+    }
+    else if ([segue.identifier isEqualToString:@"TeamMarketFromWarmupMatch"]) {
+        //Select Opponent
+//        Captain_CreateMatch_TeamMarket *selectOpponentController = segue.destinationViewController;
+//        Captain_CreateMatch *createMatch = [self.storyboard instantiateViewControllerWithIdentifier:@"Captain_CreateMatch"];
+//        [self.navigationController setViewControllers:[self.navigationController.viewControllers arrayByAddingObject:createMatch]];
+//        [selectOpponentController setDelegate:createMatch];
     }
 }
 

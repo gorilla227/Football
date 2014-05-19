@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Captain_CreateMatch;
 
 @protocol SelectOpponent <NSObject>
 -(void)receiveSelectedOpponent:(Team *)opponentTeam;

@@ -83,7 +83,6 @@
 		B2026506191C25E7004B8D74 /* menuIcon_myMatches.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026502191C25E7004B8D74 /* menuIcon_myMatches.png */; };
 		B2026507191C25E7004B8D74 /* menuIcon_myTeams.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026503191C25E7004B8D74 /* menuIcon_myTeams.png */; };
 		B202650A191C273D004B8D74 /* menuIcon_superMarket.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026509191C273D004B8D74 /* menuIcon_superMarket.png */; };
-		B25FDC5F192979B800B13302 /* Captain_WarmupMatch_UpdateAnnouncement.m in Sources */ = {isa = PBXBuildFile; fileRef = B25FDC5E192979B800B13302 /* Captain_WarmupMatch_UpdateAnnouncement.m */; };
 		B262D2F6192813110079526E /* icon_opponentAccepted.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F4192813110079526E /* icon_opponentAccepted.png */; };
 		B262D2F7192813110079526E /* icon_opponentRejected.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F5192813110079526E /* icon_opponentRejected.png */; };
 		B262D2FA1928131C0079526E /* stamp_cancelled.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F81928131C0079526E /* stamp_cancelled.png */; };
@@ -219,8 +218,6 @@
 		B2026502191C25E7004B8D74 /* menuIcon_myMatches.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_myMatches.png; path = Resource/menuIcon_myMatches.png; sourceTree = "<group>"; };
 		B2026503191C25E7004B8D74 /* menuIcon_myTeams.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_myTeams.png; path = Resource/menuIcon_myTeams.png; sourceTree = "<group>"; };
 		B2026509191C273D004B8D74 /* menuIcon_superMarket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_superMarket.png; path = Resource/menuIcon_superMarket.png; sourceTree = "<group>"; };
-		B25FDC5D192979B800B13302 /* Captain_WarmupMatch_UpdateAnnouncement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_WarmupMatch_UpdateAnnouncement.h; path = Captain/MyMatches/WarmupMatch/Captain_WarmupMatch_UpdateAnnouncement.h; sourceTree = "<group>"; };
-		B25FDC5E192979B800B13302 /* Captain_WarmupMatch_UpdateAnnouncement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_WarmupMatch_UpdateAnnouncement.m; path = Captain/MyMatches/WarmupMatch/Captain_WarmupMatch_UpdateAnnouncement.m; sourceTree = "<group>"; };
 		B262D2F4192813110079526E /* icon_opponentAccepted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_opponentAccepted.png; path = Resource/icon_opponentAccepted.png; sourceTree = "<group>"; };
 		B262D2F5192813110079526E /* icon_opponentRejected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_opponentRejected.png; path = Resource/icon_opponentRejected.png; sourceTree = "<group>"; };
 		B262D2F81928131C0079526E /* stamp_cancelled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stamp_cancelled.png; path = Resource/stamp_cancelled.png; sourceTree = "<group>"; };
@@ -634,8 +631,6 @@
 			children = (
 				B262D2FD1928297D0079526E /* Captain_WarmupMatch.h */,
 				B262D2FE1928297D0079526E /* Captain_WarmupMatch.m */,
-				B25FDC5D192979B800B13302 /* Captain_WarmupMatch_UpdateAnnouncement.h */,
-				B25FDC5E192979B800B13302 /* Captain_WarmupMatch_UpdateAnnouncement.m */,
 			);
 			name = WarmupMatch;
 			sourceTree = "<group>";
@@ -795,7 +790,6 @@
 				A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */,
 				A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */,
 				A1F428E1191209DB00567A02 /* AFURLConnectionOperation.m in Sources */,
-				B25FDC5F192979B800B13302 /* Captain_WarmupMatch_UpdateAnnouncement.m in Sources */,
 				A1F428DD191209DB00567A02 /* AFHTTPRequestOperationManager.m in Sources */,
 				A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */,
 				A1C8F9EC18DE90B400BE42D4 /* Login_Content.m in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="TjK-OM-Yjn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="TjK-OM-Yjn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -322,33 +322,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="Lmd-Ky-tP7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="约赛公告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TbR-rt-a85">
-                                        <rect key="frame" x="0.0" y="0.0" width="86" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="x2M-cG-snU">
-                                        <rect key="frame" x="245" y="0.0" width="80" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <inset key="contentEdgeInsets" minX="-35" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="75" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="修改" image="rightArrow_white.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="wLB-tk-O5f" kind="push" identifier="UpdateAnnouncement" id="4BR-1D-qfG"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="140" sectionHeaderHeight="22" sectionFooterHeight="22" id="sag-M1-BxV">
                                 <rect key="frame" x="0.0" y="140" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -394,7 +367,7 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赛制：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Frz-WS-Lv8">
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="制式：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Frz-WS-Lv8">
                                                                     <rect key="frame" x="110" y="50" width="36" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -560,7 +533,7 @@
                                 </connections>
                             </tableView>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" id="oX1-Oy-lLF">
-                                <rect key="frame" x="20" y="43" width="280" height="89"/>
+                                <rect key="frame" x="20" y="52" width="280" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -571,18 +544,38 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="d5N-ah-dgI"/>
-                                    <barButtonItem title="球队超市" id="R4k-VB-0zB"/>
+                                    <barButtonItem title="球队超市" id="R4k-VB-0zB">
+                                        <connections>
+                                            <segue destination="TJj-lJ-1UK" kind="push" identifier="TeamMarketFromWarmupMatch" id="rOL-c9-VkO"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gpW-nz-gVU"/>
                                 </items>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="mKO-jU-YAh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nbE-UR-dW4"/>
+                                </items>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="约球公告" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jxf-xu-PPA">
+                                <rect key="frame" x="20" y="11" width="74" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="announcementBar" destination="Lmd-Ky-tP7" id="2G9-GZ-UHh"/>
+                        <outlet property="announcementBar" destination="mKO-jU-YAh" id="yGa-I8-7Ej"/>
                         <outlet property="announcementTextView" destination="oX1-Oy-lLF" id="eUf-cV-NUN"/>
                         <outlet property="invitaionTableView" destination="sag-M1-BxV" id="rSA-7t-aMG"/>
                     </connections>
@@ -590,53 +583,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7lG-qO-AZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="325" y="886"/>
-        </scene>
-        <!--Captain Warmup Match Update Announcement - 约球公告-->
-        <scene sceneID="XNI-Xz-Aft">
-            <objects>
-                <viewController storyboardIdentifier="Captain_WarmupMatch_UpdateAnnouncement" title="约球公告" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wLB-tk-O5f" customClass="Captain_WarmupMatch_UpdateAnnouncement" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Lib-bU-aaG">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="JZ9-bv-54i">
-                                <rect key="frame" x="0.0" y="20" width="320" height="150"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="wLB-tk-O5f" id="5Py-Fr-d9M"/>
-                                </connections>
-                            </textView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Z6w-9J-VvY">
-                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9kt-bU-WhT"/>
-                                    <barButtonItem enabled="NO" title="保存" id="uGk-fi-bV5">
-                                        <connections>
-                                            <action selector="saveButtonOnClicked:" destination="wLB-tk-O5f" id="zYZ-G6-105"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="QtQ-0J-qDA"/>
-                                </items>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </toolbar>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="tya-eX-6Cq"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="announcementTextView" destination="JZ9-bv-54i" id="7zK-gH-kdw"/>
-                        <outlet property="saveButton" destination="uGk-fi-bV5" id="AcU-cP-bkb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="orR-JT-JqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="745" y="886"/>
         </scene>
         <!--Captain Create Match - 建立比赛-->
         <scene sceneID="cTr-pM-BwB">
@@ -1986,7 +1932,6 @@
         <image name="leftIcon_createMatch_numOfPlayers.png" width="27" height="40"/>
         <image name="menuIcon_myMatches.png" width="20" height="20"/>
         <image name="register_phone.png" width="19" height="19"/>
-        <image name="rightArrow_white.png" width="35" height="35"/>
         <image name="stamp_cancelled.png" width="320" height="200"/>
         <image name="stamp_rejected.png" width="320" height="200"/>
     </resources>
@@ -1996,7 +1941,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mkN-NA-bmm"/>
         <segue reference="j6Y-Xq-J4M"/>
+        <segue reference="rOL-c9-VkO"/>
     </inferredMetricsTieBreakers>
 </document>

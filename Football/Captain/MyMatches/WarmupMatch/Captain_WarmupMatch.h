@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIImage+ImageConvert.h"
 #import "HintTextView.h"
-#import "Captain_WarmupMatch_UpdateAnnouncement.h"
+#import "Captain_CreateMatch.h"
 
 @interface Captain_WarmupMatch_Cell : UITableViewCell
 @property IBOutlet UIImageView *opponentTeamIcon;
@@ -32,8 +32,12 @@
 @property IBOutlet UIView *invitationDetailsView;
 @end
 
-@interface Captain_WarmupMatch : UIViewController <UITableViewDataSource, UITableViewDelegate, UpdateAnnouncement>
-@property IBOutlet UIView *announcementBar;
+@interface Captain_WarmupMatch : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property IBOutlet UITableView *invitaionTableView;
 @property IBOutlet UITextView *announcementTextView;
+@property IBOutlet UIToolbar *announcementBar;
+
+-(void)announcementAddButton_OnClicked;
+-(void)announcementEditButton_OnClicked;
+-(void)announcementSaveButton_OnClicked;
 @end
