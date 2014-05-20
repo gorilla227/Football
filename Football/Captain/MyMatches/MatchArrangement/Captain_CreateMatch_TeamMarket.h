@@ -11,6 +11,7 @@
 
 @protocol SelectOpponent <NSObject>
 -(void)receiveSelectedOpponent:(Team *)opponentTeam;
+-(void)receiveSelectedOpponentForWarmupMatch:(Team *)opponentTeam;
 @end
 
 @interface Captain_CreateMatch_TeamMarket_Cell : UITableViewCell

@@ -75,6 +75,9 @@
     else if([segueIdentifier isEqualToString:@"ViewRecord"]) {
         [self initialViewRecordView];
     }
+    else if([segueIdentifier isEqualToString:@"CreateWarmupMatch"]) {
+        [self initialCreateWarmupMatchView];
+    }
 }
 
 -(void)initialCreateMatchView
@@ -133,6 +136,22 @@
     
     //Fill data
     [matchTime setText:[dateFormatter stringFromDate:viewMatchData.matchDate]];
+}
+
+-(void)initialCreateWarmupMatchView
+{
+    [matchOpponent setHidden:NO];
+    [matchScoreTextField setHidden:YES];
+    [matchScoreTableViewHeader setHidden:YES];
+    [matchScoreTableView setHidden:YES];
+    
+    //Set default match date (tomorrow) and  minDate of matchDatePicker
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:1];
+    NSDate *minDate = [calendar dateByAddingComponents:comps toDate:[NSDate date] options:0];
+    [matchTimePicker setMinimumDate:minDate];
+    [matchTime setText:[dateFormatter stringFromDate:minDate]];
 }
 
 -(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
@@ -315,6 +334,14 @@
     [self checkActionButtonStatus];
 }
 
+-(void)receiveSelectedOpponentForWarmupMatch:(Team *)opponentTeam
+{
+    [self setSegueIdentifier:@"CreateWarmupMatch"];
+//    [self loadView];
+    [self viewDidLoad];
+    [self receiveSelectedOpponent:opponentTeam];
+}
+
 -(void)receiveSelectedStadium:(Stadium *)selectedStadium indexOfHomeStadium:(NSInteger)index
 {
     //Fill matchPlace;
@@ -364,37 +391,39 @@
     
     //Refresh controller status after matchTime entered
     NSTimeInterval timeInterval = [matchTimePicker.date timeIntervalSinceNow];
-    matchStarted = timeInterval < 0;
-    [matchOpponent setText:nil];
-    [matchPlace setText:nil];
-    
-    if (matchStarted) {
-        //Match started
-        [matchOpponent setHidden:NO];
-        [matchPlace setHidden:NO];
-        [numOfPlayers setHidden:NO];
-        [cost setHidden:NO];
-        [costOptions setHidden:NO];
-        [toolBar setHidden:NO];
-        [matchScoreTextField setHidden:NO];
-        [matchScoreTableViewHeader setHidden:YES];
-        [matchScoreTableView setHidden:YES];
-        [actionButton setTitle:def_createMatch_actionButton_started];
-    }
-    else {
-        //Match not start
-        [matchOpponent setHidden:NO];
-        [matchPlace setHidden:YES];
-        [numOfPlayers setHidden:YES];
-        [cost setHidden:YES];
-        [costOptions setHidden:YES];
-        [matchScoreTextField setHidden:YES];
-        [matchScoreTableViewHeader setHidden:YES];
-        [matchScoreTableView setHidden:YES];
-        [toolBar setHidden:YES];
+    if (matchStarted != timeInterval < 0) {
+        matchStarted = timeInterval < 0;
+        [matchOpponent setText:nil];
+        [matchPlace setText:nil];
         
-        //Initial tint
-        [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent wantShow:YES];
+        if (matchStarted) {
+            //Match started
+            [matchOpponent setHidden:NO];
+            [matchPlace setHidden:NO];
+            [numOfPlayers setHidden:NO];
+            [cost setHidden:NO];
+            [costOptions setHidden:NO];
+            [toolBar setHidden:NO];
+            [matchScoreTextField setHidden:NO];
+            [matchScoreTableViewHeader setHidden:YES];
+            [matchScoreTableView setHidden:YES];
+            [actionButton setTitle:def_createMatch_actionButton_started];
+        }
+        else {
+            //Match not start
+            [matchOpponent setHidden:NO];
+            [matchPlace setHidden:YES];
+            [numOfPlayers setHidden:YES];
+            [cost setHidden:YES];
+            [costOptions setHidden:YES];
+            [matchScoreTextField setHidden:YES];
+            [matchScoreTableViewHeader setHidden:YES];
+            [matchScoreTableView setHidden:YES];
+            [toolBar setHidden:YES];
+            
+            //Initial tint
+            [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted" underView:matchOpponent wantShow:YES];
+        }
     }
 }
 

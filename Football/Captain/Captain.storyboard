@@ -636,7 +636,7 @@
                                     <outlet property="delegate" destination="R6J-gK-DLQ" id="qOT-2I-9mA"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入费用" minimumFontSize="17" id="qbP-tt-1kj">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入费用" minimumFontSize="10" id="qbP-tt-1kj">
                                 <rect key="frame" x="0.0" y="180" width="320" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1942,6 +1942,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="j6Y-Xq-J4M"/>
-        <segue reference="rOL-c9-VkO"/>
+        <segue reference="mkN-NA-bmm"/>
     </inferredMetricsTieBreakers>
 </document>

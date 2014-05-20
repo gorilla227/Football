@@ -77,10 +77,15 @@
         if ([cell.inviteButton isEqual:sender]) {
             if (!delegate) {
                 Captain_CreateMatch *createMatch = [self.storyboard instantiateViewControllerWithIdentifier:@"Captain_CreateMatch"];
-                [self.navigationController setViewControllers:[self.navigationController.viewControllers arrayByAddingObject:createMatch]];
+                NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+                [viewControllers insertObject:createMatch atIndex:[viewControllers indexOfObject:self]];
+                [self.navigationController setViewControllers:viewControllers];
                 delegate = (id)createMatch;
+                [delegate receiveSelectedOpponentForWarmupMatch:[teamList objectAtIndex:[self.tableView indexPathForCell:cell].row]];
             }
-            [delegate receiveSelectedOpponent:[teamList objectAtIndex:[self.tableView indexPathForCell:cell].row]];
+            else {
+                [delegate receiveSelectedOpponent:[teamList objectAtIndex:[self.tableView indexPathForCell:cell].row]];
+            }
             break;
         }
     }
