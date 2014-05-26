@@ -17,6 +17,8 @@
 //    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:def_navigationBar_background];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIToolbar appearance] setBarTintColor:def_toolBar_background];
+    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }

@@ -21,7 +21,7 @@
     NSInteger lastRootMenuIndex;
     NSIndexPath *visibleViewIndexPath;
 }
-@synthesize delegateOfMenuAppearance, delegateOfViewSwitch;
+@synthesize delegateOfMenuAppearance, delegateOfViewSwitch, toolBar;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -63,6 +63,9 @@
     //Set background
     UIImage *backgroundImage = [UIImage imageNamed:@"menu_bg@2x.png"];
     [self.view.layer setContents:(id)backgroundImage.CGImage];
+    
+    [toolBar setBarTintColor:[UIColor grayColor]];
+    [toolBar setTintColor:[UIColor whiteColor]];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

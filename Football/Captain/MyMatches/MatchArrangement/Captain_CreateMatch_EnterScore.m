@@ -12,6 +12,14 @@
 @synthesize goalPlayerName, assistPlayerName;
 @synthesize playersCandidateList;
 
+-(void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    
+    [goalPlayerName setTintColor:[UIColor clearColor]];
+    [assistPlayerName setTintColor:[UIColor clearColor]];
+}
+
 #pragma playerPicker
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -160,8 +168,6 @@
     [playerPicker setDelegate:cell];
     [cell.goalPlayerName setInputView:playerPicker];
     [cell.assistPlayerName setInputView:playerPicker];
-    [cell.goalPlayerName setTintColor:[UIColor clearColor]];
-    [cell.assistPlayerName setTintColor:[UIColor clearColor]];
     return cell;
 }
 

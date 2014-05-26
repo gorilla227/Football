@@ -9,8 +9,18 @@
 #import "Captain_MyPlayers.h"
 #pragma Captain_MyPlayerCell
 @implementation Captain_MyPlayerCell
-@synthesize playerIcon, playerName, signUpStatusOfNextMatch, signUpTitleOfLeague, signUpStatusOfLeague, likeScore;
+@synthesize playerIcon, playerName, signUpStatusOfNextMatch, likeView, likeScore, likeIcon, actionButton;
 
+-(void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    [likeView setBackgroundColor:[UIColor clearColor]];
+    [likeView.layer setBorderWidth:1.0f];
+    [likeView.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [likeView.layer setCornerRadius:8.0f];
+    [actionButton.layer setCornerRadius:3.0f];
+    [actionButton setBackgroundColor:def_warmUpMatch_actionButtonBG_Enable];
+}
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -35,21 +45,8 @@
 @end
 
 #pragma Captain_MyPlayer
-@interface Captain_MyPlayers ()
-
-@end
-
 @implementation Captain_MyPlayers
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
+@synthesize playersTableView;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -59,7 +56,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [playersTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
 
     //Set menu button
@@ -89,7 +86,11 @@
 
 - (Captain_MyPlayerCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Captain_MyPlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MyPlayerCell"];
+    static NSString *CellIdentifier = @"Captain_MyPlayerCell";
+    Captain_MyPlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [playersTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
     
     // Configure the cell...
     

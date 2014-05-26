@@ -24,6 +24,12 @@
     return self;
 }
 
+-(void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    [actionButton.layer setCornerRadius:3.0f];
+}
+
 - (void)awakeFromNib
 {
     // Initialization code
@@ -119,7 +125,6 @@
     return matchesList.count;
 }
 
-
 - (Captain_MatchArrangementListCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Captain_MatchArrangementListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MatchArrangementListCell"];
@@ -152,7 +157,6 @@
     else {
         [cell.matchType setText:matchData.matchType];
     }
-    [cell.actionButton.layer setCornerRadius:3.0f];
     switch (indexPath.row%3) {
         case 0:
             [cell.actionButton setTitle:def_MA_actionButton_announce forState:UIControlStateNormal];

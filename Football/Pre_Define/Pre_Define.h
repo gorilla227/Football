@@ -38,6 +38,7 @@
 
 //Color
 #define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]
+#define def_toolBar_background [UIColor colorWithRed: 226/255.0 green: 230/255.0 blue:232/255.0 alpha:1]
 #define def_backgroundColor_BeforeMatch [UIColor colorWithRed:78/255.0 green:191/255.0 blue:231/255.0 alpha:1]
 #define def_backgroundColor_AfterMatch [UIColor colorWithRed:57/255.0 green:174/255.0 blue:218/255.0 alpha:1]
 #define def_backgroundColor_FilledDetail [UIColor colorWithRed:180/255.0 green:180/255.0 blue:180/255.0 alpha:1]

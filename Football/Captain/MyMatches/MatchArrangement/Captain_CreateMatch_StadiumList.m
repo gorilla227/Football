@@ -135,20 +135,6 @@
 #pragma Search Methods
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-//    NSMutableArray *stadiumsName = [[NSMutableArray alloc] init];
-//    for (Stadium *stadium in stadiumsList) {
-//        [stadiumsName addObject:stadium.stadiumName];
-//    }
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self contains[c] %@", searchString];
-//    NSArray *filterStadiumsName = [stadiumsName filteredArrayUsingPredicate:predicate];
-//    NSMutableArray *filterStadiums = [[NSMutableArray alloc] init];
-//    for (Stadium *stadium in stadiumsList) {
-//        if ([filterStadiumsName containsObject:stadium.stadiumName]) {
-//            [filterStadiums addObject:stadium];
-//        }
-//    }
-//    filterStadiumsList = filterStadiums;
-    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.stadiumName contains[c] %@", searchString];
     filterStadiumsList = [stadiumsList filteredArrayUsingPredicate:predicate];
     return YES;
