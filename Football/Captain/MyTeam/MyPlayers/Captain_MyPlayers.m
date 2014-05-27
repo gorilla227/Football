@@ -93,11 +93,14 @@
     }
     
     // Configure the cell...
-    
+    [cell setTag:indexPath.row];
     return cell;
 }
 
-
+-(IBAction)actionButtonOnClicked:(id)sender
+{
+    [self performSegueWithIdentifier:@"PlayerDetails" sender:self];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

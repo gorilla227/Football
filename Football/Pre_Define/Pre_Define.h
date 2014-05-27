@@ -35,6 +35,7 @@
 #define def_WM_acceptInvitationText(teamName) [NSString stringWithFormat:@"已同意%@队约赛请求，请在“比赛安排”中查看具体信息和通知队员，比赛开始前48小时之内不得取消比赛", teamName]
 #define def_WM_rejectInvitationText(teamName) [NSString stringWithFormat:@"已拒绝%@队约赛请求", teamName]
 #define def_WM_myInvitationAcceptedText(teamName) [NSString stringWithFormat:@"%@已同意约球，请通知小伙伴", teamName]
+#define def_PlayerDetails @[@[@"出生年月", @"所在城市", @"活动区域", @"个人风格关键字"], @[@"入队时间", @"比赛出场", @"进球", @"助攻", @"缺勤"]]
 
 //Color
 #define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]
