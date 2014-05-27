@@ -13,7 +13,7 @@
 @property IBOutlet UILabel *playerName;
 @end
 
-@interface Captain_NotifyPlayers : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface Captain_NotifyPlayers : UIViewController<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 @property IBOutlet UITableView *playersTableView;
 @property IBOutlet UITextView *notificationTextView;
 @property IBOutlet UIBarButtonItem *sendNotificationButton;

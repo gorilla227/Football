@@ -37,6 +37,8 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor clearColor]];
     [playersTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [selectAllButton.layer setCornerRadius:3.0f];
+    [unselectAllButton.layer setCornerRadius:3.0f];
     
     //Initial data array
     playerList = @[@"张三", @"李四", @"王五"];
@@ -52,6 +54,11 @@
 {
     [super touchesBegan:touches withEvent:event];
     [notificationTextView resignFirstResponder];
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    [sendNotificationButton setEnabled:[notificationTextView hasText] && [playersTableView.indexPathsForSelectedRows count] > 0];
 }
 
 -(IBAction)selectAllButtonOnClicked:(id)sender
@@ -72,6 +79,25 @@
         [self tableView:playersTableView didDeselectRowAtIndexPath:indexPath];
     }
 }
+
+-(IBAction)notifyPlayerButtonOnClicked:(id)sender
+{
+    NSMutableArray *selectedPlayers = [[NSMutableArray alloc] init];
+    NSMutableString *ouputString;
+    for (NSIndexPath *indexPath in playersTableView.indexPathsForSelectedRows) {
+        [selectedPlayers addObject:playerList[indexPath.row]];
+        if (ouputString.length == 0) {
+            ouputString = [NSMutableString stringWithString:playerList[indexPath.row]];
+        }
+        else {
+            [ouputString appendString:[NSString stringWithFormat:@" %@", playerList[indexPath.row]]];
+        }
+    }
+    NSLog(@"%@", ouputString);
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma TableView Methods
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -96,6 +122,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     [notificationTextView resignFirstResponder];
+    [sendNotificationButton setEnabled:[notificationTextView hasText]];
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,6 +130,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
     [notificationTextView resignFirstResponder];
+    [sendNotificationButton setEnabled:[notificationTextView hasText] && [playersTableView.indexPathsForSelectedRows count] > 0];
 }
 
 /*
