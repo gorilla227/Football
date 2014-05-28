@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CallFriends.h"
 @interface Captain_NewPlayer_ApplicantCell : UITableViewCell<UIAlertViewDelegate>
 @property IBOutlet UILabel *playerID;
 @property IBOutlet UILabel *postion;
@@ -27,6 +28,6 @@
 @property IBOutlet UIButton *cancelInvitationButton;
 @end
 
-@interface Captain_NewPlayer : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface Captain_NewPlayer : UIViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 @property IBOutlet UITableView *playerNewTableView;
 @end

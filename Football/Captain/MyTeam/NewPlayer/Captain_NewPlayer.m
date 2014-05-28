@@ -188,6 +188,17 @@
     }
     return nil;
 }
+
+-(IBAction)callFriendsButtonOnClicked:(id)sender
+{
+    CallFriends *callFriends = [[CallFriends alloc] initWithDelegate:self];
+    [callFriends showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"%@", [actionSheet buttonTitleAtIndex:buttonIndex]);
+}
 /*
 #pragma mark - Navigation
 
