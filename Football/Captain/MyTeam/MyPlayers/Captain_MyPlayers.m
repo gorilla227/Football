@@ -99,7 +99,7 @@
 
 -(IBAction)actionButtonOnClicked:(id)sender
 {
-    [self performSegueWithIdentifier:@"PlayerDetails" sender:self];
+    [self performSegueWithIdentifier:@"MyPlayer" sender:self];
 }
 /*
 // Override to support conditional editing of the table view.
@@ -139,7 +139,6 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -147,7 +146,10 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"MyPlayer"]) {
+        Captain_PlayerDetails *playerDetails = segue.destinationViewController;
+        [playerDetails setViewType:MyPlayer];
+    }
 }
-*/
 
 @end

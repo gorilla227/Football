@@ -88,6 +88,7 @@
 		B2026506191C25E7004B8D74 /* menuIcon_myMatches.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026502191C25E7004B8D74 /* menuIcon_myMatches.png */; };
 		B2026507191C25E7004B8D74 /* menuIcon_myTeams.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026503191C25E7004B8D74 /* menuIcon_myTeams.png */; };
 		B202650A191C273D004B8D74 /* menuIcon_superMarket.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026509191C273D004B8D74 /* menuIcon_superMarket.png */; };
+		B23C4F891936B59C00FC73F2 /* TeamIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B23C4F881936B59C00FC73F2 /* TeamIcon.jpg */; };
 		B262D2F6192813110079526E /* icon_opponentAccepted.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F4192813110079526E /* icon_opponentAccepted.png */; };
 		B262D2F7192813110079526E /* icon_opponentRejected.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F5192813110079526E /* icon_opponentRejected.png */; };
 		B262D2FA1928131C0079526E /* stamp_cancelled.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F81928131C0079526E /* stamp_cancelled.png */; };
@@ -231,6 +232,7 @@
 		B2026502191C25E7004B8D74 /* menuIcon_myMatches.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_myMatches.png; path = Resource/menuIcon_myMatches.png; sourceTree = "<group>"; };
 		B2026503191C25E7004B8D74 /* menuIcon_myTeams.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_myTeams.png; path = Resource/menuIcon_myTeams.png; sourceTree = "<group>"; };
 		B2026509191C273D004B8D74 /* menuIcon_superMarket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_superMarket.png; path = Resource/menuIcon_superMarket.png; sourceTree = "<group>"; };
+		B23C4F881936B59C00FC73F2 /* TeamIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TeamIcon.jpg; path = Resource/TeamIcon.jpg; sourceTree = "<group>"; };
 		B262D2F4192813110079526E /* icon_opponentAccepted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_opponentAccepted.png; path = Resource/icon_opponentAccepted.png; sourceTree = "<group>"; };
 		B262D2F5192813110079526E /* icon_opponentRejected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_opponentRejected.png; path = Resource/icon_opponentRejected.png; sourceTree = "<group>"; };
 		B262D2F81928131C0079526E /* stamp_cancelled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stamp_cancelled.png; path = Resource/stamp_cancelled.png; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 		A1370A481904D52000E64949 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B23C4F881936B59C00FC73F2 /* TeamIcon.jpg */,
 				A135B14D1927242B001CB0EC /* rightArrow_white.png */,
 				A153ACBE190244880062EB44 /* hint_background_arrow.png */,
 				A1C2802B18F79CED004C644E /* soccer_grass_bg.png */,
@@ -797,6 +800,7 @@
 				A1370A5D1904D7CC00E64949 /* leftIcon_createMatch_time.png in Resources */,
 				B2026506191C25E7004B8D74 /* menuIcon_myMatches.png in Resources */,
 				A169F7421915F3AF00361796 /* enterScore_VS.png in Resources */,
+				B23C4F891936B59C00FC73F2 /* TeamIcon.jpg in Resources */,
 				A1FC445A1935B058007C4B68 /* callFriendsIcon_wechat.png in Resources */,
 				A18D7F831904A0F6003028FE /* icon_fillMatchData.png in Resources */,
 				A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */,

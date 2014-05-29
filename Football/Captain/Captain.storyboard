@@ -1226,7 +1226,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell alpha="0.5" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Captain_NewPlayer_ApplicantCell" id="oZZ-1i-qgK" customClass="Captain_NewPlayer_ApplicantCell">
+                                    <tableViewCell alpha="0.5" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Captain_NewPlayer_ApplicantCell" id="oZZ-1i-qgK" customClass="Captain_NewPlayer_ApplicantCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oZZ-1i-qgK" id="MW3-Xm-JNE">
@@ -1292,7 +1292,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Comment不超过30字" id="ukZ-if-RbH">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Comment不超过30字" id="ukZ-if-RbH">
                                                     <rect key="frame" x="83" y="52" width="229" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1306,7 +1306,7 @@
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="-1" height="-1"/>
                                                 </label>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="vvs-5y-HMu">
+                                                <segmentedControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="vvs-5y-HMu">
                                                     <rect key="frame" x="124" y="99" width="176" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
@@ -1327,6 +1327,7 @@
                                             <outlet property="postion" destination="yP3-4x-2XR" id="1oo-bk-D2p"/>
                                             <outlet property="status" destination="hi0-F1-y7Q" id="qlN-gO-SyU"/>
                                             <outlet property="team" destination="dLX-Ut-vda" id="R79-8V-Egy"/>
+                                            <segue destination="ml2-mD-abv" kind="push" identifier="Applicant" id="M4T-yH-GDv"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell alpha="0.5" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Captain_NewPlayer_InviteeCell" id="qbD-Qw-2oi" customClass="Captain_NewPlayer_InviteeCell">
@@ -1796,7 +1797,7 @@
                     <connections>
                         <outlet property="playersTableView" destination="QUt-4F-BgB" id="sQ4-9l-cYp"/>
                         <outlet property="searchDisplayController" destination="vuj-oF-fiK" id="Oeb-dk-J0W"/>
-                        <segue destination="ml2-mD-abv" kind="push" identifier="PlayerDetails" id="Hdb-LT-hvQ"/>
+                        <segue destination="ml2-mD-abv" kind="push" identifier="MyPlayer" id="Hdb-LT-hvQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQ0-Zp-Ppo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1861,6 +1862,19 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属球队：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bb2-hv-0oG">
+                                        <rect key="frame" x="98" y="54" width="68" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可爱萌宠电脑" lineBreakMode="tailTruncation" minimumFontSize="7" id="4Z7-27-ec1">
+                                        <rect key="frame" x="174" y="54" width="126" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参加/不参加/无反馈" lineBreakMode="tailTruncation" minimumFontSize="7" id="mAx-8j-yg2">
                                         <rect key="frame" x="214" y="54" width="86" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1872,7 +1886,7 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="THV-sk-CNJ">
                                 <rect key="frame" x="0.0" y="88" width="320" height="416"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1906,15 +1920,48 @@
                                     <outlet property="delegate" destination="ml2-mD-abv" id="IQL-45-ik5"/>
                                 </connections>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="球员留言……" selectable="NO" id="Sgr-OP-xjF">
+                                <rect key="frame" x="0.0" y="80" width="320" height="27"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="gMq-aT-IGU">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="队员数据" id="mgX-tq-dVM"/>
                     <connections>
+                        <outlet property="actionToolBar" destination="gMq-aT-IGU" id="2r9-64-A32"/>
+                        <outlet property="agreeButton" destination="7KM-f5-hag" id="2qy-iU-Nha"/>
+                        <outlet property="declineButton" destination="tH7-Nd-GN3" id="dV0-XA-n3P"/>
+                        <outlet property="nextMatchStatus" destination="mAx-8j-yg2" id="yin-di-RaL"/>
+                        <outlet property="nextMatchStatusTitle" destination="aYD-ND-18v" id="ei3-NB-Rhr"/>
+                        <outlet property="nickName" destination="CUm-Vs-oIN" id="ZXo-m7-rx3"/>
+                        <outlet property="nickNameTitle" destination="C1y-KV-UHf" id="Rqh-YI-SAh"/>
+                        <outlet property="notifyTrialButton" destination="dTs-qh-HyH" id="1bA-aV-NtG"/>
+                        <outlet property="playerCommentTextView" destination="Sgr-OP-xjF" id="cIG-iR-dQe"/>
                         <outlet property="playerDetailsTableView" destination="THV-sk-CNJ" id="9KI-6g-nw7"/>
+                        <outlet property="playerName" destination="LJv-se-baI" id="lfE-BS-fdJ"/>
+                        <outlet property="playerNameTitle" destination="gaY-G4-U9m" id="L1G-7o-DfP"/>
+                        <outlet property="playerTeam" destination="4Z7-27-ec1" id="CjI-ny-DrY"/>
+                        <outlet property="playerTeamTitle" destination="bb2-hv-0oG" id="r6p-sK-PUW"/>
+                        <outlet property="recruitButton" destination="e4A-5y-Fuv" id="2Dz-sn-6Gz"/>
+                        <outlet property="summaryView" destination="Iq6-Ka-g9f" id="eqX-3V-ZBz"/>
+                        <outlet property="temporaryButton" destination="f6h-15-Kll" id="mCx-l6-qik"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DIF-0l-1vJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="通知试训" id="dTs-qh-HyH"/>
+                <barButtonItem title="同意" id="7KM-f5-hag"/>
+                <barButtonItem title="拒绝" id="tH7-Nd-GN3"/>
+                <barButtonItem title="招募队员" id="e4A-5y-Fuv"/>
+                <barButtonItem title="临时帮忙" id="f6h-15-Kll"/>
             </objects>
             <point key="canvasLocation" x="745" y="1568"/>
         </scene>
@@ -2131,7 +2178,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TeamIcon.jpg" width="97" height="99"/>
+        <image name="TeamIcon.jpg" width="300" height="300"/>
         <image name="enterScore_VS.png" width="60" height="110"/>
         <image name="icon_like.png" width="72" height="72"/>
         <image name="icon_opponentAccepted.png" width="180" height="150"/>
@@ -2148,6 +2195,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="M4T-yH-GDv"/>
         <segue reference="j6Y-Xq-J4M"/>
         <segue reference="mkN-NA-bmm"/>
     </inferredMetricsTieBreakers>

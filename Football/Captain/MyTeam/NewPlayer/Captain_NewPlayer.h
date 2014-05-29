@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CallFriends.h"
+#import "Captain_PlayerDetails.h"
+
 @interface Captain_NewPlayer_ApplicantCell : UITableViewCell<UIAlertViewDelegate>
 @property IBOutlet UILabel *playerID;
 @property IBOutlet UILabel *postion;

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Captain_PlayerDetails.h"
 
 @interface Captain_MyPlayerCell : UITableViewCell
 @property IBOutlet UIImageView *playerIcon;

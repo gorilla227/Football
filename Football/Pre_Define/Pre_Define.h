@@ -9,6 +9,9 @@
 //Main Menu Frame
 #define def_mainMenuFrame CGRectMake(-150, 64, 150, 504)
 
+//Flexiblespace UIBarButtonItem
+#define def_flexibleSpace [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]
+
 //UI Strings
 #define def_typeOfPlayerNumber_SignUp @"报名人数"
 #define def_typeOfPlayerNumber_ShowUp @"出场人数"
@@ -35,7 +38,7 @@
 #define def_WM_acceptInvitationText(teamName) [NSString stringWithFormat:@"已同意%@队约赛请求，请在“比赛安排”中查看具体信息和通知队员，比赛开始前48小时之内不得取消比赛", teamName]
 #define def_WM_rejectInvitationText(teamName) [NSString stringWithFormat:@"已拒绝%@队约赛请求", teamName]
 #define def_WM_myInvitationAcceptedText(teamName) [NSString stringWithFormat:@"%@已同意约球，请通知小伙伴", teamName]
-#define def_PlayerDetails @[@[@"出生年月", @"所在城市", @"活动区域", @"个人风格关键字"], @[@"入队时间", @"比赛出场", @"进球", @"助攻", @"缺勤"]]
+#define def_PlayerDetails @[@[@"出生年月", @"所在城市", @"活动区域", @"个人风格关键字"], @[@"入队时间", @"比赛出场", @"进球", @"助攻"]]
 
 //Color
 #define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]
@@ -53,11 +56,11 @@
 #define def_warmUpMatch_actionButtonBG_Disable [UIColor colorWithRed:189/255.0 green:192/255.0 blue:197/255.0 alpha:1]
 
 //Selected Opponent Type
-enum SelectedOpponentType
+enum PlayerDetails_ViewTypes
 {
-    None,
-    Existed,
-    New
+    MyPlayer,
+    Applicant,
+    FreePlayer
 };
 
 //Dateformat
