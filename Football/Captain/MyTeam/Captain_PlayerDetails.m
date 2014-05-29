@@ -165,15 +165,19 @@
     [cell.detailTextLabel setText:fake_PlayerDetails[indexPath.section][indexPath.row]];
     return cell;
 }
-/*
-#pragma mark - Navigation
 
+#pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"NotifyTrial"]) {
+        Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
+        [notifyPlayer setViewType:NotifyTrial];
+        [notifyPlayer setPlayerList:@[nickName.text]];
+        [notifyPlayer setPredefinedNotification:[NSString stringWithFormat:@"%@, “本队队名”通知您于“比赛时间”，在“比赛地点”，进行比赛试训。请准时到场，留下美好印象。", nickName.text]];
+    }
 }
-*/
 
 @end

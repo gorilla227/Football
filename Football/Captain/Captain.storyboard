@@ -1960,6 +1960,7 @@
                 <barButtonItem title="通知试训" id="dTs-qh-HyH">
                     <connections>
                         <action selector="notifyTrialButtonOnClicked:" destination="ml2-mD-abv" id="bbM-e3-C9X"/>
+                        <segue destination="TRJ-kb-wLT" kind="push" identifier="NotifyTrial" id="tHx-TL-9hF"/>
                     </connections>
                 </barButtonItem>
                 <barButtonItem title="同意" id="7KM-f5-hag">
@@ -2215,8 +2216,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="M4T-yH-GDv"/>
         <segue reference="j6Y-Xq-J4M"/>
         <segue reference="mkN-NA-bmm"/>
+        <segue reference="Hdb-LT-hvQ"/>
+        <segue reference="mdi-ZS-FiD"/>
     </inferredMetricsTieBreakers>
 </document>

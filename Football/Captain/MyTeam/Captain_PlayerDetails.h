@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Captain_NotifyPlayers.h"
 
 @interface Captain_PlayerDetails : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property IBOutlet UITableView *playerDetailsTableView;

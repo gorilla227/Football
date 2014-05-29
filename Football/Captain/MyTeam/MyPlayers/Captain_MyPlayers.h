@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Captain_PlayerDetails.h"
+#import "Captain_NotifyPlayers.h"
 
 @interface Captain_MyPlayerCell : UITableViewCell
 @property IBOutlet UIImageView *playerIcon;

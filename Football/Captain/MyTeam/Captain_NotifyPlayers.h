@@ -20,4 +20,6 @@
 @property IBOutlet UIButton *selectAllButton;
 @property IBOutlet UIButton *unselectAllButton;
 @property NSArray *playerList;
+@property NSString *predefinedNotification;
+@property enum NotifyPlayers_ViewTypes viewType;
 @end

@@ -150,6 +150,11 @@
         Captain_PlayerDetails *playerDetails = segue.destinationViewController;
         [playerDetails setViewType:MyPlayer];
     }
+    else if ([segue.identifier isEqualToString:@"NotifyTeamPlayers"]) {
+        Captain_NotifyPlayers *notifyPlayers = segue.destinationViewController;
+        [notifyPlayers setViewType:NotifyMyTeamPlayers];
+        [notifyPlayers setPlayerList:@[@"张三", @"李四", @"王五"]];
+    }
 }
 
 @end

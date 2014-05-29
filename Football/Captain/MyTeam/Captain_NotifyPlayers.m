@@ -20,7 +20,8 @@
 @end
 
 @implementation Captain_NotifyPlayers
-@synthesize playersTableView, notificationTextView, sendNotificationButton, selectAllButton, unselectAllButton, playerList;
+@synthesize playersTableView, notificationTextView, sendNotificationButton, selectAllButton, unselectAllButton;
+@synthesize predefinedNotification, playerList, viewType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,8 +41,15 @@
     [selectAllButton.layer setCornerRadius:3.0f];
     [unselectAllButton.layer setCornerRadius:3.0f];
     
-    //Initial data array
-    playerList = @[@"张三", @"李四", @"王五"];
+    //Initial data
+    if (predefinedNotification) {
+        [notificationTextView setText:predefinedNotification];
+    }
+    
+    //Select the only player when viewType is "NotifyTrial"
+    if (viewType == NotifyTrial) {
+        [self selectAllButtonOnClicked:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,9 +101,9 @@
             [ouputString appendString:[NSString stringWithFormat:@" %@", playerList[indexPath.row]]];
         }
     }
-    NSLog(@"%@", ouputString);
+    NSLog(@"Text: %@\nTo: %@", notificationTextView.text, ouputString);
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma TableView Methods
