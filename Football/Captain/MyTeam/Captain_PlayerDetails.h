@@ -29,6 +29,7 @@
 @property IBOutlet UIBarButtonItem *temporaryButton;
 
 @property enum PlayerDetails_ViewTypes viewType;
+@property BOOL hasTeam;
 
 -(void)initialViewForMyPlayer;
 -(void)initialViewForApplicant;

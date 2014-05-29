@@ -13,7 +13,7 @@
     NSArray *detailTitles;
 }
 @synthesize playerDetailsTableView, summaryView, playerCommentTextView, actionToolBar, nickNameTitle, nickName, playerNameTitle, playerName, nextMatchStatusTitle, nextMatchStatus, playerTeamTitle, playerTeam, notifyTrialButton, agreeButton, declineButton, recruitButton, temporaryButton;
-@synthesize viewType;
+@synthesize viewType, hasTeam;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -85,6 +85,12 @@
     tableFrame.size.height -= (playerCommentTextViewHeight + actionToolBar.bounds.size.height);
     [playerDetailsTableView setFrame:tableFrame];
     
+    CGFloat oneThirdHeight = (nickName.center.y + playerTeam.center.y) / 3;
+    [nickNameTitle setCenter:CGPointMake(nickNameTitle.center.x, oneThirdHeight)];
+    [nickName setCenter:CGPointMake(nickName.center.x, oneThirdHeight)];
+    [playerTeamTitle setCenter:CGPointMake(playerTeamTitle.center.x, oneThirdHeight * 2)];
+    [playerTeam setCenter:CGPointMake(playerTeam.center.x, oneThirdHeight * 2)];
+    
     [actionToolBar setHidden:NO];
     [actionToolBar setItems:@[def_flexibleSpace, notifyTrialButton, def_flexibleSpace, agreeButton, def_flexibleSpace, declineButton, def_flexibleSpace]];
     
@@ -99,16 +105,21 @@
     [playerName setHidden:YES];
     [nextMatchStatusTitle setHidden:YES];
     [nextMatchStatus setHidden:YES];
-    [playerTeamTitle setHidden:NO];
-    [playerTeam setHidden:NO];
+    [playerTeamTitle setHidden:!hasTeam];
+    [playerTeam setHidden:!hasTeam];
     [playerCommentTextView setHidden:YES];
     CGRect tableFrame = playerDetailsTableView.frame;
     tableFrame.size.height -= actionToolBar.bounds.size.height;
     [playerDetailsTableView setFrame:tableFrame];
     [actionToolBar setHidden:NO];
     [actionToolBar setItems:@[def_flexibleSpace, recruitButton, def_flexibleSpace, temporaryButton, def_flexibleSpace]];
+    CGFloat oneThirdHeight = (nickName.center.y + playerTeam.center.y) / 3;
+    [nickNameTitle setCenter:CGPointMake(nickNameTitle.center.x, oneThirdHeight)];
+    [nickName setCenter:CGPointMake(nickName.center.x, oneThirdHeight)];
+    [playerTeamTitle setCenter:CGPointMake(playerTeamTitle.center.x, oneThirdHeight * 2)];
+    [playerTeam setCenter:CGPointMake(playerTeam.center.x, oneThirdHeight * 2)];
     
-    detailTitles = def_PlayerDetails;
+    detailTitles = hasTeam?def_PlayerDetails:@[def_PlayerDetails[0]];
 }
 
 -(IBAction)notifyTrialButtonOnClicked:(id)sender

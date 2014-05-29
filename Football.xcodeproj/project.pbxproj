@@ -98,6 +98,7 @@
 		B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */; };
 		B2D096EF18EE01D4005221F2 /* ActionSheetMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */; };
 		B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D6981518ECC3F700603B87 /* Captain_MyPlayers.m */; };
+		B2E8533E1937DA990020A624 /* Captain_PlayerMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8533D1937DA990020A624 /* Captain_PlayerMarket.m */; };
 		B2FEC5E41915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FEC5E31915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m */; };
 /* End PBXBuildFile section */
 
@@ -246,6 +247,8 @@
 		B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActionSheetMenu.plist; path = Pre_Define/ActionSheetMenu.plist; sourceTree = "<group>"; };
 		B2D6981418ECC3F700603B87 /* Captain_MyPlayers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MyPlayers.h; path = Captain/MyTeam/MyPlayers/Captain_MyPlayers.h; sourceTree = "<group>"; };
 		B2D6981518ECC3F700603B87 /* Captain_MyPlayers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MyPlayers.m; path = Captain/MyTeam/MyPlayers/Captain_MyPlayers.m; sourceTree = "<group>"; };
+		B2E8533C1937DA990020A624 /* Captain_PlayerMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_PlayerMarket.h; path = Captain/MyTeam/NewPlayer/Captain_PlayerMarket.h; sourceTree = "<group>"; };
+		B2E8533D1937DA990020A624 /* Captain_PlayerMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_PlayerMarket.m; path = Captain/MyTeam/NewPlayer/Captain_PlayerMarket.m; sourceTree = "<group>"; };
 		B2FEC5E21915CADD00B8B74D /* Captain_CreateMatch_EnterScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_EnterScore.h; sourceTree = "<group>"; };
 		B2FEC5E31915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_EnterScore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -593,6 +596,8 @@
 			children = (
 				A18E469418EE678500784A48 /* Captain_NewPlayer.h */,
 				A18E469518EE678500784A48 /* Captain_NewPlayer.m */,
+				B2E8533C1937DA990020A624 /* Captain_PlayerMarket.h */,
+				B2E8533D1937DA990020A624 /* Captain_PlayerMarket.m */,
 			);
 			name = NewPlayer;
 			sourceTree = "<group>";
@@ -846,6 +851,7 @@
 				A1F428E3191209DB00567A02 /* AFURLResponseSerialization.m in Sources */,
 				A1D07BDE18CC1E4800FA3A8D /* main.m in Sources */,
 				A146685F191B53A600589785 /* Captain_CreateMatch_StadiumList.m in Sources */,
+				B2E8533E1937DA990020A624 /* Captain_PlayerMarket.m in Sources */,
 				A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */,
 				B27BD6C61934093E00F35A51 /* Captain_PlayerDetails.m in Sources */,
 				A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */,
