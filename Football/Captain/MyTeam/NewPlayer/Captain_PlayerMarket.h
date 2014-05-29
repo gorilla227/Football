@@ -17,6 +17,6 @@
 @property IBOutlet UILabel *teamName;
 @end
 
-@interface Captain_PlayerMarket : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface Captain_PlayerMarket : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 @property IBOutlet UITableView *playerMarketTableView;
 @end

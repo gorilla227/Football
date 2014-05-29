@@ -1483,9 +1483,17 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="ZpR-JG-TqQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="z2f-wz-WV6" id="fOv-oR-azL"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="PlayerMarketCell" id="sry-DH-lEy" customClass="Captain_PlayerMarket_Cell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="88"/>
+                                        <rect key="frame" x="0.0" y="66" width="320" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sry-DH-lEy" id="oac-fA-rLR">
                                             <rect key="frame" x="0.0" y="0.0" width="281" height="87"/>
@@ -1580,9 +1588,19 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="playerMarketTableView" destination="aGb-xi-ukw" id="npJ-um-rec"/>
+                        <outlet property="searchDisplayController" destination="HQp-wQ-i4p" id="Ir6-JU-p9h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8K8-KS-qJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="HQp-wQ-i4p">
+                    <connections>
+                        <outlet property="delegate" destination="z2f-wz-WV6" id="EQH-HY-xcb"/>
+                        <outlet property="searchBar" destination="ZpR-JG-TqQ" id="Vjo-54-UEg"/>
+                        <outlet property="searchContentsController" destination="z2f-wz-WV6" id="fzs-bF-TFV"/>
+                        <outlet property="searchResultsDataSource" destination="z2f-wz-WV6" id="bG0-dy-oKB"/>
+                        <outlet property="searchResultsDelegate" destination="z2f-wz-WV6" id="PmM-v7-kZy"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="745" y="2266"/>
         </scene>
@@ -2112,11 +2130,11 @@
             <objects>
                 <viewController storyboardIdentifier="Captain_NotifyPlayers" title="发送通知" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TRJ-kb-wLT" customClass="Captain_NotifyPlayers" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RUQ-r1-fDq">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="任意输入通知内容" id="bKH-4m-oFM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2126,7 +2144,7 @@
                                 </connections>
                             </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="FKM-44-2uL">
-                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="g6f-4H-2d5"/>
@@ -2139,7 +2157,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="tOM-cb-LDP">
-                                <rect key="frame" x="0.0" y="146" width="320" height="314"/>
+                                <rect key="frame" x="0.0" y="146" width="320" height="270"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -2341,6 +2359,6 @@
         <segue reference="j6Y-Xq-J4M"/>
         <segue reference="mkN-NA-bmm"/>
         <segue reference="9SK-UF-Msl"/>
-        <segue reference="tHx-TL-9hF"/>
+        <segue reference="qof-GK-AK5"/>
     </inferredMetricsTieBreakers>
 </document>

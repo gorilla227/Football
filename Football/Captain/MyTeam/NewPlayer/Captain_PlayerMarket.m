@@ -14,6 +14,7 @@
 
 @implementation Captain_PlayerMarket{
     NSArray *playerList;
+    NSArray *filterPlayerList;
 }
 @synthesize playerMarketTableView;
 
@@ -31,6 +32,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [playerMarketTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.searchDisplayController.searchResultsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
+    [self.searchDisplayController.searchResultsTableView setRowHeight:playerMarketTableView.rowHeight];
     playerList = fake_PlayerMarketData;
 }
 
@@ -48,7 +52,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return playerList.count;
+    return [tableView isEqual:playerMarketTableView]?playerList.count:filterPlayerList.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,12 +62,31 @@
     if (!cell) {
         cell = [playerMarketTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     }
+    NSArray *dataList = [tableView isEqual:playerMarketTableView]?playerList:filterPlayerList;
     
-    [cell.nickName setText:playerList[indexPath.row][0]];
-    [cell.playerRole setText:playerList[indexPath.row][1]];
-    [cell.age setText:playerList[indexPath.row][2]];
-    [cell.teamName setText:[playerList[indexPath.row][3] isEqual:[NSNull null]]?@"无":playerList[indexPath.row][3]];
+    [cell.nickName setText:dataList[indexPath.row][0]];
+    [cell.playerRole setText:dataList[indexPath.row][1]];
+    [cell.age setText:dataList[indexPath.row][2]];
+    [cell.teamName setText:[dataList[indexPath.row][3] isEqual:[NSNull null]]?@"无":dataList[indexPath.row][3]];
     return cell;
+}
+
+#pragma Search Methods
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self[0] contains[c] %@", searchString];
+    filterPlayerList = [playerList filteredArrayUsingPredicate:predicate];
+    return YES;
+}
+
+-(void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
+    [playerMarketTableView setHidden:YES];
+}
+
+-(void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
+{
+    [playerMarketTableView setHidden:NO];
 }
 
 #pragma mark - Navigation
