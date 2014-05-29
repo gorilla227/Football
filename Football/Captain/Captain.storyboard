@@ -1957,11 +1957,31 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DIF-0l-1vJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <barButtonItem title="通知试训" id="dTs-qh-HyH"/>
-                <barButtonItem title="同意" id="7KM-f5-hag"/>
-                <barButtonItem title="拒绝" id="tH7-Nd-GN3"/>
-                <barButtonItem title="招募队员" id="e4A-5y-Fuv"/>
-                <barButtonItem title="临时帮忙" id="f6h-15-Kll"/>
+                <barButtonItem title="通知试训" id="dTs-qh-HyH">
+                    <connections>
+                        <action selector="notifyTrialButtonOnClicked:" destination="ml2-mD-abv" id="bbM-e3-C9X"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem title="同意" id="7KM-f5-hag">
+                    <connections>
+                        <action selector="agreeButtonOnClicked:" destination="ml2-mD-abv" id="Mjy-rC-aR0"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem title="拒绝" id="tH7-Nd-GN3">
+                    <connections>
+                        <action selector="declineButtonOnClicked:" destination="ml2-mD-abv" id="qOi-02-FUN"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem title="招募队员" id="e4A-5y-Fuv">
+                    <connections>
+                        <action selector="recruitButtonOnClicked:" destination="ml2-mD-abv" id="kuk-YY-VWX"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem title="临时帮忙" id="f6h-15-Kll">
+                    <connections>
+                        <action selector="temporaryButtonOnClicked:" destination="ml2-mD-abv" id="8eS-I3-xB5"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="745" y="1568"/>
         </scene>

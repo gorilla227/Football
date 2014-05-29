@@ -35,13 +35,12 @@
     [self.view setBackgroundColor:[UIColor clearColor]];
     hintView = [[HintTextView alloc] init];
     [self.view addSubview:hintView];
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [matchOpponent setText:selectedTeamName];
     [saveButton setEnabled:[matchOpponent hasText]];
     
     if (matchStarted) {
         //Match started
-        [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace]];
+        [toolBar setItems:@[def_flexibleSpace, inviteOpponentButton, def_flexibleSpace]];
         
         //Show hint
         [hintView settingHintWithTextKey:@"EnterOpponent_MatchStarted" underView:matchOpponent wantShow:YES];
@@ -50,14 +49,14 @@
         //Match not started
         if (selectedTeamName.length != 0) {
             //Opponent Team is not in system
-            [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace]];
+            [toolBar setItems:@[def_flexibleSpace, inviteOpponentButton, def_flexibleSpace]];
 
             //Show hint
             [hintView settingHintWithTextKey:@"EnterOpponent_MatchStarted" underView:matchOpponent wantShow:YES];
         }
         else {
             //No opponent selected
-            [toolBar setItems:@[flexibleSpace, inviteOpponentButton, flexibleSpace, flexibleSpace, teamMarketButton, flexibleSpace]];
+            [toolBar setItems:@[def_flexibleSpace, inviteOpponentButton, def_flexibleSpace, def_flexibleSpace, teamMarketButton, def_flexibleSpace]];
 
             //Show hint
             [hintView settingHintWithTextKey:@"EnterOpponent_MatchNotStarted_Subpage" underView:matchOpponent wantShow:YES];
@@ -106,7 +105,7 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex < inviteOpponentMenuList.count) {
-        NSLog([[inviteOpponentMenuList objectAtIndex:buttonIndex] objectForKey:@"Title"]);
+        NSLog(@"%@", [[inviteOpponentMenuList objectAtIndex:buttonIndex] objectForKey:@"Title"]);
     }
     else {
         NSLog(@"取消");

@@ -111,6 +111,36 @@
     detailTitles = def_PlayerDetails;
 }
 
+-(IBAction)notifyTrialButtonOnClicked:(id)sender
+{
+    NSLog(@"通知试训");
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)agreeButtonOnClicked:(id)sender
+{
+    NSLog(@"同意");
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)declineButtonOnClicked:(id)sender
+{
+    NSLog(@"拒绝");
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)recruitButtonOnClicked:(id)sender
+{
+    NSLog(@"招募队员");
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)temporaryButtonOnClicked:(id)sender
+{
+    NSLog(@"临时帮忙");
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
