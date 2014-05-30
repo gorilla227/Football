@@ -8,15 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Captain_PlayerDetails.h"
+@protocol PlayerMarketCellDelegate <NSObject>
+-(void)showPlayerDetails:(NSInteger)index;
+@end
 
 @interface Captain_PlayerMarket_Cell : UITableViewCell
 @property IBOutlet UIImageView *playerIcon;
 @property IBOutlet UILabel *nickName;
 @property IBOutlet UILabel *playerRole;
 @property IBOutlet UILabel *age;
-@property IBOutlet UILabel *teamName;
+@property id<PlayerMarketCellDelegate>delegate;
 @end
 
-@interface Captain_PlayerMarket : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface Captain_PlayerMarket : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, PlayerMarketCellDelegate>
 @property IBOutlet UITableView *playerMarketTableView;
 @end

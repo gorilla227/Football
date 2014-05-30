@@ -9,12 +9,18 @@
 #import "Captain_PlayerMarket.h"
 
 @implementation Captain_PlayerMarket_Cell
-@synthesize playerIcon, nickName, playerRole, age, teamName;
+@synthesize playerIcon, nickName, playerRole, age, delegate;
+
+-(IBAction)showPlayerDetails:(id)sender
+{
+    [delegate showPlayerDetails:self.tag];
+}
 @end
 
 @implementation Captain_PlayerMarket{
     NSArray *playerList;
     NSArray *filterPlayerList;
+    NSInteger indexForPlayerDetails;
 }
 @synthesize playerMarketTableView;
 
@@ -67,8 +73,29 @@
     [cell.nickName setText:dataList[indexPath.row][0]];
     [cell.playerRole setText:dataList[indexPath.row][1]];
     [cell.age setText:dataList[indexPath.row][2]];
-    [cell.teamName setText:[dataList[indexPath.row][3] isEqual:[NSNull null]]?@"无":dataList[indexPath.row][3]];
+    [cell setTag:indexPath.row];
+    [cell setDelegate:self];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView.indexPathsForSelectedRows.count < 5) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
+}
+
+-(void)showPlayerDetails:(NSInteger)index
+{
+    indexForPlayerDetails = index;
+    [self performSegueWithIdentifier:@"FreePlayer" sender:self];
 }
 
 #pragma Search Methods
@@ -98,7 +125,7 @@
     if ([segue.identifier isEqualToString:@"FreePlayer"]) {
         Captain_PlayerDetails *playerDetails = segue.destinationViewController;
         [playerDetails setViewType:FreePlayer];
-        [playerDetails setHasTeam:![playerList[[playerMarketTableView indexPathForSelectedRow].row][3] isEqual:[NSNull null]]];
+        [playerDetails setHasTeam:![playerList[indexForPlayerDetails][3] isEqual:[NSNull null]]];
     }
 }
 @end

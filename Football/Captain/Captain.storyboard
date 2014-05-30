@@ -1478,7 +1478,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="aGb-xi-ukw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="aGb-xi-ukw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1492,19 +1492,31 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="PlayerMarketCell" id="sry-DH-lEy" customClass="Captain_PlayerMarket_Cell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayerMarketCell" id="sry-DH-lEy" customClass="Captain_PlayerMarket_Cell">
                                         <rect key="frame" x="0.0" y="66" width="320" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sry-DH-lEy" id="oac-fA-rLR">
-                                            <rect key="frame" x="0.0" y="0.0" width="281" height="87"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" id="4aZ-GW-Ou9">
+                                                    <rect key="frame" x="280" y="0.0" width="1" height="87"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TeamIcon.jpg" id="MpA-4r-x2f">
-                                                    <rect key="frame" x="20" y="7" width="60" height="60"/>
+                                                    <rect key="frame" x="20" y="9" width="70" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可爱的阿狸" textAlignment="center" lineBreakMode="clip" minimumFontSize="7" id="7jg-iY-dbz">
-                                                    <rect key="frame" x="11" y="66" width="78" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kwI-cz-PhO">
+                                                    <rect key="frame" x="98" y="6" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可爱的阿狸" lineBreakMode="clip" minimumFontSize="7" id="7jg-iY-dbz">
+                                                    <rect key="frame" x="148" y="6" width="113" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
@@ -1522,33 +1534,31 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可爱萌宠电脑" lineBreakMode="tailTruncation" minimumFontSize="7" id="dDy-LM-9QS">
-                                                    <rect key="frame" x="174" y="59" width="107" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属球队：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gpo-3K-b8o">
-                                                    <rect key="frame" x="98" y="59" width="68" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="位置：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UzD-NC-ixL">
-                                                    <rect key="frame" x="98" y="7" width="42" height="21"/>
+                                                    <rect key="frame" x="98" y="60" width="42" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="前锋" lineBreakMode="tailTruncation" minimumFontSize="7" id="wUR-X9-d5R">
-                                                    <rect key="frame" x="148" y="7" width="113" height="21"/>
+                                                    <rect key="frame" x="148" y="60" width="113" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SrG-lG-Evk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="281" height="87"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="showPlayerDetails:" destination="sry-DH-lEy" eventType="touchUpInside" id="8x8-1U-jNo"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -1556,8 +1566,6 @@
                                             <outlet property="nickName" destination="7jg-iY-dbz" id="nrx-Ee-d5h"/>
                                             <outlet property="playerIcon" destination="MpA-4r-x2f" id="dYA-HD-yWw"/>
                                             <outlet property="playerRole" destination="wUR-X9-d5R" id="Dzx-gQ-uQM"/>
-                                            <outlet property="teamName" destination="dDy-LM-9QS" id="a2T-zQ-QNw"/>
-                                            <segue destination="ml2-mD-abv" kind="push" identifier="FreePlayer" id="9SK-UF-Msl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1589,6 +1597,7 @@
                     <connections>
                         <outlet property="playerMarketTableView" destination="aGb-xi-ukw" id="npJ-um-rec"/>
                         <outlet property="searchDisplayController" destination="HQp-wQ-i4p" id="Ir6-JU-p9h"/>
+                        <segue destination="ml2-mD-abv" kind="push" identifier="FreePlayer" id="k8l-yS-1pJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8K8-KS-qJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2358,7 +2367,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="j6Y-Xq-J4M"/>
         <segue reference="mkN-NA-bmm"/>
-        <segue reference="9SK-UF-Msl"/>
         <segue reference="qof-GK-AK5"/>
+        <segue reference="k8l-yS-1pJ"/>
     </inferredMetricsTieBreakers>
 </document>
