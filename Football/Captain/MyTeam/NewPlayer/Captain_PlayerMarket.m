@@ -5,7 +5,7 @@
 //  Created by Andy Xu on 14-5-29.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
-#define fake_PlayerMarketData @[@[@"巴神", @"前锋", @"24", [NSNull null]], @[@"内斯塔", @"后卫", @"34", @"AC米兰"]]
+#define fake_PlayerMarketData @[@[@"巴神", @"前锋", @"24", [NSNull null]], @[@"内斯塔", @"后卫", @"34", @"AC米兰"], @[@"Pirlo", @"Mid", @"31", @"Juventus"], @[@"Buffon", @"守门员", @"35", @"意大利"], @[@"里皮", @"教练", @"50", @"Guangzhou"], @[@"加利亚尼", @"经理", @"55", [NSNull null]]]
 #import "Captain_PlayerMarket.h"
 
 @implementation Captain_PlayerMarket_Cell
@@ -80,9 +80,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.indexPathsForSelectedRows.count < 5) {
+    if (tableView.indexPathsForSelectedRows.count <= 5) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
+    else {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
 }
 
