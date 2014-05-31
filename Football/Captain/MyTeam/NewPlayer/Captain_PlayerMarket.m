@@ -21,6 +21,7 @@
     NSArray *playerList;
     NSArray *filterPlayerList;
     NSInteger indexForPlayerDetails;
+    UITableView *searchResultTableView;
 }
 @synthesize playerMarketTableView, recruitButton, temporaryButton;
 
@@ -38,9 +39,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [playerMarketTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.searchDisplayController.searchResultsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
-    [self.searchDisplayController.searchResultsTableView setRowHeight:playerMarketTableView.rowHeight];
+    searchResultTableView = self.searchDisplayController.searchResultsTableView;
+    [searchResultTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [searchResultTableView setBackgroundColor:[UIColor colorWithRed: 0/255.0 green: 0/255.0 blue:0/255.0 alpha:0.5]];
+    [searchResultTableView setRowHeight:playerMarketTableView.rowHeight];
+    [searchResultTableView setAllowsMultipleSelection:YES];
+
     playerList = fake_PlayerMarketData;
 }
 
@@ -75,26 +79,50 @@
     [cell.age setText:dataList[indexPath.row][2]];
     [cell setTag:indexPath.row];
     [cell setDelegate:self];
+    if (tableView == searchResultTableView) {
+        NSInteger index = [playerList indexOfObject:filterPlayerList[indexPath.row]];
+        NSIndexPath *indexPathInPlayerMarketTableView = [NSIndexPath indexPathForRow:index inSection:0];
+        if ([playerMarketTableView.indexPathsForSelectedRows containsObject:indexPathInPlayerMarketTableView]) {
+            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
+        else {
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+        }
+    }
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.indexPathsForSelectedRows.count <= 5) {
+    if (playerMarketTableView.indexPathsForSelectedRows.count < 5) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        if (tableView == searchResultTableView) {
+            NSInteger index = [playerList indexOfObject:filterPlayerList[indexPath.row]];
+            NSIndexPath *indexPathInPlayerMarketTableView = [NSIndexPath indexPathForRow:index inSection:0];
+            [playerMarketTableView selectRowAtIndexPath:indexPathInPlayerMarketTableView animated:NO scrollPosition:UITableViewScrollPositionNone];
+            UITableViewCell *playerMarketTableViewCell = [playerMarketTableView cellForRowAtIndexPath:indexPathInPlayerMarketTableView];
+            [playerMarketTableViewCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
+        [recruitButton setEnabled:YES];
+        [temporaryButton setEnabled:YES];
     }
-    else {
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    }
-    [recruitButton setEnabled:YES];
-    [temporaryButton setEnabled:YES];
+    
+    return indexPath;
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
+    if (tableView == searchResultTableView) {
+        NSInteger index = [playerList indexOfObject:filterPlayerList[indexPath.row]];
+        NSIndexPath *indexPathInPlayerMarketTableView = [NSIndexPath indexPathForRow:index inSection:0];
+        [playerMarketTableView deselectRowAtIndexPath:indexPathInPlayerMarketTableView animated:NO];
+        UITableViewCell *playerMarketTableViewCell = [playerMarketTableView cellForRowAtIndexPath:indexPathInPlayerMarketTableView];
+        [playerMarketTableViewCell setAccessoryType:UITableViewCellAccessoryNone];
+    }
     [recruitButton setEnabled:tableView.indexPathsForSelectedRows.count > 0];
     [temporaryButton setEnabled:tableView.indexPathsForSelectedRows.count > 0];
 }
@@ -132,12 +160,17 @@
     if ([segue.identifier isEqualToString:@"FreePlayer"]) {
         Captain_PlayerDetails *playerDetails = segue.destinationViewController;
         [playerDetails setViewType:FreePlayer];
-        [playerDetails setHasTeam:![playerList[indexForPlayerDetails][3] isEqual:[NSNull null]]];
+        if ([playerMarketTableView isHidden]) {
+            [playerDetails setHasTeam:![filterPlayerList[indexForPlayerDetails][3] isEqual:[NSNull null]]];
+        }
+        else {
+            [playerDetails setHasTeam:![playerList[indexForPlayerDetails][3] isEqual:[NSNull null]]];
+        }
     }
     else if ([segue.identifier isEqualToString:@"RecruitPlayer"]) {
         NSMutableArray *selectedPlayerList = [[NSMutableArray alloc] init];
         NSArray *allPlayerList = playerMarketTableView.isHidden?filterPlayerList:playerList;
-        NSArray *indexPathsForSelectedRow = playerMarketTableView.isHidden?self.searchDisplayController.searchResultsTableView.indexPathsForSelectedRows:playerMarketTableView.indexPathsForSelectedRows;
+        NSArray *indexPathsForSelectedRow = playerMarketTableView.isHidden?searchResultTableView.indexPathsForSelectedRows:playerMarketTableView.indexPathsForSelectedRows;
         for (NSIndexPath *indexPath in indexPathsForSelectedRow) {
             [selectedPlayerList addObject:allPlayerList[indexPath.row][0]];
         }
@@ -149,7 +182,7 @@
     else if ([segue.identifier isEqualToString:@"TemporaryFavor"]) {
         NSMutableArray *selectedPlayerList = [[NSMutableArray alloc] init];
         NSArray *allPlayerList = playerMarketTableView.isHidden?filterPlayerList:playerList;
-        NSArray *indexPathsForSelectedRow = playerMarketTableView.isHidden?self.searchDisplayController.searchResultsTableView.indexPathsForSelectedRows:playerMarketTableView.indexPathsForSelectedRows;
+        NSArray *indexPathsForSelectedRow = playerMarketTableView.isHidden?searchResultTableView.indexPathsForSelectedRows:playerMarketTableView.indexPathsForSelectedRows;
         for (NSIndexPath *indexPath in indexPathsForSelectedRow) {
             [selectedPlayerList addObject:allPlayerList[indexPath.row][0]];
         }
