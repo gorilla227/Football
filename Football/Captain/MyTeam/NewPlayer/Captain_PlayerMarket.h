@@ -22,4 +22,6 @@
 
 @interface Captain_PlayerMarket : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, PlayerMarketCellDelegate>
 @property IBOutlet UITableView *playerMarketTableView;
+@property IBOutlet UIBarButtonItem *recruitButton;
+@property IBOutlet UIBarButtonItem *temporaryButton;
 @end

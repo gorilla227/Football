@@ -68,7 +68,9 @@ enum PlayerDetails_ViewTypes
 enum NotifyPlayers_ViewTypes
 {
     NotifyMyTeamPlayers,
-    NotifyTrial
+    NotifyTrial,
+    RecruitPlayer,
+    TemporaryFavor
 };
 
 //Dateformat

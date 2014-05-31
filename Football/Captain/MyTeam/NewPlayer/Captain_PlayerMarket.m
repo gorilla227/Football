@@ -22,7 +22,7 @@
     NSArray *filterPlayerList;
     NSInteger indexForPlayerDetails;
 }
-@synthesize playerMarketTableView;
+@synthesize playerMarketTableView, recruitButton, temporaryButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -69,7 +69,7 @@
         cell = [playerMarketTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     }
     NSArray *dataList = [tableView isEqual:playerMarketTableView]?playerList:filterPlayerList;
-    
+
     [cell.nickName setText:dataList[indexPath.row][0]];
     [cell.playerRole setText:dataList[indexPath.row][1]];
     [cell.age setText:dataList[indexPath.row][2]];
@@ -87,12 +87,16 @@
     else {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
+    [recruitButton setEnabled:YES];
+    [temporaryButton setEnabled:YES];
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
+    [recruitButton setEnabled:tableView.indexPathsForSelectedRows.count > 0];
+    [temporaryButton setEnabled:tableView.indexPathsForSelectedRows.count > 0];
 }
 
 -(void)showPlayerDetails:(NSInteger)index
@@ -129,6 +133,30 @@
         Captain_PlayerDetails *playerDetails = segue.destinationViewController;
         [playerDetails setViewType:FreePlayer];
         [playerDetails setHasTeam:![playerList[indexForPlayerDetails][3] isEqual:[NSNull null]]];
+    }
+    else if ([segue.identifier isEqualToString:@"RecruitPlayer"]) {
+        NSMutableArray *selectedPlayerList = [[NSMutableArray alloc] init];
+        NSArray *allPlayerList = playerMarketTableView.isHidden?filterPlayerList:playerList;
+        NSArray *indexPathsForSelectedRow = playerMarketTableView.isHidden?self.searchDisplayController.searchResultsTableView.indexPathsForSelectedRows:playerMarketTableView.indexPathsForSelectedRows;
+        for (NSIndexPath *indexPath in indexPathsForSelectedRow) {
+            [selectedPlayerList addObject:allPlayerList[indexPath.row][0]];
+        }
+        Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
+        [notifyPlayer setViewType:RecruitPlayer];
+        [notifyPlayer setPlayerList:selectedPlayerList];
+        [notifyPlayer setPredefinedNotification:@"恭喜！“本队队名”看中你了，主力位置有保证，速来投靠！"];
+    }
+    else if ([segue.identifier isEqualToString:@"TemporaryFavor"]) {
+        NSMutableArray *selectedPlayerList = [[NSMutableArray alloc] init];
+        NSArray *allPlayerList = playerMarketTableView.isHidden?filterPlayerList:playerList;
+        NSArray *indexPathsForSelectedRow = playerMarketTableView.isHidden?self.searchDisplayController.searchResultsTableView.indexPathsForSelectedRows:playerMarketTableView.indexPathsForSelectedRows;
+        for (NSIndexPath *indexPath in indexPathsForSelectedRow) {
+            [selectedPlayerList addObject:allPlayerList[indexPath.row][0]];
+        }
+        Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
+        [notifyPlayer setViewType:TemporaryFavor];
+        [notifyPlayer setPlayerList:selectedPlayerList];
+        [notifyPlayer setPredefinedNotification:@"“本队队名”于“比赛时间”，在“比赛地点”，有一场“赛制”比赛，特邀请你参加。请拔腿相助，来了就是主力，来的就是朋友！"];
     }
 }
 @end

@@ -1475,13 +1475,14 @@
             <objects>
                 <viewController storyboardIdentifier="Captain_PlayerMarket" title="球员超市" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z2f-wz-WV6" customClass="Captain_PlayerMarket" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8jf-fx-f8y">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="aGb-xi-ukw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsMultipleSelection="YES" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="aGb-xi-ukw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="ZpR-JG-TqQ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1574,29 +1575,35 @@
                                     <outlet property="delegate" destination="z2f-wz-WV6" id="N0t-QQ-1hJ"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="wE2-dO-ahx">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="q3C-Lt-eAe"/>
+                                    <barButtonItem enabled="NO" title="招募队员" id="f2O-YM-3vU">
+                                        <connections>
+                                            <segue destination="TRJ-kb-wLT" kind="push" identifier="RecruitPlayer" id="EAs-BU-I6w"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="gvI-8Y-6pC"/>
+                                    <barButtonItem enabled="NO" title="临时帮忙" id="XSj-SC-jQn">
+                                        <connections>
+                                            <segue destination="TRJ-kb-wLT" kind="push" identifier="TemporaryFavor" id="qof-GK-AK5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="idm-Cw-Ts0"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="q3C-Lt-eAe"/>
-                        <barButtonItem title="招募队员" id="f2O-YM-3vU">
-                            <connections>
-                                <segue destination="TRJ-kb-wLT" kind="push" identifier="RecruitPlayer" id="EAs-BU-I6w"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="gvI-8Y-6pC"/>
-                        <barButtonItem title="临时帮忙" id="XSj-SC-jQn">
-                            <connections>
-                                <segue destination="TRJ-kb-wLT" kind="push" identifier="TemporaryFavor" id="qof-GK-AK5"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="idm-Cw-Ts0"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="球员超市" id="wjv-Dz-KCb"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="playerMarketTableView" destination="aGb-xi-ukw" id="npJ-um-rec"/>
+                        <outlet property="recruitButton" destination="f2O-YM-3vU" id="zRI-XD-eCL"/>
                         <outlet property="searchDisplayController" destination="HQp-wQ-i4p" id="Ir6-JU-p9h"/>
+                        <outlet property="temporaryButton" destination="XSj-SC-jQn" id="C1s-Xd-9eO"/>
                         <segue destination="ml2-mD-abv" kind="push" identifier="FreePlayer" id="k8l-yS-1pJ"/>
                     </connections>
                 </viewController>
@@ -2107,7 +2114,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DIF-0l-1vJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <barButtonItem title="通知试训" id="dTs-qh-HyH">
                     <connections>
-                        <action selector="notifyTrialButtonOnClicked:" destination="ml2-mD-abv" id="bbM-e3-C9X"/>
                         <segue destination="TRJ-kb-wLT" kind="push" identifier="NotifyTrial" id="tHx-TL-9hF"/>
                     </connections>
                 </barButtonItem>
@@ -2123,12 +2129,12 @@
                 </barButtonItem>
                 <barButtonItem title="招募队员" id="e4A-5y-Fuv">
                     <connections>
-                        <action selector="recruitButtonOnClicked:" destination="ml2-mD-abv" id="kuk-YY-VWX"/>
+                        <segue destination="TRJ-kb-wLT" kind="push" identifier="RecruitPlayer" id="uxP-od-Rb5"/>
                     </connections>
                 </barButtonItem>
                 <barButtonItem title="临时帮忙" id="f6h-15-Kll">
                     <connections>
-                        <action selector="temporaryButtonOnClicked:" destination="ml2-mD-abv" id="8eS-I3-xB5"/>
+                        <segue destination="TRJ-kb-wLT" kind="push" identifier="TemporaryFavor" id="7Hz-jQ-Lha"/>
                     </connections>
                 </barButtonItem>
             </objects>
@@ -2139,11 +2145,11 @@
             <objects>
                 <viewController storyboardIdentifier="Captain_NotifyPlayers" title="发送通知" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TRJ-kb-wLT" customClass="Captain_NotifyPlayers" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RUQ-r1-fDq">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="任意输入通知内容" id="bKH-4m-oFM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2153,7 +2159,7 @@
                                 </connections>
                             </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="FKM-44-2uL">
-                                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="g6f-4H-2d5"/>
@@ -2166,7 +2172,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="tOM-cb-LDP">
-                                <rect key="frame" x="0.0" y="146" width="320" height="270"/>
+                                <rect key="frame" x="0.0" y="146" width="320" height="314"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -2209,6 +2215,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled">
+                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
+                                </state>
                                 <connections>
                                     <action selector="selectAllButtonOnClicked:" destination="TRJ-kb-wLT" eventType="touchUpInside" id="nON-qg-zIE"/>
                                 </connections>
@@ -2220,6 +2229,9 @@
                                 <state key="normal" title="取消全选">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
                                 </state>
                                 <connections>
                                     <action selector="unselectAllButtonOnClicked:" destination="TRJ-kb-wLT" eventType="touchUpInside" id="rXV-D9-GT0"/>
@@ -2240,7 +2252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XyM-DA-aDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1807" y="2266"/>
+            <point key="canvasLocation" x="1618" y="2266"/>
         </scene>
         <!--Captain Create Match Stadium List Base-->
         <scene sceneID="EC3-Py-5M0">
@@ -2365,9 +2377,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="j6Y-Xq-J4M"/>
         <segue reference="mkN-NA-bmm"/>
-        <segue reference="qof-GK-AK5"/>
+        <segue reference="j6Y-Xq-J4M"/>
+        <segue reference="7Hz-jQ-Lha"/>
         <segue reference="k8l-yS-1pJ"/>
     </inferredMetricsTieBreakers>
 </document>

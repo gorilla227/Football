@@ -122,12 +122,6 @@
     detailTitles = hasTeam?def_PlayerDetails:@[def_PlayerDetails[0]];
 }
 
--(IBAction)notifyTrialButtonOnClicked:(id)sender
-{
-    NSLog(@"通知试训");
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 -(IBAction)agreeButtonOnClicked:(id)sender
 {
     NSLog(@"同意");
@@ -137,18 +131,6 @@
 -(IBAction)declineButtonOnClicked:(id)sender
 {
     NSLog(@"拒绝");
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
--(IBAction)recruitButtonOnClicked:(id)sender
-{
-    NSLog(@"招募队员");
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
--(IBAction)temporaryButtonOnClicked:(id)sender
-{
-    NSLog(@"临时帮忙");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -187,7 +169,19 @@
         Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
         [notifyPlayer setViewType:NotifyTrial];
         [notifyPlayer setPlayerList:@[nickName.text]];
-        [notifyPlayer setPredefinedNotification:[NSString stringWithFormat:@"%@, “本队队名”通知您于“比赛时间”，在“比赛地点”，进行比赛试训。请准时到场，留下美好印象。", nickName.text]];
+        [notifyPlayer setPredefinedNotification:@"“本队队名”通知您于“比赛时间”，在“比赛地点”，进行比赛试训。请准时到场，留下美好印象。"];
+    }
+    else if ([segue.identifier isEqualToString:@"RecruitPlayer"]) {
+        Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
+        [notifyPlayer setViewType:RecruitPlayer];
+        [notifyPlayer setPlayerList:@[nickName.text]];
+        [notifyPlayer setPredefinedNotification:@"恭喜！“本队队名”看中你了，主力位置有保证，速来投靠！"];
+    }
+    else if ([segue.identifier isEqualToString:@"TemporaryFavor"]) {
+        Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
+        [notifyPlayer setViewType:TemporaryFavor];
+        [notifyPlayer setPlayerList:@[nickName.text]];
+        [notifyPlayer setPredefinedNotification:@"“本队队名”于“比赛时间”，在“比赛地点”，有一场“赛制”比赛，特邀请你参加。请拔腿相助，来了就是主力，来的就是朋友！"];
     }
 }
 

@@ -22,4 +22,6 @@
 @property NSArray *playerList;
 @property NSString *predefinedNotification;
 @property enum NotifyPlayers_ViewTypes viewType;
+
+-(void)updateButtonStatus;
 @end

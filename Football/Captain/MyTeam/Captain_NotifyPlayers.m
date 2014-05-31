@@ -46,10 +46,11 @@
         [notificationTextView setText:predefinedNotification];
     }
     
-    //Select the only player when viewType is "NotifyTrial"
-    if (viewType == NotifyTrial) {
+    //Select the all players when viewType is not "NotifyMyTeamPlayers"
+    if (viewType != NotifyMyTeamPlayers) {
         [self selectAllButtonOnClicked:self];
     }
+    [self updateButtonStatus];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,7 +67,7 @@
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-    [sendNotificationButton setEnabled:[notificationTextView hasText] && [playersTableView.indexPathsForSelectedRows count] > 0];
+    [self updateButtonStatus];
 }
 
 -(IBAction)selectAllButtonOnClicked:(id)sender
@@ -78,6 +79,7 @@
             [self tableView:playersTableView didSelectRowAtIndexPath:indexPath];
         }
     }
+    [self updateButtonStatus];
 }
 
 -(IBAction)unselectAllButtonOnClicked:(id)sender
@@ -86,6 +88,7 @@
         [playersTableView deselectRowAtIndexPath:indexPath animated:NO];
         [self tableView:playersTableView didDeselectRowAtIndexPath:indexPath];
     }
+    [self updateButtonStatus];
 }
 
 -(IBAction)notifyPlayerButtonOnClicked:(id)sender
@@ -104,6 +107,13 @@
     NSLog(@"Text: %@\nTo: %@", notificationTextView.text, ouputString);
     
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(void)updateButtonStatus
+{
+    [selectAllButton setEnabled:playersTableView.indexPathsForSelectedRows.count != playerList.count];
+    [unselectAllButton setEnabled:playersTableView.indexPathsForSelectedRows.count != 0];
+    [sendNotificationButton setEnabled:[notificationTextView hasText] && playersTableView.indexPathsForSelectedRows.count > 0];
 }
 
 #pragma TableView Methods
@@ -130,7 +140,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     [notificationTextView resignFirstResponder];
-    [sendNotificationButton setEnabled:[notificationTextView hasText]];
+    [self updateButtonStatus];
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,7 +148,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
     [notificationTextView resignFirstResponder];
-    [sendNotificationButton setEnabled:[notificationTextView hasText] && [playersTableView.indexPathsForSelectedRows count] > 0];
+    [self updateButtonStatus];
 }
 
 /*
