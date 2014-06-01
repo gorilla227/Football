@@ -13,31 +13,34 @@
 
 -(void)drawRect:(CGRect)rect
 {
-    UIColor *lineColor = [UIColor grayColor];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-    CGContextFillRect(context, self.bounds);
-    CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
-    CGContextSetLineWidth(context, 0.25f);
-
-    for (UILabel *label in self.contentView.subviews) {
-        if (label.tag != 0) {
-            CGFloat positionX = label.frame.origin.x - 4;
-            CGFloat lineLength = self.bounds.size.height;
-            CGContextMoveToPoint(context, positionX, 0);
-            CGContextAddLineToPoint(context, positionX, lineLength);
-        }
-    }
-    CGContextStrokePath(context);
-    
+//    UIColor *lineColor = [UIColor grayColor];
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+//    CGContextFillRect(context, self.bounds);
+//    CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
+//    CGContextSetLineWidth(context, 0.25f);
+//
+//    for (UILabel *label in self.contentView.subviews) {
+//        if (label.tag != 0) {
+//            CGFloat positionX = label.frame.origin.x - 4;
+//            CGFloat lineLength = self.bounds.size.height;
+//            CGContextMoveToPoint(context, positionX, 0);
+//            CGContextAddLineToPoint(context, positionX, lineLength);
+//        }
+//    }
+//    CGContextStrokePath(context);
     [super drawRect:rect];
+    for (UILabel *label in self.contentView.subviews) {
+        [label.layer setBorderColor:[UIColor grayColor].CGColor];
+        [label.layer setBorderWidth:0.5f];
+    }
 }
 @end
 
 @implementation Captain_BalanceManagement{
-    NSArray *balanceData;
+    NSMutableArray *balanceData;
 }
-@synthesize teamIcon, balanceTableView, balanceTableViewHeaderView;
+@synthesize addBalanceRecordButton, teamIcon, balanceTableView, balanceTableViewHeaderView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,7 +58,6 @@
     [self.view setBackgroundColor:[UIColor clearColor]];
     [balanceTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self drawLineForHeaderView];
-    [balanceTableView setBackgroundColor:[UIColor clearColor]];
     
     //Set the teamIcon
     [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
@@ -64,10 +66,11 @@
     [teamIcon.layer setMasksToBounds:YES];
     
     //Initial data
-    balanceData = fake_blanceData;
+    balanceData = [NSMutableArray arrayWithArray:fake_blanceData];
     
     //Set menu button
     [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
+    [self.navigationItem setRightBarButtonItem:addBalanceRecordButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,6 +115,20 @@
 {
     return balanceTableViewHeaderView.bounds.size.height;
 }
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [balanceData removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
 
 /*
 #pragma mark - Navigation
