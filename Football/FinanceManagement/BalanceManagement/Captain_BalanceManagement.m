@@ -15,6 +15,8 @@
 {
     UIColor *lineColor = [UIColor grayColor];
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextFillRect(context, self.bounds);
     CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
     CGContextSetLineWidth(context, 0.25f);
 
@@ -27,6 +29,7 @@
         }
     }
     CGContextStrokePath(context);
+    
     [super drawRect:rect];
 }
 @end
@@ -52,6 +55,7 @@
     [self.view setBackgroundColor:[UIColor clearColor]];
     [balanceTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self drawLineForHeaderView];
+    [balanceTableView setBackgroundColor:[UIColor clearColor]];
     
     //Set the teamIcon
     [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
