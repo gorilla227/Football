@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Captain_EnterBalance : UIViewController
+@interface Captain_EnterBalance : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@property IBOutlet UISegmentedControl *balanceTypeSegment;
+@property IBOutlet UIView *playerListHeader;
+@property IBOutlet UITableView *playerListTableView;
+@property IBOutlet UIView *teamFundView;
+@property IBOutlet UILabel *totalPlayers;
+@property IBOutlet UILabel *totalTeamFund;
+@property IBOutlet UITextField *balanceName;
+@property IBOutlet UITextField *balanceDate;
+@property IBOutlet UITextField *balanceAmount;
 
+-(void)calculateTotal;
 @end

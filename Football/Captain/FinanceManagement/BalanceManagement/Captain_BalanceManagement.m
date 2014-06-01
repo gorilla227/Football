@@ -128,8 +128,6 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
-
-
 /*
 #pragma mark - Navigation
 
