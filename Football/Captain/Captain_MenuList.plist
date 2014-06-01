@@ -69,19 +69,13 @@
 	<array>
 		<dict>
 			<key>Title</key>
-			<string>收入</string>
+			<string>收支管理</string>
 			<key>Identifier</key>
-			<string></string>
+			<string>Captain_BalanceManagement</string>
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>支出</string>
-			<key>Identifier</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>收支表</string>
+			<string>队费查询</string>
 			<key>Identifier</key>
 			<string></string>
 		</dict>
