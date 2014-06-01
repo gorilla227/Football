@@ -37,6 +37,7 @@
 		A19F8D151900E61E00AC8459 /* soccer_title_bar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A19F8D131900E61E00AC8459 /* soccer_title_bar_bg@2x.png */; };
 		A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */; };
 		A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */; };
+		A1AF632F193B066400997255 /* Captain_EnterBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AF632E193B066400997255 /* Captain_EnterBalance.m */; };
 		A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */; };
 		A1C2802D18F79CED004C644E /* login_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802418F79CED004C644E /* login_logo.png */; };
 		A1C2802E18F79CED004C644E /* login_textfield_title_pwd.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802518F79CED004C644E /* login_textfield_title_pwd.png */; };
@@ -157,6 +158,9 @@
 		A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_EnterOpponent.m; sourceTree = "<group>"; };
 		A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_SelectMatchStadium.h; sourceTree = "<group>"; };
 		A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_SelectMatchStadium.m; sourceTree = "<group>"; };
+		A1AF632D193B066400997255 /* Captain_EnterBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_EnterBalance.h; path = Captain/FinanceManagement/BalanceManagement/Captain_EnterBalance.h; sourceTree = "<group>"; };
+		A1AF632E193B066400997255 /* Captain_EnterBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_EnterBalance.m; path = Captain/FinanceManagement/BalanceManagement/Captain_EnterBalance.m; sourceTree = "<group>"; };
+		A1AF6330193B06BA00997255 /* Captain_BalanceManagement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Captain_BalanceManagement.h; path = Captain/FinanceManagement/BalanceManagement/Captain_BalanceManagement.h; sourceTree = "<group>"; };
 		A1B0DA1B18EA785C00671383 /* Captain_MatchArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_MatchArrangement.h; sourceTree = "<group>"; };
 		A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_MatchArrangement.m; sourceTree = "<group>"; };
 		A1C2802418F79CED004C644E /* login_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_logo.png; path = Resource/login_logo.png; sourceTree = "<group>"; };
@@ -234,8 +238,7 @@
 		B2026502191C25E7004B8D74 /* menuIcon_myMatches.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_myMatches.png; path = Resource/menuIcon_myMatches.png; sourceTree = "<group>"; };
 		B2026503191C25E7004B8D74 /* menuIcon_myTeams.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_myTeams.png; path = Resource/menuIcon_myTeams.png; sourceTree = "<group>"; };
 		B2026509191C273D004B8D74 /* menuIcon_superMarket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_superMarket.png; path = Resource/menuIcon_superMarket.png; sourceTree = "<group>"; };
-		B22B10AC193A9683004BE83F /* Captain_BalanceManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_BalanceManagement.h; path = FinanceManagement/BalanceManagement/Captain_BalanceManagement.h; sourceTree = "<group>"; };
-		B22B10AD193A9683004BE83F /* Captain_BalanceManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_BalanceManagement.m; path = FinanceManagement/BalanceManagement/Captain_BalanceManagement.m; sourceTree = "<group>"; };
+		B22B10AD193A9683004BE83F /* Captain_BalanceManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_BalanceManagement.m; path = Captain/FinanceManagement/BalanceManagement/Captain_BalanceManagement.m; sourceTree = "<group>"; };
 		B23C4F881936B59C00FC73F2 /* TeamIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TeamIcon.jpg; path = Resource/TeamIcon.jpg; sourceTree = "<group>"; };
 		B262D2F4192813110079526E /* icon_opponentAccepted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_opponentAccepted.png; path = Resource/icon_opponentAccepted.png; sourceTree = "<group>"; };
 		B262D2F5192813110079526E /* icon_opponentRejected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_opponentRejected.png; path = Resource/icon_opponentRejected.png; sourceTree = "<group>"; };
@@ -685,8 +688,10 @@
 		B22B10AF193A968A004BE83F /* BalanceManagement */ = {
 			isa = PBXGroup;
 			children = (
-				B22B10AC193A9683004BE83F /* Captain_BalanceManagement.h */,
+				A1AF6330193B06BA00997255 /* Captain_BalanceManagement.h */,
 				B22B10AD193A9683004BE83F /* Captain_BalanceManagement.m */,
+				A1AF632D193B066400997255 /* Captain_EnterBalance.h */,
+				A1AF632E193B066400997255 /* Captain_EnterBalance.m */,
 			);
 			name = BalanceManagement;
 			sourceTree = "<group>";
@@ -867,6 +872,7 @@
 			files = (
 				A1F428DC191209DB00567A02 /* AFHTTPRequestOperation.m in Sources */,
 				A103339318D6B49900050A61 /* Login.m in Sources */,
+				A1AF632F193B066400997255 /* Captain_EnterBalance.m in Sources */,
 				A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */,
 				A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */,
 				A1F428E3191209DB00567A02 /* AFURLResponseSerialization.m in Sources */,
