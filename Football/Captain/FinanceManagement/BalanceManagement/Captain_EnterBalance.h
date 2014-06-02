@@ -22,4 +22,7 @@
 -(void)calculateTotal;
 -(void)balanceDateSelected;
 -(void)initialBalanceDate;
+-(void)initialBalanceAmount;
+-(void)initialBalanceName;
+-(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName;
 @end

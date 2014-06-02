@@ -46,12 +46,24 @@
     
     [self balanceTypeSelected:self];
     [self initialBalanceDate];
+    [self initialBalanceName];
+    [self initialBalanceAmount];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)initialBalanceAmount
+{
+    [self initialLeftViewForTextField:balanceAmount labelName:def_EnterBalance_Title_Amount iconImage:@"leftIcon_createMatch_cost.png"];
+}
+
+-(void)initialBalanceName
+{
+    [self initialLeftViewForTextField:balanceName labelName:def_EnterBalance_Title_Name iconImage:@"leftIcon_createMatch_place.png"];
 }
 
 -(void)initialBalanceDate
@@ -69,8 +81,28 @@
     [balanceDatePicker setMaximumDate:[NSDate date]];
     [balanceDatePicker addTarget:self action:@selector(balanceDateSelected) forControlEvents:UIControlEventValueChanged];
     [balanceDate setInputView:balanceDatePicker];
+    [balanceDate setText:[dateFormatter stringFromDate:[NSDate date]]];
     
-//    [self initialLeftViewForTextField:balanceDate labelName:def_createMatch_time iconImage:@"leftIcon_createMatch_time.png"];
+    [self initialLeftViewForTextField:balanceDate labelName:def_EnterBalance_Title_Date iconImage:@"leftIcon_createMatch_time.png"];
+}
+
+-(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
+{
+    CGRect leftViewFrame = textFieldNeedLeftView.bounds;
+    UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
+    UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftIcon.frame.size.width, 0, 45, leftViewFrame.size.height)];
+    leftViewFrame.size.width = leftIcon.frame.size.width + leftLabel.frame.size.width + 10;
+    [leftLabel setText:labelName];
+    [leftLabel setTextAlignment:NSTextAlignmentCenter];
+    UIView *leftView = [[UIView alloc] initWithFrame:leftViewFrame];
+    [leftView addSubview:leftIcon];
+    [leftView addSubview:leftLabel];
+//    [leftView setBackgroundColor:def_navigationBar_background];
+//    [leftView.layer setBorderColor:[UIColor grayColor].CGColor];
+//    [leftView.layer setBorderWidth:0.5f];
+    [textFieldNeedLeftView setLeftView:leftView];
+    [textFieldNeedLeftView setLeftViewMode:UITextFieldViewModeAlways];
+    [textFieldNeedLeftView setPlaceholder:nil];
 }
 
 -(void)balanceDateSelected
@@ -86,20 +118,28 @@
             [playerListTableView setHidden:NO];
             [teamFundView setHidden:NO];
             [balanceName setHidden:NO];
-            [balanceName setText:@"队费收入"];
             [balanceName setEnabled:NO];
             [balanceDate setHidden:NO];
             [balanceAmount setHidden:NO];
+            
+            [balanceAmount setPlaceholder:def_EnterBalance_Placeholder_TeamFund];
+            
+            [balanceName setText:@"队费收入"];
+            [balanceAmount setText:nil];
             break;
         case 1:
         case 2:
             [playerListTableView setHidden:YES];
             [teamFundView setHidden:YES];
             [balanceName setHidden:NO];
-            [balanceName setText:nil];
             [balanceName setEnabled:YES];
             [balanceDate setHidden:NO];
             [balanceAmount setHidden:NO];
+
+            [balanceAmount setPlaceholder:def_EnterBalance_Placeholder_Other];
+            
+            [balanceName setText:nil];
+            [balanceAmount setText:nil];
             break;
         default:
             [playerListTableView setHidden:YES];
@@ -310,8 +350,12 @@
 {
     CGFloat unitAmount = balanceAmount.text.floatValue;
     NSInteger numOfPlayers = playerListTableView.indexPathsForSelectedRows.count;
+    NSNumber *totalAmount = [NSNumber numberWithFloat:numOfPlayers * unitAmount];
+    NSNumberFormatter *amountFormatter = [[NSNumberFormatter alloc] init];
+    [amountFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    
     [totalPlayers setText:[NSString stringWithFormat:@"%ld 人", numOfPlayers]];
-    [totalTeamFund setText:[NSString stringWithFormat:@"%f 元", numOfPlayers * unitAmount]];
+    [totalTeamFund setText:[NSString stringWithFormat:@"%@ 元", [amountFormatter stringFromNumber:totalAmount]]];
 }
 /*
 #pragma mark - Navigation

@@ -40,6 +40,11 @@
 #define def_WM_myInvitationAcceptedText(teamName) [NSString stringWithFormat:@"%@已同意约球，请通知小伙伴", teamName]
 #define def_PlayerDetails @[@[@"出生年月", @"所在城市", @"活动区域", @"个人风格关键字"], @[@"入队时间", @"比赛出场", @"进球", @"助攻"]]
 #define def_Message_Trail(nickName, myTeamName, matchDate, matchPlace, matchType) [NSString stringWithFormat:@"%@, %@通知您于%@，在%@，进行%@比赛试训。请准时到场，留下美好印象。", nickName, myTeamName, matchDate, matchPlace, matchType] 
+#define def_EnterBalance_Placeholder_TeamFund @"请输入单人金额，总金额自动计算"
+#define def_EnterBalance_Placeholder_Other @"请输入金额"
+#define def_EnterBalance_Title_Date @"日期"
+#define def_EnterBalance_Title_Name @"项目"
+#define def_EnterBalance_Title_Amount @"金额"
 
 //Color
 #define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]
