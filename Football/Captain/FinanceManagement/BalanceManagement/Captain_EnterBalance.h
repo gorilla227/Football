@@ -20,4 +20,6 @@
 @property IBOutlet UITextField *balanceAmount;
 
 -(void)calculateTotal;
+-(void)balanceDateSelected;
+-(void)initialBalanceDate;
 @end
