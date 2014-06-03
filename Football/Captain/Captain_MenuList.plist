@@ -77,7 +77,7 @@
 			<key>Title</key>
 			<string>队费查询</string>
 			<key>Identifier</key>
-			<string></string>
+			<string>Captain_TeamFundInquiry</string>
 		</dict>
 	</array>
 	<key>3</key>
