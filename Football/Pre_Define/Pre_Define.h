@@ -64,18 +64,33 @@
 //PlayerDetails_ViewTypes
 enum PlayerDetails_ViewTypes
 {
-    MyPlayer,
-    Applicant,
-    FreePlayer
+    PlayerDetails_MyPlayer,
+    PlayerDetails_Applicant,
+    PlayerDetails_FromPlayerMarket
 };
 
 //NotifyPlayers_ViewTypes
 enum NotifyPlayers_ViewTypes
 {
-    NotifyMyTeamPlayers,
-    NotifyTrial,
-    RecruitPlayer,
-    TemporaryFavor
+    NotifyPlayers_MyTeamPlayers,
+    NotifyPlayers_Trial,
+    NotifyPlayers_Recruit,
+    NotifyPlayers_TemporaryFavor
+};
+
+//EnterBalance_ViewTypes
+enum EnterBalance_ViewTypes
+{
+    EnterBalance_Add,
+    EnterBalance_Edit
+};
+
+//BalanceTypes
+enum BalanceTypes
+{
+    BalanceType_TeamFund,
+    BalanceType_OtherIncome,
+    BalanceType_Expenditure
 };
 
 //Dateformat

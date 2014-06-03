@@ -2377,6 +2377,7 @@
                         <outlet property="balanceTableView" destination="HiZ-9O-vPD" id="Qrq-Ho-7tY"/>
                         <outlet property="balanceTableViewHeaderView" destination="Bqh-j7-9qC" id="eHE-Zn-jqD"/>
                         <outlet property="teamIcon" destination="MjU-fY-jBY" id="Wya-vV-nGL"/>
+                        <segue destination="Qsa-cW-8op" kind="push" identifier="EditBalanceRecord" id="Ri9-XH-obz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SBc-XE-Tp4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2699,6 +2700,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="j6Y-Xq-J4M"/>
         <segue reference="mkN-NA-bmm"/>
+        <segue reference="Ri9-XH-obz"/>
         <segue reference="k8l-yS-1pJ"/>
         <segue reference="qof-GK-AK5"/>
     </inferredMetricsTieBreakers>

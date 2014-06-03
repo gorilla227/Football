@@ -159,7 +159,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"FreePlayer"]) {
         Captain_PlayerDetails *playerDetails = segue.destinationViewController;
-        [playerDetails setViewType:FreePlayer];
+        [playerDetails setViewType:PlayerDetails_FromPlayerMarket];
         if ([playerMarketTableView isHidden]) {
             [playerDetails setHasTeam:![filterPlayerList[indexForPlayerDetails][3] isEqual:[NSNull null]]];
         }
@@ -175,7 +175,7 @@
             [selectedPlayerList addObject:allPlayerList[indexPath.row][0]];
         }
         Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
-        [notifyPlayer setViewType:RecruitPlayer];
+        [notifyPlayer setViewType:NotifyPlayers_Recruit];
         [notifyPlayer setPlayerList:selectedPlayerList];
         [notifyPlayer setPredefinedNotification:@"恭喜！“本队队名”看中你了，主力位置有保证，速来投靠！"];
     }
@@ -187,7 +187,7 @@
             [selectedPlayerList addObject:allPlayerList[indexPath.row][0]];
         }
         Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
-        [notifyPlayer setViewType:TemporaryFavor];
+        [notifyPlayer setViewType:NotifyPlayers_TemporaryFavor];
         [notifyPlayer setPlayerList:selectedPlayerList];
         [notifyPlayer setPredefinedNotification:@"“本队队名”于“比赛时间”，在“比赛地点”，有一场“赛制”比赛，特邀请你参加。请拔腿相助，来了就是主力，来的就是朋友！"];
     }

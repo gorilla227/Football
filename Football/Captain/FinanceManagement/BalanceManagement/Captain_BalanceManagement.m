@@ -5,7 +5,8 @@
 //  Created by Andy Xu on 14-5-31.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
-#define fake_blanceData @[@[@"支出", @"场地费", @"2014.3.26", @"500"], @[@"收入", @"队费", @"2014.5.20", @"1000"]]
+#define fake_balanceData @[@[@"支出", @"场地费", @"2014.3.26", @"500"], @[@"收入", @"队费", @"2014.5.20", @"1000"], @[@"收入", @"赞助", @"2014.4.4", @"700"]]
+#define fake_balanceDataKeys @[@"BalanceType", @"BalanceName", @"BalanceDate", @"BalanceAmount"]
 #import "Captain_BalanceManagement.h"
 
 @implementation Captain_BalanceManagement_Cell
@@ -39,6 +40,7 @@
 
 @implementation Captain_BalanceManagement{
     NSMutableArray *balanceData;
+    NSDictionary *selectedBalanceRecord;
 }
 @synthesize addBalanceRecordButton, teamIcon, balanceTableView, balanceTableViewHeaderView;
 
@@ -66,7 +68,7 @@
     [teamIcon.layer setMasksToBounds:YES];
     
     //Initial data
-    balanceData = [NSMutableArray arrayWithArray:fake_blanceData];
+    balanceData = [NSMutableArray arrayWithArray:fake_balanceData];
     
     //Set menu button
     [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
@@ -128,7 +130,13 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
-/*
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    selectedBalanceRecord = [NSDictionary dictionaryWithObjects:balanceData[indexPath.row] forKeys:fake_balanceDataKeys];
+    [self performSegueWithIdentifier:@"EditBalanceRecord" sender:self];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -136,7 +144,15 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"AddBalanceRecord"]) {
+        Captain_EnterBalance *enterBalance = segue.destinationViewController;
+        [enterBalance setViewType:EnterBalance_Add];
+    }
+    else if ([segue.identifier isEqualToString:@"EditBalanceRecord"]) {
+        Captain_EnterBalance *enterBalance = segue.destinationViewController;
+        [enterBalance setViewType:EnterBalance_Edit];
+        [enterBalance setBalanceDataForEditing:selectedBalanceRecord];
+    }
 }
-*/
 
 @end

@@ -148,11 +148,11 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"MyPlayer"]) {
         Captain_PlayerDetails *playerDetails = segue.destinationViewController;
-        [playerDetails setViewType:MyPlayer];
+        [playerDetails setViewType:PlayerDetails_MyPlayer];
     }
     else if ([segue.identifier isEqualToString:@"NotifyTeamPlayers"]) {
         Captain_NotifyPlayers *notifyPlayers = segue.destinationViewController;
-        [notifyPlayers setViewType:NotifyMyTeamPlayers];
+        [notifyPlayers setViewType:NotifyPlayers_MyTeamPlayers];
         [notifyPlayers setPlayerList:@[@"张三", @"李四", @"王五"]];
     }
 }

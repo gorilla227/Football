@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Captain_EnterBalance.h"
 
 @interface Captain_BalanceManagement_Cell : UITableViewCell
 @property IBOutlet UILabel *balanceType;

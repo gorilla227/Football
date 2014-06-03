@@ -209,7 +209,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"Applicant"]) {
         Captain_PlayerDetails *playerDetails = segue.destinationViewController;
-        [playerDetails setViewType:Applicant];
+        [playerDetails setViewType:PlayerDetails_Applicant];
     }
 }
 @end

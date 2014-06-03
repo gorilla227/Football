@@ -19,10 +19,14 @@
 @property IBOutlet UITextField *balanceDate;
 @property IBOutlet UITextField *balanceAmount;
 
+@property enum EnterBalance_ViewTypes viewType;
+@property NSDictionary *balanceDataForEditing;
+
 -(void)calculateTotal;
 -(void)balanceDateSelected;
 -(void)initialBalanceDate;
 -(void)initialBalanceAmount;
 -(void)initialBalanceName;
 -(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName;
+-(void)fillDataForEditMode;
 @end

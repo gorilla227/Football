@@ -47,7 +47,7 @@
     }
     
     //Select the all players when viewType is not "NotifyMyTeamPlayers"
-    if (viewType != NotifyMyTeamPlayers) {
+    if (viewType != NotifyPlayers_MyTeamPlayers) {
         [self selectAllButtonOnClicked:self];
     }
     [self updateButtonStatus];

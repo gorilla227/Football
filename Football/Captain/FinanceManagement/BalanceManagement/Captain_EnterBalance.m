@@ -16,6 +16,7 @@
     UIDatePicker *balanceDatePicker;
 }
 @synthesize teamFundView, playerListHeader, playerListTableView, balanceTypeSegment, totalPlayers, totalTeamFund, balanceAmount, balanceDate, balanceName;
+@synthesize viewType, balanceDataForEditing;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +49,10 @@
     [self initialBalanceDate];
     [self initialBalanceName];
     [self initialBalanceAmount];
+    
+    if (viewType == EnterBalance_Edit) {
+        [self fillDataForEditMode];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,12 +102,14 @@
     UIView *leftView = [[UIView alloc] initWithFrame:leftViewFrame];
     [leftView addSubview:leftIcon];
     [leftView addSubview:leftLabel];
-//    [leftView setBackgroundColor:def_navigationBar_background];
-//    [leftView.layer setBorderColor:[UIColor grayColor].CGColor];
-//    [leftView.layer setBorderWidth:0.5f];
     [textFieldNeedLeftView setLeftView:leftView];
     [textFieldNeedLeftView setLeftViewMode:UITextFieldViewModeAlways];
     [textFieldNeedLeftView setPlaceholder:nil];
+}
+
+-(void)fillDataForEditMode
+{
+
 }
 
 -(void)balanceDateSelected

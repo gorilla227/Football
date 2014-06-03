@@ -33,13 +33,13 @@
     [playerDetailsTableView setTableHeaderView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.1)]];
     
     switch (viewType) {
-        case MyPlayer:
+        case PlayerDetails_MyPlayer:
             [self initialViewForMyPlayer];
             break;
-        case Applicant:
+        case PlayerDetails_Applicant:
             [self initialViewForApplicant];
             break;
-        case FreePlayer:
+        case PlayerDetails_FromPlayerMarket:
             [self initialViewForFreePlayer];
             break;
         default:
@@ -167,19 +167,19 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"NotifyTrial"]) {
         Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
-        [notifyPlayer setViewType:NotifyTrial];
+        [notifyPlayer setViewType:NotifyPlayers_Trial];
         [notifyPlayer setPlayerList:@[nickName.text]];
         [notifyPlayer setPredefinedNotification:@"“本队队名”通知您于“比赛时间”，在“比赛地点”，进行比赛试训。请准时到场，留下美好印象。"];
     }
     else if ([segue.identifier isEqualToString:@"RecruitPlayer"]) {
         Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
-        [notifyPlayer setViewType:RecruitPlayer];
+        [notifyPlayer setViewType:NotifyPlayers_Recruit];
         [notifyPlayer setPlayerList:@[nickName.text]];
         [notifyPlayer setPredefinedNotification:@"恭喜！“本队队名”看中你了，主力位置有保证，速来投靠！"];
     }
     else if ([segue.identifier isEqualToString:@"TemporaryFavor"]) {
         Captain_NotifyPlayers *notifyPlayer = segue.destinationViewController;
-        [notifyPlayer setViewType:TemporaryFavor];
+        [notifyPlayer setViewType:NotifyPlayers_TemporaryFavor];
         [notifyPlayer setPlayerList:@[nickName.text]];
         [notifyPlayer setPredefinedNotification:@"“本队队名”于“比赛时间”，在“比赛地点”，有一场“赛制”比赛，特邀请你参加。请拔腿相助，来了就是主力，来的就是朋友！"];
     }
