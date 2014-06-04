@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Captain_TeamFundInquiry_Cell : UITableViewCell
-@property IBOutlet UIScrollView *playerScrollView;
+@interface Captain_TeamFundInquiry_CollectionCell : UICollectionViewCell
+@property IBOutlet UIImageView *playerIcon;
+@property IBOutlet UILabel *playerName;
 @end
 
-@interface Captain_TeamFundInquiry : UIViewController<UITableViewDataSource, UITableViewDelegate>
-@property IBOutlet UITableView *teamFundTableView;
+@interface Captain_TeamFundInquiry_TableCell : UITableViewCell
+@property IBOutlet UICollectionView *playerCollectionView;
+@end
+
+@interface Captain_TeamFundInquiry : UIViewController<UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@property IBOutlet UISegmentedControl *playListType;
+@property IBOutlet UITableView *paidPlayerTableView;
+@property IBOutlet UICollectionView *unpaidPlayerCollectionView;
 @end
