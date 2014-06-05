@@ -274,7 +274,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"NotifyUnpaidPlayers"]) {
         Captain_NotifyPlayers *notifyPlayers = segue.destinationViewController;
-        [notifyPlayers setPredefinedNotification:def_Message_Unpaid([teamFundData_Paid.lastObject objectForKey:@"FundAmount"])];
+        [notifyPlayers setPredefinedNotification:teamFundData_Paid.count == 0?def_Message_UnpaidWithoutAmount:def_Message_Unpaid([teamFundData_Paid.lastObject objectForKey:@"FundAmount"])];
         [notifyPlayers setViewType:NotifyPlayers_UnpaidPlayers];
         [notifyPlayers setPlayerList:teamFundData_Unpaid];
     }

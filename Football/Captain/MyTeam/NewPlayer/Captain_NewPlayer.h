@@ -11,10 +11,11 @@
 #import "Captain_PlayerDetails.h"
 
 @interface Captain_NewPlayer_ApplicantCell : UITableViewCell<UIAlertViewDelegate>
-@property IBOutlet UILabel *playerID;
+@property IBOutlet UILabel *nickName;
 @property IBOutlet UILabel *postion;
 @property IBOutlet UILabel *age;
 @property IBOutlet UILabel *team;
+@property IBOutlet UILabel *commentTitle;
 @property IBOutlet UITextView *comment;
 @property IBOutlet UILabel *status;
 @property IBOutlet UISegmentedControl *agreementSegment;

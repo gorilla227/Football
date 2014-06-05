@@ -10,7 +10,7 @@
 
 #pragma Captain_NewPlayer_ApplicantCell
 @implementation Captain_NewPlayer_ApplicantCell
-@synthesize playerID, postion, age, team, comment, status, agreementSegment;
+@synthesize nickName, postion, age, team, commentTitle, comment, status, agreementSegment;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -21,11 +21,11 @@
     return self;
 }
 
-- (void)awakeFromNib
+-(void)drawRect:(CGRect)rect
 {
-    // Initialization code
+    [commentTitle sizeToFit];
+    [comment setTextContainerInset:UIEdgeInsetsZero];
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
@@ -40,14 +40,14 @@
     switch (agreementSegment.selectedSegmentIndex) {
         case 0:
             [confirmAgreement setTitle:@"同意入队确认"];
-            [confirmAgreement setMessage:[NSString stringWithFormat:@"确认同意%@入队？", playerID.text]];
+            [confirmAgreement setMessage:[NSString stringWithFormat:@"确认同意%@入队？", nickName.text]];
             [confirmAgreement addButtonWithTitle:@"取消"];
             [confirmAgreement addButtonWithTitle:@"同意入队"];
             [confirmAgreement setCancelButtonIndex:0];
             break;
         case 1:
             [confirmAgreement setTitle:@"拒绝入队确认"];
-            [confirmAgreement setMessage:[NSString stringWithFormat:@"确认拒绝%@入队？", playerID.text]];
+            [confirmAgreement setMessage:[NSString stringWithFormat:@"确认拒绝%@入队？", nickName.text]];
             [confirmAgreement addButtonWithTitle:@"取消"];
             [confirmAgreement addButtonWithTitle:@"拒绝入队"];
             [confirmAgreement setCancelButtonIndex:0];
@@ -138,6 +138,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    
     //Set menu button
     [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
     

@@ -38,9 +38,11 @@
 #define def_WM_acceptInvitationText(teamName) [NSString stringWithFormat:@"已同意%@队约赛请求，请在“比赛安排”中查看具体信息和通知队员，比赛开始前48小时之内不得取消比赛", teamName]
 #define def_WM_rejectInvitationText(teamName) [NSString stringWithFormat:@"已拒绝%@队约赛请求", teamName]
 #define def_WM_myInvitationAcceptedText(teamName) [NSString stringWithFormat:@"%@已同意约球，请通知小伙伴", teamName]
-#define def_PlayerDetails @[@[@"出生年月", @"所在城市", @"活动区域", @"个人风格关键字"], @[@"入队时间", @"比赛出场", @"进球", @"助攻"]]
+#define def_PlayerDetails_Section @[@"基础数据", @"比赛数据", @"队费数据"]
+#define def_PlayerDetails @[@[@"出生年月", @"所在城市", @"活动区域", @"个人风格关键字"], @[@"入队时间", @"比赛出场", @"进球", @"助攻"], @[@"个人队费总额", @"上一次缴费日期", @"上一次缴费金额"]]
 #define def_Message_Trail(nickName, myTeamName, matchDate, matchPlace, matchType) [NSString stringWithFormat:@"%@, %@通知您于%@，在%@，进行%@比赛试训。请准时到场，留下美好印象。", nickName, myTeamName, matchDate, matchPlace, matchType]
 #define def_Message_Unpaid(teamFundAmount) [NSString stringWithFormat:@"亲，该交队费了！请于下场比赛交纳本期队费%@元。", teamFundAmount]
+#define def_Message_UnpaidWithoutAmount @"亲，该交队费了！请于下场比赛交纳本期队费。"
 #define def_EnterBalance_Placeholder_TeamFund @"请输入单人金额，总金额自动计算"
 #define def_EnterBalance_Placeholder_Other @"请输入金额"
 #define def_EnterBalance_Title_Date @"日期"

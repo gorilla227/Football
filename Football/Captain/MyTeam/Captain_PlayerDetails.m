@@ -5,11 +5,12 @@
 //  Created by Andy Xu on 14-5-26.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
-#define fake_PlayerDetails @[@[@"1986.2.18", @"北京", @"五道口", @"左脚 前锋 速度快"], @[@"2013.2.18", @"20", @"18", @"13"]]
+#define fake_PlayerDetails @[@[@"1986.2.18", @"北京", @"五道口", @"左脚 前锋 速度快"], @[@"2013.2.18", @"20", @"18", @"13"], @[@"2000", @"2014.05.20", @"100"]]
 
 #import "Captain_PlayerDetails.h"
 
 @implementation Captain_PlayerDetails{
+    NSArray *detailSectionTitles;
     NSArray *detailTitles;
 }
 @synthesize playerDetailsTableView, summaryView, playerCommentTextView, actionToolBar, nickNameTitle, nickName, playerNameTitle, playerName, nextMatchStatusTitle, nextMatchStatus, playerTeamTitle, playerTeam, notifyTrialButton, agreeButton, declineButton, recruitButton, temporaryButton;
@@ -30,7 +31,6 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor clearColor]];
     [playerDetailsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [playerDetailsTableView setTableHeaderView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.1)]];
     
     switch (viewType) {
         case PlayerDetails_MyPlayer:
@@ -45,6 +45,8 @@
         default:
             break;
     }
+    
+    detailSectionTitles = def_PlayerDetails_Section;
 }
 
 -(void)initialViewForMyPlayer
@@ -156,7 +158,25 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     [cell.textLabel setText:detailTitles[indexPath.section][indexPath.row]];
     [cell.detailTextLabel setText:fake_PlayerDetails[indexPath.section][indexPath.row]];
+    if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:2]]) {
+        UIFontDescriptor *fontDescriptor = [cell.textLabel.font.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
+        [cell.textLabel setFont:[UIFont fontWithDescriptor:fontDescriptor size:0]];
+        [cell.detailTextLabel setFont:[UIFont fontWithDescriptor:fontDescriptor size:0]];
+    }
     return cell;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return detailSectionTitles[section];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
+    [headerView.contentView setBackgroundColor:def_navigationBar_background];
+    [headerView.textLabel setTextColor:[UIColor blackColor]];
+    [headerView.textLabel setTextAlignment:NSTextAlignmentCenter];
 }
 
 #pragma mark - Navigation
