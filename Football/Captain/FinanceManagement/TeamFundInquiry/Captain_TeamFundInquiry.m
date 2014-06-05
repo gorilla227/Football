@@ -28,8 +28,11 @@
 @implementation Captain_TeamFundInquiry{
     NSArray *teamFundData_Paid;
     NSArray *teamFundData_Unpaid;
+    NSDateFormatter *dateFormatter;
+    UIDatePicker *startDatePicker;
+    UIDatePicker *endDatePicker;
 }
-@synthesize playListType, paidPlayerTableView, unpaidPlayerCollectionView;
+@synthesize playListType, startDateTextField, endDateTextField, paidPlayerTableView, unpaidPlayerCollectionView, notifyUnpaidPlayers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,6 +50,16 @@
     [self.view setBackgroundColor:[UIColor clearColor]];
     [paidPlayerTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
+    //Set dateformatter
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:def_MatchDateformat];
+    
+    //Initial TextFields
+    [self initialStartDate];
+    [self initialEndDate];
+    [startDatePicker setMaximumDate:endDatePicker.date];
+    [endDatePicker setMinimumDate:startDatePicker.date];
+    
     //Set menu button
     [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
 }
@@ -61,11 +74,13 @@
 {
     switch (playListType.selectedSegmentIndex) {
         case 0:
+            [notifyUnpaidPlayers setEnabled:NO];
             [paidPlayerTableView setHidden:NO];
             [unpaidPlayerCollectionView setHidden:YES];
             [paidPlayerTableView reloadData];
             break;
         case 1:
+            [notifyUnpaidPlayers setEnabled:teamFundData_Unpaid && teamFundData_Unpaid.count > 0];
             [paidPlayerTableView setHidden:YES];
             [unpaidPlayerCollectionView setHidden:!teamFundData_Unpaid];
             [unpaidPlayerCollectionView reloadData];
@@ -88,15 +103,81 @@
     
     switch (playListType.selectedSegmentIndex) {
         case 0:
+            [notifyUnpaidPlayers setEnabled:NO];
             [paidPlayerTableView reloadData];
             break;
         case 1:
+            [notifyUnpaidPlayers setEnabled:teamFundData_Unpaid && teamFundData_Unpaid.count > 0];
             [unpaidPlayerCollectionView setHidden:!teamFundData_Unpaid];
             [unpaidPlayerCollectionView reloadData];
             break;
         default:
             break;
     }
+}
+
+-(void)initialStartDate
+{
+    startDatePicker = [[UIDatePicker alloc] init];
+    [startDatePicker setDatePickerMode:UIDatePickerModeDate];
+    [startDatePicker setLocale:[NSLocale currentLocale]];
+    
+    //Set minimumdate and Maximumdate for datepicker
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *minDateComps = [[NSDateComponents alloc] init];
+    [minDateComps setYear:-1];
+    NSDate *minDate = [calendar dateByAddingComponents:minDateComps toDate:[NSDate date] options:0];
+    NSDateComponents *defaultDateComps = [[NSDateComponents alloc] init];
+    [defaultDateComps setMonth:-1];
+    NSDate *defaultDate = [calendar dateByAddingComponents:defaultDateComps toDate:[NSDate date] options:0];
+    [startDatePicker setMinimumDate:minDate];
+    [startDatePicker setMaximumDate:[NSDate date]];
+    [startDatePicker addTarget:self action:@selector(dateSelected:) forControlEvents:UIControlEventValueChanged];
+    [startDatePicker setDate:defaultDate];
+    [startDateTextField setText:[dateFormatter stringFromDate:defaultDate]];
+    [startDateTextField setInputView:startDatePicker];
+    
+    [startDateTextField initialLeftViewWithLabelName:def_TeamFundInquiry_Title_StartDate labelWidth:70 iconImage:@"leftIcon_createMatch_time.png"];
+}
+
+-(void)initialEndDate
+{
+    endDatePicker = [[UIDatePicker alloc] init];
+    [endDatePicker setDatePickerMode:UIDatePickerModeDate];
+    [endDatePicker setLocale:[NSLocale currentLocale]];
+    
+    //Set minimumdate and Maximumdate for datepicker
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *minDateComps = [[NSDateComponents alloc] init];
+    [minDateComps setYear:-1];
+    NSDate *minDate = [calendar dateByAddingComponents:minDateComps toDate:[NSDate date] options:0];
+    [endDatePicker setMinimumDate:minDate];
+    [endDatePicker setMaximumDate:[NSDate date]];
+    [endDatePicker addTarget:self action:@selector(dateSelected:) forControlEvents:UIControlEventValueChanged];
+    [endDatePicker setDate:[NSDate date]];
+    [endDateTextField setInputView:endDatePicker];
+    [endDateTextField setText:[dateFormatter stringFromDate:[NSDate date]]];
+
+    [endDateTextField initialLeftViewWithLabelName:def_TeamFundInquiry_Title_EndDate labelWidth:70 iconImage:@"leftIcon_createMatch_time.png"];
+}
+
+-(IBAction)dateSelected:(id)sender
+{
+    if ([sender isEqual:startDatePicker]) {
+        [startDateTextField setText:[dateFormatter stringFromDate:startDatePicker.date]];
+        [endDatePicker setMinimumDate:startDatePicker.date];
+    }
+    else if([sender isEqual:endDatePicker]) {
+        [endDateTextField setText:[dateFormatter stringFromDate:endDatePicker.date]];
+        [startDatePicker setMaximumDate:endDatePicker.date];
+    }
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [startDateTextField resignFirstResponder];
+    [endDateTextField resignFirstResponder];
 }
 
 #pragma TableView Methods
@@ -167,7 +248,7 @@
     }
     return cell;
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -175,7 +256,12 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"NotifyUnpaidPlayers"]) {
+        Captain_NotifyPlayers *notifyPlayers = segue.destinationViewController;
+        [notifyPlayers setPredefinedNotification:def_Message_Unpaid([teamFundData_Paid.lastObject objectForKey:@"FundAmount"])];
+        [notifyPlayers setViewType:NotifyPlayers_UnpaidPlayers];
+        [notifyPlayers setPlayerList:teamFundData_Unpaid];
+    }
 }
-*/
 
 @end
