@@ -33,5 +33,5 @@
 
 -(void)initialViewForMyPlayer;
 -(void)initialViewForApplicant;
--(void)initialViewForFreePlayer;
+-(void)initialViewForPlayerMarket;
 @end

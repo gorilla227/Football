@@ -1833,11 +1833,11 @@
             <objects>
                 <viewController storyboardIdentifier="Captain_MyPlayers" title="我的队员" useStoryboardIdentifierAsRestorationIdentifier="YES" id="P5i-ye-vic" customClass="Captain_MyPlayers" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nKz-6t-wzk">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="QUt-4F-BgB">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1929,7 +1929,7 @@
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="bfa-tT-rHI">
-                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Yla-iO-1Aq"/>
@@ -1946,7 +1946,7 @@
                     </view>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="playersTableView" destination="QUt-4F-BgB" id="sQ4-9l-cYp"/>
                         <outlet property="searchDisplayController" destination="vuj-oF-fiK" id="Oeb-dk-J0W"/>
@@ -2039,7 +2039,7 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="THV-sk-CNJ">
                                 <rect key="frame" x="0.0" y="88" width="320" height="416"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -2145,11 +2145,11 @@
             <objects>
                 <viewController storyboardIdentifier="Captain_NotifyPlayers" title="发送通知" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TRJ-kb-wLT" customClass="Captain_NotifyPlayers" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RUQ-r1-fDq">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="任意输入通知内容" id="bKH-4m-oFM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2159,7 +2159,7 @@
                                 </connections>
                             </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="FKM-44-2uL">
-                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="g6f-4H-2d5"/>
@@ -2172,7 +2172,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="tOM-cb-LDP">
-                                <rect key="frame" x="0.0" y="146" width="320" height="314"/>
+                                <rect key="frame" x="0.0" y="146" width="320" height="270"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -2577,6 +2577,7 @@
                         <outlet property="playListType" destination="PgQ-9l-aJ9" id="bcL-Bs-jBa"/>
                         <outlet property="startDateTextField" destination="a9q-aA-YSs" id="Bd2-Gq-PWI"/>
                         <outlet property="unpaidPlayerCollectionView" destination="x2U-Ze-er5" id="d65-Kp-DRA"/>
+                        <segue destination="ml2-mD-abv" kind="push" identifier="ViewPlayerDetails" id="eSZ-pI-vDi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W2O-wk-0e8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2892,10 +2893,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="uxP-od-Rb5"/>
+        <segue reference="Hdb-LT-hvQ"/>
         <segue reference="j6Y-Xq-J4M"/>
         <segue reference="mkN-NA-bmm"/>
-        <segue reference="yB8-mu-Uh8"/>
         <segue reference="Ri9-XH-obz"/>
-        <segue reference="k8l-yS-1pJ"/>
     </inferredMetricsTieBreakers>
 </document>

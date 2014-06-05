@@ -40,7 +40,7 @@
             [self initialViewForApplicant];
             break;
         case PlayerDetails_FromPlayerMarket:
-            [self initialViewForFreePlayer];
+            [self initialViewForPlayerMarket];
             break;
         default:
             break;
@@ -97,7 +97,7 @@
     detailTitles = def_PlayerDetails;
 }
 
--(void)initialViewForFreePlayer
+-(void)initialViewForPlayerMarket
 {
     [nickNameTitle setHidden:NO];
     [nickName setHidden:NO];

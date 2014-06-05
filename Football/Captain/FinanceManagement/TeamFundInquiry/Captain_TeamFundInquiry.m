@@ -31,6 +31,7 @@
     NSDateFormatter *dateFormatter;
     UIDatePicker *startDatePicker;
     UIDatePicker *endDatePicker;
+    NSString *selectedPlayer;
 }
 @synthesize playListType, startDateTextField, endDateTextField, paidPlayerTableView, unpaidPlayerCollectionView, notifyUnpaidPlayers;
 
@@ -249,6 +250,21 @@
     return cell;
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (playListType.selectedSegmentIndex) {
+        case 0:
+            selectedPlayer = [teamFundData_Paid[collectionView.tag] objectForKey:@"PlayerList"][indexPath.row];
+            break;
+        case 1:
+            selectedPlayer = teamFundData_Unpaid[indexPath.row];
+        default:
+            break;
+    }
+    [self performSegueWithIdentifier:@"ViewPlayerDetails" sender:self];
+    NSLog(@"%@", selectedPlayer);
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -261,6 +277,11 @@
         [notifyPlayers setPredefinedNotification:def_Message_Unpaid([teamFundData_Paid.lastObject objectForKey:@"FundAmount"])];
         [notifyPlayers setViewType:NotifyPlayers_UnpaidPlayers];
         [notifyPlayers setPlayerList:teamFundData_Unpaid];
+    }
+    else if ([segue.identifier isEqualToString:@"ViewPlayerDetails"]) {
+        Captain_PlayerDetails *playerDetails = segue.destinationViewController;
+        [playerDetails setViewType:PlayerDetails_MyPlayer];
+#warning Send "selectedPlayer" to playerDetails
     }
 }
 
