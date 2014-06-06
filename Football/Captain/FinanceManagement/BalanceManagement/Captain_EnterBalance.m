@@ -63,12 +63,14 @@
 
 -(void)initialBalanceAmount
 {
-    [self initialLeftViewForTextField:balanceAmount labelName:def_EnterBalance_Title_Amount iconImage:@"leftIcon_createMatch_cost.png"];
+    [balanceAmount initialLeftViewWithLabelName:def_EnterBalance_Title_Amount labelWidth:45 iconImage:@"leftIcon_createMatch_cost.png"];
+//    [self initialLeftViewForTextField:balanceAmount labelName:def_EnterBalance_Title_Amount iconImage:@"leftIcon_createMatch_cost.png"];
 }
 
 -(void)initialBalanceName
 {
-    [self initialLeftViewForTextField:balanceName labelName:def_EnterBalance_Title_Name iconImage:@"leftIcon_createMatch_place.png"];
+    [balanceName initialLeftViewWithLabelName:def_EnterBalance_Title_Name labelWidth:45 iconImage:@"leftIcon_createMatch_place.png"];
+//    [self initialLeftViewForTextField:balanceName labelName:def_EnterBalance_Title_Name iconImage:@"leftIcon_createMatch_place.png"];
 }
 
 -(void)initialBalanceDate
@@ -88,24 +90,25 @@
     [balanceDate setInputView:balanceDatePicker];
     [balanceDate setText:[dateFormatter stringFromDate:[NSDate date]]];
     
-    [self initialLeftViewForTextField:balanceDate labelName:def_EnterBalance_Title_Date iconImage:@"leftIcon_createMatch_time.png"];
+    [balanceDate initialLeftViewWithLabelName:def_EnterBalance_Title_Date labelWidth:45 iconImage:@"leftIcon_createMatch_time.png"];
+//    [self initialLeftViewForTextField:balanceDate labelName:def_EnterBalance_Title_Date iconImage:@"leftIcon_createMatch_time.png"];
 }
 
--(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
-{
-    CGRect leftViewFrame = textFieldNeedLeftView.bounds;
-    UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
-    UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftIcon.frame.size.width, 0, 45, leftViewFrame.size.height)];
-    leftViewFrame.size.width = leftIcon.frame.size.width + leftLabel.frame.size.width + 10;
-    [leftLabel setText:labelName];
-    [leftLabel setTextAlignment:NSTextAlignmentCenter];
-    UIView *leftView = [[UIView alloc] initWithFrame:leftViewFrame];
-    [leftView addSubview:leftIcon];
-    [leftView addSubview:leftLabel];
-    [textFieldNeedLeftView setLeftView:leftView];
-    [textFieldNeedLeftView setLeftViewMode:UITextFieldViewModeAlways];
-    [textFieldNeedLeftView setPlaceholder:nil];
-}
+//-(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
+//{
+//    CGRect leftViewFrame = textFieldNeedLeftView.bounds;
+//    UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
+//    UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftIcon.frame.size.width, 0, 45, leftViewFrame.size.height)];
+//    leftViewFrame.size.width = leftIcon.frame.size.width + leftLabel.frame.size.width + 10;
+//    [leftLabel setText:labelName];
+//    [leftLabel setTextAlignment:NSTextAlignmentCenter];
+//    UIView *leftView = [[UIView alloc] initWithFrame:leftViewFrame];
+//    [leftView addSubview:leftIcon];
+//    [leftView addSubview:leftLabel];
+//    [textFieldNeedLeftView setLeftView:leftView];
+//    [textFieldNeedLeftView setLeftViewMode:UITextFieldViewModeAlways];
+//    [textFieldNeedLeftView setPlaceholder:nil];
+//}
 
 -(void)fillDataForEditMode
 {
@@ -132,7 +135,7 @@
             [balanceAmount setPlaceholder:def_EnterBalance_Placeholder_TeamFund];
             
             [balanceName setText:@"队费收入"];
-            [balanceAmount setText:nil];
+//            [balanceAmount setText:nil];
             break;
         case 1:
         case 2:
@@ -146,7 +149,7 @@
             [balanceAmount setPlaceholder:def_EnterBalance_Placeholder_Other];
             
             [balanceName setText:nil];
-            [balanceAmount setText:nil];
+//            [balanceAmount setText:nil];
             break;
         default:
             [playerListTableView setHidden:YES];
@@ -171,22 +174,8 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if ([textField isEqual:balanceAmount]) {
-        NSArray *amountIntegerAndDecimalArray = [textField.text componentsSeparatedByString:@"."];
-        switch (amountIntegerAndDecimalArray.count) {
-            case 1:
-                if ([textField.text isEqualToString:@""]) {//TextField is blank
-                    [textField setText:@"0.0"];
-                }
-                else {//TextField is "xxx"
-                    [textField setText:[NSString stringWithFormat:@"%@.0", textField.text]];
-                }
-                break;
-            case 2:
-                if ([textField.text hasSuffix:@"."]) {//TextField is "xxx."
-                    [textField setText:[NSString stringWithFormat:@"%@0", textField.text]];
-                }
-            default:
-                break;
+        if ([textField.text isEqualToString:@""]) {//TextField is blank
+            [textField setText:@"0"];
         }
         if (balanceTypeSegment.selectedSegmentIndex == 0) {
             [self calculateTotal];
@@ -207,7 +196,7 @@
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if ([textField isEqual:balanceAmount]) {
-        NSCharacterSet *invalidCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890."] invertedSet];
+        NSCharacterSet *invalidCharacters = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890"] invertedSet];
         NSString *potentialString = [textField.text stringByReplacingCharactersInRange:range withString:string];
 
         //Number and dot only
@@ -215,35 +204,20 @@
             return NO;
         }
         
-        NSArray *decimalArray = [potentialString componentsSeparatedByString:@"."];
-        NSString *integerNumber = decimalArray[0];
-        
-        //One dot or no dot
-        if (decimalArray.count > 2) {
+        //Maximum 10000
+        if (potentialString.integerValue > 10000) {
             return NO;
         }
         
-        //One decimal number
-        if (decimalArray.count == 2) {
-            NSString *decimalNumber = decimalArray[1];
-            if (decimalNumber.length > 1) {
+        //Remove the prefix "0" if potential textField would not be "0"
+        if ([potentialString hasPrefix:@"0"] && potentialString.length > 1) {
+            if ([textField.text isEqualToString:@"0"]) {
+                [textField setText:nil];
+                return YES;
+            }
+            else {
                 return NO;
             }
-        }
-        
-        //Auto add "0" before dot
-        if ([string isEqualToString:@"."] && integerNumber.length == 0) {
-            [textField setText:@"0"];
-        }
-        
-        //Integer can not start with "0" except IntegerNumber is 0
-        if ([integerNumber hasPrefix:@"0"] && integerNumber.length > 1) {
-            return NO;
-        }
-        
-        //Maximum 10000
-        if (potentialString.floatValue > 10000) {
-            return NO;
         }
     }
     return YES;
