@@ -34,7 +34,7 @@
 @property NSString *segueIdentifier;
 
 -(void)matchTimeSelected;
--(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName;
+//-(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName;
 -(void)initialMatchTime;
 -(void)initialMatchOpponent;
 -(void)initialMatchPlace;

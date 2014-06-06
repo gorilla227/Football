@@ -154,22 +154,22 @@
     [matchTime setText:[dateFormatter stringFromDate:minDate]];
 }
 
--(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
-{
-    CGRect leftViewFrame = textFieldNeedLeftView.bounds;
-    UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
-    UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftIcon.frame.size.width, 0, 45, leftViewFrame.size.height)];
-    leftViewFrame.size.width = leftIcon.frame.size.width + leftLabel.frame.size.width + 40;
-    [leftLabel setText:labelName];
-    [leftLabel setTextAlignment:NSTextAlignmentCenter];
-    UIView *leftView = [[UIView alloc] initWithFrame:leftViewFrame];
-    [leftView addSubview:leftIcon];
-    [leftView addSubview:leftLabel];
-    [textFieldNeedLeftView setLeftView:leftView];
-    [textFieldNeedLeftView setLeftViewMode:UITextFieldViewModeAlways];
-    [textFieldNeedLeftView setPlaceholder:nil];
-    [enteringControllers addObject:textFieldNeedLeftView];
-}
+//-(void)initialLeftViewForTextField:(UITextField *)textFieldNeedLeftView labelName:(NSString *)labelName iconImage:(NSString *)imageFileName
+//{
+//    CGRect leftViewFrame = textFieldNeedLeftView.bounds;
+//    UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
+//    UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftIcon.frame.size.width, 0, 45, leftViewFrame.size.height)];
+//    leftViewFrame.size.width = leftIcon.frame.size.width + leftLabel.frame.size.width + 40;
+//    [leftLabel setText:labelName];
+//    [leftLabel setTextAlignment:NSTextAlignmentCenter];
+//    UIView *leftView = [[UIView alloc] initWithFrame:leftViewFrame];
+//    [leftView addSubview:leftIcon];
+//    [leftView addSubview:leftLabel];
+//    [textFieldNeedLeftView setLeftView:leftView];
+//    [textFieldNeedLeftView setLeftViewMode:UITextFieldViewModeAlways];
+//    [textFieldNeedLeftView setPlaceholder:nil];
+//    [enteringControllers addObject:textFieldNeedLeftView];
+//}
 
 -(void)initialMatchTime
 {
@@ -189,7 +189,9 @@
     [matchTimePicker addTarget:self action:@selector(matchTimeSelected) forControlEvents:UIControlEventValueChanged];
     [matchTime setInputView:matchTimePicker];
     
-    [self initialLeftViewForTextField:matchTime labelName:def_createMatch_time iconImage:@"leftIcon_createMatch_time.png"];
+    [matchTime initialLeftViewWithLabelName:def_createMatch_time labelWidth:75 iconImage:@"leftIcon_createMatch_time.png"];
+    [enteringControllers addObject:matchTime];
+//    [self initialLeftViewForTextField:matchTime labelName:def_createMatch_time iconImage:@"leftIcon_createMatch_time.png"];
     
     //Initial hint
     [hintView settingHintWithTextKey:@"EnterTime" underView:matchTime wantShow:YES];
@@ -197,17 +199,22 @@
 
 -(void)initialMatchOpponent
 {
-    [self initialLeftViewForTextField:matchOpponent labelName:def_createMatch_opponent iconImage:@"leftIcon_createMatch_opponent.png"];
+    [matchOpponent initialLeftViewWithLabelName:def_createMatch_opponent labelWidth:75 iconImage:@"leftIcon_createMatch_opponent.png"];
+    [enteringControllers addObject:matchOpponent];
+//    [self initialLeftViewForTextField:matchOpponent labelName:def_createMatch_opponent iconImage:@"leftIcon_createMatch_opponent.png"];
 }
 
 -(void)initialMatchPlace
 {
-    [self initialLeftViewForTextField:matchPlace labelName:def_createMatch_place iconImage:@"leftIcon_createMatch_place.png"];
+    [matchPlace initialLeftViewWithLabelName:def_createMatch_place labelWidth:75 iconImage:@"leftIcon_createMatch_place.png"];
+//    [self initialLeftViewForTextField:matchPlace labelName:def_createMatch_place iconImage:@"leftIcon_createMatch_place.png"];
 }
 
 -(void)initialNumOfPlayers
 {
-    [self initialLeftViewForTextField:numOfPlayers labelName:def_createMatch_numOfPlayers iconImage:@"leftIcon_createMatch_numOfPlayers.png"];
+    [numOfPlayers initialLeftViewWithLabelName:def_createMatch_numOfPlayers labelWidth:75 iconImage:@"leftIcon_createMatch_numOfPlayers.png"];
+    [enteringControllers addObject:numOfPlayers];
+//    [self initialLeftViewForTextField:numOfPlayers labelName:def_createMatch_numOfPlayers iconImage:@"leftIcon_createMatch_numOfPlayers.png"];
     
     //Set UIStepper as rightView
     numOfPlayersStepper = [[UIStepper alloc] init];
@@ -224,12 +231,16 @@
 
 -(void)initialCost
 {
-    [self initialLeftViewForTextField:cost labelName:def_createMatch_cost iconImage:@"leftIcon_createMatch_cost.png"];
+    [cost initialLeftViewWithLabelName:def_createMatch_cost labelWidth:75 iconImage:@"leftIcon_createMatch_cost.png"];
+    [enteringControllers addObject:cost];
+//    [self initialLeftViewForTextField:cost labelName:def_createMatch_cost iconImage:@"leftIcon_createMatch_cost.png"];
 }
 
 -(void)initialMatchScore
 {
-    [self initialLeftViewForTextField:matchScoreTextField labelName:def_createMatch_score iconImage:@"leftIcon_createMatch_score.png"];
+    [matchScoreTextField initialLeftViewWithLabelName:def_createMatch_score labelWidth:75 iconImage:@"leftIcon_createMatch_score.png"];
+    [enteringControllers addObject:matchScoreTextField];
+//    [self initialLeftViewForTextField:matchScoreTextField labelName:def_createMatch_score iconImage:@"leftIcon_createMatch_score.png"];
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
