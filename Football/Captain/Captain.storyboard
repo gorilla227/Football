@@ -157,21 +157,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="c97-pa-T3j">
-                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Mrk-54-shm"/>
-                                    <barButtonItem title="＋ 建立比赛" id="7Ry-kd-4dd">
-                                        <connections>
-                                            <segue destination="R6J-gK-DLQ" kind="push" identifier="CreateMatch" id="j6Y-Xq-J4M"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="BNj-Qm-1Au"/>
-                                </items>
-                            </toolbar>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="QRb-13-lxr">
-                                <rect key="frame" x="0.0" y="140" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="140" width="320" height="364"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -302,7 +289,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="比赛安排" id="9dN-Rj-epV"/>
+                    <navigationItem key="navigationItem" title="比赛安排" id="9dN-Rj-epV">
+                        <barButtonItem key="rightBarButtonItem" title="建立比赛" id="xMc-KY-n0t">
+                            <connections>
+                                <segue destination="R6J-gK-DLQ" kind="push" identifier="CreateMatch" id="4xu-nJ-6Aj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="matchesTableView" destination="QRb-13-lxr" id="MnU-Hw-StV"/>
@@ -2953,7 +2946,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="j6Y-Xq-J4M"/>
+        <segue reference="cUV-cu-CyG"/>
         <segue reference="mkN-NA-bmm"/>
         <segue reference="Ri9-XH-obz"/>
         <segue reference="yB8-mu-Uh8"/>

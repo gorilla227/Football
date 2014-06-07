@@ -97,14 +97,6 @@
     [matchesTableView reloadData];
 }
 
-//-(IBAction)menuButtonOnClicked:(id)sender
-//{
-//    id<MainMenuAppearenceDelegate>delegateOfMenuAppearance = (id)self.navigationController;
-//    if (delegateOfMenuAppearance) {
-//        [delegateOfMenuAppearance menuSwitch];
-//    }
-//}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
