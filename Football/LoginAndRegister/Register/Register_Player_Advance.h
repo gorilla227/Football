@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoginAndRegisterView.h"
+#import "LoginAndRegisterProtocols.h"
 
 @interface Register_Player_Advance : UIViewController
 

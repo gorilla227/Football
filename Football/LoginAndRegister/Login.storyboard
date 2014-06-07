@@ -4,54 +4,43 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Login - Login-->
+        <!--Starting - Login-->
         <scene sceneID="f9k-iP-oOi">
             <objects>
-                <viewController title="Login" id="P6b-ds-GMJ" customClass="Login" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="Login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="P6b-ds-GMJ" customClass="Starting" sceneMemberID="viewController">
                     <view key="view" contentMode="redraw" id="npE-b6-OjF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo.png" id="uhU-RM-H1H">
-                                <rect key="frame" x="100" y="46" width="120" height="120"/>
+                                <rect key="frame" x="100" y="62" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <containerView contentMode="scaleToFill" id="eMw-F9-tkY">
-                                <rect key="frame" x="0.0" y="187" width="320" height="381"/>
+                                <rect key="frame" x="0.0" y="216" width="320" height="352"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="XQY-Jw-jZp" kind="embed" id="GdY-an-gXA"/>
+                                    <segue destination="2v4-my-LST" kind="embed" id="286-qz-bSn"/>
                                 </connections>
                             </containerView>
-                            <segmentedControl contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="lzG-IO-M5t">
-                                <rect key="frame" x="-5" y="187" width="330" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <segments>
-                                    <segment title="我是队长"/>
-                                    <segment title="我是球员"/>
-                                </segments>
-                                <color key="tintColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </segmentedControl>
                         </subviews>
                     </view>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
-                        <outlet property="contentView" destination="eMw-F9-tkY" id="b2o-1h-7MG"/>
-                        <outlet property="roleSegment" destination="lzG-IO-M5t" id="owL-EE-CUh"/>
+                        <outlet property="loginAndRegisterView" destination="eMw-F9-tkY" id="4Of-1A-EDc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FP6-KH-SwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="683" y="-1609"/>
+            <point key="canvasLocation" x="675" y="-1638"/>
         </scene>
-        <!--Login Content-->
+        <!--Login-->
         <scene sceneID="90b-Ip-pwq">
             <objects>
-                <viewController storyboardIdentifier="LoginContent" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XQY-Jw-jZp" customClass="Login_Content" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XQY-Jw-jZp" customClass="Login" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nPr-c5-yhz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="381"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="352"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Som-UI-YC0">
@@ -68,7 +57,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
-                                                    <action selector="changeTextFieldFocus:" destination="XQY-Jw-jZp" eventType="editingDidEndOnExit" id="H9i-bg-Rcf"/>
+                                                    <outlet property="delegate" destination="XQY-Jw-jZp" id="GIr-oJ-ygZ"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -80,7 +69,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                         <connections>
-                                            <action selector="changeTextFieldFocus:" destination="XQY-Jw-jZp" eventType="editingDidEndOnExit" id="NSY-X2-4dS"/>
+                                            <outlet property="delegate" destination="XQY-Jw-jZp" id="NcE-RJ-op0"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="31Z-qI-8A0">
@@ -92,7 +81,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="registerButtonOnClicked:" destination="XQY-Jw-jZp" eventType="touchUpInside" id="txP-PV-ArL"/>
+                                            <action selector="registerButtonOnClicked:" destination="XQY-Jw-jZp" eventType="touchUpInside" id="BlR-RN-I42"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AFH-wu-67Q">
@@ -104,9 +93,19 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="loginButtonOnClicked:" destination="XQY-Jw-jZp" eventType="touchUpInside" id="pXK-nd-Cq9"/>
+                                            <action selector="loginButtonOnClicked:" destination="XQY-Jw-jZp" eventType="touchUpInside" id="n9q-F0-Wm6"/>
                                         </connections>
                                     </button>
+                                    <segmentedControl contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="lzG-IO-M5t">
+                                        <rect key="frame" x="-2" y="0.0" width="324" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <segments>
+                                            <segment title="我是队长"/>
+                                            <segment title="我是球员"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
@@ -132,26 +131,32 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Lcc-un-emM">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                     <size key="freeformSize" width="320" height="353"/>
                     <connections>
-                        <outlet property="accountField" destination="zRm-qO-gHM" id="kal-S8-s9a"/>
-                        <outlet property="loginButton" destination="AFH-wu-67Q" id="gbr-TU-KJl"/>
-                        <outlet property="passwordField" destination="gX3-15-EPD" id="PoK-Mi-pxX"/>
-                        <outlet property="qqAccountButton" destination="gAy-cs-0KN" id="u8R-ya-Zos"/>
-                        <outlet property="registerButton" destination="31Z-qI-8A0" id="zf2-1a-D8y"/>
-                        <outlet property="sinaAccountButton" destination="6qJ-bz-ceK" id="F8m-gm-uIF"/>
+                        <outlet property="accountField" destination="zRm-qO-gHM" id="uPe-mG-bRC"/>
+                        <outlet property="loginButton" destination="AFH-wu-67Q" id="c9B-8a-yHp"/>
+                        <outlet property="passwordField" destination="gX3-15-EPD" id="nof-pd-v9n"/>
+                        <outlet property="qqAccountButton" destination="gAy-cs-0KN" id="iyc-sN-Fz6"/>
+                        <outlet property="registerButton" destination="31Z-qI-8A0" id="2t8-HP-vwP"/>
+                        <outlet property="roleSegment" destination="lzG-IO-M5t" id="9VX-ef-oa3"/>
+                        <outlet property="sinaAccountButton" destination="6qJ-bz-ceK" id="Sy5-ow-z2W"/>
+                        <segue destination="IJe-aT-V7J" kind="push" identifier="Register_Captain" id="9Ji-J7-kO3"/>
+                        <segue destination="Noe-j6-azG" kind="push" identifier="Register_Player" id="XcW-zt-aC6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hw-fM-tc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="-1422"/>
+            <point key="canvasLocation" x="1493" y="-1422"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KQd-vY-jxN">
             <objects>
-                <navigationController storyboardIdentifier="RegisterCaptain" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2v4-my-LST" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="2v4-my-LST" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="381"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uC6-NA-COn">
                         <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
@@ -164,32 +169,32 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="IJe-aT-V7J" kind="relationship" relationship="rootViewController" id="bdd-DB-wwb"/>
+                        <segue destination="XQY-Jw-jZp" kind="relationship" relationship="rootViewController" id="W5F-9F-OZz"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T02-PB-SEq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="-930"/>
+            <point key="canvasLocation" x="1080" y="-1422"/>
         </scene>
         <!--Register Captain - 我是队长/领队/经理-->
         <scene sceneID="Noy-or-WWb">
             <objects>
-                <viewController id="IJe-aT-V7J" customClass="Register_Captain" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterCaptain" modalTransitionStyle="crossDissolve" id="IJe-aT-V7J" customClass="Register_Captain" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H1m-P6-wBz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="381"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="308"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="球队名称" minimumFontSize="17" id="YzJ-zc-XVZ">
-                                <rect key="frame" x="20" y="79" width="280" height="30"/>
+                                <rect key="frame" x="20" y="20" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="changeTextFieldFocus:" destination="IJe-aT-V7J" eventType="editingDidEndOnExit" id="lmm-AG-Z5l"/>
+                                    <outlet property="delegate" destination="IJe-aT-V7J" id="FYT-Cn-0QK"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7GR-xW-1fs">
-                                <rect key="frame" x="0.0" y="325" width="320" height="56"/>
+                                <rect key="frame" x="0.0" y="252" width="320" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -201,55 +206,57 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="Ruw-ii-qkK">
-                                <rect key="frame" x="20" y="155" width="280" height="30"/>
+                                <rect key="frame" x="20" y="96" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
-                                    <action selector="changeTextFieldFocus:" destination="IJe-aT-V7J" eventType="editingDidEndOnExit" id="Eof-OG-mdV"/>
+                                    <outlet property="delegate" destination="IJe-aT-V7J" id="0O5-tL-8zp"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号码" minimumFontSize="17" id="Spb-pf-yD7">
-                                <rect key="frame" x="20" y="117" width="280" height="30"/>
+                                <rect key="frame" x="20" y="58" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="changeTextFieldFocus:" destination="IJe-aT-V7J" eventType="editingDidEndOnExit" id="zyU-Zd-HcA"/>
+                                    <outlet property="delegate" destination="IJe-aT-V7J" id="KcX-k2-ygP"/>
                                 </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="我是队长/领队/经理" id="bYh-0c-7dF">
                         <barButtonItem key="leftBarButtonItem" title="返回" id="d7y-A6-gyA">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="cancelButtonOnClicked:" destination="IJe-aT-V7J" id="ipR-6k-zLk"/>
+                                <action selector="cancelButtonOnClicked:" destination="IJe-aT-V7J" id="VNg-aq-NSw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="cellphoneNumber" destination="Spb-pf-yD7" id="I6Q-yC-Dmp"/>
-                        <outlet property="password" destination="Ruw-ii-qkK" id="iCQ-3a-lpq"/>
-                        <outlet property="registerButton" destination="7GR-xW-1fs" id="DhQ-CG-9Lc"/>
-                        <outlet property="teamName" destination="YzJ-zc-XVZ" id="yN6-ow-IBU"/>
+                        <outlet property="cellphoneNumber" destination="Spb-pf-yD7" id="j4k-e5-VHj"/>
+                        <outlet property="password" destination="Ruw-ii-qkK" id="9wO-WO-Acg"/>
+                        <outlet property="registerButton" destination="7GR-xW-1fs" id="96c-tK-6oI"/>
+                        <outlet property="teamName" destination="YzJ-zc-XVZ" id="91m-tw-yQd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xuh-er-AMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1493" y="-930"/>
+            <point key="canvasLocation" x="1920" y="-1745"/>
         </scene>
         <!--Register Captain Advance - 我是队长/领队/经理-->
         <scene sceneID="oqs-Gp-7IG">
             <objects>
                 <viewController id="qiv-rh-MT9" customClass="Register_Captain_Advance" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wkN-Ev-o0k">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="381"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="308"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="基友球队队长，快速召唤你的小伙伴/完善球队资料" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BKV-4m-wQf">
-                                <rect key="frame" x="0.0" y="44" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -257,7 +264,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="hEw-Jm-FQa">
-                                <rect key="frame" x="0.0" y="87" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="43" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -271,7 +278,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="IBo-D5-X3E">
-                                <rect key="frame" x="0.0" y="145" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="101" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -290,6 +297,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="我是队长/领队/经理" id="UiD-1z-m4S">
                         <barButtonItem key="leftBarButtonItem" title="返回" id="S3L-5z-75K">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -301,52 +309,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fS-OI-N0m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1864" y="-930"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="vKH-rM-Kmo">
-            <objects>
-                <navigationController storyboardIdentifier="RegisterPlayer" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dBu-Rq-Hzy" sceneMemberID="viewController">
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="381"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XgP-Zg-EJI">
-                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Noe-j6-azG" kind="relationship" relationship="rootViewController" id="Z0W-vt-2PG"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fvb-xs-UFh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1080" y="-458"/>
+            <point key="canvasLocation" x="2364" y="-1745"/>
         </scene>
         <!--Register Player - 我是球员-->
         <scene sceneID="bi4-iU-Dcg">
             <objects>
-                <viewController id="Noe-j6-azG" customClass="Register_Player" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterPlayer" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Noe-j6-azG" customClass="Register_Player" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XIG-LN-a6c">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="381"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="308"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="个人ID" minimumFontSize="17" id="ED9-Fa-0Jq">
-                                <rect key="frame" x="20" y="69" width="280" height="30"/>
+                                <rect key="frame" x="20" y="20" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="iRv-eR-M57"/>
+                                    <outlet property="delegate" destination="Noe-j6-azG" id="fad-T5-x0S"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="un4-oi-tIa">
-                                <rect key="frame" x="0.0" y="325" width="320" height="56"/>
+                                <rect key="frame" x="0.0" y="253" width="320" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -358,55 +341,54 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" id="7I3-Lf-D0M">
-                                <rect key="frame" x="20" y="259" width="280" height="30"/>
+                                <rect key="frame" x="20" y="210" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
-                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="jlN-o2-H0J"/>
+                                    <outlet property="delegate" destination="Noe-j6-azG" id="z3U-IO-Lu9"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号码" minimumFontSize="17" id="9xH-bO-6pR">
-                                <rect key="frame" x="20" y="107" width="280" height="30"/>
+                                <rect key="frame" x="20" y="58" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="F4L-hI-KOT"/>
+                                    <outlet property="delegate" destination="Noe-j6-azG" id="28a-Ke-qyh"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="QQ" minimumFontSize="17" id="Bft-lh-BxO">
-                                <rect key="frame" x="20" y="145" width="280" height="30"/>
+                                <rect key="frame" x="20" y="96" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="Fx6-n1-FgR"/>
+                                    <outlet property="delegate" destination="Noe-j6-azG" id="flF-Zq-SfT"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="出生日期" minimumFontSize="17" id="zej-gZ-443">
-                                <rect key="frame" x="20" y="183" width="280" height="30"/>
+                                <rect key="frame" x="20" y="134" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="m8w-Qh-hRf"/>
                                     <outlet property="delegate" destination="Noe-j6-azG" id="y8B-eB-jEt"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="主要活动区域" minimumFontSize="17" id="j2F-V4-CSZ">
-                                <rect key="frame" x="20" y="221" width="280" height="30"/>
+                                <rect key="frame" x="20" y="172" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="changeTextFieldFocus:" destination="Noe-j6-azG" eventType="editingDidEndOnExit" id="puv-YJ-PUI"/>
                                     <outlet property="delegate" destination="Noe-j6-azG" id="Zqh-XP-6NY"/>
                                 </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="我是球员" id="i1I-NU-UfS">
                         <barButtonItem key="leftBarButtonItem" title="返回" id="vjR-SA-OG6">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -415,6 +397,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="activityRegion" destination="j2F-V4-CSZ" id="PfN-I0-SKL"/>
                         <outlet property="birthday" destination="zej-gZ-443" id="rNR-OF-aNz"/>
@@ -427,18 +410,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gZ-q2-J1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1493" y="-458"/>
+            <point key="canvasLocation" x="1920" y="-1188"/>
         </scene>
         <!--Register Player Advance - 我是球员-->
         <scene sceneID="Ulf-hR-cVq">
             <objects>
                 <viewController id="g7m-aZ-iN8" customClass="Register_Player_Advance" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="522-V9-b0q">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="381"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="308"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="基友，快速完善你的资料，方便你快速融入球队" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EfK-jB-sv2">
-                                <rect key="frame" x="0.0" y="44" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -446,7 +429,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="1BR-mo-1w5">
-                                <rect key="frame" x="0.0" y="92" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="48" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -460,7 +443,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="xc9-Dt-w8f">
-                                <rect key="frame" x="0.0" y="150" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="106" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -474,7 +457,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="LiZ-65-tKn">
-                                <rect key="frame" x="0.0" y="208" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="164" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -490,6 +473,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="我是球员" id="vZ4-62-9ZH">
                         <barButtonItem key="leftBarButtonItem" title="返回" id="Ufx-Xc-5Nh">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -501,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiS-sV-Frj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1864" y="-458"/>
+            <point key="canvasLocation" x="2364" y="-1188"/>
         </scene>
     </scenes>
     <resources>

@@ -1,31 +1,17 @@
 //
-//  Login_Content.m
+//  Login.m
 //  Football
 //
-//  Created by Andy on 14-3-22.
+//  Created by Andy on 14-6-5.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "Login_Content.h"
+#import "Login.h"
 
-#define kSoccerColor [UIColor colorWithRed:59/255.0 green:175/255.0 blue:218/255.0 alpha:1]
-
-@interface Login_Content ()
-
-@end
-
-@implementation Login_Content{
-    Register_Captain *registerCaptain;
-    id<LoginAndRegisterView>delegate;
-    NSArray *textFieldArray;
+@implementation Login{
     JSONConnect *connection;
 }
-@synthesize accountField;
-@synthesize passwordField;
-@synthesize registerButton;
-@synthesize loginButton;
-@synthesize qqAccountButton;
-@synthesize sinaAccountButton;
+@synthesize accountField, passwordField, registerButton, loginButton, qqAccountButton, sinaAccountButton, roleSegment;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,15 +26,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    textFieldArray = [[NSArray alloc] initWithObjects:accountField, passwordField, nil];
-    
     UIImageView *accountIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_textfield_title_user.png"]];
     [accountIconImageView setFrame:CGRectMake(0, 0, 44, 34)];
     [accountIconImageView setContentMode:UIViewContentModeCenter];
     [accountIconImageView setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
     [accountField setLeftView:accountIconImageView];
     [accountField setLeftViewMode:UITextFieldViewModeAlways];
-
+    
     UIImageView *passwordIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_textfield_title_pwd.png"]];
     [passwordIconImageView setFrame:CGRectMake(0, 0, 44, 34)];
     [passwordIconImageView setContentMode:UIViewContentModeCenter];
@@ -56,7 +40,7 @@
     [passwordField setLeftView:passwordIconImageView];
     [passwordField setLeftViewMode:UITextFieldViewModeAlways];
     
-    [accountField.layer setBorderColor:kSoccerColor.CGColor];
+    [accountField.layer setBorderColor:def_navigationBar_background.CGColor];
     [accountField.layer setBorderWidth:1.0f];
     [accountField.layer setCornerRadius:3.0f];
     
@@ -67,34 +51,22 @@
     connection = [[JSONConnect alloc] initWithDelegate:self];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    //Add observer for keyboardShowinng
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shiftUpViewForKeyboardShowing) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreViewForKeyboardHiding) name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(IBAction)changeTextFieldFocus:(id)sender
-{
-    NSInteger indexOfNextTextField = [textFieldArray indexOfObject:sender] + 1;
-    if (indexOfNextTextField >= textFieldArray.count) {
-        [self performSelector:@selector(loginButtonOnClicked:) withObject:loginButton];
-    }
-    else {
-        UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];
-        [nextResponder becomeFirstResponder];
-    }
-}
-
--(void)dismissKeyboard
-{
-    [accountField resignFirstResponder];
-    [passwordField resignFirstResponder];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesBegan:touches withEvent:event];
-    [self dismissKeyboard];
 }
 
 -(IBAction)loginButtonOnClicked:(id)sender
@@ -114,9 +86,51 @@
 
 -(IBAction)registerButtonOnClicked:(id)sender
 {
-    delegate = (id)self.parentViewController;
-    [delegate presentRegisterView];
+    [self dismissKeyboard];
+    switch (roleSegment.selectedSegmentIndex) {
+        case 0:
+            [self performSegueWithIdentifier:@"Register_Captain" sender:self];
+            break;
+        case 1:
+            [self performSegueWithIdentifier:@"Register_Player" sender:self];
+            break;
+        default:
+            break;
+    }
 }
+
+//Protocol DissmissKeyboard
+-(void)dismissKeyboard
+{
+    [accountField resignFirstResponder];
+    [passwordField resignFirstResponder];
+}
+
+//ShiftUp/Restore view for keyboard
+-(void)shiftUpViewForKeyboardShowing
+{
+    id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
+    [delegate keyboardWillShow:CGAffineTransformMakeTranslation(0, -45)];
+}
+
+-(void)restoreViewForKeyboardHiding
+{
+    id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
+    [delegate keyboardWillHide];
+}
+
+//TextField
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if ([textField isEqual:accountField]) {
+        [passwordField becomeFirstResponder];
+    }
+    else {
+        [self loginButtonOnClicked:self];
+    }
+    return NO;
+}
+
 /*
 #pragma mark - Navigation
 

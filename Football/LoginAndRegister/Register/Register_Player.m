@@ -8,12 +8,7 @@
 
 #import "Register_Player.h"
 
-@interface Register_Player ()
-
-@end
-
 @implementation Register_Player{
-    id<LoginAndRegisterView>delegate;
     NSArray *textFieldArray;
     UIDatePicker *datePicker;
     UIPickerView *placePicker;
@@ -36,6 +31,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    //Add observer for keyboardShowinng
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shiftUpViewForKeyboardShowing) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreViewForKeyboardHiding) name:UIKeyboardWillHideNotification object:nil];
+    
     //Clear all fields
     for (UITextField *textField in textFieldArray) {
         [textField setText:nil];
@@ -46,11 +45,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    delegate = (id)self.parentViewController.parentViewController;
     textFieldArray = [[NSArray alloc] initWithObjects:personalID, cellphoneNumber, qqNumber, birthday, activityRegion, password, nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:delegate selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:delegate selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
     
     //Set Datepicker for Birthday(UITextField)
     datePicker = [[UIDatePicker alloc] init];
@@ -78,6 +73,13 @@
     [placePicker setDelegate:self];
     [activityRegion setInputView:placePicker];
     [activityRegion setTintColor:[UIColor clearColor]];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,27 +90,11 @@
 
 -(IBAction)cancelButtonOnClicked:(id)sender
 {
-    [delegate presentLoginView];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesBegan:touches withEvent:event];
-    [self dismissKeyboard];
-}
-
--(IBAction)changeTextFieldFocus:(id)sender
-{
-    NSInteger indexOfNextTextField = [textFieldArray indexOfObject:sender] + 1;
-    if (indexOfNextTextField >= textFieldArray.count) {
-        [self performSegueWithIdentifier:@"PlayerRegisterAdvance" sender:registerButton];
-    }
-    else {
-        UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];
-        [nextResponder becomeFirstResponder];
-    }
-}
-
+//Protocol DissmissKeyboard
 -(void)dismissKeyboard
 {
     for (UITextField *textField in textFieldArray) {
@@ -116,11 +102,31 @@
     }
 }
 
+//TextField
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSInteger indexOfNextTextField = [textFieldArray indexOfObject:textField] + 1;
+    if (indexOfNextTextField >= textFieldArray.count) {
+        for (UITextField *eachTextField in textFieldArray) {
+            if (![eachTextField hasText]) {
+                [eachTextField becomeFirstResponder];
+                return NO;
+            }
+        }
+        [self performSegueWithIdentifier:@"PlayerRegisterAdvance" sender:self];
+    }
+    else {
+        UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];
+        [nextResponder becomeFirstResponder];
+    }
+    return NO;
+}
+
 #pragma DatePicker
 -(void)finishDateEditing
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    [dateFormatter setDateFormat:def_MatchDateformat];
     [birthday setText:[dateFormatter stringFromDate:datePicker.date]];
 }
 
@@ -179,6 +185,19 @@
             break;
     }
     [activityRegion setText:[NSString stringWithFormat:@"%@ %@", selectedProvince, selectedCity]];
+}
+
+//ShiftUp/Restore view for keyboard
+-(void)shiftUpViewForKeyboardShowing
+{
+    id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
+    [delegate keyboardWillShow:CGAffineTransformMakeTranslation(0, -200)];
+}
+
+-(void)restoreViewForKeyboardHiding
+{
+    id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
+    [delegate keyboardWillHide];
 }
 /*
 #pragma mark - Navigation

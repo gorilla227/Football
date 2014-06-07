@@ -8,13 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol LoginAndRegisterView <NSObject>
--(void)presentLoginView;
--(void)presentRegisterView;
--(void)keyboardWillShow;
--(void)keyboardWillHide;
-@end
-
 @protocol DismissKeyboard <NSObject>
 -(void)dismissKeyboard;
+@end
+
+@protocol MoveTextFieldForKeyboardShowing <NSObject>
+-(void)keyboardWillShow:(CGAffineTransform)transform;
+-(void)keyboardWillHide;
 @end

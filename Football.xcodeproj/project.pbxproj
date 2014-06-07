@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A1009A73192888F1008A125D /* UIImage+ImageConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = A1009A72192888F1008A125D /* UIImage+ImageConvert.m */; };
 		A103338A18D419A300050A61 /* Captain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A103338918D419A300050A61 /* Captain.storyboard */; };
-		A103339318D6B49900050A61 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A103339218D6B49900050A61 /* Login.m */; };
 		A10723221933026100F26A39 /* icon_like.png in Resources */ = {isa = PBXBuildFile; fileRef = A10723211933026100F26A39 /* icon_like.png */; };
 		A10BACB7190D9AA1000FA5A7 /* leftIcon_createMatch_score.png in Resources */ = {isa = PBXBuildFile; fileRef = A10BACB6190D9AA1000FA5A7 /* leftIcon_createMatch_score.png */; };
 		A10BAD0A190E1245000FA5A7 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A10BAD09190E1245000FA5A7 /* DataModel.m */; };
@@ -37,6 +36,7 @@
 		A19F8D151900E61E00AC8459 /* soccer_title_bar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A19F8D131900E61E00AC8459 /* soccer_title_bar_bg@2x.png */; };
 		A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */; };
 		A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */; };
+		A1AEA8B119417BEC00DB9F0C /* Register_Captain.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AEA8B019417BEC00DB9F0C /* Register_Captain.m */; };
 		A1AF632F193B066400997255 /* Captain_EnterBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AF632E193B066400997255 /* Captain_EnterBalance.m */; };
 		A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */; };
 		A1C2802D18F79CED004C644E /* login_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802418F79CED004C644E /* login_logo.png */; };
@@ -50,8 +50,6 @@
 		A1C2803518F79CED004C644E /* soccer_grass_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802C18F79CED004C644E /* soccer_grass_bg@2x.png */; };
 		A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */; };
 		A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */; };
-		A1C8F9E918DE895C00BE42D4 /* Register_Captain.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E818DE895C00BE42D4 /* Register_Captain.m */; };
-		A1C8F9EC18DE90B400BE42D4 /* Login_Content.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9EB18DE90B400BE42D4 /* Login_Content.m */; };
 		A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8FA3B18DFB17300BE42D4 /* Register_Captain_Advance.m */; };
 		A1C8FA4918DFEADD00BE42D4 /* Register_Player.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8FA4818DFEADD00BE42D4 /* Register_Player.m */; };
 		A1C8FA4C18DFEAFE00BE42D4 /* Register_Player_Advance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8FA4B18DFEAFE00BE42D4 /* Register_Player_Advance.m */; };
@@ -83,6 +81,8 @@
 		A1FC44581935B058007C4B68 /* callFriendsIcon_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FC44551935B058007C4B68 /* callFriendsIcon_phone.png */; };
 		A1FC44591935B058007C4B68 /* callFriendsIcon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FC44561935B058007C4B68 /* callFriendsIcon_qq.png */; };
 		A1FC445A1935B058007C4B68 /* callFriendsIcon_wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FC44571935B058007C4B68 /* callFriendsIcon_wechat.png */; };
+		A1FFD1C21941737100C6F7CF /* Starting.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FFD1C11941737100C6F7CF /* Starting.m */; };
+		A1FFD1C61941755B00C6F7CF /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FFD1C51941755B00C6F7CF /* Login.m */; };
 		B20264B4191BF081004B8D74 /* menu_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B20264B3191BF081004B8D74 /* menu_bg@2x.png */; };
 		B20264B7191BF59C004B8D74 /* menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B20264B6191BF59C004B8D74 /* menu_bg.png */; };
 		B2026505191C25E7004B8D74 /* menuIcon_finance.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026501191C25E7004B8D74 /* menuIcon_finance.png */; };
@@ -99,6 +99,8 @@
 		B27BD6C61934093E00F35A51 /* Captain_PlayerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C51934093E00F35A51 /* Captain_PlayerDetails.m */; };
 		B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */; };
 		B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */; };
+		B2CEEC59194299360072D0BD /* CallFriendsMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2CEEC58194299360072D0BD /* CallFriendsMenu.plist */; };
+		B2CEEC5A19429A870072D0BD /* Login.h in Sources */ = {isa = PBXBuildFile; fileRef = A1FFD1C41941755B00C6F7CF /* Login.h */; };
 		B2D096EF18EE01D4005221F2 /* ActionSheetMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */; };
 		B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D6981518ECC3F700603B87 /* Captain_MyPlayers.m */; };
 		B2E8533E1937DA990020A624 /* Captain_PlayerMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8533D1937DA990020A624 /* Captain_PlayerMarket.m */; };
@@ -119,15 +121,13 @@
 		A1009A71192888F1008A125D /* UIImage+ImageConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageConvert.h"; path = "Football/Utils/ImageConvert/UIImage+ImageConvert.h"; sourceTree = "<group>"; };
 		A1009A72192888F1008A125D /* UIImage+ImageConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageConvert.m"; path = "Football/Utils/ImageConvert/UIImage+ImageConvert.m"; sourceTree = "<group>"; };
 		A103338918D419A300050A61 /* Captain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Captain.storyboard; path = Captain/Captain.storyboard; sourceTree = "<group>"; };
-		A103339118D6B49900050A61 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login.h; path = Login/Login.h; sourceTree = "<group>"; };
-		A103339218D6B49900050A61 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = Login/Login.m; sourceTree = "<group>"; };
 		A10723211933026100F26A39 /* icon_like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_like.png; path = Resource/icon_like.png; sourceTree = "<group>"; };
 		A10BACB6190D9AA1000FA5A7 /* leftIcon_createMatch_score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftIcon_createMatch_score.png; path = Resource/leftIcon_createMatch_score.png; sourceTree = "<group>"; };
 		A10BAD08190E1245000FA5A7 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataModel.h; path = Pre_Define/DataModel.h; sourceTree = "<group>"; };
 		A10BAD09190E1245000FA5A7 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataModel.m; path = Pre_Define/DataModel.m; sourceTree = "<group>"; };
 		A114302318F2545100A39F13 /* Captain_TeamProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TeamProfile.h; path = Captain/MyTeam/TeamProfile/Captain_TeamProfile.h; sourceTree = "<group>"; };
 		A114302418F2545100A39F13 /* Captain_TeamProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TeamProfile.m; path = Captain/MyTeam/TeamProfile/Captain_TeamProfile.m; sourceTree = "<group>"; };
-		A11F052618E68FBE00109870 /* ActivityRegion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActivityRegion.plist; path = Login/Register/ActivityRegion.plist; sourceTree = "<group>"; };
+		A11F052618E68FBE00109870 /* ActivityRegion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActivityRegion.plist; path = LoginAndRegister/Register/ActivityRegion.plist; sourceTree = "<group>"; };
 		A135B14D1927242B001CB0EC /* rightArrow_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rightArrow_white.png; path = Resource/rightArrow_white.png; sourceTree = "<group>"; };
 		A1370A541904D7CC00E64949 /* leftIcon_createMatch_cost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftIcon_createMatch_cost.png; path = Resource/leftIcon_createMatch_cost.png; sourceTree = "<group>"; };
 		A1370A551904D7CC00E64949 /* leftIcon_createMatch_numOfPlayers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftIcon_createMatch_numOfPlayers.png; path = Resource/leftIcon_createMatch_numOfPlayers.png; sourceTree = "<group>"; };
@@ -159,6 +159,8 @@
 		A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_EnterOpponent.m; sourceTree = "<group>"; };
 		A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_SelectMatchStadium.h; sourceTree = "<group>"; };
 		A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_SelectMatchStadium.m; sourceTree = "<group>"; };
+		A1AEA8AF19417BEC00DB9F0C /* Register_Captain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Captain.h; path = LoginAndRegister/Register/Register_Captain.h; sourceTree = "<group>"; };
+		A1AEA8B019417BEC00DB9F0C /* Register_Captain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Captain.m; path = LoginAndRegister/Register/Register_Captain.m; sourceTree = "<group>"; };
 		A1AF632D193B066400997255 /* Captain_EnterBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_EnterBalance.h; path = Captain/FinanceManagement/BalanceManagement/Captain_EnterBalance.h; sourceTree = "<group>"; };
 		A1AF632E193B066400997255 /* Captain_EnterBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_EnterBalance.m; path = Captain/FinanceManagement/BalanceManagement/Captain_EnterBalance.m; sourceTree = "<group>"; };
 		A1AF6330193B06BA00997255 /* Captain_BalanceManagement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Captain_BalanceManagement.h; path = Captain/FinanceManagement/BalanceManagement/Captain_BalanceManagement.h; sourceTree = "<group>"; };
@@ -177,17 +179,13 @@
 		A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Captain_MenuList.plist; path = Captain/Captain_MenuList.plist; sourceTree = "<group>"; };
 		A1C8F9E018DAAA3400BE42D4 /* Captain_MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MainMenu.h; path = Captain/Captain_MainMenu.h; sourceTree = "<group>"; };
 		A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MainMenu.m; path = Captain/Captain_MainMenu.m; sourceTree = "<group>"; };
-		A1C8F9E718DE895C00BE42D4 /* Register_Captain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Captain.h; path = Login/Register/Captain/Register_Captain.h; sourceTree = "<group>"; };
-		A1C8F9E818DE895C00BE42D4 /* Register_Captain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Captain.m; path = Login/Register/Captain/Register_Captain.m; sourceTree = "<group>"; };
-		A1C8F9EA18DE90B400BE42D4 /* Login_Content.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login_Content.h; path = Login/Login_Content.h; sourceTree = "<group>"; };
-		A1C8F9EB18DE90B400BE42D4 /* Login_Content.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login_Content.m; path = Login/Login_Content.m; sourceTree = "<group>"; };
-		A1C8FA3A18DFB17300BE42D4 /* Register_Captain_Advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Captain_Advance.h; path = Login/Register/Captain/Register_Captain_Advance.h; sourceTree = "<group>"; };
-		A1C8FA3B18DFB17300BE42D4 /* Register_Captain_Advance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Captain_Advance.m; path = Login/Register/Captain/Register_Captain_Advance.m; sourceTree = "<group>"; };
-		A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoginAndRegisterView.h; path = Login/LoginAndRegisterView.h; sourceTree = "<group>"; };
-		A1C8FA4718DFEADD00BE42D4 /* Register_Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Player.h; path = Login/Register/Player/Register_Player.h; sourceTree = "<group>"; };
-		A1C8FA4818DFEADD00BE42D4 /* Register_Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Player.m; path = Login/Register/Player/Register_Player.m; sourceTree = "<group>"; };
-		A1C8FA4A18DFEAFE00BE42D4 /* Register_Player_Advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Player_Advance.h; path = Login/Register/Player/Register_Player_Advance.h; sourceTree = "<group>"; };
-		A1C8FA4B18DFEAFE00BE42D4 /* Register_Player_Advance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Player_Advance.m; path = Login/Register/Player/Register_Player_Advance.m; sourceTree = "<group>"; };
+		A1C8FA3A18DFB17300BE42D4 /* Register_Captain_Advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Captain_Advance.h; path = LoginAndRegister/Register/Register_Captain_Advance.h; sourceTree = "<group>"; };
+		A1C8FA3B18DFB17300BE42D4 /* Register_Captain_Advance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Captain_Advance.m; path = LoginAndRegister/Register/Register_Captain_Advance.m; sourceTree = "<group>"; };
+		A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoginAndRegisterProtocols.h; path = LoginAndRegister/LoginAndRegisterProtocols.h; sourceTree = "<group>"; };
+		A1C8FA4718DFEADD00BE42D4 /* Register_Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Player.h; path = LoginAndRegister/Register/Register_Player.h; sourceTree = "<group>"; };
+		A1C8FA4818DFEADD00BE42D4 /* Register_Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Player.m; path = LoginAndRegister/Register/Register_Player.m; sourceTree = "<group>"; };
+		A1C8FA4A18DFEAFE00BE42D4 /* Register_Player_Advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Player_Advance.h; path = LoginAndRegister/Register/Register_Player_Advance.h; sourceTree = "<group>"; };
+		A1C8FA4B18DFEAFE00BE42D4 /* Register_Player_Advance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Player_Advance.m; path = LoginAndRegister/Register/Register_Player_Advance.m; sourceTree = "<group>"; };
 		A1D07BCE18CC1E4800FA3A8D /* Football.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Football.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D07BD118CC1E4800FA3A8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -204,7 +202,7 @@
 		A1D07BF818CC1E4900FA3A8D /* FootballTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FootballTests-Info.plist"; sourceTree = "<group>"; };
 		A1D07BFA18CC1E4900FA3A8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1D07BFC18CC1E4900FA3A8D /* FootballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FootballTests.m; sourceTree = "<group>"; };
-		A1D07C0618CD14B700FA3A8D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Login/Login.storyboard; sourceTree = "<group>"; };
+		A1D07C0618CD14B700FA3A8D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = LoginAndRegister/Login.storyboard; sourceTree = "<group>"; };
 		A1D07C0D18CD177F00FA3A8D /* Setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setting.plist; sourceTree = "<group>"; };
 		A1F428C8191209DB00567A02 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A1F428C9191209DB00567A02 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -233,6 +231,10 @@
 		A1FC44551935B058007C4B68 /* callFriendsIcon_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callFriendsIcon_phone.png; path = Resource/callFriendsIcon_phone.png; sourceTree = "<group>"; };
 		A1FC44561935B058007C4B68 /* callFriendsIcon_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callFriendsIcon_qq.png; path = Resource/callFriendsIcon_qq.png; sourceTree = "<group>"; };
 		A1FC44571935B058007C4B68 /* callFriendsIcon_wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callFriendsIcon_wechat.png; path = Resource/callFriendsIcon_wechat.png; sourceTree = "<group>"; };
+		A1FFD1C01941737100C6F7CF /* Starting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Starting.h; path = LoginAndRegister/Starting.h; sourceTree = "<group>"; };
+		A1FFD1C11941737100C6F7CF /* Starting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Starting.m; path = LoginAndRegister/Starting.m; sourceTree = "<group>"; };
+		A1FFD1C41941755B00C6F7CF /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login.h; path = LoginAndRegister/Login/Login.h; sourceTree = "<group>"; };
+		A1FFD1C51941755B00C6F7CF /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = LoginAndRegister/Login/Login.m; sourceTree = "<group>"; };
 		B20264B3191BF081004B8D74 /* menu_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu_bg@2x.png"; path = "Resource/menu_bg@2x.png"; sourceTree = "<group>"; };
 		B20264B6191BF59C004B8D74 /* menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_bg.png; path = Resource/menu_bg.png; sourceTree = "<group>"; };
 		B2026501191C25E7004B8D74 /* menuIcon_finance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_finance.png; path = Resource/menuIcon_finance.png; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NotifyPlayers.m; path = Captain/MyTeam/Captain_NotifyPlayers.m; sourceTree = "<group>"; };
 		B2B1EE46193FDCE900915CA8 /* UITextField+LeftIconAndLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+LeftIconAndLabel.h"; path = "Football/Utils/TextFieldCustomize/UITextField+LeftIconAndLabel.h"; sourceTree = "<group>"; };
 		B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+LeftIconAndLabel.m"; path = "Football/Utils/TextFieldCustomize/UITextField+LeftIconAndLabel.m"; sourceTree = "<group>"; };
+		B2CEEC58194299360072D0BD /* CallFriendsMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CallFriendsMenu.plist; path = Football/Utils/CallFriends/CallFriendsMenu.plist; sourceTree = "<group>"; };
 		B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActionSheetMenu.plist; path = Pre_Define/ActionSheetMenu.plist; sourceTree = "<group>"; };
 		B2D6981418ECC3F700603B87 /* Captain_MyPlayers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MyPlayers.h; path = Captain/MyTeam/MyPlayers/Captain_MyPlayers.h; sourceTree = "<group>"; };
 		B2D6981518ECC3F700603B87 /* Captain_MyPlayers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MyPlayers.m; path = Captain/MyTeam/MyPlayers/Captain_MyPlayers.m; sourceTree = "<group>"; };
@@ -462,33 +465,17 @@
 		A1C8FA3D18DFB1C500BE42D4 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				A11F052618E68FBE00109870 /* ActivityRegion.plist */,
-				A1C8FA4618DFEA0B00BE42D4 /* Player */,
-				A1C8FA4518DFE9F700BE42D4 /* Captain */,
-			);
-			name = Register;
-			sourceTree = "<group>";
-		};
-		A1C8FA4518DFE9F700BE42D4 /* Captain */ = {
-			isa = PBXGroup;
-			children = (
-				A1C8F9E718DE895C00BE42D4 /* Register_Captain.h */,
-				A1C8F9E818DE895C00BE42D4 /* Register_Captain.m */,
+				A1AEA8AF19417BEC00DB9F0C /* Register_Captain.h */,
+				A1AEA8B019417BEC00DB9F0C /* Register_Captain.m */,
 				A1C8FA3A18DFB17300BE42D4 /* Register_Captain_Advance.h */,
 				A1C8FA3B18DFB17300BE42D4 /* Register_Captain_Advance.m */,
-			);
-			name = Captain;
-			sourceTree = "<group>";
-		};
-		A1C8FA4618DFEA0B00BE42D4 /* Player */ = {
-			isa = PBXGroup;
-			children = (
 				A1C8FA4718DFEADD00BE42D4 /* Register_Player.h */,
 				A1C8FA4818DFEADD00BE42D4 /* Register_Player.m */,
 				A1C8FA4A18DFEAFE00BE42D4 /* Register_Player_Advance.h */,
 				A1C8FA4B18DFEAFE00BE42D4 /* Register_Player_Advance.m */,
+				A11F052618E68FBE00109870 /* ActivityRegion.plist */,
 			);
-			name = Player;
+			name = Register;
 			sourceTree = "<group>";
 		};
 		A1D07BC518CC1E4800FA3A8D = {
@@ -573,13 +560,12 @@
 		A1D07C0818CD154600FA3A8D /* Login&Register */ = {
 			isa = PBXGroup;
 			children = (
+				A1FFD1C31941737700C6F7CF /* Login */,
 				A1C8FA3D18DFB1C500BE42D4 /* Register */,
 				A1D07C0618CD14B700FA3A8D /* Login.storyboard */,
-				A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterView.h */,
-				A103339118D6B49900050A61 /* Login.h */,
-				A103339218D6B49900050A61 /* Login.m */,
-				A1C8F9EA18DE90B400BE42D4 /* Login_Content.h */,
-				A1C8F9EB18DE90B400BE42D4 /* Login_Content.m */,
+				A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterProtocols.h */,
+				A1FFD1C01941737100C6F7CF /* Starting.h */,
+				A1FFD1C11941737100C6F7CF /* Starting.m */,
 			);
 			name = "Login&Register";
 			sourceTree = "<group>";
@@ -593,8 +579,8 @@
 				A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */,
 				A18D7F781903912D003028FE /* Captain_RootNavigationController.h */,
 				A18D7F791903912D003028FE /* Captain_RootNavigationController.m */,
-				B2D6981318ECC35500603B87 /* MyTeam */,
 				A1B0DA1E18EA786600671383 /* MyMatches */,
+				B2D6981318ECC35500603B87 /* MyTeam */,
 				B22B10AB193A8E71004BE83F /* FinanceManagement */,
 			);
 			name = Captain;
@@ -659,6 +645,7 @@
 		A1FC44531935A641007C4B68 /* CallFriends */ = {
 			isa = PBXGroup;
 			children = (
+				B2CEEC58194299360072D0BD /* CallFriendsMenu.plist */,
 				A1FC444F1935A621007C4B68 /* CallFriends.h */,
 				A1FC44501935A621007C4B68 /* CallFriends.m */,
 			);
@@ -673,6 +660,15 @@
 				A1FC44571935B058007C4B68 /* callFriendsIcon_wechat.png */,
 			);
 			name = CallFriends;
+			sourceTree = "<group>";
+		};
+		A1FFD1C31941737700C6F7CF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A1FFD1C41941755B00C6F7CF /* Login.h */,
+				A1FFD1C51941755B00C6F7CF /* Login.m */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		B20264B5191BF08B004B8D74 /* MainMenu */ = {
@@ -860,6 +856,7 @@
 				A1D07BDC18CC1E4800FA3A8D /* InfoPlist.strings in Resources */,
 				A1C2802F18F79CED004C644E /* login_textfield_title_user.png in Resources */,
 				A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */,
+				B2CEEC59194299360072D0BD /* CallFriendsMenu.plist in Resources */,
 				B20264B4191BF081004B8D74 /* menu_bg@2x.png in Resources */,
 				B202650A191C273D004B8D74 /* menuIcon_superMarket.png in Resources */,
 				A153ACBF190244880062EB44 /* hint_background_arrow.png in Resources */,
@@ -891,8 +888,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2CEEC5A19429A870072D0BD /* Login.h in Sources */,
 				A1F428DC191209DB00567A02 /* AFHTTPRequestOperation.m in Sources */,
-				A103339318D6B49900050A61 /* Login.m in Sources */,
 				A1AF632F193B066400997255 /* Captain_EnterBalance.m in Sources */,
 				A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */,
 				A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */,
@@ -903,14 +900,14 @@
 				A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */,
 				B27BD6C61934093E00F35A51 /* Captain_PlayerDetails.m in Sources */,
 				A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */,
+				A1AEA8B119417BEC00DB9F0C /* Register_Captain.m in Sources */,
 				A1F428E1191209DB00567A02 /* AFURLConnectionOperation.m in Sources */,
 				A1F428DD191209DB00567A02 /* AFHTTPRequestOperationManager.m in Sources */,
 				A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */,
-				A1C8F9EC18DE90B400BE42D4 /* Login_Content.m in Sources */,
 				A1009A73192888F1008A125D /* UIImage+ImageConvert.m in Sources */,
 				A18D7F7A1903912D003028FE /* Captain_RootNavigationController.m in Sources */,
-				A1C8F9E918DE895C00BE42D4 /* Register_Captain.m in Sources */,
 				A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */,
+				A1FFD1C21941737100C6F7CF /* Starting.m in Sources */,
 				A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */,
 				A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */,
 				B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */,
@@ -928,6 +925,7 @@
 				A1C8FA4C18DFEAFE00BE42D4 /* Register_Player_Advance.m in Sources */,
 				B22B10AE193A9683004BE83F /* Captain_BalanceManagement.m in Sources */,
 				A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */,
+				A1FFD1C61941755B00C6F7CF /* Login.m in Sources */,
 				A1FC44511935A621007C4B68 /* CallFriends.m in Sources */,
 				A10BAD0A190E1245000FA5A7 /* DataModel.m in Sources */,
 				A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */,

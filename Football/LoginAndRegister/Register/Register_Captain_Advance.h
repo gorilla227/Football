@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CallFriends.h"
-#import "LoginAndRegisterView.h"
+#import "LoginAndRegisterProtocols.h"
 
 @interface Register_Captain_Advance : UIViewController<UIActionSheetDelegate>
 @end

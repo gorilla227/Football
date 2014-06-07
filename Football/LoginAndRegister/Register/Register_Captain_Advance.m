@@ -8,9 +8,7 @@
 
 #import "Register_Captain_Advance.h"
 
-@implementation Register_Captain_Advance{
-    id<LoginAndRegisterView>delegate;
-}
+@implementation Register_Captain_Advance
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,7 +23,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    delegate = (id)self.parentViewController.parentViewController;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,8 +33,8 @@
 
 -(IBAction)cancelButtonOnClicked:(id)sender
 {
-    [delegate presentLoginView];
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(IBAction)callFriendsButtonOnClicked:(id)sender

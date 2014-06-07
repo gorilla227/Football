@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoginAndRegisterView.h"
+#import "LoginAndRegisterProtocols.h"
 
-@interface Register_Player : UIViewController<DismissKeyboard, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface Register_Player : UIViewController<DismissKeyboard, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 @property IBOutlet UITextField *personalID;
 @property IBOutlet UITextField *cellphoneNumber;
 @property IBOutlet UITextField *qqNumber;

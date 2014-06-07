@@ -8,14 +8,7 @@
 
 #import "Register_Player_Advance.h"
 
-@interface Register_Player_Advance ()
-
-@end
-
-@implementation Register_Player_Advance{
-    id<LoginAndRegisterView>delegate;
-}
-
+@implementation Register_Player_Advance
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,9 +33,8 @@
 
 -(IBAction)cancelButtonOnClicked:(id)sender
 {
-    delegate = (id)self.parentViewController.parentViewController;
-    [delegate presentLoginView];
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 /*
 #pragma mark - Navigation
