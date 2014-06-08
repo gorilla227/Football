@@ -37,6 +37,9 @@
 //    [password setLeftView:[[UIImageView alloc] initWithImage:passwordImage]];
 //    [password setLeftViewMode:UITextFieldViewModeAlways];
     textFieldArray = @[teamName, cellphoneNumber, password];
+    [teamName setInputAccessoryView:registerButton];
+    [cellphoneNumber setInputAccessoryView:registerButton];
+    [password setInputAccessoryView:registerButton];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
@@ -65,6 +68,11 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+-(IBAction)registerButtonOnClicked:(id)sender
+{
+    [self performSegueWithIdentifier:@"CaptainRegisterAdvance" sender:self];
+}
+
 //Protocol DissmissKeyboard
 -(void)dismissKeyboard
 {
@@ -77,25 +85,14 @@
 -(void)shiftUpViewForKeyboardShowing
 {
     id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
-    [delegate keyboardWillShow:CGAffineTransformMakeTranslation(0, -100)];
-    
-    //ShiftUp Register Button
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25f];
-    [registerButton setTransform:CGAffineTransformMakeTranslation(0, -110)];
-    [UIView commitAnimations];
+    CGFloat keyboardShiftHeight = self.view.bounds.size.height - password.frame.origin.y - password.frame.size.height - registerButton.bounds.size.height - def_keyboardHeight;
+    [delegate keyboardWillShow:CGAffineTransformMakeTranslation(0, keyboardShiftHeight - 20)];
 }
 
 -(void)restoreViewForKeyboardHiding
 {
     id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
     [delegate keyboardWillHide];
-    
-    //Restore Register Button
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.2f];
-    [registerButton setTransform:CGAffineTransformMakeTranslation(0, 0)];
-    [UIView commitAnimations];
 }
 
 //TextField

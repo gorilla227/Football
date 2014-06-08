@@ -11,7 +11,7 @@
 @implementation Login{
     JSONConnect *connection;
 }
-@synthesize accountField, passwordField, registerButton, loginButton, qqAccountButton, sinaAccountButton, roleSegment;
+@synthesize accountField, passwordField, registerButton, loginButton, qqAccountButton, sinaAccountButton, roleSegment, loginContentView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -110,7 +110,8 @@
 -(void)shiftUpViewForKeyboardShowing
 {
     id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
-    [delegate keyboardWillShow:CGAffineTransformMakeTranslation(0, -45)];
+    CGFloat keyboardShiftHeight = self.view.bounds.size.height - loginContentView.bounds.size.height - def_keyboardHeight;
+    [delegate keyboardWillShow:CGAffineTransformMakeTranslation(0, keyboardShiftHeight)];
 }
 
 -(void)restoreViewForKeyboardHiding

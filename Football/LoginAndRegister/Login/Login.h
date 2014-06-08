@@ -17,6 +17,7 @@
 @property IBOutlet UIButton *qqAccountButton;
 @property IBOutlet UIButton *sinaAccountButton;
 @property IBOutlet UISegmentedControl *roleSegment;
+@property IBOutlet UIView *loginContentView;
 
 -(void)shiftUpViewForKeyboardShowing;
 -(void)restoreViewForKeyboardHiding;

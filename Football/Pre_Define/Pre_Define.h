@@ -9,6 +9,9 @@
 //Main Menu Frame
 #define def_mainMenuFrame CGRectMake(-150, 64, 150, 504)
 
+//Keyboard Height
+#define def_keyboardHeight 216
+
 //Flexiblespace UIBarButtonItem
 #define def_flexibleSpace [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]
 
