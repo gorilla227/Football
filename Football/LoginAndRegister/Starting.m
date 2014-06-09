@@ -51,6 +51,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.25f];
     [loginAndRegisterView setTransform:transform];
+//    [loginAndRegisterView setTransform:CGAffineTransformMakeTranslation(0, -loginAndRegisterView.frame.origin.y)];
     [UIView commitAnimations];
 }
 

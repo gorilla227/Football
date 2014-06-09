@@ -1,18 +1,16 @@
 //
-//  Login.h
+//  Register.h
 //  Football
 //
-//  Created by Andy on 14-6-5.
+//  Created by Andy Xu on 14-6-8.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "Register.h"
 #import "LoginAndRegisterProtocols.h"
 
-@interface Login : UIViewController<JSONConnectDelegate, DismissKeyboard, UITextFieldDelegate>
-
--(void)initialTextFields;
+@interface Register : UITableViewController<DismissKeyboard, UITextFieldDelegate>
+@property NSInteger roleCode;
 -(void)shiftUpViewForKeyboardShowing;
 -(void)restoreViewForKeyboardHiding;
 @end

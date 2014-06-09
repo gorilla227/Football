@@ -7,11 +7,18 @@
 //
 
 #import "Login.h"
+@interface Login()
+@property IBOutlet UITextField *accountField;
+@property IBOutlet UITextField *passwordField;
+@property IBOutlet UIButton *loginButton;
+@property IBOutlet UISegmentedControl *roleSegment;
+@property IBOutlet UIView *loginContentView;
+@end
 
 @implementation Login{
     JSONConnect *connection;
 }
-@synthesize accountField, passwordField, registerButton, loginButton, qqAccountButton, sinaAccountButton, roleSegment, loginContentView;
+@synthesize accountField, passwordField, loginButton, roleSegment, loginContentView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +33,36 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self initialTextFields];
+    [self.navigationController.toolbar setBarTintColor:def_navigationBar_background];
+    [self.navigationController.toolbar setTintColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    
+    connection = [[JSONConnect alloc] initWithDelegate:self];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setToolbarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES];
+    //Add observer for keyboardShowinng
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shiftUpViewForKeyboardShowing) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreViewForKeyboardHiding) name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)initialTextFields
+{
     UIImageView *accountIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_textfield_title_user.png"]];
     [accountIconImageView setFrame:CGRectMake(0, 0, 44, 34)];
     [accountIconImageView setContentMode:UIViewContentModeCenter];
@@ -47,26 +84,6 @@
     [passwordField.layer setBorderColor:[UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1].CGColor];
     [passwordField.layer setBorderWidth:1.0f];
     [passwordField.layer setCornerRadius:3.0f];
-    
-    connection = [[JSONConnect alloc] initWithDelegate:self];
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    //Add observer for keyboardShowinng
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shiftUpViewForKeyboardShowing) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreViewForKeyboardHiding) name:UIKeyboardWillHideNotification object:nil];
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(IBAction)loginButtonOnClicked:(id)sender
@@ -89,10 +106,10 @@
     [self dismissKeyboard];
     switch (roleSegment.selectedSegmentIndex) {
         case 0:
-            [self performSegueWithIdentifier:@"Register_Captain" sender:self];
+            [self performSegueWithIdentifier:@"Register" sender:self];
             break;
         case 1:
-            [self performSegueWithIdentifier:@"Register_Player" sender:self];
+            [self performSegueWithIdentifier:@"Register" sender:self];
             break;
         default:
             break;
@@ -132,7 +149,6 @@
     return NO;
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -140,7 +156,10 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"Register"]) {
+        Register *registerViewController = segue.destinationViewController;
+        [registerViewController setRoleCode:roleSegment.selectedSegmentIndex];
+    }
 }
-*/
 
 @end

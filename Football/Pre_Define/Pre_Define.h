@@ -16,6 +16,8 @@
 #define def_flexibleSpace [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]
 
 //UI Strings
+#define def_registerViewTitle_Captain @"我是队长"
+#define def_registerViewTitle_Player @"我是球员"
 #define def_typeOfPlayerNumber_SignUp @"报名人数"
 #define def_typeOfPlayerNumber_ShowUp @"出场人数"
 #define def_createMatch_time @"时间"

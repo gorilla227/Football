@@ -13,13 +13,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"soccer_title_bar_bg@2x.png"] forBarMetrics:UIBarMetricsDefault];
-//    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:def_navigationBar_background];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UIToolbar appearance] setBarTintColor:def_toolBar_background];
     [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     return YES;
 }
 							
