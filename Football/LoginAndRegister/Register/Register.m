@@ -132,15 +132,32 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath *indexPath;
     for (UITableViewCell *cell in self.tableView.visibleCells) {
         if ([cell.contentView.subviews containsObject:textField]) {
             indexPath = [self.tableView indexPathForCell:cell];
             break;
         }
     }
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)]];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if (indexPath) {
+        [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)]];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    for (UITableViewCell *cell in self.tableView.visibleCells) {
+        if ([cell.contentView.subviews containsObject:textField]) {
+            if ([textField hasText]) {
+                [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+            }
+            else {
+                [cell setAccessoryType:UITableViewCellAccessoryNone];
+            }
+            break;
+        }
+    }
 }
 
 #pragma mark - Table view data source
@@ -174,7 +191,7 @@
 //{
 //    return 10;
 //}
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -182,7 +199,11 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"RegisterCompleted"]) {
+        RegisterCompleted *completedView = segue.destinationViewController;
+        [completedView setRoleCode:roleCode];
+    }
 }
-*/
+
 
 @end

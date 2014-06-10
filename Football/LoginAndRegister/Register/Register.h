@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RegisterCompleted.h"
 //#import "LoginAndRegisterProtocols.h"
 
 @interface Register_TableView : UITableView
