@@ -15,10 +15,12 @@
     // Override point for customization after application launch.
     [[UINavigationBar appearance] setBarTintColor:def_navigationBar_background];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UIToolbar appearance] setBarTintColor:def_toolBar_background];
-    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
+    [[UIToolbar appearance] setBarTintColor:def_navigationBar_background];
+    [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
+//    [[UIToolbar appearance] setBarTintColor:def_toolBar_background];
+//    [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     return YES;
 }
 							

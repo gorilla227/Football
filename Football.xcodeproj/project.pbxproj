@@ -81,8 +81,7 @@
 		A1FC44581935B058007C4B68 /* callFriendsIcon_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FC44551935B058007C4B68 /* callFriendsIcon_phone.png */; };
 		A1FC44591935B058007C4B68 /* callFriendsIcon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FC44561935B058007C4B68 /* callFriendsIcon_qq.png */; };
 		A1FC445A1935B058007C4B68 /* callFriendsIcon_wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FC44571935B058007C4B68 /* callFriendsIcon_wechat.png */; };
-		A1FFD1C21941737100C6F7CF /* Starting.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FFD1C11941737100C6F7CF /* Starting.m */; };
-		A1FFD1C61941755B00C6F7CF /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FFD1C51941755B00C6F7CF /* Login.m */; };
+		A1FFD1C21941737100C6F7CF /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FFD1C11941737100C6F7CF /* Login.m */; };
 		B20264B4191BF081004B8D74 /* menu_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B20264B3191BF081004B8D74 /* menu_bg@2x.png */; };
 		B20264B7191BF59C004B8D74 /* menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B20264B6191BF59C004B8D74 /* menu_bg.png */; };
 		B2026505191C25E7004B8D74 /* menuIcon_finance.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026501191C25E7004B8D74 /* menuIcon_finance.png */; };
@@ -100,12 +99,12 @@
 		B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */; };
 		B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */; };
 		B2CEEC59194299360072D0BD /* CallFriendsMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2CEEC58194299360072D0BD /* CallFriendsMenu.plist */; };
-		B2CEEC5A19429A870072D0BD /* Login.h in Sources */ = {isa = PBXBuildFile; fileRef = A1FFD1C41941755B00C6F7CF /* Login.h */; };
 		B2D096EF18EE01D4005221F2 /* ActionSheetMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */; };
 		B2D542B319452ECD008E6DE4 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D542B219452ECD008E6DE4 /* Register.m */; };
 		B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D6981518ECC3F700603B87 /* Captain_MyPlayers.m */; };
 		B2E8533E1937DA990020A624 /* Captain_PlayerMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8533D1937DA990020A624 /* Captain_PlayerMarket.m */; };
 		B2FEC5E41915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FEC5E31915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m */; };
+		B2FED3281946835E00E6ABB8 /* Starting.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FED3271946835E00E6ABB8 /* Starting.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,10 +231,8 @@
 		A1FC44551935B058007C4B68 /* callFriendsIcon_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callFriendsIcon_phone.png; path = Resource/callFriendsIcon_phone.png; sourceTree = "<group>"; };
 		A1FC44561935B058007C4B68 /* callFriendsIcon_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callFriendsIcon_qq.png; path = Resource/callFriendsIcon_qq.png; sourceTree = "<group>"; };
 		A1FC44571935B058007C4B68 /* callFriendsIcon_wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callFriendsIcon_wechat.png; path = Resource/callFriendsIcon_wechat.png; sourceTree = "<group>"; };
-		A1FFD1C01941737100C6F7CF /* Starting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Starting.h; path = LoginAndRegister/Starting.h; sourceTree = "<group>"; };
-		A1FFD1C11941737100C6F7CF /* Starting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Starting.m; path = LoginAndRegister/Starting.m; sourceTree = "<group>"; };
-		A1FFD1C41941755B00C6F7CF /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login.h; path = LoginAndRegister/Login/Login.h; sourceTree = "<group>"; };
-		A1FFD1C51941755B00C6F7CF /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = LoginAndRegister/Login/Login.m; sourceTree = "<group>"; };
+		A1FFD1C01941737100C6F7CF /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login.h; path = LoginAndRegister/Login/Login.h; sourceTree = "<group>"; };
+		A1FFD1C11941737100C6F7CF /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = LoginAndRegister/Login/Login.m; sourceTree = "<group>"; };
 		B20264B3191BF081004B8D74 /* menu_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu_bg@2x.png"; path = "Resource/menu_bg@2x.png"; sourceTree = "<group>"; };
 		B20264B6191BF59C004B8D74 /* menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_bg.png; path = Resource/menu_bg.png; sourceTree = "<group>"; };
 		B2026501191C25E7004B8D74 /* menuIcon_finance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_finance.png; path = Resource/menuIcon_finance.png; sourceTree = "<group>"; };
@@ -266,6 +263,8 @@
 		B2E8533D1937DA990020A624 /* Captain_PlayerMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_PlayerMarket.m; path = Captain/MyTeam/NewPlayer/Captain_PlayerMarket.m; sourceTree = "<group>"; };
 		B2FEC5E21915CADD00B8B74D /* Captain_CreateMatch_EnterScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_EnterScore.h; sourceTree = "<group>"; };
 		B2FEC5E31915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_EnterScore.m; sourceTree = "<group>"; };
+		B2FED3261946835E00E6ABB8 /* Starting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Starting.h; path = LoginAndRegister/Starting.h; sourceTree = "<group>"; };
+		B2FED3271946835E00E6ABB8 /* Starting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Starting.m; path = LoginAndRegister/Starting.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -569,8 +568,8 @@
 				A1C8FA3D18DFB1C500BE42D4 /* Register */,
 				A1D07C0618CD14B700FA3A8D /* Login.storyboard */,
 				A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterProtocols.h */,
-				A1FFD1C01941737100C6F7CF /* Starting.h */,
-				A1FFD1C11941737100C6F7CF /* Starting.m */,
+				B2FED3261946835E00E6ABB8 /* Starting.h */,
+				B2FED3271946835E00E6ABB8 /* Starting.m */,
 			);
 			name = "Login&Register";
 			sourceTree = "<group>";
@@ -670,8 +669,8 @@
 		A1FFD1C31941737700C6F7CF /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A1FFD1C41941755B00C6F7CF /* Login.h */,
-				A1FFD1C51941755B00C6F7CF /* Login.m */,
+				A1FFD1C01941737100C6F7CF /* Login.h */,
+				A1FFD1C11941737100C6F7CF /* Login.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -893,7 +892,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2CEEC5A19429A870072D0BD /* Login.h in Sources */,
 				A1F428DC191209DB00567A02 /* AFHTTPRequestOperation.m in Sources */,
 				A1AF632F193B066400997255 /* Captain_EnterBalance.m in Sources */,
 				A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */,
@@ -913,9 +911,10 @@
 				A1009A73192888F1008A125D /* UIImage+ImageConvert.m in Sources */,
 				A18D7F7A1903912D003028FE /* Captain_RootNavigationController.m in Sources */,
 				A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */,
-				A1FFD1C21941737100C6F7CF /* Starting.m in Sources */,
+				A1FFD1C21941737100C6F7CF /* Login.m in Sources */,
 				A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */,
 				A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */,
+				B2FED3281946835E00E6ABB8 /* Starting.m in Sources */,
 				B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */,
 				B262D2FF1928297D0079526E /* Captain_WarmupMatch.m in Sources */,
 				B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */,
@@ -931,7 +930,6 @@
 				A1C8FA4C18DFEAFE00BE42D4 /* Register_Player_Advance.m in Sources */,
 				B22B10AE193A9683004BE83F /* Captain_BalanceManagement.m in Sources */,
 				A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */,
-				A1FFD1C61941755B00C6F7CF /* Login.m in Sources */,
 				A1FC44511935A621007C4B68 /* CallFriends.m in Sources */,
 				A10BAD0A190E1245000FA5A7 /* DataModel.m in Sources */,
 				A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */,

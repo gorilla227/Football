@@ -1,5 +1,5 @@
 //
-//  Login.m
+//  Staring.m
 //  Football
 //
 //  Created by Andy on 14-6-5.
@@ -13,12 +13,13 @@
 @property IBOutlet UIButton *loginButton;
 @property IBOutlet UISegmentedControl *roleSegment;
 @property IBOutlet UIView *loginContentView;
+@property IBOutlet UIView *loginAndRegisterView;
 @end
 
 @implementation Login{
     JSONConnect *connection;
 }
-@synthesize accountField, passwordField, loginButton, roleSegment, loginContentView;
+@synthesize accountField, passwordField, loginButton, roleSegment, loginContentView, loginAndRegisterView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,10 +34,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self initialTextFields];
-    [self.navigationController.toolbar setBarTintColor:def_navigationBar_background];
-    [self.navigationController.toolbar setTintColor:[UIColor whiteColor]];
+    //Set the background image
     [self.view setBackgroundColor:[UIColor clearColor]];
+    [self initialTextFields];
     
     connection = [[JSONConnect alloc] initWithDelegate:self];
 }
@@ -46,8 +46,8 @@
     [self.navigationController setToolbarHidden:YES];
     [self.navigationController setNavigationBarHidden:YES];
     //Add observer for keyboardShowinng
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shiftUpViewForKeyboardShowing) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreViewForKeyboardHiding) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -86,11 +86,17 @@
     [passwordField.layer setCornerRadius:3.0f];
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self dismissKeyboard];
+}
+
 -(IBAction)loginButtonOnClicked:(id)sender
 {
     [connection requestUserInfoById:[NSNumber numberWithInteger:1]];
     
-//    [self.parentViewController.view setUserInteractionEnabled:NO];
+    //    [self.parentViewController.view setUserInteractionEnabled:NO];
 }
 
 -(void)receiveUserInfo:(UserInfo *)userInfo
@@ -116,25 +122,29 @@
     }
 }
 
-//Protocol DissmissKeyboard
+//DissmissKeyboard
 -(void)dismissKeyboard
 {
     [accountField resignFirstResponder];
     [passwordField resignFirstResponder];
 }
 
-//ShiftUp/Restore view for keyboard
--(void)shiftUpViewForKeyboardShowing
+//Move view for keyboard
+-(void)keyboardWillShow
 {
-    id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
-    CGFloat keyboardShiftHeight = self.view.bounds.size.height - loginContentView.bounds.size.height - def_keyboardHeight;
-    [delegate keyboardWillShow:CGAffineTransformMakeTranslation(0, keyboardShiftHeight)];
+    CGFloat heightForViewShiftUp = loginAndRegisterView.bounds.size.height - loginContentView.bounds.size.height - def_keyboardHeight;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.25f];
+    [loginAndRegisterView setTransform:CGAffineTransformMakeTranslation(0, heightForViewShiftUp)];
+    [UIView commitAnimations];
 }
 
--(void)restoreViewForKeyboardHiding
+-(void)keyboardWillHide
 {
-    id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
-    [delegate keyboardWillHide];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2f];
+    [loginAndRegisterView setTransform:CGAffineTransformMakeTranslation(0, 0)];
+    [UIView commitAnimations];
 }
 
 //TextField
@@ -147,6 +157,21 @@
         [self loginButtonOnClicked:self];
     }
     return NO;
+}
+
+//Change placeholder baseon role
+-(IBAction)roleChanged:(id)sender
+{
+    switch (roleSegment.selectedSegmentIndex) {
+        case 0:
+            [accountField setPlaceholder:def_loginViewAccountPH_Captain];
+            break;
+        case 1:
+            [accountField setPlaceholder:def_loginViewAccountPH_Player];
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - Navigation

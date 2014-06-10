@@ -1,5 +1,5 @@
 //
-//  Login.h
+//  Staring.h
 //  Football
 //
 //  Created by Andy on 14-6-5.
@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Register.h"
-#import "LoginAndRegisterProtocols.h"
 
-@interface Login : UIViewController<JSONConnectDelegate, DismissKeyboard, UITextFieldDelegate>
-
+@interface Login : UIViewController<UITextFieldDelegate>
+-(void)keyboardWillShow;
+-(void)keyboardWillHide;
 -(void)initialTextFields;
--(void)shiftUpViewForKeyboardShowing;
--(void)restoreViewForKeyboardHiding;
+-(void)dismissKeyboard;
 @end

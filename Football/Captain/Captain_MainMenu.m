@@ -149,7 +149,7 @@
         if (selectedView.length != 0) {
             [delegateOfViewSwitch switchSelectMenuView:selectedView];
         }
-        NSLog([menuItem objectForKey:@"Title"]);
+        NSLog(@"%@", [menuItem objectForKey:@"Title"]);
 
         //Close the menu
         [delegateOfMenuAppearance menuSwitch];

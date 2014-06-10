@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoginAndRegisterProtocols.h"
+//#import "LoginAndRegisterProtocols.h"
 
-@interface Register : UITableViewController<DismissKeyboard, UITextFieldDelegate>
+@interface Register_TableView : UITableView
+
+@end
+
+@interface Register : UITableViewController<UITextFieldDelegate>
 @property NSInteger roleCode;
 -(void)shiftUpViewForKeyboardShowing;
 -(void)restoreViewForKeyboardHiding;
+//-(void)dismissKeyboard;
 @end

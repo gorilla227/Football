@@ -8,6 +8,15 @@
 
 #import "Register.h"
 
+@implementation Register_TableView
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self reloadData];
+}
+
+@end
+
 @interface Register ()
 @property IBOutlet UITextField *teamNameTextField;
 @property IBOutlet UITextField *phoneNumberTextField;
@@ -56,7 +65,7 @@
     [self.navigationController setToolbarHidden:NO];
     
     //Add observer for keyboardShowinng
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shiftUpViewForKeyboardShowing) name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shiftUpViewForKeyboardShowing) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreViewForKeyboardHiding) name:UIKeyboardWillHideNotification object:nil];
 }
 
@@ -82,27 +91,23 @@
     [self performSegueWithIdentifier:@"RegisterCompleted" sender:self];
 }
 
-//Protocol DissmissKeyboard
--(void)dismissKeyboard
-{
-    for (UITextField *textField in textFieldArray) {
-        [textField resignFirstResponder];
-    }
-}
+////DismissKeyboard
+//-(void)dismissKeyboard
+//{
+//    for (UITextField *textField in textFieldArray) {
+//        [textField resignFirstResponder];
+//    }
+//}
 
 //ShiftUp/Restore view for keyboard
--(void)shiftUpViewForKeyboardShowing
-{
-    id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
-//    CGFloat keyboardShiftHeight = self.view.bounds.size.height - password.frame.origin.y - password.frame.size.height - registerButton.bounds.size.height - def_keyboardHeight;
-    
-    [delegate keyboardWillShow:CGAffineTransformMakeTranslation(0, -216)];
-}
+//-(void)shiftUpViewForKeyboardShowing
+//{
+//    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)]];
+//}
 
 -(void)restoreViewForKeyboardHiding
 {
-    id<MoveTextFieldForKeyboardShowing>delegate = (id)self.navigationController.parentViewController;
-    [delegate keyboardWillHide];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 //TextField
@@ -134,6 +139,7 @@
             break;
         }
     }
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)]];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
@@ -153,8 +159,9 @@
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
-    [headerView.contentView setBackgroundColor:def_navigationBar_background];
+//    [headerView.backgroundView setBackgroundColor:[UIColor clearColor]];
     [headerView.textLabel setTextAlignment:NSTextAlignmentCenter];
+//    [headerView.textLabel setTextColor:[UIColor whiteColor]];
 }
 
 //-(void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
