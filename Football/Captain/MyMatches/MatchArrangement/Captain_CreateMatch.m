@@ -48,7 +48,7 @@
     indexOfSelectedHomeStadium = -1;
     matchStadium = [[Stadium alloc] init];
     matchScore = [[MatchScore alloc] init];
-    matchScore.home = myUserInfo.team;
+    matchScore.home = gMyUserInfo.team;
     
     //Set dateformatter
     dateFormatter = [[NSDateFormatter alloc] init];

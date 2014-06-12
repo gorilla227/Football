@@ -54,27 +54,12 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)loginButtonOnClicked:(id)sender
-{
-    [connection requestUserInfoById:[NSNumber numberWithInteger:1]];
-    
-    //    [self.parentViewController.view setUserInteractionEnabled:NO];
-}
-
 -(IBAction)cancelButtonOnClicked:(id)sender
 {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
--(void)receiveUserInfo:(UserInfo *)userInfo
-{
-    myUserInfo = userInfo;
-    UIViewController *fillAdditional = [self.storyboard instantiateViewControllerWithIdentifier:@"FillAdditionalNav"];
-    [self presentViewController:fillAdditional animated:YES completion:^{
-        [self.navigationController popToRootViewControllerAnimated:NO];
-    }];
-}
 /*
 #pragma mark - Navigation
 

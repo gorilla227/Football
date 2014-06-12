@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UI_FillAdditionalProfile_Actions</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>完善个人资料</string>
+			<key>Icon</key>
+			<string>icon_fillMatchData.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>完善球队资料</string>
+			<key>Icon</key>
+			<string>icon_fillMatchData.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>召唤小伙伴</string>
+			<key>Icon</key>
+			<string>icon_fillMatchData.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>寻找组织</string>
+			<key>Icon</key>
+			<string>icon_fillMatchData.png</string>
+		</dict>
+	</array>
+	<key>UI_FillAdditionalProfile_Header_Captain</key>
+	<string>基友球队队长，快速召唤你的小伙伴/完善球队资料</string>
+	<key>UI_FillAdditionalProfile_Header_Player</key>
+	<string>基友，快速完善你的资料，方便你快速融入球队</string>
+</dict>
+</plist>

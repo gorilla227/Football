@@ -176,21 +176,8 @@
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
-//    [headerView.backgroundView setBackgroundColor:[UIColor clearColor]];
     [headerView.textLabel setTextAlignment:NSTextAlignmentCenter];
-//    [headerView.textLabel setTextColor:[UIColor whiteColor]];
 }
-
-//-(void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
-//{
-//    UITableViewHeaderFooterView *footerView = (UITableViewHeaderFooterView *)view;
-//    [footerView.backgroundView setBackgroundColor:[UIColor clearColor]];
-//}
-
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 10;
-//}
 
 #pragma mark - Navigation
 

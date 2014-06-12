@@ -57,7 +57,7 @@
 {
     //Remove self team
     for (Team *team in teams) {
-        if (![team.teamId isEqual:myUserInfo.team.teamId]) {
+        if (![team.teamId isEqual:gMyUserInfo.team.teamId]) {
             [teamList addObject:team];
         }
     }

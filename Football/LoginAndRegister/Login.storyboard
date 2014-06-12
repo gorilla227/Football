@@ -179,7 +179,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="WIR-AW-Ute" firstAttribute="width" secondItem="npE-b6-OjF" secondAttribute="width" id="2KT-Zd-lyi"/>
                             <constraint firstAttribute="centerX" secondItem="2Ha-HJ-kjK" secondAttribute="centerX" id="6yx-Pc-WTe"/>
@@ -321,7 +321,7 @@
                         <outlet property="phoneNumberTextField" destination="swk-gl-lTM" id="Fj0-ai-Rec"/>
                         <outlet property="registerBar" destination="XEr-ox-9gf" id="Cx2-yB-eqF"/>
                         <outlet property="teamNameTextField" destination="rxi-Jj-BoD" id="hhf-dh-rzz"/>
-                        <segue destination="sou-xh-Ncq" kind="push" identifier="RegisterCompleted" id="IZ7-CO-eIR"/>
+                        <segue destination="sou-xh-Ncq" kind="push" identifier="RegisterCompleted" id="njk-TP-QVr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UOh-HR-gCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -339,7 +339,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="2426" y="-1686"/>
+            <point key="canvasLocation" x="2450" y="-1686"/>
         </scene>
         <!--Register Completed-->
         <scene sceneID="fE5-7d-n8k">
@@ -376,15 +376,15 @@
                                             <constraint firstAttribute="height" constant="40" id="qJP-E8-iqB"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="登录">
+                                        <state key="normal" title="补充资料">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="loginButtonOnClicked:" destination="sou-xh-Ncq" eventType="touchUpInside" id="N4J-iS-UpB"/>
+                                            <segue destination="Cfc-Ei-NIk" kind="push" identifier="FillAdditionalProfile" id="eZo-U5-3eB"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请登录系统，补充详细资料" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuI-bH-55H">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请继续补充详细资料" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuI-bH-55H">
                                         <rect key="frame" x="52" y="94" width="217" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
@@ -405,7 +405,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="utP-as-Hvd" firstAttribute="top" secondItem="A71-RK-dg0" secondAttribute="bottom" id="6uB-Fn-Nl7"/>
                             <constraint firstItem="A71-RK-dg0" firstAttribute="top" secondItem="IHK-sc-JRd" secondAttribute="bottom" id="7Lk-8V-grF"/>
@@ -428,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21n-PG-AM0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2860" y="-1686"/>
+            <point key="canvasLocation" x="2914" y="-1686"/>
         </scene>
         <!--Register Captain Advance-->
         <scene sceneID="oqs-Gp-7IG">
@@ -522,7 +522,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fS-OI-N0m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2426" y="-1012"/>
+            <point key="canvasLocation" x="2614" y="-980"/>
         </scene>
         <!--Register Player - 我是球员-->
         <scene sceneID="bi4-iU-Dcg">
@@ -716,27 +716,86 @@
             </objects>
             <point key="canvasLocation" x="1583" y="-1686"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="5bY-cW-9Xl">
+        <!--Fill Additional Profile - 补充资料-->
+        <scene sceneID="MFR-qV-5fP">
             <objects>
-                <navigationController storyboardIdentifier="FillAdditionalNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="hrB-Qo-gtB" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="FillAdditionalProfile" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cfc-Ei-NIk" customClass="FillAdditionalProfile" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="B66-hX-s7k">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="QnF-xg-Vxt">
+                            <size key="itemSize" width="158" height="158"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FillAdditionalProfile_Cell" id="b45-3b-G9p" customClass="FillAdditionalProfile_Cell">
+                                <rect key="frame" x="0.0" y="50" width="158" height="158"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="158" height="158"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="完善球队资料" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJM-lF-kv5">
+                                            <rect key="frame" x="19" y="117" width="120" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NWV-te-NVe">
+                                            <rect key="frame" x="40" y="20" width="79" height="79"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="actionIcon" destination="NWV-te-NVe" id="Xnl-JA-Fmc"/>
+                                    <outlet property="actionLabel" destination="oJM-lF-kv5" id="6gc-Ps-BE7"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FillAdditionalProfile_Header" id="G9z-l8-srA">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="Cfc-Ei-NIk" id="ynv-ac-9Dg"/>
+                            <outlet property="delegate" destination="Cfc-Ei-NIk" id="2e7-ji-gJb"/>
+                        </connections>
+                    </collectionView>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lLE-TM-tfv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="NMX-Ic-YEG">
-                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
+                    <navigationItem key="navigationItem" title="补充资料" id="Z8Z-XX-3Eb">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="T5z-Vo-TaJ">
+                            <connections>
+                                <action selector="cancelButtonOnClicked:" destination="Cfc-Ei-NIk" id="WGq-ik-cGj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="rSz-va-qla" kind="relationship" relationship="rootViewController" id="rVw-Ap-jzb"/>
+                        <outlet property="toolBar" destination="RCh-Di-h1U" id="MNb-sH-g9e"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u12-Iq-89o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qbl-qY-LSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="RCh-Di-h1U">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="mVU-dC-KW8"/>
+                        <barButtonItem title="登录系统" id="nxs-Dn-LQU">
+                            <connections>
+                                <action selector="completeButtonOnClicked:" destination="Cfc-Ei-NIk" id="FKg-22-COO"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="GRQ-Ge-lCs"/>
+                    </items>
+                </toolbar>
             </objects>
-            <point key="canvasLocation" x="1583" y="-1006"/>
+            <point key="canvasLocation" x="3380" y="-1686"/>
         </scene>
         <!--Table View Controller - 补充资料-->
         <scene sceneID="VfW-MC-R4t">
@@ -750,7 +809,7 @@
                             <tableViewSection id="Idn-jt-0wa">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zqd-8p-ltq">
-                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="35" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zqd-8p-ltq" id="9y9-sn-Tqj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -772,7 +831,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Vjk-SL-MQK">
-                                        <rect key="frame" x="0.0" y="143" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="79" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vjk-SL-MQK" id="9TN-X2-uRb">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -780,7 +839,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="etu-ye-Hml">
-                                        <rect key="frame" x="0.0" y="187" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="123" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="etu-ye-Hml" id="0GB-2N-GOp">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -812,7 +871,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="2004" y="-1006"/>
+            <point key="canvasLocation" x="2440" y="-616"/>
         </scene>
     </scenes>
     <resources>

@@ -179,12 +179,10 @@
 -(IBAction)logoutButtonOnClicked:(id)sender
 {
     [delegateOfViewSwitch logout];
-//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(IBAction)optionButtonOnClicked:(id)sender
 {
-//    delegateOfMenuAppearance = (id)self.parentViewController;
     NSLog(@"设置");
     [delegateOfMenuAppearance menuSwitch];
 }

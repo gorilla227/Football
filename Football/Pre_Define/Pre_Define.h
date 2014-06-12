@@ -113,4 +113,5 @@ enum BalanceTypes
 #define def_MatchDateAndTimeformat @"YYYY-MM-dd HH:mm"
 
 //Global variables
-UserInfo *myUserInfo;
+UserInfo *gMyUserInfo;
+NSDictionary *gUIStrings;

@@ -29,6 +29,10 @@
     // Do any additional setup after loading the view.
     UIImage *backgroundImage = [UIImage imageNamed:@"soccer_grass_bg@2x.png"];
     [self.view.layer setContents:(id)backgroundImage.CGImage];
+    
+    //Get UIStrings
+    NSString *fileNameOfUIStrings = [[NSBundle mainBundle] pathForResource:@"UIStrings" ofType:@"plist"];
+    gUIStrings = [NSDictionary dictionaryWithContentsOfFile:fileNameOfUIStrings];
 }
 
 - (void)didReceiveMemoryWarning

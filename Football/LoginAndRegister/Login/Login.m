@@ -101,7 +101,7 @@
 
 -(void)receiveUserInfo:(UserInfo *)userInfo
 {
-    myUserInfo = userInfo;
+    gMyUserInfo = userInfo;
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Captain" bundle:nil];
     UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
     [self presentViewController:mainController animated:YES completion:nil];
