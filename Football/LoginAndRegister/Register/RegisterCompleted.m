@@ -36,10 +36,10 @@
     
     switch (roleCode) {
         case 0:
-            [self.navigationItem setTitle:def_registerViewTitle_Captain];
+            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_RegisterViewTitle_Captain"]];
             break;
         case 1:
-            [self.navigationItem setTitle:def_registerViewTitle_Player];
+            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_RegisterViewTitle_Player"]];
             break;
         default:
             break;
@@ -60,7 +60,7 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -68,7 +68,10 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"FillAdditionalProfile"]) {
+        FillAdditionalProfile *targetController = segue.destinationViewController;
+        [targetController setRoleCode:roleCode];
+    }
 }
-*/
 
 @end

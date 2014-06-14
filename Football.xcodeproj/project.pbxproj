@@ -58,16 +58,13 @@
 		A1D07BD218CC1E4800FA3A8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD118CC1E4800FA3A8D /* Foundation.framework */; };
 		A1D07BD418CC1E4800FA3A8D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */; };
 		A1D07BD618CC1E4800FA3A8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD518CC1E4800FA3A8D /* UIKit.framework */; };
-		A1D07BDC18CC1E4800FA3A8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1D07BDA18CC1E4800FA3A8D /* InfoPlist.strings */; };
 		A1D07BDE18CC1E4800FA3A8D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07BDD18CC1E4800FA3A8D /* main.m */; };
 		A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07BE118CC1E4800FA3A8D /* AppDelegate.m */; };
 		A1D07BEA18CC1E4800FA3A8D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1D07BE918CC1E4800FA3A8D /* Images.xcassets */; };
 		A1D07BF118CC1E4900FA3A8D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BF018CC1E4900FA3A8D /* XCTest.framework */; };
 		A1D07BF218CC1E4900FA3A8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD118CC1E4800FA3A8D /* Foundation.framework */; };
 		A1D07BF318CC1E4900FA3A8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD518CC1E4800FA3A8D /* UIKit.framework */; };
-		A1D07BFB18CC1E4900FA3A8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1D07BF918CC1E4900FA3A8D /* InfoPlist.strings */; };
 		A1D07BFD18CC1E4900FA3A8D /* FootballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D07BFC18CC1E4900FA3A8D /* FootballTests.m */; };
-		A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0618CD14B700FA3A8D /* Login.storyboard */; };
 		A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1D07C0D18CD177F00FA3A8D /* Setting.plist */; };
 		A1F428DC191209DB00567A02 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428C9191209DB00567A02 /* AFHTTPRequestOperation.m */; };
 		A1F428DD191209DB00567A02 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428CB191209DB00567A02 /* AFHTTPRequestOperationManager.m */; };
@@ -103,6 +100,7 @@
 		B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */; };
 		B2CEEC59194299360072D0BD /* CallFriendsMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2CEEC58194299360072D0BD /* CallFriendsMenu.plist */; };
 		B2D096EF18EE01D4005221F2 /* ActionSheetMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */; };
+		B2D13972194A7B53008E6CE9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D13971194A7B53008E6CE9 /* Login.storyboard */; };
 		B2D542B319452ECD008E6DE4 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D542B219452ECD008E6DE4 /* Register.m */; };
 		B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D6981518ECC3F700603B87 /* Captain_MyPlayers.m */; };
 		B2E8533E1937DA990020A624 /* Captain_PlayerMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8533D1937DA990020A624 /* Captain_PlayerMarket.m */; };
@@ -197,7 +195,6 @@
 		A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A1D07BD518CC1E4800FA3A8D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A1D07BD918CC1E4800FA3A8D /* Football-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Football-Info.plist"; sourceTree = "<group>"; };
-		A1D07BDB18CC1E4800FA3A8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1D07BDD18CC1E4800FA3A8D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A1D07BDF18CC1E4800FA3A8D /* Football-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Football-Prefix.pch"; sourceTree = "<group>"; };
 		A1D07BE018CC1E4800FA3A8D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -206,9 +203,7 @@
 		A1D07BEF18CC1E4900FA3A8D /* FootballTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FootballTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D07BF018CC1E4900FA3A8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A1D07BF818CC1E4900FA3A8D /* FootballTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FootballTests-Info.plist"; sourceTree = "<group>"; };
-		A1D07BFA18CC1E4900FA3A8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1D07BFC18CC1E4900FA3A8D /* FootballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FootballTests.m; sourceTree = "<group>"; };
-		A1D07C0618CD14B700FA3A8D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = LoginAndRegister/Login.storyboard; sourceTree = "<group>"; };
 		A1D07C0D18CD177F00FA3A8D /* Setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setting.plist; sourceTree = "<group>"; };
 		A1F428C8191209DB00567A02 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A1F428C9191209DB00567A02 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -263,6 +258,7 @@
 		B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+LeftIconAndLabel.m"; path = "Football/Utils/TextFieldCustomize/UITextField+LeftIconAndLabel.m"; sourceTree = "<group>"; };
 		B2CEEC58194299360072D0BD /* CallFriendsMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CallFriendsMenu.plist; path = Football/Utils/CallFriends/CallFriendsMenu.plist; sourceTree = "<group>"; };
 		B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActionSheetMenu.plist; path = Pre_Define/ActionSheetMenu.plist; sourceTree = "<group>"; };
+		B2D13971194A7B53008E6CE9 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = LoginAndRegister/Login.storyboard; sourceTree = "<group>"; };
 		B2D542B119452ECD008E6DE4 /* Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register.h; path = LoginAndRegister/Register/Register.h; sourceTree = "<group>"; };
 		B2D542B219452ECD008E6DE4 /* Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register.m; path = LoginAndRegister/Register/Register.m; sourceTree = "<group>"; };
 		B2D6981418ECC3F700603B87 /* Captain_MyPlayers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MyPlayers.h; path = Captain/MyTeam/MyPlayers/Captain_MyPlayers.h; sourceTree = "<group>"; };
@@ -549,7 +545,6 @@
 			children = (
 				A1D07C0D18CD177F00FA3A8D /* Setting.plist */,
 				A1D07BD918CC1E4800FA3A8D /* Football-Info.plist */,
-				A1D07BDA18CC1E4800FA3A8D /* InfoPlist.strings */,
 				A1D07BDD18CC1E4800FA3A8D /* main.m */,
 				A1D07BDF18CC1E4800FA3A8D /* Football-Prefix.pch */,
 			);
@@ -569,7 +564,6 @@
 			isa = PBXGroup;
 			children = (
 				A1D07BF818CC1E4900FA3A8D /* FootballTests-Info.plist */,
-				A1D07BF918CC1E4900FA3A8D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -579,7 +573,7 @@
 			children = (
 				A1FFD1C31941737700C6F7CF /* Login */,
 				A1C8FA3D18DFB1C500BE42D4 /* Register */,
-				A1D07C0618CD14B700FA3A8D /* Login.storyboard */,
+				B2D13971194A7B53008E6CE9 /* Login.storyboard */,
 				A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterProtocols.h */,
 				B2FED3261946835E00E6ABB8 /* Starting.h */,
 				B2FED3271946835E00E6ABB8 /* Starting.m */,
@@ -823,6 +817,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = A1D07BC518CC1E4800FA3A8D;
 			productRefGroup = A1D07BCF18CC1E4800FA3A8D /* Products */;
@@ -847,12 +842,12 @@
 				B2D096EF18EE01D4005221F2 /* ActionSheetMenu.plist in Resources */,
 				A18D7F841904A0F6003028FE /* icon_noticePlayers.png in Resources */,
 				A1C2803518F79CED004C644E /* soccer_grass_bg@2x.png in Resources */,
+				B2D13972194A7B53008E6CE9 /* Login.storyboard in Resources */,
 				A1370A591904D7CC00E64949 /* leftIcon_createMatch_cost.png in Resources */,
 				A1C2802E18F79CED004C644E /* login_textfield_title_pwd.png in Resources */,
 				A1370A5C1904D7CC00E64949 /* leftIcon_createMatch_place.png in Resources */,
 				B262D2F6192813110079526E /* icon_opponentAccepted.png in Resources */,
 				A1C2803218F79CED004C644E /* register_phone.png in Resources */,
-				A1D07C0718CD14B700FA3A8D /* Login.storyboard in Resources */,
 				A1D07BEA18CC1E4800FA3A8D /* Images.xcassets in Resources */,
 				A1370A5A1904D7CC00E64949 /* leftIcon_createMatch_numOfPlayers.png in Resources */,
 				B2026505191C25E7004B8D74 /* menuIcon_finance.png in Resources */,
@@ -871,7 +866,6 @@
 				A11F052718E68FBE00109870 /* ActivityRegion.plist in Resources */,
 				A19F8D141900E61E00AC8459 /* soccer_title_bar_bg.png in Resources */,
 				A19BC64E1949696E007986D7 /* UIStrings.plist in Resources */,
-				A1D07BDC18CC1E4800FA3A8D /* InfoPlist.strings in Resources */,
 				A1C2802F18F79CED004C644E /* login_textfield_title_user.png in Resources */,
 				A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */,
 				B2CEEC59194299360072D0BD /* CallFriendsMenu.plist in Resources */,
@@ -895,7 +889,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1D07BFB18CC1E4900FA3A8D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,25 +964,6 @@
 			targetProxy = A1D07BF418CC1E4900FA3A8D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		A1D07BDA18CC1E4800FA3A8D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A1D07BDB18CC1E4800FA3A8D /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A1D07BF918CC1E4900FA3A8D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A1D07BFA18CC1E4900FA3A8D /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A1D07BFE18CC1E4900FA3A8D /* Debug */ = {

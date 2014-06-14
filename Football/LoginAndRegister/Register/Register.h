@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "RegisterCompleted.h"
-//#import "LoginAndRegisterProtocols.h"
+#import "FillAdditionalProfile.h"
+#import "LoginAndRegisterProtocols.h"
 
 @interface Register_TableView : UITableView
-
+@property id<DismissKeyboard>delegateForDismissKeyboard;
 @end
 
-@interface Register : UITableViewController<UITextFieldDelegate>
-@property NSInteger roleCode;
--(void)shiftUpViewForKeyboardShowing;
--(void)restoreViewForKeyboardHiding;
-//-(void)dismissKeyboard;
+@interface Register : UITableViewController<UITextFieldDelegate, DismissKeyboard, UIAlertViewDelegate>
+-(void)refreshRegisterButtonEnable;
 @end

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CallFriends.h"
 
 @interface FillAdditionalProfile_Cell : UICollectionViewCell
 
 @end
 
-@interface FillAdditionalProfile : UICollectionViewController<JSONConnectDelegate>
-
+@interface FillAdditionalProfile : UICollectionViewController<JSONConnectDelegate, UIActionSheetDelegate>
+@property NSInteger roleCode;
 @end

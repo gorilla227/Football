@@ -33,5 +33,13 @@
 	<string>基友球队队长，快速召唤你的小伙伴/完善球队资料</string>
 	<key>UI_FillAdditionalProfile_Header_Player</key>
 	<string>基友，快速完善你的资料，方便你快速融入球队</string>
+	<key>UI_RegisterViewTitle_Captain</key>
+	<string>我是队长</string>
+	<key>UI_RegisterViewTitle_Player</key>
+	<string>我是球员</string>
+	<key>UI_LoginViewAccountPH_Captain</key>
+	<string>球队名称/账号名</string>
+	<key>UI_LoginViewAccountPH_Player</key>
+	<string>账号名</string>
 </dict>
 </plist>

@@ -11,7 +11,6 @@
 @property IBOutlet UITextField *accountField;
 @property IBOutlet UITextField *passwordField;
 @property IBOutlet UIButton *loginButton;
-@property IBOutlet UISegmentedControl *roleSegment;
 @property IBOutlet UIView *loginContentView;
 @property IBOutlet UIView *loginAndRegisterView;
 @end
@@ -19,7 +18,7 @@
 @implementation Login{
     JSONConnect *connection;
 }
-@synthesize accountField, passwordField, loginButton, roleSegment, loginContentView, loginAndRegisterView;
+@synthesize accountField, passwordField, loginButton, loginContentView, loginAndRegisterView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -109,17 +108,7 @@
 
 -(IBAction)registerButtonOnClicked:(id)sender
 {
-    [self dismissKeyboard];
-    switch (roleSegment.selectedSegmentIndex) {
-        case 0:
-            [self performSegueWithIdentifier:@"Register" sender:self];
-            break;
-        case 1:
-            [self performSegueWithIdentifier:@"Register" sender:self];
-            break;
-        default:
-            break;
-    }
+    [self performSegueWithIdentifier:@"Register" sender:self];
 }
 
 //DissmissKeyboard
@@ -159,21 +148,6 @@
     return NO;
 }
 
-//Change placeholder baseon role
--(IBAction)roleChanged:(id)sender
-{
-    switch (roleSegment.selectedSegmentIndex) {
-        case 0:
-            [accountField setPlaceholder:def_loginViewAccountPH_Captain];
-            break;
-        case 1:
-            [accountField setPlaceholder:def_loginViewAccountPH_Player];
-            break;
-        default:
-            break;
-    }
-}
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -181,10 +155,6 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"Register"]) {
-        Register *registerViewController = segue.destinationViewController;
-        [registerViewController setRoleCode:roleSegment.selectedSegmentIndex];
-    }
 }
 
 @end

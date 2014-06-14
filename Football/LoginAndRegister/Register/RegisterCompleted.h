@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FillAdditionalProfile.h"
 
 @interface RegisterCompleted : UIViewController
 @property NSInteger roleCode;

@@ -29,11 +29,9 @@
 
 @implementation FillAdditionalProfile{
     NSArray *actionButtons;
-#warning roleCode is a test variable, it would be replaced by one from gMyUserInfo
-    NSInteger roleCode;
     JSONConnect *connection;
 }
-@synthesize toolBar;
+@synthesize toolBar, roleCode;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,7 +55,7 @@
     actionButtons = [gUIStrings objectForKey:@"UI_FillAdditionalProfile_Actions"];
     
     //Fake the roleCode
-    roleCode = 1;//0 - Captain, 1 - Player
+//    roleCode = 0;//0 - Captain, 1 - Player
     
     //Initial JSON connection
     connection = [[JSONConnect alloc] initWithDelegate:self];
@@ -141,6 +139,30 @@
         return headerView;
     }
     return nil;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CallFriends *callFreinds = [[CallFriends alloc] initWithDelegate:self];
+    switch (indexPath.row) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            [callFreinds showInView:self.view];
+            break;
+        case 3:
+            break;
+        default:
+            break;
+    }
+}
+
+//CallFriends
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"%@", [actionSheet buttonTitleAtIndex:buttonIndex]);
 }
 /*
 #pragma mark - Navigation

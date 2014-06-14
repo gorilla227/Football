@@ -12,7 +12,8 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self reloadData];
+    [self setDelegateForDismissKeyboard:(id)self.delegate];
+    [self.delegateForDismissKeyboard dismissKeyboard];
 }
 
 @end
@@ -23,13 +24,15 @@
 @property IBOutlet UITextField *passwordTextField;
 @property IBOutlet UITextField *nickNameTextField;
 @property IBOutlet UIToolbar *registerBar;
+@property IBOutlet UIBarButtonItem *registerButton;
+@property IBOutlet UISegmentedControl *roleSegment;
 @end
 
 @implementation Register{
     NSArray *textFieldArray;
+    NSInteger numOfAvailableTextFields;
 }
-@synthesize teamNameTextField, phoneNumberTextField, passwordTextField, nickNameTextField, registerBar;
-@synthesize roleCode;
+@synthesize teamNameTextField, phoneNumberTextField, passwordTextField, nickNameTextField, registerBar, registerButton, roleSegment;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -45,39 +48,35 @@
     [super viewDidLoad];
     [self setToolbarItems:registerBar.items];
     
-    switch (roleCode) {
-        case 0:
-            [self.navigationItem setTitle:def_registerViewTitle_Captain];
-            break;
-        case 1:
-            [self.navigationItem setTitle:def_registerViewTitle_Player];
-            break;
-        default:
-            break;
-    }
+//    switch (roleSegment.selectedSegmentIndex) {
+//        case 0:
+//            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_RegisterViewTitle_Captain"]];
+//            break;
+//        case 1:
+//            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_RegisterViewTitle_Player"]];
+//            break;
+//        default:
+//            break;
+//    }
     
-    textFieldArray = @[teamNameTextField, phoneNumberTextField, passwordTextField, nickNameTextField];
+    textFieldArray = @[phoneNumberTextField, passwordTextField, nickNameTextField, teamNameTextField];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController setToolbarHidden:NO];
-    
-    //Add observer for keyboardShowinng
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shiftUpViewForKeyboardShowing) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreViewForKeyboardHiding) name:UIKeyboardWillHideNotification object:nil];
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)roleChanged:(id)sender
+{
+    [self.tableView reloadData];
 }
 
 -(IBAction)cancelButtonOnClicked:(id)sender
@@ -88,26 +87,26 @@
 
 -(IBAction)registerButtonOnClicked:(id)sender
 {
-    [self performSegueWithIdentifier:@"RegisterCompleted" sender:self];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"注册成功!"
+                                                        message:@"恭喜，你已加入“我要踢球”的大家庭！"
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"补充详细资料", nil];
+    [alertView show];
 }
 
-////DismissKeyboard
-//-(void)dismissKeyboard
-//{
-//    for (UITextField *textField in textFieldArray) {
-//        [textField resignFirstResponder];
-//    }
-//}
-
-//ShiftUp/Restore view for keyboard
-//-(void)shiftUpViewForKeyboardShowing
-//{
-//    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)]];
-//}
-
--(void)restoreViewForKeyboardHiding
+//UIAlertView
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self performSegueWithIdentifier:@"FillAdditionalProfile" sender:self];
+}
+
+//Protocol DismissKeyboard
+-(void)dismissKeyboard
+{
+    for (UITextField *textField in textFieldArray) {
+        [textField resignFirstResponder];
+    }
 }
 
 //TextField
@@ -121,7 +120,7 @@
                 return NO;
             }
         }
-        [self performSegueWithIdentifier:@"RegisterCompleted" sender:self];
+        [self registerButtonOnClicked:self];
     }
     else {
         UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];
@@ -155,20 +154,37 @@
             else {
                 [cell setAccessoryType:UITableViewCellAccessoryNone];
             }
+            [self refreshRegisterButtonEnable];
             break;
         }
     }
 }
 
+//Refresh RegisterButton isEnable
+-(void)refreshRegisterButtonEnable
+{
+    BOOL textAllFilled = YES;
+    for (int i = 0; i < numOfAvailableTextFields; i++) {
+        textAllFilled = textAllFilled && [textFieldArray[i] hasText];
+    }
+    [registerButton setEnabled:textAllFilled];
+}
+
 #pragma mark - Table view data source
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    switch (roleCode) {
+    switch (roleSegment.selectedSegmentIndex) {
         case 0://Captain
+            numOfAvailableTextFields = 4;
+            [self refreshRegisterButtonEnable];
             return 2;
         case 1://Player
+            numOfAvailableTextFields = 3;
+            [self refreshRegisterButtonEnable];
             return 1;
         default:
+            numOfAvailableTextFields = 0;
+            [self refreshRegisterButtonEnable];
             return 0;
     }
 }
@@ -177,6 +193,7 @@
 {
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
     [headerView.textLabel setTextAlignment:NSTextAlignmentCenter];
+//    [headerView.contentView setBackgroundColor:tableView.tintColor];
 }
 
 #pragma mark - Navigation
@@ -186,9 +203,9 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"RegisterCompleted"]) {
-        RegisterCompleted *completedView = segue.destinationViewController;
-        [completedView setRoleCode:roleCode];
+    if ([segue.identifier isEqualToString:@"FillAdditionalProfile"]) {
+        FillAdditionalProfile *fillAdditionalProfile = segue.destinationViewController;
+        [fillAdditionalProfile setRoleCode:roleSegment.selectedSegmentIndex];
     }
 }
 
