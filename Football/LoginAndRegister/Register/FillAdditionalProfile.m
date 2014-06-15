@@ -146,8 +146,10 @@
     CallFriends *callFreinds = [[CallFriends alloc] initWithDelegate:self];
     switch (indexPath.row) {
         case 0:
+            [self performSegueWithIdentifier:@"FillPlayerProfile" sender:self];
             break;
         case 1:
+            [self performSegueWithIdentifier:@"FillTeamProfile" sender:self];
             break;
         case 2:
             [callFreinds showInView:self.view];
@@ -164,7 +166,7 @@
 {
     NSLog(@"%@", [actionSheet buttonTitleAtIndex:buttonIndex]);
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -173,6 +175,5 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 @end

@@ -112,21 +112,22 @@
 //TextField
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    NSInteger indexOfNextTextField = [textFieldArray indexOfObject:textField] + 1;
-    if (indexOfNextTextField >= textFieldArray.count) {
-        for (UITextField *eachTextField in textFieldArray) {
-            if (![eachTextField hasText]) {
-                [eachTextField becomeFirstResponder];
-                return NO;
-            }
-        }
-        [self registerButtonOnClicked:self];
-    }
-    else {
-        UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];
-        [nextResponder becomeFirstResponder];
-    }
-    return NO;
+//    NSInteger indexOfNextTextField = [textFieldArray indexOfObject:textField] + 1;
+//    if (indexOfNextTextField >= textFieldArray.count) {
+//        for (UITextField *eachTextField in textFieldArray) {
+//            if (![eachTextField hasText]) {
+//                [eachTextField becomeFirstResponder];
+//                return NO;
+//            }
+//        }
+//        [self registerButtonOnClicked:self];
+//    }
+//    else {
+//        UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];
+//        [nextResponder becomeFirstResponder];
+//    }
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -176,15 +177,41 @@
     switch (roleSegment.selectedSegmentIndex) {
         case 0://Captain
             numOfAvailableTextFields = 4;
-            [self refreshRegisterButtonEnable];
-            return 2;
+            break;
         case 1://Player
             numOfAvailableTextFields = 3;
-            [self refreshRegisterButtonEnable];
-            return 1;
+            break;
         default:
             numOfAvailableTextFields = 0;
-            [self refreshRegisterButtonEnable];
+            break;
+    }
+    [self refreshRegisterButtonEnable];
+    return 2;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    switch (roleSegment.selectedSegmentIndex) {
+        case 0:
+            switch (section) {
+                case 0:
+                    return 1;
+                case 1:
+                    return 3;
+                default:
+                    return 0;
+            }
+        case 1:
+            switch (section) {
+                case 0:
+                    return 0;
+                case 1:
+                    return 3;
+                default:
+                    return 0;
+            }
+            
+        default:
             return 0;
     }
 }
@@ -194,6 +221,35 @@
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
     [headerView.textLabel setTextAlignment:NSTextAlignmentCenter];
 //    [headerView.contentView setBackgroundColor:tableView.tintColor];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0 && roleSegment.selectedSegmentIndex == 1) {
+        return 0;
+    }
+    else {
+        return tableView.sectionHeaderHeight;
+    }
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (roleSegment.selectedSegmentIndex) {
+        case 0:
+            switch (section) {
+                case 0:
+                    return [gUIStrings objectForKey:@"UI_RegisterView_Captain_Section_01"];
+                case 1:
+                    return [gUIStrings objectForKey:@"UI_RegisterView_Captain_Section_02"];
+                default:
+                    return nil;
+            }
+        case 1:
+            return [gUIStrings objectForKey:@"UI_RegisterView_Player_Section_01"];
+        default:
+            return nil;
+    }
 }
 
 #pragma mark - Navigation
@@ -208,6 +264,5 @@
         [fillAdditionalProfile setRoleCode:roleSegment.selectedSegmentIndex];
     }
 }
-
 
 @end

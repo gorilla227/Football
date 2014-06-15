@@ -26,8 +26,9 @@
 		A153ACBF190244880062EB44 /* hint_background_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBE190244880062EB44 /* hint_background_arrow.png */; };
 		A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */; };
 		A169F7421915F3AF00361796 /* enterScore_VS.png in Resources */ = {isa = PBXBuildFile; fileRef = A169F7411915F3AF00361796 /* enterScore_VS.png */; };
-		A171A90E1946C86C0046D051 /* RegisterCompleted.m in Sources */ = {isa = PBXBuildFile; fileRef = A171A90D1946C86C0046D051 /* RegisterCompleted.m */; };
 		A172432B1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */; };
+		A1818972194CD9A600BE18BC /* FillPlayerProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A1818971194CD9A600BE18BC /* FillPlayerProfile.m */; };
+		A1818977194D671E00BE18BC /* FillTeamProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A1818976194D671E00BE18BC /* FillTeamProfile.m */; };
 		A18D7F7A1903912D003028FE /* Captain_RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D7F791903912D003028FE /* Captain_RootNavigationController.m */; };
 		A18D7F831904A0F6003028FE /* icon_fillMatchData.png in Resources */ = {isa = PBXBuildFile; fileRef = A18D7F811904A0F6003028FE /* icon_fillMatchData.png */; };
 		A18D7F841904A0F6003028FE /* icon_noticePlayers.png in Resources */ = {isa = PBXBuildFile; fileRef = A18D7F821904A0F6003028FE /* icon_noticePlayers.png */; };
@@ -38,7 +39,6 @@
 		A19F8D151900E61E00AC8459 /* soccer_title_bar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A19F8D131900E61E00AC8459 /* soccer_title_bar_bg@2x.png */; };
 		A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */; };
 		A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */; };
-		A1AEA8B119417BEC00DB9F0C /* Register_Captain.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AEA8B019417BEC00DB9F0C /* Register_Captain.m */; };
 		A1AF632F193B066400997255 /* Captain_EnterBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AF632E193B066400997255 /* Captain_EnterBalance.m */; };
 		A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */; };
 		A1C2802D18F79CED004C644E /* login_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802418F79CED004C644E /* login_logo.png */; };
@@ -52,9 +52,6 @@
 		A1C2803518F79CED004C644E /* soccer_grass_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802C18F79CED004C644E /* soccer_grass_bg@2x.png */; };
 		A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */; };
 		A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */; };
-		A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8FA3B18DFB17300BE42D4 /* Register_Captain_Advance.m */; };
-		A1C8FA4918DFEADD00BE42D4 /* Register_Player.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8FA4818DFEADD00BE42D4 /* Register_Player.m */; };
-		A1C8FA4C18DFEAFE00BE42D4 /* Register_Player_Advance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C8FA4B18DFEAFE00BE42D4 /* Register_Player_Advance.m */; };
 		A1D07BD218CC1E4800FA3A8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD118CC1E4800FA3A8D /* Foundation.framework */; };
 		A1D07BD418CC1E4800FA3A8D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */; };
 		A1D07BD618CC1E4800FA3A8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD518CC1E4800FA3A8D /* UIKit.framework */; };
@@ -144,11 +141,13 @@
 		A153ACC0190248F80062EB44 /* Captain_CreateMatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch.h; sourceTree = "<group>"; };
 		A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch.m; sourceTree = "<group>"; };
 		A169F7411915F3AF00361796 /* enterScore_VS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enterScore_VS.png; path = Resource/enterScore_VS.png; sourceTree = "<group>"; };
-		A171A90C1946C86C0046D051 /* RegisterCompleted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterCompleted.h; path = LoginAndRegister/Register/RegisterCompleted.h; sourceTree = "<group>"; };
-		A171A90D1946C86C0046D051 /* RegisterCompleted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterCompleted.m; path = LoginAndRegister/Register/RegisterCompleted.m; sourceTree = "<group>"; };
 		A17243291908CF04008F4948 /* Captain_CreateMatch_TeamMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_TeamMarket.h; sourceTree = "<group>"; };
 		A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_TeamMarket.m; sourceTree = "<group>"; };
 		A178CED718FE343A007A3CA6 /* Pre_Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Pre_Define.h; path = Pre_Define/Pre_Define.h; sourceTree = "<group>"; };
+		A1818970194CD9A600BE18BC /* FillPlayerProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FillPlayerProfile.h; path = LoginAndRegister/Register/FillPlayerProfile.h; sourceTree = "<group>"; };
+		A1818971194CD9A600BE18BC /* FillPlayerProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FillPlayerProfile.m; path = LoginAndRegister/Register/FillPlayerProfile.m; sourceTree = "<group>"; };
+		A1818975194D671E00BE18BC /* FillTeamProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FillTeamProfile.h; path = LoginAndRegister/Register/FillTeamProfile.h; sourceTree = "<group>"; };
+		A1818976194D671E00BE18BC /* FillTeamProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FillTeamProfile.m; path = LoginAndRegister/Register/FillTeamProfile.m; sourceTree = "<group>"; };
 		A18D7F781903912D003028FE /* Captain_RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_RootNavigationController.h; path = Captain/Captain_RootNavigationController.h; sourceTree = "<group>"; };
 		A18D7F791903912D003028FE /* Captain_RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_RootNavigationController.m; path = Captain/Captain_RootNavigationController.m; sourceTree = "<group>"; };
 		A18D7F811904A0F6003028FE /* icon_fillMatchData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_fillMatchData.png; path = Resource/icon_fillMatchData.png; sourceTree = "<group>"; };
@@ -163,8 +162,6 @@
 		A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_EnterOpponent.m; sourceTree = "<group>"; };
 		A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_SelectMatchStadium.h; sourceTree = "<group>"; };
 		A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_SelectMatchStadium.m; sourceTree = "<group>"; };
-		A1AEA8AF19417BEC00DB9F0C /* Register_Captain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Captain.h; path = LoginAndRegister/Register/Register_Captain.h; sourceTree = "<group>"; };
-		A1AEA8B019417BEC00DB9F0C /* Register_Captain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Captain.m; path = LoginAndRegister/Register/Register_Captain.m; sourceTree = "<group>"; };
 		A1AF632D193B066400997255 /* Captain_EnterBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_EnterBalance.h; path = Captain/FinanceManagement/BalanceManagement/Captain_EnterBalance.h; sourceTree = "<group>"; };
 		A1AF632E193B066400997255 /* Captain_EnterBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_EnterBalance.m; path = Captain/FinanceManagement/BalanceManagement/Captain_EnterBalance.m; sourceTree = "<group>"; };
 		A1AF6330193B06BA00997255 /* Captain_BalanceManagement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Captain_BalanceManagement.h; path = Captain/FinanceManagement/BalanceManagement/Captain_BalanceManagement.h; sourceTree = "<group>"; };
@@ -183,13 +180,7 @@
 		A1C8F9DE18DAA12600BE42D4 /* Captain_MenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Captain_MenuList.plist; path = Captain/Captain_MenuList.plist; sourceTree = "<group>"; };
 		A1C8F9E018DAAA3400BE42D4 /* Captain_MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_MainMenu.h; path = Captain/Captain_MainMenu.h; sourceTree = "<group>"; };
 		A1C8F9E118DAAA3400BE42D4 /* Captain_MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_MainMenu.m; path = Captain/Captain_MainMenu.m; sourceTree = "<group>"; };
-		A1C8FA3A18DFB17300BE42D4 /* Register_Captain_Advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Captain_Advance.h; path = LoginAndRegister/Register/Register_Captain_Advance.h; sourceTree = "<group>"; };
-		A1C8FA3B18DFB17300BE42D4 /* Register_Captain_Advance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Captain_Advance.m; path = LoginAndRegister/Register/Register_Captain_Advance.m; sourceTree = "<group>"; };
 		A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoginAndRegisterProtocols.h; path = LoginAndRegister/LoginAndRegisterProtocols.h; sourceTree = "<group>"; };
-		A1C8FA4718DFEADD00BE42D4 /* Register_Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Player.h; path = LoginAndRegister/Register/Register_Player.h; sourceTree = "<group>"; };
-		A1C8FA4818DFEADD00BE42D4 /* Register_Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Player.m; path = LoginAndRegister/Register/Register_Player.m; sourceTree = "<group>"; };
-		A1C8FA4A18DFEAFE00BE42D4 /* Register_Player_Advance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Register_Player_Advance.h; path = LoginAndRegister/Register/Register_Player_Advance.h; sourceTree = "<group>"; };
-		A1C8FA4B18DFEAFE00BE42D4 /* Register_Player_Advance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Register_Player_Advance.m; path = LoginAndRegister/Register/Register_Player_Advance.m; sourceTree = "<group>"; };
 		A1D07BCE18CC1E4800FA3A8D /* Football.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Football.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D07BD118CC1E4800FA3A8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -450,6 +441,13 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		A181896F194CD86600BE18BC /* Old */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
 		A1988F49193D90340073332F /* TeamFundInquiry */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,21 +469,16 @@
 		A1C8FA3D18DFB1C500BE42D4 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				A1AEA8AF19417BEC00DB9F0C /* Register_Captain.h */,
-				A1AEA8B019417BEC00DB9F0C /* Register_Captain.m */,
-				A1C8FA3A18DFB17300BE42D4 /* Register_Captain_Advance.h */,
-				A1C8FA3B18DFB17300BE42D4 /* Register_Captain_Advance.m */,
-				A1C8FA4718DFEADD00BE42D4 /* Register_Player.h */,
-				A1C8FA4818DFEADD00BE42D4 /* Register_Player.m */,
-				A1C8FA4A18DFEAFE00BE42D4 /* Register_Player_Advance.h */,
-				A1C8FA4B18DFEAFE00BE42D4 /* Register_Player_Advance.m */,
+				A181896F194CD86600BE18BC /* Old */,
 				A11F052618E68FBE00109870 /* ActivityRegion.plist */,
 				B2D542B119452ECD008E6DE4 /* Register.h */,
 				B2D542B219452ECD008E6DE4 /* Register.m */,
-				A171A90C1946C86C0046D051 /* RegisterCompleted.h */,
-				A171A90D1946C86C0046D051 /* RegisterCompleted.m */,
 				B27BD35E194930B300802F4A /* FillAdditionalProfile.h */,
 				B27BD35F194930B300802F4A /* FillAdditionalProfile.m */,
+				A1818970194CD9A600BE18BC /* FillPlayerProfile.h */,
+				A1818971194CD9A600BE18BC /* FillPlayerProfile.m */,
+				A1818975194D671E00BE18BC /* FillTeamProfile.h */,
+				A1818976194D671E00BE18BC /* FillTeamProfile.m */,
 			);
 			name = Register;
 			sourceTree = "<group>";
@@ -908,10 +901,10 @@
 				A1D07BDE18CC1E4800FA3A8D /* main.m in Sources */,
 				A146685F191B53A600589785 /* Captain_CreateMatch_StadiumList.m in Sources */,
 				B2E8533E1937DA990020A624 /* Captain_PlayerMarket.m in Sources */,
+				A1818972194CD9A600BE18BC /* FillPlayerProfile.m in Sources */,
 				A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */,
 				B27BD6C61934093E00F35A51 /* Captain_PlayerDetails.m in Sources */,
 				A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */,
-				A1AEA8B119417BEC00DB9F0C /* Register_Captain.m in Sources */,
 				A1F428E1191209DB00567A02 /* AFURLConnectionOperation.m in Sources */,
 				A1F428DD191209DB00567A02 /* AFHTTPRequestOperationManager.m in Sources */,
 				A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */,
@@ -919,11 +912,9 @@
 				A18D7F7A1903912D003028FE /* Captain_RootNavigationController.m in Sources */,
 				A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */,
 				A1FFD1C21941737100C6F7CF /* Login.m in Sources */,
-				A1C8FA3C18DFB17300BE42D4 /* Register_Captain_Advance.m in Sources */,
 				A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */,
 				B2FED3281946835E00E6ABB8 /* Starting.m in Sources */,
 				B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */,
-				A171A90E1946C86C0046D051 /* RegisterCompleted.m in Sources */,
 				B262D2FF1928297D0079526E /* Captain_WarmupMatch.m in Sources */,
 				B2D6981618ECC3F700603B87 /* Captain_MyPlayers.m in Sources */,
 				A1F428E8191215A000567A02 /* JSONConnect.m in Sources */,
@@ -935,11 +926,10 @@
 				A1F428DE191209DB00567A02 /* AFHTTPSessionManager.m in Sources */,
 				A1F428E2191209DB00567A02 /* AFURLRequestSerialization.m in Sources */,
 				B2FEC5E41915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m in Sources */,
-				A1C8FA4918DFEADD00BE42D4 /* Register_Player.m in Sources */,
-				A1C8FA4C18DFEAFE00BE42D4 /* Register_Player_Advance.m in Sources */,
 				B22B10AE193A9683004BE83F /* Captain_BalanceManagement.m in Sources */,
 				A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */,
 				A1FC44511935A621007C4B68 /* CallFriends.m in Sources */,
+				A1818977194D671E00BE18BC /* FillTeamProfile.m in Sources */,
 				A10BAD0A190E1245000FA5A7 /* DataModel.m in Sources */,
 				A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */,
 				A114302518F2545100A39F13 /* Captain_TeamProfile.m in Sources */,

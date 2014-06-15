@@ -41,5 +41,11 @@
 	<string>球队名称/账号名</string>
 	<key>UI_LoginViewAccountPH_Player</key>
 	<string>账号名</string>
+	<key>UI_RegisterView_Captain_Section_01</key>
+	<string>球队资料</string>
+	<key>UI_RegisterView_Captain_Section_02</key>
+	<string>队长资料</string>
+	<key>UI_RegisterView_Player_Section_01</key>
+	<string>球员资料</string>
 </dict>
 </plist>
