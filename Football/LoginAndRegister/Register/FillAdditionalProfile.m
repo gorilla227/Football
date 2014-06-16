@@ -22,6 +22,7 @@
     [self.layer setCornerRadius:30.0f];
 }
 @end
+
 #pragma FillAdditionalProfile
 @interface FillAdditionalProfile ()
 @property IBOutlet UIToolbar *toolBar;

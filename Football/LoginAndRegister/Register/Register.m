@@ -23,6 +23,7 @@
 @property IBOutlet UITextField *phoneNumberTextField;
 @property IBOutlet UITextField *passwordTextField;
 @property IBOutlet UITextField *nickNameTextField;
+@property IBOutlet UITextField *mailTextField;
 @property IBOutlet UIToolbar *registerBar;
 @property IBOutlet UIBarButtonItem *registerButton;
 @property IBOutlet UISegmentedControl *roleSegment;
@@ -32,7 +33,7 @@
     NSArray *textFieldArray;
     NSInteger numOfAvailableTextFields;
 }
-@synthesize teamNameTextField, phoneNumberTextField, passwordTextField, nickNameTextField, registerBar, registerButton, roleSegment;
+@synthesize teamNameTextField, phoneNumberTextField, passwordTextField, nickNameTextField, mailTextField, registerBar, registerButton, roleSegment;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -46,26 +47,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:registerBar.items];
     
-//    switch (roleSegment.selectedSegmentIndex) {
-//        case 0:
-//            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_RegisterViewTitle_Captain"]];
-//            break;
-//        case 1:
-//            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_RegisterViewTitle_Player"]];
-//            break;
-//        default:
-//            break;
-//    }
-    
-    textFieldArray = @[phoneNumberTextField, passwordTextField, nickNameTextField, teamNameTextField];
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController setToolbarHidden:NO];
+    textFieldArray = @[phoneNumberTextField, passwordTextField, nickNameTextField, teamNameTextField, mailTextField];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,37 +98,8 @@
 //TextField
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-//    NSInteger indexOfNextTextField = [textFieldArray indexOfObject:textField] + 1;
-//    if (indexOfNextTextField >= textFieldArray.count) {
-//        for (UITextField *eachTextField in textFieldArray) {
-//            if (![eachTextField hasText]) {
-//                [eachTextField becomeFirstResponder];
-//                return NO;
-//            }
-//        }
-//        [self registerButtonOnClicked:self];
-//    }
-//    else {
-//        UIResponder *nextResponder = [textFieldArray objectAtIndex:indexOfNextTextField];
-//        [nextResponder becomeFirstResponder];
-//    }
     [textField resignFirstResponder];
-    return YES;
-}
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    NSIndexPath *indexPath;
-    for (UITableViewCell *cell in self.tableView.visibleCells) {
-        if ([cell.contentView.subviews containsObject:textField]) {
-            indexPath = [self.tableView indexPathForCell:cell];
-            break;
-        }
-    }
-    if (indexPath) {
-        [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)]];
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
+    return NO;
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -197,7 +154,7 @@
                 case 0:
                     return 1;
                 case 1:
-                    return 3;
+                    return 5;
                 default:
                     return 0;
             }
@@ -206,7 +163,7 @@
                 case 0:
                     return 0;
                 case 1:
-                    return 3;
+                    return 4;
                 default:
                     return 0;
             }

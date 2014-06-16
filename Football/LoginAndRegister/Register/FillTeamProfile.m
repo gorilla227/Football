@@ -80,10 +80,10 @@
     [activityRegionTextField setInputView:placePicker];
     [activityRegionTextField setTintColor:[UIColor clearColor]];
     
-    //
-    [sloganTextView.layer setBorderColor:teamNameTextField.layer.borderColor];
-    [sloganTextView.layer setBorderWidth:1.0f];
-    [sloganTextView.layer setCornerRadius:5.0f];
+    //Set sloganTextView border style consistent with TextField
+    [sloganTextView.layer setBorderColor:[UIColor colorWithRed:215/255.0 green:215/255.0 blue:215/255.0 alpha:1].CGColor];
+    [sloganTextView.layer setBorderWidth:0.6f];
+    [sloganTextView.layer setCornerRadius:6.0f];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginAndRegisterProtocols.h"
+
 @interface FillPlayerProfile_TableView : UITableView
 @property id<DismissKeyboard>delegateForDismissKeyboard;
 @end

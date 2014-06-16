@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RegisterCompleted.h"
 #import "FillAdditionalProfile.h"
 #import "LoginAndRegisterProtocols.h"
 
