@@ -56,11 +56,11 @@
 -(void)receiveTeams:(NSArray *)teams
 {
     //Remove self team
-    for (Team *team in teams) {
-        if (![team.teamId isEqual:gMyUserInfo.team.teamId]) {
-            [teamList addObject:team];
-        }
-    }
+//    for (Team *team in teams) {
+//        if (![team.teamId isEqual:gMyUserInfo.team.teamId]) {
+//            [teamList addObject:team];
+//        }
+//    }
 
     //Move the selected team to the first object.
     if (self.selectedTeam) {

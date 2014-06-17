@@ -6,6 +6,19 @@
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
+#pragma new Server
+#define CONNECT_ServerURL @"http://soccer.ckxgroup.cn"
+
+//Login
+#define CONNECT_Login_Suffix @"member/verify"
+#define CONNECT_Login_Parameters(account, password) @{@"mobile" : account, @"password" : password, @"is_captain" : [NSNumber numberWithInteger:0]}
+
+//Get userInfo
+#define CONNECT_UserInfo_Suffix @"member/profile"
+#define CONNECT_UserInfo_Parameters(userId) @{@"id" : [NSNumber numberWithInteger:userId]}
+
+
+#pragma zzOld_Server
 //JSON variables
 #define JSON_serverURL @"http://inomind.de:8080/SoccerServer"
 #define JSON_suffix_allMatches @"matches.json"

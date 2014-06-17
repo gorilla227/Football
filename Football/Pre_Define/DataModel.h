@@ -36,16 +36,13 @@
 
 #pragma UserInfo
 @interface UserInfo : NSObject
-@property NSNumber *userId;
-@property NSString *userName;
-@property NSData *picture;
-@property NSString *userType;
-@property NSString *loginType;
-@property NSString *city;
-@property NSString *name;
-@property NSNumber *age;
-@property NSString *gender;
-@property Team *team;
+@property NSInteger userId;
+@property NSString *mobile;
+@property NSInteger userType;
+@property NSString *nickName;
+@property NSString *qq;
+@property NSDate *birthday;
+@property NSString *activityRegion;
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)exportToDictionary;
 @end
@@ -87,16 +84,14 @@
 #define kStadium_phoneNumber @"phoneNumber"
 #define kStadium_contactPerson @"contactPerson"
 //UserInfo
-#define kUserInfo_name @"name"
-#define kUserInfo_age @"age"
-#define kUserInfo_team @"team"
 #define kUserInfo_userId @"id"
-#define kUserInfo_userName @"username"
-#define kUserInfo_picture @"picture"
-#define kUserInfo_userType @"userType"
-#define kUserInfo_loginType @"loginType"
-#define kUserInfo_city @"city"
-#define kUserInfo_gender @"gender"
+#define kUserInfo_mobile @"mobile"
+#define kUserInfo_password @"password"
+#define kUserInfo_userType @"is_captain"
+#define kUserInfo_nickName @"nick_name"
+#define kUserInfo_qq @"qq"
+#define kUserInfo_birthday @"birthday"
+#define kUserInfo_activityRegion @"location"
 //Team
 #define kTeam_name @"name"
 #define kTeam_description @"description"

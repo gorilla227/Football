@@ -81,11 +81,11 @@
     [teamIcon.layer setBorderWidth:2.0f];
     [teamIcon.layer setCornerRadius:teamIcon.bounds.size.width/2];
     [teamIcon.layer setMasksToBounds:YES];
-    [teamName setText:gMyUserInfo.team.teamName];
+//    [teamName setText:gMyUserInfo.team.teamName];
     
     //Request matches
     connection = [[JSONConnect alloc] initWithDelegate:self];
-    [connection requestMatchesByUserId:gMyUserInfo.userId count:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
+//    [connection requestMatchesByUserId:gMyUserInfo.userId count:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
     
     //Set menu button
     [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
@@ -122,12 +122,12 @@
     Captain_MatchArrangementListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MatchArrangementListCell"];
     Match *matchData = [matchesList objectAtIndex:indexPath.row];
     Team *opponentTeam;
-    if ([matchData.teamA.teamId isEqual:gMyUserInfo.team.teamId]) {
-        opponentTeam = matchData.teamB;
-    }
-    else {
-        opponentTeam = matchData.teamA;
-    }
+//    if ([matchData.teamA.teamId isEqual:gMyUserInfo.team.teamId]) {
+//        opponentTeam = matchData.teamB;
+//    }
+//    else {
+//        opponentTeam = matchData.teamA;
+//    }
     
     // Configure the cell...
     [cell.numberOfPlayers setText:[NSString stringWithFormat:@"%li/10", (long)indexPath.row]];

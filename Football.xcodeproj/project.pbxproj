@@ -95,6 +95,7 @@
 		B27BD6C61934093E00F35A51 /* Captain_PlayerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C51934093E00F35A51 /* Captain_PlayerDetails.m */; };
 		B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */; };
 		B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */; };
+		B2B955CD194FC649004FB5E0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B955CC194FC649004FB5E0 /* NSString+MD5.m */; };
 		B2CEEC59194299360072D0BD /* CallFriendsMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2CEEC58194299360072D0BD /* CallFriendsMenu.plist */; };
 		B2D096EF18EE01D4005221F2 /* ActionSheetMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */; };
 		B2D13972194A7B53008E6CE9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D13971194A7B53008E6CE9 /* Login.storyboard */; };
@@ -247,6 +248,8 @@
 		B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NotifyPlayers.m; path = Captain/MyTeam/Captain_NotifyPlayers.m; sourceTree = "<group>"; };
 		B2B1EE46193FDCE900915CA8 /* UITextField+LeftIconAndLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+LeftIconAndLabel.h"; path = "Football/Utils/TextFieldCustomize/UITextField+LeftIconAndLabel.h"; sourceTree = "<group>"; };
 		B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+LeftIconAndLabel.m"; path = "Football/Utils/TextFieldCustomize/UITextField+LeftIconAndLabel.m"; sourceTree = "<group>"; };
+		B2B955CB194FC649004FB5E0 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		B2B955CC194FC649004FB5E0 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		B2CEEC58194299360072D0BD /* CallFriendsMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CallFriendsMenu.plist; path = Football/Utils/CallFriends/CallFriendsMenu.plist; sourceTree = "<group>"; };
 		B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ActionSheetMenu.plist; path = Pre_Define/ActionSheetMenu.plist; sourceTree = "<group>"; };
 		B2D13971194A7B53008E6CE9 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = LoginAndRegister/Login.storyboard; sourceTree = "<group>"; };
@@ -430,6 +433,7 @@
 		A173033D18FB5A0A00702015 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B2B955CA194FC649004FB5E0 /* MD5_Encryption */,
 				B2B1EE49193FDCF200915CA8 /* TextFieldCustomize */,
 				A1FC44531935A641007C4B68 /* CallFriends */,
 				A1009A6F19288848008A125D /* ImageConvert */,
@@ -737,6 +741,16 @@
 			name = TextFieldCustomize;
 			sourceTree = "<group>";
 		};
+		B2B955CA194FC649004FB5E0 /* MD5_Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				B2B955CB194FC649004FB5E0 /* NSString+MD5.h */,
+				B2B955CC194FC649004FB5E0 /* NSString+MD5.m */,
+			);
+			name = MD5_Encryption;
+			path = Football/Utils/MD5_Encryption;
+			sourceTree = "<group>";
+		};
 		B2D6981318ECC35500603B87 /* MyTeam */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,6 +927,7 @@
 				A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */,
 				A1FFD1C21941737100C6F7CF /* Login.m in Sources */,
 				A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */,
+				B2B955CD194FC649004FB5E0 /* NSString+MD5.m in Sources */,
 				B2FED3281946835E00E6ABB8 /* Starting.m in Sources */,
 				B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */,
 				B262D2FF1928297D0079526E /* Captain_WarmupMatch.m in Sources */,

@@ -93,9 +93,25 @@
 
 -(IBAction)loginButtonOnClicked:(id)sender
 {
-    [connection requestUserInfoById:[NSNumber numberWithInteger:1]];
-    
-    //    [self.parentViewController.view setUserInteractionEnabled:NO];
+//    [connection requestUserInfoById:[NSNumber numberWithInteger:1]];
+//    [self.parentViewController.view setUserInteractionEnabled:NO];
+
+//    [connection loginVerification:accountField.text password:passwordField.text];
+    [connection loginVerification:@"13520636947" password:@"123456"];
+}
+
+-(void)loginVerificationSuccessfully:(NSInteger)userId
+{
+    [connection requestUserInfo:userId];
+}
+
+-(void)loginVerificationFailed
+{
+    UIAlertView *loginFailedAlertView = [[UIAlertView alloc] initWithTitle:@"登录失败"
+                                                                   message:@"账号/密码错误！"
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"确认" otherButtonTitles:nil];
+    [loginFailedAlertView show];
 }
 
 -(void)receiveUserInfo:(UserInfo *)userInfo

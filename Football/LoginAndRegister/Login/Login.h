@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Register.h"
 
-@interface Login : UIViewController<UITextFieldDelegate>
+@interface Login : UIViewController<UITextFieldDelegate, JSONConnectDelegate>
 -(void)keyboardWillShow;
 -(void)keyboardWillHide;
 -(void)initialTextFields;

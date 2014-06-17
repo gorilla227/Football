@@ -86,23 +86,19 @@
 
 #pragma UserInfo
 @implementation UserInfo
-@synthesize name, userId, gender, age, team, userName, userType, picture, loginType, city;
+@synthesize userId, mobile, userType, nickName, qq, birthday, activityRegion;
 
 -(id)initWithData:(NSDictionary *)data
 {
     self = [super init];
     if (self) {
-        [self setName:[data objectForKey:kUserInfo_name]];
-        [self setAge:[data objectForKey:kUserInfo_age]];
-        [self setGender:[data objectForKey:kUserInfo_gender]];
-//        NSDictionary *dataTeam = [data objectForKey:kUserInfo_team];
-//        [self setTeam:[[Team alloc] initWithData:dataTeam]];
-        [self setUserId:[data objectForKey:kUserInfo_userId]];
-        [self setUserName:[data objectForKey:kUserInfo_userName]];
-        [self setPicture:[data objectForKey:kUserInfo_picture]];
-        [self setUserType:[data objectForKey:kUserInfo_userType]];
-        [self setLoginType:[data objectForKey:kUserInfo_loginType]];
-        [self setCity:[data objectForKey:kUserInfo_city]];
+        [self setUserId:[[data objectForKey:kUserInfo_userId] integerValue]];
+        [self setMobile:[data objectForKey:kUserInfo_mobile]];
+        [self setUserType:[[data objectForKey:kUserInfo_userType] integerValue]];
+        [self setNickName:[data objectForKey:kUserInfo_nickName]];
+        [self setQq:[data objectForKey:kUserInfo_qq]];
+        [self setBirthday:[data objectForKey:kUserInfo_birthday]];
+        [self setActivityRegion:[data objectForKey:kUserInfo_activityRegion]];
     }
     return self;
 }
@@ -110,21 +106,13 @@
 -(NSDictionary *)exportToDictionary
 {
     NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
-    [output setObject:name forKey:kUserInfo_name];
-    [output setObject:age forKey:kUserInfo_age];
-    [output setObject:gender forKey:kUserInfo_gender];
-//    [output setObject:[team exportToDictionary] forKey:kUserInfo_team];
-    [output setObject:userId forKey:kUserInfo_userId];
-    [output setObject:userName forKey:kUserInfo_userName];
-    if ([picture isEqual:[NSNull null]]) {
-        [output setObject:[NSNull null] forKey:kUserInfo_picture];
-    }
-    else {
-        [output setObject:[picture base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn] forKey:kUserInfo_picture];
-    }
-    [output setObject:userType forKey:kUserInfo_userType];
-    [output setObject:loginType forKey:kUserInfo_loginType];
-    [output setObject:city forKey:kUserInfo_city];
+    [output setObject:[NSNumber numberWithInteger:userId] forKey:kUserInfo_userId];
+    [output setObject:mobile forKey:kUserInfo_mobile];
+    [output setObject:[NSNumber numberWithInteger:userType] forKey:kUserInfo_userType];
+    [output setObject:nickName forKey:kUserInfo_nickName];
+    [output setObject:qq forKey:kUserInfo_qq];
+    [output setObject:birthday forKey:kUserInfo_birthday];
+    [output setObject:activityRegion forKey:kUserInfo_activityRegion];
     return output;
 }
 @end

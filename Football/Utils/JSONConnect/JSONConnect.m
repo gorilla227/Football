@@ -20,10 +20,57 @@
         [self setDelegate:responser];
         manager = [AFHTTPRequestOperationManager manager];
         [manager setResponseSerializer:[AFJSONResponseSerializer serializer]];
+        [manager.responseSerializer setAcceptableContentTypes:[manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"]];
     }
     return self;
 }
 
+-(void)showErrorAlertView:(NSError *)error
+{
+    UIAlertView *errorAlertViw = [[UIAlertView alloc] initWithTitle:@"杯具了" message:error.localizedDescription delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
+    [errorAlertViw show];
+}
+
+#pragma new Server
+//LoginVerification
+-(void)loginVerification:(NSString *)account password:(NSString *)password
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_Login_Suffix];
+    NSDictionary *parameters = CONNECT_Login_Parameters(account, password.MD5);
+    
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSInteger userId = [[responseObject objectForKey:@"id"] integerValue];
+        if (userId > 0) {
+            [delegate loginVerificationSuccessfully:userId];
+        }
+        else {
+            [delegate loginVerificationFailed];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error];
+    }];
+}
+
+//GetUserInfo
+-(void)requestUserInfo:(NSInteger)userId
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UserInfo_Suffix];
+    NSDictionary *parameters = CONNECT_UserInfo_Parameters(1);
+    
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (responseObject) {
+            UserInfo *userInfo = [[UserInfo alloc] initWithData:responseObject];
+            [delegate receiveUserInfo:userInfo];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error];
+    }];
+}
+
+#pragma zzOld_Server
 -(void)requestUserInfoById:(NSNumber *)userId
 {
     [manager.operationQueue cancelAllOperations];
@@ -180,9 +227,4 @@
     }];
 }
 
--(void)showErrorAlertView:(NSError *)error
-{
-    UIAlertView *errorAlertViw = [[UIAlertView alloc] initWithTitle:@"杯具了" message:error.localizedDescription delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
-    [errorAlertViw show];
-}
 @end

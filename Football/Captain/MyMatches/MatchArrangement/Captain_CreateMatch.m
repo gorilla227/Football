@@ -48,7 +48,7 @@
     indexOfSelectedHomeStadium = -1;
     matchStadium = [[Stadium alloc] init];
     matchScore = [[MatchScore alloc] init];
-    matchScore.home = gMyUserInfo.team;
+//    matchScore.home = gMyUserInfo.team;
     
     //Set dateformatter
     dateFormatter = [[NSDateFormatter alloc] init];
@@ -455,8 +455,8 @@
     Captain_CreateMatch_MatchScoreTableView_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchScoreCell"];
     UserInfo *goalPlayer = [matchScore.goalPlayers objectAtIndex:indexPath.row];
     UserInfo *assistPlayer = [matchScore.assistPlayers objectAtIndex:indexPath.row];
-    [cell.goalPlayerName setText:goalPlayer.name];
-    [cell.assistPlayerName setText:assistPlayer.name];
+    [cell.goalPlayerName setText:goalPlayer.nickName];
+    [cell.assistPlayerName setText:assistPlayer.nickName];
     return cell;
 }
 

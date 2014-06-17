@@ -34,7 +34,7 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     UserInfo *candidatePlayer = [playersCandidateList objectAtIndex:row];
-    return candidatePlayer.name;
+    return candidatePlayer.nickName;
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
@@ -42,10 +42,10 @@
     UserInfo *candidatePlayer = [playersCandidateList objectAtIndex:row];
     switch (component) {
         case 0:
-            [goalPlayerName setText:candidatePlayer.name];
+            [goalPlayerName setText:candidatePlayer.nickName];
             break;
         case 1:
-            [assistPlayerName setText:candidatePlayer.name];
+            [assistPlayerName setText:candidatePlayer.nickName];
             break;
         default:
             break;
@@ -181,11 +181,11 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         Captain_CreateMatch_EnterScoreTableView_Cell *cell = (Captain_CreateMatch_EnterScoreTableView_Cell *)[scoreDetailsTableView cellForRowAtIndexPath:indexPath];
         for (UserInfo *player in playersCandidateList) {
-            NSLog(@"%@,%@,%@", player.name, cell.goalPlayerName.text, cell.assistPlayerName.text);
-            if ([player.name isEqualToString:cell.goalPlayerName.text]) {
+//            NSLog(@"%@,%@,%@", player.name, cell.goalPlayerName.text, cell.assistPlayerName.text);
+            if ([player.nickName isEqualToString:cell.goalPlayerName.text]) {
                 [goalPlayers addObject:player];
             }
-            if ([player.name isEqualToString:cell.assistPlayerName.text]) {
+            if ([player.nickName isEqualToString:cell.assistPlayerName.text]) {
                 [assistPlayers addObject:player];
             }
         }
