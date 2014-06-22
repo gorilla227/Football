@@ -37,15 +37,29 @@
 	<string>我是队长</string>
 	<key>UI_RegisterViewTitle_Player</key>
 	<string>我是球员</string>
-	<key>UI_LoginViewAccountPH_Captain</key>
-	<string>球队名称/账号名</string>
-	<key>UI_LoginViewAccountPH_Player</key>
-	<string>账号名</string>
+	<key>UI_LoginViewAccountPH</key>
+	<string>手机号码/邮箱</string>
 	<key>UI_RegisterView_Captain_Section_01</key>
 	<string>球队资料</string>
 	<key>UI_RegisterView_Captain_Section_02</key>
 	<string>队长/领队资料</string>
 	<key>UI_RegisterView_Player_Section_01</key>
 	<string>球员资料</string>
+	<key>UI_FillTeamProfile_TeamIconButton_New</key>
+	<string>选择队标</string>
+	<key>UI_FillPlayerProfile_PlayerIconButton_New</key>
+	<string>选择头像</string>
+	<key>UI_LoginView_VerificationFailed_Title</key>
+	<string>登录失败</string>
+	<key>UI_LoginView_VerificationFailed_Message</key>
+	<string>账号/密码错误！</string>
+	<key>UI_LoginView_VerificationFailed_Cancel</key>
+	<string>确认</string>
+	<key>UI_RegisterView_Success_Title</key>
+	<string>注册成功!</string>
+	<key>UI_RegisterView_Success_Message</key>
+	<string>恭喜，你已加入“我要踢球”的大家庭！</string>
+	<key>UI_RegisterView_Success_OK</key>
+	<string>补充详细资料</string>
 </dict>
 </plist>

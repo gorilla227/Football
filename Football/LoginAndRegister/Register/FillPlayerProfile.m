@@ -20,28 +20,23 @@
 @interface FillPlayerProfile ()
 @property IBOutlet UIToolbar *saveBar;
 @property IBOutlet UIImageView *playerIconImageView;
-@property IBOutlet UIButton *selectPlayerIconButton;
+@property IBOutlet UIButton *playerIconActionButton;
 @property IBOutlet UITextField *mailTextField;
 @property IBOutlet UITextField *nickNameTextField;
 @property IBOutlet UITextField *qqTextField;
 @property IBOutlet UITextField *birthdateTextField;
-@property IBOutlet UITextField *activityRegionTextField;
-@property IBOutlet UIButton *clearPlayerIconButton;
+@property IBOutlet UITextFieldForActivityRegion *activityRegionTextField;
 @property IBOutlet UITextField *legalNameTextField;
 @property IBOutlet UITextField *phoneNumberTextField;
 @end
 
 @implementation FillPlayerProfile{
     UIDatePicker *datePicker;
-    UIPickerView *placePicker;
-    NSDictionary *pickerData;
-    NSArray *provinces;
-    NSArray *cities;
-    NSString *selectedProvince;
-    NSString *selectedCity;
+    UIImagePickerController *imagePicker;
+    UIActionSheet *editPlayerIconMenu;
     NSArray *textFieldArray;
 }
-@synthesize saveBar, playerIconImageView, selectPlayerIconButton, nickNameTextField, qqTextField, birthdateTextField, activityRegionTextField, clearPlayerIconButton, legalNameTextField, phoneNumberTextField, mailTextField;
+@synthesize saveBar, playerIconImageView, playerIconActionButton, nickNameTextField, qqTextField, birthdateTextField, activityRegionTextField, legalNameTextField, phoneNumberTextField, mailTextField;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -64,14 +59,12 @@
     [self setToolbarItems:saveBar.items];
     textFieldArray = @[legalNameTextField, nickNameTextField, phoneNumberTextField, qqTextField, birthdateTextField, activityRegionTextField, mailTextField];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     //Set the playerIcon related controls
-    [playerIconImageView.layer setCornerRadius:40.0f];
+    [playerIconImageView.layer setCornerRadius:10.0f];
     [playerIconImageView.layer setMasksToBounds:YES];
     [playerIconImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
     [playerIconImageView.layer setBorderWidth:1.0f];
-    [clearPlayerIconButton setHidden:!playerIconImageView.image];
     
     //Set Datepicker for birthdateTextField
     datePicker = [[UIDatePicker alloc] init];
@@ -87,18 +80,38 @@
     [datePicker setMaximumDate:[NSDate date]];
     [datePicker setMinimumDate:minDate];
     
+    //Set imagePicker
+    imagePicker = [[UIImagePickerController alloc] init];
+    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [imagePicker setDelegate:self];
+    [imagePicker setAllowsEditing:YES];
+    [imagePicker.navigationBar setTitleTextAttributes:self.navigationController.navigationBar.titleTextAttributes];
+    
+    //Set EditTeamIcon menu
+    NSString *menuTitleFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
+    NSArray *menuTitleList = [[[NSDictionary alloc] initWithContentsOfFile:menuTitleFile] objectForKey:@"EditPlayerIconMenu"];
+    editPlayerIconMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:menuTitleList.lastObject otherButtonTitles:menuTitleList[0], nil];
+    
+    //Set selectTeamIconButton
+    if (playerIconImageView.image) {
+        [playerIconActionButton setTitle:nil forState:UIControlStateNormal];
+    }
+    else {
+        [playerIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillPlayerProfile_PlayerIconButton_New"] forState:UIControlStateNormal];
+    }
+
     //Set activityregion Picker
-    NSString *file = [[NSBundle mainBundle] pathForResource:@"ActivityRegion" ofType:@"plist"];
-    pickerData = [[NSDictionary alloc] initWithContentsOfFile:file];
-    provinces = [pickerData allKeys];
-    selectedProvince = [provinces firstObject];
-    cities = [pickerData objectForKey:selectedProvince];
-    selectedCity = [cities firstObject];
-    placePicker = [[UIPickerView alloc] init];
-    [placePicker setDataSource:self];
-    [placePicker setDelegate:self];
-    [activityRegionTextField setInputView:placePicker];
     [activityRegionTextField setTintColor:[UIColor clearColor]];
+    [activityRegionTextField activityRegionTextField];
+    
+    //Set LeftIcon for textFields
+    [phoneNumberTextField initialLeftViewWithIconImage:@"TextFieldIcon_Mobile.png"];
+//    [mailTextField initialLeftViewWithIconImage:@""];
+    [nickNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_Account.png"];
+    [legalNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_Account.png"];
+    [qqTextField initialLeftViewWithIconImage:@"TextFieldIcon_QQ.png"];
+    [birthdateTextField initialLeftViewWithIconImage:@"TextFieldIcon_Birthday.png"];
+    [activityRegionTextField initialLeftViewWithIconImage:@"TextFieldIcon_ActivityRegion.png"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,12 +127,29 @@
 
 -(IBAction)selectPlayerIconButtonOnClicked:(id)sender
 {
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    [imagePicker setDelegate:self];
-    [imagePicker setAllowsEditing:YES];
-    [imagePicker.navigationBar setTitleTextAttributes:self.navigationController.navigationBar.titleTextAttributes];
-    [self presentViewController:imagePicker animated:YES completion:nil];
+    if (playerIconImageView.image) {
+        [editPlayerIconMenu showInView:self.view];
+    }
+    else {
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([actionSheet isEqual:editPlayerIconMenu]) {
+        switch (buttonIndex) {
+            case 0://Delete playerIcon
+                [playerIconImageView setImage:nil];
+                [playerIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillPlayerProfile_PlayerIconButton_New"] forState:UIControlStateNormal];
+                break;
+            case 1://Change playerIcon
+                [self presentViewController:imagePicker animated:YES completion:nil];
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -128,15 +158,17 @@
     if ([imageType isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
         [playerIconImageView setImage:image];
+        [playerIconActionButton setTitle:nil forState:UIControlStateNormal];
         [picker dismissViewControllerAnimated:YES completion:nil];
-        [clearPlayerIconButton setHidden:!image];
     }
 }
 
--(IBAction)clearPlayerIconButtonOnClicked:(id)sender
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [playerIconImageView setImage:nil];
-    [clearPlayerIconButton setHidden:YES];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    if (!playerIconImageView.image) {
+        [playerIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillPlayerProfile_PlayerIconButton_New"] forState:UIControlStateNormal];
+    }
 }
 
 //Protocol DismissKeyboard
@@ -160,63 +192,6 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:def_MatchDateformat];
     [birthdateTextField setText:[dateFormatter stringFromDate:datePicker.date]];
-}
-
-#pragma ActivityRegion Picker
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 2;
-}
-
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    NSInteger number = 0;
-    switch (component) {
-        case 0:
-            number = provinces.count;
-            break;
-        case 1:
-            number = cities.count;
-            break;
-        default:
-            break;
-    }
-    return number;
-}
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSString *title;
-    switch (component) {
-        case 0:
-            title = [provinces objectAtIndex:row];
-            break;
-        case 1:
-            title = [cities objectAtIndex:row];
-            break;
-        default:
-            break;
-    }
-    return title;
-}
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    switch (component) {
-        case 0:
-            selectedProvince = [provinces objectAtIndex:row];
-            cities = [pickerData objectForKey:selectedProvince];
-            selectedCity = [cities firstObject];
-            [placePicker reloadComponent:1];
-            [placePicker selectRow:0 inComponent:1 animated:YES];
-            break;
-        case 1:
-            selectedCity = [cities objectAtIndex:row];
-            break;
-        default:
-            break;
-    }
-    [activityRegionTextField setText:[NSString stringWithFormat:@"%@ %@", selectedProvince, selectedCity]];
 }
 
 /*

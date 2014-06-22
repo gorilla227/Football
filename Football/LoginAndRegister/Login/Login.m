@@ -62,27 +62,14 @@
 
 -(void)initialTextFields
 {
-    UIImageView *accountIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_textfield_title_user.png"]];
-    [accountIconImageView setFrame:CGRectMake(0, 0, 44, 34)];
-    [accountIconImageView setContentMode:UIViewContentModeCenter];
-    [accountIconImageView setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
-    [accountField setLeftView:accountIconImageView];
-    [accountField setLeftViewMode:UITextFieldViewModeAlways];
-    
-    UIImageView *passwordIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_textfield_title_pwd.png"]];
-    [passwordIconImageView setFrame:CGRectMake(0, 0, 44, 34)];
-    [passwordIconImageView setContentMode:UIViewContentModeCenter];
-    [passwordIconImageView setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
-    [passwordField setLeftView:passwordIconImageView];
-    [passwordField setLeftViewMode:UITextFieldViewModeAlways];
-    
+    [accountField setPlaceholder:[gUIStrings objectForKey:@"UI_LoginViewAccountPH"]];
+    [accountField initialLeftViewWithIconImage:@"TextFieldIcon_Account.png"];
     [accountField.layer setBorderColor:def_navigationBar_background.CGColor];
     [accountField.layer setBorderWidth:1.0f];
-    [accountField.layer setCornerRadius:3.0f];
     
-    [passwordField.layer setBorderColor:[UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1].CGColor];
+    [passwordField initialLeftViewWithIconImage:@"TextFieldIcon_Password.png"];
+    [passwordField.layer setBorderColor:def_textFieldBorderColor.CGColor];
     [passwordField.layer setBorderWidth:1.0f];
-    [passwordField.layer setCornerRadius:3.0f];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -107,10 +94,10 @@
 
 -(void)loginVerificationFailed
 {
-    UIAlertView *loginFailedAlertView = [[UIAlertView alloc] initWithTitle:@"登录失败"
-                                                                   message:@"账号/密码错误！"
+    UIAlertView *loginFailedAlertView = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_LoginView_VerificationFailed_Title"]
+                                                                   message:[gUIStrings objectForKey:@"UI_LoginView_VerificationFailed_Message"]
                                                                   delegate:self
-                                                         cancelButtonTitle:@"确认" otherButtonTitles:nil];
+                                                         cancelButtonTitle:[gUIStrings objectForKey:@"UI_LoginView_VerificationFailed_Cancel"] otherButtonTitles:nil];
     [loginFailedAlertView show];
 }
 

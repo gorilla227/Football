@@ -19,24 +19,19 @@
 @interface FillTeamProfile ()
 @property IBOutlet UIToolbar *saveBar;
 @property IBOutlet UIImageView *teamIconImageView;
-@property IBOutlet UIButton *selectTeamIconButton;
-@property IBOutlet UIButton *clearTeamIconButton;
+@property IBOutlet UIButton *teamIconActionButton;
 @property IBOutlet UITextField *teamNameTextField;
-@property IBOutlet UITextField *activityRegionTextField;
-@property IBOutlet UITextField *homeStadium;
+@property IBOutlet UITextFieldForActivityRegion *activityRegionTextField;
+@property IBOutlet UITextField *homeStadiumTextField;
 @property IBOutlet UITextView *sloganTextView;
 @end
 
 @implementation FillTeamProfile{
-    UIPickerView *placePicker;
-    NSDictionary *pickerData;
-    NSArray *provinces;
-    NSArray *cities;
-    NSString *selectedProvince;
-    NSString *selectedCity;
     NSArray *textFieldArray;
+    UIImagePickerController *imagePicker;
+    UIActionSheet *editTeamIconMenu;
 }
-@synthesize saveBar, teamIconImageView, selectTeamIconButton, clearTeamIconButton, teamNameTextField, activityRegionTextField, homeStadium, sloganTextView;
+@synthesize saveBar, teamIconImageView, teamIconActionButton, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -58,32 +53,47 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self setToolbarItems:saveBar.items];
-    textFieldArray = @[teamNameTextField, activityRegionTextField, homeStadium, sloganTextView];
+    textFieldArray = @[teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView];
     
     //Set the playerIcon related controls
-    [teamIconImageView.layer setCornerRadius:40.0f];
+    [teamIconImageView.layer setCornerRadius:10.0f];
     [teamIconImageView.layer setMasksToBounds:YES];
     [teamIconImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
     [teamIconImageView.layer setBorderWidth:1.0f];
-    [clearTeamIconButton setHidden:!teamIconImageView.image];
+    
+    //Set imagePicker
+    imagePicker = [[UIImagePickerController alloc] init];
+    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [imagePicker setDelegate:self];
+    [imagePicker setAllowsEditing:YES];
+    [imagePicker.navigationBar setTitleTextAttributes:self.navigationController.navigationBar.titleTextAttributes];
+    
+    //Set EditTeamIcon menu
+    NSString *menuTitleFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
+    NSArray *menuTitleList = [[[NSDictionary alloc] initWithContentsOfFile:menuTitleFile] objectForKey:@"EditTeamIconMenu"];
+    editTeamIconMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:menuTitleList.lastObject otherButtonTitles:menuTitleList[0], nil];
+    
+    //Set selectTeamIconButton
+    if (teamIconImageView.image) {
+        [teamIconActionButton setTitle:nil forState:UIControlStateNormal];
+    }
+    else {
+        [teamIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillTeamProfile_TeamIconButton_New"] forState:UIControlStateNormal];
+    }
     
     //Set activityregion Picker
-    NSString *file = [[NSBundle mainBundle] pathForResource:@"ActivityRegion" ofType:@"plist"];
-    pickerData = [[NSDictionary alloc] initWithContentsOfFile:file];
-    provinces = [pickerData allKeys];
-    selectedProvince = [provinces firstObject];
-    cities = [pickerData objectForKey:selectedProvince];
-    selectedCity = [cities firstObject];
-    placePicker = [[UIPickerView alloc] init];
-    [placePicker setDataSource:self];
-    [placePicker setDelegate:self];
-    [activityRegionTextField setInputView:placePicker];
     [activityRegionTextField setTintColor:[UIColor clearColor]];
+    [activityRegionTextField activityRegionTextField];
     
     //Set sloganTextView border style consistent with TextField
     [sloganTextView.layer setBorderColor:[UIColor colorWithRed:215/255.0 green:215/255.0 blue:215/255.0 alpha:1].CGColor];
     [sloganTextView.layer setBorderWidth:0.6f];
     [sloganTextView.layer setCornerRadius:6.0f];
+    
+    //Set LeftIcon for textFields
+    [teamNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_TeamName.png"];
+    [homeStadiumTextField initialLeftViewWithIconImage:@"TextFieldIcon_Stadium.png"];
+    [activityRegionTextField initialLeftViewWithIconImage:@"TextFieldIcon_ActivityRegion.png"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,12 +109,29 @@
 
 -(IBAction)selectTeamIconButtonOnClicked:(id)sender
 {
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    [imagePicker setDelegate:self];
-    [imagePicker setAllowsEditing:YES];
-    [imagePicker.navigationBar setTitleTextAttributes:self.navigationController.navigationBar.titleTextAttributes];
-    [self presentViewController:imagePicker animated:YES completion:nil];
+    if (teamIconImageView.image) {
+        [editTeamIconMenu showInView:self.view];
+    }
+    else {
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([actionSheet isEqual:editTeamIconMenu]) {
+        switch (buttonIndex) {
+            case 0://Delete teamIcon
+                [teamIconImageView setImage:nil];
+                [teamIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillTeamProfile_TeamIconButton_New"] forState:UIControlStateNormal];
+                break;
+            case 1://Change teamIcon
+                [self presentViewController:imagePicker animated:YES completion:nil];
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -113,15 +140,17 @@
     if ([imageType isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
         [teamIconImageView setImage:image];
+        [teamIconActionButton setTitle:nil forState:UIControlStateNormal];
         [picker dismissViewControllerAnimated:YES completion:nil];
-        [clearTeamIconButton setHidden:!image];
     }
 }
 
--(IBAction)clearTeamIconButtonOnClicked:(id)sender
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [teamIconImageView setImage:nil];
-    [clearTeamIconButton setHidden:YES];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    if (!teamIconImageView.image) {
+        [teamIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillTeamProfile_TeamIconButton_New"] forState:UIControlStateNormal];
+    }
 }
 
 //Protocol DismissKeyboard
@@ -137,63 +166,6 @@
 {
     [textField resignFirstResponder];
     return NO;
-}
-
-#pragma ActivityRegion Picker
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 2;
-}
-
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    NSInteger number = 0;
-    switch (component) {
-        case 0:
-            number = provinces.count;
-            break;
-        case 1:
-            number = cities.count;
-            break;
-        default:
-            break;
-    }
-    return number;
-}
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSString *title;
-    switch (component) {
-        case 0:
-            title = [provinces objectAtIndex:row];
-            break;
-        case 1:
-            title = [cities objectAtIndex:row];
-            break;
-        default:
-            break;
-    }
-    return title;
-}
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    switch (component) {
-        case 0:
-            selectedProvince = [provinces objectAtIndex:row];
-            cities = [pickerData objectForKey:selectedProvince];
-            selectedCity = [cities firstObject];
-            [placePicker reloadComponent:1];
-            [placePicker selectRow:0 inComponent:1 animated:YES];
-            break;
-        case 1:
-            selectedCity = [cities objectAtIndex:row];
-            break;
-        default:
-            break;
-    }
-    [activityRegionTextField setText:[NSString stringWithFormat:@"%@ %@", selectedProvince, selectedCity]];
 }
 
 //#pragma mark - Table view data source

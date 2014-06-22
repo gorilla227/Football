@@ -26,7 +26,7 @@
     self = [super initWithTitle:nil delegate:delegate cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     if (self) {
         NSString *callFriendsMenuListFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
-        callFriendsMenuList = [[[[NSDictionary alloc] initWithContentsOfFile:callFriendsMenuListFile] objectForKey:@"CallFriendsMenu"] objectForKey:@"MenuList"];
+        callFriendsMenuList = [[[NSDictionary alloc] initWithContentsOfFile:callFriendsMenuListFile] objectForKey:@"CallFriendsMenu"];
         
         for (NSDictionary *menuItem in callFriendsMenuList) {
             [self addButtonWithTitle:[menuItem objectForKey:@"Title"]];

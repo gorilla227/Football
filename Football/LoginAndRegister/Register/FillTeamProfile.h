@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginAndRegisterProtocols.h"
+#import "UITextFieldForActivityRegion.h"
 
 @interface FillTeamProfile_TableView : UITableView
 @property id<DismissKeyboard>delegateForDismissKeyboard;
 @end
 
-@interface FillTeamProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate>
+@interface FillTeamProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UITextViewDelegate, UIActionSheetDelegate>
 
 @end

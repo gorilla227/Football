@@ -37,4 +37,19 @@
     [self setLeftView:leftView];
     [self setLeftViewMode:UITextFieldViewModeAlways];
 }
+
+-(void)initialLeftViewWithIconImage:(NSString *)imageFileName
+{
+    CGRect leftViewFrame = self.bounds;
+    UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
+    [leftIcon setContentMode:UIViewContentModeScaleAspectFit];
+    [leftIcon setFrame:CGRectMake(0, 0, leftViewFrame.size.height * 1.2, leftViewFrame.size.height)];
+    [leftIcon setBackgroundColor:def_textFieldLeftIconBackground];
+    [self.layer setCornerRadius:6.0f];
+    [self.layer setBorderColor:def_textFieldBorderColor.CGColor];
+    [self.layer setBorderWidth:0.6f];
+    [self.layer setMasksToBounds:YES];
+    [self setLeftView:leftIcon];
+    [self setLeftViewMode:UITextFieldViewModeAlways];    
+}
 @end

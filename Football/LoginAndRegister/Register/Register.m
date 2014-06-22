@@ -50,8 +50,16 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:registerBar.items];
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
     
     textFieldArray = @[phoneNumberTextField, passwordTextField, nickNameTextField, teamNameTextField, mailTextField];
+    
+    //Set leftIcon for textFields
+    [teamNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_TeamName.png"];
+    [phoneNumberTextField initialLeftViewWithIconImage:@"TextFieldIcon_Mobile.png"];
+    [passwordTextField initialLeftViewWithIconImage:@"TextFieldIcon_Password.png"];
+    [nickNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_Account.png"];
+//    [mailTextField initialLeftViewWithIconImage:@""];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,11 +81,11 @@
 
 -(IBAction)registerButtonOnClicked:(id)sender
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"注册成功!"
-                                                        message:@"恭喜，你已加入“我要踢球”的大家庭！"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_RegisterView_Success_Title"]
+                                                        message:[gUIStrings objectForKey:@"UI_RegisterView_Success_Message"]
                                                        delegate:self
                                               cancelButtonTitle:nil
-                                              otherButtonTitles:@"补充详细资料", nil];
+                                              otherButtonTitles:[gUIStrings objectForKey:@"UI_RegisterView_Success_OK"], nil];
     [alertView show];
 }
 
@@ -176,8 +184,10 @@
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
-    [headerView.textLabel setTextAlignment:NSTextAlignmentCenter];
-//    [headerView.contentView setBackgroundColor:tableView.tintColor];
+//    [headerView setBackgroundView:nil];
+//    [headerView.textLabel setTextColor:[UIColor whiteColor]];
+//    [headerView.textLabel setTextAlignment:NSTextAlignmentCenter];
+    [headerView.textLabel setFont:[UIFont fontWithName:headerView.textLabel.font.fontName size:17.0f]];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

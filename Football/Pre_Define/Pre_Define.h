@@ -55,6 +55,8 @@
 #define def_TeamFundInquiry_Title_EndDate @"结束时间"
 
 //Color
+#define def_textFieldLeftIconBackground [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]
+#define def_textFieldBorderColor [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1]
 #define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]
 #define def_toolBar_background [UIColor colorWithRed: 226/255.0 green: 230/255.0 blue:232/255.0 alpha:1]
 #define def_backgroundColor_BeforeMatch [UIColor colorWithRed:78/255.0 green:191/255.0 blue:231/255.0 alpha:1]

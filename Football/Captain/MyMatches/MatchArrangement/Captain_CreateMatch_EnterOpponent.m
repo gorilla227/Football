@@ -65,7 +65,7 @@
     
     //Initial inviteOpponentMenuList
     NSString *menuListFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
-    inviteOpponentMenuList = [[[[NSDictionary alloc] initWithContentsOfFile:menuListFile] objectForKey:@"InviteOpponentMenu"] objectForKey:@"MenuList"];
+    inviteOpponentMenuList = [[[NSDictionary alloc] initWithContentsOfFile:menuListFile] objectForKey:@"InviteOpponentMenu"];
 }
 
 - (void)didReceiveMemoryWarning
