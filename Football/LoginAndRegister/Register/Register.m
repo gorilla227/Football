@@ -20,7 +20,7 @@
 
 @interface Register ()
 @property IBOutlet UITextField *teamNameTextField;
-@property IBOutlet UITextField *phoneNumberTextField;
+@property IBOutlet UITextField *mobileTextField;
 @property IBOutlet UITextField *passwordTextField;
 @property IBOutlet UITextField *nickNameTextField;
 @property IBOutlet UITextField *mailTextField;
@@ -32,8 +32,9 @@
 @implementation Register{
     NSArray *textFieldArray;
     NSInteger numOfAvailableTextFields;
+    JSONConnect *connection;
 }
-@synthesize teamNameTextField, phoneNumberTextField, passwordTextField, nickNameTextField, mailTextField, registerBar, registerButton, roleSegment;
+@synthesize teamNameTextField, mobileTextField, passwordTextField, nickNameTextField, mailTextField, registerBar, registerButton, roleSegment;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -52,11 +53,14 @@
     [self setToolbarItems:registerBar.items];
     [self.tableView setBackgroundColor:[UIColor whiteColor]];
     
-    textFieldArray = @[phoneNumberTextField, passwordTextField, nickNameTextField, teamNameTextField, mailTextField];
+    textFieldArray = @[mobileTextField, passwordTextField, nickNameTextField, teamNameTextField, mailTextField];
+    
+    //Initial JSONConnection
+    connection = [[JSONConnect alloc] initWithDelegate:self];
     
     //Set leftIcon for textFields
     [teamNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_TeamName.png"];
-    [phoneNumberTextField initialLeftViewWithIconImage:@"TextFieldIcon_Mobile.png"];
+    [mobileTextField initialLeftViewWithIconImage:@"TextFieldIcon_Mobile.png"];
     [passwordTextField initialLeftViewWithIconImage:@"TextFieldIcon_Password.png"];
     [nickNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_Account.png"];
 //    [mailTextField initialLeftViewWithIconImage:@""];
@@ -81,12 +85,42 @@
 
 -(IBAction)registerButtonOnClicked:(id)sender
 {
+    [self.navigationController.view setUserInteractionEnabled:NO];
+    switch (roleSegment.selectedSegmentIndex) {
+        case 0:
+            [connection registerCaptain:mobileTextField.text email:mailTextField.text password:passwordTextField.text.MD5 nickName:nickNameTextField.text teamName:teamNameTextField.text];
+            break;
+        case 1:
+            [connection registerPlayer:mobileTextField.text email:mailTextField.text password:passwordTextField.text.MD5 nickName:nickNameTextField.text];
+        default:
+            break;
+    }
+}
+
+-(void)unlockView
+{
+    [self.navigationController.view setUserInteractionEnabled:YES];
+}
+
+-(void)receiveUserInfo:(UserInfo *)userInfo
+{
+    gMyUserInfo = userInfo;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_RegisterView_Success_Title"]
                                                         message:[gUIStrings objectForKey:@"UI_RegisterView_Success_Message"]
                                                        delegate:self
                                               cancelButtonTitle:nil
                                               otherButtonTitles:[gUIStrings objectForKey:@"UI_RegisterView_Success_OK"], nil];
     [alertView show];
+}
+
+-(void)registerCaptainSuccessfully:(NSInteger)userId teamId:(NSInteger)teamId
+{
+    [connection requestUserInfo:userId];
+}
+
+-(void)registerPlayerSuccessfully:(NSInteger)userId
+{
+    [connection requestUserInfo:userId];
 }
 
 //UIAlertView

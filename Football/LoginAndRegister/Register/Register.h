@@ -14,6 +14,6 @@
 @property id<DismissKeyboard>delegateForDismissKeyboard;
 @end
 
-@interface Register : UITableViewController<UITextFieldDelegate, DismissKeyboard, UIAlertViewDelegate>
+@interface Register : UITableViewController<UITextFieldDelegate, DismissKeyboard, UIAlertViewDelegate, JSONConnectDelegate>
 -(void)refreshRegisterButtonEnable;
 @end

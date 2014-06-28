@@ -35,16 +35,36 @@
 @end
 
 #pragma UserInfo
+#define kUserInfo_userId @"id"
+#define kUserInfo_mobile @"mobile"
+#define kUserInfo_password @"password"
+#define kUserInfo_userType @"is_captain"
+#define kUserInfo_nickName @"nick_name"
+#define kUserInfo_email @"email"
+#define kUserInfo_qq @"qq"
+#define kUserInfo_birthday @"birthday"
+#define kUserInfo_activityRegion @"location"
+#define kUserInfo_playerPortrait @"logo"
+#define kUserInfo_position @"position"
+#define kUserInfo_style @"style"
+#define kUserInfo_legalname @"real_name"
+#define kUserInfo_gender @"gender"
 @interface UserInfo : NSObject
 @property NSInteger userId;
 @property NSString *mobile;
 @property NSInteger userType;
 @property NSString *nickName;
+@property NSString *legalName;
+@property NSInteger gender;
+@property NSString *email;
 @property NSString *qq;
-@property NSDate *birthday;
-@property NSString *activityRegion;
+@property NSString *birthday;
+@property NSArray *activityRegion;
+@property NSInteger position;
+@property NSString *style;
+@property UIImage *playerPortrait;
 -(id)initWithData:(NSDictionary *)data;
--(NSDictionary *)exportToDictionary;
+-(NSDictionary *)dictionaryForUpdate:(UserInfo *)originalUserInfo;
 @end
 
 #pragma Match
@@ -83,15 +103,7 @@
 #define kStadium_address @"address"
 #define kStadium_phoneNumber @"phoneNumber"
 #define kStadium_contactPerson @"contactPerson"
-//UserInfo
-#define kUserInfo_userId @"id"
-#define kUserInfo_mobile @"mobile"
-#define kUserInfo_password @"password"
-#define kUserInfo_userType @"is_captain"
-#define kUserInfo_nickName @"nick_name"
-#define kUserInfo_qq @"qq"
-#define kUserInfo_birthday @"birthday"
-#define kUserInfo_activityRegion @"location"
+
 //Team
 #define kTeam_name @"name"
 #define kTeam_description @"description"

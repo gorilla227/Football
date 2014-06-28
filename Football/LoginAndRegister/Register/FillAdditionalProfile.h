@@ -13,6 +13,6 @@
 
 @end
 
-@interface FillAdditionalProfile : UICollectionViewController<JSONConnectDelegate, UIActionSheetDelegate>
+@interface FillAdditionalProfile : UICollectionViewController<UIActionSheetDelegate>
 @property NSInteger roleCode;
 @end

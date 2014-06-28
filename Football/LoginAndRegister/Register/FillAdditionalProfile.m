@@ -30,7 +30,6 @@
 
 @implementation FillAdditionalProfile{
     NSArray *actionButtons;
-    JSONConnect *connection;
 }
 @synthesize toolBar, roleCode;
 
@@ -54,12 +53,6 @@
 
     //Get UI strings
     actionButtons = [gUIStrings objectForKey:@"UI_FillAdditionalProfile_Actions"];
-    
-    //Fake the roleCode
-//    roleCode = 0;//0 - Captain, 1 - Player
-    
-    //Initial JSON connection
-    connection = [[JSONConnect alloc] initWithDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,12 +70,6 @@
 
 -(IBAction)completeButtonOnClicked:(id)sender
 {
-    [connection requestUserInfoById:[NSNumber numberWithInteger:1]];
-}
-
--(void)receiveUserInfo:(UserInfo *)userInfo
-{
-    gMyUserInfo = userInfo;
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Captain" bundle:nil];
     UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
     [self presentViewController:mainController animated:YES completion:^{
@@ -132,7 +119,7 @@
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:HeaderIdentifier forIndexPath:indexPath];
         UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerView.bounds];
-        [headerLabel setText:[gUIStrings objectForKey:roleCode?@"UI_FillAdditionalProfile_Header_Player":@"UI_FillAdditionalProfile_Header_Captain"]];
+        [headerLabel setText:[NSString stringWithFormat:@"%@%@", gMyUserInfo.nickName, [gUIStrings objectForKey:roleCode?@"UI_FillAdditionalProfile_Header_Player":@"UI_FillAdditionalProfile_Header_Captain"]]];
         [headerLabel setTextColor:[UIColor whiteColor]];
         [headerLabel setTextAlignment:NSTextAlignmentCenter];
         [headerLabel setAdjustsFontSizeToFitWidth:YES];

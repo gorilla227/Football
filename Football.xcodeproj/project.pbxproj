@@ -844,6 +844,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Xinyi Xu";
 				TargetAttributes = {
+					A1D07BCD18CC1E4800FA3A8D = {
+						DevelopmentTeam = 96U9EGGZ95;
+					};
 					A1D07BEE18CC1E4900FA3A8D = {
 						TestTargetID = A1D07BCD18CC1E4800FA3A8D;
 					};
@@ -1085,11 +1088,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = com.apple.idms.appleid.prd.575a70506353662b6c6c71783851664f77366a7a38413d3d;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Football/Football-Prefix.pch";
 				INFOPLIST_FILE = "Football/Football-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A7A12195-48BF-461D-A4A2-724EB697744E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1099,11 +1105,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = com.apple.idms.appleid.prd.575a70506353662b6c6c71783851664f77366a7a38413d3d;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Football/Football-Prefix.pch";
 				INFOPLIST_FILE = "Football/Football-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A7A12195-48BF-461D-A4A2-724EB697744E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -79,8 +79,9 @@
     //Set TeamInfo
     [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
     [teamIcon.layer setBorderWidth:2.0f];
-    [teamIcon.layer setCornerRadius:teamIcon.bounds.size.width/2];
+    [teamIcon.layer setCornerRadius:10.0f];
     [teamIcon.layer setMasksToBounds:YES];
+    [teamIcon setImage:gMyUserInfo.playerPortrait];
 //    [teamName setText:gMyUserInfo.team.teamName];
     
     //Request matches
@@ -89,6 +90,7 @@
     
     //Set menu button
     [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
+    
 }
 
 -(void)receiveMatches:(NSArray *)matches

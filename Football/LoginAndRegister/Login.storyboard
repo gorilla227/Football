@@ -330,9 +330,9 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="mailTextField" destination="6CG-E8-kLA" id="Sv8-0G-rTW"/>
+                        <outlet property="mobileTextField" destination="swk-gl-lTM" id="tsc-2j-N1p"/>
                         <outlet property="nickNameTextField" destination="e87-tg-8jW" id="fqB-Yt-ioM"/>
                         <outlet property="passwordTextField" destination="you-sL-TRE" id="65p-8P-oRV"/>
-                        <outlet property="phoneNumberTextField" destination="swk-gl-lTM" id="Fj0-ai-Rec"/>
                         <outlet property="registerBar" destination="XEr-ox-9gf" id="Cx2-yB-eqF"/>
                         <outlet property="registerButton" destination="abX-t5-IPq" id="xRB-U4-4IH"/>
                         <outlet property="roleSegment" destination="usU-S2-oUp" id="try-ux-ZDl"/>
@@ -798,6 +798,44 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PSO-lj-gaL">
+                                        <rect key="frame" x="0.0" y="428" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PSO-lj-gaL" id="Jzp-zF-XNy">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="场上位置" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZSa-6y-qAX" customClass="UITextFieldForActivityRegion">
+                                                    <rect key="frame" x="20" y="7" width="280" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="sw4-02-Ddq" id="qw4-fY-1aK"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="V0f-Of-Y99">
+                                        <rect key="frame" x="0.0" y="472" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V0f-Of-Y99" id="OaX-va-YLm">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="个人风格" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EaO-0b-0wE" customClass="UITextFieldForActivityRegion">
+                                                    <rect key="frame" x="20" y="7" width="280" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="sw4-02-Ddq" id="FEe-dd-iF7"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -812,12 +850,14 @@
                         <outlet property="birthdateTextField" destination="9pY-Vn-8Ba" id="uqC-KI-MDY"/>
                         <outlet property="legalNameTextField" destination="VPZ-sV-9pk" id="UzA-00-hix"/>
                         <outlet property="mailTextField" destination="XP3-J2-kXl" id="6gg-eJ-eM8"/>
+                        <outlet property="mobileTextField" destination="H5q-RH-FNv" id="o7l-UP-2FK"/>
                         <outlet property="nickNameTextField" destination="N0Y-QP-1xH" id="duA-g0-bRJ"/>
-                        <outlet property="phoneNumberTextField" destination="H5q-RH-FNv" id="PSg-Ba-524"/>
                         <outlet property="playerIconActionButton" destination="UL5-dX-Uq4" id="MHh-Pd-szC"/>
                         <outlet property="playerIconImageView" destination="wKB-gR-C06" id="jyf-xt-COF"/>
+                        <outlet property="positionTextField" destination="ZSa-6y-qAX" id="1qz-iK-Zzw"/>
                         <outlet property="qqTextField" destination="X5I-mu-xsc" id="0B4-a9-igs"/>
                         <outlet property="saveBar" destination="JrJ-Nh-LcT" id="1Wn-ga-2km"/>
+                        <outlet property="styleTextField" destination="EaO-0b-0wE" id="YPe-kB-Gga"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ng-DX-pi3" userLabel="First Responder" sceneMemberID="firstResponder"/>

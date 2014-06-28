@@ -11,11 +11,37 @@
 
 //Login
 #define CONNECT_Login_Suffix @"member/verify"
-#define CONNECT_Login_Parameters(account, password) @{@"mobile" : account, @"password" : password, @"is_captain" : [NSNumber numberWithInteger:0]}
+#define CONNECT_Login_Parameters(account, password) @{@"user" : account, @"password" : password}
 
 //Get userInfo
 #define CONNECT_UserInfo_Suffix @"member/profile"
 #define CONNECT_UserInfo_Parameters(userId) @{@"id" : [NSNumber numberWithInteger:userId]}
+
+//Register Player
+#define CONNECT_RegisterPlayer_Suffix @"member/memberregister"
+#define CONNECT_RegisterPlayer_Parameters(mobile, email, password, nickname) @{@"mobile":mobile, @"email":email, @"password":password, @"nick_name":nickname}
+
+//Register Captain
+#define CONNECT_RegisterCaptain_Suffix @"member/captainregister"
+#define CONNECT_RegisterCaptain_Parameters(mobile, email, password, nickname, teamname) @{@"mobile":mobile, @"email":email, @"password":password, @"nick_name":nickname, @"team_name":teamname}
+
+//Update Player Profile
+#define CONNECT_UpdatePlayerProfile_Suffix @"member/update"
+
+//Update Player Portrait
+#define CONNECT_UpdatePlayerPortrait_Suffix @"upload/memberlogo"
+#define CONNECT_UpdatePlayerPortrait_Parameters(playerId) @{@"member_id":[NSNumber numberWithInteger:playerId]}
+
+//Update Team Profile
+#define CONNECT_UpdateTeamProfile_Suffix @"member/update"
+
+//Update Team_Logo
+#define CONNECT_UpdateTeamLogo_Suffix @"upload/teamlogo"
+#define CONNECT_UpdateTeamLogo_Parameters(team_id) @{@"team_id":[NSNumber numberWithInteger:teamId]}
+
+
+
+
 
 
 #pragma zzOld_Server

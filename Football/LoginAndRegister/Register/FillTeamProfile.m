@@ -102,6 +102,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)fillInitialTeamProfile
+{
+    
+}
+
+-(void)unlockView
+{
+    [self.navigationController.view setUserInteractionEnabled:YES];
+}
+
 -(IBAction)saveButtonOnClicked:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];

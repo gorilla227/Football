@@ -85,34 +85,111 @@
 @end
 
 #pragma UserInfo
-@implementation UserInfo
-@synthesize userId, mobile, userType, nickName, qq, birthday, activityRegion;
+@implementation UserInfo{
+    NSDateFormatter *dateFormatter;
+}
+@synthesize userId, mobile, userType, nickName, legalName, gender, email, qq, birthday, activityRegion, position, style, playerPortrait;
+
+-(id)copy
+{
+    UserInfo *userInfoCopy = [[UserInfo alloc] init];
+    //Copy required properties
+    [userInfoCopy setUserId:userId];
+    [userInfoCopy setMobile:[mobile copy]];
+    [userInfoCopy setUserType:userType];
+    [userInfoCopy setNickName:[nickName copy]];
+    [userInfoCopy setEmail:email];
+    //Copy option properties
+    if (legalName) {
+        [userInfoCopy setLegalName:[legalName copy]];
+    }
+    [userInfoCopy setGender:gender];
+    if (qq) {
+        [userInfoCopy setQq:[qq copy]];
+    }
+    if (birthday) {
+        [userInfoCopy setBirthday:[birthday copy]];
+    }
+    if (activityRegion) {
+        [userInfoCopy setActivityRegion:[activityRegion copy]];
+    }
+    [userInfoCopy setPosition:position];
+    if (style) {
+        [userInfoCopy setStyle:[style copy]];
+    }
+    if (playerPortrait) {
+        [userInfoCopy setPlayerPortrait:[playerPortrait copy]];
+    }
+    return userInfoCopy;
+}
 
 -(id)initWithData:(NSDictionary *)data
 {
     self = [super init];
     if (self) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:def_MatchDateformat];
+        [dateFormatter setLocale:[NSLocale currentLocale]];
+
         [self setUserId:[[data objectForKey:kUserInfo_userId] integerValue]];
         [self setMobile:[data objectForKey:kUserInfo_mobile]];
         [self setUserType:[[data objectForKey:kUserInfo_userType] integerValue]];
         [self setNickName:[data objectForKey:kUserInfo_nickName]];
+        [self setLegalName:[data objectForKey:kUserInfo_legalname]];
+        [self setGender:[[data objectForKey:kUserInfo_gender] integerValue]];
+        [self setPosition:[[data objectForKey:kUserInfo_position] integerValue]];
+        [self setStyle:[data objectForKey:kUserInfo_style]];
+        [self setEmail:[data objectForKey:kUserInfo_email]];
         [self setQq:[data objectForKey:kUserInfo_qq]];
         [self setBirthday:[data objectForKey:kUserInfo_birthday]];
-        [self setActivityRegion:[data objectForKey:kUserInfo_activityRegion]];
+        NSString *locationCode = [data objectForKey:kUserInfo_activityRegion];
+        [self setActivityRegion:[locationCode componentsSeparatedByString:@"-"]];
+        NSString *portraitFileString = [data objectForKey:kUserInfo_playerPortrait];
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:portraitFileString]];
+        playerPortrait = [UIImage imageWithData:imageData];
     }
     return self;
 }
 
--(NSDictionary *)exportToDictionary
+-(NSDictionary *)dictionaryForUpdate:(UserInfo *)originalUserInfo
 {
     NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
     [output setObject:[NSNumber numberWithInteger:userId] forKey:kUserInfo_userId];
-    [output setObject:mobile forKey:kUserInfo_mobile];
-    [output setObject:[NSNumber numberWithInteger:userType] forKey:kUserInfo_userType];
-    [output setObject:nickName forKey:kUserInfo_nickName];
-    [output setObject:qq forKey:kUserInfo_qq];
-    [output setObject:birthday forKey:kUserInfo_birthday];
-    [output setObject:activityRegion forKey:kUserInfo_activityRegion];
+    //Compare required properties
+    if (![mobile isEqualToString:originalUserInfo.mobile]) {
+        [output setObject:mobile forKey:kUserInfo_mobile];
+    }
+    if (![email isEqualToString:originalUserInfo.email]) {
+        [output setObject:email forKey:kUserInfo_email];
+    }
+    if (userType != originalUserInfo.userType) {
+        [output setObject:[NSNumber numberWithInteger:userType] forKey:kUserInfo_userType];
+    }
+    if (![nickName isEqualToString:originalUserInfo.nickName]) {
+        [output setObject:nickName forKey:kUserInfo_nickName];
+    }
+    //Compare optional properties
+    if (gender != originalUserInfo.gender) {
+        [output setObject:[NSNumber numberWithInteger:gender] forKey:kUserInfo_gender];
+    }
+    if (![qq isEqualToString:originalUserInfo.qq]) {
+        [output setObject:qq forKey:kUserInfo_qq];
+    }
+    if (position != originalUserInfo.position) {
+        [output setObject:[NSNumber numberWithInteger:position] forKey:kUserInfo_position];
+    }
+    if (![activityRegion isEqual:originalUserInfo.activityRegion]) {
+        [output setObject:[activityRegion componentsJoinedByString:@"-"] forKey:kUserInfo_activityRegion];
+    }
+    if (![legalName isEqualToString:originalUserInfo.legalName]) {
+        [output setObject:legalName forKey:kUserInfo_legalname];
+    }
+    if (![birthday isEqualToString:originalUserInfo.birthday]) {
+        [output setObject:birthday forKey:kUserInfo_birthday];
+    }
+    if (![style isEqualToString:originalUserInfo.style]) {
+        [output setObject:style forKey:kUserInfo_style];
+    }
     return output;
 }
 @end
@@ -207,12 +284,12 @@
     [output setObject:awayScore forKey:kMatchScore_awayScore];
     NSMutableArray *goalPlayersArray = [[NSMutableArray alloc] init];
     for (UserInfo *player in goalPlayers) {
-        [goalPlayersArray addObject:[player exportToDictionary]];
+//        [goalPlayersArray addObject:[player exportToDictionary]];
     }
     [output setObject:goalPlayersArray forKey:kMatchScore_goalPlayers];
     NSMutableArray *assistPlayersArray = [[NSMutableArray alloc] init];
     for (UserInfo *player in assistPlayers) {
-        [assistPlayersArray addObject:[player exportToDictionary]];
+//        [assistPlayersArray addObject:[player exportToDictionary]];
     }
     [output setObject:assistPlayersArray forKey:kMatchScore_assistPlayers];
     return output;

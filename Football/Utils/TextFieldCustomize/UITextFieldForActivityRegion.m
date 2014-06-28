@@ -36,6 +36,35 @@
     [self setInputView:locationPicker];
 }
 
+-(void)presetActivityRegionCode:(NSArray *)activityRegionCode
+{
+    NSMutableString *regionString;
+    selectedActivityRegionCode = activityRegionCode;
+    for (NSDictionary *province in locationList) {
+        if ([[province objectForKey:@"id"] isEqualToString:selectedActivityRegionCode[0]]) {
+            regionString = [[NSMutableString alloc] initWithString:[province objectForKey:@"name"]];
+            if (selectedActivityRegionCode.count > 1) {
+                for (NSDictionary *city in [province objectForKey:@"city"]) {
+                    if ([[city objectForKey:@"id"] isEqualToString:selectedActivityRegionCode[1]]) {
+                        [regionString appendString:[NSString stringWithFormat:@" %@", [city objectForKey:@"name"]]];
+                        if (selectedActivityRegionCode.count > 2) {
+                            for (NSDictionary *district in [city objectForKey:@"district"]) {
+                                if ([[district objectForKey:@"id"] isEqualToString:selectedActivityRegionCode[2]]) {
+                                    [regionString appendString:[NSString stringWithFormat:@" %@", [district objectForKey:@"name"]]];
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            break;
+        }
+    }
+    [self setText:regionString];
+}
+
 #pragma UIPickerView Methods
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -81,22 +110,18 @@
     NSMutableArray *code = [[NSMutableArray alloc] init];
     if (provinceId) {
         [code addObject:provinceId];
-    }
-    if (cityId) {
-        [code addObject:cityId];
-    }
-    if (districtId) {
-        [code addObject:districtId];
+        if (cityId) {
+            [code addObject:cityId];
+            if (districtId) {
+                [code addObject:districtId];
+            }
+        }
     }
     selectedActivityRegionCode = [NSArray arrayWithArray:code];
 }
 
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    if (view) {
-        NSLog(@"%f, %f, %f, %f", view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-    }
-    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 105, 30)];
     switch (component) {
         case 0:

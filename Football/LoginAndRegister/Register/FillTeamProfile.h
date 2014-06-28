@@ -14,6 +14,6 @@
 @property id<DismissKeyboard>delegateForDismissKeyboard;
 @end
 
-@interface FillTeamProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UITextViewDelegate, UIActionSheetDelegate>
-
+@interface FillTeamProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UITextViewDelegate, UIActionSheetDelegate, JSONConnectDelegate>
+-(void)fillInitialTeamProfile;
 @end

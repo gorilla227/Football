@@ -19,16 +19,36 @@
     if (self) {
         [self setDelegate:responser];
         manager = [AFHTTPRequestOperationManager manager];
-        [manager setResponseSerializer:[AFJSONResponseSerializer serializer]];
         [manager.responseSerializer setAcceptableContentTypes:[manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"]];
     }
     return self;
 }
 
--(void)showErrorAlertView:(NSError *)error
+-(void)showErrorAlertView:(NSError *)error otherInfo:(NSString *)otherInfo
 {
-    UIAlertView *errorAlertViw = [[UIAlertView alloc] initWithTitle:@"杯具了" message:error.localizedDescription delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
-    [errorAlertViw show];
+    UIAlertView *errorAlertView;
+    if (error.code < 0) {
+        errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:error.localizedDescription delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
+    }
+    else if (otherInfo){
+        if ([otherInfo isEqualToString:@"team name duplicate"]) {
+            errorAlertView = [[UIAlertView alloc] initWithTitle:@"注册失败" message:@"球队名称已被注册，请重新选择一个球队名称。" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        }
+        else if ([otherInfo isEqualToString:@"member insert error"]) {
+            errorAlertView = [[UIAlertView alloc] initWithTitle:@"注册失败" message:@"手机号码或邮箱已被注册，请检查是否输错。" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        }
+        else if ([otherInfo isEqualToString:@"picture is invalid"]) {
+            errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:@"上传图片出错！" delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
+        }
+        else {
+            errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:@"未知错误" delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
+        }
+    }
+    else {
+        errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:@"未知错误" delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
+    }
+    [delegate unlockView];
+    [errorAlertView show];
 }
 
 #pragma new Server
@@ -37,9 +57,10 @@
 {
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_Login_Suffix];
-    NSDictionary *parameters = CONNECT_Login_Parameters(account, password.MD5);
+    NSDictionary *parameters = CONNECT_Login_Parameters(account, password);
     
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate unlockView];
         NSInteger userId = [[responseObject objectForKey:@"id"] integerValue];
         if (userId > 0) {
             [delegate loginVerificationSuccessfully:userId];
@@ -48,7 +69,7 @@
             [delegate loginVerificationFailed];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
@@ -57,16 +78,103 @@
 {
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UserInfo_Suffix];
-    NSDictionary *parameters = CONNECT_UserInfo_Parameters(1);
+    NSDictionary *parameters = CONNECT_UserInfo_Parameters(userId);
     
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        [delegate unlockView];
         if (responseObject) {
             UserInfo *userInfo = [[UserInfo alloc] initWithData:responseObject];
             [delegate receiveUserInfo:userInfo];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//RegisterNewUser
+-(void)registerCaptain:(NSString *)mobile email:(NSString *)email password:(NSString *)password nickName:(NSString *)nickName teamName:(NSString *)teamName
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RegisterCaptain_Suffix];
+    NSDictionary *parameters = CONNECT_RegisterCaptain_Parameters(mobile, email, password, nickName, teamName);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate unlockView];
+        NSInteger member_id = [[responseObject objectForKey:@"member_id"] integerValue];
+        NSInteger team_id = [[responseObject objectForKey:@"team_id"] integerValue];
+        [delegate registerCaptainSuccessfully:member_id teamId:team_id];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+-(void)registerPlayer:(NSString *)mobile email:(NSString *)email password:(NSString *)password nickName:(NSString *)nickName
+{
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RegisterPlayer_Suffix];
+    NSDictionary *parameters = CONNECT_RegisterPlayer_Parameters(mobile, email, password, nickName);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate unlockView];
+        NSInteger playerId = [[responseObject objectForKey:@"id"] integerValue];
+        [delegate registerPlayerSuccessfully:playerId];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//UpdatePlayerProfile
+-(void)updatePlayerProfile:(NSDictionary *)playerProfile
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerProfile_Suffix];
+    [manager POST:urlString parameters:playerProfile success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate unlockView];
+        [delegate updatePlayerProfileSuccessfully];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//UpdatePlayerPortrait
+-(void)updatePlayerPortrait:(UIImage *)portrait forPlayer:(NSInteger)playerId
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerPortrait_Suffix];
+    NSDictionary *parameters = CONNECT_UpdatePlayerPortrait_Parameters(playerId);
+    [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:UIImageJPEGRepresentation(portrait, 0.5) name:@"file" fileName:@"memberPortrait.jpg" mimeType:@"image/jpeg"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate unlockView];
+        [delegate updatePlayerPortraitSuccessfully];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//UpdateTeamProfile
+-(void)updateTeamProfile:(NSDictionary *)teamProfile
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateTeamProfile_Suffix];
+    [manager POST:urlString parameters:teamProfile success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate unlockView];
+        [delegate updateTeamProfileSuccessfully];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//UpdateTeamLogo
+-(void)updateTeamLogo:(UIImage *)logo forTeam:(NSInteger)teamId
+{
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateTeamLogo_Suffix];
+    NSDictionary *parameters = CONNECT_UpdateTeamLogo_Parameters(teamId);
+    [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:UIImageJPEGRepresentation(logo, 0.5) name:@"file" fileName:@"teamLog.jpeg" mimeType:@"image/jpeg"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate unlockView];
+        [delegate updateTeamLogoSuccessfully];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
@@ -81,7 +189,7 @@
         UserInfo *userInfo = [[UserInfo alloc] initWithData:responseObject];
         [delegate receiveUserInfo:userInfo];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
@@ -102,7 +210,7 @@
         }
         [delegate receiveMatches:matches];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
@@ -123,7 +231,7 @@
         }
         [delegate receiveMatches:matches];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
@@ -144,7 +252,7 @@
         }
         [delegate receiveTeams:teams];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
@@ -164,7 +272,7 @@
         }
         [delegate receiveStadiums:stadiums];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
@@ -185,7 +293,7 @@
         }
         [delegate receiveStadiums:stadiums];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
@@ -204,7 +312,7 @@
             [delegate receiveStadiums:@[stadium]];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
@@ -223,7 +331,7 @@
         }
         [delegate receivePlayers:players];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 

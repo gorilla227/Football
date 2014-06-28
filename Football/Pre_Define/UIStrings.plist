@@ -30,9 +30,9 @@
 		</dict>
 	</array>
 	<key>UI_FillAdditionalProfile_Header_Captain</key>
-	<string>基友球队队长，快速召唤你的小伙伴/完善球队资料</string>
+	<string>，快速召唤你的小伙伴/完善球队资料</string>
 	<key>UI_FillAdditionalProfile_Header_Player</key>
-	<string>基友，快速完善你的资料，方便你快速融入球队</string>
+	<string>，快速完善你的资料，方便你快速融入球队</string>
 	<key>UI_RegisterViewTitle_Captain</key>
 	<string>我是队长</string>
 	<key>UI_RegisterViewTitle_Player</key>
@@ -61,5 +61,13 @@
 	<string>恭喜，你已加入“我要踢球”的大家庭！</string>
 	<key>UI_RegisterView_Success_OK</key>
 	<string>补充详细资料</string>
+	<key>UI_Positions</key>
+	<array>
+		<string>未知</string>
+		<string>前锋</string>
+		<string>中场</string>
+		<string>后卫</string>
+		<string>守门员</string>
+	</array>
 </dict>
 </plist>

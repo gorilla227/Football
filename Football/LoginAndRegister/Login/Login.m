@@ -80,11 +80,15 @@
 
 -(IBAction)loginButtonOnClicked:(id)sender
 {
-//    [connection requestUserInfoById:[NSNumber numberWithInteger:1]];
-//    [self.parentViewController.view setUserInteractionEnabled:NO];
+    [self.navigationController.view setUserInteractionEnabled:NO];
 
-//    [connection loginVerification:accountField.text password:passwordField.text];
-    [connection loginVerification:@"13520636947" password:@"123456"];
+    [connection loginVerification:accountField.text password:passwordField.text.MD5];
+//    [connection loginVerification:@"18611542707" password:@"123456"];
+}
+
+-(void)unlockView
+{
+    [self.navigationController.view setUserInteractionEnabled:YES];
 }
 
 -(void)loginVerificationSuccessfully:(NSInteger)userId

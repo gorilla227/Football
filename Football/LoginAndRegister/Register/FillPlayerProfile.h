@@ -14,6 +14,7 @@
 @property id<DismissKeyboard>delegateForDismissKeyboard;
 @end
 
-@interface FillPlayerProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UIActionSheetDelegate>
+@interface FillPlayerProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate, JSONConnectDelegate>
 -(void)finishDateEditing;
+-(void)fillInitialPlayerProfile;
 @end
