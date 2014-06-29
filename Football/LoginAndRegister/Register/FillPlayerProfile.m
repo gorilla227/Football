@@ -118,7 +118,7 @@
     
     //Set LeftIcon for textFields
     [mobileTextField initialLeftViewWithIconImage:@"TextFieldIcon_Mobile.png"];
-//    [mailTextField initialLeftViewWithIconImage:@""];
+    [mailTextField initialLeftViewWithIconImage:@"TextFieldIcon_Email.png"];
     [nickNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_Account.png"];
     [legalNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_Account.png"];
     [qqTextField initialLeftViewWithIconImage:@"TextFieldIcon_QQ.png"];

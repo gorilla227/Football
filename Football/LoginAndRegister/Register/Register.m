@@ -63,7 +63,7 @@
     [mobileTextField initialLeftViewWithIconImage:@"TextFieldIcon_Mobile.png"];
     [passwordTextField initialLeftViewWithIconImage:@"TextFieldIcon_Password.png"];
     [nickNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_Account.png"];
-//    [mailTextField initialLeftViewWithIconImage:@""];
+    [mailTextField initialLeftViewWithIconImage:@"TextFieldIcon_Email.png"];
 }
 
 - (void)didReceiveMemoryWarning

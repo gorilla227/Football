@@ -27,6 +27,7 @@
 		A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACC1190248F80062EB44 /* Captain_CreateMatch.m */; };
 		A169F7421915F3AF00361796 /* enterScore_VS.png in Resources */ = {isa = PBXBuildFile; fileRef = A169F7411915F3AF00361796 /* enterScore_VS.png */; };
 		A172432B1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */; };
+		A17D3CD11960D82F0090F624 /* TextFieldIcon_Email.png in Resources */ = {isa = PBXBuildFile; fileRef = A17D3CD01960D82F0090F624 /* TextFieldIcon_Email.png */; };
 		A1818972194CD9A600BE18BC /* FillPlayerProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A1818971194CD9A600BE18BC /* FillPlayerProfile.m */; };
 		A1818977194D671E00BE18BC /* FillTeamProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A1818976194D671E00BE18BC /* FillTeamProfile.m */; };
 		A18D7F7A1903912D003028FE /* Captain_RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D7F791903912D003028FE /* Captain_RootNavigationController.m */; };
@@ -152,6 +153,7 @@
 		A17243291908CF04008F4948 /* Captain_CreateMatch_TeamMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_TeamMarket.h; sourceTree = "<group>"; };
 		A172432A1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_TeamMarket.m; sourceTree = "<group>"; };
 		A178CED718FE343A007A3CA6 /* Pre_Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Pre_Define.h; path = Pre_Define/Pre_Define.h; sourceTree = "<group>"; };
+		A17D3CD01960D82F0090F624 /* TextFieldIcon_Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextFieldIcon_Email.png; sourceTree = "<group>"; };
 		A1818970194CD9A600BE18BC /* FillPlayerProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FillPlayerProfile.h; path = LoginAndRegister/Register/FillPlayerProfile.h; sourceTree = "<group>"; };
 		A1818971194CD9A600BE18BC /* FillPlayerProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FillPlayerProfile.m; path = LoginAndRegister/Register/FillPlayerProfile.m; sourceTree = "<group>"; };
 		A1818975194D671E00BE18BC /* FillTeamProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FillTeamProfile.h; path = LoginAndRegister/Register/FillTeamProfile.h; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 		A1E1709919562ED700826610 /* LoginAndRegister */ = {
 			isa = PBXGroup;
 			children = (
+				A17D3CD01960D82F0090F624 /* TextFieldIcon_Email.png */,
 				A1E170A81956648E00826610 /* TextFieldIcon_Stadium.png */,
 				A1E1709A19562ED700826610 /* TextFieldIcon_Account.png */,
 				A1E1709B19562ED700826610 /* TextFieldIcon_ActivityRegion.png */,
@@ -914,6 +917,7 @@
 				A1C2802F18F79CED004C644E /* login_textfield_title_user.png in Resources */,
 				B251F9EA1953B3610031E4A8 /* ActivityRegions.json in Resources */,
 				A1C8F9DF18DAA12600BE42D4 /* Captain_MenuList.plist in Resources */,
+				A17D3CD11960D82F0090F624 /* TextFieldIcon_Email.png in Resources */,
 				A1E170A319562ED700826610 /* TextFieldIcon_Birthday.png in Resources */,
 				B20264B4191BF081004B8D74 /* menu_bg@2x.png in Resources */,
 				B202650A191C273D004B8D74 /* menuIcon_superMarket.png in Resources */,
