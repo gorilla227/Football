@@ -55,7 +55,7 @@
 //    [self.view setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5f]];
     
     //Get stadiums
-    JSONConnect *connnect = [[JSONConnect alloc] initWithDelegate:self];
+    JSONConnect *connnect = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [connnect requestAllStadiums];
 }
 

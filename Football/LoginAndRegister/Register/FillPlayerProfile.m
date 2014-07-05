@@ -65,7 +65,7 @@
     [self setToolbarItems:saveBar.items];
     textFieldArray = @[legalNameTextField, nickNameTextField, mobileTextField, qqTextField, birthdateTextField, activityRegionTextField, mailTextField, legalNameTextField, positionTextField, styleTextField];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    connection = [[JSONConnect alloc] initWithDelegate:self];
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
     //Set DateFormatter
     birthdayDateFormatter = [[NSDateFormatter alloc] init];

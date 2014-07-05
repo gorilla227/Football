@@ -56,7 +56,7 @@
     textFieldArray = @[mobileTextField, passwordTextField, nickNameTextField, teamNameTextField, mailTextField];
     
     //Initial JSONConnection
-    connection = [[JSONConnect alloc] initWithDelegate:self];
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
     //Set leftIcon for textFields
     [teamNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_TeamName.png"];
@@ -85,7 +85,6 @@
 
 -(IBAction)registerButtonOnClicked:(id)sender
 {
-    [self.navigationController.view setUserInteractionEnabled:NO];
     switch (roleSegment.selectedSegmentIndex) {
         case 0:
             [connection registerCaptain:mobileTextField.text email:mailTextField.text password:passwordTextField.text.MD5 nickName:nickNameTextField.text teamName:teamNameTextField.text];
@@ -95,11 +94,6 @@
         default:
             break;
     }
-}
-
--(void)unlockView
-{
-    [self.navigationController.view setUserInteractionEnabled:YES];
 }
 
 -(void)receiveUserInfo:(UserInfo *)userInfo

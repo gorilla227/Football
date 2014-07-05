@@ -106,7 +106,7 @@
     [awayTeamScoreTextField setTintColor:[UIColor clearColor]];
     
     //Initial playersCandidateList
-    connection = [[JSONConnect alloc] initWithDelegate:self];
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [connection requestPlayersByTeamId:matchScore.home.teamId];
 }
 

@@ -12,7 +12,9 @@
 
 @end
 
-@implementation Starting
+@implementation Starting{
+    UIActivityIndicatorView *busyIndicator;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,12 +35,34 @@
     //Get UIStrings
     NSString *fileNameOfUIStrings = [[NSBundle mainBundle] pathForResource:@"UIStrings" ofType:@"plist"];
     gUIStrings = [NSDictionary dictionaryWithContentsOfFile:fileNameOfUIStrings];
+    
+    //Set busyIndicator
+    busyIndicator = [[UIActivityIndicatorView alloc] init];
+    [busyIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [busyIndicator setColor:[UIColor blackColor]];
+    [busyIndicator setCenter:self.view.center];
+    [busyIndicator setHidesWhenStopped:YES];
+    [self.view addSubview:busyIndicator];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//BusyIndicatorDelegate
+-(void)lockView
+{
+    [self.view.window setUserInteractionEnabled:NO];
+//    [self.view bringSubviewToFront:busyIndicator];
+    [busyIndicator startAnimating];
+}
+
+-(void)unlockView
+{
+    [self.view.window setUserInteractionEnabled:YES];
+    [busyIndicator stopAnimating];
 }
 
 /*

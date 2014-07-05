@@ -37,7 +37,8 @@
     [self.view setBackgroundColor:[UIColor clearColor]];
     [self initialTextFields];
     
-    connection = [[JSONConnect alloc] initWithDelegate:self];
+    //Initial JSONConnection
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -80,15 +81,9 @@
 
 -(IBAction)loginButtonOnClicked:(id)sender
 {
-    [self.navigationController.view setUserInteractionEnabled:NO];
-
+    [self dismissKeyboard];
     [connection loginVerification:accountField.text password:passwordField.text.MD5];
 //    [connection loginVerification:@"18611542707" password:@"123456"];
-}
-
--(void)unlockView
-{
-    [self.navigationController.view setUserInteractionEnabled:YES];
 }
 
 -(void)loginVerificationSuccessfully:(NSInteger)userId

@@ -11,13 +11,14 @@
 @implementation JSONConnect{
     AFHTTPRequestOperationManager *manager;
 }
-@synthesize delegate;
+@synthesize delegate, busyIndicatorDelegate;
 
--(id)initWithDelegate:(id)responser
+-(id)initWithDelegate:(id)responser andBusyIndicatorDelegate:(id)indicatorDelegate
 {
     self = [super init];
     if (self) {
         [self setDelegate:responser];
+        [self setBusyIndicatorDelegate:indicatorDelegate];
         manager = [AFHTTPRequestOperationManager manager];
         [manager.responseSerializer setAcceptableContentTypes:[manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"]];
     }
@@ -47,7 +48,7 @@
     else {
         errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:@"未知错误" delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
     }
-    [delegate unlockView];
+    [busyIndicatorDelegate unlockView];
     [errorAlertView show];
 }
 
@@ -55,12 +56,13 @@
 //LoginVerification
 -(void)loginVerification:(NSString *)account password:(NSString *)password
 {
+    [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_Login_Suffix];
     NSDictionary *parameters = CONNECT_Login_Parameters(account, password);
     
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [delegate unlockView];
+        [busyIndicatorDelegate unlockView];
         NSInteger userId = [[responseObject objectForKey:@"id"] integerValue];
         if (userId > 0) {
             [delegate loginVerificationSuccessfully:userId];
@@ -76,12 +78,13 @@
 //GetUserInfo
 -(void)requestUserInfo:(NSInteger)userId
 {
+    [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UserInfo_Suffix];
     NSDictionary *parameters = CONNECT_UserInfo_Parameters(userId);
     
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [delegate unlockView];
+        [busyIndicatorDelegate unlockView];
         if (responseObject) {
             UserInfo *userInfo = [[UserInfo alloc] initWithData:responseObject];
             [delegate receiveUserInfo:userInfo];
@@ -94,11 +97,12 @@
 //RegisterNewUser
 -(void)registerCaptain:(NSString *)mobile email:(NSString *)email password:(NSString *)password nickName:(NSString *)nickName teamName:(NSString *)teamName
 {
+    [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RegisterCaptain_Suffix];
     NSDictionary *parameters = CONNECT_RegisterCaptain_Parameters(mobile, email, password, nickName, teamName);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [delegate unlockView];
+        [busyIndicatorDelegate unlockView];
         NSInteger member_id = [[responseObject objectForKey:@"member_id"] integerValue];
         NSInteger team_id = [[responseObject objectForKey:@"team_id"] integerValue];
         [delegate registerCaptainSuccessfully:member_id teamId:team_id];
@@ -109,10 +113,12 @@
 
 -(void)registerPlayer:(NSString *)mobile email:(NSString *)email password:(NSString *)password nickName:(NSString *)nickName
 {
+    [busyIndicatorDelegate lockView];
+    [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RegisterPlayer_Suffix];
     NSDictionary *parameters = CONNECT_RegisterPlayer_Parameters(mobile, email, password, nickName);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [delegate unlockView];
+        [busyIndicatorDelegate unlockView];
         NSInteger playerId = [[responseObject objectForKey:@"id"] integerValue];
         [delegate registerPlayerSuccessfully:playerId];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -123,10 +129,11 @@
 //UpdatePlayerProfile
 -(void)updatePlayerProfile:(NSDictionary *)playerProfile
 {
+    [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerProfile_Suffix];
     [manager POST:urlString parameters:playerProfile success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [delegate unlockView];
+        [busyIndicatorDelegate unlockView];
         [delegate updatePlayerProfileSuccessfully];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
@@ -136,13 +143,14 @@
 //UpdatePlayerPortrait
 -(void)updatePlayerPortrait:(UIImage *)portrait forPlayer:(NSInteger)playerId
 {
+    [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerPortrait_Suffix];
     NSDictionary *parameters = CONNECT_UpdatePlayerPortrait_Parameters(playerId);
     [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:UIImageJPEGRepresentation(portrait, 0.5) name:@"file" fileName:@"memberPortrait.jpg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [delegate unlockView];
+        [busyIndicatorDelegate unlockView];
         [delegate updatePlayerPortraitSuccessfully];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
@@ -152,10 +160,11 @@
 //UpdateTeamProfile
 -(void)updateTeamProfile:(NSDictionary *)teamProfile
 {
+    [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateTeamProfile_Suffix];
     [manager POST:urlString parameters:teamProfile success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [delegate unlockView];
+        [busyIndicatorDelegate unlockView];
         [delegate updateTeamProfileSuccessfully];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
@@ -165,13 +174,14 @@
 //UpdateTeamLogo
 -(void)updateTeamLogo:(UIImage *)logo forTeam:(NSInteger)teamId
 {
+    [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateTeamLogo_Suffix];
     NSDictionary *parameters = CONNECT_UpdateTeamLogo_Parameters(teamId);
     [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:UIImageJPEGRepresentation(logo, 0.5) name:@"file" fileName:@"teamLog.jpeg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [delegate unlockView];
+        [busyIndicatorDelegate unlockView];
         [delegate updateTeamLogoSuccessfully];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];

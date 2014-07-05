@@ -11,10 +11,14 @@
 #import "AFNetworking.h"
 #import "NSString+MD5.h"
 
+@protocol BusyIndicatorDelegate <NSObject>
+-(void)lockView;
+-(void)unlockView;
+@end
+
 @protocol JSONConnectDelegate <NSObject>
 @optional
 #pragma new Server
--(void)unlockView;
 -(void)loginVerificationSuccessfully:(NSInteger)userId;//登录验证成功
 -(void)loginVerificationFailed;//登录验证失败
 -(void)receiveUserInfo:(UserInfo *)userInfo;//返回用户信息
@@ -35,7 +39,8 @@
 
 @interface JSONConnect : NSObject
 @property id<JSONConnectDelegate>delegate;
--(id)initWithDelegate:(id)responser;
+@property id<BusyIndicatorDelegate>busyIndicatorDelegate;
+-(id)initWithDelegate:(id)responser andBusyIndicatorDelegate:(id)indicatorDelegate;
 -(void)showErrorAlertView:(NSError *)error otherInfo:(NSString *)otherInfo;
 
 #pragma new Server

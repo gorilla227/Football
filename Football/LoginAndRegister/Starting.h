@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Starting : UINavigationController
+@interface Starting : UINavigationController<BusyIndicatorDelegate>
 
 @end

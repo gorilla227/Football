@@ -85,7 +85,7 @@
 //    [teamName setText:gMyUserInfo.team.teamName];
     
     //Request matches
-    connection = [[JSONConnect alloc] initWithDelegate:self];
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
 //    [connection requestMatchesByUserId:gMyUserInfo.userId count:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
     
     //Set menu button
