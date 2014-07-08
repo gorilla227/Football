@@ -109,12 +109,12 @@
 
 -(void)registerCaptainSuccessfully:(NSInteger)userId teamId:(NSInteger)teamId
 {
-    [connection requestUserInfo:userId];
+    [connection requestUserInfo:userId withTeam:YES];
 }
 
 -(void)registerPlayerSuccessfully:(NSInteger)userId
 {
-    [connection requestUserInfo:userId];
+    [connection requestUserInfo:userId withTeam:NO];
 }
 
 //UIAlertView

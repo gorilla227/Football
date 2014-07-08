@@ -88,7 +88,7 @@
 
 -(void)loginVerificationSuccessfully:(NSInteger)userId
 {
-    [connection requestUserInfo:userId];
+    [connection requestUserInfo:userId withTeam:YES];
 }
 
 -(void)loginVerificationFailed

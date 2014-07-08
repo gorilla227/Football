@@ -9,86 +9,131 @@
 
 #pragma Stadium
 @implementation Stadium
-@synthesize stadiumId, stadiumName, address, phoneNumber, contactPerson;
+@synthesize stadiumId, stadiumName, address, phoneNumber, price;
+
+-(id)copy
+{
+    Stadium *staduimCopy = [[Stadium alloc] init];
+    //Copy required properties
+    [staduimCopy setStadiumId:stadiumId];
+    [staduimCopy setStadiumName:[stadiumName copy]];
+    [staduimCopy setAddress:[address copy]];
+    //Copy option properties
+    if (phoneNumber) {
+        [staduimCopy setPhoneNumber:[phoneNumber copy]];
+    }
+    [staduimCopy setPrice:price];
+    return staduimCopy;
+}
 
 -(id)initWithData:(NSDictionary *)data
 {
     self = [super init];
     if (self) {
-        [self setStadiumId:[data objectForKey:kStadium_id]];
+        [self setStadiumId:[[data objectForKey:kStadium_id] integerValue]];
         [self setStadiumName:[data objectForKey:kStadium_name]];
         [self setAddress:[data objectForKey:kStadium_address]];
         [self setPhoneNumber:[data objectForKey:kStadium_phoneNumber]];
-        [self setContactPerson:[data objectForKey:contactPerson]];
+        [self setPrice:[[data objectForKey:kStadium_price] integerValue]];
     }
     return self;
 }
 
--(NSDictionary *)exportToDictionary
+-(NSDictionary *)dictionaryForUpdate:(Stadium *)originalStadium
 {
     NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
-    [output setObject:stadiumId forKey:kStadium_id];
-    [output setObject:stadiumName forKey:kStadium_name];
-    [output setObject:address forKey:kStadium_address];
-    [output setObject:phoneNumber forKey:kStadium_phoneNumber];
-    [output setObject:contactPerson forKey:kStadium_contactPerson];
+    [output setObject:[NSNumber numberWithInteger:stadiumId] forKey:kStadium_id];
+    //Compare required properties
+    if (![stadiumName isEqualToString:originalStadium.stadiumName]) {
+        [output setObject:stadiumName forKey:kStadium_name];
+    }
+    if (![address isEqualToString:originalStadium.address]) {
+        [output setObject:address forKey:kStadium_address];
+    }
+    //Compare optional properties
+    if (![phoneNumber isEqualToString:originalStadium.phoneNumber]) {
+        [output setObject:phoneNumber forKey:kStadium_phoneNumber];
+    }
+    if (price != originalStadium.price) {
+        [output setObject:[NSNumber numberWithInteger:price] forKey:kStadium_price];
+    }
     return output;
 }
 @end
 
 #pragma Team
 @implementation Team
-@synthesize name, description, creationDate, teamId, balance, logo, captainId, slogan, teamName;
+@synthesize teamId, teamName, numOfMember, activityRegion, slogan, creationDate, logo, homeStadium;
+
+-(id)copy
+{
+    Team *teamCopy = [[Team alloc] init];
+    //Copy required properties
+    [teamCopy setTeamId:teamId];
+    [teamCopy setTeamName:[teamName copy]];
+    [teamCopy setCreationDate:[creationDate copy]];
+    //Copy option properties
+    [teamCopy setNumOfMember:numOfMember];
+    if (activityRegion) {
+        [teamCopy setActivityRegion:[activityRegion copy]];
+    }
+    if (slogan) {
+        [teamCopy setSlogan:[slogan copy]];
+    }
+    if (logo) {
+        [teamCopy setLogo:[logo copy]];
+    }
+    if (homeStadium) {
+        [teamCopy setHomeStadium:[homeStadium copy]];
+    }
+    return teamCopy;
+}
 
 -(id)initWithData:(NSDictionary *)data
 {
     self = [super init];
     if (self) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:def_JSONDateformat];
-        
-        [self setName:[data objectForKey:kTeam_name]];
-        [self setDescription:[data objectForKey:kTeam_description]];
-        [self setCreationDate:[dateFormatter dateFromString:[data objectForKey:kTeam_creationDate]]];
-        [self setTeamId:[data objectForKey:kTeam_teamId]];
-        [self setBalance:[data objectForKey:kTeam_balance]];
-        [self setLogo:[data objectForKey:kTeam_logo]];
-        [self setCaptainId:[data objectForKey:kTeam_captain]];
-        [self setSlogan:[data objectForKey:kTeam_slogan]];
+        [self setTeamId: [[data objectForKey:kTeam_teamId] integerValue]];
         [self setTeamName:[data objectForKey:kTeam_teamName]];
+        [self setNumOfMember:[[data objectForKey:kTeam_numOfTeam] integerValue]];
+        [self setActivityRegion:[[data objectForKey:kTeam_activityRegion] componentsSeparatedByString:@"-"]];
+        [self setSlogan:[data objectForKey:kTeam_slogan]];
+        [self setCreationDate:[data objectForKey:kTeam_creationDate]];
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[data objectForKey:kTeam_logo]]];
+        [self setLogo:[UIImage imageWithData:imageData]];
+        NSDictionary *homeStadiumData = [data objectForKey:kTeam_homeStadium];
+        if (homeStadiumData) {
+            [self setHomeStadium:[[Stadium alloc] initWithData:homeStadiumData]];
+        }
     }
     return self;
 }
 
--(NSDictionary *)exportToDictionary
+-(NSDictionary *)dictionaryForUpdate:(Team *)originalTeam
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:def_JSONDateformat];
-    
     NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
-    [output setObject:name forKey:kTeam_teamName];
-    [output setObject:description forKey:kTeam_description];
-    [output setObject:[dateFormatter stringFromDate:creationDate] forKey:kTeam_creationDate];
-    [output setObject:teamId forKey:kTeam_teamId];
-    [output setObject:balance forKey:kTeam_balance];
-    if ([logo isEqual:[NSNull null]]) {
-        [output setObject:[NSNull null] forKey:kTeam_logo];
+    [output setObject:[NSNumber numberWithInteger:teamId] forKey:kTeam_teamId];
+    //Compare required properties
+    if (![teamName isEqualToString:originalTeam.teamName]) {
+        [output setObject:teamName forKey:kTeam_teamName];
     }
-    else {
-        [output setObject:[logo base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn] forKey:kTeam_logo];
+    //Compare optional properties
+    if (![activityRegion isEqual:originalTeam.activityRegion]) {
+        [output setObject:activityRegion forKey:kTeam_activityRegion];
     }
-    [output setObject:captainId forKey:kTeam_captain];
-    [output setObject:slogan forKey:kTeam_slogan];
-    [output setObject:teamName forKey:kTeam_teamName];
+    if (![slogan isEqualToString:originalTeam.slogan]) {
+        [output setObject:slogan forKey:kTeam_slogan];
+    }
+    if (homeStadium.stadiumId != originalTeam.homeStadium.stadiumId) {
+        [output setObject:[NSNumber numberWithInteger:homeStadium.stadiumId] forKey:kTeam_homeStadiumId];
+    }
     return output;
 }
 @end
 
 #pragma UserInfo
-@implementation UserInfo{
-    NSDateFormatter *dateFormatter;
-}
-@synthesize userId, mobile, userType, nickName, legalName, gender, email, qq, birthday, activityRegion, position, style, playerPortrait;
+@implementation UserInfo
+@synthesize userId, mobile, userType, nickName, legalName, gender, email, qq, birthday, activityRegion, position, style, playerPortrait, team;
 
 -(id)copy
 {
@@ -117,8 +162,8 @@
     if (style) {
         [userInfoCopy setStyle:[style copy]];
     }
-    if (playerPortrait) {
-        [userInfoCopy setPlayerPortrait:[playerPortrait copy]];
+    if (team) {
+        [userInfoCopy setTeam:[team copy]];
     }
     return userInfoCopy;
 }
@@ -127,10 +172,6 @@
 {
     self = [super init];
     if (self) {
-        dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:def_MatchDateformat];
-        [dateFormatter setLocale:[NSLocale currentLocale]];
-
         [self setUserId:[[data objectForKey:kUserInfo_userId] integerValue]];
         [self setMobile:[data objectForKey:kUserInfo_mobile]];
         [self setUserType:[[data objectForKey:kUserInfo_userType] integerValue]];
@@ -142,11 +183,13 @@
         [self setEmail:[data objectForKey:kUserInfo_email]];
         [self setQq:[data objectForKey:kUserInfo_qq]];
         [self setBirthday:[data objectForKey:kUserInfo_birthday]];
-        NSString *locationCode = [data objectForKey:kUserInfo_activityRegion];
-        [self setActivityRegion:[locationCode componentsSeparatedByString:@"-"]];
-        NSString *portraitFileString = [data objectForKey:kUserInfo_playerPortrait];
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:portraitFileString]];
-        playerPortrait = [UIImage imageWithData:imageData];
+        [self setActivityRegion:[[data objectForKey:kUserInfo_activityRegion] componentsSeparatedByString:@"-"]];
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[data objectForKey:kUserInfo_playerPortrait]]];
+        [self setPlayerPortrait:[UIImage imageWithData:imageData]];
+        NSDictionary *teamData = [data objectForKey:kUserInfo_team];
+        if ([teamData isKindOfClass:[NSDictionary class]]) {
+            [self setTeam:[[Team alloc] initWithData:teamData]];
+        }
     }
     return self;
 }
@@ -242,8 +285,8 @@
     [output setObject:[dateFormatter stringFromDate:matchDate] forKey:kMatch_matchDate];
     [output setObject:[NSNumber numberWithBool:announcable] forKey:kMatch_announcable];
     [output setObject:[NSNumber numberWithBool:recordable] forKey:kMatch_recordable];
-    [output setObject:[teamA exportToDictionary] forKey:kMatch_teamA];
-    [output setObject:[teamB exportToDictionary] forKey:kMatch_teamB];
+//    [output setObject:[teamA exportToDictionary] forKey:kMatch_teamA];
+//    [output setObject:[teamB exportToDictionary] forKey:kMatch_teamB];
     [output setObject:rating forKey:kMatch_rating];
     [output setObject:matchType forKey:kMatch_matchType];
     return output;
@@ -278,7 +321,7 @@
 -(NSDictionary *)exportToDictionary
 {
     NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
-    [output setObject:[home exportToDictionary] forKey:kMatchScore_homeTeam];
+//    [output setObject:[home exportToDictionary] forKey:kMatchScore_homeTeam];
     [output setObject:awayTeamName forKey:kMatchScore_awayTeam];
     [output setObject:homeScore forKey:kMatchScore_homeScore];
     [output setObject:awayScore forKey:kMatchScore_awayScore];

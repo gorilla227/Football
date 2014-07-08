@@ -194,14 +194,14 @@
         [connection updatePlayerPortrait:playerIconImageView.image forPlayer:gMyUserInfo.userId];
     }
     else {
-        [connection requestUserInfo:gMyUserInfo.userId];
+        [connection requestUserInfo:gMyUserInfo.userId withTeam:NO];
     }
 }
 
 //Update PlayerPortrait Successfully
 -(void)updatePlayerPortraitSuccessfully
 {
-    [connection requestUserInfo:gMyUserInfo.userId];
+    [connection requestUserInfo:gMyUserInfo.userId withTeam:NO];
 }
 
 //Receive updated UserInfo

@@ -107,7 +107,7 @@
     
     //Initial playersCandidateList
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestPlayersByTeamId:matchScore.home.teamId];
+//    [connection requestPlayersByTeamId:matchScore.home.teamId];
 }
 
 - (void)didReceiveMemoryWarning

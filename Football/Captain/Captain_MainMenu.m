@@ -115,7 +115,9 @@
     UITableViewCell *cell;
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier_myProfile];
-        [cell.imageView setImage:gMyUserInfo.playerPortrait];
+        if (gMyUserInfo.playerPortrait) {
+            [cell.imageView setImage:gMyUserInfo.playerPortrait];
+        }
         [cell.imageView.layer setBorderColor:[UIColor whiteColor].CGColor];
         [cell.imageView.layer setBorderWidth:2.0f];
         [cell.imageView.layer setCornerRadius:5.0f];

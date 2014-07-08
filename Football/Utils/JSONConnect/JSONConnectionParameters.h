@@ -11,11 +11,11 @@
 
 //Login
 #define CONNECT_Login_Suffix @"member/verify"
-#define CONNECT_Login_Parameters(account, password) @{@"user" : account, @"password" : password}
+#define CONNECT_Login_Parameters(account, password) @{@"user":account, @"password":password}
 
 //Get userInfo
 #define CONNECT_UserInfo_Suffix @"member/profile"
-#define CONNECT_UserInfo_Parameters(userId) @{@"id" : [NSNumber numberWithInteger:userId]}
+#define CONNECT_UserInfo_Parameters(userId, with_team_info) @{@"id":[NSNumber numberWithInteger:userId], @"with_team_info":[NSNumber numberWithInteger:with_team_info]}
 
 //Register Player
 #define CONNECT_RegisterPlayer_Suffix @"member/memberregister"

@@ -76,12 +76,12 @@
 }
 
 //GetUserInfo
--(void)requestUserInfo:(NSInteger)userId
+-(void)requestUserInfo:(NSInteger)userId withTeam:(BOOL)withTeam
 {
     [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UserInfo_Suffix];
-    NSDictionary *parameters = CONNECT_UserInfo_Parameters(userId);
+    NSDictionary *parameters = CONNECT_UserInfo_Parameters(userId, withTeam?1:0);
     
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
