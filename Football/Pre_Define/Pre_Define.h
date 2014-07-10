@@ -15,6 +15,10 @@
 //Flexiblespace UIBarButtonItem
 #define def_flexibleSpace [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]
 
+//Default playerPortrait and teamLogo
+#define def_defaultPlayerPortrait [UIImage imageNamed:@"TeamIcon.jpg"]
+#define def_defaultTeamLogo [UIImage imageNamed:@"TeamIcon.jpg"]
+
 //UI Strings
 #define def_typeOfPlayerNumber_SignUp @"报名人数"
 #define def_typeOfPlayerNumber_ShowUp @"出场人数"

@@ -165,6 +165,9 @@
     if (team) {
         [userInfoCopy setTeam:[team copy]];
     }
+    if (playerPortrait) {
+        [userInfoCopy setPlayerPortrait:[playerPortrait copy]];
+    }
     return userInfoCopy;
 }
 
@@ -232,6 +235,14 @@
     }
     if (![style isEqualToString:originalUserInfo.style]) {
         [output setObject:style forKey:kUserInfo_style];
+    }
+    if (![playerPortrait isEqual:originalUserInfo.playerPortrait]) {
+        if (playerPortrait) {
+            [output setObject:playerPortrait forKey:kUserInfo_playerPortrait];
+        }
+        else {
+            [output setObject:[NSNull null] forKey:kUserInfo_playerPortrait];
+        }
     }
     return output;
 }

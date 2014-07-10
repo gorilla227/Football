@@ -12,7 +12,7 @@
 #import "Captain_CreateMatch.h"
 
 @interface Captain_WarmupMatch_Cell : UITableViewCell
-@property IBOutlet UIImageView *opponentTeamIcon;
+@property IBOutlet UIImageView *opponentteamLogo;
 @property IBOutlet UILabel *invitationStatusText;
 @property IBOutlet UIView *invitationStatusBackgroundView;
 @property IBOutlet UILabel *matchPlace;

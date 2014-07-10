@@ -10,7 +10,7 @@
 
 #pragma Captain_WarmupMatch_Cell
 @implementation Captain_WarmupMatch_Cell
-@synthesize opponentTeamIcon, invitationStatusText, matchPlace, matchDate, matchTime, matchType, matchCost, actionView_beInvited, actionView_invitationAccepted, actionView_invitationRejected, stamp_cancelled, stamp_rejected, beInvited, acceptInvitation, rejectInvitation, invitationStatusBackgroundView, acceptOrRejectInvitationTextView, invitationDetailsView;
+@synthesize opponentteamLogo, invitationStatusText, matchPlace, matchDate, matchTime, matchType, matchCost, actionView_beInvited, actionView_invitationAccepted, actionView_invitationRejected, stamp_cancelled, stamp_rejected, beInvited, acceptInvitation, rejectInvitation, invitationStatusBackgroundView, acceptOrRejectInvitationTextView, invitationDetailsView;
 @end
 
 #pragma Captain_WarmupMatch
@@ -141,10 +141,10 @@
     static NSString *CellIdentifier = @"Captain_WarmupMatch_Cell";
     Captain_WarmupMatch_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    [cell.opponentTeamIcon.layer setCornerRadius:cell.opponentTeamIcon.bounds.size.height/2];
-    [cell.opponentTeamIcon.layer setBorderWidth:1.0f];
-    [cell.opponentTeamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [cell.opponentTeamIcon.layer setMasksToBounds:YES];
+    [cell.opponentteamLogo.layer setCornerRadius:cell.opponentteamLogo.bounds.size.height/2];
+    [cell.opponentteamLogo.layer setBorderWidth:1.0f];
+    [cell.opponentteamLogo.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [cell.opponentteamLogo.layer setMasksToBounds:YES];
     
     switch (indexPath.row) {
         case 0:
@@ -180,7 +180,7 @@
             [cell.actionView_invitationRejected setHidden:YES];
             [cell.stamp_rejected setHidden:YES];
             [cell.stamp_cancelled setHidden:NO];
-            [cell.opponentTeamIcon setImage:[UIImage convertImageToGreyScale:cell.opponentTeamIcon.image]];
+            [cell.opponentteamLogo setImage:[UIImage convertImageToGreyScale:cell.opponentteamLogo.image]];
             break;
         case 2:
             //Be invited, accepted
@@ -225,7 +225,7 @@
             [cell.actionView_invitationRejected setHidden:NO];
             [cell.stamp_rejected setHidden:NO];
             [cell.stamp_cancelled setHidden:YES];
-            [cell.opponentTeamIcon setImage:[UIImage convertImageToGreyScale:cell.opponentTeamIcon.image]];
+            [cell.opponentteamLogo setImage:[UIImage convertImageToGreyScale:cell.opponentteamLogo.image]];
             break;
         default:
             break;

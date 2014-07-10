@@ -9,7 +9,7 @@
 #import "Captain_MyPlayers.h"
 #pragma Captain_MyPlayerCell
 @implementation Captain_MyPlayerCell
-@synthesize playerIcon, playerName, signUpStatusOfNextMatch, likeView, likeScore, likeIcon, actionButton;
+@synthesize playerPortrait, playerName, signUpStatusOfNextMatch, likeView, likeScore, likeIcon, actionButton;
 
 -(void)drawRect:(CGRect)rect
 {

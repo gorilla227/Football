@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Captain_NotifyPlayers_Cell : UITableViewCell
-@property IBOutlet UIImageView *playerIcon;
+@property IBOutlet UIImageView *playerPortrait;
 @property IBOutlet UILabel *playerName;
 @end
 

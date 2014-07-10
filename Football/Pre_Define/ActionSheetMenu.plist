@@ -44,15 +44,15 @@
 			<string>callFriendsIcon_wechat.png</string>
 		</dict>
 	</array>
-	<key>EditPlayerIconMenu</key>
+	<key>EditplayerPortraitMenu</key>
 	<array>
 		<string>换个头像</string>
-		<string>删除头像</string>
+		<string>默认头像</string>
 	</array>
-	<key>EditTeamIconMenu</key>
+	<key>EditteamLogoMenu</key>
 	<array>
 		<string>换个队标</string>
-		<string>删除队标</string>
+		<string>默认队标</string>
 	</array>
 </dict>
 </plist>

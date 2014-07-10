@@ -330,7 +330,7 @@
                     <connections>
                         <outlet property="matchesTableView" destination="QRb-13-lxr" id="MnU-Hw-StV"/>
                         <outlet property="numberOfTeamMembers" destination="sOE-ga-aKz" id="oK8-LO-Wt5"/>
-                        <outlet property="teamIcon" destination="ZCj-jR-EvV" id="SCY-VB-CTa"/>
+                        <outlet property="teamLogo" destination="ZCj-jR-EvV" id="oUH-B4-lJo"/>
                         <outlet property="teamName" destination="UL1-Xs-zEP" id="whA-vQ-NfR"/>
                         <segue destination="R6J-gK-DLQ" kind="push" identifier="ViewRecord" id="cUV-cu-CyG"/>
                         <segue destination="R6J-gK-DLQ" kind="push" identifier="FillRecord" id="FTS-oN-6nj"/>

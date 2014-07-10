@@ -18,7 +18,7 @@
 
 @interface Captain_BalanceManagement : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property IBOutlet UIBarButtonItem *addBalanceRecordButton;
-@property IBOutlet UIImageView *teamIcon;
+@property IBOutlet UIImageView *teamLogo;
 @property IBOutlet UITableView *balanceTableView;
 @property IBOutlet UIView *balanceTableViewHeaderView;
 -(void)drawLineForHeaderView;

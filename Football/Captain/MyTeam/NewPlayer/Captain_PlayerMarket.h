@@ -13,7 +13,7 @@
 @end
 
 @interface Captain_PlayerMarket_Cell : UITableViewCell
-@property IBOutlet UIImageView *playerIcon;
+@property IBOutlet UIImageView *playerPortrait;
 @property IBOutlet UILabel *nickName;
 @property IBOutlet UILabel *playerRole;
 @property IBOutlet UILabel *age;

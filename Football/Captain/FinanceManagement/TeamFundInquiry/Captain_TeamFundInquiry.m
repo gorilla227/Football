@@ -12,12 +12,12 @@
 #import "Captain_TeamFundInquiry.h"
 
 @implementation Captain_TeamFundInquiry_CollectionCell
-@synthesize playerIcon, playerName;
+@synthesize playerPortrait, playerName;
 -(void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    [playerIcon.layer setCornerRadius:playerIcon.bounds.size.width / 2];
-    [playerIcon.layer setMasksToBounds:YES];
+    [playerPortrait.layer setCornerRadius:playerPortrait.bounds.size.width / 2];
+    [playerPortrait.layer setMasksToBounds:YES];
 }
 @end
 

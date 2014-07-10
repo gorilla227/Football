@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="183"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="uhU-RM-H1H">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="uhU-RM-H1H">
                                         <rect key="frame" x="99" y="31" width="122" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -39,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="203" width="320" height="365"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yMO-8n-3b1">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMO-8n-3b1">
                                         <rect key="frame" x="0.0" y="8" width="320" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -53,7 +53,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9LN-mN-jpy">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9LN-mN-jpy">
                                                 <rect key="frame" x="20" y="52" width="280" height="36"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -75,7 +75,7 @@
                                                     <action selector="loginButtonOnClicked:" destination="P6b-ds-GMJ" eventType="touchUpInside" id="4Dv-Fa-bvB"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7e3-Qx-IWn">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7e3-Qx-IWn">
                                                 <rect key="frame" x="161" y="100" width="159" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -643,7 +643,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wKB-gR-C06">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TeamIcon.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="wKB-gR-C06">
                                                     <rect key="frame" x="20" y="20" width="80" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -653,12 +653,12 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                    <state key="normal" title="选择头像">
+                                                    <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="selectPlayerIconButtonOnClicked:" destination="sw4-02-Ddq" eventType="touchUpInside" id="d0g-rP-LKy"/>
+                                                        <action selector="selectplayerPortraitButtonOnClicked:" destination="sw4-02-Ddq" eventType="touchUpInside" id="cFa-gM-Fdj"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -852,8 +852,7 @@
                         <outlet property="mailTextField" destination="XP3-J2-kXl" id="6gg-eJ-eM8"/>
                         <outlet property="mobileTextField" destination="H5q-RH-FNv" id="o7l-UP-2FK"/>
                         <outlet property="nickNameTextField" destination="N0Y-QP-1xH" id="duA-g0-bRJ"/>
-                        <outlet property="playerIconActionButton" destination="UL5-dX-Uq4" id="MHh-Pd-szC"/>
-                        <outlet property="playerIconImageView" destination="wKB-gR-C06" id="jyf-xt-COF"/>
+                        <outlet property="playerPortraitImageView" destination="wKB-gR-C06" id="bWW-3P-V2q"/>
                         <outlet property="positionTextField" destination="ZSa-6y-qAX" id="1qz-iK-Zzw"/>
                         <outlet property="qqTextField" destination="X5I-mu-xsc" id="0B4-a9-igs"/>
                         <outlet property="saveBar" destination="JrJ-Nh-LcT" id="1Wn-ga-2km"/>
@@ -879,6 +878,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="TeamIcon.jpg" width="300" height="300"/>
         <image name="login_logo.png" width="97" height="99"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

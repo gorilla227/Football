@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Football/Utils/JSONConnect/JSONConnect.m"
-            timestampString = "426232182.880819"
+            timestampString = "426582665.749479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-updatePlayerPortrait:forPlayer:"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Football/Utils/JSONConnect/JSONConnect.m"
-            timestampString = "426232182.880819"
+            timestampString = "426582665.749479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-updatePlayerPortrait:forPlayer:"
             landmarkType = "5">
          </BreakpointContent>
@@ -118,32 +118,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Football/LoginAndRegister/Login/Login.m"
-            timestampString = "426493458.299172"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-receiveUserInfo:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Football/Pre_Define/DataModel.m"
-            timestampString = "426493666.075699"
+            timestampString = "426657873.687027"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "-initWithData:"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "-dictionaryForUpdate:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -27,7 +27,7 @@
 
 @interface Captain_MatchArrangement : UIViewController<JSONConnectDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate>
 @property IBOutlet UITableView *matchesTableView;
-@property IBOutlet UIImageView *teamIcon;
+@property IBOutlet UIImageView *teamLogo;
 @property IBOutlet UILabel *teamName;
 @property IBOutlet UILabel *numberOfTeamMembers;
 

@@ -13,7 +13,7 @@
 @end
 
 @implementation Captain_TeamProfile
-@synthesize teamIcon, teamName, averageAge, activityRegion, pronouncement;
+@synthesize teamLogo, teamName, averageAge, activityRegion, pronouncement;
 @synthesize qqTwoDimensionalCode, wechatTwoDimensionalCode;
 @synthesize recruitSwitch, recruitComment;
 @synthesize totalMatches, winMatchesAndRate, totalGoal, totalLost;
@@ -34,11 +34,11 @@
     //Set menu button
     [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
     
-//    [teamIcon setImage:[UIImage imageNamed:@"TeamIcon.jpg"]];
-    [teamIcon.layer setBorderWidth:2.0f];
-    [teamIcon.layer setBorderColor:[UIColor grayColor].CGColor];
-    [teamIcon.layer setCornerRadius:teamIcon.bounds.size.width/2];
-    [teamIcon.layer setMasksToBounds:YES];
+//    [teamLogo setImage:[UIImage imageNamed:@"teamLogo.jpg"]];
+    [teamLogo.layer setBorderWidth:2.0f];
+    [teamLogo.layer setBorderColor:[UIColor grayColor].CGColor];
+    [teamLogo.layer setCornerRadius:teamLogo.bounds.size.width/2];
+    [teamLogo.layer setMasksToBounds:YES];
 }
 
 - (void)didReceiveMemoryWarning

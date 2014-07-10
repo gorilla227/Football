@@ -18,8 +18,8 @@
 
 @interface FillTeamProfile ()
 @property IBOutlet UIToolbar *saveBar;
-@property IBOutlet UIImageView *teamIconImageView;
-@property IBOutlet UIButton *teamIconActionButton;
+@property IBOutlet UIImageView *teamLogoImageView;
+@property IBOutlet UIButton *teamLogoActionButton;
 @property IBOutlet UITextField *teamNameTextField;
 @property IBOutlet UITextFieldForActivityRegion *activityRegionTextField;
 @property IBOutlet UITextField *homeStadiumTextField;
@@ -29,9 +29,9 @@
 @implementation FillTeamProfile{
     NSArray *textFieldArray;
     UIImagePickerController *imagePicker;
-    UIActionSheet *editTeamIconMenu;
+    UIActionSheet *editteamLogoMenu;
 }
-@synthesize saveBar, teamIconImageView, teamIconActionButton, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView;
+@synthesize saveBar, teamLogoImageView, teamLogoActionButton, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -55,11 +55,11 @@
     [self setToolbarItems:saveBar.items];
     textFieldArray = @[teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView];
     
-    //Set the playerIcon related controls
-    [teamIconImageView.layer setCornerRadius:10.0f];
-    [teamIconImageView.layer setMasksToBounds:YES];
-    [teamIconImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [teamIconImageView.layer setBorderWidth:1.0f];
+    //Set the playerPortrait related controls
+    [teamLogoImageView.layer setCornerRadius:10.0f];
+    [teamLogoImageView.layer setMasksToBounds:YES];
+    [teamLogoImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [teamLogoImageView.layer setBorderWidth:1.0f];
     
     //Set imagePicker
     imagePicker = [[UIImagePickerController alloc] init];
@@ -68,17 +68,17 @@
     [imagePicker setAllowsEditing:YES];
     [imagePicker.navigationBar setTitleTextAttributes:self.navigationController.navigationBar.titleTextAttributes];
     
-    //Set EditTeamIcon menu
+    //Set EditteamLogo menu
     NSString *menuTitleFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
-    NSArray *menuTitleList = [[[NSDictionary alloc] initWithContentsOfFile:menuTitleFile] objectForKey:@"EditTeamIconMenu"];
-    editTeamIconMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:menuTitleList.lastObject otherButtonTitles:menuTitleList[0], nil];
+    NSArray *menuTitleList = [[[NSDictionary alloc] initWithContentsOfFile:menuTitleFile] objectForKey:@"EditteamLogoMenu"];
+    editteamLogoMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:menuTitleList.lastObject otherButtonTitles:menuTitleList[0], nil];
     
-    //Set selectTeamIconButton
-    if (teamIconImageView.image) {
-        [teamIconActionButton setTitle:nil forState:UIControlStateNormal];
+    //Set selectteamLogoButton
+    if (teamLogoImageView.image) {
+        [teamLogoActionButton setTitle:nil forState:UIControlStateNormal];
     }
     else {
-        [teamIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillTeamProfile_TeamIconButton_New"] forState:UIControlStateNormal];
+        [teamLogoActionButton setTitle:[gUIStrings objectForKey:@"UI_FillTeamProfile_teamLogoButton_New"] forState:UIControlStateNormal];
     }
     
     //Set activityregion Picker
@@ -117,10 +117,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(IBAction)selectTeamIconButtonOnClicked:(id)sender
+-(IBAction)selectteamLogoButtonOnClicked:(id)sender
 {
-    if (teamIconImageView.image) {
-        [editTeamIconMenu showInView:self.view];
+    if (teamLogoImageView.image) {
+        [editteamLogoMenu showInView:self.view];
     }
     else {
         [self presentViewController:imagePicker animated:YES completion:nil];
@@ -129,13 +129,13 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if ([actionSheet isEqual:editTeamIconMenu]) {
+    if ([actionSheet isEqual:editteamLogoMenu]) {
         switch (buttonIndex) {
-            case 0://Delete teamIcon
-                [teamIconImageView setImage:nil];
-                [teamIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillTeamProfile_TeamIconButton_New"] forState:UIControlStateNormal];
+            case 0://Delete teamLogo
+                [teamLogoImageView setImage:nil];
+                [teamLogoActionButton setTitle:[gUIStrings objectForKey:@"UI_FillTeamProfile_teamLogoButton_New"] forState:UIControlStateNormal];
                 break;
-            case 1://Change teamIcon
+            case 1://Change teamLogo
                 [self presentViewController:imagePicker animated:YES completion:nil];
                 break;
             default:
@@ -149,8 +149,8 @@
     NSString *imageType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([imageType isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-        [teamIconImageView setImage:image];
-        [teamIconActionButton setTitle:nil forState:UIControlStateNormal];
+        [teamLogoImageView setImage:image];
+        [teamLogoActionButton setTitle:nil forState:UIControlStateNormal];
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -158,8 +158,8 @@
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
-    if (!teamIconImageView.image) {
-        [teamIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillTeamProfile_TeamIconButton_New"] forState:UIControlStateNormal];
+    if (!teamLogoImageView.image) {
+        [teamLogoActionButton setTitle:[gUIStrings objectForKey:@"UI_FillTeamProfile_teamLogoButton_New"] forState:UIControlStateNormal];
     }
 }
 

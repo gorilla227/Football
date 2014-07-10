@@ -59,7 +59,7 @@
     NSIndexPath *indexPathOfCancelMatch;
     JSONConnect *connection;
 }
-@synthesize teamIcon, teamName, numberOfTeamMembers, matchesTableView;
+@synthesize teamLogo, teamName, numberOfTeamMembers, matchesTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,11 +77,11 @@
     [matchesTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     matchesList = [[NSMutableArray alloc] init];
     //Set TeamInfo
-    [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [teamIcon.layer setBorderWidth:2.0f];
-    [teamIcon.layer setCornerRadius:10.0f];
-    [teamIcon.layer setMasksToBounds:YES];
-    [teamIcon setImage:gMyUserInfo.playerPortrait];
+    [teamLogo.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [teamLogo.layer setBorderWidth:2.0f];
+    [teamLogo.layer setCornerRadius:10.0f];
+    [teamLogo.layer setMasksToBounds:YES];
+    [teamLogo setImage:gMyUserInfo.playerPortrait];
 //    [teamName setText:gMyUserInfo.team.teamName];
     
     //Request matches

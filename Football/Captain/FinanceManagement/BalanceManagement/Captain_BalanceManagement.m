@@ -42,7 +42,7 @@
     NSMutableArray *balanceData;
     NSDictionary *selectedBalanceRecord;
 }
-@synthesize addBalanceRecordButton, teamIcon, balanceTableView, balanceTableViewHeaderView;
+@synthesize addBalanceRecordButton, teamLogo, balanceTableView, balanceTableViewHeaderView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,11 +61,11 @@
     [balanceTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self drawLineForHeaderView];
     
-    //Set the teamIcon
-    [teamIcon.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [teamIcon.layer setBorderWidth:2.0f];
-    [teamIcon.layer setCornerRadius:teamIcon.bounds.size.width/2];
-    [teamIcon.layer setMasksToBounds:YES];
+    //Set the teamLogo
+    [teamLogo.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [teamLogo.layer setBorderWidth:2.0f];
+    [teamLogo.layer setCornerRadius:teamLogo.bounds.size.width/2];
+    [teamLogo.layer setMasksToBounds:YES];
     
     //Initial data
     balanceData = [NSMutableArray arrayWithArray:fake_balanceData];

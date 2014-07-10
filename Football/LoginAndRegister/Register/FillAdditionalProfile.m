@@ -30,6 +30,7 @@
 
 @implementation FillAdditionalProfile{
     NSArray *actionButtons;
+    CallFriends *callFreinds;
 }
 @synthesize toolBar, roleCode;
 
@@ -53,6 +54,8 @@
 
     //Get UI strings
     actionButtons = [gUIStrings objectForKey:@"UI_FillAdditionalProfile_Actions"];
+    
+    callFreinds = [[CallFriends alloc] initWithDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,7 +134,6 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CallFriends *callFreinds = [[CallFriends alloc] initWithDelegate:self];
     switch (indexPath.row) {
         case 0:
             [self performSegueWithIdentifier:@"FillPlayerProfile" sender:self];

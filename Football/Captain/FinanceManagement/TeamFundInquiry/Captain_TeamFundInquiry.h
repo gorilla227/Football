@@ -11,7 +11,7 @@
 #import "Captain_NotifyPlayers.h"
 
 @interface Captain_TeamFundInquiry_CollectionCell : UICollectionViewCell
-@property IBOutlet UIImageView *playerIcon;
+@property IBOutlet UIImageView *playerPortrait;
 @property IBOutlet UILabel *playerName;
 @end
 

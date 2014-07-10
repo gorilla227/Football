@@ -129,15 +129,56 @@
 //UpdatePlayerProfile
 -(void)updatePlayerProfile:(NSDictionary *)playerProfile
 {
-    [busyIndicatorDelegate lockView];
-    [manager.operationQueue cancelAllOperations];
-    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerProfile_Suffix];
-    [manager POST:urlString parameters:playerProfile success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [busyIndicatorDelegate unlockView];
-        [delegate updatePlayerProfileSuccessfully];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error otherInfo:operation.responseString];
-    }];
+    if (playerProfile.count > 1) {
+        [busyIndicatorDelegate lockView];
+        [manager.operationQueue cancelAllOperations];
+        UIImage *portrait = [playerProfile objectForKey:kUserInfo_playerPortrait];
+        if (portrait) {
+            //UpdatePlayerPortrait
+            if ([portrait isEqual:[NSNull null]]) {
+                //ResetPlayerPortrait to Default
+                NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ResetPlayerPortrait_Suffix];
+                NSDictionary *parameters = CONNECT_ResetPlayerPortrait_Parameters([[playerProfile objectForKey:kUserInfo_userId] integerValue]);
+                [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    if (manager.operationQueue.operationCount == 0) {
+                        [busyIndicatorDelegate unlockView];
+                        [delegate updatePlayerProfileSuccessfully];
+                    }
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [self showErrorAlertView:error otherInfo:operation.responseString];
+                }];
+            }
+            else {
+                //Update New PlayerPortrait
+                NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerPortrait_Suffix];
+                NSDictionary *parameters = CONNECT_UpdatePlayerPortrait_Parameters([[playerProfile objectForKey:kUserInfo_userId] integerValue]);
+                [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                    [formData appendPartWithFileData:UIImageJPEGRepresentation(portrait, 0.5) name:@"file" fileName:@"memberPortrait.jpg" mimeType:@"image/jpeg"];
+                } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    if (manager.operationQueue.operationCount == 0) {
+                        [busyIndicatorDelegate unlockView];
+                        [delegate updatePlayerProfileSuccessfully];
+                    }
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [self showErrorAlertView:error otherInfo:operation.responseString];
+                }];
+            }
+        }
+        NSMutableDictionary *playerProfileParameters = [[NSMutableDictionary alloc] initWithDictionary:playerProfile];
+        [playerProfileParameters removeObjectForKey:kUserInfo_playerPortrait];
+        if (playerProfileParameters.count > 1) {
+            //UpdatePlayerProfile
+            NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerProfile_Suffix];
+            [manager POST:urlString parameters:playerProfileParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if (manager.operationQueue.operationCount == 0) {
+                    [busyIndicatorDelegate unlockView];
+                    [delegate updatePlayerProfileSuccessfully];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [self showErrorAlertView:error otherInfo:operation.responseString];
+            }];
+        }
+    }
 }
 
 //UpdatePlayerPortrait

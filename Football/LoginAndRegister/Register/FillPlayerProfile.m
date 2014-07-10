@@ -19,8 +19,7 @@
 
 @interface FillPlayerProfile ()
 @property IBOutlet UIToolbar *saveBar;
-@property IBOutlet UIImageView *playerIconImageView;
-@property IBOutlet UIButton *playerIconActionButton;
+@property IBOutlet UIImageView *playerPortraitImageView;
 @property IBOutlet UITextField *mailTextField;
 @property IBOutlet UITextField *nickNameTextField;
 @property IBOutlet UITextField *qqTextField;
@@ -35,14 +34,14 @@
 @implementation FillPlayerProfile{
     UIDatePicker *datePicker;
     UIImagePickerController *imagePicker;
-    UIActionSheet *editPlayerIconMenu;
+    UIActionSheet *editplayerPortraitMenu;
     NSArray *textFieldArray;
     NSDateFormatter *birthdayDateFormatter;
     UIPickerView *positionPicker;
     NSArray *positionList;
     JSONConnect *connection;
 }
-@synthesize saveBar, playerIconImageView, playerIconActionButton, nickNameTextField, qqTextField, birthdateTextField, activityRegionTextField, legalNameTextField, mobileTextField, mailTextField, positionTextField, styleTextField;
+@synthesize saveBar, playerPortraitImageView, nickNameTextField, qqTextField, birthdateTextField, activityRegionTextField, legalNameTextField, mobileTextField, mailTextField, positionTextField, styleTextField;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -74,11 +73,11 @@
     //Set PostionList
     positionList = [gUIStrings objectForKey:@"UI_Positions"];
     
-    //Set the playerIcon related controls
-    [playerIconImageView.layer setCornerRadius:10.0f];
-    [playerIconImageView.layer setMasksToBounds:YES];
-    [playerIconImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [playerIconImageView.layer setBorderWidth:1.0f];
+    //Set the playerPortrait related controls
+    [playerPortraitImageView.layer setCornerRadius:10.0f];
+    [playerPortraitImageView.layer setMasksToBounds:YES];
+    [playerPortraitImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [playerPortraitImageView.layer setBorderWidth:1.0f];
     
     //Set Position picker
     positionPicker = [[UIPickerView alloc] init];
@@ -107,10 +106,10 @@
     [imagePicker setAllowsEditing:YES];
     [imagePicker.navigationBar setTitleTextAttributes:self.navigationController.navigationBar.titleTextAttributes];
     
-    //Set EditTeamIcon menu
+    //Set EditteamLogo menu
     NSString *menuTitleFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
-    NSArray *menuTitleList = [[[NSDictionary alloc] initWithContentsOfFile:menuTitleFile] objectForKey:@"EditPlayerIconMenu"];
-    editPlayerIconMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:menuTitleList.lastObject otherButtonTitles:menuTitleList[0], nil];
+    NSArray *menuTitleList = [[[NSDictionary alloc] initWithContentsOfFile:menuTitleFile] objectForKey:@"EditplayerPortraitMenu"];
+    editplayerPortraitMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:menuTitleList.lastObject otherButtonTitles:menuTitleList[0], nil];
 
     //Set activityregion Picker
     [activityRegionTextField setTintColor:[UIColor clearColor]];
@@ -127,14 +126,6 @@
     
     //Fill Initial PlayerInfo
     [self fillInitialPlayerProfile];
-    
-    //Set selectTeamIconButton
-    if (playerIconImageView.image) {
-        [playerIconActionButton setTitle:nil forState:UIControlStateNormal];
-    }
-    else {
-        [playerIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillPlayerProfile_PlayerIconButton_New"] forState:UIControlStateNormal];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,8 +146,10 @@
     [positionTextField setText:positionList[gMyUserInfo.position]];
     [styleTextField setText:gMyUserInfo.style];
     if (gMyUserInfo.playerPortrait) {
-        [playerIconImageView setImage:gMyUserInfo.playerPortrait];
-        [playerIconActionButton setTitle:nil forState:UIControlStateNormal];
+        [playerPortraitImageView setImage:gMyUserInfo.playerPortrait];
+    }
+    else {
+        [playerPortraitImageView setImage:def_defaultPlayerPortrait];
     }
 }
 
@@ -169,39 +162,20 @@
     [userInfo setQq:qqTextField.text];
     [userInfo setPosition:[positionPicker selectedRowInComponent:0]];
     [userInfo setStyle:styleTextField.text];
+    if ([playerPortraitImageView.image isEqual:def_defaultPlayerPortrait]) {
+        [userInfo setPlayerPortrait:nil];
+    }
+    else {
+        [userInfo setPlayerPortrait:playerPortraitImageView.image];
+    }
     NSDictionary *updatedDictionary = [userInfo dictionaryForUpdate:gMyUserInfo];
-    NSLog(@"%@", updatedDictionary);
-    if (updatedDictionary.count > 1) {
-        [self.navigationController.view setUserInteractionEnabled:NO];
-        [connection updatePlayerProfile:updatedDictionary];
-    }
-    else if (![gMyUserInfo.playerPortrait isEqual:playerIconImageView.image]) {
-        //Update the portrait
-        [connection updatePlayerPortrait:playerIconImageView.image forPlayer:gMyUserInfo.userId];
-    }
-}
-
--(void)unlockView
-{
-    [self.navigationController.view setUserInteractionEnabled:YES];
+    [connection updatePlayerProfile:updatedDictionary];
 }
 
 //Update PlayerProfile Sucessfully
 -(void)updatePlayerProfileSuccessfully
 {
-    if (![gMyUserInfo.playerPortrait isEqual:playerIconImageView.image]) {
-        //Update the portrait
-        [connection updatePlayerPortrait:playerIconImageView.image forPlayer:gMyUserInfo.userId];
-    }
-    else {
-        [connection requestUserInfo:gMyUserInfo.userId withTeam:NO];
-    }
-}
-
-//Update PlayerPortrait Successfully
--(void)updatePlayerPortraitSuccessfully
-{
-    [connection requestUserInfo:gMyUserInfo.userId withTeam:NO];
+    [connection requestUserInfo:gMyUserInfo.userId withTeam:YES];
 }
 
 //Receive updated UserInfo
@@ -211,10 +185,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(IBAction)selectPlayerIconButtonOnClicked:(id)sender
+-(IBAction)selectplayerPortraitButtonOnClicked:(id)sender
 {
-    if (playerIconImageView.image) {
-        [editPlayerIconMenu showInView:self.view];
+    if (![playerPortraitImageView.image isEqual:def_defaultPlayerPortrait]) {
+        [editplayerPortraitMenu showInView:self.view];
     }
     else {
         [self presentViewController:imagePicker animated:YES completion:nil];
@@ -245,13 +219,12 @@
 //Portrait Methods
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if ([actionSheet isEqual:editPlayerIconMenu]) {
+    if ([actionSheet isEqual:editplayerPortraitMenu]) {
         switch (buttonIndex) {
-            case 0://Delete playerIcon
-                [playerIconImageView setImage:nil];
-                [playerIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillPlayerProfile_PlayerIconButton_New"] forState:UIControlStateNormal];
+            case 0://Delete playerPortrait
+                [playerPortraitImageView setImage:def_defaultPlayerPortrait];
                 break;
-            case 1://Change playerIcon
+            case 1://Change playerPortrait
                 [self presentViewController:imagePicker animated:YES completion:nil];
                 break;
             default:
@@ -265,8 +238,7 @@
     NSString *imageType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([imageType isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-        [playerIconImageView setImage:image];
-        [playerIconActionButton setTitle:nil forState:UIControlStateNormal];
+        [playerPortraitImageView setImage:image];
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -274,9 +246,6 @@
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
-    if (!playerIconImageView.image) {
-        [playerIconActionButton setTitle:[gUIStrings objectForKey:@"UI_FillPlayerProfile_PlayerIconButton_New"] forState:UIControlStateNormal];
-    }
 }
 
 //Protocol DismissKeyboard

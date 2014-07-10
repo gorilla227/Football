@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Captain_TeamProfile : UIViewController
-@property IBOutlet UIImageView *teamIcon;
+@property IBOutlet UIImageView *teamLogo;
 @property IBOutlet UILabel *teamName;
 @property IBOutlet UILabel *averageAge;
 @property IBOutlet UILabel *activityRegion;

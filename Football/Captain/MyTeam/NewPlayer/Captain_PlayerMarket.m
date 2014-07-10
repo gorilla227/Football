@@ -9,7 +9,7 @@
 #import "Captain_PlayerMarket.h"
 
 @implementation Captain_PlayerMarket_Cell
-@synthesize playerIcon, nickName, playerRole, age, delegate;
+@synthesize playerPortrait, nickName, playerRole, age, delegate;
 
 -(IBAction)showPlayerDetails:(id)sender
 {

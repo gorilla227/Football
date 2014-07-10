@@ -28,18 +28,24 @@
 //Update Player Profile
 #define CONNECT_UpdatePlayerProfile_Suffix @"member/update"
 
-//Update Player Portrait
+//Update PlayerPortrait
 #define CONNECT_UpdatePlayerPortrait_Suffix @"upload/memberlogo"
 #define CONNECT_UpdatePlayerPortrait_Parameters(playerId) @{@"member_id":[NSNumber numberWithInteger:playerId]}
+
+//Reset PlayerPortrait
+#define CONNECT_ResetPlayerPortrait_Suffix @"upload/memberlogoreset"
+#define CONNECT_ResetPlayerPortrait_Parameters(playerId) @{@"member_id":[NSNumber numberWithInteger:playerId]}
 
 //Update Team Profile
 #define CONNECT_UpdateTeamProfile_Suffix @"member/update"
 
-//Update Team_Logo
+//Update TeamLogo
 #define CONNECT_UpdateTeamLogo_Suffix @"upload/teamlogo"
 #define CONNECT_UpdateTeamLogo_Parameters(team_id) @{@"team_id":[NSNumber numberWithInteger:teamId]}
 
-
+//Reset TeamLogo
+#define CONNECT_ResetTeamLogo_Suffix @"upload/teamlogoreset"
+#define CONNECT_ResetTeamLogo_Parameters(team_id) @{@"team_id":[NSNumber numberWithInteger:teamId]}
 
 
 
