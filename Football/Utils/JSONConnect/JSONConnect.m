@@ -129,47 +129,31 @@
 //UpdatePlayerProfile
 -(void)updatePlayerProfile:(NSDictionary *)playerProfile
 {
-    if (playerProfile.count > 1) {
-        [busyIndicatorDelegate lockView];
-        [manager.operationQueue cancelAllOperations];
-        UIImage *portrait = [playerProfile objectForKey:kUserInfo_playerPortrait];
-        if (portrait) {
-            //UpdatePlayerPortrait
-            if ([portrait isEqual:[NSNull null]]) {
-                //ResetPlayerPortrait to Default
-                NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ResetPlayerPortrait_Suffix];
-                NSDictionary *parameters = CONNECT_ResetPlayerPortrait_Parameters([[playerProfile objectForKey:kUserInfo_userId] integerValue]);
-                [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    if (manager.operationQueue.operationCount == 0) {
-                        [busyIndicatorDelegate unlockView];
-                        [delegate updatePlayerProfileSuccessfully];
-                    }
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    [self showErrorAlertView:error otherInfo:operation.responseString];
-                }];
-            }
-            else {
-                //Update New PlayerPortrait
-                NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerPortrait_Suffix];
-                NSDictionary *parameters = CONNECT_UpdatePlayerPortrait_Parameters([[playerProfile objectForKey:kUserInfo_userId] integerValue]);
-                [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                    [formData appendPartWithFileData:UIImageJPEGRepresentation(portrait, 0.5) name:@"file" fileName:@"memberPortrait.jpg" mimeType:@"image/jpeg"];
-                } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    if (manager.operationQueue.operationCount == 0) {
-                        [busyIndicatorDelegate unlockView];
-                        [delegate updatePlayerProfileSuccessfully];
-                    }
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    [self showErrorAlertView:error otherInfo:operation.responseString];
-                }];
-            }
+    [busyIndicatorDelegate lockView];
+    [manager.operationQueue cancelAllOperations];
+    UIImage *portrait = [playerProfile objectForKey:kUserInfo_playerPortrait];
+    if (portrait) {
+        //UpdatePlayerPortrait
+        if ([portrait isEqual:[NSNull null]]) {
+            //Reset PlayerPortrait to Default
+            NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ResetPlayerPortrait_Suffix];
+            NSDictionary *parameters = CONNECT_ResetPlayerPortrait_Parameters([playerProfile objectForKey:kUserInfo_userId]);
+            [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if (manager.operationQueue.operationCount == 0) {
+                    [busyIndicatorDelegate unlockView];
+                    [delegate updatePlayerProfileSuccessfully];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [self showErrorAlertView:error otherInfo:operation.responseString];
+            }];
         }
-        NSMutableDictionary *playerProfileParameters = [[NSMutableDictionary alloc] initWithDictionary:playerProfile];
-        [playerProfileParameters removeObjectForKey:kUserInfo_playerPortrait];
-        if (playerProfileParameters.count > 1) {
-            //UpdatePlayerProfile
-            NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerProfile_Suffix];
-            [manager POST:urlString parameters:playerProfileParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        else {
+            //Update New PlayerPortrait
+            NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerPortrait_Suffix];
+            NSDictionary *parameters = CONNECT_UpdatePlayerPortrait_Parameters([playerProfile objectForKey:kUserInfo_userId]);
+            [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                [formData appendPartWithFileData:UIImageJPEGRepresentation(portrait, 0.5) name:@"file" fileName:@"memberPortrait.jpg" mimeType:@"image/jpeg"];
+            } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 if (manager.operationQueue.operationCount == 0) {
                     [busyIndicatorDelegate unlockView];
                     [delegate updatePlayerProfileSuccessfully];
@@ -179,6 +163,21 @@
             }];
         }
     }
+    //Update PlayerProfile without PlayerPortrait
+    NSMutableDictionary *playerProfileParameters = [[NSMutableDictionary alloc] initWithDictionary:playerProfile];
+    [playerProfileParameters removeObjectForKey:kUserInfo_playerPortrait];
+    if (playerProfileParameters.count > 1) {
+        //UpdatePlayerProfile
+        NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerProfile_Suffix];
+        [manager POST:urlString parameters:playerProfileParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if (manager.operationQueue.operationCount == 0) {
+                [busyIndicatorDelegate unlockView];
+                [delegate updatePlayerProfileSuccessfully];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self showErrorAlertView:error otherInfo:operation.responseString];
+        }];
+    }
 }
 
 //UpdatePlayerPortrait
@@ -187,7 +186,7 @@
     [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdatePlayerPortrait_Suffix];
-    NSDictionary *parameters = CONNECT_UpdatePlayerPortrait_Parameters(playerId);
+    NSDictionary *parameters = CONNECT_UpdatePlayerPortrait_Parameters([NSNumber numberWithInteger:playerId]);
     [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:UIImageJPEGRepresentation(portrait, 0.5) name:@"file" fileName:@"memberPortrait.jpg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -203,13 +202,53 @@
 {
     [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
-    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateTeamProfile_Suffix];
-    [manager POST:urlString parameters:teamProfile success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [busyIndicatorDelegate unlockView];
-        [delegate updateTeamProfileSuccessfully];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error otherInfo:operation.responseString];
-    }];
+    UIImage *logo = [teamProfile objectForKey:kTeam_logo];
+    if (logo) {
+        //UpdateTeamLogo
+        if ([logo isEqual:[NSNull null]]) {
+            //Reset TeamLogo to Default
+            NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ResetTeamLogo_Suffix];
+            NSDictionary *parameters = CONNECT_ResetTeamLogo_Parameters([teamProfile objectForKey:kTeam_teamId]);
+            [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if (manager.operationQueue.operationCount == 0) {
+                    [busyIndicatorDelegate unlockView];
+                    [delegate updateTeamProfileSuccessfully];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [self showErrorAlertView:error otherInfo:operation.responseString];
+            }];
+        }
+        else {
+            //Update New TeamLogo
+            NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateTeamLogo_Suffix];
+            NSDictionary *parameters = CONNECT_UpdateTeamLogo_Parameters([teamProfile objectForKey:kTeam_teamId]);
+            [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                [formData appendPartWithFileData:UIImageJPEGRepresentation(logo, 0.5) name:@"file" fileName:@"teamLogo.jpg" mimeType:@"image/jpeg"];
+            } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                if (manager.operationQueue.operationCount == 0) {
+                    [busyIndicatorDelegate unlockView];
+                    [delegate updateTeamProfileSuccessfully];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [self showErrorAlertView:error otherInfo:operation.responseString];
+            }];
+        }
+    }
+    //Update TeamProfile without TeamLogo
+    NSMutableDictionary *teamProfileParameters = [[NSMutableDictionary alloc] initWithDictionary:teamProfile];
+    [teamProfileParameters removeObjectForKey:kTeam_logo];
+    if (teamProfileParameters.count > 2) {
+        //UpdateTeamProfile
+        NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateTeamProfile_Suffix];
+        [manager POST:urlString parameters:teamProfileParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if (manager.operationQueue.operationCount == 0) {
+                [busyIndicatorDelegate unlockView];
+                [delegate updateTeamProfileSuccessfully];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self showErrorAlertView:error otherInfo:operation.responseString];
+        }];
+    }
 }
 
 //UpdateTeamLogo
@@ -218,12 +257,26 @@
     [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateTeamLogo_Suffix];
-    NSDictionary *parameters = CONNECT_UpdateTeamLogo_Parameters(teamId);
+    NSDictionary *parameters = CONNECT_UpdateTeamLogo_Parameters([NSNumber numberWithInteger:teamId]);
     [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:UIImageJPEGRepresentation(logo, 0.5) name:@"file" fileName:@"teamLog.jpeg" mimeType:@"image/jpeg"];
+        [formData appendPartWithFileData:UIImageJPEGRepresentation(logo, 0.5) name:@"file" fileName:@"teamLogo.jpeg" mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
         [delegate updateTeamLogoSuccessfully];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//RequestAllStadiums
+-(void)requestAllStadiums
+{
+    [busyIndicatorDelegate lockView];
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_AllStadiums_Suffix];
+    [manager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate receiveAllStadiums:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
@@ -302,26 +355,6 @@
             [teams addObject:team];
         }
         [delegate receiveTeams:teams];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error otherInfo:operation.responseString];
-    }];
-}
-
--(void)requestAllStadiums
-{
-    [manager.operationQueue cancelAllOperations];
-    NSString *urlString = [JSON_serverURL stringByAppendingPathComponent:JSON_suffix_stadiums];
-
-    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *originalStadiums = responseObject;
-        NSMutableArray *stadiums = [[NSMutableArray alloc] init];
-        for (NSDictionary *singleStadium in originalStadiums) {
-            Stadium *stadium = [[Stadium alloc] initWithData:singleStadium];
-            if (![stadium.stadiumName isEqual:[NSNull null]]) {
-                [stadiums addObject:stadium];
-            }
-        }
-        [delegate receiveStadiums:stadiums];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];

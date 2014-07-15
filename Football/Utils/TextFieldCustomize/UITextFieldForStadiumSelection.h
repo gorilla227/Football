@@ -1,0 +1,15 @@
+//
+//  UITextFieldForStadiumSelection.h
+//  SandBox_Map2
+//
+//  Created by Andy on 14-7-12.
+//  Copyright (c) 2014年 Axu. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UITextFieldForStadiumSelection : UITextField<UIPickerViewDataSource, UIPickerViewDelegate>
+-(void)textFieldInitialization:(NSArray *)stadiums;
+-(void)presetHomeStadium:(Stadium *)stadium;
+-(Stadium *)selectedHomeStadium;
+@end

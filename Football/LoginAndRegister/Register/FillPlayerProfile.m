@@ -34,7 +34,7 @@
 @implementation FillPlayerProfile{
     UIDatePicker *datePicker;
     UIImagePickerController *imagePicker;
-    UIActionSheet *editplayerPortraitMenu;
+    UIActionSheet *editPlayerPortraitMenu;
     NSArray *textFieldArray;
     NSDateFormatter *birthdayDateFormatter;
     UIPickerView *positionPicker;
@@ -109,7 +109,7 @@
     //Set EditteamLogo menu
     NSString *menuTitleFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
     NSArray *menuTitleList = [[[NSDictionary alloc] initWithContentsOfFile:menuTitleFile] objectForKey:@"EditplayerPortraitMenu"];
-    editplayerPortraitMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:menuTitleList.lastObject otherButtonTitles:menuTitleList[0], nil];
+    editPlayerPortraitMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:menuTitleList.lastObject otherButtonTitles:menuTitleList[0], nil];
 
     //Set activityregion Picker
     [activityRegionTextField setTintColor:[UIColor clearColor]];
@@ -144,6 +144,7 @@
     [birthdateTextField setText:gMyUserInfo.birthday];
     [activityRegionTextField presetActivityRegionCode:gMyUserInfo.activityRegion];
     [positionTextField setText:positionList[gMyUserInfo.position]];
+    [positionPicker selectRow:gMyUserInfo.position inComponent:0 animated:NO];
     [styleTextField setText:gMyUserInfo.style];
     if (gMyUserInfo.playerPortrait) {
         [playerPortraitImageView setImage:gMyUserInfo.playerPortrait];
@@ -162,14 +163,14 @@
     [userInfo setQq:qqTextField.text];
     [userInfo setPosition:[positionPicker selectedRowInComponent:0]];
     [userInfo setStyle:styleTextField.text];
-    if ([playerPortraitImageView.image isEqual:def_defaultPlayerPortrait]) {
-        [userInfo setPlayerPortrait:nil];
+    [userInfo setPlayerPortrait:[playerPortraitImageView.image isEqual:def_defaultPlayerPortrait]?nil:playerPortraitImageView.image];
+    NSDictionary *updatedDictionary = [userInfo dictionaryForUpdate:gMyUserInfo];
+    if (updatedDictionary.count > 1) {
+        [connection updatePlayerProfile:updatedDictionary];
     }
     else {
-        [userInfo setPlayerPortrait:playerPortraitImageView.image];
+        [self.navigationController popViewControllerAnimated:YES];
     }
-    NSDictionary *updatedDictionary = [userInfo dictionaryForUpdate:gMyUserInfo];
-    [connection updatePlayerProfile:updatedDictionary];
 }
 
 //Update PlayerProfile Sucessfully
@@ -188,7 +189,7 @@
 -(IBAction)selectplayerPortraitButtonOnClicked:(id)sender
 {
     if (![playerPortraitImageView.image isEqual:def_defaultPlayerPortrait]) {
-        [editplayerPortraitMenu showInView:self.view];
+        [editPlayerPortraitMenu showInView:self.view];
     }
     else {
         [self presentViewController:imagePicker animated:YES completion:nil];
@@ -219,9 +220,9 @@
 //Portrait Methods
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if ([actionSheet isEqual:editplayerPortraitMenu]) {
+    if ([actionSheet isEqual:editPlayerPortraitMenu]) {
         switch (buttonIndex) {
-            case 0://Delete playerPortrait
+            case 0://Reset playerPortrait
                 [playerPortraitImageView setImage:def_defaultPlayerPortrait];
                 break;
             case 1://Change playerPortrait

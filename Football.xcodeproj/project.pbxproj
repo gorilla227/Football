@@ -12,6 +12,9 @@
 		A10723221933026100F26A39 /* icon_like.png in Resources */ = {isa = PBXBuildFile; fileRef = A10723211933026100F26A39 /* icon_like.png */; };
 		A10BACB7190D9AA1000FA5A7 /* leftIcon_createMatch_score.png in Resources */ = {isa = PBXBuildFile; fileRef = A10BACB6190D9AA1000FA5A7 /* leftIcon_createMatch_score.png */; };
 		A10BAD0A190E1245000FA5A7 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A10BAD09190E1245000FA5A7 /* DataModel.m */; };
+		A10E83DA1973A0DA000493A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10E83D91973A0DA000493A5 /* MapKit.framework */; };
+		A10E83DC1973A0FA000493A5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10E83DB1973A0FA000493A5 /* CoreLocation.framework */; };
+		A10E83DF1973A690000493A5 /* UITextFieldForStadiumSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = A10E83DE1973A690000493A5 /* UITextFieldForStadiumSelection.m */; };
 		A114302518F2545100A39F13 /* Captain_TeamProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A114302418F2545100A39F13 /* Captain_TeamProfile.m */; };
 		A135B14E1927242B001CB0EC /* rightArrow_white.png in Resources */ = {isa = PBXBuildFile; fileRef = A135B14D1927242B001CB0EC /* rightArrow_white.png */; };
 		A1370A591904D7CC00E64949 /* leftIcon_createMatch_cost.png in Resources */ = {isa = PBXBuildFile; fileRef = A1370A541904D7CC00E64949 /* leftIcon_createMatch_cost.png */; };
@@ -131,6 +134,10 @@
 		A10BACB6190D9AA1000FA5A7 /* leftIcon_createMatch_score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftIcon_createMatch_score.png; path = Resource/leftIcon_createMatch_score.png; sourceTree = "<group>"; };
 		A10BAD08190E1245000FA5A7 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataModel.h; path = Pre_Define/DataModel.h; sourceTree = "<group>"; };
 		A10BAD09190E1245000FA5A7 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataModel.m; path = Pre_Define/DataModel.m; sourceTree = "<group>"; };
+		A10E83D91973A0DA000493A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A10E83DB1973A0FA000493A5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A10E83DD1973A690000493A5 /* UITextFieldForStadiumSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextFieldForStadiumSelection.h; path = Football/Utils/TextFieldCustomize/UITextFieldForStadiumSelection.h; sourceTree = "<group>"; };
+		A10E83DE1973A690000493A5 /* UITextFieldForStadiumSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITextFieldForStadiumSelection.m; path = Football/Utils/TextFieldCustomize/UITextFieldForStadiumSelection.m; sourceTree = "<group>"; };
 		A114302318F2545100A39F13 /* Captain_TeamProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TeamProfile.h; path = Captain/MyTeam/TeamProfile/Captain_TeamProfile.h; sourceTree = "<group>"; };
 		A114302418F2545100A39F13 /* Captain_TeamProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TeamProfile.m; path = Captain/MyTeam/TeamProfile/Captain_TeamProfile.m; sourceTree = "<group>"; };
 		A135B14D1927242B001CB0EC /* rightArrow_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rightArrow_white.png; path = Resource/rightArrow_white.png; sourceTree = "<group>"; };
@@ -285,6 +292,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10E83DC1973A0FA000493A5 /* CoreLocation.framework in Frameworks */,
+				A10E83DA1973A0DA000493A5 /* MapKit.framework in Frameworks */,
 				A1D07BD418CC1E4800FA3A8D /* CoreGraphics.framework in Frameworks */,
 				A1D07BD618CC1E4800FA3A8D /* UIKit.framework in Frameworks */,
 				A1D07BD218CC1E4800FA3A8D /* Foundation.framework in Frameworks */,
@@ -514,6 +523,8 @@
 		A1D07BD018CC1E4800FA3A8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A10E83DB1973A0FA000493A5 /* CoreLocation.framework */,
+				A10E83D91973A0DA000493A5 /* MapKit.framework */,
 				A1D07BD118CC1E4800FA3A8D /* Foundation.framework */,
 				A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */,
 				A1D07BD518CC1E4800FA3A8D /* UIKit.framework */,
@@ -760,6 +771,8 @@
 				B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */,
 				B251F9EB1953B4830031E4A8 /* UITextFieldForActivityRegion.h */,
 				B251F9EC1953B4830031E4A8 /* UITextFieldForActivityRegion.m */,
+				A10E83DD1973A690000493A5 /* UITextFieldForStadiumSelection.h */,
+				A10E83DE1973A690000493A5 /* UITextFieldForStadiumSelection.m */,
 				B251F9E91953B3610031E4A8 /* ActivityRegions.json */,
 			);
 			name = TextFieldCustomize;
@@ -969,6 +982,7 @@
 				A1F428E8191215A000567A02 /* JSONConnect.m in Sources */,
 				A1F428E0191209DB00567A02 /* AFSecurityPolicy.m in Sources */,
 				B27BD360194930B300802F4A /* FillAdditionalProfile.m in Sources */,
+				A10E83DF1973A690000493A5 /* UITextFieldForStadiumSelection.m in Sources */,
 				A172432B1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m in Sources */,
 				A1F428DF191209DB00567A02 /* AFNetworkReachabilityManager.m in Sources */,
 				B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */,

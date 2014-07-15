@@ -16,7 +16,10 @@
 #endif
 
 //Prefix headers
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "DataModel.h"
 #import "Pre_Define.h"
 #import "JSONConnect.h"
 #import "UITextField+LeftIconAndLabel.h"
+#import "UITextFieldForStadiumSelection.h"

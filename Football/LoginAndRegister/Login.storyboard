@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bWS-B6-q9m">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bWS-B6-q9m">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -491,13 +491,13 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                    <state key="normal" title="选择队标">
+                                                    <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="selected" title="s"/>
                                                     <connections>
-                                                        <action selector="selectTeamIconButtonOnClicked:" destination="XJr-lb-ehh" eventType="touchUpInside" id="MJu-Wy-bNk"/>
+                                                        <action selector="selectTeamLogoButtonOnClicked:" destination="XJr-lb-ehh" eventType="touchUpInside" id="9fh-T9-oDa"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -531,7 +531,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="主场" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vyl-8Z-QUJ">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="主场" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vyl-8Z-QUJ" customClass="UITextFieldForStadiumSelection">
                                                     <rect key="frame" x="20" y="7" width="280" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -603,8 +603,7 @@
                         <outlet property="homeStadiumTextField" destination="Vyl-8Z-QUJ" id="BMp-X2-Q3N"/>
                         <outlet property="saveBar" destination="lGH-Vr-cfC" id="lJJ-Sh-L4R"/>
                         <outlet property="sloganTextView" destination="5qY-uI-1OG" id="clz-GX-Xdu"/>
-                        <outlet property="teamIconActionButton" destination="uaw-b5-7N4" id="IiP-yO-LP2"/>
-                        <outlet property="teamIconImageView" destination="6M7-WU-rqn" id="B2j-ak-xgw"/>
+                        <outlet property="teamLogoImageView" destination="6M7-WU-rqn" id="135-in-V40"/>
                         <outlet property="teamNameTextField" destination="gCI-gW-uK3" id="NBw-A9-qVH"/>
                     </connections>
                 </tableViewController>

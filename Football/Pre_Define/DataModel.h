@@ -14,17 +14,23 @@
 #define kStadium_address @"location"
 #define kStadium_phoneNumber @"phone_umber"
 #define kStadium_price @"price"
-@interface Stadium : NSObject
+#define kStadium_longitude @"longitude"
+#define kStadium_latitude @"latitude"
+#define kStadium_comment @"comment"
+@interface Stadium : NSObject<MKAnnotation>
 @property NSInteger stadiumId;
 @property NSString *stadiumName;
 @property NSString *address;
 @property NSString *phoneNumber;
 @property NSInteger price;
+@property NSString *comment;
+@property (nonatomic, readonly, copy) NSString *title;
+@property (nonatomic, readonly, copy) NSString *subtitle;
 -(id)initWithData:(NSDictionary *)data;
--(NSDictionary *)dictionaryForUpdate:(Stadium *)originalStadium;
 @end
 
 #pragma Team
+#define kTeam_playerId @"member_id"
 #define kTeam_teamId @"team_id"
 #define kTeam_teamName @"name"
 #define kTeam_numOfTeam @"member_num"
@@ -40,11 +46,11 @@
 @property NSInteger numOfMember;
 @property NSArray *activityRegion;
 @property NSString *creationDate;
-@property UIImage *logo;
+@property UIImage *teamLogo;
 @property NSString *slogan;
 @property Stadium *homeStadium;
 -(id)initWithData:(NSDictionary *)data;
--(NSDictionary *)dictionaryForUpdate:(Team *)originalTeam;
+-(NSDictionary *)dictionaryForUpdate:(Team *)originalTeam withPlayer:(NSInteger)playerId;
 @end
 
 #pragma UserInfo

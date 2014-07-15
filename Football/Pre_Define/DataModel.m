@@ -9,7 +9,7 @@
 
 #pragma Stadium
 @implementation Stadium
-@synthesize stadiumId, stadiumName, address, phoneNumber, price;
+@synthesize stadiumId, stadiumName, address, phoneNumber, price, comment, coordinate, title, subtitle;
 
 -(id)copy
 {
@@ -18,11 +18,13 @@
     [staduimCopy setStadiumId:stadiumId];
     [staduimCopy setStadiumName:[stadiumName copy]];
     [staduimCopy setAddress:[address copy]];
+    [staduimCopy setCoordinate:coordinate];
     //Copy option properties
     if (phoneNumber) {
         [staduimCopy setPhoneNumber:[phoneNumber copy]];
     }
     [staduimCopy setPrice:price];
+    [staduimCopy setComment:[comment copy]];
     return staduimCopy;
 }
 
@@ -35,35 +37,34 @@
         [self setAddress:[data objectForKey:kStadium_address]];
         [self setPhoneNumber:[data objectForKey:kStadium_phoneNumber]];
         [self setPrice:[[data objectForKey:kStadium_price] integerValue]];
+        CLLocationCoordinate2D coordinateData;
+        coordinateData.longitude = [[data objectForKey:kStadium_longitude] floatValue];
+        coordinateData.latitude = [[data objectForKey:kStadium_latitude] floatValue];
+        [self setCoordinate:coordinateData];
+        [self setComment:[data objectForKey:kStadium_comment]];
     }
     return self;
 }
 
--(NSDictionary *)dictionaryForUpdate:(Stadium *)originalStadium
+-(void)setCoordinate:(CLLocationCoordinate2D)newCoordinate
 {
-    NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
-    [output setObject:[NSNumber numberWithInteger:stadiumId] forKey:kStadium_id];
-    //Compare required properties
-    if (![stadiumName isEqualToString:originalStadium.stadiumName]) {
-        [output setObject:stadiumName forKey:kStadium_name];
-    }
-    if (![address isEqualToString:originalStadium.address]) {
-        [output setObject:address forKey:kStadium_address];
-    }
-    //Compare optional properties
-    if (![phoneNumber isEqualToString:originalStadium.phoneNumber]) {
-        [output setObject:phoneNumber forKey:kStadium_phoneNumber];
-    }
-    if (price != originalStadium.price) {
-        [output setObject:[NSNumber numberWithInteger:price] forKey:kStadium_price];
-    }
-    return output;
+    coordinate = newCoordinate;
+}
+
+-(NSString *)title
+{
+    return stadiumName;
+}
+
+-(NSString *)subtitle
+{
+    return address;
 }
 @end
 
 #pragma Team
 @implementation Team
-@synthesize teamId, teamName, numOfMember, activityRegion, slogan, creationDate, logo, homeStadium;
+@synthesize teamId, teamName, numOfMember, activityRegion, slogan, creationDate, teamLogo, homeStadium;
 
 -(id)copy
 {
@@ -80,8 +81,8 @@
     if (slogan) {
         [teamCopy setSlogan:[slogan copy]];
     }
-    if (logo) {
-        [teamCopy setLogo:[logo copy]];
+    if (teamLogo) {
+        [teamCopy setTeamLogo:[teamLogo copy]];
     }
     if (homeStadium) {
         [teamCopy setHomeStadium:[homeStadium copy]];
@@ -100,7 +101,7 @@
         [self setSlogan:[data objectForKey:kTeam_slogan]];
         [self setCreationDate:[data objectForKey:kTeam_creationDate]];
         NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[data objectForKey:kTeam_logo]]];
-        [self setLogo:[UIImage imageWithData:imageData]];
+        [self setTeamLogo:[UIImage imageWithData:imageData]];
         NSDictionary *homeStadiumData = [data objectForKey:kTeam_homeStadium];
         if (homeStadiumData) {
             [self setHomeStadium:[[Stadium alloc] initWithData:homeStadiumData]];
@@ -109,23 +110,30 @@
     return self;
 }
 
--(NSDictionary *)dictionaryForUpdate:(Team *)originalTeam
+-(NSDictionary *)dictionaryForUpdate:(Team *)originalTeam withPlayer:(NSInteger)playerId
 {
     NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
     [output setObject:[NSNumber numberWithInteger:teamId] forKey:kTeam_teamId];
+    [output setObject:[NSNumber numberWithInteger:playerId] forKey:kTeam_playerId];
     //Compare required properties
     if (![teamName isEqualToString:originalTeam.teamName]) {
         [output setObject:teamName forKey:kTeam_teamName];
     }
     //Compare optional properties
     if (![activityRegion isEqual:originalTeam.activityRegion]) {
-        [output setObject:activityRegion forKey:kTeam_activityRegion];
+        [output setObject:[activityRegion componentsJoinedByString:@"-"] forKey:kTeam_activityRegion];
     }
     if (![slogan isEqualToString:originalTeam.slogan]) {
         [output setObject:slogan forKey:kTeam_slogan];
     }
     if (homeStadium.stadiumId != originalTeam.homeStadium.stadiumId) {
         [output setObject:[NSNumber numberWithInteger:homeStadium.stadiumId] forKey:kTeam_homeStadiumId];
+    }
+    if (originalTeam.teamLogo && !teamLogo) {
+        [output setObject:[NSNull null] forKey:kTeam_logo];
+    }
+    else if (teamLogo && ![teamLogo isEqual:originalTeam.teamLogo]){
+        [output setObject:teamLogo forKey:kTeam_logo];
     }
     return output;
 }
@@ -236,13 +244,11 @@
     if (![style isEqualToString:originalUserInfo.style]) {
         [output setObject:style forKey:kUserInfo_style];
     }
-    if (![playerPortrait isEqual:originalUserInfo.playerPortrait]) {
-        if (playerPortrait) {
-            [output setObject:playerPortrait forKey:kUserInfo_playerPortrait];
-        }
-        else {
-            [output setObject:[NSNull null] forKey:kUserInfo_playerPortrait];
-        }
+    if (originalUserInfo.playerPortrait && !playerPortrait) {
+        [output setObject:[NSNull null] forKey:kUserInfo_playerPortrait];
+    }
+    else if (playerPortrait && ![playerPortrait isEqual:originalUserInfo.playerPortrait]){
+        [output setObject:playerPortrait forKey:kUserInfo_playerPortrait];
     }
     return output;
 }
