@@ -142,6 +142,7 @@
                     </navigationBar>
                     <connections>
                         <outlet property="menuButton" destination="kWV-e6-GiH" id="Rk0-z5-LuV"/>
+                        <outlet property="messageButton" destination="chi-xA-wZo" id="2SP-VM-OJR"/>
                         <segue destination="dbN-VF-g7q" kind="relationship" relationship="rootViewController" id="VOw-AO-toE"/>
                     </connections>
                 </navigationController>
@@ -151,6 +152,7 @@
                         <action selector="menuButtonOnClicked:" destination="TjK-OM-Yjn" id="c6X-iF-HSC"/>
                     </connections>
                 </barButtonItem>
+                <barButtonItem image="messageIcon.png" id="chi-xA-wZo"/>
             </objects>
             <point key="canvasLocation" x="-89" y="197"/>
         </scene>
@@ -188,7 +190,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="QRb-13-lxr">
-                                <rect key="frame" x="0.0" y="140" width="320" height="364"/>
+                                <rect key="frame" x="0.0" y="140" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -315,17 +317,24 @@
                                     <outlet property="delegate" destination="dbN-VF-g7q" id="DcV-DU-ODM"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Jba-Yd-ec2">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="b0p-U9-lQ9"/>
+                                    <barButtonItem title="建立比赛" id="xMc-KY-n0t">
+                                        <connections>
+                                            <segue destination="R6J-gK-DLQ" kind="push" identifier="CreateMatch" id="4xu-nJ-6Aj"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zy2-o6-uaz"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="比赛安排" id="9dN-Rj-epV">
-                        <barButtonItem key="rightBarButtonItem" title="建立比赛" id="xMc-KY-n0t">
-                            <connections>
-                                <segue destination="R6J-gK-DLQ" kind="push" identifier="CreateMatch" id="4xu-nJ-6Aj"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="比赛安排" id="9dN-Rj-epV"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="matchesTableView" destination="QRb-13-lxr" id="MnU-Hw-StV"/>
@@ -2967,6 +2976,7 @@
         <image name="leftIcon_createMatch_numOfPlayers.png" width="27" height="40"/>
         <image name="menuIcon.png" width="20" height="20"/>
         <image name="menuIcon_myMatches.png" width="20" height="20"/>
+        <image name="messageIcon.png" width="20" height="20"/>
         <image name="register_phone.png" width="19" height="19"/>
         <image name="stamp_cancelled.png" width="320" height="200"/>
         <image name="stamp_rejected.png" width="320" height="200"/>
@@ -2977,10 +2987,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ri9-XH-obz"/>
         <segue reference="cUV-cu-CyG"/>
-        <segue reference="5WW-Lp-Owi"/>
-        <segue reference="eSZ-pI-vDi"/>
+        <segue reference="mkN-NA-bmm"/>
+        <segue reference="Ri9-XH-obz"/>
         <segue reference="yB8-mu-Uh8"/>
+        <segue reference="eSZ-pI-vDi"/>
     </inferredMetricsTieBreakers>
 </document>

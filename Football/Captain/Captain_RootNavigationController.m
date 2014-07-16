@@ -9,14 +9,15 @@
 #import "Captain_RootNavigationController.h"
 
 @interface Captain_RootNavigationController ()
-
+@property IBOutlet UIBarButtonItem *menuButton;
+@property IBOutlet UIBarButtonItem *messageButton;
 @end
 
 @implementation Captain_RootNavigationController{
     Captain_MainMenu *mainMenu;
     UIView *contentView;
 }
-@synthesize menuButton;
+@synthesize menuButton, messageButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,8 +42,9 @@
     [mainMenu setDelegateOfViewSwitch:self];
     [self.view addSubview:mainMenu.view];
     
-    //Set Menu button
+    //Set Menu button and Message button;
     [self.navigationBar.topItem setLeftBarButtonItem:menuButton];
+    [self.navigationBar.topItem setRightBarButtonItem:messageButton];
 }
 
 -(void)logout

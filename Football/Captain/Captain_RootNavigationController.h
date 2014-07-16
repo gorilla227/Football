@@ -10,5 +10,4 @@
 #import "Captain_MainMenu.h"
 
 @interface Captain_RootNavigationController : UINavigationController<MainMenuSwitchViewControllerDelegate, MainMenuAppearenceDelegate>
-@property IBOutlet UIBarButtonItem *menuButton;
 @end
