@@ -8,25 +8,25 @@
 			<key>Title</key>
 			<string>完善个人资料</string>
 			<key>Icon</key>
-			<string>icon_fillMatchData.png</string>
+			<string>FillAdditional_PlayerProfile.png</string>
 		</dict>
 		<dict>
 			<key>Title</key>
 			<string>完善球队资料</string>
 			<key>Icon</key>
-			<string>icon_fillMatchData.png</string>
+			<string>FillAdditional_TeamProfile.png</string>
 		</dict>
 		<dict>
 			<key>Title</key>
 			<string>召唤小伙伴</string>
 			<key>Icon</key>
-			<string>icon_fillMatchData.png</string>
+			<string>FillAdditional_CallFriends.png</string>
 		</dict>
 		<dict>
 			<key>Title</key>
 			<string>寻找组织</string>
 			<key>Icon</key>
-			<string>icon_fillMatchData.png</string>
+			<string>FillAdditional_LookingForTeam.png</string>
 		</dict>
 	</array>
 	<key>UI_FillAdditionalProfile_Header_Captain</key>

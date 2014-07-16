@@ -105,7 +105,7 @@
             }
             break;
         case 1:
-            if (indexPath.row == 1 || indexPath.row == 2) {
+            if (indexPath.row == 1) {
                 [cell setAlpha:0.5f];
                 [cell setUserInteractionEnabled:NO];
             }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="TjK-OM-Yjn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="TjK-OM-Yjn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -146,7 +146,7 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AnL-dq-0BF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <barButtonItem title="菜单" id="kWV-e6-GiH">
+                <barButtonItem image="menuIcon.png" id="kWV-e6-GiH">
                     <connections>
                         <action selector="menuButtonOnClicked:" destination="TjK-OM-Yjn" id="c6X-iF-HSC"/>
                     </connections>
@@ -2965,6 +2965,7 @@
         <image name="icon_opponentAccepted.png" width="180" height="150"/>
         <image name="icon_opponentRejected.png" width="180" height="150"/>
         <image name="leftIcon_createMatch_numOfPlayers.png" width="27" height="40"/>
+        <image name="menuIcon.png" width="20" height="20"/>
         <image name="menuIcon_myMatches.png" width="20" height="20"/>
         <image name="register_phone.png" width="19" height="19"/>
         <image name="stamp_cancelled.png" width="320" height="200"/>
