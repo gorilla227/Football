@@ -36,6 +36,9 @@
 		A18D7F831904A0F6003028FE /* icon_fillMatchData.png in Resources */ = {isa = PBXBuildFile; fileRef = A18D7F811904A0F6003028FE /* icon_fillMatchData.png */; };
 		A18D7F841904A0F6003028FE /* icon_noticePlayers.png in Resources */ = {isa = PBXBuildFile; fileRef = A18D7F821904A0F6003028FE /* icon_noticePlayers.png */; };
 		A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A18E469518EE678500784A48 /* Captain_NewPlayer.m */; };
+		A1940B12197787EC00B152AC /* MessageBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A1940B11197787EC00B152AC /* MessageBarButtonItem.m */; };
+		A1940B14197794B000B152AC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1940B13197794B000B152AC /* MessageUI.framework */; };
+		A1940B161977955E00B152AC /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1940B151977955E00B152AC /* AddressBookUI.framework */; };
 		A1988F4C193D909C0073332F /* Captain_TeamFundInquiry.m in Sources */ = {isa = PBXBuildFile; fileRef = A1988F4B193D909C0073332F /* Captain_TeamFundInquiry.m */; };
 		A19BC64E1949696E007986D7 /* UIStrings.plist in Resources */ = {isa = PBXBuildFile; fileRef = A19BC64D1949696E007986D7 /* UIStrings.plist */; };
 		A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */; };
@@ -175,6 +178,10 @@
 		A18D7F821904A0F6003028FE /* icon_noticePlayers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_noticePlayers.png; path = Resource/icon_noticePlayers.png; sourceTree = "<group>"; };
 		A18E469418EE678500784A48 /* Captain_NewPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayer.h; path = Captain/MyTeam/NewPlayer/Captain_NewPlayer.h; sourceTree = "<group>"; };
 		A18E469518EE678500784A48 /* Captain_NewPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer.m; path = Captain/MyTeam/NewPlayer/Captain_NewPlayer.m; sourceTree = "<group>"; };
+		A1940B10197787EC00B152AC /* MessageBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageBarButtonItem.h; path = Football/Utils/MessageBarButtonItem/MessageBarButtonItem.h; sourceTree = "<group>"; };
+		A1940B11197787EC00B152AC /* MessageBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageBarButtonItem.m; path = Football/Utils/MessageBarButtonItem/MessageBarButtonItem.m; sourceTree = "<group>"; };
+		A1940B13197794B000B152AC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		A1940B151977955E00B152AC /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		A1988F4A193D909C0073332F /* Captain_TeamFundInquiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TeamFundInquiry.h; path = Captain/FinanceManagement/TeamFundInquiry/Captain_TeamFundInquiry.h; sourceTree = "<group>"; };
 		A1988F4B193D909C0073332F /* Captain_TeamFundInquiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TeamFundInquiry.m; path = Captain/FinanceManagement/TeamFundInquiry/Captain_TeamFundInquiry.m; sourceTree = "<group>"; };
 		A19BC64D1949696E007986D7 /* UIStrings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = UIStrings.plist; path = Pre_Define/UIStrings.plist; sourceTree = "<group>"; };
@@ -304,6 +311,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1940B161977955E00B152AC /* AddressBookUI.framework in Frameworks */,
+				A1940B14197794B000B152AC /* MessageUI.framework in Frameworks */,
 				A10E83DC1973A0FA000493A5 /* CoreLocation.framework in Frameworks */,
 				A10E83DA1973A0DA000493A5 /* MapKit.framework in Frameworks */,
 				A1D07BD418CC1E4800FA3A8D /* CoreGraphics.framework in Frameworks */,
@@ -468,6 +477,7 @@
 		A173033D18FB5A0A00702015 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A1940B0F197787AD00B152AC /* MessageBarButtonItem */,
 				B2B955CA194FC649004FB5E0 /* MD5_Encryption */,
 				B2B1EE49193FDCF200915CA8 /* TextFieldCustomize */,
 				A1FC44531935A641007C4B68 /* CallFriends */,
@@ -478,6 +488,15 @@
 			);
 			name = Utils;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		A1940B0F197787AD00B152AC /* MessageBarButtonItem */ = {
+			isa = PBXGroup;
+			children = (
+				A1940B10197787EC00B152AC /* MessageBarButtonItem.h */,
+				A1940B11197787EC00B152AC /* MessageBarButtonItem.m */,
+			);
+			name = MessageBarButtonItem;
 			sourceTree = "<group>";
 		};
 		A1988F49193D90340073332F /* TeamFundInquiry */ = {
@@ -535,6 +554,8 @@
 		A1D07BD018CC1E4800FA3A8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1940B151977955E00B152AC /* AddressBookUI.framework */,
+				A1940B13197794B000B152AC /* MessageUI.framework */,
 				A10E83DB1973A0FA000493A5 /* CoreLocation.framework */,
 				A10E83D91973A0DA000493A5 /* MapKit.framework */,
 				A1D07BD118CC1E4800FA3A8D /* Foundation.framework */,
@@ -1012,6 +1033,7 @@
 				B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */,
 				A1F428DE191209DB00567A02 /* AFHTTPSessionManager.m in Sources */,
 				A1F428E2191209DB00567A02 /* AFURLRequestSerialization.m in Sources */,
+				A1940B12197787EC00B152AC /* MessageBarButtonItem.m in Sources */,
 				B2FEC5E41915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m in Sources */,
 				B22B10AE193A9683004BE83F /* Captain_BalanceManagement.m in Sources */,
 				A1C8F9E218DAAA3500BE42D4 /* Captain_MainMenu.m in Sources */,

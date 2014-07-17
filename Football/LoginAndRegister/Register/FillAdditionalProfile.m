@@ -30,7 +30,8 @@
 
 @implementation FillAdditionalProfile{
     NSArray *actionButtons;
-    CallFriends *callFreinds;
+    CallFriends *callFriends;
+    ABPeoplePickerNavigationController *addressbookPeoplePicker;
 }
 @synthesize toolBar, roleCode;
 
@@ -55,7 +56,7 @@
     //Get UI strings
     actionButtons = [gUIStrings objectForKey:@"UI_FillAdditionalProfile_Actions"];
     
-    callFreinds = [[CallFriends alloc] initWithDelegate:self];
+    callFriends = [[CallFriends alloc] initWithDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,7 +143,7 @@
             [self performSegueWithIdentifier:@"FillTeamProfile" sender:self];
             break;
         case 2:
-            [callFreinds showInView:self.view];
+            [callFriends showInView:self.view];
             break;
         case 3:
             break;
@@ -155,6 +156,68 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSLog(@"%@", [actionSheet buttonTitleAtIndex:buttonIndex]);
+    if (buttonIndex == 0) {
+        //Phone_Message
+        addressbookPeoplePicker = [[ABPeoplePickerNavigationController alloc] init];
+        [addressbookPeoplePicker setPeoplePickerDelegate:self];
+        [addressbookPeoplePicker setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+        [self presentViewController:addressbookPeoplePicker animated:YES completion:nil];
+    }
+}
+
+-(void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    [peoplePicker dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    NSArray *displayedProperties = @[[NSNumber numberWithInt:kABPersonPhoneProperty], [NSNumber numberWithInt:kABPersonEmailProperty]];
+    [peoplePicker setDisplayedProperties:displayedProperties];
+    return YES;
+}
+
+-(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    if (property == kABPersonPhoneProperty) {
+        //MFMessage
+        if ([MFMessageComposeViewController canSendText]) {
+            ABMutableMultiValueRef phoneProperties = ABRecordCopyValue(person, property);
+            NSString *phoneNumber = CFBridgingRelease(ABMultiValueCopyValueAtIndex(phoneProperties, ABMultiValueGetIndexForIdentifier(phoneProperties, identifier)));
+            MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+            [messageController setMessageComposeDelegate:self];
+            [messageController setRecipients:@[phoneNumber]];
+            [messageController setBody:@"Invite Friend"];
+            [peoplePicker presentViewController:messageController animated:YES completion:nil];
+        }
+        else {
+            NSLog(@"Doesn't support message.");
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Message Cancelled" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }
+    return NO;
+}
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    UIAlertView *alertView;
+    switch (result) {
+        case MessageComposeResultCancelled:
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Message Cancelled" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+            break;
+        case MessageComposeResultFailed:
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Fail to send message" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+            break;
+        case MessageComposeResultSent:
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Invitation sent!" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        default:
+            break;
+    }
+    [alertView show];
+    [controller dismissViewControllerAnimated:NO completion:^{
+        [addressbookPeoplePicker dismissViewControllerAnimated:NO completion:nil];
+    }];
 }
 
 #pragma mark - Navigation

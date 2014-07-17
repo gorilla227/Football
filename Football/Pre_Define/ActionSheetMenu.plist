@@ -6,15 +6,9 @@
 	<array>
 		<dict>
 			<key>Title</key>
-			<string>手机通讯录</string>
+			<string>手机短信</string>
 			<key>Icon</key>
 			<string>callFriendsIcon_phone.png</string>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>QQ/QQ群</string>
-			<key>Icon</key>
-			<string>callFriendsIcon_qq.png</string>
 		</dict>
 		<dict>
 			<key>Title</key>

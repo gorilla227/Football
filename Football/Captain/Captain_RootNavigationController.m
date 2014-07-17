@@ -10,7 +10,7 @@
 
 @interface Captain_RootNavigationController ()
 @property IBOutlet UIBarButtonItem *menuButton;
-@property IBOutlet UIBarButtonItem *messageButton;
+@property IBOutlet MessageBarButtonItem *messageButton;
 @end
 
 @implementation Captain_RootNavigationController{
@@ -45,6 +45,8 @@
     //Set Menu button and Message button;
     [self.navigationBar.topItem setLeftBarButtonItem:menuButton];
     [self.navigationBar.topItem setRightBarButtonItem:messageButton];
+    [messageButton setDelegate:self];
+    [messageButton initBadgeView];
 }
 
 -(void)logout
@@ -107,6 +109,10 @@
     [self menuSwitch];
 }
 
+-(void)messageButtonOnClicked
+{
+    NSLog(@"MessageButtonClicked!");
+}
 /*
 #pragma mark - Navigation
 

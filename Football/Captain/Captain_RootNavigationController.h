@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Captain_MainMenu.h"
+#import "MessageBarButtonItem.h"
 
-@interface Captain_RootNavigationController : UINavigationController<MainMenuSwitchViewControllerDelegate, MainMenuAppearenceDelegate>
+@interface Captain_RootNavigationController : UINavigationController<MainMenuSwitchViewControllerDelegate, MainMenuAppearenceDelegate, MessageBarButtonDelegate>
 @end

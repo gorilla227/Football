@@ -152,7 +152,7 @@
                         <action selector="menuButtonOnClicked:" destination="TjK-OM-Yjn" id="c6X-iF-HSC"/>
                     </connections>
                 </barButtonItem>
-                <barButtonItem image="messageIcon.png" id="chi-xA-wZo"/>
+                <barButtonItem image="messageIcon.png" id="chi-xA-wZo" customClass="MessageBarButtonItem"/>
             </objects>
             <point key="canvasLocation" x="-89" y="197"/>
         </scene>
