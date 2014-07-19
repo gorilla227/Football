@@ -185,14 +185,15 @@
             ABMutableMultiValueRef phoneProperties = ABRecordCopyValue(person, property);
             NSString *phoneNumber = CFBridgingRelease(ABMultiValueCopyValueAtIndex(phoneProperties, ABMultiValueGetIndexForIdentifier(phoneProperties, identifier)));
             MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+            NSString *messageTemplateFile = [[NSBundle mainBundle] pathForResource:@"MessageTemplate" ofType:@"plist"];
+            NSDictionary *messageTemplate = [NSDictionary dictionaryWithContentsOfFile:messageTemplateFile];
             [messageController setMessageComposeDelegate:self];
             [messageController setRecipients:@[phoneNumber]];
-            [messageController setBody:@"Invite Friend"];
+            [messageController setBody:[messageTemplate objectForKey:@"SMS_InviteFriends"]];
             [peoplePicker presentViewController:messageController animated:YES completion:nil];
         }
         else {
-            NSLog(@"Doesn't support message.");
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Message Cancelled" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Unsupported"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
             [alertView show];
         }
     }
@@ -204,13 +205,13 @@
     UIAlertView *alertView;
     switch (result) {
         case MessageComposeResultCancelled:
-            alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Message Cancelled" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Cancelled"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
             break;
         case MessageComposeResultFailed:
-            alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Fail to send message" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Failed"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
             break;
         case MessageComposeResultSent:
-            alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Invitation sent!" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Successful"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
         default:
             break;
     }
