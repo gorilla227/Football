@@ -10,5 +10,5 @@
 #import "Captain_MainMenu.h"
 #import "MessageBarButtonItem.h"
 
-@interface Captain_RootNavigationController : UINavigationController<MainMenuSwitchViewControllerDelegate, MainMenuAppearenceDelegate, MessageBarButtonDelegate>
+@interface Captain_RootNavigationController : UINavigationController<MainMenuSwitchViewControllerDelegate, MainMenuAppearenceDelegate, MessageBarButtonDelegate, BusyIndicatorDelegate>
 @end

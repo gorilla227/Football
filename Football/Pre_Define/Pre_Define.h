@@ -108,6 +108,13 @@ enum BalanceTypes
     BalanceType_Expenditure
 };
 
+//EditPlayerProfile & EditTeamProfile from Register or Main screen
+enum EditProfileViewSource
+{
+    EditProfileViewSource_Register,
+    EditProfileViewSource_Main
+};
+
 //Dateformat
 #define def_JSONDateformat @"yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 #define def_MatchDateformat @"yyyy-MM-dd"

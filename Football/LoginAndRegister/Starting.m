@@ -55,7 +55,6 @@
 -(void)lockView
 {
     [self.view.window setUserInteractionEnabled:NO];
-//    [self.view bringSubviewToFront:busyIndicator];
     [busyIndicator startAnimating];
 }
 

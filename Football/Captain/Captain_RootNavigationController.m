@@ -16,6 +16,7 @@
 @implementation Captain_RootNavigationController{
     Captain_MainMenu *mainMenu;
     UIView *contentView;
+    UIActivityIndicatorView *busyIndicator;
 }
 @synthesize menuButton, messageButton;
 
@@ -47,6 +48,14 @@
     [self.navigationBar.topItem setRightBarButtonItem:messageButton];
     [messageButton setDelegate:self];
     [messageButton initBadgeView];
+    
+    //Set busyIndicator
+    busyIndicator = [[UIActivityIndicatorView alloc] init];
+    [busyIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [busyIndicator setColor:[UIColor blackColor]];
+    [busyIndicator setCenter:self.view.center];
+    [busyIndicator setHidesWhenStopped:YES];
+    [self.view addSubview:busyIndicator];
 }
 
 -(void)logout
@@ -112,6 +121,19 @@
 -(void)messageButtonOnClicked
 {
     NSLog(@"MessageButtonClicked!");
+}
+
+//BusyIndicatorDelegate
+-(void)lockView
+{
+    [self.view.window setUserInteractionEnabled:NO];
+    [busyIndicator startAnimating];
+}
+
+-(void)unlockView
+{
+    [self.view.window setUserInteractionEnabled:YES];
+    [busyIndicator stopAnimating];
 }
 /*
 #pragma mark - Navigation

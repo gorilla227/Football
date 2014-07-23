@@ -118,6 +118,9 @@
         if (gMyUserInfo.playerPortrait) {
             [cell.imageView setImage:gMyUserInfo.playerPortrait];
         }
+        else {
+            [cell.imageView setImage:def_defaultPlayerPortrait];
+        }
         [cell.imageView.layer setBorderColor:[UIColor whiteColor].CGColor];
         [cell.imageView.layer setBorderWidth:2.0f];
         [cell.imageView.layer setCornerRadius:5.0f];
@@ -152,6 +155,11 @@
     if (indexPath.section == 0) {
         //Turn to MyProfileView
         NSLog(@"MyProfile");
+        [delegateOfViewSwitch switchSelectMenuView:@"FillPlayerProfile"];
+        
+        //Close the menu
+        [delegateOfMenuAppearance menuSwitch];
+        visibleViewIndexPath = indexPath;
     }
     else {
         if (indexPath.row == 0) {

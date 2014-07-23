@@ -1,5 +1,5 @@
 //
-//  FillPlayerProfile.h
+//  EditPlayerProfile.h
 //  Football
 //
 //  Created by Andy on 14-6-14.
@@ -10,11 +10,11 @@
 #import "LoginAndRegisterProtocols.h"
 #import "UITextFieldForActivityRegion.h"
 
-@interface FillPlayerProfile_TableView : UITableView
+@interface EditPlayerProfile_TableView : UITableView
 @property id<DismissKeyboard>delegateForDismissKeyboard;
 @end
 
-@interface FillPlayerProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate, JSONConnectDelegate>
+@interface EditPlayerProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate, JSONConnectDelegate>
 -(void)finishDateEditing;
 -(void)fillInitialPlayerProfile;
 @end

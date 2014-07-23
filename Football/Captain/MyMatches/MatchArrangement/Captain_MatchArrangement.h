@@ -26,11 +26,6 @@
 @end
 
 @interface Captain_MatchArrangement : UIViewController<JSONConnectDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate>
-@property IBOutlet UITableView *matchesTableView;
-@property IBOutlet UIImageView *teamLogo;
-@property IBOutlet UILabel *teamName;
-@property IBOutlet UILabel *numberOfTeamMembers;
-
 -(void)actionButtonOnClicked_announce:(UIButton *)sender;
 -(void)actionButtonOnClicked_viewRecord:(UIButton *)sender;
 -(void)actionButtonOnClicked_fillRecord:(UIButton *)sender;

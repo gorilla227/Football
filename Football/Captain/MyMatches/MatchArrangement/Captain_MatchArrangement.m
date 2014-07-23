@@ -51,7 +51,11 @@
 
 #pragma Captain_MatchArrangement
 @interface Captain_MatchArrangement ()
-
+@property IBOutlet UITableView *matchesTableView;
+@property IBOutlet UIImageView *teamLogo;
+@property IBOutlet UILabel *teamName;
+@property IBOutlet UILabel *numberOfTeamMembers;
+@property IBOutlet UIToolbar *createMatchToolBar;
 @end
 
 @implementation Captain_MatchArrangement{
@@ -59,7 +63,7 @@
     NSIndexPath *indexPathOfCancelMatch;
     JSONConnect *connection;
 }
-@synthesize teamLogo, teamName, numberOfTeamMembers, matchesTableView;
+@synthesize teamLogo, teamName, numberOfTeamMembers, matchesTableView, createMatchToolBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,6 +78,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //Set Toolbar
+    [self.navigationController setToolbarHidden:NO];
+    [self setToolbarItems:createMatchToolBar.items];
+    
     [matchesTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     matchesList = [[NSMutableArray alloc] init];
     //Set TeamInfo
@@ -81,15 +89,21 @@
     [teamLogo.layer setBorderWidth:2.0f];
     [teamLogo.layer setCornerRadius:10.0f];
     [teamLogo.layer setMasksToBounds:YES];
-    [teamLogo setImage:gMyUserInfo.playerPortrait];
-//    [teamName setText:gMyUserInfo.team.teamName];
+    if (gMyUserInfo.team.teamLogo) {
+        [teamLogo setImage:gMyUserInfo.team.teamLogo];
+    }
+    else {
+        [teamLogo setImage:def_defaultTeamLogo];
+    }
+    [teamName setText:gMyUserInfo.team.teamName];
     
     //Request matches
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
 //    [connection requestMatchesByUserId:gMyUserInfo.userId count:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
     
-    //Set menu button
+    //Set menu button and message button
     [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
+    [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     
 }
 

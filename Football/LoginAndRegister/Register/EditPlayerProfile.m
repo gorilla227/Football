@@ -1,14 +1,14 @@
 //
-//  FillPlayerProfile.m
+//  EditPlayerProfile.m
 //  Football
 //
 //  Created by Andy on 14-6-14.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "FillPlayerProfile.h"
+#import "EditPlayerProfile.h"
 
-@implementation FillPlayerProfile_TableView
+@implementation EditPlayerProfile_TableView
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self setDelegateForDismissKeyboard:(id)self.delegate];
@@ -16,8 +16,7 @@
 }
 @end
 
-
-@interface FillPlayerProfile ()
+@interface EditPlayerProfile ()
 @property IBOutlet UIToolbar *saveBar;
 @property IBOutlet UIImageView *playerPortraitImageView;
 @property IBOutlet UITextField *mailTextField;
@@ -31,7 +30,7 @@
 @property IBOutlet UITextField *styleTextField;
 @end
 
-@implementation FillPlayerProfile{
+@implementation EditPlayerProfile{
     UIDatePicker *datePicker;
     UIImagePickerController *imagePicker;
     UIActionSheet *editPlayerPortraitMenu;
@@ -40,6 +39,7 @@
     UIPickerView *positionPicker;
     NSArray *positionList;
     JSONConnect *connection;
+    enum EditProfileViewSource viewSource;
 }
 @synthesize saveBar, playerPortraitImageView, nickNameTextField, qqTextField, birthdateTextField, activityRegionTextField, legalNameTextField, mobileTextField, mailTextField, positionTextField, styleTextField;
 
@@ -61,10 +61,21 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:saveBar.items];
     textFieldArray = @[legalNameTextField, nickNameTextField, mobileTextField, qqTextField, birthdateTextField, activityRegionTextField, mailTextField, legalNameTextField, positionTextField, styleTextField];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
+    
+    //Set menu button and message button
+    if (self.navigationController.viewControllers.count == 1) {
+        [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
+        [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
+        viewSource = EditProfileViewSource_Main;
+    }
+    else {
+        viewSource = EditProfileViewSource_Register;
+    }
     
     //Set DateFormatter
     birthdayDateFormatter = [[NSDateFormatter alloc] init];
@@ -169,7 +180,13 @@
         [connection updatePlayerProfile:updatedDictionary];
     }
     else {
-        [self.navigationController popViewControllerAnimated:YES];
+        if (viewSource == EditProfileViewSource_Register) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Nothing Changed" delegate:nil cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+            [alertView show];
+        }
     }
 }
 
@@ -183,7 +200,13 @@
 -(void)receiveUserInfo:(UserInfo *)userInfo
 {
     gMyUserInfo = userInfo;
-    [self.navigationController popViewControllerAnimated:YES];
+    if (viewSource == EditProfileViewSource_Register) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Saved Successfuly!" delegate:nil cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
 -(IBAction)selectplayerPortraitButtonOnClicked:(id)sender
