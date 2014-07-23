@@ -43,14 +43,17 @@
     for (NSDictionary *province in locationList) {
         if ([[province objectForKey:@"id"] isEqualToString:selectedActivityRegionCode[0]]) {
             regionString = [[NSMutableString alloc] initWithString:[province objectForKey:@"name"]];
+            [locationPicker selectRow:[locationList indexOfObject:province] inComponent:0 animated:NO];
             if (selectedActivityRegionCode.count > 1) {
                 for (NSDictionary *city in [province objectForKey:@"city"]) {
                     if ([[city objectForKey:@"id"] isEqualToString:selectedActivityRegionCode[1]]) {
                         [regionString appendString:[NSString stringWithFormat:@" %@", [city objectForKey:@"name"]]];
+                        [locationPicker selectRow:[[province objectForKey:@"city"] indexOfObject:city] inComponent:1 animated:NO];
                         if (selectedActivityRegionCode.count > 2) {
                             for (NSDictionary *district in [city objectForKey:@"district"]) {
                                 if ([[district objectForKey:@"id"] isEqualToString:selectedActivityRegionCode[2]]) {
                                     [regionString appendString:[NSString stringWithFormat:@" %@", [district objectForKey:@"name"]]];
+                                    [locationPicker selectRow:[[city objectForKey:@"district"] indexOfObject:district] inComponent:2 animated:NO];
                                     break;
                                 }
                             }

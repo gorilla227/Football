@@ -73,6 +73,7 @@
         for (UIView *view in self.visibleViewController.view.subviews) {
             [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
         }
+        [self.toolbar setTransform:CGAffineTransformMakeTranslation(0, 0)];
         [self.visibleViewController.view setUserInteractionEnabled:YES];
         [mainMenu.view setTransform:CGAffineTransformMakeTranslation(0, 0)];
         [mainMenu.view setUserInteractionEnabled:NO];
@@ -82,6 +83,7 @@
         for (UIView *view in self.visibleViewController.view.subviews) {
             [view setTransform:showMenu];
         }
+        [self.toolbar setTransform:showMenu];
         [self.visibleViewController.view setUserInteractionEnabled:NO];
         [mainMenu.view setTransform:showMenu];
         [mainMenu.view setUserInteractionEnabled:YES];
@@ -93,10 +95,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0);
-    if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
-        [self menuSwitch];
-    }
+    [self menuSwitch];
 }
 
 - (void)didReceiveMemoryWarning

@@ -184,7 +184,11 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
         else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Nothing Changed" delegate:nil cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:[gUIStrings objectForKey:@"UI_EditPlayerProfile_NoChange"]
+                                                               delegate:nil
+                                                      cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
+                                                      otherButtonTitles:nil];
             [alertView show];
         }
     }
@@ -204,7 +208,11 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Saved Successfuly!" delegate:nil cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:[gUIStrings objectForKey:@"UI_EditPlayerProfile_Successful"]
+                                                           delegate:nil
+                                                  cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
+                                                  otherButtonTitles:nil];
         [alertView show];
     }
 }

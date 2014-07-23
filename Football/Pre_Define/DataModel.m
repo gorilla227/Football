@@ -132,7 +132,7 @@
     if (originalTeam.teamLogo && !teamLogo) {
         [output setObject:[NSNull null] forKey:kTeam_logo];
     }
-    else if (teamLogo && ![teamLogo isEqual:originalTeam.teamLogo]){
+    else if (teamLogo && ![UIImagePNGRepresentation(teamLogo) isEqual:UIImagePNGRepresentation(originalTeam.teamLogo)]){
         [output setObject:teamLogo forKey:kTeam_logo];
     }
     return output;
@@ -247,7 +247,7 @@
     if (originalUserInfo.playerPortrait && !playerPortrait) {
         [output setObject:[NSNull null] forKey:kUserInfo_playerPortrait];
     }
-    else if (playerPortrait && ![playerPortrait isEqual:originalUserInfo.playerPortrait]){
+    else if (playerPortrait && ![UIImagePNGRepresentation(playerPortrait) isEqual:UIImagePNGRepresentation(originalUserInfo.playerPortrait)]){
         [output setObject:playerPortrait forKey:kUserInfo_playerPortrait];
     }
     return output;
