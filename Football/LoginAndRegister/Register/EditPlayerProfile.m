@@ -134,6 +134,8 @@
     [qqTextField initialLeftViewWithIconImage:@"TextFieldIcon_QQ.png"];
     [birthdateTextField initialLeftViewWithIconImage:@"TextFieldIcon_Birthday.png"];
     [activityRegionTextField initialLeftViewWithIconImage:@"TextFieldIcon_ActivityRegion.png"];
+    [positionTextField initialLeftViewWithIconImage:@"TextFieldIcon_Postion.png"];
+    [styleTextField initialLeftViewWithIconImage:@"TextFieldIcon_Style.png"];
     
     //Fill Initial PlayerInfo
     [self fillInitialPlayerProfile];
@@ -147,21 +149,23 @@
 
 -(void)fillInitialPlayerProfile
 {
-    [mobileTextField setText:gMyUserInfo.mobile];
-    [mailTextField setText:gMyUserInfo.email];
-    [nickNameTextField setText:gMyUserInfo.nickName];
-    [legalNameTextField setText:gMyUserInfo.legalName];
-    [qqTextField setText:gMyUserInfo.qq];
-    [birthdateTextField setText:gMyUserInfo.birthday];
-    [activityRegionTextField presetActivityRegionCode:gMyUserInfo.activityRegion];
-    [positionTextField setText:positionList[gMyUserInfo.position]];
-    [positionPicker selectRow:gMyUserInfo.position inComponent:0 animated:NO];
-    [styleTextField setText:gMyUserInfo.style];
-    if (gMyUserInfo.playerPortrait) {
-        [playerPortraitImageView setImage:gMyUserInfo.playerPortrait];
-    }
-    else {
-        [playerPortraitImageView setImage:def_defaultPlayerPortrait];
+    if (gMyUserInfo) {
+        [mobileTextField setText:gMyUserInfo.mobile];
+        [mailTextField setText:gMyUserInfo.email];
+        [nickNameTextField setText:gMyUserInfo.nickName];
+        [legalNameTextField setText:gMyUserInfo.legalName];
+        [qqTextField setText:gMyUserInfo.qq];
+        [birthdateTextField setText:gMyUserInfo.birthday];
+        [activityRegionTextField presetActivityRegionCode:gMyUserInfo.activityRegion];
+        [positionTextField setText:positionList[gMyUserInfo.position]];
+        [positionPicker selectRow:gMyUserInfo.position inComponent:0 animated:NO];
+        [styleTextField setText:gMyUserInfo.style];
+        if (gMyUserInfo.playerPortrait) {
+            [playerPortraitImageView setImage:gMyUserInfo.playerPortrait];
+        }
+        else {
+            [playerPortraitImageView setImage:def_defaultPlayerPortrait];
+        }
     }
 }
 

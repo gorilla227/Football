@@ -50,6 +50,11 @@
 //Get AllStadiums
 #define CONNECT_AllStadiums_Suffix @"field/list"
 
+//Get AllTeams
+#define CONNECT_AllTeams_Suffix @"team/list"
+
+
+
 
 
 #pragma zzOld_Server

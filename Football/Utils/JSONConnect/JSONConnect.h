@@ -29,6 +29,7 @@
 -(void)updateTeamProfileSuccessfully;//更新球队资料成功
 -(void)updateTeamLogoSuccessfully;//更新球队队标成功
 -(void)receiveAllStadiums:(NSArray *)stadiums;//获取所有球场资料成功
+-(void)receiveAllTeams:(NSArray *)teams;//获取所有球队列表成功
 
 #pragma zzOld_Server
 //-(void)receiveUserInfo:(UserInfo *)userInfo;
@@ -54,6 +55,7 @@
 -(void)updateTeamProfile:(NSDictionary *)teamProfile;//更新球队资料（除了队标），teamName的修改服务器暂不支持
 -(void)updateTeamLogo:(UIImage *)logo forTeam:(NSInteger)teamId;//更新球队队标
 -(void)requestAllStadiums;//获取所有球场
+-(void)requestAllTeams;//获取所有球队
 
 #pragma zzOld_Server
 -(void)requestUserInfoById:(NSNumber *)userId;

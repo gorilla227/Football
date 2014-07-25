@@ -282,6 +282,26 @@
     }];
 }
 
+//RequestAllTeams
+-(void)requestAllTeams
+{
+    [busyIndicatorDelegate lockView];
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_AllTeams_Suffix];
+    [manager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        NSLog(@"%@",[responseObject firstObject]);
+        NSMutableArray *teamList = [[NSMutableArray alloc] init];
+        for (NSDictionary *teamData in responseObject) {
+            Team *team = [[Team alloc] initWithData:teamData];
+            [teamList addObject:team];
+        }
+        [delegate receiveAllTeams:teamList];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
 #pragma zzOld_Server
 -(void)requestUserInfoById:(NSNumber *)userId
 {

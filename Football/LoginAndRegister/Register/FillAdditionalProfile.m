@@ -146,6 +146,7 @@
             [callFriends showInView:self.view];
             break;
         case 3:
+            [self performSegueWithIdentifier:@"FindTeam" sender:self];
             break;
         default:
             break;

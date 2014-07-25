@@ -52,4 +52,14 @@
     [self setLeftView:leftIcon];
     [self setLeftViewMode:UITextFieldViewModeAlways];    
 }
+
+-(void)initialLeftViewWithIconImageClearStyle:(NSString *)imageFileName
+{
+    CGRect leftViewFrame = self.bounds;
+    UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
+    [leftIcon setContentMode:UIViewContentModeScaleAspectFit];
+    [leftIcon setFrame:CGRectMake(0, 0, leftViewFrame.size.height * 1.2, leftViewFrame.size.height)];
+    [self setLeftView:leftIcon];
+    [self setLeftViewMode:UITextFieldViewModeAlways];
+}
 @end

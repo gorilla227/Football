@@ -7,6 +7,77 @@
 //
 #import "DataModel.h"
 
+#pragma ActivityRegion
+@implementation ActivityRegion
++(NSArray *)stringWithCode:(NSArray *)code
+{
+    //Load ActivityRegions.json
+    NSString *fileString = [[NSBundle mainBundle] pathForResource:@"ActivityRegions" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:fileString];
+    NSArray *locationList = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    //Search codes in locationList
+    NSMutableArray *stringArray = [[NSMutableArray alloc] initWithCapacity:code.count];
+    for (NSDictionary *province in locationList) {
+        if ([[province objectForKey:@"id"] isEqualToString:code[0]]) {
+            [stringArray addObject:[province objectForKey:@"name"]];
+            if (code.count > 1) {
+                for (NSDictionary *city in [province objectForKey:@"city"]) {
+                    if ([[city objectForKey:@"id"] isEqualToString:code[1]]) {
+                        [stringArray addObject:[city objectForKey:@"name"]];
+                        if (code.count > 2) {
+                            for (NSDictionary *district in [city objectForKey:@"district"]) {
+                                if ([[district objectForKey:@"id"] isEqualToString:code[2]]) {
+                                    [stringArray addObject:[district objectForKey:@"name"]];
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            break;
+        }
+    }
+    return stringArray;
+}
+
++(NSArray *)codeWithString:(NSArray *)string
+{
+    //Load ActivityRegions.json
+    NSString *fileString = [[NSBundle mainBundle] pathForResource:@"ActivityRegions" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:fileString];
+    NSArray *locationList = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    //Search codes in locationList
+    NSMutableArray *codeArray = [[NSMutableArray alloc] initWithCapacity:string.count];
+    for (NSDictionary *province in locationList) {
+        if ([[province objectForKey:@"name"] isEqualToString:string[0]]) {
+            [codeArray addObject:[province objectForKey:@"id"]];
+            if (string.count > 1) {
+                for (NSDictionary *city in [province objectForKey:@"city"]) {
+                    if ([[city objectForKey:@"name"] isEqualToString:string[1]]) {
+                        [codeArray addObject:[city objectForKey:@"id"]];
+                        if (string.count > 2) {
+                            for (NSDictionary *district in [city objectForKey:@"district"]) {
+                                if ([[district objectForKey:@"name"] isEqualToString:string[2]]) {
+                                    [codeArray addObject:[district objectForKey:@"id"]];
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            break;
+        }
+    }
+    return codeArray;
+}
+@end
+
 #pragma Stadium
 @implementation Stadium
 @synthesize stadiumId, stadiumName, address, phoneNumber, price, comment, coordinate, title, subtitle;
@@ -94,7 +165,7 @@
 {
     self = [super init];
     if (self) {
-        [self setTeamId: [[data objectForKey:kTeam_teamId] integerValue]];
+        [self setTeamId:[[data objectForKey:kTeam_teamId] integerValue]];
         [self setTeamName:[data objectForKey:kTeam_teamName]];
         [self setNumOfMember:[[data objectForKey:kTeam_numOfTeam] integerValue]];
         [self setActivityRegion:[[data objectForKey:kTeam_activityRegion] componentsSeparatedByString:@"-"]];

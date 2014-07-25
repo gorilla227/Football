@@ -126,7 +126,7 @@
         [cell.imageView.layer setCornerRadius:5.0f];
         [cell.imageView.layer setMasksToBounds:YES];
         [cell.textLabel setText:gMyUserInfo.nickName];
-        [cell.detailTextLabel setText:[[gUIStrings objectForKey:@"UI_Positions"] objectAtIndex:gMyUserInfo.position]];
+        [cell.detailTextLabel setText:gMyUserInfo.team.teamName];
     }
     else {
         if (indexPath.row == 0) {

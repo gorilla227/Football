@@ -11,4 +11,5 @@
 @interface UITextField (LeftIconAndLabel)
 -(void)initialLeftViewWithLabelName:(NSString *)labelName labelWidth:(CGFloat)labelWidth iconImage:(NSString *)imageFileName;
 -(void)initialLeftViewWithIconImage:(NSString *)imageFileName;
+-(void)initialLeftViewWithIconImageClearStyle:(NSString *)imageFileName;
 @end

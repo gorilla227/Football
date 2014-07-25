@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma ActivityRegion
+@interface ActivityRegion : NSObject
++(NSArray *)stringWithCode:(NSArray *)code;
++(NSArray *)codeWithString:(NSArray *)string;
+@end
+
 #pragma Stadium
 #define kStadium_id @"field_id"
 #define kStadium_name @"name"
@@ -31,7 +37,7 @@
 
 #pragma Team
 #define kTeam_playerId @"member_id"
-#define kTeam_teamId @"team_id"
+#define kTeam_teamId @"id"
 #define kTeam_teamName @"name"
 #define kTeam_numOfTeam @"member_num"
 #define kTeam_activityRegion @"location"
@@ -88,6 +94,8 @@
 -(NSDictionary *)dictionaryForUpdate:(UserInfo *)originalUserInfo;
 @end
 
+
+
 #pragma Match
 @interface Match: NSObject
 @property NSString *name;
@@ -120,7 +128,6 @@
 #pragma data keys
 
 
-//Team
 
 //Match
 #define kMatch_name @"name"

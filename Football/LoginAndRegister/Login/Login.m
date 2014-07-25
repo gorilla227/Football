@@ -83,7 +83,6 @@
 {
     [self dismissKeyboard];
     [connection loginVerification:accountField.text password:passwordField.text.MD5];
-//    [connection loginVerification:@"18611542707" password:@"123456"];
 }
 
 -(void)loginVerificationSuccessfully:(NSInteger)userId
@@ -113,6 +112,13 @@
     [self performSegueWithIdentifier:@"Register" sender:self];
 }
 
+-(IBAction)forgetPasswordButtonOnClicked:(id)sender
+{
+//    [connection loginVerification:@"18611542707" password:@"123456"];
+//    UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FillPlayerProfile"];
+    UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FindTeam"];
+    [self.navigationController pushViewController:targetViewController animated:YES];
+}
 //DissmissKeyboard
 -(void)dismissKeyboard
 {
