@@ -1,14 +1,14 @@
 //
-//  FillTeamProfile.m
+//  EditTeamProfile.m
 //  Football
 //
 //  Created by Andy on 14-6-14.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "FillTeamProfile.h"
+#import "EditTeamProfile.h"
 
-@implementation FillTeamProfile_TableView
+@implementation EditTeamProfile_TableView
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self setDelegateForDismissKeyboard:(id)self.delegate];
@@ -16,22 +16,24 @@
 }
 @end
 
-@interface FillTeamProfile ()
+@interface EditTeamProfile ()
 @property IBOutlet UIToolbar *saveBar;
 @property IBOutlet UIImageView *teamLogoImageView;
 @property IBOutlet UITextField *teamNameTextField;
 @property IBOutlet UITextFieldForActivityRegion *activityRegionTextField;
 @property IBOutlet UITextFieldForStadiumSelection *homeStadiumTextField;
 @property IBOutlet UITextView *sloganTextView;
+@property IBOutlet UIButton *selectTeamLogoButton;
 @end
 
-@implementation FillTeamProfile{
+@implementation EditTeamProfile{
     NSArray *textFieldArray;
     UIImagePickerController *imagePicker;
     UIActionSheet *editTeamLogoMenu;
     JSONConnect *connection;
+    enum EditProfileViewSource viewSource;
 }
-@synthesize saveBar, teamLogoImageView, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView;
+@synthesize saveBar, teamLogoImageView, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, selectTeamLogoButton;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -55,6 +57,25 @@
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self setToolbarItems:saveBar.items];
     textFieldArray = @[teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView];
+    
+    //Set menu button and message button
+    if (self.navigationController.viewControllers.count == 1) {
+        [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
+        [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
+        viewSource = EditProfileViewSource_Main;
+    }
+    else {
+        viewSource = EditProfileViewSource_Register;
+    }
+    
+    //Set the controls enable status
+    if (gMyUserInfo.userType == 0) {
+        for (UIControl * control in textFieldArray) {
+            [control setEnabled:NO];
+        }
+        [selectTeamLogoButton setEnabled:NO];
+        [self.navigationController setToolbarHidden:YES];
+    }
     
     //Set the playerPortrait related controls
     [teamLogoImageView.layer setCornerRadius:10.0f];

@@ -1,5 +1,5 @@
 //
-//  Captain_MainMenu.h
+//  MainMenu.h
 //  Football
 //
 //  Created by Andy on 14-3-19.
@@ -17,7 +17,7 @@
 -(void)logout;
 @end
 
-@interface Captain_MainMenu : UITableViewController
+@interface MainMenu : UITableViewController
 @property id<MainMenuAppearenceDelegate>delegateOfMenuAppearance;
 @property id<MainMenuSwitchViewControllerDelegate>delegateOfViewSwitch;
 @property IBOutlet UIToolbar *toolBar;

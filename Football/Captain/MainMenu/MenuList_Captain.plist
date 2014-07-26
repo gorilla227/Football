@@ -6,12 +6,6 @@
 	<array>
 		<dict>
 			<key>Title</key>
-			<string>我的比赛</string>
-			<key>Icon</key>
-			<string>menuIcon_myMatches.png</string>
-		</dict>
-		<dict>
-			<key>Title</key>
 			<string>我的球队</string>
 			<key>Icon</key>
 			<string>menuIcon_myTeams.png</string>
@@ -43,9 +37,6 @@
 			<key>Identifier</key>
 			<string>Captain_WarmupMatch</string>
 		</dict>
-	</array>
-	<key>1</key>
-	<array>
 		<dict>
 			<key>Title</key>
 			<string>我的队员</string>
@@ -62,10 +53,10 @@
 			<key>Title</key>
 			<string>球队资料</string>
 			<key>Identifier</key>
-			<string>Captain_TeamProfile</string>
+			<string>EditTeamProfile</string>
 		</dict>
 	</array>
-	<key>2</key>
+	<key>1</key>
 	<array>
 		<dict>
 			<key>Title</key>
@@ -80,7 +71,7 @@
 			<string>Captain_TeamFundInquiry</string>
 		</dict>
 	</array>
-	<key>3</key>
+	<key>2</key>
 	<array>
 		<dict>
 			<key>Title</key>

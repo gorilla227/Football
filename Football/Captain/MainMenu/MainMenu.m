@@ -1,18 +1,18 @@
 //
-//  Captain_MainMenu.m
+//  MainMenu.m
 //  Football
 //
 //  Created by Andy on 14-3-19.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "Captain_MainMenu.h"
+#import "MainMenu.h"
 
-@interface Captain_MainMenu ()
+@interface MainMenu ()
 
 @end
 
-@implementation Captain_MainMenu{
+@implementation MainMenu{
     NSDictionary *menuListDictionary;
     UIFont *selectedFont;
     UIFont *unselectedFont;
@@ -198,7 +198,7 @@
 -(void)menuListGeneration
 {
     //Get data from plist file
-    NSString *menuListFile = [[NSBundle mainBundle] pathForResource:@"Captain_MenuList" ofType:@"plist"];
+    NSString *menuListFile = [[NSBundle mainBundle] pathForResource:gMyUserInfo.userType?@"MenuList_Captain":(gMyUserInfo.team?@"MenuList_PlayerWithTeam":@"MenuList_PlayerWithoutTeam") ofType:@"plist"];
     menuListDictionary = [[NSDictionary alloc] initWithContentsOfFile:menuListFile];
 }
 
