@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Captain_MainMenu.h"
+#import "MainMenu.h"
 #import "Captain_CreateMatch.h"
 
 @interface Captain_MatchArrangementListCell : UITableViewCell

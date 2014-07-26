@@ -32,8 +32,9 @@
     NSArray *actionButtons;
     CallFriends *callFriends;
     ABPeoplePickerNavigationController *addressbookPeoplePicker;
+    NSInteger roleCode;
 }
-@synthesize toolBar, roleCode;
+@synthesize toolBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +53,8 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:toolBar.items];
+    
+    roleCode = gMyUserInfo.userType;
 
     //Get UI strings
     actionButtons = [gUIStrings objectForKey:@"UI_FillAdditionalProfile_Actions"];
@@ -100,13 +103,14 @@
     [cell.actionLabel setText:[actionButtons[indexPath.row] objectForKey:@"Title"]];
     switch (roleCode) {
         case 0:
-            if (indexPath.row == 3) {
+            if (indexPath.row == 1) {
                 [cell setAlpha:0.5f];
                 [cell setUserInteractionEnabled:NO];
             }
+            
             break;
         case 1:
-            if (indexPath.row == 1) {
+            if (indexPath.row == 3) {
                 [cell setAlpha:0.5f];
                 [cell setUserInteractionEnabled:NO];
             }
@@ -123,7 +127,7 @@
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:HeaderIdentifier forIndexPath:indexPath];
         UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerView.bounds];
-        [headerLabel setText:[NSString stringWithFormat:@"%@%@", gMyUserInfo.nickName, [gUIStrings objectForKey:roleCode?@"UI_FillAdditionalProfile_Header_Player":@"UI_FillAdditionalProfile_Header_Captain"]]];
+        [headerLabel setText:[NSString stringWithFormat:@"%@%@", gMyUserInfo.nickName, [gUIStrings objectForKey:roleCode?@"UI_FillAdditionalProfile_Header_Captain":@"UI_FillAdditionalProfile_Header_Player"]]];
         [headerLabel setTextColor:[UIColor whiteColor]];
         [headerLabel setTextAlignment:NSTextAlignmentCenter];
         [headerLabel setAdjustsFontSizeToFitWidth:YES];
@@ -135,18 +139,23 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+    UIViewController *targetViewController;
     switch (indexPath.row) {
         case 0:
-            [self performSegueWithIdentifier:@"FillPlayerProfile" sender:self];
+            targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"EditPlayerProfile"];
+            [self.navigationController pushViewController:targetViewController animated:YES];
             break;
         case 1:
-            [self performSegueWithIdentifier:@"FillTeamProfile" sender:self];
+            targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"EditTeamProfile"];
+            [self.navigationController pushViewController:targetViewController animated:YES];
             break;
         case 2:
             [callFriends showInView:self.view];
             break;
         case 3:
-            [self performSegueWithIdentifier:@"FindTeam" sender:self];
+            targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"FindTeam"];
+            [self.navigationController pushViewController:targetViewController animated:YES];
             break;
         default:
             break;
@@ -222,6 +231,7 @@
     }];
 }
 
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -230,5 +240,5 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
+*/
 @end

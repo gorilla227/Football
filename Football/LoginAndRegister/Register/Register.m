@@ -254,10 +254,10 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"FillAdditionalProfile"]) {
-        FillAdditionalProfile *fillAdditionalProfile = segue.destinationViewController;
-        [fillAdditionalProfile setRoleCode:roleSegment.selectedSegmentIndex];
-    }
+//    if ([segue.identifier isEqualToString:@"FillAdditionalProfile"]) {
+//        FillAdditionalProfile *fillAdditionalProfile = segue.destinationViewController;
+//        [fillAdditionalProfile setRoleCode:roleSegment.selectedSegmentIndex];
+//    }
 }
 
 @end

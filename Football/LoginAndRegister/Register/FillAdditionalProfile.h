@@ -16,5 +16,4 @@
 @end
 
 @interface FillAdditionalProfile : UICollectionViewController<ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
-@property NSInteger roleCode;
 @end

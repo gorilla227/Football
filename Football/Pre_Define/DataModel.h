@@ -37,7 +37,7 @@
 
 #pragma Team
 #define kTeam_playerId @"member_id"
-#define kTeam_teamId @"id"
+#define kTeam_teamId @"team_id"
 #define kTeam_teamName @"name"
 #define kTeam_numOfTeam @"member_num"
 #define kTeam_activityRegion @"location"

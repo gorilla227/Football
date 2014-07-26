@@ -53,6 +53,9 @@
 //Get AllTeams
 #define CONNECT_AllTeams_Suffix @"team/list"
 
+//Applyin a Team
+#define CONNECT_ApplyinTeam_Suffix @"message/applyin"
+
 
 
 

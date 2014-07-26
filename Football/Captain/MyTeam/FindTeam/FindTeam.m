@@ -30,8 +30,6 @@
     [teamLogoImageView.layer setBorderWidth:1.5f];
     [teamLogoImageView.layer setMasksToBounds:YES];
     
-    [teamLogoImageView setImage:[UIImage imageNamed:@"TeamIcon.jpg"]];
-    
     //Set the applyButton style
     [applyButton.layer setCornerRadius:10.0f];
     [applyButton.layer setBorderColor:[UIColor whiteColor].CGColor];
@@ -75,6 +73,13 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:YES];
+    
+    //Set menu button and message button
+    if (self.navigationController.viewControllers.count == 1) {
+        [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
+        [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
+    }
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [connection requestAllTeams];
@@ -118,6 +123,12 @@
     [cell.teamMemberNumberLabel setText:[NSString stringWithFormat:@"%li", (long)team.numOfMember]];
     [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:team.activityRegion] componentsJoinedByString:@" "]];
     [cell.recruitAnnouncementLabel setText:team.slogan];
+    if (team.teamLogo) {
+        [cell.teamLogoImageView setImage:team.teamLogo];
+    }
+    else {
+        [cell.teamLogoImageView setImage:def_defaultTeamLogo];
+    }
     return cell;
 }
 

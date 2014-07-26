@@ -1,20 +1,20 @@
 //
-//  Captain_RootNavigationController.m
+//  Soccer_BaseNavigationController.m
 //  Football
 //
 //  Created by Andy on 14-4-19.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "Captain_RootNavigationController.h"
+#import "Soccer_BaseNavigationController.h"
 
-@interface Captain_RootNavigationController ()
+@interface Soccer_BaseNavigationController ()
 @property IBOutlet UIBarButtonItem *menuButton;
 @property IBOutlet MessageBarButtonItem *messageButton;
 @end
 
-@implementation Captain_RootNavigationController{
-    Captain_MainMenu *mainMenu;
+@implementation Soccer_BaseNavigationController{
+    MainMenu *mainMenu;
     UIView *contentView;
     UIActivityIndicatorView *busyIndicator;
 }
