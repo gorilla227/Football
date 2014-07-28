@@ -81,5 +81,17 @@
 		<string>后卫</string>
 		<string>守门员</string>
 	</array>
+	<key>UI_StadiumDistanceUnit</key>
+	<string>公里</string>
+	<key>UI_HomeStadiumSetButtonTitle</key>
+	<string>设为主场</string>
+	<key>UI_HomeStadiumSetButtonOwnTitle</key>
+	<string>我的主场</string>
+	<key>UI_HomeStadiumSetConfirm</key>
+	<string>是</string>
+	<key>UI_HomeStadiumSetCancel</key>
+	<string>否</string>
+	<key>UI_HomeStadiumSetConfirmationMessage</key>
+	<string>要将该球场设为主场吗？</string>
 </dict>
 </plist>

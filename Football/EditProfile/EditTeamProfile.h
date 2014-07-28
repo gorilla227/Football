@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginAndRegisterProtocols.h"
-#import "UITextFieldForActivityRegion.h"
 
 @interface EditTeamProfile_TableView : UITableView
 @property id<DismissKeyboard>delegateForDismissKeyboard;

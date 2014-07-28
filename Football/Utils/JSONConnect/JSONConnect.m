@@ -276,7 +276,12 @@
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_AllStadiums_Suffix];
     [manager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-        [delegate receiveAllStadiums:responseObject];
+        NSMutableArray *stadiumList = [[NSMutableArray alloc] init];
+        for (NSDictionary *stadiumData in responseObject) {
+            Stadium *stadium = [[Stadium alloc] initWithData:stadiumData];
+            [stadiumList addObject:stadium];
+        }
+        [delegate receiveAllStadiums:stadiumList];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
@@ -290,7 +295,6 @@
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_AllTeams_Suffix];
     [manager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-        NSLog(@"%@",[responseObject firstObject]);
         NSMutableArray *teamList = [[NSMutableArray alloc] init];
         for (NSDictionary *teamData in responseObject) {
             Team *team = [[Team alloc] initWithData:teamData];

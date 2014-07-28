@@ -154,8 +154,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.section == 0) {
         //Turn to MyProfileView
-        NSLog(@"MyProfile");
-        [delegateOfViewSwitch switchSelectMenuView:@"FillPlayerProfile"];
+        [delegateOfViewSwitch switchSelectMenuView:@"EditPlayerProfile"];
         
         //Close the menu
         [delegateOfMenuAppearance menuSwitch];

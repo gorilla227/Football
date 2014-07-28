@@ -114,10 +114,19 @@
 
 -(IBAction)forgetPasswordButtonOnClicked:(id)sender
 {
+    //Login
 //    [connection loginVerification:@"18611542707" password:@"123456"];
 //    UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FillPlayerProfile"];
-    UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FindTeam"];
+    
+    //FindTeam
+//    UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FindTeam"];
+//    [self.navigationController pushViewController:targetViewController animated:YES];
+    
+    //StadiumListView
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"StadiumListView"];
     [self.navigationController pushViewController:targetViewController animated:YES];
+    
 }
 //DissmissKeyboard
 -(void)dismissKeyboard

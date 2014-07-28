@@ -18,7 +18,7 @@
 #define kStadium_id @"field_id"
 #define kStadium_name @"name"
 #define kStadium_address @"location"
-#define kStadium_phoneNumber @"phone_umber"
+#define kStadium_phoneNumber @"phone_number"
 #define kStadium_price @"price"
 #define kStadium_longitude @"longitude"
 #define kStadium_latitude @"latitude"
@@ -30,6 +30,7 @@
 @property NSString *phoneNumber;
 @property NSInteger price;
 @property NSString *comment;
+@property CLLocationDistance distance;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
 -(id)initWithData:(NSDictionary *)data;

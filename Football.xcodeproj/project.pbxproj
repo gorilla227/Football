@@ -120,6 +120,8 @@
 		B27BD360194930B300802F4A /* FillAdditionalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD35F194930B300802F4A /* FillAdditionalProfile.m */; };
 		B27BD6C61934093E00F35A51 /* Captain_PlayerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C51934093E00F35A51 /* Captain_PlayerDetails.m */; };
 		B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */; };
+		B2A01786198460F400ACDDD2 /* StadiumListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A01785198460F400ACDDD2 /* StadiumListView.m */; };
+		B2AE0A311985AB5F00E2DEE9 /* StadiumDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AE0A301985AB5F00E2DEE9 /* StadiumDetails.m */; };
 		B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */; };
 		B2B955CD194FC649004FB5E0 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B955CC194FC649004FB5E0 /* NSString+MD5.m */; };
 		B2D096EF18EE01D4005221F2 /* ActionSheetMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2D096EE18EE01D4005221F2 /* ActionSheetMenu.plist */; };
@@ -301,6 +303,10 @@
 		B27BD6C51934093E00F35A51 /* Captain_PlayerDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_PlayerDetails.m; path = Captain/MyTeam/Captain_PlayerDetails.m; sourceTree = "<group>"; };
 		B27BD6C719341DBD00F35A51 /* Captain_NotifyPlayers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NotifyPlayers.h; path = Captain/MyTeam/Captain_NotifyPlayers.h; sourceTree = "<group>"; };
 		B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NotifyPlayers.m; path = Captain/MyTeam/Captain_NotifyPlayers.m; sourceTree = "<group>"; };
+		B2A01784198460F400ACDDD2 /* StadiumListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StadiumListView.h; sourceTree = "<group>"; };
+		B2A01785198460F400ACDDD2 /* StadiumListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StadiumListView.m; sourceTree = "<group>"; };
+		B2AE0A2F1985AB5F00E2DEE9 /* StadiumDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StadiumDetails.h; sourceTree = "<group>"; };
+		B2AE0A301985AB5F00E2DEE9 /* StadiumDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StadiumDetails.m; sourceTree = "<group>"; };
 		B2B1EE46193FDCE900915CA8 /* UITextField+LeftIconAndLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+LeftIconAndLabel.h"; path = "Football/Utils/TextFieldCustomize/UITextField+LeftIconAndLabel.h"; sourceTree = "<group>"; };
 		B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+LeftIconAndLabel.m"; path = "Football/Utils/TextFieldCustomize/UITextField+LeftIconAndLabel.m"; sourceTree = "<group>"; };
 		B2B955CB194FC649004FB5E0 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -641,6 +647,7 @@
 				B2168BE6198304B500F91C4B /* MainMenu */,
 				B2D6981318ECC35500603B87 /* MyTeam */,
 				B20B4496197DCDE800A0A55E /* EditProfile */,
+				B2A017821984609F00ACDDD2 /* Miscellaneous */,
 				B22B10AB193A8E71004BE83F /* FinanceManagement */,
 			);
 			name = MainModules;
@@ -855,6 +862,26 @@
 				B262D2FE1928297D0079526E /* Captain_WarmupMatch.m */,
 			);
 			name = WarmupMatch;
+			sourceTree = "<group>";
+		};
+		B2A017821984609F00ACDDD2 /* Miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				B2A01783198460F400ACDDD2 /* Stadiums */,
+			);
+			name = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		B2A01783198460F400ACDDD2 /* Stadiums */ = {
+			isa = PBXGroup;
+			children = (
+				B2A01784198460F400ACDDD2 /* StadiumListView.h */,
+				B2A01785198460F400ACDDD2 /* StadiumListView.m */,
+				B2AE0A2F1985AB5F00E2DEE9 /* StadiumDetails.h */,
+				B2AE0A301985AB5F00E2DEE9 /* StadiumDetails.m */,
+			);
+			name = Stadiums;
+			path = Captain/Miscellaneous/Stadiums;
 			sourceTree = "<group>";
 		};
 		B2B1EE49193FDCF200915CA8 /* TextFieldCustomize */ = {
@@ -1097,6 +1124,8 @@
 				B22B10AE193A9683004BE83F /* Captain_BalanceManagement.m in Sources */,
 				A1FC44511935A621007C4B68 /* CallFriends.m in Sources */,
 				A1818977194D671E00BE18BC /* EditTeamProfile.m in Sources */,
+				B2AE0A311985AB5F00E2DEE9 /* StadiumDetails.m in Sources */,
+				B2A01786198460F400ACDDD2 /* StadiumListView.m in Sources */,
 				A10BAD0A190E1245000FA5A7 /* DataModel.m in Sources */,
 				A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */,
 				A114302518F2545100A39F13 /* Captain_TeamProfile.m in Sources */,
@@ -1199,14 +1228,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = com.apple.idms.appleid.prd.575a70506353662b6c6c71783851664f77366a7a38413d3d;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Football/Football-Prefix.pch";
 				INFOPLIST_FILE = "Football/Football-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A7A12195-48BF-461D-A4A2-724EB697744E";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1216,14 +1245,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = com.apple.idms.appleid.prd.575a70506353662b6c6c71783851664f77366a7a38413d3d;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Football/Football-Prefix.pch";
 				INFOPLIST_FILE = "Football/Football-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A7A12195-48BF-461D-A4A2-724EB697744E";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

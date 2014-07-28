@@ -80,7 +80,7 @@
 
 #pragma Stadium
 @implementation Stadium
-@synthesize stadiumId, stadiumName, address, phoneNumber, price, comment, coordinate, title, subtitle;
+@synthesize stadiumId, stadiumName, address, phoneNumber, price, comment, coordinate, distance, title, subtitle;
 
 -(id)copy
 {
@@ -96,6 +96,7 @@
     }
     [staduimCopy setPrice:price];
     [staduimCopy setComment:[comment copy]];
+    [staduimCopy setDistance:distance];
     return staduimCopy;
 }
 

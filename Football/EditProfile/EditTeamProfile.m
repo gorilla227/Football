@@ -166,11 +166,7 @@
 //Receive all stadiums
 -(void)receiveAllStadiums:(NSArray *)stadiums
 {
-    NSMutableArray *stadiumList = [[NSMutableArray alloc] init];
-    for (NSDictionary *stadium in stadiums) {
-        [stadiumList addObject:[[Stadium alloc] initWithData:stadium]];
-    }
-    [homeStadiumTextField textFieldInitialization:stadiumList];
+    [homeStadiumTextField textFieldInitialization:stadiums];
     
     //Fill Initial TeamInfo
     [self fillInitialTeamProfile];

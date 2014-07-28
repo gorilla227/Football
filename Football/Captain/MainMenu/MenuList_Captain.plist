@@ -85,6 +85,12 @@
 			<key>Identifier</key>
 			<string></string>
 		</dict>
+		<dict>
+			<key>Title</key>
+			<string>球场</string>
+			<key>Identifier</key>
+			<string>StadiumListView</string>
+		</dict>
 	</array>
 </dict>
 </plist>
