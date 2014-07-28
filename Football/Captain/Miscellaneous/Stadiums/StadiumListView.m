@@ -67,8 +67,9 @@
 
 -(void)receiveAllStadiums:(NSArray *)stadiums
 {
-    stadiumList = [NSMutableArray arrayWithArray:stadiums];
+    stadiumList = stadiums;
     [self calculateAndSortStadiumsByDistance];
+    [grandMapView addAnnotations:stadiumList];
     [grandMapView showAnnotations:@[stadiumList.firstObject, grandMapView.userLocation] animated:YES];
 }
 
@@ -140,6 +141,33 @@
 {
     Stadium *stadium = view.annotation;
     [mapView setCenterCoordinate:stadium.coordinate animated:YES];
+}
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"Annotation"];
+    if (!annotationView) {
+        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Annotation"];
+        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [annotationView setRightCalloutAccessoryView:rightButton];
+        [annotationView setCanShowCallout:YES];
+        [annotationView setEnabled:YES];
+    }
+    else {
+        [annotationView setAnnotation:annotation];
+    }
+    return annotationView;
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    Stadium *selectedStadium = view.annotation;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[stadiumList indexOfObject:selectedStadium] inSection:0];
+    [stadiumListTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    [self performSegueWithIdentifier:@"StadiumDetails" sender:self];
 }
 
 #pragma mark - Navigation
