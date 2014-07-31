@@ -3311,7 +3311,11 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="QT7-SR-zxR"/>
-                        <barButtonItem title="添加球场" id="9Ru-XJ-mUl"/>
+                        <barButtonItem title="添加球场" id="9Ru-XJ-mUl">
+                            <connections>
+                                <segue destination="Oka-iM-dhQ" kind="push" id="1nE-ev-Otv"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="2Xf-wK-P5N"/>
                     </items>
                 </toolbar>
@@ -3510,6 +3514,94 @@
             </objects>
             <point key="canvasLocation" x="322" y="-1173"/>
         </scene>
+        <!--Add Stadium Select Address - 添加球场-->
+        <scene sceneID="8St-wc-dDN">
+            <objects>
+                <viewController storyboardIdentifier="AddStadium_SelectAddress" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oka-iM-dhQ" customClass="AddStadium_SelectAddress" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QD5-e3-0sR">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="xft-Qh-7Gw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9e1-me-KhW">
+                                <rect key="frame" x="0.0" y="259" width="320" height="245"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="JzT-e2-IMN">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bbR-ab-8GY">
+                                            <rect key="frame" x="0.0" y="-2" width="320" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="showPortentousTableView:" destination="Oka-iM-dhQ" eventType="touchUpInside" id="ZD2-RO-o3x"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PortentousCell" textLabel="B30-T4-YF9" detailTextLabel="RuD-SM-7VM" style="IBUITableViewCellStyleValue1" id="2tA-OF-fFe">
+                                        <rect key="frame" x="0.0" y="47" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2tA-OF-fFe" id="171-3S-oJe">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B30-T4-YF9">
+                                                    <rect key="frame" x="15" y="11" width="33" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RuD-SM-7VM">
+                                                    <rect key="frame" x="261" y="11" width="44" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Oka-iM-dhQ" id="yog-SR-vFr"/>
+                                    <outlet property="delegate" destination="Oka-iM-dhQ" id="Twm-eK-gDA"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" id="qBK-Ql-5iX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Oka-iM-dhQ" id="sVG-Qv-voA"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="添加球场" id="7QD-7W-aom"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="portentousMapView" destination="xft-Qh-7Gw" id="m02-hL-s7R"/>
+                        <outlet property="portentousTableView" destination="9e1-me-KhW" id="WYR-5I-5RV"/>
+                        <outlet property="searchBar" destination="qBK-Ql-5iX" id="JDe-sf-20b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hkd-k8-hNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="745" y="-1173"/>
+        </scene>
         <!--Edit Team Profile - 球队资料-->
         <scene sceneID="Q27-Tm-Bok">
             <objects>
@@ -3682,9 +3774,17 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="w08-p9-u52">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="uoL-By-mSF" id="pag-Vx-jqK"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FindTeamCell" id="G3x-cl-ykv" customClass="FindTeam_Cell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G3x-cl-ykv" id="dCy-jj-wyh">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -3723,8 +3823,8 @@
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="PNw-TY-M1R">
-                                            <rect key="frame" x="22" y="75" width="42" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="PNw-TY-M1R">
+                                            <rect key="frame" x="38" y="77" width="30" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3736,6 +3836,10 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon_NumOfTeamMember.png" id="1Fn-Qf-RHO">
+                                            <rect key="frame" x="18" y="77" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
@@ -3757,13 +3861,26 @@
                     <navigationItem key="navigationItem" title="寻找组织" id="nO8-dr-mqX"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="ChT-CL-UhJ" id="Vfh-RZ-FGa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ns8-fz-Vfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ChT-CL-UhJ">
+                    <connections>
+                        <outlet property="delegate" destination="uoL-By-mSF" id="3Ie-iW-7rw"/>
+                        <outlet property="searchBar" destination="w08-p9-u52" id="djv-Lp-dAI"/>
+                        <outlet property="searchContentsController" destination="uoL-By-mSF" id="0nX-S5-xVq"/>
+                        <outlet property="searchResultsDataSource" destination="uoL-By-mSF" id="KAw-V7-r6v"/>
+                        <outlet property="searchResultsDelegate" destination="uoL-By-mSF" id="4Cl-nA-HON"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="745" y="-485"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Icon_NumOfTeamMember.png" width="20" height="20"/>
         <image name="TeamIcon.jpg" width="300" height="300"/>
         <image name="enterScore_VS.png" width="60" height="110"/>
         <image name="icon_like.png" width="72" height="72"/>

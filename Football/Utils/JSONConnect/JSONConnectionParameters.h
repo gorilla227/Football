@@ -52,10 +52,10 @@
 
 //Get AllTeams
 #define CONNECT_AllTeams_Suffix @"team/list"
+#define CONNECT_AllTeams_Parameters(start, count) [NSMutableDictionary dictionaryWithDictionary:@{@"start":start, @"count":count}]
 
 //Applyin a Team
 #define CONNECT_ApplyinTeam_Suffix @"message/applyin"
-
 
 
 

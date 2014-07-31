@@ -84,8 +84,6 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if (row == 0) {
-//        [stadiumMap removeAnnotations:stadiumMap.annotations];
-//        [stadiumMap showAnnotations:@[stadiumMap.userLocation] animated:YES];
         [self setText:nil];
         [self setInputAccessoryView:nil];
         [self reloadInputViews];

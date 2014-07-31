@@ -11,6 +11,13 @@
 #import "AFNetworking.h"
 #import "NSString+MD5.h"
 
+enum RequestTeamsOption
+{
+    RequestTeamsOption_All,
+    RequestTeamsOption_Recruit,
+    RequestTeamsOption_Challenge
+};
+
 @protocol BusyIndicatorDelegate <NSObject>
 -(void)lockView;
 -(void)unlockView;
@@ -55,7 +62,7 @@
 -(void)updateTeamProfile:(NSDictionary *)teamProfile;//更新球队资料（除了队标），teamName的修改服务器暂不支持
 -(void)updateTeamLogo:(UIImage *)logo forTeam:(NSInteger)teamId;//更新球队队标
 -(void)requestAllStadiums;//获取所有球场
--(void)requestAllTeams;//获取所有球队
+-(void)requestAllTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option;//获取所有球队
 
 #pragma zzOld_Server
 -(void)requestUserInfoById:(NSNumber *)userId;

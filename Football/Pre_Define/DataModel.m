@@ -136,7 +136,7 @@
 
 #pragma Team
 @implementation Team
-@synthesize teamId, teamName, numOfMember, activityRegion, slogan, creationDate, teamLogo, homeStadium;
+@synthesize teamId, teamName, numOfMember, activityRegion, slogan, creationDate, teamLogo, homeStadium, recruitFlag, challengeFlag;
 
 -(id)copy
 {
@@ -145,6 +145,8 @@
     [teamCopy setTeamId:teamId];
     [teamCopy setTeamName:[teamName copy]];
     [teamCopy setCreationDate:[creationDate copy]];
+    [teamCopy setRecruitFlag:recruitFlag];
+    [teamCopy setChallengeFlag:challengeFlag];
     //Copy option properties
     [teamCopy setNumOfMember:numOfMember];
     if (activityRegion) {
@@ -174,6 +176,8 @@
         [self setCreationDate:[data objectForKey:kTeam_creationDate]];
         NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[data objectForKey:kTeam_logo]]];
         [self setTeamLogo:[UIImage imageWithData:imageData]];
+        [self setRecruitFlag:[[data objectForKey:kTeam_recruitFlag] boolValue]];
+        [self setChallengeFlag:[[data objectForKey:kTeam_challengeFlag] boolValue]];
         NSDictionary *homeStadiumData = [data objectForKey:kTeam_homeStadium];
         if (homeStadiumData) {
             [self setHomeStadium:[[Stadium alloc] initWithData:homeStadiumData]];
@@ -190,6 +194,12 @@
     //Compare required properties
     if (![teamName isEqualToString:originalTeam.teamName]) {
         [output setObject:teamName forKey:kTeam_teamName];
+    }
+    if (recruitFlag != originalTeam.recruitFlag) {
+        [output setObject:[NSNumber numberWithBool:recruitFlag] forKey:kTeam_recruitFlag];
+    }
+    if (challengeFlag != originalTeam.challengeFlag) {
+        [output setObject:[NSNumber numberWithBool:challengeFlag] forKey:kTeam_challengeFlag];
     }
     //Compare optional properties
     if (![activityRegion isEqual:originalTeam.activityRegion]) {

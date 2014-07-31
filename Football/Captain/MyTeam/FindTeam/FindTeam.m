@@ -51,6 +51,7 @@
 
 @implementation FindTeam{
     NSArray *teamList;
+    NSArray *filteredTeamList;
     JSONConnect *connection;
 }
 
@@ -82,7 +83,7 @@
     }
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestAllTeams];
+    [connection requestAllTeamsStart:0 count:10 option:RequestTeamsOption_All];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,16 +110,28 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return teamList.count;
+    if ([tableView isEqual:self.tableView]) {
+        return teamList.count;
+    }
+    else {
+        return filteredTeamList.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"FindTeamCell";
-    FindTeam_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    FindTeam_Cell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
-    Team *team = [teamList objectAtIndex:indexPath.row];
+    Team *team;
+    if ([tableView isEqual:self.tableView]) {
+        team = [teamList objectAtIndex:indexPath.row];
+    }
+    else {
+        team = [filteredTeamList objectAtIndex:indexPath.row];
+    }
+    
     [cell.teamNameLabel setText:team.teamName];
     [cell.teamMemberNumberLabel setText:[NSString stringWithFormat:@"%li", (long)team.numOfMember]];
     [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:team.activityRegion] componentsJoinedByString:@" "]];
@@ -132,44 +145,13 @@
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma Search Methods
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    // Return NO if you do not want the specified item to be editable.
+    NSPredicate *searchCondition = [NSPredicate predicateWithFormat:@"self.teamName contains[c] %@", searchString];
+    filteredTeamList = [teamList filteredArrayUsingPredicate:searchCondition];
     return YES;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

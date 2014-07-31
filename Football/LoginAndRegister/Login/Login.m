@@ -119,13 +119,14 @@
 //    UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FillPlayerProfile"];
     
     //FindTeam
-//    UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FindTeam"];
-//    [self.navigationController pushViewController:targetViewController animated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"FindTeam"];
+    [self.navigationController pushViewController:targetViewController animated:YES];
     
     //StadiumListView
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"StadiumListView"];
-    [self.navigationController pushViewController:targetViewController animated:YES];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"StadiumListView"];
+//    [self.navigationController pushViewController:targetViewController animated:YES];
     
 }
 //DissmissKeyboard

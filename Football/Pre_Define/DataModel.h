@@ -47,6 +47,8 @@
 #define kTeam_slogan @"slogan"
 #define kTeam_homeStadium @"home_field"
 #define kTeam_homeStadiumId @"home_field_id"
+#define kTeam_recruitFlag @"call_for_new"
+#define kTeam_challengeFlag @"call_for_game"
 @interface Team : NSObject
 @property NSInteger teamId;
 @property NSString *teamName;
@@ -55,6 +57,8 @@
 @property NSString *creationDate;
 @property UIImage *teamLogo;
 @property NSString *slogan;
+@property BOOL recruitFlag;
+@property BOOL challengeFlag;
 @property Stadium *homeStadium;
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)dictionaryForUpdate:(Team *)originalTeam withPlayer:(NSInteger)playerId;

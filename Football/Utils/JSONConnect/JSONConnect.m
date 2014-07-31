@@ -288,12 +288,24 @@
 }
 
 //RequestAllTeams
--(void)requestAllTeams
+-(void)requestAllTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option
 {
     [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_AllTeams_Suffix];
-    [manager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSMutableDictionary *parameters = CONNECT_AllTeams_Parameters([NSNumber numberWithInteger:start], [NSNumber numberWithInteger:count]);
+    switch (option) {
+        case RequestTeamsOption_Recruit:
+            [parameters setObject:[NSNumber numberWithInteger:1] forKey:kTeam_recruitFlag];
+            break;
+        case RequestTeamsOption_Challenge:
+            [parameters setObject:[NSNumber numberWithInteger:1] forKey:kTeam_challengeFlag];
+            break;
+        default:
+            break;
+    }
+    
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
         NSMutableArray *teamList = [[NSMutableArray alloc] init];
         for (NSDictionary *teamData in responseObject) {
@@ -302,6 +314,7 @@
         }
         [delegate receiveAllTeams:teamList];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", operation.responseString);
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
