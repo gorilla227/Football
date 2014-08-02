@@ -216,9 +216,15 @@
 -(IBAction)sendApplication:(id)sender
 {
     UIButton *button = sender;
-    Team *applyinTeam = [teamList objectAtIndex:button.tag];
-//    [connection applyinTeamFromPlayer:gMyUserInfo.userId toTeam:applyinTeam.teamId withMessage:nil];
-    [connection applyinTeamFromPlayer:35 toTeam:applyinTeam.teamId withMessage:nil];
+    Team *applyinTeam;
+    if (self.searchDisplayController.isActive) {
+        applyinTeam = [filteredTeamList objectAtIndex:button.tag];
+    }
+    else {
+        applyinTeam = [teamList objectAtIndex:button.tag];
+    }
+    [connection applyinTeamFromPlayer:gMyUserInfo.userId toTeam:applyinTeam.teamId withMessage:nil];
+//    [connection applyinTeamFromPlayer:35 toTeam:applyinTeam.teamId withMessage:nil];
 }
 
 -(void)playerApplayinSent
