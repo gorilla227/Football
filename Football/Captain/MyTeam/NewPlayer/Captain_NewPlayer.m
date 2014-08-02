@@ -140,9 +140,6 @@
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor clearColor]];
     
-    //Set menu button
-    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
-    
     //Set tableView
     [playerNewTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }

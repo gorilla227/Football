@@ -58,9 +58,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [playersTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
-
-    //Set menu button
-    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
 }
 
 - (void)didReceiveMemoryWarning

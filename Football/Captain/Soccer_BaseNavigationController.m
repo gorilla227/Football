@@ -44,8 +44,6 @@
     [self.view addSubview:mainMenu.view];
     
     //Set Menu button and Message button;
-    [self.navigationBar.topItem setLeftBarButtonItem:menuButton];
-    [self.navigationBar.topItem setRightBarButtonItem:messageButton];
     [messageButton setDelegate:self];
     [messageButton initBadgeView];
     
@@ -56,6 +54,10 @@
     [busyIndicator setCenter:self.view.center];
     [busyIndicator setHidesWhenStopped:YES];
     [self.view addSubview:busyIndicator];
+    
+    //Load the initial view
+    [mainMenu tableView:mainMenu.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+    [self menuSwitch];
 }
 
 -(void)logout
@@ -108,6 +110,8 @@
 {
     if(![self.visibleViewController.restorationIdentifier isEqualToString:selectedView]) {
         UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:selectedView];
+        [targetViewController.navigationItem setLeftBarButtonItem:menuButton];
+        [targetViewController.navigationItem setRightBarButtonItem:messageButton];
         [self setViewControllers:@[targetViewController] animated:YES];
     }
 }

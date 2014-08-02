@@ -60,9 +60,6 @@
     [self initialEndDate];
     [startDatePicker setMaximumDate:endDatePicker.date];
     [endDatePicker setMinimumDate:startDatePicker.date];
-    
-    //Set menu button
-    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
 }
 
 - (void)didReceiveMemoryWarning

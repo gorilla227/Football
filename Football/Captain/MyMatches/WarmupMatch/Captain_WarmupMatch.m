@@ -62,9 +62,6 @@
         [hintView showOrHideHint:YES];
         [announcementBar setItems:[originalAnnouncementBarItems arrayByAddingObject:addButton]];
     }
-    
-    //Set menu button
-    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
 }
 
 - (void)didReceiveMemoryWarning

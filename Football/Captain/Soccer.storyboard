@@ -143,7 +143,6 @@
                     <connections>
                         <outlet property="menuButton" destination="kWV-e6-GiH" id="Rk0-z5-LuV"/>
                         <outlet property="messageButton" destination="chi-xA-wZo" id="2SP-VM-OJR"/>
-                        <segue destination="dbN-VF-g7q" kind="relationship" relationship="rootViewController" id="VOw-AO-toE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AnL-dq-0BF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -322,6 +321,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="比赛安排" id="9dN-Rj-epV"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="createMatchToolBar" destination="Jba-Yd-ec2" id="lzh-ob-yxY"/>

@@ -70,8 +70,6 @@
     //Initial data
     balanceData = [NSMutableArray arrayWithArray:fake_balanceData];
     
-    //Set menu button
-    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
     [self.navigationItem setRightBarButtonItem:addBalanceRecordButton];
 }
 

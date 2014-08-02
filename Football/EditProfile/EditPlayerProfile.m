@@ -69,8 +69,6 @@
     
     //Set menu button and message button
     if (self.navigationController.viewControllers.count == 1) {
-        [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
-        [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
         viewSource = EditProfileViewSource_Main;
     }
     else {
