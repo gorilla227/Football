@@ -93,5 +93,15 @@
 	<string>否</string>
 	<key>UI_HomeStadiumSetConfirmationMessage</key>
 	<string>要将该球场设为主场吗？</string>
+	<key>UI_FindTeam_LoadMore</key>
+	<string>下载更多...</string>
+	<key>UI_FindTeam_NoData</key>
+	<string>系统无数据</string>
+	<key>UI_FindTeam_NoMoreData</key>
+	<string>无更多数据</string>
+	<key>UI_FindTeam_Loading</key>
+	<string>正在下载...</string>
+	<key>UI_FindTeam_Successful_Message</key>
+	<string>申请已提交，请耐心等待对方的回复。</string>
 </dict>
 </plist>

@@ -287,8 +287,8 @@
     }];
 }
 
-//RequestAllTeams
--(void)requestAllTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option
+//RequestTeams
+-(void)requestTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option
 {
     [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
@@ -314,7 +314,24 @@
         }
         [delegate receiveAllTeams:teamList];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", operation.responseString);
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//ApplyinTeam
+-(void)applyinTeamFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message
+{
+    if (!message) {
+        message = @"SYS_DEFAULT_APPLYINMESSAGE";
+    }
+    [busyIndicatorDelegate lockView];
+    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ApplyinTeam_Suffix];
+    NSDictionary *parameters = CONNECT_ApplyinTeam_Parameters([NSNumber numberWithInteger:playerId], [NSNumber numberWithInteger:teamId], message);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate playerApplayinSent];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }

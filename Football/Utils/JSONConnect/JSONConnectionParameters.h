@@ -56,6 +56,7 @@
 
 //Applyin a Team
 #define CONNECT_ApplyinTeam_Suffix @"message/applyin"
+#define CONNECT_ApplyinTeam_Parameters(from, to, message) @{@"from":from, @"to":to, @"message":message}
 
 
 

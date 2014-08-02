@@ -37,23 +37,28 @@
     [applyButton.layer setMasksToBounds:YES];
     
     //Set the cell self style
-    [self.layer setCornerRadius:10.0f];
-    [self.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [self.layer setBorderWidth:1.0f];
-    [self.layer setMasksToBounds:YES];
+//    [self.layer setCornerRadius:10.0f];
+//    [self.layer setBorderColor:[UIColor clearColor].CGColor];
+//    [self.layer setBorderWidth:1.0f];
+//    [self.layer setMasksToBounds:YES];
 }
 @end
 
 #pragma FindTeam
 @interface FindTeam ()
-
+@property IBOutlet UILabel *moreLabel;
+@property IBOutlet UIActivityIndicatorView *moreActivityIndicator;
+@property IBOutlet UIView *moreFooterView;
 @end
 
 @implementation FindTeam{
-    NSArray *teamList;
+    NSMutableArray *teamList;
     NSArray *filteredTeamList;
     JSONConnect *connection;
+    NSInteger count;
+    BOOL haveMoreData;
 }
+@synthesize moreLabel, moreActivityIndicator, moreFooterView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -82,8 +87,16 @@
         [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     }
     
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.searchDisplayController.searchResultsTableView setRowHeight:self.tableView.rowHeight];
+    
+    NSString *settingFile = [[NSBundle mainBundle] pathForResource:@"Setting" ofType:@"plist"];
+    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingFile];
+    count = [[settings objectForKey:@"teamListCount"] integerValue];
+    haveMoreData = YES;
+    
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestAllTeamsStart:0 count:10 option:RequestTeamsOption_All];
+    [connection requestTeamsStart:0 count:count option:RequestTeamsOption_Recruit];
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,7 +108,31 @@
 //Receive TeamList
 -(void)receiveAllTeams:(NSArray *)teams
 {
-    teamList = teams;
+    if (![self.tableView.tableFooterView isEqual:moreFooterView]) {
+        [self.tableView setTableFooterView:moreFooterView];
+    }
+    
+    if (teamList) {
+        [teamList addObjectsFromArray:teams];
+    }
+    else {
+        teamList = [NSMutableArray arrayWithArray:teams];
+    }
+    
+    if (teams.count < count) {
+        if (teamList.count == 0) {
+            [moreLabel setText:[gUIStrings objectForKey:@"UI_FindTeam_NoData"]];
+        }
+        else {
+            [moreLabel setText:[gUIStrings objectForKey:@"UI_FindTeam_NoMoreData"]];
+        }
+        haveMoreData = NO;
+    }
+    else {
+        [moreLabel setText:[gUIStrings objectForKey:@"UI_FindTeam_LoadMore"]];
+    }
+    
+    [moreActivityIndicator stopAnimating];
     [self.tableView reloadData];
 }
 
@@ -142,7 +179,19 @@
     else {
         [cell.teamLogoImageView setImage:def_defaultTeamLogo];
     }
+    [cell.applyButton setTag:indexPath.row];
     return cell;
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if ([scrollView isEqual:self.tableView]) {
+        if (scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.frame.size.height + 20 && haveMoreData) {
+            [moreLabel setText:[gUIStrings objectForKey:@"UI_FindTeam_Loading"]];
+            [moreActivityIndicator startAnimating];
+            [connection requestTeamsStart:teamList.count count:count option:RequestTeamsOption_Recruit];
+        }
+    }
 }
 
 #pragma Search Methods
@@ -153,6 +202,30 @@
     return YES;
 }
 
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    [searchBar setSearchBarStyle:UISearchBarStyleDefault];
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [searchBar setSearchBarStyle:UISearchBarStyleMinimal];
+}
+
+//Send Applying
+-(IBAction)sendApplication:(id)sender
+{
+    UIButton *button = sender;
+    Team *applyinTeam = [teamList objectAtIndex:button.tag];
+//    [connection applyinTeamFromPlayer:gMyUserInfo.userId toTeam:applyinTeam.teamId withMessage:nil];
+    [connection applyinTeamFromPlayer:35 toTeam:applyinTeam.teamId withMessage:nil];
+}
+
+-(void)playerApplayinSent
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_FindTeam_Successful_Message"]         delegate:nil cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+    [alertView show];
+}
 /*
 #pragma mark - Navigation
 
