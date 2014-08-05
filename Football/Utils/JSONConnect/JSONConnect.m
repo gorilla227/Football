@@ -242,10 +242,12 @@
         NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateTeamProfile_Suffix];
         [manager POST:urlString parameters:teamProfileParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if (manager.operationQueue.operationCount == 0) {
+                NSLog(@"%@", responseObject);
                 [busyIndicatorDelegate unlockView];
                 [delegate updateTeamProfileSuccessfully];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@, %@",operation.request, operation.responseString);
             [self showErrorAlertView:error otherInfo:operation.responseString];
         }];
     }
@@ -316,6 +318,31 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
+}
+
+//RequestMessages
+-(void)requestMessageForSourceType:(enum RequestMessageSourceType)sourceType source:(NSInteger)sourceId messageType:(NSInteger)messageType startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption
+{
+    if (syncOption) {
+        [busyIndicatorDelegate lockView];
+    }
+    if (sourceType == RequestMessageSourceType_Receiver) {
+        NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestMessages_Suffix];
+        NSDictionary *parameters = CONNECT_RequestMessages_Parameters([NSNumber numberWithInteger:sourceId], [NSNumber numberWithInteger:messageType], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
+        [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if (syncOption) {
+                [busyIndicatorDelegate unlockView];
+            }
+            NSMutableArray *messageArray = [[NSMutableArray alloc] init];
+            for (NSDictionary *messageData in responseObject) {
+                Message *message = [[Message alloc] initWithData:messageData];
+                [messageArray addObject:message];
+            }
+            [delegate receiveMessages:messageArray sourceType:sourceType];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self showErrorAlertView:error otherInfo:operation.responseString];
+        }];
+    }
 }
 
 //ApplyinTeam

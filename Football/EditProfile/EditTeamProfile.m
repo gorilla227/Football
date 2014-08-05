@@ -7,6 +7,7 @@
 //
 
 #import "EditTeamProfile.h"
+#import "UITextView+UITextFieldRoundCornerStyle.h"
 
 @implementation EditTeamProfile_TableView
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -24,6 +25,12 @@
 @property IBOutlet UITextFieldForStadiumSelection *homeStadiumTextField;
 @property IBOutlet UITextView *sloganTextView;
 @property IBOutlet UIButton *selectTeamLogoButton;
+@property IBOutlet UIView *numOfTeamMemberView;
+@property IBOutlet UILabel *numOfTeamMemberLabel;
+@property IBOutlet UISwitch *recruitFlagSwitch;
+@property IBOutlet UITextView *recruitAnnouncementTextView;
+@property IBOutlet UISwitch *challengeFlagSwitch;
+@property IBOutlet UITextView *challengeAnnouncementTextView;
 @end
 
 @implementation EditTeamProfile{
@@ -33,7 +40,7 @@
     JSONConnect *connection;
     enum EditProfileViewSource viewSource;
 }
-@synthesize saveBar, teamLogoImageView, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, selectTeamLogoButton;
+@synthesize saveBar, teamLogoImageView, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, selectTeamLogoButton, numOfTeamMemberView, numOfTeamMemberLabel, recruitFlagSwitch, recruitAnnouncementTextView, challengeFlagSwitch, challengeAnnouncementTextView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -56,14 +63,16 @@
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self setToolbarItems:saveBar.items];
-    textFieldArray = @[teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView];
+    textFieldArray = @[teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, recruitAnnouncementTextView, challengeAnnouncementTextView];
     
     //Set menu button and message button
     if (self.navigationController.viewControllers.count == 1) {
         viewSource = EditProfileViewSource_Main;
+        [numOfTeamMemberView setHidden:NO];
     }
     else {
         viewSource = EditProfileViewSource_Register;
+        [numOfTeamMemberView setHidden:YES];
     }
     
     //Set the controls enable status
@@ -97,10 +106,10 @@
     [activityRegionTextField setTintColor:[UIColor clearColor]];
     [activityRegionTextField activityRegionTextField];
     
-    //Set sloganTextView border style consistent with TextField
-    [sloganTextView.layer setBorderColor:[UIColor colorWithRed:215/255.0 green:215/255.0 blue:215/255.0 alpha:1].CGColor];
-    [sloganTextView.layer setBorderWidth:0.6f];
-    [sloganTextView.layer setCornerRadius:6.0f];
+    //Set slogan, recruitAnnouncement, challengeAnnouncement textViews border style consistent with TextField
+    [sloganTextView initializeUITextFieldRoundCornerStyle];
+    [recruitAnnouncementTextView initializeUITextFieldRoundCornerStyle];
+    [challengeAnnouncementTextView initializeUITextFieldRoundCornerStyle];
     
     //Set LeftIcon for textFields
     [teamNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_TeamName.png"];
@@ -129,6 +138,11 @@
     else {
         [teamLogoImageView setImage:def_defaultTeamLogo];
     }
+    [numOfTeamMemberLabel setText:[NSString stringWithFormat:@"%li", (long)gMyUserInfo.team.numOfMember]];
+    [recruitFlagSwitch setOn:gMyUserInfo.team.recruitFlag];
+    [challengeFlagSwitch setOn:gMyUserInfo.team.challengeFlag];
+    [recruitAnnouncementTextView setText:gMyUserInfo.team.recruitAnnouncement];
+    [challengeAnnouncementTextView setText:gMyUserInfo.team.challengeAnnouncement];
 }
 
 -(IBAction)saveButtonOnClicked:(id)sender
@@ -139,6 +153,10 @@
     [teamInfo setHomeStadium:homeStadiumTextField.selectedHomeStadium];
     [teamInfo setSlogan:sloganTextView.text];
     [teamInfo setTeamLogo:[teamLogoImageView.image isEqual:def_defaultTeamLogo]?nil:teamLogoImageView.image];
+    [teamInfo setRecruitFlag:recruitFlagSwitch.on];
+    [teamInfo setChallengeFlag:challengeFlagSwitch.on];
+    [teamInfo setRecruitAnnouncement:recruitAnnouncementTextView.text];
+    [teamInfo setChallengeAnnouncement:challengeAnnouncementTextView.text];
     NSDictionary *updateDictionary = [teamInfo dictionaryForUpdate:gMyUserInfo.team withPlayer:gMyUserInfo.userId];
     if (updateDictionary.count > 2) {
         [connection updateTeamProfile:updateDictionary];

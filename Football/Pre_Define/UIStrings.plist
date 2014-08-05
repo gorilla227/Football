@@ -103,5 +103,38 @@
 	<string>正在下载...</string>
 	<key>UI_FindTeam_Successful_Message</key>
 	<string>申请已提交，请耐心等待对方的回复。</string>
+	<key>UI_MessageTypes</key>
+	<array>
+		<dict>
+			<key>TypeName</key>
+			<string>队内消息</string>
+			<key>TypeIcon</key>
+			<string>menuIcon_myMatches.png</string>
+			<key>Subtypes</key>
+			<array>
+				<dict>
+					<key>TypeId</key>
+					<integer>2</integer>
+					<key>TypeName</key>
+					<string>入队申请</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>TypeName</key>
+			<string>其他消息</string>
+			<key>TypeIcon</key>
+			<string>menuIcon_myMatches.png</string>
+			<key>Subtypes</key>
+			<array>
+				<dict>
+					<key>TypeId</key>
+					<integer>2</integer>
+					<key>TypeName</key>
+					<string>入队申请</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

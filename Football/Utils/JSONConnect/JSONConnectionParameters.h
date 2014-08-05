@@ -59,6 +59,11 @@
 #define CONNECT_ApplyinTeam_Parameters(from, to, message) @{@"from":from, @"to":to, @"message":message}
 
 
+//Get Messages
+#define CONNECT_RequestMessages_Suffix @"message/receive"
+#define CONNECT_RequestMessages_Parameters(receiver, type, start, count) @{@"to":receiver, @"type":type, @"start":start, @"count":count}
+
+
 
 
 #pragma zzOld_Server

@@ -78,6 +78,25 @@
 }
 @end
 
+#pragma Message
+@implementation Message
+@synthesize messageId, senderId, receiverId, creationDate, messageBody, messageType, status;
+-(id)initWithData:(NSDictionary *)data
+{
+    self = [super init];
+    if (self) {
+        [self setMessageId:[[data objectForKey:kMessage_id] integerValue]];
+        [self setSenderId:[[data objectForKey:kMessage_sender] integerValue]];
+        [self setReceiverId:[[data objectForKey:kMessage_receiver] integerValue]];
+        [self setCreationDate:[data objectForKey:kMessage_createTime]];
+        [self setMessageBody:[data objectForKey:kMessage_body]];
+        [self setMessageType:[[data objectForKey:kMessage_type] integerValue]];
+        [self setStatus:[[data objectForKey:kMessage_status] integerValue]];
+    }
+    return self;
+}
+@end
+
 #pragma Stadium
 @implementation Stadium
 @synthesize stadiumId, stadiumName, address, phoneNumber, price, comment, coordinate, distance, title, subtitle;
@@ -136,7 +155,7 @@
 
 #pragma Team
 @implementation Team
-@synthesize teamId, teamName, numOfMember, activityRegion, slogan, creationDate, teamLogo, homeStadium, recruitFlag, challengeFlag;
+@synthesize teamId, teamName, numOfMember, activityRegion, slogan, creationDate, teamLogo, homeStadium, recruitFlag, challengeFlag, recruitAnnouncement, challengeAnnouncement;
 
 -(id)copy
 {
@@ -161,6 +180,13 @@
     if (homeStadium) {
         [teamCopy setHomeStadium:[homeStadium copy]];
     }
+    if (recruitAnnouncement) {
+        [teamCopy setRecruitAnnouncement:[recruitAnnouncement copy]];
+    }
+    if (challengeAnnouncement) {
+        [teamCopy setChallengeAnnouncement:[challengeAnnouncement copy]];
+    }
+    
     return teamCopy;
 }
 
@@ -178,6 +204,8 @@
         [self setTeamLogo:[UIImage imageWithData:imageData]];
         [self setRecruitFlag:[[data objectForKey:kTeam_recruitFlag] boolValue]];
         [self setChallengeFlag:[[data objectForKey:kTeam_challengeFlag] boolValue]];
+        [self setRecruitAnnouncement:[data objectForKey:kTeam_recruitAnnoucement]];
+        [self setChallengeAnnouncement:[data objectForKey:kTeam_challengeAnnoucement]];
         NSDictionary *homeStadiumData = [data objectForKey:kTeam_homeStadium];
         if (homeStadiumData) {
             [self setHomeStadium:[[Stadium alloc] initWithData:homeStadiumData]];
@@ -216,6 +244,12 @@
     }
     else if (teamLogo && ![UIImagePNGRepresentation(teamLogo) isEqual:UIImagePNGRepresentation(originalTeam.teamLogo)]){
         [output setObject:teamLogo forKey:kTeam_logo];
+    }
+    if (![recruitAnnouncement isEqualToString:originalTeam.recruitAnnouncement]) {
+        [output setObject:recruitAnnouncement forKey:kTeam_recruitAnnoucement];
+    }
+    if (![challengeAnnouncement isEqualToString:originalTeam.challengeAnnouncement]) {
+        [output setObject:challengeAnnouncement forKey:kTeam_challengeAnnoucement];
     }
     return output;
 }

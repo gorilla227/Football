@@ -120,6 +120,7 @@ enum EditProfileViewSource
 #define def_MatchDateformat @"yyyy-MM-dd"
 #define def_MatchTimeformat @"HH:mm"
 #define def_MatchDateAndTimeformat @"YYYY-MM-dd HH:mm"
+#define def_MessageDateformat @"YYYY-MM-dd HH:mm:ss"
 
 //Global variables
 UserInfo *gMyUserInfo;

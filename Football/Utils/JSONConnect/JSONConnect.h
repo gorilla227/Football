@@ -18,6 +18,12 @@ enum RequestTeamsOption
     RequestTeamsOption_Challenge
 };
 
+enum RequestMessageSourceType
+{
+    RequestMessageSourceType_Sender,
+    RequestMessageSourceType_Receiver
+};
+
 @protocol BusyIndicatorDelegate <NSObject>
 -(void)lockView;
 -(void)unlockView;
@@ -37,6 +43,7 @@ enum RequestTeamsOption
 -(void)updateTeamLogoSuccessfully;//更新球队队标成功
 -(void)receiveAllStadiums:(NSArray *)stadiums;//获取所有球场资料成功
 -(void)receiveAllTeams:(NSArray *)teams;//获取所有球队列表成功
+-(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType;//获取信息成功
 -(void)playerApplayinSent;//球员申请加入球队发送成功
 
 #pragma zzOld_Server
@@ -64,6 +71,7 @@ enum RequestTeamsOption
 -(void)updateTeamLogo:(UIImage *)logo forTeam:(NSInteger)teamId;//更新球队队标
 -(void)requestAllStadiums;//获取所有球场
 -(void)requestTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option;//获取所有球队
+-(void)requestMessageForSourceType:(enum RequestMessageSourceType)sourceType source:(NSInteger)sourceId messageType:(NSInteger)messageType startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取信息
 -(void)applyinTeamFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message;//球员申请加入球队
 
 #pragma zzOld_Server

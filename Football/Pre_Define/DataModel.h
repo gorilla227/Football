@@ -14,6 +14,25 @@
 +(NSArray *)codeWithString:(NSArray *)string;
 @end
 
+#pragma Message
+#define kMessage_id @"id"
+#define kMessage_sender @"from"
+#define kMessage_receiver @"to"
+#define kMessage_createTime @"create_time"
+#define kMessage_body @"message"
+#define kMessage_type @"type"
+#define kMessage_status @"status"
+@interface Message : NSObject
+@property NSInteger messageId;
+@property NSInteger senderId;
+@property NSInteger receiverId;
+@property NSString *creationDate;
+@property NSString *messageBody;
+@property NSInteger messageType;
+@property NSInteger status;
+-(id)initWithData:(NSDictionary *)data;
+@end
+
 #pragma Stadium
 #define kStadium_id @"field_id"
 #define kStadium_name @"name"
@@ -49,6 +68,8 @@
 #define kTeam_homeStadiumId @"home_field_id"
 #define kTeam_recruitFlag @"call_for_new"
 #define kTeam_challengeFlag @"call_for_game"
+#define kTeam_recruitAnnoucement @"call_for_new_board"
+#define kTeam_challengeAnnoucement @"call_for_game_board"
 @interface Team : NSObject
 @property NSInteger teamId;
 @property NSString *teamName;
@@ -58,7 +79,9 @@
 @property UIImage *teamLogo;
 @property NSString *slogan;
 @property BOOL recruitFlag;
+@property NSString *recruitAnnouncement;
 @property BOOL challengeFlag;
+@property NSString *challengeAnnouncement;
 @property Stadium *homeStadium;
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)dictionaryForUpdate:(Team *)originalTeam withPlayer:(NSInteger)playerId;

@@ -72,8 +72,16 @@
     CGAffineTransform showMenu = CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0);
     if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
         //Hide menu
-        for (UIView *view in self.visibleViewController.view.subviews) {
-            [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
+        if ([self.visibleViewController isKindOfClass:[UITabBarController class]]) {
+            UITabBarController *tabBarController = (UITabBarController *)self.visibleViewController;
+            for (UIView *view in tabBarController.selectedViewController.view.subviews) {
+                [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
+            }
+        }
+        else {
+            for (UIView *view in self.visibleViewController.view.subviews) {
+                [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
+            }
         }
         [self.toolbar setTransform:CGAffineTransformMakeTranslation(0, 0)];
         [self.visibleViewController.view setUserInteractionEnabled:YES];
@@ -82,8 +90,16 @@
     }
     else {
         //Show menu
-        for (UIView *view in self.visibleViewController.view.subviews) {
-            [view setTransform:showMenu];
+        if ([self.visibleViewController isKindOfClass:[UITabBarController class]]) {
+            UITabBarController *tabBarController = (UITabBarController *)self.visibleViewController;
+            for (UIView *view in tabBarController.selectedViewController.view.subviews) {
+                [view setTransform:showMenu];
+            }
+        }
+        else {
+            for (UIView *view in self.visibleViewController.view.subviews) {
+                [view setTransform:showMenu];
+            }
         }
         [self.toolbar setTransform:showMenu];
         [self.visibleViewController.view setUserInteractionEnabled:NO];
@@ -124,6 +140,13 @@
 -(void)messageButtonOnClicked
 {
     NSLog(@"MessageButtonClicked!");
+    UIViewController *messageCenter = [self.storyboard instantiateViewControllerWithIdentifier:@"MessageCenterTabBarController"];
+    [messageCenter.navigationItem setLeftBarButtonItem:menuButton];
+    if (CGAffineTransformEqualToTransform(mainMenu.view.transform, CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0))) {
+        [self menuSwitch];
+    }
+    [self setToolbarHidden:YES];
+    [self setViewControllers:@[messageCenter] animated:YES];
 }
 
 //BusyIndicatorDelegate
