@@ -19,16 +19,16 @@
 {
     if (!actionButton) {
         actionButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-        badgeView = [[UILabel alloc] initWithFrame:CGRectMake(15, -5, 14, 14)];
-        [badgeView.layer setCornerRadius:7.0f];
-        [badgeView.layer setBorderColor:[UIColor whiteColor].CGColor];
-        [badgeView.layer setBorderWidth:1.5f];
+        badgeView = [[UILabel alloc] initWithFrame:CGRectMake(15, -5, bBadgeViewSize, bBadgeViewSize)];
+        [badgeView.layer setCornerRadius:bBadgeViewSize/2];
+//        [badgeView.layer setBorderColor:[UIColor whiteColor].CGColor];
+//        [badgeView.layer setBorderWidth:1.5f];
         [badgeView.layer setMasksToBounds:YES];
         [badgeView setAdjustsFontSizeToFitWidth:YES];
         [badgeView setBackgroundColor:[UIColor redColor]];
         [badgeView setTextAlignment:NSTextAlignmentCenter];
         [badgeView setTextColor:[UIColor whiteColor]];
-        [badgeView setFont:[UIFont boldSystemFontOfSize:8.0f]];
+        [badgeView setFont:[UIFont boldSystemFontOfSize:12.0f]];
         [badgeView setHidden:YES];
         [actionButton addSubview:badgeView];
         [actionButton setImage:[UIImage imageNamed:@"messageIcon.png"] forState:UIControlStateNormal];

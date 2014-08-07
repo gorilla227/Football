@@ -11,39 +11,18 @@
 @interface MessageCell()
 @property IBOutlet UITextView *messageBody;
 @property IBOutlet UILabel *messageHead;
-@property IBOutlet UIButton *acceptButton;
-@property IBOutlet UIButton *declineButton;
+@property IBOutlet UILabel *messageTypeLabel;
+@property IBOutlet UIView *unreadFlag;
 @end
 
 @implementation MessageCell
-@synthesize messageBody, messageHead;
-@synthesize acceptButton, declineButton;
-@synthesize message;
+@synthesize messageBody, messageHead, messageTypeLabel, unreadFlag;
 
--(void)fillData:(Message *)messageData sourceType:(enum RequestMessageSourceType)sourceType
+-(void)drawRect:(CGRect)rect
 {
-    [self setMessage:messageData];
-    NSString *senderOrReceiver;
-    [self.messageBody setText:messageData.messageBody];
-    switch (message.messageType) {
-        case 2:
-            senderOrReceiver = [NSString stringWithFormat:@"%li", (long)message.senderId];
-            [self.messageHead setText:MessageBodyFormat_Receiver(senderOrReceiver, messageData.creationDate)];
-            break;
-            
-        default:
-            break;
-    }
-}
-
--(IBAction)acceptButtonOnClicked:(id)sender
-{
-    
-}
-
--(IBAction)declineButtonOnClicked:(id)sender
-{
-    
+    [super drawRect:rect];
+    [unreadFlag.layer setCornerRadius:unreadFlag.frame.size.height/2];
+    [unreadFlag.layer setMasksToBounds:YES];
 }
 @end
 
@@ -54,7 +33,7 @@
 @implementation MessageCenter{
     NSMutableArray *receivedMessageList;
     NSMutableArray *sentMessageList;
-    NSArray *messageSubtypes;
+    NSDictionary *messageSubtypes;
     JSONConnect *connection;
 }
 @synthesize sourceTypeController;
@@ -153,44 +132,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier;
-    MessageCell *cell;
-    if (sourceTypeController.selectedSegmentIndex == 0) {
-        Message *message = [receivedMessageList objectAtIndex:indexPath.row];
-        switch (message.messageType) {
-            case 2:
-                CellIdentifier = @"MessageCell_WithAction";
-                cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                [cell fillData:message sourceType:RequestMessageSourceType_Receiver];
-                break;
-            default:
-                break;
-        }
+    static NSString *CellIdentifier = @"MessageCell";
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    Message *message = [sourceTypeController.selectedSegmentIndex?sentMessageList:receivedMessageList objectAtIndex:indexPath.row];
+    NSString *senderOrReceiver;
+    [cell.messageBody setText:message.messageBody];
+    [cell.messageTypeLabel setText:[messageSubtypes objectForKey:[NSNumber numberWithInteger:message.messageType].stringValue]];
+    switch (message.messageType) {
+        case 2:
+            senderOrReceiver = [NSString stringWithFormat:@"%li", (long)message.senderId];
+            [cell.messageHead setText:MessageBodyFormat_Receiver(senderOrReceiver, message.creationDate)];
+            break;
+            
+        default:
+            break;
     }
-    else {
-        Message *message = [sentMessageList objectAtIndex:indexPath.row];
-        CellIdentifier = @"MessageCell_WithoutAction";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        [cell fillData:message sourceType:RequestMessageSourceType_Sender];
-    }
+    [cell.unreadFlag setHidden:message.status != 0];
+
     // Configure the cell...
     return cell;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (sourceTypeController.selectedSegmentIndex == 0) {
-        Message *message = [receivedMessageList objectAtIndex:indexPath.row];
-        switch (message.messageType) {
-            case 2:
-                return 105;
-            default:
-                return 87;
-        }
-    }
-    else {
-        return 87;
-    }
 }
 
 /*

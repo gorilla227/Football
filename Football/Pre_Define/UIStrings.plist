@@ -111,14 +111,10 @@
 			<key>TypeIcon</key>
 			<string>menuIcon_myMatches.png</string>
 			<key>Subtypes</key>
-			<array>
-				<dict>
-					<key>TypeId</key>
-					<integer>2</integer>
-					<key>TypeName</key>
-					<string>入队申请</string>
-				</dict>
-			</array>
+			<dict>
+				<key>2</key>
+				<string>入队申请</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>TypeName</key>

@@ -46,6 +46,7 @@
     //Set Menu button and Message button;
     [messageButton setDelegate:self];
     [messageButton initBadgeView];
+    [messageButton setBadgeNumber:5];//For Test
     
     //Set busyIndicator
     busyIndicator = [[UIActivityIndicatorView alloc] init];

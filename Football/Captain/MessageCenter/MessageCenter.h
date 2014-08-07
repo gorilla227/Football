@@ -12,8 +12,6 @@
 #define MessageBodyFormat_Sender(receiver, date) [NSString stringWithFormat:@"接收者：%@ 发送时间：%@", receiver, date]
 
 @interface MessageCell : UITableViewCell
-@property Message *message;
--(void)fillData:(Message *)messageData sourceType:(enum RequestMessageSourceType)sourceType;
 @end
 
 @interface MessageCenter : UITableViewController<JSONConnectDelegate>

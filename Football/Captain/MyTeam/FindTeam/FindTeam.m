@@ -15,11 +15,11 @@
 @property IBOutlet UILabel *teamMemberNumberLabel;
 @property IBOutlet UILabel *activityRegionLabel;
 @property IBOutlet UIButton *applyButton;
-@property IBOutlet UILabel *recruitAnnouncementLabel;
+@property IBOutlet UITextView *recruitAnnouncementTextView;
 @end
 
 @implementation FindTeam_Cell
-@synthesize teamLogoImageView, teamNameLabel, teamMemberNumberLabel, activityRegionLabel, applyButton, recruitAnnouncementLabel;
+@synthesize teamLogoImageView, teamNameLabel, teamMemberNumberLabel, activityRegionLabel, applyButton, recruitAnnouncementTextView;
 
 -(void)drawRect:(CGRect)rect
 {
@@ -35,7 +35,7 @@
     [applyButton.layer setBorderColor:[UIColor whiteColor].CGColor];
     [applyButton.layer setBorderWidth:1.0f];
     [applyButton.layer setMasksToBounds:YES];
-    
+        
     //Set the cell self style
 //    [self.layer setCornerRadius:10.0f];
 //    [self.layer setBorderColor:[UIColor clearColor].CGColor];
@@ -166,7 +166,7 @@
     [cell.teamNameLabel setText:team.teamName];
     [cell.teamMemberNumberLabel setText:[NSString stringWithFormat:@"%li", (long)team.numOfMember]];
     [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:team.activityRegion] componentsJoinedByString:@" "]];
-    [cell.recruitAnnouncementLabel setText:team.slogan];
+    [cell.recruitAnnouncementTextView setText:team.recruitAnnouncement];
     if (team.teamLogo) {
         [cell.teamLogoImageView setImage:team.teamLogo];
     }

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#define bBadgeViewSize 16
+
 @protocol MessageBarButtonDelegate <NSObject>
 -(void)messageButtonOnClicked;
 @end
