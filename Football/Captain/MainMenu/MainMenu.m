@@ -8,6 +8,19 @@
 
 #import "MainMenu.h"
 
+@interface MainMenuCell_WithBadge()
+@property IBOutlet UILabel *badgeLabel;
+@end
+
+@implementation MainMenuCell_WithBadge
+@synthesize badgeLabel;
+-(void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    [badgeLabel.layer setCornerRadius:badgeLabel.bounds.size.width/2];
+}
+@end
+
 @interface MainMenu ()
 
 @end
@@ -63,19 +76,11 @@
     visibleViewIndexPath = [NSIndexPath indexPathForRow:1 inSection:1];//Select lessor menu item index
     
     //Set background
-    UIImage *backgroundImage = [UIImage imageNamed:@"menu_bg@2x.png"];
+    UIImage *backgroundImage = [UIImage imageNamed:@"menu_bg.png"];
     [self.view.layer setContents:(id)backgroundImage.CGImage];
     
     [toolBar setBarTintColor:[UIColor grayColor]];
     [toolBar setTintColor:[UIColor whiteColor]];
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section != lastRootMenuIndex && indexPath.row != 0) {
-        return 0;
-    }
-    return tableView.rowHeight;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -112,9 +117,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
     if (indexPath.section == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier_myProfile];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier_myProfile];
         if (gMyUserInfo.playerPortrait) {
             [cell.imageView setImage:gMyUserInfo.playerPortrait];
         }
@@ -127,14 +131,18 @@
         [cell.imageView.layer setMasksToBounds:YES];
         [cell.textLabel setText:gMyUserInfo.nickName];
         [cell.detailTextLabel setText:gMyUserInfo.team.teamName];
+        return cell;
     }
     else {
+        MainMenuCell_WithBadge *cell;
         if (indexPath.row == 0) {
             //Root Menu Item
             cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier_root];
             [cell.textLabel setText:[[[menuListDictionary objectForKey:@"RootMenu"] objectAtIndex:indexPath.section - 1] objectForKey:@"Title"]];
             [cell.imageView setImage:[UIImage imageNamed:[[[menuListDictionary objectForKey:@"RootMenu"] objectAtIndex:indexPath.section - 1] objectForKey:@"Icon"]]];
             [cell.imageView setContentMode:UIViewContentModeScaleToFill];
+
+            [cell.badgeLabel setText:[NSNumber numberWithInteger:indexPath.section].stringValue];
         }
         else {
             NSDictionary *menuItem = [[menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", indexPath.section - 1]] objectAtIndex:indexPath.row - 1];
@@ -144,9 +152,11 @@
             [cell.textLabel setText:[menuItem objectForKey:@"Title"]];
             [self formatCell:cell withFont:unselectedFont];
             [cell.imageView setAlpha:0];
+            
+            [cell.badgeLabel setText:[NSNumber numberWithInteger:indexPath.row].stringValue];
         }
+        return cell;
     }
-    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -192,6 +202,14 @@
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [self formatCell:cell withFont:unselectedFont];
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section != lastRootMenuIndex && indexPath.row != 0) {
+        return 0;
+    }
+    return tableView.rowHeight;
 }
 
 -(void)menuListGeneration

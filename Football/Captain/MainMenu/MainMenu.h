@@ -17,6 +17,10 @@
 -(void)logout;
 @end
 
+@interface MainMenuCell_WithBadge : UITableViewCell
+
+@end
+
 @interface MainMenu : UITableViewController
 @property id<MainMenuAppearenceDelegate>delegateOfMenuAppearance;
 @property id<MainMenuSwitchViewControllerDelegate>delegateOfViewSwitch;
