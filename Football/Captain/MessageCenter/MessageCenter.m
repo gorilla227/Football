@@ -35,6 +35,7 @@
     NSMutableArray *sentMessageList;
     NSDictionary *messageSubtypes;
     JSONConnect *connection;
+    NSDictionary *unreadMessageAmount;
 }
 @synthesize sourceTypeController;
 
@@ -58,19 +59,18 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationController setNavigationBarHidden:NO];
     
-    NSArray *messageTypes = messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
+    NSArray *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
     messageSubtypes = [[messageTypes objectAtIndex:self.tabBarItem.tag] objectForKey:@"Subtypes"];
     
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestMessageForSourceType:RequestMessageSourceType_Receiver source:5 messageType:2 startIndex:0 count:10 isSync:YES];
+    [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:10 isSync:YES];
+    [connection requestSentMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:10 isSync:NO];
     
     [sourceTypeController setBackgroundColor:def_navigationBar_background];
     [sourceTypeController setTintColor:[UIColor whiteColor]];
     [self.tableView setTableHeaderView:sourceTypeController];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    
-    [self.tabBarItem setBadgeValue:@"5"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,6 +109,11 @@
     }
 }
 
+-(IBAction)switchReceivedAndSent:(id)sender
+{
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -132,24 +137,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:def_MessageDateformat];
     static NSString *CellIdentifier = @"MessageCell";
     MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     Message *message = [sourceTypeController.selectedSegmentIndex?sentMessageList:receivedMessageList objectAtIndex:indexPath.row];
-    NSString *senderOrReceiver;
+    
+    // Configure the cell...
     [cell.messageBody setText:message.messageBody];
     [cell.messageTypeLabel setText:[messageSubtypes objectForKey:[NSNumber numberWithInteger:message.messageType].stringValue]];
-    switch (message.messageType) {
-        case 2:
-            senderOrReceiver = [NSString stringWithFormat:@"%li", (long)message.senderId];
-            [cell.messageHead setText:MessageBodyFormat_Receiver(senderOrReceiver, message.creationDate)];
-            break;
-            
-        default:
-            break;
+    if (sourceTypeController.selectedSegmentIndex == 0) {
+        [cell.messageHead setText:MessageBodyFormat_Receiver(message.senderName, [dateFormatter stringFromDate:message.creationDate])];
     }
-    [cell.unreadFlag setHidden:message.status != 0];
-
-    // Configure the cell...
+    else {
+        [cell.messageHead setText:MessageBodyFormat_Sender(message.receiverName, [dateFormatter stringFromDate:message.creationDate])];
+    }
+    [cell.unreadFlag setHidden:message.status != 0 || sourceTypeController.selectedSegmentIndex];
+    
     return cell;
 }
 

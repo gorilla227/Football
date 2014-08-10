@@ -38,8 +38,11 @@
         [tabBarViewControllers addObject:messageCenter];
     }
     [self.tabBar setBarTintColor:def_navigationBar_background];
-//    [self.tabBar setTintColor:[UIColor whiteColor]];
     [self setViewControllers:tabBarViewControllers];
+    
+    [self refreshUnreadMessageAmount];
+    NSTimer *timer = [NSTimer timerWithTimeInterval:[[gSetting objectForKey:@"refreshUnreadMessageAmountDuration"] integerValue] target:self selector:@selector(refreshUnreadMessageAmount) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,6 +51,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)refreshUnreadMessageAmount;
+{
+//    NSArray *unreadMessageAmountArray = [gUnreadMessageAmount objectsForKeys:messageSubtypes.allKeys notFoundMarker:[NSNull null]];
+//    //    NSLog(@"%@", [unreadMessageAmountArray valueForKeyPath: @"@sum.self"]);
+//    [self.tabBarItem setBadgeValue:[unreadMessageAmountArray valueForKeyPath: @"@sum.self"]];
+    for (NSDictionary *messageType in messageTypes) {
+        NSArray *amountArray = [gUnreadMessageAmount objectsForKeys:[[messageType objectForKey:@"Subtypes"] allKeys] notFoundMarker:[NSNull null]];
+        UIViewController *tabController = [self.viewControllers objectAtIndex:[messageTypes indexOfObject:messageType]];
+        [tabController.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%@",[amountArray valueForKeyPath:@"@sum.self"]]];
+    }
+}
 /*
 #pragma mark - Navigation
 

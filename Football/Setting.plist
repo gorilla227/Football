@@ -8,5 +8,7 @@
 	<false/>
 	<key>accountName</key>
 	<string></string>
+	<key>refreshUnreadMessageAmountDuration</key>
+	<integer>10</integer>
 </dict>
 </plist>

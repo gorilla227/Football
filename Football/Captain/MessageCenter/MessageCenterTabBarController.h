@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MessageCenterTabBarController : UITabBarController
-
+-(void)refreshUnreadMessageAmount;
 @end

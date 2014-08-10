@@ -17,6 +17,8 @@
     MainMenu *mainMenu;
     UIView *contentView;
     UIActivityIndicatorView *busyIndicator;
+    JSONConnect *connection;
+    NSArray *messageSubtypes;
 }
 @synthesize menuButton, messageButton;
 
@@ -59,6 +61,30 @@
     //Load the initial view
     [mainMenu tableView:mainMenu.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
     [self menuSwitch];
+    
+    //Set JSONConnect for request unread message amount repeatly.
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self];
+    messageSubtypes = [NSArray new];
+    NSArray *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
+    for (NSDictionary *messageType in messageTypes) {
+        messageSubtypes = [messageSubtypes arrayByAddingObjectsFromArray:[[messageType objectForKey:@"Subtypes"] allKeys]];
+    }
+    [self refreshUnreadMessageAmount];
+    NSString *settingFile = [[NSBundle mainBundle] pathForResource:@"Setting" ofType:@"plist"];
+    gSetting = [[NSDictionary alloc] initWithContentsOfFile:settingFile];
+    NSTimer *timer = [NSTimer timerWithTimeInterval:[[gSetting objectForKey:@"refreshUnreadMessageAmountDuration"] integerValue] target:self selector:@selector(refreshUnreadMessageAmount) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+}
+
+-(void)refreshUnreadMessageAmount
+{
+    [connection requestUnreadMessageAmount:gMyUserInfo.userId messageTypes:messageSubtypes];
+}
+
+-(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount
+{
+    gUnreadMessageAmount = unreadMessageAmount;
+    [messageButton setBadgeNumber:[[gUnreadMessageAmount.allValues valueForKeyPath:@"@sum.self"] integerValue]];
 }
 
 -(void)logout

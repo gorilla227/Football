@@ -321,35 +321,72 @@
 }
 
 //RequestMessages
--(void)requestMessageForSourceType:(enum RequestMessageSourceType)sourceType source:(NSInteger)sourceId messageType:(NSInteger)messageType startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption
+-(void)requestReceivedMessage:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption
 {
     if (syncOption) {
         [busyIndicatorDelegate lockView];
     }
-    if (sourceType == RequestMessageSourceType_Receiver) {
-        NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestMessages_Suffix];
-        NSDictionary *parameters = CONNECT_RequestMessages_Parameters([NSNumber numberWithInteger:sourceId], [NSNumber numberWithInteger:messageType], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
-        [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if (syncOption) {
-                [busyIndicatorDelegate unlockView];
-            }
-            NSMutableArray *messageArray = [[NSMutableArray alloc] init];
-            for (NSDictionary *messageData in responseObject) {
-                Message *message = [[Message alloc] initWithData:messageData];
-                [messageArray addObject:message];
-            }
-            [delegate receiveMessages:messageArray sourceType:sourceType];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self showErrorAlertView:error otherInfo:operation.responseString];
-        }];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestMessages_Suffix];
+    NSDictionary *parameters = CONNECT_RequestMessages_ReceivedParameters([NSNumber numberWithInteger:receiverId], [messageTypes componentsJoinedByString:@","], [status componentsJoinedByString:@","], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (syncOption) {
+            [busyIndicatorDelegate unlockView];
+        }
+        NSMutableArray *messageArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *messageData in responseObject) {
+            Message *message = [[Message alloc] initWithData:messageData];
+            [messageArray addObject:message];
+        }
+        [delegate receiveMessages:messageArray sourceType:RequestMessageSourceType_Receiver];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSString *request = [[NSString alloc] initWithData:operation.request.HTTPBody encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", request);
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+-(void)requestSentMessage:(NSInteger)senderId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption
+{
+    if (syncOption) {
+        [busyIndicatorDelegate lockView];
     }
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestMessages_Suffix];
+    NSDictionary *parameters = CONNECT_RequestMessages_SentParameters([NSNumber numberWithInteger:senderId], [messageTypes componentsJoinedByString:@","], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (syncOption) {
+            [busyIndicatorDelegate unlockView];
+        }
+        NSMutableArray *messageArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *messageData in responseObject) {
+            Message *message = [[Message alloc] initWithData:messageData];
+            [messageArray addObject:message];
+        }
+        [delegate receiveMessages:messageArray sourceType:RequestMessageSourceType_Sender];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSString *request = [[NSString alloc] initWithData:operation.request.HTTPBody encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", request);
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+-(void)requestUnreadMessageAmount:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes
+{
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UnreadMessageAmount_Suffix];
+    NSDictionary *parameters = CONNECT_UnreadMessageAmount_Parameters([messageTypes componentsJoinedByString:@","], [NSNumber numberWithInteger:receiverId]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate receiveUnreadMessageAmount:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
 }
 
 //ApplyinTeam
 -(void)applyinTeamFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message
 {
     if (!message) {
-        message = @"SYS_DEFAULT_APPLYINMESSAGE";
+        NSString *messageTemplateFile = [[NSBundle mainBundle] pathForResource:@"MessageTemplate" ofType:@"plist"];
+        NSDictionary *messageTemplate = [NSDictionary dictionaryWithContentsOfFile:messageTemplateFile];
+        message = [messageTemplate objectForKey:@"ApplyinTeam_Default"];
     }
     [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];

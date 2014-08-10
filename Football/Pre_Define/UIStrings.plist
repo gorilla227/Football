@@ -112,6 +112,8 @@
 			<string>menuIcon_myMatches.png</string>
 			<key>Subtypes</key>
 			<dict>
+				<key>1</key>
+				<string>邀请入队</string>
 				<key>2</key>
 				<string>入队申请</string>
 			</dict>
@@ -122,14 +124,12 @@
 			<key>TypeIcon</key>
 			<string>menuIcon_myMatches.png</string>
 			<key>Subtypes</key>
-			<array>
-				<dict>
-					<key>TypeId</key>
-					<integer>2</integer>
-					<key>TypeName</key>
-					<string>入队申请</string>
-				</dict>
-			</array>
+			<dict>
+				<key>1</key>
+				<string>邀请入队</string>
+				<key>2</key>
+				<string>入队申请</string>
+			</dict>
 		</dict>
 	</array>
 </dict>

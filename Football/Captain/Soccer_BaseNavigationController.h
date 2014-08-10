@@ -10,5 +10,6 @@
 #import "MainMenu.h"
 #import "MessageBarButtonItem.h"
 
-@interface Soccer_BaseNavigationController : UINavigationController<MainMenuSwitchViewControllerDelegate, MainMenuAppearenceDelegate, MessageBarButtonDelegate, BusyIndicatorDelegate>
+@interface Soccer_BaseNavigationController : UINavigationController<MainMenuSwitchViewControllerDelegate, MainMenuAppearenceDelegate, MessageBarButtonDelegate, BusyIndicatorDelegate, JSONConnectDelegate>
+-(void)refreshUnreadMessageAmount;
 @end

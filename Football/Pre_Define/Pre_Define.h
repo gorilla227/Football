@@ -125,3 +125,5 @@ enum EditProfileViewSource
 //Global variables
 UserInfo *gMyUserInfo;
 NSDictionary *gUIStrings;
+NSDictionary *gUnreadMessageAmount;
+NSDictionary *gSetting;

@@ -16,8 +16,10 @@
 
 #pragma Message
 #define kMessage_id @"id"
-#define kMessage_sender @"from"
-#define kMessage_receiver @"to"
+#define kMessage_senderId @"from"
+#define kMessage_senderName @"from_nick_name"
+#define kMessage_receiverId @"to"
+#define kMessage_receiverName @"to_nick_name"
 #define kMessage_createTime @"create_time"
 #define kMessage_body @"message"
 #define kMessage_type @"type"
@@ -26,7 +28,9 @@
 @property NSInteger messageId;
 @property NSInteger senderId;
 @property NSInteger receiverId;
-@property NSString *creationDate;
+@property NSString *senderName;
+@property NSString *receiverName;
+@property NSDate *creationDate;
 @property NSString *messageBody;
 @property NSInteger messageType;
 @property NSInteger status;

@@ -114,7 +114,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                         <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LfV-mF-bAg">
-                                            <rect key="frame" x="130" y="9.5" width="16" height="16"/>
+                                            <rect key="frame" x="130" y="10" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -2048,6 +2048,9 @@
                         <segment title="收到的消息"/>
                         <segment title="发出的消息"/>
                     </segments>
+                    <connections>
+                        <action selector="switchReceivedAndSent:" destination="VLY-jo-rha" eventType="valueChanged" id="Npl-74-Vsb"/>
+                    </connections>
                 </segmentedControl>
             </objects>
             <point key="canvasLocation" x="-89" y="886"/>

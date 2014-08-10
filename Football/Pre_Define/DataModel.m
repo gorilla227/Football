@@ -80,15 +80,17 @@
 
 #pragma Message
 @implementation Message
-@synthesize messageId, senderId, receiverId, creationDate, messageBody, messageType, status;
+@synthesize messageId, senderId, receiverId, senderName, receiverName, creationDate, messageBody, messageType, status;
 -(id)initWithData:(NSDictionary *)data
 {
     self = [super init];
     if (self) {
         [self setMessageId:[[data objectForKey:kMessage_id] integerValue]];
-        [self setSenderId:[[data objectForKey:kMessage_sender] integerValue]];
-        [self setReceiverId:[[data objectForKey:kMessage_receiver] integerValue]];
-        [self setCreationDate:[data objectForKey:kMessage_createTime]];
+        [self setSenderId:[[data objectForKey:kMessage_senderId] integerValue]];
+        [self setReceiverId:[[data objectForKey:kMessage_receiverId] integerValue]];
+        [self setSenderName:[data objectForKey:kMessage_senderName]];
+        [self setReceiverName:[data objectForKey:kMessage_receiverName]];
+        [self setCreationDate:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kMessage_createTime] integerValue]]];
         [self setMessageBody:[data objectForKey:kMessage_body]];
         [self setMessageType:[[data objectForKey:kMessage_type] integerValue]];
         [self setStatus:[[data objectForKey:kMessage_status] integerValue]];

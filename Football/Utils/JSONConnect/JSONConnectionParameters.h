@@ -56,12 +56,18 @@
 
 //Applyin a Team
 #define CONNECT_ApplyinTeam_Suffix @"message/applyin"
-#define CONNECT_ApplyinTeam_Parameters(from, to, message) @{@"from":from, @"to":to, @"message":message}
+#define CONNECT_ApplyinTeam_Parameters(from, to, message) @{@"from":from, @"to_team":to, @"message":message}
 
 
 //Get Messages
 #define CONNECT_RequestMessages_Suffix @"message/receive"
-#define CONNECT_RequestMessages_Parameters(receiver, type, start, count) @{@"to":receiver, @"type":type, @"start":start, @"count":count}
+#define CONNECT_RequestMessages_ReceivedParameters(receiver, type, status, start, count) @{@"to":receiver, @"type":type, @"status":status, @"start":start, @"count":count}
+#define CONNECT_RequestMessages_SentParameters(sender, type, start, count) @{@"from":sender, @"type":type, @"start":start, @"count":count}
+#define CONNECT_RequestMessages_Parameters_DefaultStatus @[[NSNumber numberWithInteger:0], [NSNumber numberWithInteger:1], [NSNumber numberWithInteger:2], [NSNumber numberWithInteger:3], [NSNumber numberWithInteger:4]]
+
+//Get Unread Message Amount
+#define CONNECT_UnreadMessageAmount_Suffix @"message/unreadcount"
+#define CONNECT_UnreadMessageAmount_Parameters(type, receiver) @{@"type":type, @"to":receiver}
 
 
 
