@@ -376,7 +376,7 @@
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [delegate receiveUnreadMessageAmount:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showErrorAlertView:error otherInfo:operation.responseString];
+//        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 

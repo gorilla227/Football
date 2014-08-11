@@ -169,7 +169,7 @@
                   symbolName = "-[JSONConnect updateTeamProfile:]"
                   moduleName = "Football"
                   urlString = "file:///Users/Andy/Google%20%E4%BA%91%E7%AB%AF%E7%A1%AC%E7%9B%98/Objective-C/Football/Football/Utils/JSONConnect/JSONConnect.m"
-                  timestampString = "429421468.188221"
+                  timestampString = "429429026.853638"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "243"
@@ -183,7 +183,7 @@
                   symbolName = "__33-[JSONConnect updateTeamProfile:]_block_invoke250"
                   moduleName = "Football"
                   urlString = "file:///Users/Andy/Google%20%E4%BA%91%E7%AB%AF%E7%A1%AC%E7%9B%98/Objective-C/Football/Football/Utils/JSONConnect/JSONConnect.m"
-                  timestampString = "429421468.190663"
+                  timestampString = "429429026.853996"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "243"
@@ -191,6 +191,22 @@
                   offsetFromSymbolStart = "61">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Football/Captain/MessageCenter/MessageCenter.m"
+            timestampString = "429428560.059928"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

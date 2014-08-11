@@ -134,7 +134,7 @@
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
     //MessageCenter
-    UIStoryboard *storyboad = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+    UIStoryboard *storyboad = [UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil];
     UIViewController *targetViewController = [storyboad instantiateViewControllerWithIdentifier:@"MessageCenterTabBarController"];
     [self.navigationController pushViewController:targetViewController animated:YES];
 }

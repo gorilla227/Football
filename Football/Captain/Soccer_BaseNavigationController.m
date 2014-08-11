@@ -164,13 +164,11 @@
 
 -(void)messageButtonOnClicked
 {
-    UIViewController *messageCenter = [self.storyboard instantiateViewControllerWithIdentifier:@"MessageCenterTabBarController"];
-//    [messageCenter.navigationItem setLeftBarButtonItem:menuButton];
+    UIViewController *messageCenter = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCenterTabBarController"];
     if (CGAffineTransformEqualToTransform(mainMenu.view.transform, CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0))) {
         [self menuSwitch];
     }
     [self setToolbarHidden:YES];
-//    [self setViewControllers:@[messageCenter] animated:YES];
     [self pushViewController:messageCenter animated:YES];
 }
 
