@@ -36,6 +36,10 @@
     NSString *fileNameOfUIStrings = [[NSBundle mainBundle] pathForResource:@"UIStrings" ofType:@"plist"];
     gUIStrings = [NSDictionary dictionaryWithContentsOfFile:fileNameOfUIStrings];
     
+    //Get Settings
+    NSString *settingFile = [[NSBundle mainBundle] pathForResource:@"Setting" ofType:@"plist"];
+    gSettings = [[NSDictionary alloc] initWithContentsOfFile:settingFile];
+    
     //Set busyIndicator
     busyIndicator = [[UIActivityIndicatorView alloc] init];
     [busyIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];

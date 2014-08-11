@@ -81,12 +81,10 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
     
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.searchDisplayController.searchResultsTableView setRowHeight:self.tableView.rowHeight];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
-    NSString *settingFile = [[NSBundle mainBundle] pathForResource:@"Setting" ofType:@"plist"];
-    NSDictionary *settings = [[NSDictionary alloc] initWithContentsOfFile:settingFile];
-    count = [[settings objectForKey:@"teamListCount"] integerValue];
+    count = [[gSettings objectForKey:@"teamListCount"] integerValue];
     haveMoreData = YES;
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
@@ -180,7 +178,7 @@
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if ([scrollView isEqual:self.tableView]) {
-        if (scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.frame.size.height + 20 && haveMoreData) {
+        if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && haveMoreData) {
             [moreLabel setText:[gUIStrings objectForKey:@"UI_FindTeam_Loading"]];
             [moreActivityIndicator startAnimating];
             [connection requestTeamsStart:teamList.count count:count option:RequestTeamsOption_Recruit];

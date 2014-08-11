@@ -94,13 +94,13 @@
 	<key>UI_HomeStadiumSetConfirmationMessage</key>
 	<string>要将该球场设为主场吗？</string>
 	<key>UI_FindTeam_LoadMore</key>
-	<string>下载更多...</string>
+	<string>加载更多球队</string>
 	<key>UI_FindTeam_NoData</key>
-	<string>系统无数据</string>
+	<string>没有找到球队</string>
 	<key>UI_FindTeam_NoMoreData</key>
-	<string>无更多数据</string>
+	<string>只有这么多球队</string>
 	<key>UI_FindTeam_Loading</key>
-	<string>正在下载...</string>
+	<string>正在加载...</string>
 	<key>UI_FindTeam_Successful_Message</key>
 	<string>申请已提交，请耐心等待对方的回复。</string>
 	<key>UI_MessageTypes</key>
@@ -132,5 +132,13 @@
 			</dict>
 		</dict>
 	</array>
+	<key>UI_MessageCenter_LoadMore</key>
+	<string>加载更多消息</string>
+	<key>UI_MessageCenter_NoData</key>
+	<string>没有找到消息</string>
+	<key>UI_MessageCenter_NoMoreData</key>
+	<string>只有这么多消息</string>
+	<key>UI_MessageCenter_Loading</key>
+	<string>正在加载...</string>
 </dict>
 </plist>

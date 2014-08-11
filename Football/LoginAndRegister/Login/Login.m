@@ -148,7 +148,7 @@
 //Move view for keyboard
 -(void)keyboardWillShow
 {
-    CGFloat heightForViewShiftUp = loginAndRegisterView.bounds.size.height - loginContentView.bounds.size.height - def_keyboardHeight;
+    CGFloat heightForViewShiftUp = MIN(loginAndRegisterView.bounds.size.height - loginContentView.bounds.size.height - def_keyboardHeight, 0);
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.25f];
     [loginAndRegisterView setTransform:CGAffineTransformMakeTranslation(0, heightForViewShiftUp)];

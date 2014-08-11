@@ -28,6 +28,9 @@
 
 @interface MessageCenter ()
 @property IBOutlet UISegmentedControl *sourceTypeController;
+@property IBOutlet UILabel *moreLabel;
+@property IBOutlet UIActivityIndicatorView *moreActivityIndicator;
+@property IBOutlet UIView *moreFooterView;
 @end
 
 @implementation MessageCenter{
@@ -36,8 +39,11 @@
     NSDictionary *messageSubtypes;
     JSONConnect *connection;
     NSDictionary *unreadMessageAmount;
+    NSInteger count;
+    BOOL haveMoreReceivedMessage;
+    BOOL haveMoreSentMessage;
 }
-@synthesize sourceTypeController;
+@synthesize sourceTypeController, moreLabel, moreActivityIndicator, moreFooterView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -58,19 +64,22 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationController setNavigationBarHidden:NO];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     NSArray *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
     messageSubtypes = [[messageTypes objectAtIndex:self.tabBarItem.tag] objectForKey:@"Subtypes"];
     
+    count = [[gSettings objectForKey:@"messageListCount"] integerValue];
+    haveMoreReceivedMessage = YES;
+    haveMoreSentMessage = YES;
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:10 isSync:YES];
-    [connection requestSentMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:10 isSync:NO];
+    [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:count isSync:YES];
+    [connection requestSentMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:count isSync:NO];
     
     [sourceTypeController setBackgroundColor:def_navigationBar_background];
     [sourceTypeController setTintColor:[UIColor whiteColor]];
     [self.tableView setTableHeaderView:sourceTypeController];
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,6 +90,10 @@
 
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType
 {
+    if (![self.tableView.tableFooterView isEqual:moreFooterView]) {
+        [self.tableView setTableFooterView:moreFooterView];
+    }
+    
     switch (sourceType) {
         case RequestMessageSourceType_Receiver:
             if (receivedMessageList) {
@@ -89,6 +102,7 @@
             else {
                 receivedMessageList = [NSMutableArray arrayWithArray:messages];
             }
+            haveMoreReceivedMessage = (messages.count == count);
             if (sourceTypeController.selectedSegmentIndex == 0) {
                 [self.tableView reloadData];
             }
@@ -100,6 +114,7 @@
             else {
                 sentMessageList = [NSMutableArray arrayWithArray:messages];
             }
+            haveMoreSentMessage = (messages.count == count);
             if (sourceTypeController.selectedSegmentIndex == 1) {
                 [self.tableView reloadData];
             }
@@ -107,6 +122,8 @@
         default:
             break;
     }
+    
+    [moreActivityIndicator stopAnimating];
 }
 
 -(IBAction)switchReceivedAndSent:(id)sender
@@ -127,8 +144,30 @@
     // Return the number of rows in the section.
     switch (sourceTypeController.selectedSegmentIndex) {
         case 0:
+            if (haveMoreReceivedMessage) {
+                [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_LoadMore"]];
+            }
+            else {
+                if (receivedMessageList.count == 0) {
+                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoData"]];
+                }
+                else {
+                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoMoreData"]];
+                }
+            }
             return receivedMessageList.count;
         case 1:
+            if (haveMoreSentMessage) {
+                [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_LoadMore"]];
+            }
+            else {
+                if (sentMessageList.count == 0) {
+                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoData"]];
+                }
+                else {
+                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoMoreData"]];
+                }
+            }
             return sentMessageList.count;
         default:
             return 0;
@@ -155,6 +194,30 @@
     [cell.unreadFlag setHidden:message.status != 0 || sourceTypeController.selectedSegmentIndex];
     
     return cell;
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20) {
+        switch (sourceTypeController.selectedSegmentIndex) {
+            case 0:
+                if (haveMoreReceivedMessage) {
+                    [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:receivedMessageList.count count:count isSync:NO];
+                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_Loading"]];
+                    [moreActivityIndicator startAnimating];
+                }
+                break;
+            case 1:
+                if (haveMoreSentMessage) {
+                    [connection requestSentMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:sentMessageList.count count:count isSync:NO];
+                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_Loading"]];
+                    [moreActivityIndicator startAnimating];
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 /*

@@ -48,10 +48,6 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
     
-    //Set menu button and message button
-    [self.navigationItem setLeftBarButtonItem:self.navigationController.navigationBar.topItem.leftBarButtonItem];
-    [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
-    
     //Set the tableview
     [stadiumListTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
@@ -140,7 +136,9 @@
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     Stadium *stadium = view.annotation;
-    [mapView setCenterCoordinate:stadium.coordinate animated:YES];
+    CLLocationCoordinate2D centerCoordinate = stadium.coordinate;
+    centerCoordinate.latitude = centerCoordinate.latitude + 0.005;
+    [mapView setCenterCoordinate:centerCoordinate animated:YES];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -154,7 +152,6 @@
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [annotationView setRightCalloutAccessoryView:rightButton];
         [annotationView setCanShowCallout:YES];
-        [annotationView setEnabled:YES];
     }
     else {
         [annotationView setAnnotation:annotation];

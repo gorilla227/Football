@@ -41,7 +41,7 @@
     [self setViewControllers:tabBarViewControllers];
     
     [self refreshUnreadMessageAmount];
-    NSTimer *timer = [NSTimer timerWithTimeInterval:[[gSetting objectForKey:@"refreshUnreadMessageAmountDuration"] integerValue] target:self selector:@selector(refreshUnreadMessageAmount) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer timerWithTimeInterval:[[gSettings objectForKey:@"refreshUnreadMessageAmountDuration"] integerValue] target:self selector:@selector(refreshUnreadMessageAmount) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 
@@ -53,13 +53,22 @@
 
 -(void)refreshUnreadMessageAmount;
 {
-//    NSArray *unreadMessageAmountArray = [gUnreadMessageAmount objectsForKeys:messageSubtypes.allKeys notFoundMarker:[NSNull null]];
-//    //    NSLog(@"%@", [unreadMessageAmountArray valueForKeyPath: @"@sum.self"]);
-//    [self.tabBarItem setBadgeValue:[unreadMessageAmountArray valueForKeyPath: @"@sum.self"]];
     for (NSDictionary *messageType in messageTypes) {
         NSArray *amountArray = [gUnreadMessageAmount objectsForKeys:[[messageType objectForKey:@"Subtypes"] allKeys] notFoundMarker:[NSNull null]];
+        NSNumber *amount = [amountArray valueForKeyPath:@"@sum.self"];
+        NSString *badgeString;
+        if (amount.integerValue == 0) {
+            badgeString = nil;
+        }
+        else if (amount.integerValue > 10) {
+            badgeString = @"10+";
+        }
+        else {
+            badgeString = [NSString stringWithFormat:@"%@", amount];
+        }
+        
         UIViewController *tabController = [self.viewControllers objectAtIndex:[messageTypes indexOfObject:messageType]];
-        [tabController.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%@",[amountArray valueForKeyPath:@"@sum.self"]]];
+        [tabController.tabBarItem setBadgeValue:badgeString];
     }
 }
 /*

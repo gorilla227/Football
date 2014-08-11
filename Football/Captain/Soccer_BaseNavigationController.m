@@ -48,7 +48,6 @@
     //Set Menu button and Message button;
     [messageButton setDelegate:self];
     [messageButton initBadgeView];
-    [messageButton setBadgeNumber:5];//For Test
     
     //Set busyIndicator
     busyIndicator = [[UIActivityIndicatorView alloc] init];
@@ -70,9 +69,8 @@
         messageSubtypes = [messageSubtypes arrayByAddingObjectsFromArray:[[messageType objectForKey:@"Subtypes"] allKeys]];
     }
     [self refreshUnreadMessageAmount];
-    NSString *settingFile = [[NSBundle mainBundle] pathForResource:@"Setting" ofType:@"plist"];
-    gSetting = [[NSDictionary alloc] initWithContentsOfFile:settingFile];
-    NSTimer *timer = [NSTimer timerWithTimeInterval:[[gSetting objectForKey:@"refreshUnreadMessageAmountDuration"] integerValue] target:self selector:@selector(refreshUnreadMessageAmount) userInfo:nil repeats:YES];
+    
+    NSTimer *timer = [NSTimer timerWithTimeInterval:[[gSettings objectForKey:@"refreshUnreadMessageAmountDuration"] integerValue] target:self selector:@selector(refreshUnreadMessageAmount) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 

@@ -351,7 +351,7 @@
         [busyIndicatorDelegate lockView];
     }
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestMessages_Suffix];
-    NSDictionary *parameters = CONNECT_RequestMessages_SentParameters([NSNumber numberWithInteger:senderId], [messageTypes componentsJoinedByString:@","], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
+    NSDictionary *parameters = CONNECT_RequestMessages_SentParameters([NSNumber numberWithInteger:senderId], [messageTypes componentsJoinedByString:@","], [status componentsJoinedByString:@","], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (syncOption) {
             [busyIndicatorDelegate unlockView];

@@ -62,7 +62,7 @@
 //Get Messages
 #define CONNECT_RequestMessages_Suffix @"message/receive"
 #define CONNECT_RequestMessages_ReceivedParameters(receiver, type, status, start, count) @{@"to":receiver, @"type":type, @"status":status, @"start":start, @"count":count}
-#define CONNECT_RequestMessages_SentParameters(sender, type, start, count) @{@"from":sender, @"type":type, @"start":start, @"count":count}
+#define CONNECT_RequestMessages_SentParameters(sender, type, status, start, count) @{@"from":sender, @"type":type, @"status":status, @"start":start, @"count":count}
 #define CONNECT_RequestMessages_Parameters_DefaultStatus @[[NSNumber numberWithInteger:0], [NSNumber numberWithInteger:1], [NSNumber numberWithInteger:2], [NSNumber numberWithInteger:3], [NSNumber numberWithInteger:4]]
 
 //Get Unread Message Amount
