@@ -50,9 +50,11 @@
 //Get AllStadiums
 #define CONNECT_AllStadiums_Suffix @"field/list"
 
-//Get AllTeams
+//Get Team
 #define CONNECT_AllTeams_Suffix @"team/list"
 #define CONNECT_AllTeams_Parameters(start, count) [NSMutableDictionary dictionaryWithDictionary:@{@"start":start, @"count":count}]
+#define CONNECT_Team_Suffix @"team/listone"
+#define CONNECT_Team_Parameters(teamId) @{@"team_id":teamId}
 
 //Applyin a Team
 #define CONNECT_ApplyinTeam_Suffix @"message/applyin"

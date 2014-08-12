@@ -43,6 +43,7 @@ enum RequestMessageSourceType
 -(void)updateTeamLogoSuccessfully;//更新球队队标成功
 -(void)receiveAllStadiums:(NSArray *)stadiums;//获取所有球场资料成功
 -(void)receiveAllTeams:(NSArray *)teams;//获取所有球队列表成功
+-(void)receiveTeam:(Team *)team;//获取指定的球队资料成功
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType;//获取信息成功
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount;//获取未读消息数量成功
 -(void)playerApplayinSent;//球员申请加入球队发送成功
@@ -60,6 +61,7 @@ enum RequestMessageSourceType
 @property id<BusyIndicatorDelegate>busyIndicatorDelegate;
 -(id)initWithDelegate:(id)responser andBusyIndicatorDelegate:(id)indicatorDelegate;
 -(void)showErrorAlertView:(NSError *)error otherInfo:(NSString *)otherInfo;
+-(void)cancelAllOperations;
 
 #pragma new Server
 -(void)loginVerification:(NSString *)account password:(NSString *)password;//登录验证
@@ -72,6 +74,7 @@ enum RequestMessageSourceType
 -(void)updateTeamLogo:(UIImage *)logo forTeam:(NSInteger)teamId;//更新球队队标
 -(void)requestAllStadiums;//获取所有球场
 -(void)requestTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option;//获取所有球队
+-(void)requestTeamById:(NSInteger)teamId isSync:(BOOL)syncOption;//获取指定的球队
 -(void)requestReceivedMessage:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取收到的信息
 -(void)requestSentMessage:(NSInteger)senderId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取发出的信息
 -(void)requestUnreadMessageAmount:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes;//获取未读消息数量

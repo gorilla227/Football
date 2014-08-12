@@ -89,6 +89,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setToolbarHidden:YES];
+}
+
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType
 {
     if (![self.tableView.tableFooterView isEqual:moreFooterView]) {

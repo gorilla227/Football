@@ -52,6 +52,11 @@
     [errorAlertView show];
 }
 
+-(void)cancelAllOperations
+{
+    [manager.operationQueue cancelAllOperations];
+}
+
 #pragma new Server
 //LoginVerification
 -(void)loginVerification:(NSString *)account password:(NSString *)password
@@ -315,6 +320,23 @@
             [teamList addObject:team];
         }
         [delegate receiveAllTeams:teamList];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+-(void)requestTeamById:(NSInteger)teamId isSync:(BOOL)syncOption
+{
+    if (syncOption) {
+        [busyIndicatorDelegate lockView];
+    }
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_Team_Suffix];
+    NSDictionary *parameters = CONNECT_Team_Parameters([NSNumber numberWithInteger:teamId]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (syncOption) {
+            [busyIndicatorDelegate unlockView];
+        }
+        [delegate receiveTeam:[[Team alloc] initWithData:responseObject]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];

@@ -176,12 +176,14 @@
 -(void)lockView
 {
     [self.view.window setUserInteractionEnabled:NO];
+//    [self.visibleViewController.view setUserInteractionEnabled:NO];
     [busyIndicator startAnimating];
 }
 
 -(void)unlockView
 {
     [self.view.window setUserInteractionEnabled:YES];
+//    [self.visibleViewController.view setUserInteractionEnabled:YES];
     [busyIndicator stopAnimating];
 }
 /*
