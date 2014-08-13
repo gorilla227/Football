@@ -14,16 +14,19 @@
 @property IBOutlet UILabel *messageHead;
 @property IBOutlet UILabel *messageTypeLabel;
 @property IBOutlet UIView *unreadFlag;
+@property IBOutlet UILabel *statusLabel;
 @end
 
 @implementation MessageCell
-@synthesize messageBody, messageHead, messageTypeLabel, unreadFlag;
+@synthesize messageBody, messageHead, messageTypeLabel, unreadFlag, statusLabel;
 
 -(void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
     [unreadFlag.layer setCornerRadius:unreadFlag.frame.size.height/2];
     [unreadFlag.layer setMasksToBounds:YES];
+    [statusLabel.layer setCornerRadius:5.0f];
+    [statusLabel.layer setMasksToBounds:YES];
 }
 @end
 
@@ -43,6 +46,7 @@
     NSInteger count;
     BOOL haveMoreReceivedMessage;
     BOOL haveMoreSentMessage;
+    NSArray *messageSubtypeStatus;
 }
 @synthesize sourceTypeController, moreLabel, moreActivityIndicator, moreFooterView;
 
@@ -69,6 +73,7 @@
     
     NSArray *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
     messageSubtypes = [[messageTypes objectAtIndex:self.tabBarItem.tag] objectForKey:@"Subtypes"];
+    messageSubtypeStatus = [gUIStrings objectForKey:@"UI_MessageSubtypeStatus"];
     
     count = [[gSettings objectForKey:@"messageListCount"] integerValue];
     haveMoreReceivedMessage = YES;
@@ -91,6 +96,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
 }
 
@@ -198,8 +204,14 @@
     else {
         [cell.messageHead setText:MessageBodyFormat_Sender(message.receiverName, [dateFormatter stringFromDate:message.creationDate])];
     }
-    [cell.unreadFlag setHidden:message.status != 0 || sourceTypeController.selectedSegmentIndex];
-    
+//    [cell.unreadFlag setHidden:message.status != 0 || sourceTypeController.selectedSegmentIndex];
+    [cell.statusLabel setText:messageSubtypeStatus[message.status]];
+    if (sourceTypeController.selectedSegmentIndex == 0) {
+        [cell.statusLabel setBackgroundColor:(message.status == 0)?cRed:cLightBlue];
+    }
+    else {
+        [cell.statusLabel setBackgroundColor:cGray];
+    }
     return cell;
 }
 

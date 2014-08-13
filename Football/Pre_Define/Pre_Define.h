@@ -75,6 +75,11 @@
 #define def_warmUpMatch_actionButtonBG_Enable [UIColor colorWithRed:59/255.0 green:174/255.0 blue:218/255.0 alpha:1]
 #define def_warmUpMatch_actionButtonBG_Disable [UIColor colorWithRed:189/255.0 green:192/255.0 blue:197/255.0 alpha:1]
 
+#define cLightBlue [UIColor colorWithRed:0/255.0 green:204/255.0 blue:255/255.0 alpha:1]
+#define cRed [UIColor redColor]
+#define cGray [UIColor grayColor]
+#define cLightGreen [UIColor colorWithRed:153/255.0 green:204/255.0 blue:153/255.0 alpha:1]
+
 //PlayerDetails_ViewTypes
 enum PlayerDetails_ViewTypes
 {

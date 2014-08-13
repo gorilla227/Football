@@ -132,6 +132,14 @@
 			</dict>
 		</dict>
 	</array>
+	<key>UI_MessageSubtypeStatus</key>
+	<array>
+		<string>未读</string>
+		<string>已读</string>
+		<string>已接受</string>
+		<string>已拒绝</string>
+		<string>已过期</string>
+	</array>
 	<key>UI_MessageCenter_LoadMore</key>
 	<string>加载更多消息</string>
 	<key>UI_MessageCenter_NoData</key>
