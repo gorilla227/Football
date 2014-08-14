@@ -304,9 +304,17 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="RAm-vM-DyF"/>
-                        <barButtonItem title="同意" id="mZ2-2g-ySZ"/>
+                        <barButtonItem title="同意" id="mZ2-2g-ySZ">
+                            <connections>
+                                <action selector="acceptButtonOnClicked:" destination="Bes-CN-gJV" id="AYg-X1-uWz"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="m3w-li-ws9"/>
-                        <barButtonItem title="拒绝" id="8d3-JK-0Hb"/>
+                        <barButtonItem title="拒绝" id="8d3-JK-0Hb">
+                            <connections>
+                                <action selector="declineButtonOnClicked:" destination="Bes-CN-gJV" id="9Lk-eu-yoB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="gNc-s1-0Ok"/>
                     </items>
                 </toolbar>

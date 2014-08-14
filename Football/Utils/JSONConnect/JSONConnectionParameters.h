@@ -59,6 +59,8 @@
 //Applyin a Team
 #define CONNECT_ApplyinTeam_Suffix @"message/applyin"
 #define CONNECT_ApplyinTeam_Parameters(from, to, message) @{@"from":from, @"to_team":to, @"message":message}
+#define CONNECT_ReplyApplyin_Suffix @"message/replyapplyin"
+#define CONNECT_ReplyApplyin_Parameters(messageId, response) @{@"message_id":messageId, @"response":response}
 
 
 //Get Messages

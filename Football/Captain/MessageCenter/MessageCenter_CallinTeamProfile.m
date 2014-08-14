@@ -77,6 +77,11 @@
     [sloganLabel setText:team.slogan];
 }
 
+-(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode
+{
+    NSLog(@"%@", [NSNumber numberWithInteger:responseCode]);
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     if (message.status == 0 || message.status == 1) {
@@ -93,6 +98,16 @@
 {
     id<BusyIndicatorDelegate>busyIndicatorDelegate = (id)self.navigationController;
     [busyIndicatorDelegate unlockView];
+}
+
+-(IBAction)acceptButtonOnClicked:(id)sender
+{
+    [connection replyApplyinMessage:message.messageId response:0];
+}
+
+-(IBAction)declineButtonOnClicked:(id)sender
+{
+    [connection replyApplyinMessage:message.messageId response:1];
 }
 /*
 #pragma mark - Table view data source

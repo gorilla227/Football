@@ -48,6 +48,7 @@ enum RequestMessageSourceType
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount;//获取未读消息数量成功
 -(void)readMessagesSuccessfully:(NSArray *)messageIdList;//设置消息已读成功
 -(void)playerApplayinSent;//球员申请加入球队发送成功
+-(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode;//队长回复球员的入队申请成功
 
 #pragma zzOld_Server
 //-(void)receiveUserInfo:(UserInfo *)userInfo;
@@ -82,6 +83,7 @@ enum RequestMessageSourceType
 -(void)requestUnreadMessageAmount:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes;//获取未读消息数量
 -(void)readMessages:(NSArray *)messageIdList;//设置消息为已读
 -(void)applyinTeamFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message;//球员申请加入球队
+-(void)replyApplyinMessage:(NSInteger)messageId response:(NSInteger)responseCode;//队长回复球员的入队申请，0-同意，1-拒绝
 
 #pragma zzOld_Server
 -(void)requestUserInfoById:(NSNumber *)userId;

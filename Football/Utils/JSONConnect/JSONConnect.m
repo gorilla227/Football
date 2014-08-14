@@ -42,7 +42,7 @@
             errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:@"上传图片出错！" delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
         }
         else {
-            errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:@"未知错误" delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
+            errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:[NSString stringWithFormat:@"未知错误:%@", otherInfo] delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
         }
     }
     else {
@@ -430,6 +430,19 @@
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
         [delegate playerApplayinSent];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+-(void)replyApplyinMessage:(NSInteger)messageId response:(NSInteger)responseCode
+{
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ReplyApplyin_Suffix];
+    NSDictionary *parameters = CONNECT_ReplyApplyin_Parameters([NSNumber numberWithInteger:messageId], [NSNumber numberWithInteger:responseCode]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate replyApplyinMessageSuccessfully:responseCode];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
