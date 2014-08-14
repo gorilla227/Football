@@ -71,6 +71,10 @@
 #define CONNECT_UnreadMessageAmount_Suffix @"message/unreadcount"
 #define CONNECT_UnreadMessageAmount_Parameters(type, receiver) @{@"type":type, @"to":receiver}
 
+//Set Messages as Read
+#define CONNECT_ReadMessages_Suffix @"message/update"
+#define CONNECT_ReadMessages_Parameters(messageIdList) @{@"id_list":messageIdList}
+
 
 
 

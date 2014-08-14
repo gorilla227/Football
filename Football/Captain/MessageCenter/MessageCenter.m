@@ -134,8 +134,19 @@
         default:
             break;
     }
-    
     [moreActivityIndicator stopAnimating];
+}
+
+-(void)readMessagesSuccessfully:(NSArray *)messageIdList
+{
+    for (NSNumber *messageId in messageIdList) {
+        for (Message *message in receivedMessageList) {
+            if (message.messageId == messageId.integerValue) {
+                [message setStatus:1];
+            }
+        }
+    }
+    [self.tableView reloadData];
 }
 
 -(IBAction)switchReceivedAndSent:(id)sender
@@ -220,6 +231,9 @@
     Message *message = [sourceTypeController.selectedSegmentIndex?sentMessageList:receivedMessageList objectAtIndex:indexPath.row];
     switch (message.messageType) {
         case 1:
+            if (message.status == 0 && sourceTypeController.selectedSegmentIndex == 0) {
+                [connection readMessages:@[[NSNumber numberWithInteger:message.messageId]]];
+            }
             [self performSegueWithIdentifier:@"CallinTeamProfile" sender:message];
             break;
             

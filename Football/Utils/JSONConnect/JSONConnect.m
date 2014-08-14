@@ -391,6 +391,7 @@
     }];
 }
 
+//RequestUnreadMessageAmount
 -(void)requestUnreadMessageAmount:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes
 {
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UnreadMessageAmount_Suffix];
@@ -399,6 +400,18 @@
         [delegate receiveUnreadMessageAmount:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//ReadMessages
+-(void)readMessages:(NSArray *)messageIdList
+{
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ReadMessages_Suffix];
+    NSDictionary *parameters = CONNECT_ReadMessages_Parameters([messageIdList componentsJoinedByString:@","]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate readMessagesSuccessfully:messageIdList];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 

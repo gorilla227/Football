@@ -46,6 +46,7 @@ enum RequestMessageSourceType
 -(void)receiveTeam:(Team *)team;//获取指定的球队资料成功
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType;//获取信息成功
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount;//获取未读消息数量成功
+-(void)readMessagesSuccessfully:(NSArray *)messageIdList;//设置消息已读成功
 -(void)playerApplayinSent;//球员申请加入球队发送成功
 
 #pragma zzOld_Server
@@ -75,9 +76,11 @@ enum RequestMessageSourceType
 -(void)requestAllStadiums;//获取所有球场
 -(void)requestTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option;//获取所有球队
 -(void)requestTeamById:(NSInteger)teamId isSync:(BOOL)syncOption;//获取指定的球队
+//Messges
 -(void)requestReceivedMessage:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取收到的信息
 -(void)requestSentMessage:(NSInteger)senderId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取发出的信息
 -(void)requestUnreadMessageAmount:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes;//获取未读消息数量
+-(void)readMessages:(NSArray *)messageIdList;//设置消息为已读
 -(void)applyinTeamFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message;//球员申请加入球队
 
 #pragma zzOld_Server
