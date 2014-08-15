@@ -98,6 +98,12 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"RefreshTableView" object:nil];
+}
+
+-(void)refreshTableView
+{
+    [self.tableView reloadData];
 }
 
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType
@@ -274,6 +280,7 @@
     if ([segue.identifier isEqualToString:@"CallinTeamProfile"]) {
         MessageCenter_CallinTeamProfile *targetController = segue.destinationViewController;
         [targetController setMessage:sender];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"RefreshTableView" object:nil];
     }
 }
 

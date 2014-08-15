@@ -77,9 +77,28 @@
     [sloganLabel setText:team.slogan];
 }
 
--(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode
+-(void)replyCallinMessageSuccessfully:(NSInteger)responseCode
 {
-    NSLog(@"%@", [NSNumber numberWithInteger:responseCode]);
+    [message setStatus:responseCode];
+    NSString *responseString;
+    switch (responseCode) {
+        case 2:
+            responseString = [gUIStrings objectForKey:@"UI_ReplayCallin_Accepted"];
+            break;
+        case 3:
+            responseString = [gUIStrings objectForKey:@"UI_ReplayCallin_Declined"];
+            break;
+        default:
+            break;
+    }
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:responseString delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshTableView" object:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -102,12 +121,12 @@
 
 -(IBAction)acceptButtonOnClicked:(id)sender
 {
-    [connection replyApplyinMessage:message.messageId response:0];
+    [connection replyCallinMessage:message.messageId response:2];
 }
 
 -(IBAction)declineButtonOnClicked:(id)sender
 {
-    [connection replyApplyinMessage:message.messageId response:1];
+    [connection replyCallinMessage:message.messageId response:3];
 }
 /*
 #pragma mark - Table view data source

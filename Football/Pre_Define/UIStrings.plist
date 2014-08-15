@@ -148,5 +148,13 @@
 	<string>只有这么多消息</string>
 	<key>UI_MessageCenter_Loading</key>
 	<string>正在加载...</string>
+	<key>UI_ReplayApplyin_Accepted</key>
+	<string>你已接受该球员成为球队的一员！</string>
+	<key>UI_ReplayApplyin_Declined</key>
+	<string>你已拒绝了该球员的入队申请。</string>
+	<key>UI_ReplayCallin_Accepted</key>
+	<string>你已同意加入该球队！</string>
+	<key>UI_ReplayCallin_Declined</key>
+	<string>你已拒绝加入该球队。</string>
 </dict>
 </plist>

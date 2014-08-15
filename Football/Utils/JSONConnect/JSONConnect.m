@@ -416,20 +416,20 @@
 }
 
 //ApplyinTeam
--(void)applyinTeamFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message
+-(void)applyinFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message
 {
     if (!message) {
         NSString *messageTemplateFile = [[NSBundle mainBundle] pathForResource:@"MessageTemplate" ofType:@"plist"];
         NSDictionary *messageTemplate = [NSDictionary dictionaryWithContentsOfFile:messageTemplateFile];
-        message = [messageTemplate objectForKey:@"ApplyinTeam_Default"];
+        message = [messageTemplate objectForKey:@"Applyin_Default"];
     }
     [busyIndicatorDelegate lockView];
-    [manager.operationQueue cancelAllOperations];
-    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ApplyinTeam_Suffix];
-    NSDictionary *parameters = CONNECT_ApplyinTeam_Parameters([NSNumber numberWithInteger:playerId], [NSNumber numberWithInteger:teamId], message);
+//    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_Applyin_Suffix];
+    NSDictionary *parameters = CONNECT_Applyin_Parameters([NSNumber numberWithInteger:playerId], [NSNumber numberWithInteger:teamId], message);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-        [delegate playerApplayinSent];
+        [delegate playerApplyinSent];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
@@ -443,6 +443,39 @@
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
         [delegate replyApplyinMessageSuccessfully:responseCode];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//CallinPlayer
+-(void)callinFromTeam:(NSInteger)teamId toPlayer:(NSInteger)playerId withMessage:(NSString *)message
+{
+    if (!message) {
+        NSString *messageTemplateFile = [[NSBundle mainBundle] pathForResource:@"MessageTemplate" ofType:@"plist"];
+        NSDictionary *messageTemplate = [NSDictionary dictionaryWithContentsOfFile:messageTemplateFile];
+        message = [messageTemplate objectForKey:@"Callin_Default"];
+    }
+    [busyIndicatorDelegate lockView];
+//    [manager.operationQueue cancelAllOperations];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_Callin_Suffix];
+    NSDictionary *parameters = CONNECT_Callin_Parameters([NSNumber numberWithInteger:teamId], [NSNumber numberWithInteger:playerId], message);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate teamCallinSent];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+-(void)replyCallinMessage:(NSInteger)messageId response:(NSInteger)responseCode
+{
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ReplyCallin_Suffix];
+    NSDictionary *parameters = CONNECT_ReplyCallin_Parameters([NSNumber numberWithInteger:messageId], [NSNumber numberWithInteger:responseCode]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate replyCallinMessageSuccessfully:responseCode];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];

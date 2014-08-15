@@ -57,10 +57,16 @@
 #define CONNECT_Team_Parameters(teamId) @{@"team_id":teamId}
 
 //Applyin a Team
-#define CONNECT_ApplyinTeam_Suffix @"message/applyin"
-#define CONNECT_ApplyinTeam_Parameters(from, to, message) @{@"from":from, @"to_team":to, @"message":message}
+#define CONNECT_Applyin_Suffix @"message/applyin"
+#define CONNECT_Applyin_Parameters(from, to, message) @{@"from":from, @"to_team":to, @"message":message}
 #define CONNECT_ReplyApplyin_Suffix @"message/replyapplyin"
 #define CONNECT_ReplyApplyin_Parameters(messageId, response) @{@"message_id":messageId, @"response":response}
+
+//Callin a Player
+#define CONNECT_Callin_Suffix @"message/callin"
+#define CONNECT_Callin_Parameters(from, to, message) @{@"from_team":from, @"to":to, @"message":message}
+#define CONNECT_ReplyCallin_Suffix @"message/replycallin"
+#define CONNECT_ReplyCallin_Parameters(messageId, response) @{@"message_id":messageId, @"response":response}
 
 
 //Get Messages

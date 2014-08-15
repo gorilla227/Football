@@ -4,7 +4,9 @@
 <dict>
 	<key>SMS_InviteFriends</key>
 	<string>邀请好友</string>
-	<key>ApplyinTeam_Default</key>
+	<key>Applyin_Default</key>
 	<string>SYS_DEFAULT_APPLYINMESSAGE</string>
+	<key>Callin_Default</key>
+	<string>SYS_DEFAULT_CALLINMESSAGE</string>
 </dict>
 </plist>

@@ -47,8 +47,10 @@ enum RequestMessageSourceType
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType;//获取信息成功
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount;//获取未读消息数量成功
 -(void)readMessagesSuccessfully:(NSArray *)messageIdList;//设置消息已读成功
--(void)playerApplayinSent;//球员申请加入球队发送成功
+-(void)playerApplyinSent;//球员申请加入球队发送成功
 -(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode;//队长回复球员的入队申请成功
+-(void)teamCallinSent;//队长邀请球员加入球队发送成功
+-(void)replyCallinMessageSuccessfully:(NSInteger)responseCode;//球员回复队长的入队邀请成功
 
 #pragma zzOld_Server
 //-(void)receiveUserInfo:(UserInfo *)userInfo;
@@ -82,8 +84,10 @@ enum RequestMessageSourceType
 -(void)requestSentMessage:(NSInteger)senderId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取发出的信息
 -(void)requestUnreadMessageAmount:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes;//获取未读消息数量
 -(void)readMessages:(NSArray *)messageIdList;//设置消息为已读
--(void)applyinTeamFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message;//球员申请加入球队
--(void)replyApplyinMessage:(NSInteger)messageId response:(NSInteger)responseCode;//队长回复球员的入队申请，0-同意，1-拒绝
+-(void)applyinFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message;//球员申请加入球队
+-(void)replyApplyinMessage:(NSInteger)messageId response:(NSInteger)responseCode;//队长回复球员的入队申请，2-同意，3-拒绝
+-(void)callinFromTeam:(NSInteger)teamId toPlayer:(NSInteger)playerId withMessage:(NSString *)message;//队长邀请球员加入球队
+-(void)replyCallinMessage:(NSInteger)messageId response:(NSInteger)responseCode;//球员回复队长的入队邀请，2-同意，3-拒绝
 
 #pragma zzOld_Server
 -(void)requestUserInfoById:(NSNumber *)userId;

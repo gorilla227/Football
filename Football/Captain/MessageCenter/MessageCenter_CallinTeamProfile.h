@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MessageCenter_CallinTeamProfile : UITableViewController<JSONConnectDelegate>
+@interface MessageCenter_CallinTeamProfile : UITableViewController<JSONConnectDelegate, UIAlertViewDelegate>
 @property Message *message;
 @end

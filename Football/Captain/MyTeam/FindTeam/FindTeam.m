@@ -215,11 +215,11 @@
     else {
         applyinTeam = [teamList objectAtIndex:button.tag];
     }
-    [connection applyinTeamFromPlayer:gMyUserInfo.userId toTeam:applyinTeam.teamId withMessage:nil];
+    [connection applyinFromPlayer:gMyUserInfo.userId toTeam:applyinTeam.teamId withMessage:nil];
 //    [connection applyinTeamFromPlayer:35 toTeam:applyinTeam.teamId withMessage:nil];
 }
 
--(void)playerApplayinSent
+-(void)playerApplyinSent
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_FindTeam_Successful_Message"]         delegate:nil cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
     [alertView show];
