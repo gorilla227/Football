@@ -19,6 +19,7 @@
     UIActivityIndicatorView *busyIndicator;
     JSONConnect *connection;
     NSArray *messageSubtypes;
+    BOOL isMenuShow;
 }
 @synthesize menuButton, messageButton;
 
@@ -96,7 +97,7 @@
     [UIView beginAnimations:@"ShowMenu" context:nil];
     [UIView setAnimationDuration:0.3f];
     CGAffineTransform showMenu = CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0);
-    if (CGAffineTransformEqualToTransform(mainMenu.view.transform, showMenu)) {
+    if (isMenuShow) {
         //Hide menu
         if ([self.visibleViewController isKindOfClass:[UITabBarController class]]) {
             UITabBarController *tabBarController = (UITabBarController *)self.visibleViewController;
@@ -113,6 +114,7 @@
         [self.visibleViewController.view setUserInteractionEnabled:YES];
         [mainMenu.view setTransform:CGAffineTransformMakeTranslation(0, 0)];
         [mainMenu.view setUserInteractionEnabled:NO];
+        isMenuShow = NO;
     }
     else {
         //Show menu
@@ -132,6 +134,7 @@
         [mainMenu.view setTransform:showMenu];
         [mainMenu.view setUserInteractionEnabled:YES];
         [mainMenu resetMenuFolder];
+        isMenuShow = YES;
     }
     [UIView commitAnimations];
 }
@@ -139,7 +142,9 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    [self menuSwitch];
+    if (isMenuShow) {
+        [self menuSwitch];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -166,7 +171,7 @@
 -(void)messageButtonOnClicked
 {
     UIViewController *messageCenter = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateInitialViewController];
-    if (CGAffineTransformEqualToTransform(mainMenu.view.transform, CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0))) {
+    if (isMenuShow) {
         [self menuSwitch];
     }
     [self pushViewController:messageCenter animated:YES];

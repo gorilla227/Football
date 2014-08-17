@@ -342,6 +342,29 @@
     }];
 }
 
+//RequestTeamMembers
+-(void)requestTeamMembers:(NSInteger)teamId isSync:(BOOL)syncOption
+{
+    if (syncOption) {
+        [busyIndicatorDelegate lockView];
+    }
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_TeamMembers_Suffix];
+    NSDictionary *parameters = CONNECT_TeamMembers_Parameters([NSNumber numberWithInteger:teamId]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (syncOption) {
+            [busyIndicatorDelegate unlockView];
+        }
+        NSArray *playerList = [NSArray new];
+        for (NSDictionary *playerData in responseObject) {
+            UserInfo *player = [[UserInfo alloc] initWithData:playerData];
+            playerList = [playerList arrayByAddingObject:player];
+        }
+        [delegate receiveTeamMembers:playerList];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
 //RequestMessages
 -(void)requestReceivedMessage:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption
 {

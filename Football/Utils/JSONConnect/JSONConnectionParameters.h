@@ -56,6 +56,10 @@
 #define CONNECT_Team_Suffix @"team/listone"
 #define CONNECT_Team_Parameters(teamId) @{@"team_id":teamId}
 
+//Get Team Members
+#define CONNECT_TeamMembers_Suffix @"teammember/list"
+#define CONNECT_TeamMembers_Parameters(teamId) @{@"team_id":teamId}
+
 //Applyin a Team
 #define CONNECT_Applyin_Suffix @"message/applyin"
 #define CONNECT_Applyin_Parameters(from, to, message) @{@"from":from, @"to_team":to, @"message":message}

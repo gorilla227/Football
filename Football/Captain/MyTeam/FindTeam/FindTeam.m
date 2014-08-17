@@ -57,6 +57,7 @@
     JSONConnect *connection;
     NSInteger count;
     BOOL haveMoreData;
+    BOOL isLoading;
 }
 @synthesize moreLabel, moreActivityIndicator, moreFooterView;
 
@@ -100,6 +101,7 @@
 //Receive TeamList
 -(void)receiveAllTeams:(NSArray *)teams
 {
+    isLoading = NO;
     if (![self.tableView.tableFooterView isEqual:moreFooterView]) {
         [self.tableView setTableFooterView:moreFooterView];
     }
@@ -178,9 +180,10 @@
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if ([scrollView isEqual:self.tableView]) {
-        if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && haveMoreData) {
+        if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && haveMoreData && !isLoading) {
             [moreLabel setText:[gUIStrings objectForKey:@"UI_FindTeam_Loading"]];
             [moreActivityIndicator startAnimating];
+            isLoading = YES;
             [connection requestTeamsStart:teamList.count count:count option:RequestTeamsOption_Recruit];
         }
     }

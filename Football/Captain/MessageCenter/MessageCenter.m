@@ -8,6 +8,7 @@
 
 #import "MessageCenter.h"
 #import "MessageCenter_CallinTeamProfile.h"
+#import "MessageCenter_ApplyinPlayerProfile.h"
 
 @interface MessageCell()
 @property IBOutlet UITextView *messageBody;
@@ -46,6 +47,7 @@
     NSInteger count;
     BOOL haveMoreReceivedMessage;
     BOOL haveMoreSentMessage;
+    BOOL isLoading;
     NSArray *messageSubtypeStatus;
 }
 @synthesize sourceTypeController, moreLabel, moreActivityIndicator, moreFooterView;
@@ -141,6 +143,7 @@
             break;
     }
     [moreActivityIndicator stopAnimating];
+    isLoading = NO;
 }
 
 -(void)readMessagesSuccessfully:(NSArray *)messageIdList
@@ -242,7 +245,12 @@
             }
             [self performSegueWithIdentifier:@"CallinTeamProfile" sender:message];
             break;
-            
+        case 2:
+            if (message.status == 0 && sourceTypeController.selectedSegmentIndex == 0) {
+                [connection readMessages:@[[NSNumber numberWithInteger:message.messageId]]];
+            }
+            [self performSegueWithIdentifier:@"ApplyinPlayerProfile" sender:message];
+            break;
         default:
             break;
     }
@@ -250,7 +258,8 @@
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20) {
+    if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !isLoading) {
+        isLoading = YES;
         switch (sourceTypeController.selectedSegmentIndex) {
             case 0:
                 if (haveMoreReceivedMessage) {
@@ -279,6 +288,11 @@
 {
     if ([segue.identifier isEqualToString:@"CallinTeamProfile"]) {
         MessageCenter_CallinTeamProfile *targetController = segue.destinationViewController;
+        [targetController setMessage:sender];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"RefreshTableView" object:nil];
+    }
+    else if ([segue.identifier isEqualToString:@"ApplyinPlayerProfile"]) {
+        MessageCenter_ApplyinPlayerProfile *targetController = segue.destinationViewController;
         [targetController setMessage:sender];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"RefreshTableView" object:nil];
     }

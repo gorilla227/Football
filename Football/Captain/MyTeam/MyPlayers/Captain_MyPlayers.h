@@ -11,15 +11,9 @@
 #import "Captain_NotifyPlayers.h"
 
 @interface Captain_MyPlayerCell : UITableViewCell
-@property IBOutlet UIImageView *playerPortrait;
-@property IBOutlet UILabel *playerName;
-@property IBOutlet UILabel *signUpStatusOfNextMatch;
-@property IBOutlet UIView *likeView;
-@property IBOutlet UIImageView *likeIcon;
-@property IBOutlet UILabel *likeScore;
-@property IBOutlet UIButton *actionButton;
+
 @end
 
-@interface Captain_MyPlayers : UIViewController<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
-@property IBOutlet UITableView *playersTableView;
+@interface Captain_MyPlayers : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate, JSONConnectDelegate>
+
 @end

@@ -127,6 +127,7 @@
 		B27BD360194930B300802F4A /* FillAdditionalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD35F194930B300802F4A /* FillAdditionalProfile.m */; };
 		B27BD6C61934093E00F35A51 /* Captain_PlayerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C51934093E00F35A51 /* Captain_PlayerDetails.m */; };
 		B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */; };
+		B27F6C0519A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = B27F6C0419A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.m */; };
 		B2A01786198460F400ACDDD2 /* StadiumListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A01785198460F400ACDDD2 /* StadiumListView.m */; };
 		B2AE0A311985AB5F00E2DEE9 /* StadiumDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AE0A301985AB5F00E2DEE9 /* StadiumDetails.m */; };
 		B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B1EE47193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m */; };
@@ -322,6 +323,8 @@
 		B27BD6C51934093E00F35A51 /* Captain_PlayerDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_PlayerDetails.m; path = Captain/MyTeam/Captain_PlayerDetails.m; sourceTree = "<group>"; };
 		B27BD6C719341DBD00F35A51 /* Captain_NotifyPlayers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NotifyPlayers.h; path = Captain/MyTeam/Captain_NotifyPlayers.h; sourceTree = "<group>"; };
 		B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NotifyPlayers.m; path = Captain/MyTeam/Captain_NotifyPlayers.m; sourceTree = "<group>"; };
+		B27F6C0319A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCenter_ApplyinPlayerProfile.h; path = Captain/MessageCenter/MessageCenter_ApplyinPlayerProfile.h; sourceTree = "<group>"; };
+		B27F6C0419A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCenter_ApplyinPlayerProfile.m; path = Captain/MessageCenter/MessageCenter_ApplyinPlayerProfile.m; sourceTree = "<group>"; };
 		B2A01784198460F400ACDDD2 /* StadiumListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StadiumListView.h; sourceTree = "<group>"; };
 		B2A01785198460F400ACDDD2 /* StadiumListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StadiumListView.m; sourceTree = "<group>"; };
 		B2AE0A2F1985AB5F00E2DEE9 /* StadiumDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StadiumDetails.h; sourceTree = "<group>"; };
@@ -576,6 +579,8 @@
 				A19865FB198DF76A009BA81C /* MessageCenter.m */,
 				A1BB0E791998852B0082E91A /* MessageCenter_CallinTeamProfile.h */,
 				A1BB0E7A1998852B0082E91A /* MessageCenter_CallinTeamProfile.m */,
+				B27F6C0319A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.h */,
+				B27F6C0419A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.m */,
 			);
 			name = MessageCenter;
 			sourceTree = "<group>";
@@ -1183,6 +1188,7 @@
 				A1F428E2191209DB00567A02 /* AFURLRequestSerialization.m in Sources */,
 				A1940B12197787EC00B152AC /* MessageBarButtonItem.m in Sources */,
 				A19865FC198DF76A009BA81C /* MessageCenter.m in Sources */,
+				B27F6C0519A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.m in Sources */,
 				B2FEC5E41915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m in Sources */,
 				B22B10AE193A9683004BE83F /* Captain_BalanceManagement.m in Sources */,
 				A1FC44511935A621007C4B68 /* CallFriends.m in Sources */,

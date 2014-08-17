@@ -8,6 +8,15 @@
 
 #import "Captain_MyPlayers.h"
 #pragma Captain_MyPlayerCell
+@interface Captain_MyPlayerCell ()
+@property IBOutlet UIImageView *playerPortrait;
+@property IBOutlet UILabel *playerName;
+@property IBOutlet UILabel *signUpStatusOfNextMatch;
+@property IBOutlet UIView *likeView;
+@property IBOutlet UIImageView *likeIcon;
+@property IBOutlet UILabel *likeScore;
+@property IBOutlet UIButton *actionButton;
+@end
 @implementation Captain_MyPlayerCell
 @synthesize playerPortrait, playerName, signUpStatusOfNextMatch, likeView, likeScore, likeIcon, actionButton;
 
@@ -30,23 +39,19 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
-
 @end
 
 #pragma Captain_MyPlayer
-@implementation Captain_MyPlayers
-@synthesize playersTableView;
+@interface Captain_MyPlayers ()
+@property IBOutlet UIToolbar *actionBar;
+@end
+
+@implementation Captain_MyPlayers{
+    JSONConnect *connection;
+    NSArray *playerList;
+    NSArray *filterPlayerList;
+}
+@synthesize actionBar;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,14 +61,25 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [playersTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+//    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
+    [self.navigationController setToolbarHidden:NO];
+    [self setToolbarItems:actionBar.items];
+    
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
+    [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)receiveTeamMembers:(NSArray *)players
+{
+    playerList = players;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -77,20 +93,25 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 1;
+    if ([tableView isEqual:self.tableView]) {
+        return playerList.count;
+    }
+    else {
+        return filterPlayerList.count;
+    }
 }
 
 
 - (Captain_MyPlayerCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Captain_MyPlayerCell";
-    Captain_MyPlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [playersTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    }
+    Captain_MyPlayerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UserInfo *player = [[tableView isEqual:self.tableView]?playerList:filterPlayerList objectAtIndex:indexPath.row];
     
     // Configure the cell...
     [cell setTag:indexPath.row];
+    [cell.playerName setText:player.nickName];
+    [cell.playerPortrait setImage:player.playerPortrait?player.playerPortrait:def_defaultPlayerPortrait];
     return cell;
 }
 
@@ -98,43 +119,6 @@
 {
     [self performSegueWithIdentifier:@"MyPlayer" sender:self];
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Navigation
 
