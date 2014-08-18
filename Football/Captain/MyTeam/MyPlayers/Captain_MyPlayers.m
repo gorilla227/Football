@@ -12,23 +12,18 @@
 @property IBOutlet UIImageView *playerPortrait;
 @property IBOutlet UILabel *playerName;
 @property IBOutlet UILabel *signUpStatusOfNextMatch;
-@property IBOutlet UIView *likeView;
-@property IBOutlet UIImageView *likeIcon;
-@property IBOutlet UILabel *likeScore;
-@property IBOutlet UIButton *actionButton;
 @end
 @implementation Captain_MyPlayerCell
-@synthesize playerPortrait, playerName, signUpStatusOfNextMatch, likeView, likeScore, likeIcon, actionButton;
+@synthesize playerPortrait, playerName, signUpStatusOfNextMatch;
 
 -(void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    [likeView setBackgroundColor:[UIColor clearColor]];
-    [likeView.layer setBorderWidth:1.0f];
-    [likeView.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [likeView.layer setCornerRadius:8.0f];
-    [actionButton.layer setCornerRadius:3.0f];
-    [actionButton setBackgroundColor:def_warmUpMatch_actionButtonBG_Enable];
+    [playerPortrait.layer setCornerRadius:10.0f];
+    [playerPortrait.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [playerPortrait.layer setBorderWidth:1.0f];
+    [playerPortrait.layer setMasksToBounds:YES];
+    [self setBackgroundColor:[UIColor colorWithRed:0/255.0 green:204/255.0 blue:255/255.0 alpha:0.5]];
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -62,7 +57,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-//    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
     [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:actionBar.items];
     
@@ -101,8 +95,7 @@
     }
 }
 
-
-- (Captain_MyPlayerCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Captain_MyPlayerCell";
     Captain_MyPlayerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -113,6 +106,16 @@
     [cell.playerName setText:player.nickName];
     [cell.playerPortrait setImage:player.playerPortrait?player.playerPortrait:def_defaultPlayerPortrait];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 -(IBAction)actionButtonOnClicked:(id)sender

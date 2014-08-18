@@ -169,11 +169,11 @@
 //Update TeamProfile Sucessfully
 -(void)updateTeamProfileSuccessfully
 {
-    [connection requestUserInfo:gMyUserInfo.userId withTeam:YES];
+    [connection requestUserInfo:gMyUserInfo.userId withTeam:YES withReference:nil];
 }
 
 //Receive updated UserInfo
--(void)receiveUserInfo:(UserInfo *)userInfo
+-(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
 {
     gMyUserInfo = userInfo;
     [self.navigationController popViewControllerAnimated:YES];

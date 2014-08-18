@@ -96,7 +96,7 @@
     }
 }
 
--(void)receiveUserInfo:(UserInfo *)userInfo
+-(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
 {
     gMyUserInfo = userInfo;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_RegisterView_Success_Title"]
@@ -109,12 +109,12 @@
 
 -(void)registerCaptainSuccessfully:(NSInteger)userId teamId:(NSInteger)teamId
 {
-    [connection requestUserInfo:userId withTeam:YES];
+    [connection requestUserInfo:userId withTeam:YES withReference:nil];
 }
 
 -(void)registerPlayerSuccessfully:(NSInteger)userId
 {
-    [connection requestUserInfo:userId withTeam:NO];
+    [connection requestUserInfo:userId withTeam:NO withReference:nil];
 }
 
 //UIAlertView

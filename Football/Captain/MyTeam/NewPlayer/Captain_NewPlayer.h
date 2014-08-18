@@ -10,27 +10,14 @@
 #import "CallFriends.h"
 #import "Captain_PlayerDetails.h"
 
-@interface Captain_NewPlayer_ApplicantCell : UITableViewCell<UIAlertViewDelegate>
-@property IBOutlet UILabel *nickName;
-@property IBOutlet UILabel *postion;
-@property IBOutlet UILabel *age;
-@property IBOutlet UILabel *team;
-@property IBOutlet UILabel *commentTitle;
-@property IBOutlet UITextView *comment;
-@property IBOutlet UILabel *status;
-@property IBOutlet UISegmentedControl *agreementSegment;
+@interface Captain_NewPlayer_ApplyinCell : UITableViewCell<UIAlertViewDelegate>
+
 @end
 
-@interface Captain_NewPlayer_InviteeCell : UITableViewCell<UIAlertViewDelegate>
-@property IBOutlet UILabel *playerName;
-@property IBOutlet UILabel *postion;
-@property IBOutlet UILabel *age;
-@property IBOutlet UILabel *team;
-@property IBOutlet UITextView *comment;
-@property IBOutlet UILabel *status;
-@property IBOutlet UIButton *cancelInvitationButton;
+@interface Captain_NewPlayer_CallinCell : UITableViewCell<UIAlertViewDelegate>
+
 @end
 
-@interface Captain_NewPlayer : UIViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
-@property IBOutlet UITableView *playerNewTableView;
+@interface Captain_NewPlayer : UIViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, JSONConnectDelegate>
+
 @end

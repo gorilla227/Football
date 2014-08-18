@@ -24,10 +24,7 @@
 
 @implementation MessageCenter_ApplyinPlayerProfile{
     JSONConnect *connection;
-    UserInfo *senderPlayer;
-    NSArray *positionList;
-    NSDateFormatter *birthdayDateFormatter;
-}
+    UserInfo *senderPlayer;}
 @synthesize message;
 @synthesize playerPortraitImageView, nickNameLabel, legalNameLabel, phoneNumberLabel, emailLabel, qqLabel, ageLabel, activityRegionLabel, positionLabel, styleLabel, actionBar;
 
@@ -58,13 +55,6 @@
     [playerPortraitImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
     [playerPortraitImageView.layer setBorderWidth:1.0f];
     
-    //Set DateFormatter
-    birthdayDateFormatter = [[NSDateFormatter alloc] init];
-    [birthdayDateFormatter setDateFormat:def_MatchDateformat];
-    
-    //Set PostionList
-    positionList = [gUIStrings objectForKey:@"UI_Positions"];
-    
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
 }
 
@@ -83,7 +73,7 @@
     else {
         [self.navigationController setToolbarHidden:YES];
     }
-    [connection requestUserInfo:message.senderId withTeam:NO];
+    [connection requestUserInfo:message.senderId withTeam:NO withReference:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -126,7 +116,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)receiveUserInfo:(UserInfo *)userInfo
+-(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
 {
     senderPlayer = userInfo;
     if (userInfo.playerPortrait) {
@@ -140,11 +130,9 @@
     [emailLabel setText:userInfo.email];
     [phoneNumberLabel setText:userInfo.mobile];
     [qqLabel setText:userInfo.qq];
-    NSDate *birthday = [birthdayDateFormatter dateFromString:userInfo.birthday];
-    NSDateComponents *ageComponenets = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:birthday toDate:[NSDate date] options:0];
-    [ageLabel setText:[NSNumber numberWithInteger:ageComponenets.year].stringValue];
+    [ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:userInfo.birthday]].stringValue];
     [activityRegionLabel setText:[[ActivityRegion stringWithCode:userInfo.activityRegion] componentsJoinedByString:@" "]];
-    [positionLabel setText:[positionList objectAtIndex:userInfo.position]];
+    [positionLabel setText:[Position stringWithCode:userInfo.position]];
     [styleLabel setText:userInfo.style];
 }
 /*

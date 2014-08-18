@@ -78,6 +78,37 @@
 }
 @end
 
+#pragma Position
+@implementation Position
++(NSString *)stringWithCode:(NSInteger)position
+{
+    NSArray *positionList = [gUIStrings objectForKey:@"UI_Positions"];
+    return [positionList objectAtIndex:position];
+}
+
++(NSArray *)positionList
+{
+    return [gUIStrings objectForKey:@"UI_Positions"];
+}
+@end
+
+#pragma Age
+@implementation Age
++(NSInteger)ageFromDate:(NSDate *)birthday
+{
+    NSDateComponents *ageComponenets = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:birthday toDate:[NSDate date] options:0];
+    return ageComponenets.year;
+}
+
++(NSInteger)ageFromString:(NSString *)birthdayString
+{
+    NSDateFormatter *birthdayDateFormatter = [[NSDateFormatter alloc] init];
+    [birthdayDateFormatter setDateFormat:def_MatchDateformat];
+    NSDate *birthday = [birthdayDateFormatter dateFromString:birthdayString];
+    return [Age ageFromDate:birthday];
+}
+@end
+
 #pragma Message
 @implementation Message
 @synthesize messageId, senderId, receiverId, senderName, receiverName, creationDate, messageBody, messageType, status;

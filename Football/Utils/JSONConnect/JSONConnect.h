@@ -34,7 +34,7 @@ enum RequestMessageSourceType
 #pragma new Server
 -(void)loginVerificationSuccessfully:(NSInteger)userId;//登录验证成功
 -(void)loginVerificationFailed;//登录验证失败
--(void)receiveUserInfo:(UserInfo *)userInfo;//返回用户信息
+-(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference;//返回用户信息
 -(void)registerPlayerSuccessfully:(NSInteger)userId;//注册队长成功
 -(void)registerCaptainSuccessfully:(NSInteger)userId teamId:(NSInteger)teamId;//注册球员成功
 -(void)updatePlayerProfileSuccessfully;//更新球员资料成功
@@ -70,7 +70,7 @@ enum RequestMessageSourceType
 
 #pragma new Server
 -(void)loginVerification:(NSString *)account password:(NSString *)password;//登录验证
--(void)requestUserInfo:(NSInteger)userId withTeam:(BOOL)withTeam;//获取用户信息
+-(void)requestUserInfo:(NSInteger)userId withTeam:(BOOL)withTeam withReference:(id)reference;//获取用户信息
 -(void)registerCaptain:(NSString *)mobile email:(NSString *)email password:(NSString *)password nickName:(NSString *)nickName teamName:(NSString *)teamName;//注册队长
 -(void)registerPlayer:(NSString *)mobile email:(NSString *)email password:(NSString *)password nickName:(NSString *)nickName;//注册球员
 -(void)updatePlayerProfile:(NSDictionary *)playerProfile;//更新球员资料（除了头像），mobile, email, userType 和nickname的修改服务器暂不支持

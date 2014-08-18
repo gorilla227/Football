@@ -81,10 +81,10 @@
 }
 
 //GetUserInfo
--(void)requestUserInfo:(NSInteger)userId withTeam:(BOOL)withTeam
+-(void)requestUserInfo:(NSInteger)userId withTeam:(BOOL)withTeam withReference:(id)reference
 {
     [busyIndicatorDelegate lockView];
-    [manager.operationQueue cancelAllOperations];
+//    [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UserInfo_Suffix];
     NSDictionary *parameters = CONNECT_UserInfo_Parameters(userId, withTeam?1:0);
     
@@ -92,7 +92,7 @@
         [busyIndicatorDelegate unlockView];
         if (responseObject) {
             UserInfo *userInfo = [[UserInfo alloc] initWithData:responseObject];
-            [delegate receiveUserInfo:userInfo];
+            [delegate receiveUserInfo:userInfo withReference:reference];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
@@ -513,7 +513,7 @@
     
     [manager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         UserInfo *userInfo = [[UserInfo alloc] initWithData:responseObject];
-        [delegate receiveUserInfo:userInfo];
+        [delegate receiveUserInfo:userInfo withReference:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];

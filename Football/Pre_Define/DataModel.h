@@ -14,6 +14,18 @@
 +(NSArray *)codeWithString:(NSArray *)string;
 @end
 
+#pragma Position
+@interface Position : NSObject
++(NSString *)stringWithCode:(NSInteger)position;
++(NSArray *)positionList;
+@end
+
+#pragma Age
+@interface Age : NSObject
++(NSInteger)ageFromDate:(NSDate *)birthday;
++(NSInteger)ageFromString:(NSString *)birthdayString;
+@end
+
 #pragma Message
 #define kMessage_id @"id"
 #define kMessage_senderId @"from"

@@ -87,7 +87,7 @@
 
 -(void)loginVerificationSuccessfully:(NSInteger)userId
 {
-    [connection requestUserInfo:userId withTeam:YES];
+    [connection requestUserInfo:userId withTeam:YES withReference:nil];
 }
 
 -(void)loginVerificationFailed
@@ -99,7 +99,7 @@
     [loginFailedAlertView show];
 }
 
--(void)receiveUserInfo:(UserInfo *)userInfo
+-(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
 {
     gMyUserInfo = userInfo;
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];

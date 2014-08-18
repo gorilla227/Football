@@ -37,7 +37,6 @@
     NSArray *textFieldArray;
     NSDateFormatter *birthdayDateFormatter;
     UIPickerView *positionPicker;
-    NSArray *positionList;
     JSONConnect *connection;
     enum EditProfileViewSource viewSource;
 }
@@ -78,9 +77,6 @@
     //Set DateFormatter
     birthdayDateFormatter = [[NSDateFormatter alloc] init];
     [birthdayDateFormatter setDateFormat:def_MatchDateformat];
-    
-    //Set PostionList
-    positionList = [gUIStrings objectForKey:@"UI_Positions"];
     
     //Set the playerPortrait related controls
     [playerPortraitImageView.layer setCornerRadius:10.0f];
@@ -155,7 +151,7 @@
         [qqTextField setText:gMyUserInfo.qq];
         [birthdateTextField setText:gMyUserInfo.birthday];
         [activityRegionTextField presetActivityRegionCode:gMyUserInfo.activityRegion];
-        [positionTextField setText:positionList[gMyUserInfo.position]];
+        [positionTextField setText:[Position stringWithCode:gMyUserInfo.position]];
         [positionPicker selectRow:gMyUserInfo.position inComponent:0 animated:NO];
         [styleTextField setText:gMyUserInfo.style];
         if (gMyUserInfo.playerPortrait) {
@@ -199,11 +195,11 @@
 //Update PlayerProfile Sucessfully
 -(void)updatePlayerProfileSuccessfully
 {
-    [connection requestUserInfo:gMyUserInfo.userId withTeam:YES];
+    [connection requestUserInfo:gMyUserInfo.userId withTeam:YES withReference:nil];
 }
 
 //Receive updated UserInfo
--(void)receiveUserInfo:(UserInfo *)userInfo
+-(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
 {
     gMyUserInfo = userInfo;
     if (viewSource == EditProfileViewSource_Register) {
@@ -237,17 +233,17 @@
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return positionList.count;
+    return [Position positionList].count;
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return positionList[row];
+    return [Position positionList][row];
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    [positionTextField setText:positionList[row]];
+    [positionTextField setText:[Position positionList][row]];
 }
 
 //Portrait Methods
