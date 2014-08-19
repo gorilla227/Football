@@ -1272,21 +1272,20 @@
             <objects>
                 <viewController storyboardIdentifier="Captain_NewPlayer" title="新人入队" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1KA-6F-QpJ" customClass="Captain_NewPlayer" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YZC-8C-KBv">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="130" sectionHeaderHeight="22" sectionFooterHeight="22" id="6j6-FL-W0A">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" sectionHeaderHeight="22" sectionFooterHeight="22" id="6j6-FL-W0A">
                                 <rect key="frame" x="0.0" y="153" width="320" height="307"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell alpha="0.5" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Applyin_Cell" id="oZZ-1i-qgK" customClass="Captain_NewPlayer_ApplyinCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oZZ-1i-qgK" id="MW3-Xm-JNE">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="Fjt-dY-JWW">
@@ -1384,7 +1383,7 @@
                                         <rect key="frame" x="0.0" y="152" width="320" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qbD-Qw-2oi" id="yAp-Pm-Mbb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="队内名字:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="q5Q-Qz-l8P">
@@ -1488,25 +1487,6 @@
                                     <outlet property="delegate" destination="1KA-6F-QpJ" id="5LJ-h1-y1E"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="I7s-ST-Fog">
-                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dYe-Q9-aVe"/>
-                                    <barButtonItem title="召唤队员" id="zKG-Ef-1cb">
-                                        <connections>
-                                            <action selector="callFriendsButtonOnClicked:" destination="1KA-6F-QpJ" id="itD-F4-vG9"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="d8P-Di-MWI"/>
-                                    <barButtonItem title="球员超市" id="8CZ-1O-Kn2">
-                                        <connections>
-                                            <segue destination="z2f-wz-WV6" kind="push" id="MSI-9h-h8G"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qkW-P8-G19"/>
-                                </items>
-                            </toolbar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="lfC-rl-vus">
                                 <rect key="frame" x="20" y="117" width="280" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1570,8 +1550,10 @@
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <size key="freeformSize" width="320" height="455"/>
                     <connections>
+                        <outlet property="actionBar" destination="I7s-ST-Fog" id="nst-2B-H9v"/>
                         <outlet property="numOfApplyinLabel" destination="RcA-7l-zQV" id="7ro-N3-TTe"/>
                         <outlet property="numOfCallinLabel" destination="fSX-Ox-vBV" id="vvz-W1-dRP"/>
                         <outlet property="numOfTeamMemberLabel" destination="AIJ-As-W8Q" id="AZj-33-4UB"/>
@@ -1581,6 +1563,25 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O64-Kw-K49" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="I7s-ST-Fog">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="dYe-Q9-aVe"/>
+                        <barButtonItem title="召唤队员" id="zKG-Ef-1cb">
+                            <connections>
+                                <action selector="callFriendsButtonOnClicked:" destination="1KA-6F-QpJ" id="itD-F4-vG9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="d8P-Di-MWI"/>
+                        <barButtonItem title="球员超市" id="8CZ-1O-Kn2">
+                            <connections>
+                                <segue destination="z2f-wz-WV6" kind="push" id="MSI-9h-h8G"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="qkW-P8-G19"/>
+                    </items>
+                </toolbar>
             </objects>
             <point key="canvasLocation" x="322" y="2266"/>
         </scene>
@@ -1589,11 +1590,11 @@
             <objects>
                 <viewController storyboardIdentifier="Captain_PlayerMarket" title="球员超市" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z2f-wz-WV6" customClass="Captain_PlayerMarket" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8jf-fx-f8y">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsMultipleSelection="YES" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="aGb-xi-ukw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1690,7 +1691,7 @@
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="wE2-dO-ahx">
-                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="q3C-Lt-eAe"/>

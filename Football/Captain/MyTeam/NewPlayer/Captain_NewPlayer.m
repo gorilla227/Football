@@ -146,6 +146,7 @@
 @property IBOutlet UILabel *numOfTeamMemberLabel;
 @property IBOutlet UILabel *numOfApplyinLabel;
 @property IBOutlet UILabel *numOfCallinLabel;
+@property IBOutlet UIToolbar *actionBar;
 @end
 
 @implementation Captain_NewPlayer{
@@ -154,7 +155,7 @@
     NSArray *callinList;
     NSMutableDictionary *messageReferenceDictionary;
 }
-@synthesize playerNewTableView, teamLogoImageView, typeSegement, numOfApplyinLabel, numOfCallinLabel, numOfTeamMemberLabel;
+@synthesize playerNewTableView, teamLogoImageView, typeSegement, numOfApplyinLabel, numOfCallinLabel, numOfTeamMemberLabel, actionBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -171,6 +172,7 @@
     // Do any additional setup after loading the view.
     messageReferenceDictionary = [NSMutableDictionary new];
     [self.view setBackgroundColor:[UIColor clearColor]];
+    [self setToolbarItems:actionBar.items];
     
     //Set tableView
     [playerNewTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -194,6 +196,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
 }
 
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType
@@ -313,7 +321,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 140;
+    return tableView.rowHeight + 10;
 }
 
 -(IBAction)callFriendsButtonOnClicked:(id)sender
