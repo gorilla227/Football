@@ -8,8 +8,8 @@
 
 #import "Captain_NewPlayer.h"
 
-#pragma Captain_NewPlayer_ApplyinCell
-@interface Captain_NewPlayer_ApplyinCell ()
+#pragma Captain_NewPlayer_Cell
+@interface Captain_NewPlayer_Cell ()
 @property IBOutlet UIImageView *playerPortaitImageView;
 @property IBOutlet UILabel *activityRegionLabel;
 @property IBOutlet UILabel *nickNameLabel;
@@ -20,7 +20,7 @@
 @property IBOutlet UISegmentedControl *agreementSegment;
 @end
 
-@implementation Captain_NewPlayer_ApplyinCell
+@implementation Captain_NewPlayer_Cell
 @synthesize nickNameLabel, positionLabel, ageLabel, agreementSegment, playerPortaitImageView, activityRegionLabel, styleLabel, timeStampLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -88,55 +88,55 @@
 }
 @end
 
-#pragma Captain_NewPlayer_CallinCell
-@interface Captain_NewPlayer_CallinCell ()
-@property IBOutlet UILabel *playerName;
-@property IBOutlet UILabel *postion;
-@property IBOutlet UILabel *age;
-@property IBOutlet UILabel *team;
-@property IBOutlet UITextView *comment;
-@property IBOutlet UILabel *status;
-@property IBOutlet UIButton *cancelInvitationButton;
-@end
-@implementation Captain_NewPlayer_CallinCell
-@synthesize playerName, postion, age, team, comment, status, cancelInvitationButton;
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
-
--(IBAction)cancelInvitationButtonOnClicked:(id)sender
-{
-    UIAlertView *confirmCancel = [[UIAlertView alloc] initWithTitle:@"取消邀请" message:[NSString stringWithFormat:@"确定要取消对%@的邀请吗？", playerName.text] delegate:self cancelButtonTitle:@"撤销操作" otherButtonTitles:@"确定", nil];
-    [confirmCancel show];
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [cancelInvitationButton setEnabled:NO];
-        [cancelInvitationButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-        NSLog(@"取消邀请");
-    }
-}
-@end
+//#pragma Captain_NewPlayer_CallinCell
+//@interface Captain_NewPlayer_CallinCell ()
+//@property IBOutlet UILabel *playerName;
+//@property IBOutlet UILabel *postion;
+//@property IBOutlet UILabel *age;
+//@property IBOutlet UILabel *team;
+//@property IBOutlet UITextView *comment;
+//@property IBOutlet UILabel *status;
+//@property IBOutlet UIButton *cancelInvitationButton;
+//@end
+//@implementation Captain_NewPlayer_CallinCell
+//@synthesize playerName, postion, age, team, comment, status, cancelInvitationButton;
+//
+//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//{
+//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+//    if (self) {
+//        // Initialization code
+//    }
+//    return self;
+//}
+//
+//- (void)awakeFromNib
+//{
+//    // Initialization code
+//}
+//
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+//{
+//    [super setSelected:selected animated:animated];
+//    
+//    // Configure the view for the selected state
+//}
+//
+//-(IBAction)cancelInvitationButtonOnClicked:(id)sender
+//{
+//    UIAlertView *confirmCancel = [[UIAlertView alloc] initWithTitle:@"取消邀请" message:[NSString stringWithFormat:@"确定要取消对%@的邀请吗？", playerName.text] delegate:self cancelButtonTitle:@"撤销操作" otherButtonTitles:@"确定", nil];
+//    [confirmCancel show];
+//}
+//
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (buttonIndex == 1) {
+//        [cancelInvitationButton setEnabled:NO];
+//        [cancelInvitationButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+//        NSLog(@"取消邀请");
+//    }
+//}
+//@end
 
 #pragma Captain_NewPlayer
 @interface Captain_NewPlayer ()
@@ -272,16 +272,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *CellIdentifier = @"NewPlayerCell";
+    Captain_NewPlayer_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (typeSegement.selectedSegmentIndex == 0) {
         Message *message = [applyinList objectAtIndex:indexPath.row];
-        UserInfo *sender = [messageReferenceDictionary objectForKey:[NSNumber numberWithInteger:message.messageId]];
-        Captain_NewPlayer_ApplyinCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Applyin_Cell"];
+        UserInfo *player = [messageReferenceDictionary objectForKey:[NSNumber numberWithInteger:message.messageId]];
         // Configure the cell...
-        [cell.nickNameLabel setText:sender.nickName];
-        [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:sender.birthday]].stringValue];
-        [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:sender.activityRegion] componentsJoinedByString:@" "]];
-        [cell.styleLabel setText:sender.style];
-        [cell.positionLabel setText:[Position stringWithCode:sender.position]];
+        [cell.nickNameLabel setText:player.nickName];
+        [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:player.birthday]].stringValue];
+        [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:player.activityRegion] componentsJoinedByString:@" "]];
+        [cell.styleLabel setText:player.style];
+        [cell.positionLabel setText:[Position stringWithCode:player.position]];
+        [cell.playerPortaitImageView setImage:player.playerPortrait?player.playerPortrait:def_defaultPlayerPortrait];
         switch (message.status) {
             case 0:
             case 1:
@@ -306,17 +308,24 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:def_MessageDateformat];
         [cell.timeStampLabel setText:[dateFormatter stringFromDate:message.creationDate]];
-        return cell;
+        [cell.agreementSegment setHidden:NO];
     }
     else {
-        Captain_NewPlayer_CallinCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Callin_Cell"];
-
+        Message *message = [callinList objectAtIndex:indexPath.row];
+        UserInfo *player = [messageReferenceDictionary objectForKey:[NSNumber numberWithInteger:message.messageId]];
         // Configure the cell...
-        [cell.cancelInvitationButton.layer setBorderWidth:1.0f];
-        [cell.cancelInvitationButton.layer setBorderColor:[UIColor magentaColor].CGColor];
-        [cell.cancelInvitationButton.layer setCornerRadius:5.0f];
-        return cell;
+        [cell.nickNameLabel setText:player.nickName];
+        [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:player.birthday]].stringValue];
+        [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:player.activityRegion] componentsJoinedByString:@" "]];
+        [cell.styleLabel setText:player.style];
+        [cell.positionLabel setText:[Position stringWithCode:player.position]];
+        [cell.playerPortaitImageView setImage:player.playerPortrait?player.playerPortrait:def_defaultPlayerPortrait];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:def_MessageDateformat];
+        [cell.timeStampLabel setText:[dateFormatter stringFromDate:message.creationDate]];
+        [cell.agreementSegment setHidden:YES];
     }
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

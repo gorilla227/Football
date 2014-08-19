@@ -10,11 +10,7 @@
 #import "CallFriends.h"
 #import "Captain_PlayerDetails.h"
 
-@interface Captain_NewPlayer_ApplyinCell : UITableViewCell<UIAlertViewDelegate>
-
-@end
-
-@interface Captain_NewPlayer_CallinCell : UITableViewCell<UIAlertViewDelegate>
+@interface Captain_NewPlayer_Cell : UITableViewCell<UIAlertViewDelegate>
 
 @end
 
