@@ -17,11 +17,13 @@
 @property IBOutlet UILabel *ageLabel;
 @property IBOutlet UILabel *styleLabel;
 @property IBOutlet UILabel *timeStampLabel;
+@property IBOutlet UIView *statusView;
+@property IBOutlet UILabel *statusLabel;
 @property IBOutlet UISegmentedControl *agreementSegment;
 @end
 
 @implementation Captain_NewPlayer_Cell
-@synthesize nickNameLabel, positionLabel, ageLabel, agreementSegment, playerPortaitImageView, activityRegionLabel, styleLabel, timeStampLabel;
+@synthesize nickNameLabel, positionLabel, ageLabel, agreementSegment, playerPortaitImageView, activityRegionLabel, styleLabel, timeStampLabel, statusLabel, statusView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -39,6 +41,8 @@
     [playerPortaitImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
     [playerPortaitImageView.layer setBorderWidth:1.0f];
     [playerPortaitImageView.layer setMasksToBounds:YES];
+
+    [statusView.layer setCornerRadius:5.0f];
 }
 
 -(IBAction)agreementOnClicked:(id)sender
@@ -289,22 +293,28 @@
             case 1:
                 [cell.agreementSegment setSelectedSegmentIndex:-1];
                 [cell.agreementSegment setEnabled:YES];
+                [cell.statusView setBackgroundColor:cLightBlue];
                 break;
             case 2:
                 [cell.agreementSegment setSelectedSegmentIndex:0];
                 [cell.agreementSegment setEnabled:NO];
+                [cell.statusView setBackgroundColor:cLightGreen];
                 break;
             case 3:
                 [cell.agreementSegment setSelectedSegmentIndex:1];
                 [cell.agreementSegment setEnabled:NO];
+                [cell.statusView setBackgroundColor:cRed];
                 break;
             case 4:
                 [cell.agreementSegment setSelectedSegmentIndex:-1];
                 [cell.agreementSegment setEnabled:NO];
+                [cell.statusView setBackgroundColor:cGray];
                 break;
             default:
                 break;
         }
+        NSArray *messageSubtypeStatus = [gUIStrings objectForKey:@"UI_MessageSubtypeStatus"];
+        [cell.statusLabel setText:[messageSubtypeStatus objectAtIndex:message.status]];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:def_MessageDateformat];
         [cell.timeStampLabel setText:[dateFormatter stringFromDate:message.creationDate]];

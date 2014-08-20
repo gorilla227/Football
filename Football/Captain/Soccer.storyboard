@@ -1304,17 +1304,6 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="vvs-5y-HMu">
-                                                            <rect key="frame" x="88" y="73" width="220" height="29"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <segments>
-                                                                <segment title="同意"/>
-                                                                <segment title="拒绝"/>
-                                                            </segments>
-                                                            <connections>
-                                                                <action selector="agreementOnClicked:" destination="oZZ-1i-qgK" eventType="valueChanged" id="kkn-NO-5oy"/>
-                                                            </connections>
-                                                        </segmentedControl>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="uwF-T5-QHn">
                                                             <rect key="frame" x="8" y="8" width="69" height="70"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1361,6 +1350,33 @@
                                                             <rect key="frame" x="247" y="4" width="20" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
+                                                        <view contentMode="scaleToFill" id="pva-rX-PAg">
+                                                            <rect key="frame" x="88" y="72" width="225" height="31"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="XUR-X9-nF3">
+                                                                    <rect key="frame" x="165" y="1" width="50" height="29"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="vvs-5y-HMu">
+                                                                    <rect key="frame" x="1" y="1" width="162" height="29"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <segments>
+                                                                        <segment title="同意"/>
+                                                                        <segment title="拒绝"/>
+                                                                    </segments>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <connections>
+                                                                        <action selector="agreementOnClicked:" destination="oZZ-1i-qgK" eventType="valueChanged" id="kkn-NO-5oy"/>
+                                                                    </connections>
+                                                                </segmentedControl>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
@@ -1374,6 +1390,8 @@
                                             <outlet property="nickNameLabel" destination="vuG-dD-fUB" id="gET-33-oKg"/>
                                             <outlet property="playerPortaitImageView" destination="uwF-T5-QHn" id="S8X-Yb-lUK"/>
                                             <outlet property="positionLabel" destination="yP3-4x-2XR" id="HYh-i2-j69"/>
+                                            <outlet property="statusLabel" destination="XUR-X9-nF3" id="EFb-us-5Oi"/>
+                                            <outlet property="statusView" destination="pva-rX-PAg" id="17v-Yk-EFH"/>
                                             <outlet property="styleLabel" destination="qxo-jL-qXd" id="Ho3-HO-ATL"/>
                                             <outlet property="timeStampLabel" destination="gqR-b4-B3I" id="boC-vx-zkj"/>
                                             <segue destination="ml2-mD-abv" kind="push" identifier="Applicant" id="M4T-yH-GDv"/>
