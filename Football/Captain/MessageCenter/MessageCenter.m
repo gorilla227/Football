@@ -100,7 +100,7 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"RefreshTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MessageStatusUpdated" object:nil];
 }
 
 -(void)refreshTableView
@@ -289,12 +289,12 @@
     if ([segue.identifier isEqualToString:@"CallinTeamProfile"]) {
         MessageCenter_CallinTeamProfile *targetController = segue.destinationViewController;
         [targetController setMessage:sender];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"RefreshTableView" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"MessageStatusUpdated" object:nil];
     }
     else if ([segue.identifier isEqualToString:@"ApplyinPlayerProfile"]) {
         MessageCenter_ApplyinPlayerProfile *targetController = segue.destinationViewController;
         [targetController setMessage:sender];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"RefreshTableView" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"MessageStatusUpdated" object:nil];
     }
 }
 

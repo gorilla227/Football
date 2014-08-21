@@ -22,8 +22,11 @@
 @property IBOutlet UISegmentedControl *agreementSegment;
 @end
 
-@implementation Captain_NewPlayer_Cell
+@implementation Captain_NewPlayer_Cell{
+    UIAlertView *confirmAgreement;
+}
 @synthesize nickNameLabel, positionLabel, ageLabel, agreementSegment, playerPortaitImageView, activityRegionLabel, styleLabel, timeStampLabel, statusLabel, statusView;
+@synthesize message;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -48,21 +51,21 @@
 
 -(IBAction)agreementOnClicked:(id)sender
 {
-    UIAlertView *confirmAgreement = [[UIAlertView alloc] init];
+    confirmAgreement = [[UIAlertView alloc] init];
     [confirmAgreement setDelegate:self];
     switch (agreementSegment.selectedSegmentIndex) {
         case 0:
-            [confirmAgreement setTitle:@"同意入队确认"];
-            [confirmAgreement setMessage:[NSString stringWithFormat:@"确认同意%@入队？", nickNameLabel.text]];
-            [confirmAgreement addButtonWithTitle:@"取消"];
-            [confirmAgreement addButtonWithTitle:@"同意入队"];
+            [confirmAgreement setTitle:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptTitle"]];
+            [confirmAgreement setMessage:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptMessage"], nickNameLabel.text]];
+            [confirmAgreement addButtonWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_CancelButton"]];
+            [confirmAgreement addButtonWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptButton"]];
             [confirmAgreement setCancelButtonIndex:0];
             break;
         case 1:
-            [confirmAgreement setTitle:@"拒绝入队确认"];
-            [confirmAgreement setMessage:[NSString stringWithFormat:@"确认拒绝%@入队？", nickNameLabel.text]];
-            [confirmAgreement addButtonWithTitle:@"取消"];
-            [confirmAgreement addButtonWithTitle:@"拒绝入队"];
+            [confirmAgreement setTitle:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineTitle"]];
+            [confirmAgreement setMessage:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineMessage"], nickNameLabel.text]];
+            [confirmAgreement addButtonWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_CancelButton"]];
+            [confirmAgreement addButtonWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineButton"]];
             [confirmAgreement setCancelButtonIndex:0];
             break;
         default:
@@ -73,23 +76,51 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        switch (agreementSegment.selectedSegmentIndex) {
-            case 0:
-                NSLog(@"同意入队");
-                break;
-            case 1:
-                NSLog(@"拒绝入队");
-                break;
-            default:
-                break;
+    if ([alertView isEqual:confirmAgreement]) {
+        JSONConnect *connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.window.rootViewController];
+        if (buttonIndex == 1) {
+            switch (agreementSegment.selectedSegmentIndex) {
+                case 0:
+                    NSLog(@"同意入队");
+                    [connection replyApplyinMessage:message.messageId response:2];
+                    break;
+                case 1:
+                    NSLog(@"拒绝入队");
+                    [connection replyApplyinMessage:message.messageId response:3];
+                    break;
+                default:
+                    break;
+            }
+            [agreementSegment setEnabled:NO];
         }
-        [agreementSegment setEnabled:NO];
+        else {
+            [agreementSegment setSelectedSegmentIndex:-1];
+        }
     }
-    else {
-        [agreementSegment setSelectedSegmentIndex:-1];
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
+}
+
+-(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode
+{
+    NSLog(@"%@", [NSNumber numberWithInteger:responseCode]);
+    [message setStatus:responseCode];
+    NSString *responseString;
+    switch (responseCode) {
+        case 2:
+            responseString = [gUIStrings objectForKey:@"UI_ReplayApplyin_Accepted"];
+            break;
+        case 3:
+            responseString = [gUIStrings objectForKey:@"UI_ReplayApplyin_Declined"];
+            break;
+        default:
+            break;
     }
-    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:responseString delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+    [alertView show];
 }
 @end
 
@@ -192,6 +223,9 @@
     [teamLogoImageView setImage:gMyUserInfo.team.teamLogo?gMyUserInfo.team.teamLogo:def_defaultTeamLogo];
     [numOfTeamMemberLabel setText:[NSNumber numberWithInteger:gMyUserInfo.team.numOfMember].stringValue];
     
+    //Regiester Notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"MessageStatusUpdated" object:nil];
+    
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:@[[NSNumber numberWithInteger:2]] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:[[gSettings objectForKey:@"messageListCount"] integerValue] isSync:YES];
     [connection requestSentMessage:gMyUserInfo.userId messageTypes:@[[NSNumber numberWithInteger:1]] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:[[gSettings objectForKey:@"messageListCount"] integerValue] isSync:YES];
@@ -207,6 +241,16 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MessageStatusUpdated" object:nil];
+}
+
+-(void)refreshTableView
+{
+    [playerNewTableView reloadData];
 }
 
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType
@@ -281,6 +325,7 @@
     Captain_NewPlayer_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (typeSegement.selectedSegmentIndex == 0) {
         Message *message = [applyinList objectAtIndex:indexPath.row];
+        [cell setMessage:message];
         UserInfo *player = [messageReferenceDictionary objectForKey:[NSNumber numberWithInteger:message.messageId]];
         // Configure the cell...
         [cell.nickNameLabel setText:player.nickName];
@@ -324,6 +369,7 @@
     }
     else {
         Message *message = [callinList objectAtIndex:indexPath.row];
+        [cell setMessage:message];
         UserInfo *player = [messageReferenceDictionary objectForKey:[NSNumber numberWithInteger:message.messageId]];
         // Configure the cell...
         [cell.nickNameLabel setText:player.nickName];

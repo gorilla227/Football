@@ -97,7 +97,7 @@
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
