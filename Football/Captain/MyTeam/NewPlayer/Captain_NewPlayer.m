@@ -43,6 +43,7 @@
     [playerPortaitImageView.layer setMasksToBounds:YES];
 
     [statusView.layer setCornerRadius:5.0f];
+    [statusLabel.layer setCornerRadius:5.0f];
 }
 
 -(IBAction)agreementOnClicked:(id)sender
@@ -315,6 +316,7 @@
         }
         NSArray *messageSubtypeStatus = [gUIStrings objectForKey:@"UI_MessageSubtypeStatus"];
         [cell.statusLabel setText:[messageSubtypeStatus objectAtIndex:message.status]];
+        [cell.statusLabel setBackgroundColor:[UIColor clearColor]];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:def_MessageDateformat];
         [cell.timeStampLabel setText:[dateFormatter stringFromDate:message.creationDate]];
@@ -330,6 +332,24 @@
         [cell.styleLabel setText:player.style];
         [cell.positionLabel setText:[Position stringWithCode:player.position]];
         [cell.playerPortaitImageView setImage:player.playerPortrait?player.playerPortrait:def_defaultPlayerPortrait];
+        [cell.statusView setBackgroundColor:[UIColor clearColor]];
+        switch (message.status) {
+            case 0:
+            case 1:
+                [cell.statusLabel setBackgroundColor:cLightBlue];
+                break;
+            case 2:
+                [cell.statusLabel setBackgroundColor:cLightGreen];
+                break;
+            case 3:
+                [cell.statusLabel setBackgroundColor:cRed];
+                break;
+            case 4:
+                [cell.statusLabel setBackgroundColor:cGray];
+                break;
+            default:
+                break;
+        }
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:def_MessageDateformat];
         [cell.timeStampLabel setText:[dateFormatter stringFromDate:message.creationDate]];
