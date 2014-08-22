@@ -1394,7 +1394,6 @@
                                             <outlet property="statusView" destination="pva-rX-PAg" id="17v-Yk-EFH"/>
                                             <outlet property="styleLabel" destination="qxo-jL-qXd" id="Ho3-HO-ATL"/>
                                             <outlet property="timeStampLabel" destination="gqR-b4-B3I" id="boC-vx-zkj"/>
-                                            <segue destination="ml2-mD-abv" kind="push" identifier="Applicant" id="M4T-yH-GDv"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -3919,10 +3918,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="M4T-yH-GDv"/>
-        <segue reference="cUV-cu-CyG"/>
+        <segue reference="k8l-yS-1pJ"/>
         <segue reference="rOL-c9-VkO"/>
-        <segue reference="l9U-uZ-6hf"/>
         <segue reference="uxP-od-Rb5"/>
+        <segue reference="l9U-uZ-6hf"/>
+        <segue reference="cUV-cu-CyG"/>
     </inferredMetricsTieBreakers>
 </document>

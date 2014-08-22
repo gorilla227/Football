@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CallFriends.h"
-#import "Captain_PlayerDetails.h"
 
 @interface Captain_NewPlayer_Cell : UITableViewCell<UIAlertViewDelegate, JSONConnectDelegate>
 @property Message *message;

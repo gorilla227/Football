@@ -7,6 +7,9 @@
 //
 
 #import "Captain_NewPlayer.h"
+#import "CallFriends.h"
+#import "Captain_PlayerDetails.h"
+#import "MessageCenter_ApplyinPlayerProfile.h"
 
 #pragma Captain_NewPlayer_Cell
 @interface Captain_NewPlayer_Cell ()
@@ -402,6 +405,16 @@
         [cell.agreementSegment setHidden:YES];
     }
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (typeSegement.selectedSegmentIndex == 0) {
+        Message *message = [applyinList objectAtIndex:indexPath.row];
+        MessageCenter_ApplyinPlayerProfile *playerDetailController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"Callin_PlayerProfile"];
+        [playerDetailController setMessage:message];
+        [self.navigationController pushViewController:playerDetailController animated:YES];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
