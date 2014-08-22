@@ -24,7 +24,10 @@
 
 @implementation MessageCenter_ApplyinPlayerProfile{
     JSONConnect *connection;
-    UserInfo *senderPlayer;}
+    UserInfo *senderPlayer;
+    UIAlertView *acceptConfirm;
+    UIAlertView *declineConfirm;
+}
 @synthesize message;
 @synthesize playerPortraitImageView, nickNameLabel, legalNameLabel, phoneNumberLabel, emailLabel, qqLabel, ageLabel, activityRegionLabel, positionLabel, styleLabel, actionBar;
 
@@ -84,12 +87,22 @@
 
 -(IBAction)acceptButtonOnClicked:(id)sender
 {
-    [connection replyApplyinMessage:message.messageId response:2];
+    acceptConfirm = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptTitle"]
+                                               message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptMessage"], nickNameLabel.text]
+                                              delegate:self
+                                     cancelButtonTitle:[gUIStrings objectForKey:@"UI_NewPlayer_CancelButton"]
+                                     otherButtonTitles:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptButton"], nil];
+    [acceptConfirm show];
 }
 
 -(IBAction)declineButtonOnClicked:(id)sender
 {
-    [connection replyApplyinMessage:message.messageId response:3];
+    declineConfirm = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineTitle"]
+                                                message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineMessage"], nickNameLabel.text]
+                                               delegate:self
+                                      cancelButtonTitle:[gUIStrings objectForKey:@"UI_NewPlayer_CancelButton"]
+                                      otherButtonTitles:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineButton"], nil];
+    [declineConfirm show];
 }
 
 -(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode
@@ -98,10 +111,10 @@
     NSString *responseString;
     switch (responseCode) {
         case 2:
-            responseString = [gUIStrings objectForKey:@"UI_ReplayApplyin_Accepted"];
+            responseString = [NSString stringWithFormat:[gUIStrings objectForKey:@"UI_ReplayApplyin_Accepted"], message.senderName];
             break;
         case 3:
-            responseString = [gUIStrings objectForKey:@"UI_ReplayApplyin_Declined"];
+            responseString = [NSString stringWithFormat:[gUIStrings objectForKey:@"UI_ReplayApplyin_Declined"], message.senderName];
             break;
         default:
             break;
@@ -110,10 +123,22 @@
     [alertView show];
 }
 
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([alertView isEqual:acceptConfirm]) {
+        if (buttonIndex == 1) {
+            [connection replyApplyinMessage:message.messageId response:2];
+        }
+    }
+    else if ([alertView isEqual:declineConfirm]) {
+        if (buttonIndex == 1) {
+            [connection replyApplyinMessage:message.messageId response:3];
+        }
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference

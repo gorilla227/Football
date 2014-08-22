@@ -94,17 +94,13 @@
                 default:
                     break;
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
             [agreementSegment setEnabled:NO];
         }
         else {
             [agreementSegment setSelectedSegmentIndex:-1];
         }
     }
-}
-
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
 }
 
 -(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode
@@ -114,10 +110,10 @@
     NSString *responseString;
     switch (responseCode) {
         case 2:
-            responseString = [gUIStrings objectForKey:@"UI_ReplayApplyin_Accepted"];
+            responseString = [NSString stringWithFormat:[gUIStrings objectForKey:@"UI_ReplayApplyin_Accepted"], message.senderName];
             break;
         case 3:
-            responseString = [gUIStrings objectForKey:@"UI_ReplayApplyin_Declined"];
+            responseString = [NSString stringWithFormat:[gUIStrings objectForKey:@"UI_ReplayApplyin_Declined"], message.senderName];
             break;
         default:
             break;
@@ -244,11 +240,6 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MessageStatusUpdated" object:nil];
 }
 
 -(void)refreshTableView
