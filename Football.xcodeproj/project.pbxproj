@@ -124,6 +124,7 @@
 		B262D2FA1928131C0079526E /* stamp_cancelled.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F81928131C0079526E /* stamp_cancelled.png */; };
 		B262D2FB1928131C0079526E /* stamp_rejected.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F91928131C0079526E /* stamp_rejected.png */; };
 		B262D2FF1928297D0079526E /* Captain_WarmupMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = B262D2FE1928297D0079526E /* Captain_WarmupMatch.m */; };
+		B2793E8119A952DD00441F3A /* MessageCenter_Compose.m in Sources */ = {isa = PBXBuildFile; fileRef = B2793E8019A952DD00441F3A /* MessageCenter_Compose.m */; };
 		B27BD360194930B300802F4A /* FillAdditionalProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD35F194930B300802F4A /* FillAdditionalProfile.m */; };
 		B27BD6C61934093E00F35A51 /* Captain_PlayerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C51934093E00F35A51 /* Captain_PlayerDetails.m */; };
 		B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = B27BD6C819341DBD00F35A51 /* Captain_NotifyPlayers.m */; };
@@ -317,6 +318,8 @@
 		B262D2F91928131C0079526E /* stamp_rejected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stamp_rejected.png; path = Resource/stamp_rejected.png; sourceTree = "<group>"; };
 		B262D2FD1928297D0079526E /* Captain_WarmupMatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_WarmupMatch.h; path = Captain/MyMatches/WarmupMatch/Captain_WarmupMatch.h; sourceTree = "<group>"; };
 		B262D2FE1928297D0079526E /* Captain_WarmupMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_WarmupMatch.m; path = Captain/MyMatches/WarmupMatch/Captain_WarmupMatch.m; sourceTree = "<group>"; };
+		B2793E7F19A952DD00441F3A /* MessageCenter_Compose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCenter_Compose.h; path = Captain/MessageCenter/MessageCenter_Compose.h; sourceTree = "<group>"; };
+		B2793E8019A952DD00441F3A /* MessageCenter_Compose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCenter_Compose.m; path = Captain/MessageCenter/MessageCenter_Compose.m; sourceTree = "<group>"; };
 		B27BD35E194930B300802F4A /* FillAdditionalProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FillAdditionalProfile.h; path = LoginAndRegister/Register/FillAdditionalProfile.h; sourceTree = "<group>"; };
 		B27BD35F194930B300802F4A /* FillAdditionalProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FillAdditionalProfile.m; path = LoginAndRegister/Register/FillAdditionalProfile.m; sourceTree = "<group>"; };
 		B27BD6C41934093E00F35A51 /* Captain_PlayerDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_PlayerDetails.h; path = Captain/MyTeam/Captain_PlayerDetails.h; sourceTree = "<group>"; };
@@ -581,6 +584,8 @@
 				A1BB0E7A1998852B0082E91A /* MessageCenter_CallinTeamProfile.m */,
 				B27F6C0319A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.h */,
 				B27F6C0419A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.m */,
+				B2793E7F19A952DD00441F3A /* MessageCenter_Compose.h */,
+				B2793E8019A952DD00441F3A /* MessageCenter_Compose.m */,
 			);
 			name = MessageCenter;
 			sourceTree = "<group>";
@@ -1166,6 +1171,7 @@
 				A1009A73192888F1008A125D /* UIImage+ImageConvert.m in Sources */,
 				A18D7F7A1903912D003028FE /* Soccer_BaseNavigationController.m in Sources */,
 				A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */,
+				B2793E8119A952DD00441F3A /* MessageCenter_Compose.m in Sources */,
 				A1A79ADF198777960098453F /* AddStadium_SelectAddress.m in Sources */,
 				A1FFD1C21941737100C6F7CF /* Login.m in Sources */,
 				A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */,

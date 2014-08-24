@@ -9,7 +9,11 @@
             <objects>
                 <tabBarController storyboardIdentifier="MessageCenterTabBarController" title="信息中心" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="erq-SG-YPt" customClass="MessageCenterTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="信息中心" id="VQg-zp-jMH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="TtK-O1-nCu"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="TtK-O1-nCu">
+                            <connections>
+                                <segue destination="Vcv-df-BA7" kind="push" identifier="BlankCompose" id="DE6-74-WId"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -542,6 +546,12 @@
                                 <action selector="acceptButtonOnClicked:" destination="KVM-kU-9q0" id="kne-Qg-Zaz"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ef8-Xt-G8e"/>
+                        <barButtonItem title="通知试训" id="H7d-yU-HkU">
+                            <connections>
+                                <segue destination="Vcv-df-BA7" kind="push" identifier="TrailNotification" id="jic-tP-KFh"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="nqS-jR-M7H"/>
                         <barButtonItem title="拒绝" id="GsU-BL-Goi">
                             <connections>
@@ -555,10 +565,103 @@
             </objects>
             <point key="canvasLocation" x="405" y="640"/>
         </scene>
+        <!--Message Center Compose - 发送通知-->
+        <scene sceneID="TL5-kN-e04">
+            <objects>
+                <viewController storyboardIdentifier="MessageCompose" title="发送通知" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vcv-df-BA7" customClass="MessageCenter_Compose" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ld2-F0-6F1"/>
+                        <viewControllerLayoutGuide type="bottom" id="GHW-of-VeI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZDh-cz-EPQ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="任意输入通知内容" translatesAutoresizingMaskIntoConstraints="NO" id="L6s-Md-yFD">
+                                <rect key="frame" x="5" y="7" width="310" height="95"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Vcv-df-BA7" id="QIn-JG-a4J"/>
+                                </connections>
+                            </textView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gUS-Bh-ydc">
+                                <rect key="frame" x="0.0" y="146" width="320" height="314"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayerCell" textLabel="LnC-gP-VYv" style="IBUITableViewCellStyleDefault" id="b6z-aC-vez">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b6z-aC-vez" id="FgI-4V-Lgp">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LnC-gP-VYv">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Vcv-df-BA7" id="YzG-FV-Dmh"/>
+                                    <outlet property="delegate" destination="Vcv-df-BA7" id="pEK-6N-M0B"/>
+                                </connections>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="QpK-m6-jHM">
+                                <rect key="frame" x="11" y="110" width="300" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="全选"/>
+                                    <segment title="取消全选"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="selectAllOrSelectNone:" destination="Vcv-df-BA7" eventType="valueChanged" id="bg8-zY-rg7"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="发送通知" id="PPi-Oc-8Gg"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <outlet property="actionBar" destination="MuP-cN-eHs" id="ssn-LT-QaF"/>
+                        <outlet property="composeTextView" destination="L6s-Md-yFD" id="Qy5-8V-mvn"/>
+                        <outlet property="playerListTableView" destination="gUS-Bh-ydc" id="1Bh-DT-6jP"/>
+                        <outlet property="selectionSegment" destination="QpK-m6-jHM" id="6A5-mY-W5l"/>
+                        <outlet property="sendNotificationButton" destination="SME-Zo-Te5" id="QLg-5b-v3N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfw-8h-za2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="MuP-cN-eHs">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="k2K-m0-azf"/>
+                        <barButtonItem enabled="NO" title="发送通知" id="SME-Zo-Te5"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="yDd-XF-U7W"/>
+                    </items>
+                </toolbar>
+            </objects>
+            <point key="canvasLocation" x="-47" y="1154"/>
+        </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="DE6-74-WId"/>
+    </inferredMetricsTieBreakers>
 </document>

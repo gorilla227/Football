@@ -1505,11 +1505,11 @@
             <objects>
                 <viewController storyboardIdentifier="Captain_PlayerMarket" title="球员超市" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z2f-wz-WV6" customClass="Captain_PlayerMarket" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8jf-fx-f8y">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsMultipleSelection="YES" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="aGb-xi-ukw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1606,7 +1606,7 @@
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="wE2-dO-ahx">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="q3C-Lt-eAe"/>
@@ -1629,6 +1629,8 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="球员超市" id="wjv-Dz-KCb"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="playerMarketTableView" destination="aGb-xi-ukw" id="npJ-um-rec"/>
                         <outlet property="recruitButton" destination="f2O-YM-3vU" id="zRI-XD-eCL"/>
@@ -3918,10 +3920,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="cUV-cu-CyG"/>
+        <segue reference="l9U-uZ-6hf"/>
         <segue reference="k8l-yS-1pJ"/>
         <segue reference="rOL-c9-VkO"/>
         <segue reference="uxP-od-Rb5"/>
-        <segue reference="l9U-uZ-6hf"/>
-        <segue reference="cUV-cu-CyG"/>
     </inferredMetricsTieBreakers>
 </document>
