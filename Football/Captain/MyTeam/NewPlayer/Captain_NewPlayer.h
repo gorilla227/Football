@@ -10,6 +10,8 @@
 
 @interface Captain_NewPlayer_Cell : UITableViewCell<UIAlertViewDelegate, JSONConnectDelegate>
 @property Message *message;
+@property UserInfo *player;
+@property UINavigationController *navigationController;
 @end
 
 @interface Captain_NewPlayer : UIViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, JSONConnectDelegate>

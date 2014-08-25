@@ -8,14 +8,16 @@
 
 #import "MessageCenterTabBarController.h"
 #import "MessageCenter.h"
+#import "MessageCenter_Compose.h"
 
 @interface MessageCenterTabBarController ()
-
+@property IBOutlet UIBarButtonItem *composeButton;
 @end
 
 @implementation MessageCenterTabBarController{
     NSArray *messageTypes;
 }
+@synthesize composeButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +41,7 @@
     }
     [self.tabBar setBarTintColor:def_navigationBar_background];
     [self setViewControllers:tabBarViewControllers];
+    [composeButton setEnabled:gMyUserInfo.team];
     
     [self refreshUnreadMessageAmount];
     NSTimer *timer = [NSTimer timerWithTimeInterval:[[gSettings objectForKey:@"refreshUnreadMessageAmountDuration"] integerValue] target:self selector:@selector(refreshUnreadMessageAmount) userInfo:nil repeats:YES];
@@ -72,15 +75,13 @@
         [tabController.tabBarItem setBadgeValue:badgeString];
     }
 }
-/*
-#pragma mark - Navigation
 
+#pragma mark - Navigation
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
 }
 */
-
 @end

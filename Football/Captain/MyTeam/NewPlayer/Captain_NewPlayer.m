@@ -8,8 +8,8 @@
 
 #import "Captain_NewPlayer.h"
 #import "CallFriends.h"
-#import "Captain_PlayerDetails.h"
 #import "MessageCenter_ApplyinPlayerProfile.h"
+#import "MessageCenter_Compose.h"
 
 #pragma Captain_NewPlayer_Cell
 @interface Captain_NewPlayer_Cell ()
@@ -29,7 +29,7 @@
     UIAlertView *confirmAgreement;
 }
 @synthesize nickNameLabel, positionLabel, ageLabel, agreementSegment, playerPortaitImageView, activityRegionLabel, styleLabel, timeStampLabel, statusLabel, statusView;
-@synthesize message;
+@synthesize message, player, navigationController;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -63,31 +63,42 @@
             [confirmAgreement addButtonWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_CancelButton"]];
             [confirmAgreement addButtonWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptButton"]];
             [confirmAgreement setCancelButtonIndex:0];
+            [confirmAgreement show];
             break;
         case 1:
+            NSLog(@"通知试训");
+            if (player) {
+                MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
+                [composeViewController setComposeType:MessageComposeType_Trial];
+                [composeViewController setPlayerList:@[player]];
+                [navigationController pushViewController:composeViewController animated:YES];
+            }
+            [agreementSegment setSelectedSegmentIndex:-1];
+            break;
+        case 2:
             [confirmAgreement setTitle:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineTitle"]];
             [confirmAgreement setMessage:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineMessage"], nickNameLabel.text]];
             [confirmAgreement addButtonWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_CancelButton"]];
             [confirmAgreement addButtonWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineButton"]];
             [confirmAgreement setCancelButtonIndex:0];
+            [confirmAgreement show];
             break;
         default:
             break;
     }
-    [confirmAgreement show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if ([alertView isEqual:confirmAgreement]) {
-        JSONConnect *connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.window.rootViewController];
+        JSONConnect *connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:navigationController];
         if (buttonIndex == 1) {
             switch (agreementSegment.selectedSegmentIndex) {
                 case 0:
                     NSLog(@"同意入队");
                     [connection replyApplyinMessage:message.messageId response:2];
                     break;
-                case 1:
+                case 2:
                     NSLog(@"拒绝入队");
                     [connection replyApplyinMessage:message.messageId response:3];
                     break;
@@ -321,13 +332,18 @@
         Message *message = [applyinList objectAtIndex:indexPath.row];
         [cell setMessage:message];
         UserInfo *player = [messageReferenceDictionary objectForKey:[NSNumber numberWithInteger:message.messageId]];
+        
         // Configure the cell...
-        [cell.nickNameLabel setText:player.nickName];
-        [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:player.birthday]].stringValue];
-        [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:player.activityRegion] componentsJoinedByString:@" "]];
-        [cell.styleLabel setText:player.style];
-        [cell.positionLabel setText:[Position stringWithCode:player.position]];
-        [cell.playerPortaitImageView setImage:player.playerPortrait?player.playerPortrait:def_defaultPlayerPortrait];
+        if (player) {
+            [cell.nickNameLabel setText:player.nickName];
+            [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:player.birthday]].stringValue];
+            [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:player.activityRegion] componentsJoinedByString:@" "]];
+            [cell.styleLabel setText:player.style];
+            [cell.positionLabel setText:[Position stringWithCode:player.position]];
+            [cell.playerPortaitImageView setImage:player.playerPortrait?player.playerPortrait:def_defaultPlayerPortrait];
+            [cell setPlayer:player];
+        }
+
         switch (message.status) {
             case 0:
             case 1:
@@ -341,7 +357,7 @@
                 [cell.statusView setBackgroundColor:cLightGreen];
                 break;
             case 3:
-                [cell.agreementSegment setSelectedSegmentIndex:1];
+                [cell.agreementSegment setSelectedSegmentIndex:2];
                 [cell.agreementSegment setEnabled:NO];
                 [cell.statusView setBackgroundColor:cRed];
                 break;
@@ -366,12 +382,15 @@
         [cell setMessage:message];
         UserInfo *player = [messageReferenceDictionary objectForKey:[NSNumber numberWithInteger:message.messageId]];
         // Configure the cell...
-        [cell.nickNameLabel setText:player.nickName];
-        [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:player.birthday]].stringValue];
-        [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:player.activityRegion] componentsJoinedByString:@" "]];
-        [cell.styleLabel setText:player.style];
-        [cell.positionLabel setText:[Position stringWithCode:player.position]];
-        [cell.playerPortaitImageView setImage:player.playerPortrait?player.playerPortrait:def_defaultPlayerPortrait];
+        if (player) {
+            [cell.nickNameLabel setText:player.nickName];
+            [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:player.birthday]].stringValue];
+            [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:player.activityRegion] componentsJoinedByString:@" "]];
+            [cell.styleLabel setText:player.style];
+            [cell.positionLabel setText:[Position stringWithCode:player.position]];
+            [cell.playerPortaitImageView setImage:player.playerPortrait?player.playerPortrait:def_defaultPlayerPortrait];
+            [cell setPlayer:player];
+        }
         [cell.statusView setBackgroundColor:[UIColor clearColor]];
         switch (message.status) {
             case 0:
@@ -395,6 +414,7 @@
         [cell.timeStampLabel setText:[dateFormatter stringFromDate:message.creationDate]];
         [cell.agreementSegment setHidden:YES];
     }
+    [cell setNavigationController:self.navigationController];
     return cell;
 }
 
@@ -429,16 +449,13 @@
     [playerNewTableView reloadData];
 }
 
-
+/*
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"Applicant"]) {
-        Captain_PlayerDetails *playerDetails = segue.destinationViewController;
-        [playerDetails setViewType:PlayerDetails_Applicant];
-    }
 }
+*/
 @end

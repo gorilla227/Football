@@ -16,7 +16,9 @@
 @property IBOutlet UIBarButtonItem *sendNotificationButton;
 @end
 
-@implementation MessageCenter_Compose
+@implementation MessageCenter_Compose{
+    JSONConnect *connection;
+}
 @synthesize composeType, playerList;
 @synthesize playerListTableView, composeTextView, selectionSegment, actionBar, sendNotificationButton;
 
@@ -38,6 +40,7 @@
     [composeTextView initializeUITextFieldRoundCornerStyle];
     [playerListTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
     [self presetNotification];
 }
@@ -69,7 +72,7 @@
     
     switch (composeType) {
         case MessageComposeType_Blank:
-            
+            [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
             break;
         case MessageComposeType_Trial:
             [composeTextView setText:[messageTemplate objectForKey:@"Trial_Default"]];
@@ -147,6 +150,17 @@
             break;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:UITableViewSelectionDidChangeNotification object:nil];
+}
+
+-(void)receiveTeamMembers:(NSArray *)players
+{
+    playerList = players;
+    [playerListTableView reloadData];
+}
+
+-(IBAction)sendNotificationButtonOnClicked:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma TableView

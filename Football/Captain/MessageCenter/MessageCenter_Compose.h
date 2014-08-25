@@ -14,7 +14,7 @@ enum MessageComposeType
     MessageComposeType_Trial
 };
 
-@interface MessageCenter_Compose : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate>
+@interface MessageCenter_Compose : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, JSONConnectDelegate>
 @property enum MessageComposeType composeType;
 @property NSArray *playerList;
 
