@@ -134,8 +134,13 @@
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
     //MessageCenter
-    UIStoryboard *storyboad = [UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil];
-    UIViewController *targetViewController = [storyboad instantiateViewControllerWithIdentifier:@"MessageCenterTabBarController"];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil];
+//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MessageCenterTabBarController"];
+//    [self.navigationController pushViewController:targetViewController animated:YES];
+    
+    //PlayerMarket
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"PlayerMarket"];
     [self.navigationController pushViewController:targetViewController animated:YES];
 }
 //DissmissKeyboard

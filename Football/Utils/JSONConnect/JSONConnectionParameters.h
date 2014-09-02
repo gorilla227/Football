@@ -60,6 +60,17 @@
 #define CONNECT_TeamMembers_Suffix @"teammember/list"
 #define CONNECT_TeamMembers_Parameters(teamId) @{@"team_id":teamId}
 
+//Request PlayerBySearchCriteria
+#define CONNECT_SearchPlayersCriteria_Suffix @"store/querymember"
+#define CONNECT_SearchPlayersCriteria_Parameters(start, count) [NSMutableDictionary dictionaryWithDictionary:@{@"start":start, @"count":count}]
+#define CONNECT_SearchPlayersCriteria_ParameterKey_Nickname @"nickname"
+#define CONNECT_SearchPlayersCriteria_ParameterKey_HaveTeam @"haveTeam"
+#define CONNECT_SearchPlayersCriteria_ParameterKey_Position @"position"
+#define CONNECT_SearchPlayersCriteria_ParameterKey_AgeCap @"ageCap"
+#define CONNECT_SearchPlayersCriteria_ParameterKey_AgeFloor @"ageFloor"
+#define CONNECT_SearchPlayersCriteria_ParameterKey_ActivityRegion @"location"
+
+
 //Applyin a Team
 #define CONNECT_Applyin_Suffix @"message/applyin"
 #define CONNECT_Applyin_Parameters(from, to, message) @{@"from":from, @"to_team":to, @"message":message}

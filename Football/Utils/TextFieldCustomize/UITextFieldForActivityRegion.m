@@ -78,11 +78,21 @@
 {
     switch (component) {
         case 0:
-            return locationList.count;
+            return locationList.count + 1;
         case 1:
-            return [[[locationList objectAtIndex:[pickerView selectedRowInComponent:0]] objectForKey:@"city"] count];
+            if ([pickerView selectedRowInComponent:0] == 0) {
+                return 1;
+            }
+            else {
+                return [[[locationList objectAtIndex:[pickerView selectedRowInComponent:0] - 1] objectForKey:@"city"] count] + 1;
+            }
         case 2:
-            return [[[[[locationList objectAtIndex:[pickerView selectedRowInComponent:0]] objectForKey:@"city"] objectAtIndex:[pickerView selectedRowInComponent:1]] objectForKey:@"district"] count];
+            if ([pickerView selectedRowInComponent:1] == 0) {
+                return 1;
+            }
+            else {
+                return [[[[[locationList objectAtIndex:[pickerView selectedRowInComponent:0] - 1] objectForKey:@"city"] objectAtIndex:[pickerView selectedRowInComponent:1] - 1] objectForKey:@"district"] count] + 1;
+            }
         default:
             return 0;
     }
@@ -100,44 +110,51 @@
         default:
             break;
     }
-    NSString *province = [[locationList objectAtIndex:[locationPicker selectedRowInComponent:0]] objectForKey:@"name"];
-    NSString *city = [[[[locationList objectAtIndex:[locationPicker selectedRowInComponent:0]] objectForKey:@"city"] objectAtIndex:[locationPicker selectedRowInComponent:1]] objectForKey:@"name"];
-    NSString *district = [[[[[[locationList objectAtIndex:[pickerView selectedRowInComponent:0]] objectForKey:@"city"] objectAtIndex:[pickerView selectedRowInComponent:1]] objectForKey:@"district"] objectAtIndex:[pickerView selectedRowInComponent:2]] objectForKey:@"name"];
-    [self setText:[NSString stringWithFormat:@"%@ %@ %@", province, city?city:@"", district?district:@""]];
     
-    NSString *provinceId = [[locationList objectAtIndex:[locationPicker selectedRowInComponent:0]] objectForKey:@"id"];
-    NSString *cityId = [[[[locationList objectAtIndex:[locationPicker selectedRowInComponent:0]] objectForKey:@"city"] objectAtIndex:[locationPicker selectedRowInComponent:1]] objectForKey:@"id"];
-    NSString *districtId = [[[[[[locationList objectAtIndex:[locationPicker selectedRowInComponent:0]] objectForKey:@"city"] objectAtIndex:[locationPicker selectedRowInComponent:1]] objectForKey:@"district"] objectAtIndex:[locationPicker selectedRowInComponent:2]] objectForKey:@"id"];
-    
-    //Save the code of selected ActivityRegion
-    NSMutableArray *code = [[NSMutableArray alloc] init];
-    if (provinceId) {
-        [code addObject:provinceId];
-        if (cityId) {
-            [code addObject:cityId];
-            if (districtId) {
-                [code addObject:districtId];
+    NSMutableArray *code = [NSMutableArray new];
+    if ([locationPicker selectedRowInComponent:0] != 0) {
+        NSString *province = [[locationList objectAtIndex:[locationPicker selectedRowInComponent:0] - 1] objectForKey:@"name"];
+        [code addObject:[[locationList objectAtIndex:[locationPicker selectedRowInComponent:0] - 1] objectForKey:@"id"]];
+        [self setText:[NSString stringWithFormat:@"%@", province?province:@""]];
+        if ([locationPicker selectedRowInComponent:1] != 0) {
+            NSString *city = [[[[locationList objectAtIndex:[locationPicker selectedRowInComponent:0] - 1] objectForKey:@"city"] objectAtIndex:[locationPicker selectedRowInComponent:1] - 1] objectForKey:@"name"];
+            [code addObject:[[[[locationList objectAtIndex:[locationPicker selectedRowInComponent:0] - 1] objectForKey:@"city"] objectAtIndex:[locationPicker selectedRowInComponent:1] - 1] objectForKey:@"id"]];
+            [self setText:[NSString stringWithFormat:@"%@ %@", province, city?city:@""]];
+            if ([locationPicker selectedRowInComponent:2] != 0) {
+                NSString *district = [[[[[[locationList objectAtIndex:[locationPicker selectedRowInComponent:0] - 1] objectForKey:@"city"] objectAtIndex:[locationPicker selectedRowInComponent:1] - 1] objectForKey:@"district"] objectAtIndex:[locationPicker selectedRowInComponent:2] - 1] objectForKey:@"name"];
+                [code addObject:[[[[[[locationList objectAtIndex:[locationPicker selectedRowInComponent:0] - 1] objectForKey:@"city"] objectAtIndex:[locationPicker selectedRowInComponent:1] - 1] objectForKey:@"district"] objectAtIndex:[locationPicker selectedRowInComponent:2] - 1] objectForKey:@"id"]];
+                [self setText:[NSString stringWithFormat:@"%@ %@ %@", province, city?city:@"", district?district:@""]];
             }
         }
     }
+    else {
+        [self setText:@""];
+    }
+
+    //Save the code of selected ActivityRegion
     selectedActivityRegionCode = [NSArray arrayWithArray:code];
 }
 
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 105, 30)];
-    switch (component) {
-        case 0:
-            [label setText:[[locationList objectAtIndex:row] objectForKey:@"name"]];
-            break;
-        case 1:
-            [label setText:[[[[locationList objectAtIndex:[pickerView selectedRowInComponent:0]] objectForKey:@"city"] objectAtIndex:row] objectForKey:@"name"]];
-            break;
-        case 2:
-            [label setText:[[[[[[locationList objectAtIndex:[pickerView selectedRowInComponent:0]] objectForKey:@"city"] objectAtIndex:[pickerView selectedRowInComponent:1]] objectForKey:@"district"] objectAtIndex:row] objectForKey:@"name"]];
-            break;
-        default:
-            break;
+    if (row == 0) {
+        [label setText:[gUIStrings objectForKey:@"UI_ActivityRegion_UnselectedTitle"]];
+    }
+    else {
+        switch (component) {
+            case 0:
+                [label setText:[[locationList objectAtIndex:row - 1] objectForKey:@"name"]];
+                break;
+            case 1:
+                [label setText:[[[[locationList objectAtIndex:[pickerView selectedRowInComponent:0] - 1] objectForKey:@"city"] objectAtIndex:row - 1] objectForKey:@"name"]];
+                break;
+            case 2:
+                [label setText:[[[[[[locationList objectAtIndex:[pickerView selectedRowInComponent:0] - 1] objectForKey:@"city"] objectAtIndex:[pickerView selectedRowInComponent:1] - 1] objectForKey:@"district"] objectAtIndex:row - 1] objectForKey:@"name"]];
+                break;
+            default:
+                break;
+        }
     }
     [label setTextAlignment:NSTextAlignmentCenter];
     [label setMinimumScaleFactor:0.5f];

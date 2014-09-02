@@ -170,5 +170,7 @@
 	<string>拒绝入队</string>
 	<key>UI_NewPlayer_CancelButton</key>
 	<string>取消</string>
+	<key>UI_ActivityRegion_UnselectedTitle</key>
+	<string>&lt;无&gt;</string>
 </dict>
 </plist>

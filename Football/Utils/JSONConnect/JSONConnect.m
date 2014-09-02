@@ -365,6 +365,48 @@
     }];
 }
 
+//RequestPlayersBySearchCriteria
+-(void)requestPlayersBySearchCriteria:(NSDictionary *)searchCriteria startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption
+{
+    if (syncOption) {
+        [busyIndicatorDelegate lockView];
+    }
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_SearchPlayersCriteria_Suffix];
+    NSMutableDictionary *parameters = CONNECT_SearchPlayersCriteria_Parameters([NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
+    if ([searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_Nickname]) {
+        [parameters setObject:[searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_Nickname] forKey:CONNECT_SearchPlayersCriteria_ParameterKey_Nickname];
+    }
+    if ([searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_HaveTeam]) {
+        [parameters setObject:[[searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_HaveTeam] boolValue]?@"true":@"false" forKey:CONNECT_SearchPlayersCriteria_ParameterKey_HaveTeam];
+    }
+    if ([searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_Position]) {
+        [parameters setObject:[[searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_Position] componentsJoinedByString:@","] forKey:CONNECT_SearchPlayersCriteria_ParameterKey_Position];
+    }
+    if ([searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_AgeCap]) {
+        [parameters setObject:[searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_AgeCap] forKey:CONNECT_SearchPlayersCriteria_ParameterKey_AgeCap];
+    }
+    if ([searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_AgeFloor]) {
+        [parameters setObject:[searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_AgeFloor] forKey:CONNECT_SearchPlayersCriteria_ParameterKey_AgeFloor];
+    }
+    if ([searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_ActivityRegion]) {
+        [parameters setObject:[[searchCriteria objectForKey:CONNECT_SearchPlayersCriteria_ParameterKey_ActivityRegion] componentsJoinedByString:@"-"] forKey:CONNECT_SearchPlayersCriteria_ParameterKey_ActivityRegion];
+    }
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (syncOption) {
+            [busyIndicatorDelegate unlockView];
+        }
+        NSMutableArray *players = [NSMutableArray new];
+        for (NSDictionary *playerData in responseObject) {
+            NSLog(@"%@", playerData);
+            UserInfo *player = [[UserInfo alloc] initWithData:playerData];
+            [players addObject:player];
+        }
+        [delegate receivePlayers:players];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
 //RequestMessages
 -(void)requestReceivedMessage:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption
 {

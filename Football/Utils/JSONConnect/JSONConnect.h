@@ -45,6 +45,7 @@ enum RequestMessageSourceType
 -(void)receiveAllTeams:(NSArray *)teams;//获取所有球队列表成功
 -(void)receiveTeam:(Team *)team;//获取指定的球队资料成功
 -(void)receiveTeamMembers:(NSArray *)players;//获取球队队员清单成功
+-(void)receivePlayers:(NSArray *)players;//获取符合条件的球员列表成功
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType;//获取信息成功
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount;//获取未读消息数量成功
 -(void)readMessagesSuccessfully:(NSArray *)messageIdList;//设置消息已读成功
@@ -58,7 +59,7 @@ enum RequestMessageSourceType
 -(void)receiveMatches:(NSArray *)matches;
 -(void)receiveTeams:(NSArray *)teams;
 -(void)receiveStadiums:(NSArray *)stadiums;
--(void)receivePlayers:(NSArray *)players;
+
 @end
 
 @interface JSONConnect : NSObject
@@ -81,6 +82,8 @@ enum RequestMessageSourceType
 -(void)requestTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option;//获取所有球队
 -(void)requestTeamById:(NSInteger)teamId isSync:(BOOL)syncOption;//获取指定的球队
 -(void)requestTeamMembers:(NSInteger)teamId isSync:(BOOL)syncOption;//获取球队的队员清单
+-(void)requestPlayersBySearchCriteria:(NSDictionary *)searchCriteria startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取符合条件的球员列表
+
 //Messges
 -(void)requestReceivedMessage:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取收到的信息
 -(void)requestSentMessage:(NSInteger)senderId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取发出的信息

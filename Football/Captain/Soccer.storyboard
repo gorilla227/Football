@@ -1501,26 +1501,119 @@
             </objects>
             <point key="canvasLocation" x="322" y="2266"/>
         </scene>
-        <!--Table View Controller - 球员超市-->
+        <!--Player Market - 球员超市-->
         <scene sceneID="GRY-Kz-Xw3">
             <objects>
-                <tableViewController id="e93-Fb-qcJ" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PlayerMarket" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e93-Fb-qcJ" customClass="PlayerMarket" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="p7v-HU-52G">
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="oa5-W2-wwa">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="rVU-W4-UDu" customClass="PlayerMarket_SearchView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="235"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="球员昵称" minimumFontSize="17" id="PMx-K7-M75">
+                                    <rect key="frame" x="20" y="6" width="280" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="主要活动区域" minimumFontSize="17" id="R0C-9N-Iiq" customClass="UITextFieldForActivityRegion">
+                                    <rect key="frame" x="20" y="199" width="226" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="uTM-Qx-wCl">
+                                    <rect key="frame" x="20" y="44" width="280" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="所有球员"/>
+                                        <segment title="有球队球员"/>
+                                        <segment title="无球队球员"/>
+                                    </segments>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </segmentedControl>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5JO-JB-K9h">
+                                    <rect key="frame" x="254" y="198" width="46" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="搜索">
+                                        <color key="titleColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="searchButtonOnClicked:" destination="e93-Fb-qcJ" eventType="touchUpInside" id="Ifl-aX-rO9"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" id="rNW-IH-bbh">
+                                    <rect key="frame" x="20" y="80" width="280" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="10" maxValue="50" id="fLZ-2y-dDU">
+                                            <rect key="frame" x="142" y="26" width="120" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="ageSliderValueChanged:" destination="rVU-W4-UDu" eventType="valueChanged" id="lPf-b8-Kyi"/>
+                                            </connections>
+                                        </slider>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FvN-E6-Bna">
+                                            <rect key="frame" x="20" y="4" width="62" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hME-s9-8Iw">
+                                            <rect key="frame" x="199" y="4" width="61" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年龄范围" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g8V-Y3-ANc">
+                                            <rect key="frame" x="90" y="4" width="101" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="50" id="Xiz-dH-3Qk">
+                                            <rect key="frame" x="18" y="26" width="120" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="ageSliderValueChanged:" destination="rVU-W4-UDu" eventType="valueChanged" id="NEn-Na-sbc"/>
+                                            </connections>
+                                        </slider>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" id="7Aq-k2-eq3" customClass="PositionCheckboxView">
+                                    <rect key="frame" x="20" y="148" width="280" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <outlet property="delegate" destination="e93-Fb-qcJ" id="Obk-fB-DeZ"/>
+                                <outlet property="activityRegionSearchTextField" destination="R0C-9N-Iiq" id="bqk-pK-hzw"/>
+                                <outlet property="ageCapLabel" destination="hME-s9-8Iw" id="fCh-5V-Bt9"/>
+                                <outlet property="ageCapSlider" destination="fLZ-2y-dDU" id="C7G-aE-EhN"/>
+                                <outlet property="ageFloorLabel" destination="FvN-E6-Bna" id="M4y-lO-1gI"/>
+                                <outlet property="ageFloorSlider" destination="Xiz-dH-3Qk" id="m19-ec-UDe"/>
+                                <outlet property="ageView" destination="rNW-IH-bbh" id="Fuq-al-xX9"/>
+                                <outlet property="haveTeamSegement" destination="uTM-Qx-wCl" id="oHs-Ew-b9N"/>
+                                <outlet property="nickNameSearchTextField" destination="PMx-K7-M75" id="KNK-jK-KJ2"/>
+                                <outlet property="positionView" destination="7Aq-k2-eq3" id="hsv-DT-i0Q"/>
                             </connections>
-                        </searchBar>
+                        </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="KHz-Ge-Z7n">
-                                <rect key="frame" x="0.0" y="66" width="320" height="88"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerMarketCell" id="KHz-Ge-Z7n" customClass="PlayerMarket_Cell">
+                                <rect key="frame" x="0.0" y="257" width="320" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KHz-Ge-Z7n" id="Fgw-2C-vmP">
                                     <rect key="frame" x="0.0" y="0.0" width="281" height="87"/>
@@ -1580,11 +1673,44 @@
                                                     <rect key="frame" x="208" y="5" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VXs-JU-eUU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="281" height="87"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="showPlayerDetails:" destination="KHz-Ge-Z7n" eventType="touchUpInside" id="ocE-5c-nqF"/>
+                                                    </connections>
+                                                </button>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" id="hOq-me-chx">
+                                                    <rect key="frame" x="284" y="29" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属球队" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="p6q-Rq-Jvk">
+                                                    <rect key="frame" x="5" y="49" width="60" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="activityRegionLabel" destination="cKi-cF-z2B" id="JVr-hC-qE5"/>
+                                    <outlet property="ageLabel" destination="q8K-Ep-sx9" id="Tjg-dy-nEf"/>
+                                    <outlet property="checkMarkBackground" destination="hOq-me-chx" id="BIj-c3-EiA"/>
+                                    <outlet property="nickNameLabel" destination="nrw-bb-FeI" id="Sd8-D5-jJV"/>
+                                    <outlet property="playerPortraitImageView" destination="xCb-qa-vhK" id="EF0-9p-fG3"/>
+                                    <outlet property="positionLabel" destination="sgB-P8-HjC" id="PRt-Vk-8eP"/>
+                                    <outlet property="styleLabel" destination="27n-6e-8l1" id="ziO-kW-Whi"/>
+                                    <outlet property="teamNameLabel" destination="p6q-Rq-Jvk" id="ZTk-0r-yBB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1596,10 +1722,26 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="ZxQ-eE-Vky" id="lVA-SB-agi"/>
+                        <outlet property="actionBar" destination="8af-Qc-qp1" id="1wy-I1-hg2"/>
+                        <outlet property="recruitButton" destination="W9j-Gr-3xj" id="mc6-0N-0zQ"/>
+                        <outlet property="searchView" destination="rVU-W4-UDu" id="m12-Jj-Bri"/>
+                        <outlet property="searchViewSwitchButton" destination="jSB-gb-It7" id="Cki-i8-zIE"/>
+                        <outlet property="temporaryFavorButton" destination="W9h-6c-mx6" id="bdV-gS-WwY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4F9-mf-ahq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jSB-gb-It7">
+                    <rect key="frame" x="259" y="7" width="320" height="15"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="2"/>
+                    <state key="normal" image="SearchViewSwitchButton.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="searchViewSwitchButtonOnClicked:" destination="e93-Fb-qcJ" eventType="touchUpInside" id="T5d-XR-DNK"/>
+                    </connections>
+                </button>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="8af-Qc-qp1">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1611,15 +1753,6 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Loe-8P-XDR"/>
                     </items>
                 </toolbar>
-                <searchDisplayController id="ZxQ-eE-Vky">
-                    <connections>
-                        <outlet property="delegate" destination="e93-Fb-qcJ" id="9Od-Hf-h25"/>
-                        <outlet property="searchBar" destination="oa5-W2-wwa" id="dxY-Wb-Fha"/>
-                        <outlet property="searchContentsController" destination="e93-Fb-qcJ" id="5WT-vC-ewh"/>
-                        <outlet property="searchResultsDataSource" destination="e93-Fb-qcJ" id="oCo-lw-BFw"/>
-                        <outlet property="searchResultsDelegate" destination="e93-Fb-qcJ" id="myO-QK-ftB"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="778" y="2266"/>
         </scene>
@@ -4019,6 +4152,7 @@
     </scenes>
     <resources>
         <image name="Icon_NumOfTeamMember.png" width="20" height="20"/>
+        <image name="SearchViewSwitchButton.png" width="50" height="15"/>
         <image name="TeamIcon.jpg" width="300" height="300"/>
         <image name="TextFieldIcon_ActivityRegion.png" width="40" height="40"/>
         <image name="TextFieldIcon_Birthday.png" width="40" height="40"/>
