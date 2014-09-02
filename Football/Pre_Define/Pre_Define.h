@@ -61,7 +61,7 @@
 //Color
 #define def_textFieldLeftIconBackground [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]
 #define def_textFieldBorderColor [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1]
-#define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]
+//#define def_navigationBar_background [UIColor colorWithRed: 59/255.0 green: 175/255.0 blue:218/255.0 alpha:1]
 #define def_toolBar_background [UIColor colorWithRed: 226/255.0 green: 230/255.0 blue:232/255.0 alpha:1]
 #define def_backgroundColor_BeforeMatch [UIColor colorWithRed:78/255.0 green:191/255.0 blue:231/255.0 alpha:1]
 #define def_backgroundColor_AfterMatch [UIColor colorWithRed:57/255.0 green:174/255.0 blue:218/255.0 alpha:1]
@@ -75,6 +75,7 @@
 #define def_warmUpMatch_actionButtonBG_Enable [UIColor colorWithRed:59/255.0 green:174/255.0 blue:218/255.0 alpha:1]
 #define def_warmUpMatch_actionButtonBG_Disable [UIColor colorWithRed:189/255.0 green:192/255.0 blue:197/255.0 alpha:1]
 
+#define def_navigationBar_background cLightBlue
 #define cLightBlue [UIColor colorWithRed:0/255.0 green:204/255.0 blue:255/255.0 alpha:1]
 #define cRed [UIColor redColor]
 #define cGray [UIColor grayColor]

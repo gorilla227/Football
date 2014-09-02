@@ -12,9 +12,9 @@
 -(void)initWithPositionTitles:(NSArray *)positionTitles padding:(CGPoint)padding;
 -(void)changeButtonFont:(UIFont *)buttonFont;
 -(void)changeButtonTintColor:(UIColor *)tintColor;
--(void)changebuttonTextColor:(UIColor *)textColor;
+-(void)changeButtonTextColor:(UIColor *)textColor;
+-(void)adjustButtonPosition;
 
 -(void)positionSelectionButtonOnClicked:(id)sender;
-
 -(NSArray *)selectedPositions;
 @end

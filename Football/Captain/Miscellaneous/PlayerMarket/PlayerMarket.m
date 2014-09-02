@@ -30,7 +30,7 @@
     [positionView initWithPositionTitles:[gUIStrings objectForKey:@"UI_Positions"] padding:CGPointMake(5, 5)];
     [positionView changeButtonFont:[UIFont systemFontOfSize:14.0f]];
     [positionView changeButtonTintColor:[UIColor whiteColor]];
-    [positionView changebuttonTextColor:[UIColor whiteColor]];
+    [positionView changeButtonTextColor:[UIColor whiteColor]];
     [positionView.layer setBorderColor:[UIColor whiteColor].CGColor];
     [positionView.layer setBorderWidth:1.0f];
     [positionView.layer setCornerRadius:6.0f];
@@ -42,6 +42,11 @@
     [ageView.layer setMasksToBounds:YES];
     
     [activityRegionSearchTextField activityRegionTextField];
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    [gradient setFrame:self.bounds];
+    [gradient setColors:@[(id)cLightBlue.CGColor, (id)[UIColor grayColor].CGColor, (id)cLightBlue.CGColor]];
+    [self.layer insertSublayer:gradient atIndex:0];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

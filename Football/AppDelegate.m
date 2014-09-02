@@ -15,6 +15,8 @@
     // Override point for customization after application launch.
     [[UINavigationBar appearance] setBarTintColor:def_navigationBar_background];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [[UIToolbar appearance] setBarTintColor:def_navigationBar_background];
     [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];

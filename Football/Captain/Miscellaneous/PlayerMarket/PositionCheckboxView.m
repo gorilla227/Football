@@ -34,10 +34,12 @@
         [button setFrame:CGRectMake((i + 1) * padding.x + i * cellWidth, padding.y, cellWidth, cellHeight)];
         [button setTitle:[positionTitles objectAtIndex:i] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(positionSelectionButtonOnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [button sizeToFit];
         [button setSelected:YES];
         [positionButtons addObject:button];
         [self addSubview:button];
     }
+    [self adjustButtonPosition];
 }
 
 -(void)changeButtonFont:(UIFont *)buttonFont
@@ -54,10 +56,29 @@
     }
 }
 
--(void)changebuttonTextColor:(UIColor *)textColor
+-(void)changeButtonTextColor:(UIColor *)textColor
 {
     for (UIButton *button in positionButtons) {
         [button setTitleColor:textColor forState:UIControlStateNormal];
+    }
+}
+
+-(void)adjustButtonPosition
+{
+    CGFloat horizontalInset = self.bounds.size.width;
+    for (UIButton *button in positionButtons) {
+        [button sizeToFit];
+        NSLog(@"%f", button.frame.size.width);
+        horizontalInset -= button.frame.size.width;
+    }
+    horizontalInset /= (positionButtons.count + 1);
+    CGFloat previousButtonsWidth = 0;
+    for (int i = 0; i < positionButtons.count; i++) {
+        UIButton *button = positionButtons[i];
+        CGRect buttonFrame = button.frame;
+        buttonFrame.origin.x = (i + 1) * horizontalInset + previousButtonsWidth;
+        previousButtonsWidth += buttonFrame.size.width;
+        [button setFrame:buttonFrame];
     }
 }
 
