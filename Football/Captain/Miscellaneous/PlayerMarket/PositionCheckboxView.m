@@ -34,7 +34,6 @@
         [button setFrame:CGRectMake((i + 1) * padding.x + i * cellWidth, padding.y, cellWidth, cellHeight)];
         [button setTitle:[positionTitles objectAtIndex:i] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(positionSelectionButtonOnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [button sizeToFit];
         [button setSelected:YES];
         [positionButtons addObject:button];
         [self addSubview:button];
@@ -68,7 +67,6 @@
     CGFloat horizontalInset = self.bounds.size.width;
     for (UIButton *button in positionButtons) {
         [button sizeToFit];
-        NSLog(@"%f", button.frame.size.width);
         horizontalInset -= button.frame.size.width;
     }
     horizontalInset /= (positionButtons.count + 1);
