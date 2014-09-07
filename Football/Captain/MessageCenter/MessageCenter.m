@@ -70,7 +70,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.navigationController setNavigationBarHidden:NO];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     NSArray *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
@@ -259,13 +258,13 @@
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !isLoading) {
-        isLoading = YES;
         switch (sourceTypeController.selectedSegmentIndex) {
             case 0:
                 if (haveMoreReceivedMessage) {
                     [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:receivedMessageList.count count:count isSync:NO];
                     [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_Loading"]];
                     [moreActivityIndicator startAnimating];
+                    isLoading = YES;
                 }
                 break;
             case 1:
@@ -273,6 +272,7 @@
                     [connection requestSentMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:sentMessageList.count count:count isSync:NO];
                     [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_Loading"]];
                     [moreActivityIndicator startAnimating];
+                    isLoading = YES;
                 }
                 break;
             default:

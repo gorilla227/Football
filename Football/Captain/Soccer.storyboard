@@ -1615,6 +1615,23 @@
                                 <outlet property="positionView" destination="7Aq-k2-eq3" id="hsv-DT-i0Q"/>
                             </connections>
                         </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Qct-2b-j2i">
+                            <rect key="frame" x="0.0" y="345" width="320" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" id="iLd-la-Vmb">
+                                    <rect key="frame" x="67" y="5" width="20" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下载更多..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kXa-gS-AWv">
+                                    <rect key="frame" x="95" y="0.0" width="130" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerMarketCell" id="KHz-Ge-Z7n" customClass="PlayerMarket_Cell">
                                 <rect key="frame" x="0.0" y="257" width="320" height="88"/>
@@ -1631,6 +1648,14 @@
                                                     <rect key="frame" x="5" y="5" width="60" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属球队" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="p6q-Rq-Jvk">
+                                                    <rect key="frame" x="5" y="41" width="60" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" id="nrw-bb-FeI">
                                                     <rect key="frame" x="5" y="70" width="60" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1692,14 +1717,6 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属球队" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="p6q-Rq-Jvk">
-                                                    <rect key="frame" x="5" y="49" width="60" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
@@ -1727,10 +1744,14 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="actionBar" destination="8af-Qc-qp1" id="1wy-I1-hg2"/>
+                        <outlet property="moreActivityIndicator" destination="iLd-la-Vmb" id="2gt-yT-Ywu"/>
+                        <outlet property="moreFooterView" destination="Qct-2b-j2i" id="xLI-9H-5B8"/>
+                        <outlet property="moreLabel" destination="kXa-gS-AWv" id="kY6-tT-6C0"/>
                         <outlet property="recruitButton" destination="W9j-Gr-3xj" id="mc6-0N-0zQ"/>
                         <outlet property="searchView" destination="rVU-W4-UDu" id="m12-Jj-Bri"/>
                         <outlet property="searchViewSwitchButton" destination="jSB-gb-It7" id="Cki-i8-zIE"/>
                         <outlet property="temporaryFavorButton" destination="W9h-6c-mx6" id="bdV-gS-WwY"/>
+                        <segue destination="rDc-i7-2O5" kind="push" identifier="" id="8ep-sF-aW5"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4F9-mf-ahq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1758,157 +1779,60 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="778" y="2266"/>
+            <point key="canvasLocation" x="745" y="2266"/>
         </scene>
-        <!--Captain Player Market - 球员超市-->
-        <scene sceneID="NEl-Rn-OHJ">
+        <!--Table View Controller - 球员数据-->
+        <scene sceneID="78i-df-Unq">
             <objects>
-                <viewController storyboardIdentifier="Captain_PlayerMarket" title="球员超市" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z2f-wz-WV6" customClass="Captain_PlayerMarket" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8jf-fx-f8y">
+                <tableViewController id="rDc-i7-2O5" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vin-MU-AqI">
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsMultipleSelection="YES" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="aGb-xi-ukw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="ZpR-JG-TqQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="z2f-wz-WV6" id="fOv-oR-azL"/>
-                                    </connections>
-                                </searchBar>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayerMarketCell" id="sry-DH-lEy" customClass="Captain_PlayerMarket_Cell">
-                                        <rect key="frame" x="0.0" y="66" width="320" height="88"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sry-DH-lEy" id="oac-fA-rLR">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection headerTitle="Section-1" id="3b2-72-GWd">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="YjW-nn-6Ea">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YjW-nn-6Ea" id="34M-Rz-RMu">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" id="4aZ-GW-Ou9">
-                                                    <rect key="frame" x="280" y="0.0" width="1" height="87"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="JYL-mn-ukV">
+                                                    <rect key="frame" x="20" y="10" width="60" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TeamIcon.jpg" id="MpA-4r-x2f">
-                                                    <rect key="frame" x="20" y="9" width="70" height="70"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kwI-cz-PhO">
-                                                    <rect key="frame" x="98" y="6" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可爱的阿狸" lineBreakMode="clip" minimumFontSize="7" id="7jg-iY-dbz">
-                                                    <rect key="frame" x="148" y="6" width="113" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年龄：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iV1-zn-Hl1">
-                                                    <rect key="frame" x="98" y="33" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26" lineBreakMode="tailTruncation" minimumFontSize="7" id="y87-5F-TQb">
-                                                    <rect key="frame" x="148" y="33" width="113" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="位置：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UzD-NC-ixL">
-                                                    <rect key="frame" x="98" y="60" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="前锋" lineBreakMode="tailTruncation" minimumFontSize="7" id="wUR-X9-d5R">
-                                                    <rect key="frame" x="148" y="60" width="113" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SrG-lG-Evk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="281" height="87"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="showPlayerDetails:" destination="sry-DH-lEy" eventType="touchUpInside" id="8x8-1U-jNo"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="age" destination="y87-5F-TQb" id="dyf-bv-NvH"/>
-                                            <outlet property="nickName" destination="7jg-iY-dbz" id="nrx-Ee-d5h"/>
-                                            <outlet property="playerRole" destination="wUR-X9-d5R" id="Dzx-gQ-uQM"/>
-                                        </connections>
                                     </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="z2f-wz-WV6" id="Puv-ay-wz8"/>
-                                    <outlet property="delegate" destination="z2f-wz-WV6" id="N0t-QQ-1hJ"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="球员超市" id="wjv-Dz-KCb"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <connections>
-                        <outlet property="recruitButton" destination="f2O-YM-3vU" id="zRI-XD-eCL"/>
-                        <outlet property="searchDisplayController" destination="HQp-wQ-i4p" id="Ir6-JU-p9h"/>
-                        <outlet property="temporaryButton" destination="XSj-SC-jQn" id="C1s-Xd-9eO"/>
-                        <segue destination="ml2-mD-abv" kind="push" identifier="FreePlayer" id="k8l-yS-1pJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8K8-KS-qJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="wE2-dO-ahx">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <items>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="q3C-Lt-eAe"/>
-                        <barButtonItem enabled="NO" title="招募队员" id="f2O-YM-3vU">
-                            <connections>
-                                <segue destination="TRJ-kb-wLT" kind="push" identifier="RecruitPlayer" id="EAs-BU-I6w"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="gvI-8Y-6pC"/>
-                        <barButtonItem enabled="NO" title="临时帮忙" id="XSj-SC-jQn">
-                            <connections>
-                                <segue destination="TRJ-kb-wLT" kind="push" identifier="TemporaryFavor" id="qof-GK-AK5"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="idm-Cw-Ts0"/>
-                    </items>
-                </toolbar>
-                <searchDisplayController id="HQp-wQ-i4p">
-                    <connections>
-                        <outlet property="delegate" destination="z2f-wz-WV6" id="EQH-HY-xcb"/>
-                        <outlet property="searchBar" destination="ZpR-JG-TqQ" id="Vjo-54-UEg"/>
-                        <outlet property="searchContentsController" destination="z2f-wz-WV6" id="fzs-bF-TFV"/>
-                        <outlet property="searchResultsDataSource" destination="z2f-wz-WV6" id="bG0-dy-oKB"/>
-                        <outlet property="searchResultsDelegate" destination="z2f-wz-WV6" id="PmM-v7-kZy"/>
-                    </connections>
-                </searchDisplayController>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Section-2" id="Jjc-5V-lNj">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dor-lr-2Ad">
+                                        <rect key="frame" x="0.0" y="124" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dor-lr-2Ad" id="jMO-gb-M51">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="rDc-i7-2O5" id="gQ9-jw-bIs"/>
+                            <outlet property="delegate" destination="rDc-i7-2O5" id="tvW-3Z-qG3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="球员数据" id="upU-zH-Uqt"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s0g-5v-PHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1205" y="2266"/>
+            <point key="canvasLocation" x="1169" y="2266"/>
         </scene>
         <!--Captain Team Profile - 球队资料-->
         <scene sceneID="2Gh-yJ-vbN">
@@ -4179,9 +4103,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="uxP-od-Rb5"/>
+        <segue reference="eSZ-pI-vDi"/>
         <segue reference="cUV-cu-CyG"/>
-        <segue reference="k8l-yS-1pJ"/>
-        <segue reference="qof-GK-AK5"/>
         <segue reference="l9U-uZ-6hf"/>
         <segue reference="rOL-c9-VkO"/>
     </inferredMetricsTieBreakers>

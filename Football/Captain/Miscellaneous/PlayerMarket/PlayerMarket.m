@@ -136,6 +136,11 @@
     [super drawRect:rect];
     [checkMarkBackground.layer setCornerRadius:15.0f];
     [checkMarkBackground.layer setMasksToBounds:YES];
+    [playerPortraitImageView.layer setCornerRadius:10.0f];
+    [playerPortraitImageView.layer setMasksToBounds:YES];
+    [teamNameLabel.layer setCornerRadius:3.0f];
+    [teamNameLabel.layer setMasksToBounds:YES];
+    [teamNameLabel.layer setOpacity:0.9f];
 }
 
 -(IBAction)showPlayerDetails:(id)sender
@@ -152,14 +157,20 @@
 @property IBOutlet UIToolbar *actionBar;
 @property IBOutlet UIBarButtonItem *recruitButton;
 @property IBOutlet UIBarButtonItem *temporaryFavorButton;
+@property IBOutlet UILabel *moreLabel;
+@property IBOutlet UIActivityIndicatorView *moreActivityIndicator;
+@property IBOutlet UIView *moreFooterView;
 @end
 
 @implementation PlayerMarket{
     JSONConnect *connection;
-    NSArray *playerList;
+    NSMutableArray *playerList;
+    BOOL isLoading;
+    NSInteger count;
+    BOOL haveMorePlayers;
 }
 @synthesize isSearchViewShowed;
-@synthesize searchView, searchViewSwitchButton, actionBar, recruitButton, temporaryFavorButton;
+@synthesize searchView, searchViewSwitchButton, actionBar, recruitButton, temporaryFavorButton, moreActivityIndicator, moreFooterView, moreLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -186,13 +197,14 @@
     [self setToolbarItems:actionBar.items];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActionButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
     
+    haveMorePlayers = YES;
+    playerList = [NSMutableArray new];
+    count = [[gSettings objectForKey:@"playersSearchListCount"] integerValue];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    playerList = [NSArray new];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:!self.toolbarItems.count];
 }
@@ -208,30 +220,56 @@
     isSearchViewShowed = !isSearchViewShowed;
     [self.tableView setTableHeaderView:isSearchViewShowed?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
     [searchViewSwitchButton setTransform:isSearchViewShowed?CGAffineTransformMakeRotation(M_PI):CGAffineTransformMakeRotation(0)];
-    [self.tableView reloadData];
+    if (playerList.count) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
 }
 
 -(IBAction)searchButtonOnClicked:(id)sender
 {
     [searchView.nickNameSearchTextField resignFirstResponder];
     [searchView.activityRegionSearchTextField resignFirstResponder];
-    [connection requestPlayersBySearchCriteria:[searchView searchCriteria] startIndex:0 count:[[gSettings objectForKey:@"playersSearchListCount"] integerValue] isSync:YES];
+    [playerList removeAllObjects];
+    haveMorePlayers = YES;
+    [connection requestPlayersBySearchCriteria:[searchView searchCriteria] startIndex:0 count:count isSync:YES];
 }
 
 -(void)updateActionButtonsStatus
 {
     [temporaryFavorButton setEnabled:self.tableView.indexPathsForSelectedRows.count];
+    [recruitButton setEnabled:self.tableView.indexPathsForSelectedRows.count];
+    for (NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
+        UserInfo *selectedPlayer = [playerList objectAtIndex:indexPath.row];
+        if (selectedPlayer.team) {
+            [recruitButton setEnabled:NO];
+            break;
+        }
+        else {
+            [recruitButton setEnabled:YES];
+        }
+    }
 }
 
 -(void)receivePlayers:(NSArray *)players
 {
-    playerList = players;
-    if (playerList.count) {
-        isSearchViewShowed = NO;
-        [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:CGRectZero]];
-        [searchViewSwitchButton setTransform:CGAffineTransformMakeRotation(0)];
+    [self.tableView setTableFooterView:moreFooterView];
+    if (players.count < count) {
+        haveMorePlayers = NO;
+        //Set moreLabel
+        [moreLabel setText:(playerList.count + players.count)?[gUIStrings objectForKey:@"UI_PlayerMarket_NoMoreData"]:[gUIStrings objectForKey:@"UI_PlayerMarket_NoData"]];
     }
+    else {
+        //Set moreLabel
+        [moreLabel setText:[gUIStrings objectForKey:@"UI_PlayerMarket_LoadMore"]];
+    }
+    [playerList addObjectsFromArray:players];
+    isSearchViewShowed = !playerList.count;
+    [self.tableView setTableHeaderView:isSearchViewShowed?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [searchViewSwitchButton setTransform:isSearchViewShowed?CGAffineTransformMakeRotation(M_PI):CGAffineTransformMakeRotation(0)];
     [self.tableView reloadData];
+    [self updateActionButtonsStatus];
+    [moreActivityIndicator stopAnimating];
+    isLoading = NO;
 }
 
 #pragma mark - Table view data source
@@ -253,9 +291,24 @@
 {
     static NSString *CellIdentifier = @"PlayerMarketCell";
     PlayerMarket_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UserInfo *playerData = [playerList objectAtIndex:indexPath.row];
     
     // Configure the cell...
+    [cell setPlayerInfo:playerData];
     [cell setAccessoryType:[tableView.indexPathsForSelectedRows containsObject:indexPath]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone];
+    [cell.nickNameLabel setText:playerData.nickName];
+    [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:playerData.birthday]].stringValue];
+    [cell.positionLabel setText:[Position stringWithCode:playerData.position]];
+    [cell.styleLabel setText:playerData.style];
+    [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:playerData.activityRegion] componentsJoinedByString:@" "]];
+    [cell.playerPortraitImageView setImage:playerData.playerPortrait?playerData.playerPortrait:def_defaultPlayerPortrait];
+    if (playerData.team) {
+        [cell.teamNameLabel setText:playerData.team.teamName];
+        [cell.teamNameLabel setHidden:NO];
+    }
+    else {
+        [cell.teamNameLabel setHidden:YES];
+    }
     return cell;
 }
 
@@ -281,6 +334,16 @@
     [cell setAccessoryType:UITableViewCellAccessoryNone];
 }
 
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !isLoading && haveMorePlayers) {
+        [connection requestPlayersBySearchCriteria:[searchView searchCriteria] startIndex:playerList.count count:count isSync:YES];
+        isLoading = YES;
+        [moreActivityIndicator startAnimating];
+        //Set moreLabel
+        [moreLabel setText:[gUIStrings objectForKey:@"UI_PlayerMarket_Loading"]];
+    }
+}
 /*
 #pragma mark - Navigation
 

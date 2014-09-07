@@ -172,5 +172,13 @@
 	<string>取消</string>
 	<key>UI_ActivityRegion_UnselectedTitle</key>
 	<string>&lt;无&gt;</string>
+	<key>UI_PlayerMarket_LoadMore</key>
+	<string>加载更多球员</string>
+	<key>UI_PlayerMarket_NoData</key>
+	<string>条件太苛刻啦</string>
+	<key>UI_PlayerMarket_NoMoreData</key>
+	<string>就这么多了</string>
+	<key>UI_PlayerMarket_Loading</key>
+	<string>正在加载...</string>
 </dict>
 </plist>
