@@ -8,6 +8,7 @@
 
 #import "Captain_NewPlayer.h"
 #import "CallFriends.h"
+//#import "PlayerDetails.h"
 #import "MessageCenter_ApplyinPlayerProfile.h"
 #import "MessageCenter_Compose.h"
 
@@ -133,56 +134,6 @@
     [alertView show];
 }
 @end
-
-//#pragma Captain_NewPlayer_CallinCell
-//@interface Captain_NewPlayer_CallinCell ()
-//@property IBOutlet UILabel *playerName;
-//@property IBOutlet UILabel *postion;
-//@property IBOutlet UILabel *age;
-//@property IBOutlet UILabel *team;
-//@property IBOutlet UITextView *comment;
-//@property IBOutlet UILabel *status;
-//@property IBOutlet UIButton *cancelInvitationButton;
-//@end
-//@implementation Captain_NewPlayer_CallinCell
-//@synthesize playerName, postion, age, team, comment, status, cancelInvitationButton;
-//
-//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-//{
-//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-//    if (self) {
-//        // Initialization code
-//    }
-//    return self;
-//}
-//
-//- (void)awakeFromNib
-//{
-//    // Initialization code
-//}
-//
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-//{
-//    [super setSelected:selected animated:animated];
-//    
-//    // Configure the view for the selected state
-//}
-//
-//-(IBAction)cancelInvitationButtonOnClicked:(id)sender
-//{
-//    UIAlertView *confirmCancel = [[UIAlertView alloc] initWithTitle:@"取消邀请" message:[NSString stringWithFormat:@"确定要取消对%@的邀请吗？", playerName.text] delegate:self cancelButtonTitle:@"撤销操作" otherButtonTitles:@"确定", nil];
-//    [confirmCancel show];
-//}
-//
-//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//    if (buttonIndex == 1) {
-//        [cancelInvitationButton setEnabled:NO];
-//        [cancelInvitationButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-//        NSLog(@"取消邀请");
-//    }
-//}
-//@end
 
 #pragma Captain_NewPlayer
 @interface Captain_NewPlayer ()
@@ -349,22 +300,22 @@
             case 1:
                 [cell.agreementSegment setSelectedSegmentIndex:-1];
                 [cell.agreementSegment setEnabled:YES];
-                [cell.statusView setBackgroundColor:cLightBlue];
+                [cell.statusView setBackgroundColor:cLightBlue(1)];
                 break;
             case 2:
                 [cell.agreementSegment setSelectedSegmentIndex:0];
                 [cell.agreementSegment setEnabled:NO];
-                [cell.statusView setBackgroundColor:cLightGreen];
+                [cell.statusView setBackgroundColor:cLightGreen(1)];
                 break;
             case 3:
                 [cell.agreementSegment setSelectedSegmentIndex:2];
                 [cell.agreementSegment setEnabled:NO];
-                [cell.statusView setBackgroundColor:cRed];
+                [cell.statusView setBackgroundColor:cRed(1)];
                 break;
             case 4:
                 [cell.agreementSegment setSelectedSegmentIndex:-1];
                 [cell.agreementSegment setEnabled:NO];
-                [cell.statusView setBackgroundColor:cGray];
+                [cell.statusView setBackgroundColor:cGray(1)];
                 break;
             default:
                 break;
@@ -395,16 +346,16 @@
         switch (message.status) {
             case 0:
             case 1:
-                [cell.statusLabel setBackgroundColor:cLightBlue];
+                [cell.statusLabel setBackgroundColor:cLightBlue(1)];
                 break;
             case 2:
-                [cell.statusLabel setBackgroundColor:cLightGreen];
+                [cell.statusLabel setBackgroundColor:cLightGreen(1)];
                 break;
             case 3:
-                [cell.statusLabel setBackgroundColor:cRed];
+                [cell.statusLabel setBackgroundColor:cRed(1)];
                 break;
             case 4:
-                [cell.statusLabel setBackgroundColor:cGray];
+                [cell.statusLabel setBackgroundColor:cGray(1)];
                 break;
             default:
                 break;
@@ -424,6 +375,10 @@
         Message *message = [applyinList objectAtIndex:indexPath.row];
         MessageCenter_ApplyinPlayerProfile *playerDetailController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"Callin_PlayerProfile"];
         [playerDetailController setMessage:message];
+//        UserInfo *player = [messageReferenceDictionary objectForKey:[NSNumber numberWithInteger:message.messageId]];
+//        PlayerDetails *playerDetailController = (PlayerDetails *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayerDetails"];
+//        [playerDetailController setPlayerData:player];
+//        [playerDetailController setViewType:PlayerDetails_Applicant];
         [self.navigationController pushViewController:playerDetailController animated:YES];
     }
 }

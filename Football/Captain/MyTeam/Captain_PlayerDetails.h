@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Captain_NotifyPlayers.h"
-
+#import "PlayerDetails.h"
 @interface Captain_PlayerDetails : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property IBOutlet UITableView *playerDetailsTableView;
 @property IBOutlet UIView *summaryView;

@@ -226,10 +226,10 @@
 //    [cell.unreadFlag setHidden:message.status != 0 || sourceTypeController.selectedSegmentIndex];
     [cell.statusLabel setText:messageSubtypeStatus[message.status]];
     if (sourceTypeController.selectedSegmentIndex == 0) {
-        [cell.statusLabel setBackgroundColor:(message.status == 0)?cRed:cLightBlue];
+        [cell.statusLabel setBackgroundColor:(message.status == 0)?cRed(1):cLightBlue(1)];
     }
     else {
-        [cell.statusLabel setBackgroundColor:cGray];
+        [cell.statusLabel setBackgroundColor:cGray(1)];
     }
     return cell;
 }

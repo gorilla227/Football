@@ -75,19 +75,11 @@
 #define def_warmUpMatch_actionButtonBG_Enable [UIColor colorWithRed:59/255.0 green:174/255.0 blue:218/255.0 alpha:1]
 #define def_warmUpMatch_actionButtonBG_Disable [UIColor colorWithRed:189/255.0 green:192/255.0 blue:197/255.0 alpha:1]
 
-#define def_navigationBar_background cLightBlue
-#define cLightBlue [UIColor colorWithRed:0/255.0 green:204/255.0 blue:255/255.0 alpha:1]
-#define cRed [UIColor redColor]
-#define cGray [UIColor grayColor]
-#define cLightGreen [UIColor colorWithRed:153/255.0 green:204/255.0 blue:153/255.0 alpha:1]
-
-//PlayerDetails_ViewTypes
-enum PlayerDetails_ViewTypes
-{
-    PlayerDetails_MyPlayer,
-    PlayerDetails_Applicant,
-    PlayerDetails_FromPlayerMarket
-};
+#define def_navigationBar_background cLightBlue(1)
+#define cLightBlue(alphaValue) [UIColor colorWithRed:0/255.0 green:204/255.0 blue:255/255.0 alpha:alphaValue]
+#define cRed(alphaValue) [UIColor colorWithRed:255/255.0 green:0/255.0 blue:0/255.0 alpha:alphaValue]
+#define cGray(alphaValue) [UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:alphaValue]
+#define cLightGreen(alphaValue) [UIColor colorWithRed:153/255.0 green:204/255.0 blue:153/255.0 alpha:alphaValue]
 
 //NotifyPlayers_ViewTypes
 enum NotifyPlayers_ViewTypes

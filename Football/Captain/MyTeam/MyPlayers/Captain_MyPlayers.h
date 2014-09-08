@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Captain_PlayerDetails.h"
-#import "Captain_NotifyPlayers.h"
-
-@interface Captain_MyPlayerCell : UITableViewCell
-
+@protocol MyPlayerDelegate <NSObject>
+-(void)pushPlayerDetails:(UserInfo *)player;
 @end
 
-@interface Captain_MyPlayers : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate, JSONConnectDelegate>
+@interface Captain_MyPlayerCell : UITableViewCell
+@property UserInfo *myPlayer;
+@property id<MyPlayerDelegate>delegate;
+@end
+
+@interface Captain_MyPlayers : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate, JSONConnectDelegate, MyPlayerDelegate>
 
 @end

@@ -397,7 +397,6 @@
         }
         NSMutableArray *players = [NSMutableArray new];
         for (NSDictionary *playerData in responseObject) {
-            NSLog(@"%@", playerData);
             UserInfo *player = [[UserInfo alloc] initWithData:playerData];
             [players addObject:player];
         }

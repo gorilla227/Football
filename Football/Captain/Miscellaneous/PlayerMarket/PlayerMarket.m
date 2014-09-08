@@ -8,6 +8,7 @@
 
 #import "PlayerMarket.h"
 #import "PositionCheckboxView.h"
+#import "PlayerDetails.h"
 
 #pragma PlayerMarket_SearchView
 @interface PlayerMarket_SearchView ()
@@ -45,7 +46,7 @@
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     [gradient setFrame:self.bounds];
-    [gradient setColors:@[(id)cLightBlue.CGColor, (id)[UIColor grayColor].CGColor, (id)cLightBlue.CGColor]];
+    [gradient setColors:@[(id)cLightBlue(1).CGColor, (id)[UIColor grayColor].CGColor, (id)cLightBlue(1).CGColor]];
     [self.layer insertSublayer:gradient atIndex:0];
 }
 
@@ -128,7 +129,7 @@
 @end
 
 @implementation PlayerMarket_Cell
-@synthesize playerInfo;
+@synthesize playerInfo, delegate;
 @synthesize checkMarkBackground, playerPortraitImageView, nickNameLabel, teamNameLabel, positionLabel, styleLabel, ageLabel, activityRegionLabel;
 
 -(void)drawRect:(CGRect)rect
@@ -140,12 +141,12 @@
     [playerPortraitImageView.layer setMasksToBounds:YES];
     [teamNameLabel.layer setCornerRadius:3.0f];
     [teamNameLabel.layer setMasksToBounds:YES];
-    [teamNameLabel.layer setOpacity:0.9f];
+    [teamNameLabel setBackgroundColor:cGray(0.9)];
 }
 
 -(IBAction)showPlayerDetails:(id)sender
 {
-    NSLog(@"Show Player Details");
+    [delegate pushPlayerDetails:playerInfo];
 }
 @end
 
@@ -213,6 +214,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)pushPlayerDetails:(UserInfo *)player
+{
+    PlayerDetails *playerDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerDetails"];
+    [playerDetails setPlayerData:player];
+    [playerDetails setViewType:PlayerDetails_FromPlayerMarket];
+    [self.navigationController pushViewController:playerDetails animated:YES];
 }
 
 -(IBAction)searchViewSwitchButtonOnClicked:(id)sender
@@ -295,6 +304,7 @@
     
     // Configure the cell...
     [cell setPlayerInfo:playerData];
+    [cell setDelegate:self];
     [cell setAccessoryType:[tableView.indexPathsForSelectedRows containsObject:indexPath]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone];
     [cell.nickNameLabel setText:playerData.nickName];
     [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:playerData.birthday]].stringValue];

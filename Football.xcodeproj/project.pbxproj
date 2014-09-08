@@ -122,6 +122,7 @@
 		B23C4F891936B59C00FC73F2 /* TeamIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B23C4F881936B59C00FC73F2 /* TeamIcon.jpg */; };
 		B251F9EA1953B3610031E4A8 /* ActivityRegions.json in Resources */ = {isa = PBXBuildFile; fileRef = B251F9E91953B3610031E4A8 /* ActivityRegions.json */; };
 		B251F9ED1953B4830031E4A8 /* UITextFieldForActivityRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = B251F9EC1953B4830031E4A8 /* UITextFieldForActivityRegion.m */; };
+		B25D501A19BD0A9000C5CDB7 /* PlayerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B25D501919BD0A9000C5CDB7 /* PlayerDetails.m */; };
 		B262D2F6192813110079526E /* icon_opponentAccepted.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F4192813110079526E /* icon_opponentAccepted.png */; };
 		B262D2F7192813110079526E /* icon_opponentRejected.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F5192813110079526E /* icon_opponentRejected.png */; };
 		B262D2FA1928131C0079526E /* stamp_cancelled.png in Resources */ = {isa = PBXBuildFile; fileRef = B262D2F81928131C0079526E /* stamp_cancelled.png */; };
@@ -320,6 +321,8 @@
 		B251F9E91953B3610031E4A8 /* ActivityRegions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ActivityRegions.json; path = Football/Utils/TextFieldCustomize/ActivityRegions.json; sourceTree = "<group>"; };
 		B251F9EB1953B4830031E4A8 /* UITextFieldForActivityRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextFieldForActivityRegion.h; path = Football/Utils/TextFieldCustomize/UITextFieldForActivityRegion.h; sourceTree = "<group>"; };
 		B251F9EC1953B4830031E4A8 /* UITextFieldForActivityRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITextFieldForActivityRegion.m; path = Football/Utils/TextFieldCustomize/UITextFieldForActivityRegion.m; sourceTree = "<group>"; };
+		B25D501819BD0A9000C5CDB7 /* PlayerDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerDetails.h; path = Captain/Miscellaneous/PlayerMarket/PlayerDetails.h; sourceTree = "<group>"; };
+		B25D501919BD0A9000C5CDB7 /* PlayerDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerDetails.m; path = Captain/Miscellaneous/PlayerMarket/PlayerDetails.m; sourceTree = "<group>"; };
 		B262D2F4192813110079526E /* icon_opponentAccepted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_opponentAccepted.png; path = Resource/icon_opponentAccepted.png; sourceTree = "<group>"; };
 		B262D2F5192813110079526E /* icon_opponentRejected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_opponentRejected.png; path = Resource/icon_opponentRejected.png; sourceTree = "<group>"; };
 		B262D2F81928131C0079526E /* stamp_cancelled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stamp_cancelled.png; path = Resource/stamp_cancelled.png; sourceTree = "<group>"; };
@@ -437,6 +440,8 @@
 			children = (
 				A11D110819AC48790097693B /* PlayerMarket.h */,
 				A11D110919AC48790097693B /* PlayerMarket.m */,
+				B25D501819BD0A9000C5CDB7 /* PlayerDetails.h */,
+				B25D501919BD0A9000C5CDB7 /* PlayerDetails.m */,
 				A1ED00A119B03F1E00C669D1 /* PositionCheckboxView.h */,
 				A1ED00A219B03F1E00C669D1 /* PositionCheckboxView.m */,
 			);
@@ -782,8 +787,6 @@
 			children = (
 				A18E469418EE678500784A48 /* Captain_NewPlayer.h */,
 				A18E469518EE678500784A48 /* Captain_NewPlayer.m */,
-				B2E8533C1937DA990020A624 /* Captain_PlayerMarket.h */,
-				B2E8533D1937DA990020A624 /* Captain_PlayerMarket.m */,
 			);
 			name = NewPlayer;
 			sourceTree = "<group>";
@@ -894,6 +897,8 @@
 		B2168BEC1983071A00F91C4B /* zzzOld */ = {
 			isa = PBXGroup;
 			children = (
+				B2E8533C1937DA990020A624 /* Captain_PlayerMarket.h */,
+				B2E8533D1937DA990020A624 /* Captain_PlayerMarket.m */,
 				A1F4230F1926AE8F00A13C52 /* TeamProfile */,
 				B27BD6C41934093E00F35A51 /* Captain_PlayerDetails.h */,
 				B27BD6C51934093E00F35A51 /* Captain_PlayerDetails.m */,
@@ -1221,6 +1226,7 @@
 				A1F428DF191209DB00567A02 /* AFNetworkReachabilityManager.m in Sources */,
 				A1BB0E7B1998852B0082E91A /* MessageCenter_CallinTeamProfile.m in Sources */,
 				A17981B21980C9AC0038073A /* FindTeam.m in Sources */,
+				B25D501A19BD0A9000C5CDB7 /* PlayerDetails.m in Sources */,
 				B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */,
 				A1F428DE191209DB00567A02 /* AFHTTPSessionManager.m in Sources */,
 				A1F428E2191209DB00567A02 /* AFURLRequestSerialization.m in Sources */,

@@ -7,23 +7,34 @@
 //
 
 #import "Captain_MyPlayers.h"
+#import "PlayerDetails.h"
+#import "Captain_NotifyPlayers.h"
+
 #pragma Captain_MyPlayerCell
 @interface Captain_MyPlayerCell ()
-@property IBOutlet UIImageView *playerPortrait;
-@property IBOutlet UILabel *playerName;
-@property IBOutlet UILabel *signUpStatusOfNextMatch;
+@property IBOutlet UIView *checkMarkBackground;
+@property IBOutlet UIImageView *playerPortraitImageView;
+@property IBOutlet UILabel *nickNameLabel;
+@property IBOutlet UILabel *ageLabel;
+@property IBOutlet UILabel *positionLabel;
+@property IBOutlet UILabel *styleLabel;
+@property IBOutlet UILabel *signUpStatusOfNextMatchLabel;
 @end
+
 @implementation Captain_MyPlayerCell
-@synthesize playerPortrait, playerName, signUpStatusOfNextMatch;
+@synthesize myPlayer, delegate;
+@synthesize checkMarkBackground, playerPortraitImageView, nickNameLabel, signUpStatusOfNextMatchLabel, ageLabel, positionLabel, styleLabel;
 
 -(void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    [playerPortrait.layer setCornerRadius:10.0f];
-    [playerPortrait.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [playerPortrait.layer setBorderWidth:1.0f];
-    [playerPortrait.layer setMasksToBounds:YES];
-    [self setBackgroundColor:[UIColor colorWithRed:0/255.0 green:204/255.0 blue:255/255.0 alpha:0.5]];
+    [checkMarkBackground.layer setCornerRadius:15.0f];
+    [checkMarkBackground.layer setMasksToBounds:YES];
+    [playerPortraitImageView.layer setCornerRadius:10.0f];
+    [playerPortraitImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [playerPortraitImageView.layer setBorderWidth:1.0f];
+    [playerPortraitImageView.layer setMasksToBounds:YES];
+//    [self setBackgroundColor:[UIColor colorWithRed:0/255.0 green:204/255.0 blue:255/255.0 alpha:0.5]];
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -34,11 +45,16 @@
     return self;
 }
 
+-(IBAction)showPlayerDetails:(id)sender
+{
+    [delegate pushPlayerDetails:myPlayer];
+}
 @end
 
 #pragma Captain_MyPlayer
 @interface Captain_MyPlayers ()
 @property IBOutlet UIToolbar *actionBar;
+@property IBOutlet UIBarButtonItem *notifyButton;
 @end
 
 @implementation Captain_MyPlayers{
@@ -46,7 +62,8 @@
     NSArray *playerList;
     NSArray *filterPlayerList;
 }
-@synthesize actionBar;
+@synthesize actionBar, notifyButton;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -59,6 +76,7 @@
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:actionBar.items];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActionButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
@@ -74,6 +92,19 @@
 {
     playerList = players;
     [self.tableView reloadData];
+}
+
+-(void)updateActionButtonsStatus
+{
+    [notifyButton setEnabled:self.tableView.indexPathsForSelectedRows.count];
+}
+
+-(void)pushPlayerDetails:(UserInfo *)player
+{
+    PlayerDetails *playerDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerDetails"];
+    [playerDetails setPlayerData:player];
+    [playerDetails setViewType:PlayerDetails_MyPlayer];
+    [self.navigationController pushViewController:playerDetails animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -99,26 +130,33 @@
 {
     static NSString *CellIdentifier = @"Captain_MyPlayerCell";
     Captain_MyPlayerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UserInfo *player = [[tableView isEqual:self.tableView]?playerList:filterPlayerList objectAtIndex:indexPath.row];
+    UserInfo *playerData = [[tableView isEqual:self.tableView]?playerList:filterPlayerList objectAtIndex:indexPath.row];
     
     // Configure the cell...
-    [cell setTag:indexPath.row];
-    [cell.playerName setText:player.nickName];
-    [cell.playerPortrait setImage:player.playerPortrait?player.playerPortrait:def_defaultPlayerPortrait];
+    [cell setMyPlayer:playerData];
+    [cell setDelegate:self];
+    [cell setAccessoryType:[tableView.indexPathsForSelectedRows containsObject:indexPath]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone];
+    [cell.nickNameLabel setText:playerData.nickName];
+    [cell.playerPortraitImageView setImage:playerData.playerPortrait?playerData.playerPortrait:def_defaultPlayerPortrait];
+    [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:playerData.birthday]].stringValue];
+    [cell.positionLabel setText:[Position stringWithCode:playerData.position]];
+    [cell.styleLabel setText:playerData.style];
     return cell;
-}
-
--(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
 }
 
--(IBAction)actionButtonOnClicked:(id)sender
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
+}
+
+-(IBAction)notifyButtonOnClicked:(id)sender
 {
     [self performSegueWithIdentifier:@"MyPlayer" sender:self];
 }
@@ -131,8 +169,8 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"MyPlayer"]) {
-        Captain_PlayerDetails *playerDetails = segue.destinationViewController;
-        [playerDetails setViewType:PlayerDetails_MyPlayer];
+//        Captain_PlayerDetails *playerDetails = segue.destinationViewController;
+//        [playerDetails setViewType:PlayerDetails_MyPlayer];
     }
     else if ([segue.identifier isEqualToString:@"NotifyTeamPlayers"]) {
         Captain_NotifyPlayers *notifyPlayers = segue.destinationViewController;

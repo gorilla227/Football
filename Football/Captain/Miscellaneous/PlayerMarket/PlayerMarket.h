@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol PlayerMarketDelegate <NSObject>
+-(void)pushPlayerDetails:(UserInfo *)player;
+@end
 
 @interface PlayerMarket_SearchView : UIView
 -(NSDictionary *)searchCriteria;
@@ -14,8 +17,9 @@
 
 @interface PlayerMarket_Cell : UITableViewCell
 @property UserInfo *playerInfo;
+@property id<PlayerMarketDelegate>delegate;
 @end
 
-@interface PlayerMarket : UITableViewController<JSONConnectDelegate>
+@interface PlayerMarket : UITableViewController<JSONConnectDelegate, PlayerMarketDelegate>
 
 @end
