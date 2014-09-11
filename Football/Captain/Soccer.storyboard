@@ -1772,9 +1772,17 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="gyj-5i-SQA"/>
-                        <barButtonItem enabled="NO" title="招募队员" id="W9j-Gr-3xj"/>
+                        <barButtonItem enabled="NO" title="招募队员" id="W9j-Gr-3xj">
+                            <connections>
+                                <action selector="recruitButtonOnClicked:" destination="e93-Fb-qcJ" id="LSu-4p-wHa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="6pA-Lo-pIo"/>
-                        <barButtonItem enabled="NO" title="临时帮忙" id="W9h-6c-mx6"/>
+                        <barButtonItem enabled="NO" title="临时帮忙" id="W9h-6c-mx6">
+                            <connections>
+                                <action selector="temporaryFavorButtonOnClicked:" destination="e93-Fb-qcJ" id="Wri-du-NLl"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Loe-8P-XDR"/>
                     </items>
                 </toolbar>
@@ -2232,21 +2240,12 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Bvr-aR-TQK"/>
-                        <barButtonItem title="通知队员" id="wvX-KT-pcW"/>
+                        <barButtonItem title="通知队员" id="wvX-KT-pcW">
+                            <connections>
+                                <action selector="notifyMyPlayerButtonOnClicked:" destination="rDc-i7-2O5" id="PId-LX-20r"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="srK-QN-mc8"/>
-                    </items>
-                </toolbar>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="zAT-lm-jMN">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <items>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="TXd-ls-Mhe"/>
-                        <barButtonItem title="同意" id="pl1-qP-tgO"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="69V-ao-guz"/>
-                        <barButtonItem title="通知试训" id="YjL-p4-1Nq"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="kdU-ZU-1LK"/>
-                        <barButtonItem title="拒绝" id="SgU-o7-Kos"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="vQk-HK-dka"/>
                     </items>
                 </toolbar>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="N2x-wa-kYD">
@@ -2254,10 +2253,43 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Q8L-iw-UPC"/>
-                        <barButtonItem title="招募队员" id="7td-Eu-78Y"/>
+                        <barButtonItem title="招募队员" id="7td-Eu-78Y">
+                            <connections>
+                                <action selector="recruitButtonOnClicked:" destination="rDc-i7-2O5" id="bNR-3S-OeN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="9He-SM-PuR"/>
-                        <barButtonItem title="临时帮忙" id="4MJ-oT-NRP"/>
+                        <barButtonItem title="临时帮忙" id="4MJ-oT-NRP">
+                            <connections>
+                                <action selector="temporaryFavorButtonOnClicked:" destination="rDc-i7-2O5" id="M3V-Tc-rY3"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="LzQ-7r-PPf"/>
+                    </items>
+                </toolbar>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="zAT-lm-jMN">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="TXd-ls-Mhe"/>
+                        <barButtonItem title="同意" id="pl1-qP-tgO">
+                            <connections>
+                                <action selector="acceptButtonOnClicked:" destination="rDc-i7-2O5" id="H3G-4T-W3h"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="69V-ao-guz"/>
+                        <barButtonItem title="通知试训" id="YjL-p4-1Nq">
+                            <connections>
+                                <action selector="trialNotificationButtonOnClicked:" destination="rDc-i7-2O5" id="oqY-qo-XxI"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="kdU-ZU-1LK"/>
+                        <barButtonItem title="拒绝" id="SgU-o7-Kos">
+                            <connections>
+                                <action selector="declineButtonOnClicked:" destination="rDc-i7-2O5" id="Bm3-ST-9Jo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="vQk-HK-dka"/>
                     </items>
                 </toolbar>
             </objects>
@@ -2598,7 +2630,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Yla-iO-1Aq"/>
                         <barButtonItem enabled="NO" title="通知队员" id="cmy-HC-c3U">
                             <connections>
-                                <segue destination="TRJ-kb-wLT" kind="push" identifier="NotifyTeamPlayers" id="mdi-ZS-FiD"/>
+                                <action selector="notifyButtonOnClicked:" destination="wUp-3y-ZBH" id="wgS-7r-eiJ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="qE8-OI-j1V"/>
@@ -4580,8 +4612,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="cUV-cu-CyG"/>
-        <segue reference="rOL-c9-VkO"/>
         <segue reference="uxP-od-Rb5"/>
+        <segue reference="rOL-c9-VkO"/>
         <segue reference="l9U-uZ-6hf"/>
     </inferredMetricsTieBreakers>
 </document>

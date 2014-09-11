@@ -7,6 +7,7 @@
 //
 
 #import "PlayerDetails.h"
+#import "MessageCenter_Compose.h"
 
 @interface PlayerDetails ()
 @property IBOutlet UIToolbar *playerMarketActionBar;
@@ -32,8 +33,12 @@
 -(void)initWithPlayerData;
 @end
 
-@implementation PlayerDetails
-@synthesize playerData, viewType;
+@implementation PlayerDetails{
+    JSONConnect *connection;
+    UIAlertView *acceptConfirm;
+    UIAlertView *declineConfirm;
+}
+@synthesize message, playerData, viewType;
 @synthesize playerMarketActionBar, applicantActionBar, myPlayerActionBar, nickNameLabel, nickNameBackgroundView, teamNameLabel, playerProtraitImageView, teamLogoImageView, teamNameBackgroundView, recruitButton, temporaryFavorButton, legalNameCell, ageCell, emailCell, qqCell, mobileCell, positionCell, activityRegionCell, styleCell;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -48,22 +53,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    
-    [self initWithPlayerData];
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
+
+    if (playerData) {
+        [self initWithPlayerData];
+    }
+    else {
+        [connection requestUserInfo:message.senderId withTeam:NO withReference:nil];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
+    if (viewType == PlayerDetails_Applicant) {
+       [self.navigationController setToolbarHidden:message.status !=0 && message.status != 1];
+    }
+    else {
+        [self.navigationController setToolbarHidden:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
+{
+    playerData = userInfo;
+    [self initWithPlayerData];
+    [self.tableView reloadData];
 }
 
 -(void)initWithPlayerData
@@ -82,7 +106,6 @@
         default:
             break;
     }
-    
     
     [nickNameLabel setText:playerData.nickName];
     [nickNameBackgroundView setBackgroundColor:[UIColor whiteColor]];
@@ -149,6 +172,95 @@
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
     [headerView.textLabel setTextAlignment:NSTextAlignmentCenter];
     [headerView.contentView setBackgroundColor:cLightGreen(1)];
+}
+
+#pragma Button Actions
+-(IBAction)acceptButtonOnClicked:(id)sender
+{
+    acceptConfirm = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptTitle"]
+                                               message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptMessage"], nickNameLabel.text]
+                                              delegate:self
+                                     cancelButtonTitle:[gUIStrings objectForKey:@"UI_NewPlayer_CancelButton"]
+                                     otherButtonTitles:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptButton"], nil];
+    [acceptConfirm show];
+}
+
+-(IBAction)declineButtonOnClicked:(id)sender
+{
+    declineConfirm = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineTitle"]
+                                                message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineMessage"], nickNameLabel.text]
+                                               delegate:self
+                                      cancelButtonTitle:[gUIStrings objectForKey:@"UI_NewPlayer_CancelButton"]
+                                      otherButtonTitles:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineButton"], nil];
+    [declineConfirm show];
+}
+
+-(IBAction)trialNotificationButtonOnClicked:(id)sender
+{
+    MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
+    [composeViewController setComposeType:MessageComposeType_Trial];
+    [composeViewController setPlayerList:@[playerData]];
+    [self.navigationController pushViewController:composeViewController animated:YES];
+}
+
+-(IBAction)notifyMyPlayerButtonOnClicked:(id)sender
+{
+    MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
+    [composeViewController setComposeType:MessageComposeType_Blank];
+    [composeViewController setPlayerList:@[playerData]];
+    [self.navigationController pushViewController:composeViewController animated:YES];
+}
+
+-(IBAction)recruitButtonOnClicked:(id)sender
+{
+    MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
+    [composeViewController setComposeType:MessageComposeType_Recurit];
+    [composeViewController setPlayerList:@[playerData]];
+    [self.navigationController pushViewController:composeViewController animated:YES];
+}
+
+-(IBAction)temporaryFavorButtonOnClicked:(id)sender
+{
+    MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
+    [composeViewController setComposeType:MessageComposeType_TemporaryFavor];
+    [composeViewController setPlayerList:@[playerData]];
+    [self.navigationController pushViewController:composeViewController animated:YES];
+}
+
+-(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode
+{
+    [message setStatus:responseCode];
+    NSString *responseString;
+    switch (responseCode) {
+        case 2:
+            responseString = [NSString stringWithFormat:[gUIStrings objectForKey:@"UI_ReplayApplyin_Accepted"], message.senderName];
+            break;
+        case 3:
+            responseString = [NSString stringWithFormat:[gUIStrings objectForKey:@"UI_ReplayApplyin_Declined"], message.senderName];
+            break;
+        default:
+            break;
+    }
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:responseString delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView isEqual:acceptConfirm]) {
+        if (buttonIndex == 1) {
+            [connection replyApplyinMessage:message.messageId response:2];
+        }
+    }
+    else if ([alertView isEqual:declineConfirm]) {
+        if (buttonIndex == 1) {
+            [connection replyApplyinMessage:message.messageId response:3];
+        }
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 /*

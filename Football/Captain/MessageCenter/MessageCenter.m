@@ -9,6 +9,7 @@
 #import "MessageCenter.h"
 #import "MessageCenter_CallinTeamProfile.h"
 #import "MessageCenter_ApplyinPlayerProfile.h"
+#import "PlayerDetails.h"
 
 @interface MessageCell()
 @property IBOutlet UITextView *messageBody;
@@ -237,6 +238,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Message *message = [sourceTypeController.selectedSegmentIndex?sentMessageList:receivedMessageList objectAtIndex:indexPath.row];
+    PlayerDetails *playerDetails;
     switch (message.messageType) {
         case 1:
             if (message.status == 0 && sourceTypeController.selectedSegmentIndex == 0) {
@@ -248,7 +250,11 @@
             if (message.status == 0 && sourceTypeController.selectedSegmentIndex == 0) {
                 [connection readMessages:@[[NSNumber numberWithInteger:message.messageId]]];
             }
-            [self performSegueWithIdentifier:@"ApplyinPlayerProfile" sender:message];
+//            [self performSegueWithIdentifier:@"ApplyinPlayerProfile" sender:message];
+            playerDetails = [[UIStoryboard storyboardWithName:@"Soccer" bundle:nil] instantiateViewControllerWithIdentifier:@"PlayerDetails"];
+            [playerDetails setViewType:PlayerDetails_Applicant];
+            [playerDetails setMessage:message];
+            [self.navigationController pushViewController:playerDetails animated:YES];
             break;
         default:
             break;

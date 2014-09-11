@@ -9,6 +9,7 @@
 #import "Captain_MyPlayers.h"
 #import "PlayerDetails.h"
 #import "Captain_NotifyPlayers.h"
+#import "MessageCenter_Compose.h"
 
 #pragma Captain_MyPlayerCell
 @interface Captain_MyPlayerCell ()
@@ -158,7 +159,17 @@
 
 -(IBAction)notifyButtonOnClicked:(id)sender
 {
-    [self performSegueWithIdentifier:@"MyPlayer" sender:self];
+//    [self performSegueWithIdentifier:@"MyPlayer" sender:self];
+    MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
+    [composeViewController setComposeType:MessageComposeType_Blank];
+    NSMutableArray *selectedPlayerList = [NSMutableArray new];
+    NSArray *indexPathsForSelectedRows = self.searchDisplayController.isActive?self.searchDisplayController.searchResultsTableView.indexPathsForSelectedRows:self.tableView.indexPathsForSelectedRows;
+    NSArray *displayedPlayerList = self.searchDisplayController.isActive?filterPlayerList:playerList;
+    for (NSIndexPath *indexPath in indexPathsForSelectedRows) {
+        [selectedPlayerList addObject:[displayedPlayerList objectAtIndex:indexPath.row]];
+    }
+    [composeViewController setPlayerList:selectedPlayerList];
+    [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
 #pragma mark - Navigation

@@ -11,7 +11,9 @@
 enum MessageComposeType
 {
     MessageComposeType_Blank,
-    MessageComposeType_Trial
+    MessageComposeType_Trial,
+    MessageComposeType_Recurit,
+    MessageComposeType_TemporaryFavor
 };
 
 @interface MessageCenter_Compose : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, JSONConnectDelegate>
@@ -22,4 +24,6 @@ enum MessageComposeType
 -(void)updateSendNotificationButtonStatus;
 -(void)updateSelectionButtonStatus;
 -(void)presetNotification;
+-(void)selectAllPlayers;
+-(void)unselectAllPlayers;
 @end

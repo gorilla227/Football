@@ -72,11 +72,24 @@
     
     switch (composeType) {
         case MessageComposeType_Blank:
-            [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
+            if (playerList) {
+                [self selectAllPlayers];
+            }
+            else {
+                [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
+            }
             break;
         case MessageComposeType_Trial:
             [composeTextView setText:[messageTemplate objectForKey:@"Trial_Default"]];
-            [playerListTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self selectAllPlayers];
+            break;
+        case MessageComposeType_Recurit:
+            [composeTextView setText:[messageTemplate objectForKey:@"Recruit_Default"]];
+            [self selectAllPlayers];
+            break;
+        case MessageComposeType_TemporaryFavor:
+            [composeTextView setText:[messageTemplate objectForKey:@"TemporaryFavor_Default"]];
+            [self selectAllPlayers];
             break;
         default:
             break;
@@ -133,21 +146,33 @@
 {
     switch (selectionSegment.selectedSegmentIndex) {
         case 0:
-            for (int i = 0; i < playerList.count; i++) {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                [playerListTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-                UITableViewCell *cell = [playerListTableView cellForRowAtIndexPath:indexPath];
-                [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-            }
+            [self selectAllPlayers];
             break;
         case 1:
-            for (NSIndexPath *indexPath in playerListTableView.indexPathsForSelectedRows) {
-                [playerListTableView deselectRowAtIndexPath:indexPath animated:NO];
-            }
-            [playerListTableView reloadData];
+            [self unselectAllPlayers];
             break;
         default:
             break;
+    }
+}
+
+-(void)selectAllPlayers
+{
+    for (int i = 0; i < playerList.count; i++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        [playerListTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        UITableViewCell *cell = [playerListTableView cellForRowAtIndexPath:indexPath];
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:UITableViewSelectionDidChangeNotification object:nil];
+}
+
+-(void)unselectAllPlayers
+{
+    for (NSIndexPath *indexPath in playerListTableView.indexPathsForSelectedRows) {
+        [playerListTableView deselectRowAtIndexPath:indexPath animated:NO];
+        UITableViewCell *cell = [playerListTableView cellForRowAtIndexPath:indexPath];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:UITableViewSelectionDidChangeNotification object:nil];
 }
@@ -156,6 +181,8 @@
 {
     playerList = players;
     [playerListTableView reloadData];
+    [self selectAllPlayers];
+    [self updateButtonsStatus];
 }
 
 -(IBAction)sendNotificationButtonOnClicked:(id)sender

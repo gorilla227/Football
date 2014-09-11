@@ -9,6 +9,7 @@
 #import "PlayerMarket.h"
 #import "PositionCheckboxView.h"
 #import "PlayerDetails.h"
+#import "MessageCenter_Compose.h"
 
 #pragma PlayerMarket_SearchView
 @interface PlayerMarket_SearchView ()
@@ -191,6 +192,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setTableHeaderView:searchView];
     isSearchViewShowed = YES;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -353,6 +355,33 @@
         //Set moreLabel
         [moreLabel setText:[gUIStrings objectForKey:@"UI_PlayerMarket_Loading"]];
     }
+}
+
+#pragma Button Actions
+-(IBAction)recruitButtonOnClicked:(id)sender
+{
+    NSMutableArray *selectedPlayerList = [NSMutableArray new];
+    for (NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
+        [selectedPlayerList addObject:[playerList objectAtIndex:indexPath.row]];
+    }
+
+    MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
+    [composeViewController setComposeType:MessageComposeType_Recurit];
+    [composeViewController setPlayerList:selectedPlayerList];
+    [self.navigationController pushViewController:composeViewController animated:YES];
+}
+
+-(IBAction)temporaryFavorButtonOnClicked:(id)sender
+{
+    NSMutableArray *selectedPlayerList = [NSMutableArray new];
+    for (NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
+        [selectedPlayerList addObject:[playerList objectAtIndex:indexPath.row]];
+    }
+    
+    MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
+    [composeViewController setComposeType:MessageComposeType_TemporaryFavor];
+    [composeViewController setPlayerList:selectedPlayerList];
+    [self.navigationController pushViewController:composeViewController animated:YES];
 }
 /*
 #pragma mark - Navigation

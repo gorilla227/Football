@@ -10,5 +10,9 @@
 	<string>SYS_DEFAULT_CALLINMESSAGE</string>
 	<key>Trial_Default</key>
 	<string>通知试训预定义消息</string>
+	<key>Recruit_Default</key>
+	<string>招募队员预定义消息</string>
+	<key>TemporaryFavor_Default</key>
+	<string>临时帮忙预定义消息</string>
 </dict>
 </plist>

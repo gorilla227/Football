@@ -15,7 +15,8 @@ enum PlayerDetails_ViewTypes
 
 #import <UIKit/UIKit.h>
 
-@interface PlayerDetails : UITableViewController
+@interface PlayerDetails : UITableViewController<JSONConnectDelegate>
+@property Message *message;
 @property UserInfo *playerData;
 @property enum PlayerDetails_ViewTypes viewType;
 @end

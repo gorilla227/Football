@@ -8,7 +8,7 @@
 
 #import "Captain_NewPlayer.h"
 #import "CallFriends.h"
-//#import "PlayerDetails.h"
+#import "PlayerDetails.h"
 #import "MessageCenter_ApplyinPlayerProfile.h"
 #import "MessageCenter_Compose.h"
 
@@ -373,12 +373,13 @@
 {
     if (typeSegement.selectedSegmentIndex == 0) {
         Message *message = [applyinList objectAtIndex:indexPath.row];
-        MessageCenter_ApplyinPlayerProfile *playerDetailController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"Callin_PlayerProfile"];
+//        MessageCenter_ApplyinPlayerProfile *playerDetailController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"Callin_PlayerProfile"];
+//        [playerDetailController setMessage:message];
+        UserInfo *player = [messageReferenceDictionary objectForKey:[NSNumber numberWithInteger:message.messageId]];
+        PlayerDetails *playerDetailController = (PlayerDetails *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayerDetails"];
         [playerDetailController setMessage:message];
-//        UserInfo *player = [messageReferenceDictionary objectForKey:[NSNumber numberWithInteger:message.messageId]];
-//        PlayerDetails *playerDetailController = (PlayerDetails *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayerDetails"];
-//        [playerDetailController setPlayerData:player];
-//        [playerDetailController setViewType:PlayerDetails_Applicant];
+        [playerDetailController setPlayerData:player];
+        [playerDetailController setViewType:PlayerDetails_Applicant];
         [self.navigationController pushViewController:playerDetailController animated:YES];
     }
 }
