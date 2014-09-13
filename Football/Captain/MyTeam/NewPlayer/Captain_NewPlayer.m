@@ -71,7 +71,7 @@
             if (player) {
                 MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
                 [composeViewController setComposeType:MessageComposeType_Trial];
-                [composeViewController setPlayerList:@[player]];
+                [composeViewController setToList:@[player]];
                 [navigationController pushViewController:composeViewController animated:YES];
             }
             [agreementSegment setSelectedSegmentIndex:-1];

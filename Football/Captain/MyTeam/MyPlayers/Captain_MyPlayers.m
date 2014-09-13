@@ -168,7 +168,7 @@
     for (NSIndexPath *indexPath in indexPathsForSelectedRows) {
         [selectedPlayerList addObject:[displayedPlayerList objectAtIndex:indexPath.row]];
     }
-    [composeViewController setPlayerList:selectedPlayerList];
+    [composeViewController setToList:selectedPlayerList];
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 

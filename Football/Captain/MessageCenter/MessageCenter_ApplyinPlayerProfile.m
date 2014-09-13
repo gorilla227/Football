@@ -170,7 +170,7 @@
     if ([segue.destinationViewController isKindOfClass:[MessageCenter_Compose class]]) {
         MessageCenter_Compose *composeViewController = segue.destinationViewController;
         [composeViewController setComposeType:MessageComposeType_Trial];
-        [composeViewController setPlayerList:@[senderPlayer]];
+        [composeViewController setToList:@[senderPlayer]];
     }
 }
 

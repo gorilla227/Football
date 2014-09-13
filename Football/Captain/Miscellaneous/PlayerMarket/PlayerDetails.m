@@ -199,7 +199,7 @@
 {
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_Trial];
-    [composeViewController setPlayerList:@[playerData]];
+    [composeViewController setToList:@[playerData]];
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
@@ -207,7 +207,7 @@
 {
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_Blank];
-    [composeViewController setPlayerList:@[playerData]];
+    [composeViewController setToList:@[playerData]];
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
@@ -215,7 +215,7 @@
 {
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_Recurit];
-    [composeViewController setPlayerList:@[playerData]];
+    [composeViewController setToList:@[playerData]];
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
@@ -223,7 +223,7 @@
 {
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_TemporaryFavor];
-    [composeViewController setPlayerList:@[playerData]];
+    [composeViewController setToList:@[playerData]];
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 

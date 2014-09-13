@@ -50,8 +50,10 @@ enum RequestMessageSourceType
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount;//获取未读消息数量成功
 -(void)readMessagesSuccessfully:(NSArray *)messageIdList;//设置消息已读成功
 -(void)playerApplyinSent;//球员申请加入球队发送成功
+-(void)playerApplyinFailed;//球员申请加入球队发送失败
 -(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode;//队长回复球员的入队申请成功
 -(void)teamCallinSent;//队长邀请球员加入球队发送成功
+-(void)teamCallinFailed;//队长邀请球员加入球队发送失败
 -(void)replyCallinMessageSuccessfully:(NSInteger)responseCode;//球员回复队长的入队邀请成功
 
 #pragma zzOld_Server

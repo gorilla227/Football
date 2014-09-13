@@ -594,7 +594,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayerCell" textLabel="LnC-gP-VYv" style="IBUITableViewCellStyleDefault" id="b6z-aC-vez">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ToCell" textLabel="LnC-gP-VYv" style="IBUITableViewCellStyleDefault" id="b6z-aC-vez">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b6z-aC-vez" id="FgI-4V-Lgp">
@@ -629,6 +629,41 @@
                                     <action selector="selectAllOrSelectNone:" destination="Vcv-df-BA7" eventType="valueChanged" id="bg8-zY-rg7"/>
                                 </connections>
                             </segmentedControl>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ug5-KY-FfJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CU2-pf-Qmc">
+                                        <rect key="frame" x="60" y="190" width="200" height="79"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="t20-YS-n7F">
+                                                <rect key="frame" x="25" y="39" width="150" height="2"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </progressView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEa-00-Zjf">
+                                                <rect key="frame" x="0.0" y="49" width="200" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="取消">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sendingProgressCancelButtonOnClicked:" destination="Vcv-df-BA7" eventType="touchUpInside" id="e0U-pl-YHt"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="正在发送 - 0/10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s60-fc-PfK">
+                                                <rect key="frame" x="0.0" y="10" width="200" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -641,6 +676,11 @@
                         <outlet property="playerListTableView" destination="gUS-Bh-ydc" id="1Bh-DT-6jP"/>
                         <outlet property="selectionSegment" destination="QpK-m6-jHM" id="6A5-mY-W5l"/>
                         <outlet property="sendNotificationButton" destination="SME-Zo-Te5" id="QLg-5b-v3N"/>
+                        <outlet property="sendingProgressBackgroundView" destination="Ug5-KY-FfJ" id="VyB-wp-rVa"/>
+                        <outlet property="sendingProgressBar" destination="t20-YS-n7F" id="fcL-r8-pbK"/>
+                        <outlet property="sendingProgressCancelButton" destination="EEa-00-Zjf" id="Pab-9f-AkI"/>
+                        <outlet property="sendingProgressLabel" destination="s60-fc-PfK" id="BDQ-FH-cX6"/>
+                        <outlet property="sendingProgressView" destination="CU2-pf-Qmc" id="idv-OX-Il4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfw-8h-za2" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -7,6 +7,7 @@
 //
 
 #import "FindTeam.h"
+#import "MessageCenter_Compose.h"
 
 #pragma FindTeam_Cell
 @interface FindTeam_Cell()
@@ -79,9 +80,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:YES];
-    
     [self.searchDisplayController.searchResultsTableView setRowHeight:self.tableView.rowHeight];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
@@ -90,6 +88,12 @@
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [connection requestTeamsStart:0 count:count option:RequestTeamsOption_Recruit];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -218,14 +222,10 @@
     else {
         applyinTeam = [teamList objectAtIndex:button.tag];
     }
-    [connection applyinFromPlayer:gMyUserInfo.userId toTeam:applyinTeam.teamId withMessage:nil];
-//    [connection applyinTeamFromPlayer:35 toTeam:applyinTeam.teamId withMessage:nil];
-}
-
--(void)playerApplyinSent
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_FindTeam_Successful_Message"]         delegate:nil cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
-    [alertView show];
+    MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
+    [composeViewController setComposeType:MessageComposeType_Applyin];
+    [composeViewController setToList:@[applyinTeam]];
+    [self.navigationController pushViewController:composeViewController animated:YES];
 }
 /*
 #pragma mark - Navigation

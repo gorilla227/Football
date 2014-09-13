@@ -5,9 +5,7 @@
 	<key>SMS_InviteFriends</key>
 	<string>邀请好友</string>
 	<key>Applyin_Default</key>
-	<string>SYS_DEFAULT_APPLYINMESSAGE</string>
-	<key>Callin_Default</key>
-	<string>SYS_DEFAULT_CALLINMESSAGE</string>
+	<string>申请入队预定义消息</string>
 	<key>Trial_Default</key>
 	<string>通知试训预定义消息</string>
 	<key>Recruit_Default</key>

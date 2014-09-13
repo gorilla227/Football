@@ -13,17 +13,18 @@ enum MessageComposeType
     MessageComposeType_Blank,
     MessageComposeType_Trial,
     MessageComposeType_Recurit,
-    MessageComposeType_TemporaryFavor
+    MessageComposeType_TemporaryFavor,
+    MessageComposeType_Applyin
 };
 
-@interface MessageCenter_Compose : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, JSONConnectDelegate>
+@interface MessageCenter_Compose : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, JSONConnectDelegate, UIAlertViewDelegate>
 @property enum MessageComposeType composeType;
-@property NSArray *playerList;
+@property NSArray *toList;
 
 -(void)updateButtonsStatus;
 -(void)updateSendNotificationButtonStatus;
 -(void)updateSelectionButtonStatus;
 -(void)presetNotification;
--(void)selectAllPlayers;
--(void)unselectAllPlayers;
+-(void)selectAllInToList;
+-(void)unselectAllInToList;
 @end

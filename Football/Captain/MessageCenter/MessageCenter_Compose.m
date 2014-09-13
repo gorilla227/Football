@@ -14,13 +14,20 @@
 @property IBOutlet UISegmentedControl *selectionSegment;
 @property IBOutlet UIToolbar *actionBar;
 @property IBOutlet UIBarButtonItem *sendNotificationButton;
+@property IBOutlet UIView *sendingProgressView;
+@property IBOutlet UIProgressView *sendingProgressBar;
+@property IBOutlet UILabel *sendingProgressLabel;
+@property IBOutlet UIButton *sendingProgressCancelButton;
+@property IBOutlet UIView *sendingProgressBackgroundView;
 @end
 
 @implementation MessageCenter_Compose{
     JSONConnect *connection;
+    NSInteger numOfCompletedMessages;
+    NSInteger numOfFailedMessages;
 }
-@synthesize composeType, playerList;
-@synthesize playerListTableView, composeTextView, selectionSegment, actionBar, sendNotificationButton;
+@synthesize composeType, toList;
+@synthesize playerListTableView, composeTextView, selectionSegment, actionBar, sendNotificationButton, sendingProgressView, sendingProgressBar, sendingProgressCancelButton, sendingProgressLabel, sendingProgressBackgroundView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,6 +48,8 @@
     [playerListTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
+    
+    [sendingProgressBackgroundView setHidden:YES];
     
     [self presetNotification];
 }
@@ -72,8 +81,8 @@
     
     switch (composeType) {
         case MessageComposeType_Blank:
-            if (playerList) {
-                [self selectAllPlayers];
+            if (toList) {
+                [self selectAllInToList];
             }
             else {
                 [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
@@ -81,15 +90,19 @@
             break;
         case MessageComposeType_Trial:
             [composeTextView setText:[messageTemplate objectForKey:@"Trial_Default"]];
-            [self selectAllPlayers];
+            [self selectAllInToList];
             break;
         case MessageComposeType_Recurit:
             [composeTextView setText:[messageTemplate objectForKey:@"Recruit_Default"]];
-            [self selectAllPlayers];
+            [self selectAllInToList];
             break;
         case MessageComposeType_TemporaryFavor:
             [composeTextView setText:[messageTemplate objectForKey:@"TemporaryFavor_Default"]];
-            [self selectAllPlayers];
+            [self selectAllInToList];
+            break;
+        case MessageComposeType_Applyin:
+            [composeTextView setText:[messageTemplate objectForKey:@"Applyin_Default"]];
+            [self selectAllInToList];
             break;
         default:
             break;
@@ -109,7 +122,7 @@
 
 -(void)updateSelectionButtonStatus
 {
-    if (playerList.count == 0) {
+    if (toList.count == 0) {
         [selectionSegment setSelectedSegmentIndex:-1];
         [selectionSegment setEnabled:NO];
     }
@@ -118,7 +131,7 @@
         if (playerListTableView.indexPathsForSelectedRows.count == 0) {
             [selectionSegment setSelectedSegmentIndex:1];
         }
-        else if (playerListTableView.indexPathsForSelectedRows.count == playerList.count) {
+        else if (playerListTableView.indexPathsForSelectedRows.count == toList.count) {
             [selectionSegment setSelectedSegmentIndex:0];
         }
         else {
@@ -146,19 +159,19 @@
 {
     switch (selectionSegment.selectedSegmentIndex) {
         case 0:
-            [self selectAllPlayers];
+            [self selectAllInToList];
             break;
         case 1:
-            [self unselectAllPlayers];
+            [self unselectAllInToList];
             break;
         default:
             break;
     }
 }
 
--(void)selectAllPlayers
+-(void)selectAllInToList
 {
-    for (int i = 0; i < playerList.count; i++) {
+    for (int i = 0; i < toList.count; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         [playerListTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         UITableViewCell *cell = [playerListTableView cellForRowAtIndexPath:indexPath];
@@ -167,7 +180,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:UITableViewSelectionDidChangeNotification object:nil];
 }
 
--(void)unselectAllPlayers
+-(void)unselectAllInToList
 {
     for (NSIndexPath *indexPath in playerListTableView.indexPathsForSelectedRows) {
         [playerListTableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -179,14 +192,106 @@
 
 -(void)receiveTeamMembers:(NSArray *)players
 {
-    playerList = players;
+    toList = players;
     [playerListTableView reloadData];
-    [self selectAllPlayers];
+    [self selectAllInToList];
     [self updateButtonsStatus];
 }
 
 -(IBAction)sendNotificationButtonOnClicked:(id)sender
 {
+    [sendingProgressBackgroundView setHidden:NO];
+    [sendingProgressBackgroundView setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
+    [sendingProgressView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.85]];
+    [sendingProgressView.layer setCornerRadius:20.0f];
+    [sendingProgressView.layer setMasksToBounds:YES];
+    [sendingProgressView setOpaque:YES];
+    [sendingProgressBar setProgress:0];
+    [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:0], [NSNumber numberWithInteger:toList.count]]];
+    [self.navigationController.navigationBar setUserInteractionEnabled:NO];
+    [self.navigationController.toolbar setUserInteractionEnabled:NO];
+    numOfCompletedMessages = 0;
+    numOfFailedMessages = 0;
+    
+    switch (composeType) {
+        case MessageComposeType_Blank:
+            break;
+        case MessageComposeType_Trial:
+            break;
+        case MessageComposeType_Recurit:
+            for (UserInfo *playerForMessage in toList) {
+                [connection callinFromTeam:gMyUserInfo.team.teamId toPlayer:playerForMessage.userId withMessage:composeTextView.text];
+            }
+            break;
+        case MessageComposeType_TemporaryFavor:
+            break;
+        case MessageComposeType_Applyin:
+            for (Team *teamForMessage in toList) {
+                [connection applyinFromPlayer:gMyUserInfo.userId toTeam:teamForMessage.teamId withMessage:composeTextView.text];
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+-(IBAction)sendingProgressCancelButtonOnClicked:(id)sender
+{
+    [connection cancelAllOperations];
+    [sendingProgressBackgroundView setHidden:YES];
+    [self.navigationController.navigationBar setUserInteractionEnabled:YES];
+    [self.navigationController.toolbar setUserInteractionEnabled:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)playerApplyinSent
+{
+    numOfCompletedMessages++;
+    [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]]];
+    [sendingProgressBar setProgress:numOfCompletedMessages/toList.count animated:YES];
+    if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
+        [sendingProgressBackgroundView setHidden:YES];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_FindTeam_Successful_Message"]         delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+-(void)playerApplyinFailed
+{
+    numOfFailedMessages++;
+    if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
+        [sendingProgressBackgroundView setHidden:YES];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_FindTeam_SendingResultMessage"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+-(void)teamCallinSent
+{
+    numOfCompletedMessages++;
+    [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]]];
+    [sendingProgressBar setProgress:numOfCompletedMessages/toList.count animated:YES];
+    if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
+        [sendingProgressBackgroundView setHidden:YES];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Callin_SendingResultMessage"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+-(void)teamCallinFailed
+{
+    numOfFailedMessages++;
+    if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
+        [sendingProgressBackgroundView setHidden:YES];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Callin_SendingResultMessage"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController.navigationBar setUserInteractionEnabled:YES];
+    [self.navigationController.toolbar setUserInteractionEnabled:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -198,18 +303,27 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return playerList.count;
+    return toList.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"PlayerCell";
+    static NSString *CellIdentifier = @"ToCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UserInfo *playerData = [playerList objectAtIndex:indexPath.row];
-    [cell.textLabel setText:playerData.nickName];
-    [cell.imageView setImage:playerData.playerPortrait?playerData.playerPortrait:def_defaultPlayerPortrait];
-    [cell.imageView.layer setCornerRadius:10.0f];
-    [cell.imageView.layer setMasksToBounds:YES];
+    if (composeType == MessageComposeType_Applyin) {
+        Team *teamData = [toList objectAtIndex:indexPath.row];
+        [cell.textLabel setText:teamData.teamName];
+        [cell.imageView setImage:teamData.teamLogo?teamData.teamLogo:def_defaultTeamLogo];
+        [cell.imageView.layer setCornerRadius:10.0f];
+        [cell.imageView.layer setMasksToBounds:YES];
+    }
+    else {
+        UserInfo *playerData = [toList objectAtIndex:indexPath.row];
+        [cell.textLabel setText:playerData.nickName];
+        [cell.imageView setImage:playerData.playerPortrait?playerData.playerPortrait:def_defaultPlayerPortrait];
+        [cell.imageView.layer setCornerRadius:10.0f];
+        [cell.imageView.layer setMasksToBounds:YES];
+    }
     if ([tableView.indexPathsForSelectedRows containsObject:indexPath]) {
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     }
