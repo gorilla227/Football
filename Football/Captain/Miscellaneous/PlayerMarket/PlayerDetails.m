@@ -133,6 +133,17 @@
         [teamNameBackgroundView.layer setCornerRadius:5.0f];
         [teamNameBackgroundView.layer setMasksToBounds:YES];
     }
+    else if (viewType == PlayerDetails_MyPlayer){
+        [teamNameLabel setText:gMyUserInfo.team.teamName];
+        [teamLogoImageView setImage:gMyUserInfo.team.teamLogo?gMyUserInfo.team.teamLogo:def_defaultTeamLogo];
+        [teamLogoImageView.layer setCornerRadius:8.0f];
+        [teamLogoImageView.layer setMasksToBounds:YES];
+        [teamLogoImageView.layer setBorderWidth:3.0f];
+        [teamLogoImageView.layer setBorderColor:cLightBlue(1).CGColor];
+        [teamNameBackgroundView setBackgroundColor:cLightBlue(1)];
+        [teamNameBackgroundView.layer setCornerRadius:5.0f];
+        [teamNameBackgroundView.layer setMasksToBounds:YES];
+    }
     else {
         [teamNameLabel setText:nil];
     }

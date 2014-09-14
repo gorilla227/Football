@@ -19,12 +19,11 @@
 @property IBOutlet UILabel *ageLabel;
 @property IBOutlet UILabel *positionLabel;
 @property IBOutlet UILabel *styleLabel;
-@property IBOutlet UILabel *signUpStatusOfNextMatchLabel;
 @end
 
 @implementation Captain_MyPlayerCell
 @synthesize myPlayer, delegate;
-@synthesize checkMarkBackground, playerPortraitImageView, nickNameLabel, signUpStatusOfNextMatchLabel, ageLabel, positionLabel, styleLabel;
+@synthesize checkMarkBackground, playerPortraitImageView, nickNameLabel, ageLabel, positionLabel, styleLabel;
 
 -(void)drawRect:(CGRect)rect
 {
@@ -75,12 +74,19 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:actionBar.items];
+    [self.searchDisplayController.searchResultsTableView setRowHeight:self.tableView.rowHeight];
+    [self.searchDisplayController.searchResultsTableView setAllowsMultipleSelection:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActionButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,7 +103,13 @@
 
 -(void)updateActionButtonsStatus
 {
-    [notifyButton setEnabled:self.tableView.indexPathsForSelectedRows.count];
+    if (self.searchDisplayController.isActive) {
+        [notifyButton setEnabled:self.searchDisplayController.searchResultsTableView.indexPathsForSelectedRows.count];
+        [self.searchDisplayController.searchBar resignFirstResponder];
+    }
+    else {
+        [notifyButton setEnabled:self.tableView.indexPathsForSelectedRows.count];
+    }
 }
 
 -(void)pushPlayerDetails:(UserInfo *)player
@@ -157,9 +169,15 @@
     [cell setAccessoryType:UITableViewCellAccessoryNone];
 }
 
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"self.nickName contains[c] %@", searchString];
+    filterPlayerList = [playerList filteredArrayUsingPredicate:searchPredicate];
+    return YES;
+}
+
 -(IBAction)notifyButtonOnClicked:(id)sender
 {
-//    [self performSegueWithIdentifier:@"MyPlayer" sender:self];
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_Blank];
     NSMutableArray *selectedPlayerList = [NSMutableArray new];
@@ -179,15 +197,6 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"MyPlayer"]) {
-//        Captain_PlayerDetails *playerDetails = segue.destinationViewController;
-//        [playerDetails setViewType:PlayerDetails_MyPlayer];
-    }
-    else if ([segue.identifier isEqualToString:@"NotifyTeamPlayers"]) {
-        Captain_NotifyPlayers *notifyPlayers = segue.destinationViewController;
-        [notifyPlayers setViewType:NotifyPlayers_MyTeamPlayers];
-        [notifyPlayers setPlayerList:@[@"张三", @"李四", @"王五"]];
-    }
 }
 
 @end

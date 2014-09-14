@@ -1751,7 +1751,6 @@
                         <outlet property="searchView" destination="rVU-W4-UDu" id="m12-Jj-Bri"/>
                         <outlet property="searchViewSwitchButton" destination="jSB-gb-It7" id="Cki-i8-zIE"/>
                         <outlet property="temporaryFavorButton" destination="W9h-6c-mx6" id="bdV-gS-WwY"/>
-                        <segue destination="rDc-i7-2O5" kind="push" identifier="" id="8ep-sF-aW5"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4F9-mf-ahq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2554,18 +2553,6 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下一场比赛：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1F6-60-yIK">
-                                            <rect key="frame" x="74" y="59" width="76" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NextMatch" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aS4-7y-ewe">
-                                            <rect key="frame" x="158" y="59" width="67" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="场上位置" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="33z-WG-piG">
                                             <rect key="frame" x="102" y="8" width="70" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2587,13 +2574,17 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年龄" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="rsI-BZ-bfa">
-                                            <rect key="frame" x="251" y="8" width="25" height="20"/>
+                                            <rect key="frame" x="102" y="59" width="25" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldIcon_Birthday.png" id="65P-Ax-elz">
-                                            <rect key="frame" x="223" y="8" width="20" height="20"/>
+                                            <rect key="frame" x="74" y="59" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldIcon_Account.png" id="HPC-Ay-RFw">
+                                            <rect key="frame" x="236" y="24" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -2604,7 +2595,6 @@
                                     <outlet property="nickNameLabel" destination="YqU-1F-bVZ" id="ie7-tq-c8v"/>
                                     <outlet property="playerPortraitImageView" destination="Avw-SY-psq" id="Gee-KI-2GE"/>
                                     <outlet property="positionLabel" destination="33z-WG-piG" id="eQH-ra-thp"/>
-                                    <outlet property="signUpStatusOfNextMatchLabel" destination="aS4-7y-ewe" id="Tzc-9Z-zpd"/>
                                     <outlet property="styleLabel" destination="GRu-N1-J5e" id="p7D-zN-LaJ"/>
                                 </connections>
                             </tableViewCell>
