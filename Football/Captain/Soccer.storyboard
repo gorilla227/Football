@@ -1755,14 +1755,15 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4F9-mf-ahq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jSB-gb-It7">
+                <button opaque="NO" contentMode="scaleAspectFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jSB-gb-It7">
                     <rect key="frame" x="259" y="7" width="320" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="contentEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="2"/>
-                    <state key="normal" image="SearchViewSwitchButton.png">
+                    <state key="normal" image="SearchViewSwitchButtonShow.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="selected" image="SearchViewSwitchButtonHIde.png"/>
                     <connections>
                         <action selector="searchViewSwitchButtonOnClicked:" destination="e93-Fb-qcJ" eventType="touchUpInside" id="T5d-XR-DNK"/>
                     </connections>
@@ -4587,7 +4588,8 @@
     </scenes>
     <resources>
         <image name="Icon_NumOfTeamMember.png" width="20" height="20"/>
-        <image name="SearchViewSwitchButton.png" width="50" height="15"/>
+        <image name="SearchViewSwitchButtonHIde.png" width="300" height="300"/>
+        <image name="SearchViewSwitchButtonShow.png" width="50" height="15"/>
         <image name="TeamIcon.jpg" width="300" height="300"/>
         <image name="TextFieldIcon_Account.png" width="40" height="40"/>
         <image name="TextFieldIcon_ActivityRegion.png" width="40" height="40"/>

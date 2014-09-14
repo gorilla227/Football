@@ -15,7 +15,6 @@
 
 @implementation Soccer_BaseNavigationController{
     MainMenu *mainMenu;
-    UIView *contentView;
     UIActivityIndicatorView *busyIndicator;
     JSONConnect *connection;
     NSArray *messageSubtypes;
@@ -40,7 +39,6 @@
     UIImage *backgroundImage = [UIImage imageNamed:@"soccer_grass_bg@2x.png"];
     [self.view.layer setContents:(id)backgroundImage.CGImage];
 
-    contentView = self.view.subviews.firstObject;
     mainMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"Captain_MainMenu"];
     [mainMenu setDelegateOfMenuAppearance:self];
     [mainMenu setDelegateOfViewSwitch:self];
@@ -59,8 +57,8 @@
     [self.view addSubview:busyIndicator];
     
     //Load the initial view
-    [mainMenu tableView:mainMenu.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-    [self menuSwitch];
+//    [mainMenu tableView:mainMenu.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+    [mainMenu initialFirtSelection:[NSIndexPath indexPathForRow:1 inSection:1]];
     
     //Set JSONConnect for request unread message amount repeatly.
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self];
@@ -96,42 +94,28 @@
 {
     [UIView beginAnimations:@"ShowMenu" context:nil];
     [UIView setAnimationDuration:0.3f];
-    CGAffineTransform showMenu = CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0);
+    CGAffineTransform tShowMenu = CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0);
     if (isMenuShow) {
         //Hide menu
-        if ([self.visibleViewController isKindOfClass:[UITabBarController class]]) {
-            UITabBarController *tabBarController = (UITabBarController *)self.visibleViewController;
-            for (UIView *view in tabBarController.selectedViewController.view.subviews) {
-                [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
-            }
+        for (UIView *view in self.visibleViewController.view.subviews) {
+            [view setTransform:CGAffineTransformConcat(view.transform, CGAffineTransformInvert(tShowMenu))];
         }
-        else {
-            for (UIView *view in self.visibleViewController.view.subviews) {
-                [view setTransform:CGAffineTransformMakeTranslation(0, 0)];
-            }
-        }
-        [self.toolbar setTransform:CGAffineTransformMakeTranslation(0, 0)];
+        [self.toolbar setTransform:CGAffineTransformConcat(self.toolbar.transform, CGAffineTransformInvert(tShowMenu))];
+        [self.toolbar setUserInteractionEnabled:YES];
         [self.visibleViewController.view setUserInteractionEnabled:YES];
-        [mainMenu.view setTransform:CGAffineTransformMakeTranslation(0, 0)];
+        [mainMenu.view setTransform:CGAffineTransformConcat(mainMenu.view.transform, CGAffineTransformInvert(tShowMenu))];
         [mainMenu.view setUserInteractionEnabled:NO];
         isMenuShow = NO;
     }
     else {
         //Show menu
-        if ([self.visibleViewController isKindOfClass:[UITabBarController class]]) {
-            UITabBarController *tabBarController = (UITabBarController *)self.visibleViewController;
-            for (UIView *view in tabBarController.selectedViewController.view.subviews) {
-                [view setTransform:showMenu];
-            }
+        for (UIView * view in self.visibleViewController.view.subviews) {
+            [view setTransform:CGAffineTransformConcat(view.transform, tShowMenu)];
         }
-        else {
-            for (UIView *view in self.visibleViewController.view.subviews) {
-                [view setTransform:showMenu];
-            }
-        }
-        [self.toolbar setTransform:showMenu];
+        [self.toolbar setTransform:CGAffineTransformConcat(self.toolbar.transform, tShowMenu)];
+        [self.toolbar setUserInteractionEnabled:NO];
         [self.visibleViewController.view setUserInteractionEnabled:NO];
-        [mainMenu.view setTransform:showMenu];
+        [mainMenu.view setTransform:CGAffineTransformConcat(mainMenu.view.transform, tShowMenu)];
         [mainMenu.view setUserInteractionEnabled:YES];
         [mainMenu resetMenuFolder];
         isMenuShow = YES;
@@ -181,14 +165,12 @@
 -(void)lockView
 {
     [self.view.window setUserInteractionEnabled:NO];
-//    [self.visibleViewController.view setUserInteractionEnabled:NO];
     [busyIndicator startAnimating];
 }
 
 -(void)unlockView
 {
     [self.view.window setUserInteractionEnabled:YES];
-//    [self.visibleViewController.view setUserInteractionEnabled:YES];
     [busyIndicator stopAnimating];
 }
 /*

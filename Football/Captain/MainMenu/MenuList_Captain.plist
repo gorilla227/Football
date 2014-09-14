@@ -83,7 +83,7 @@
 			<key>Title</key>
 			<string>球员</string>
 			<key>Identifier</key>
-			<string></string>
+			<string>PlayerMarket</string>
 		</dict>
 		<dict>
 			<key>Title</key>

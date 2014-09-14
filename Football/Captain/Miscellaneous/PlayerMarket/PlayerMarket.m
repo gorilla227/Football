@@ -153,7 +153,6 @@
 
 #pragma PlayerMarket
 @interface PlayerMarket ()
-@property BOOL isSearchViewShowed;
 @property IBOutlet PlayerMarket_SearchView *searchView;
 @property IBOutlet UIButton *searchViewSwitchButton;
 @property IBOutlet UIToolbar *actionBar;
@@ -171,7 +170,6 @@
     NSInteger count;
     BOOL haveMorePlayers;
 }
-@synthesize isSearchViewShowed;
 @synthesize searchView, searchViewSwitchButton, actionBar, recruitButton, temporaryFavorButton, moreActivityIndicator, moreFooterView, moreLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -194,9 +192,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setTableHeaderView:searchView];
-    isSearchViewShowed = YES;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [searchViewSwitchButton setTransform:CGAffineTransformMakeRotation(M_PI)];
     [self setToolbarItems:actionBar.items];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActionButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
     
@@ -209,7 +205,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:!self.toolbarItems.count];
+    [self.navigationController setToolbarHidden:!gMyUserInfo.userType];
 }
 
 - (void)didReceiveMemoryWarning
@@ -228,9 +224,8 @@
 
 -(IBAction)searchViewSwitchButtonOnClicked:(id)sender
 {
-    isSearchViewShowed = !isSearchViewShowed;
-    [self.tableView setTableHeaderView:isSearchViewShowed?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [searchViewSwitchButton setTransform:isSearchViewShowed?CGAffineTransformMakeRotation(M_PI):CGAffineTransformMakeRotation(0)];
+    [searchViewSwitchButton setSelected:!searchViewSwitchButton.isSelected];
+    [self.tableView setTableHeaderView:searchViewSwitchButton.isSelected?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
     if (playerList.count) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     }
@@ -274,9 +269,9 @@
         [moreLabel setText:[gUIStrings objectForKey:@"UI_PlayerMarket_LoadMore"]];
     }
     [playerList addObjectsFromArray:players];
-    isSearchViewShowed = !playerList.count;
-    [self.tableView setTableHeaderView:isSearchViewShowed?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [searchViewSwitchButton setTransform:isSearchViewShowed?CGAffineTransformMakeRotation(M_PI):CGAffineTransformMakeRotation(0)];
+    
+    [searchViewSwitchButton setSelected:!playerList.count];
+    [self.tableView setTableHeaderView:searchViewSwitchButton.isSelected?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView reloadData];
     [self updateActionButtonsStatus];
     [moreActivityIndicator stopAnimating];

@@ -96,6 +96,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)initialFirtSelection:(NSIndexPath *)initialIndexPath
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:initialIndexPath];
+    if (initialIndexPath.section == 0) {
+        //Turn to MyProfileView
+        [delegateOfViewSwitch switchSelectMenuView:@"EditPlayerProfile"];
+        visibleViewIndexPath = initialIndexPath;
+    }
+    else {
+        if (initialIndexPath.row == 0) {
+            lastRootMenuIndex = initialIndexPath.section;
+            [self.tableView reloadData];
+            [self viewWillAppear:NO];
+        }
+        else {
+            //Format the cell
+            [self formatCell:cell withFont:selectedFont];
+            
+            //Call the parentcontroller to switch lesser view
+            NSDictionary *menuItem = [[menuListDictionary objectForKey:[NSString stringWithFormat:@"%li", initialIndexPath.section - 1]] objectAtIndex:initialIndexPath.row - 1];
+            NSString *selectedView = [menuItem objectForKey:@"Identifier"];
+            if (selectedView.length != 0) {
+                [delegateOfViewSwitch switchSelectMenuView:selectedView];
+            }
+            NSLog(@"%@", [menuItem objectForKey:@"Title"]);
+            visibleViewIndexPath = initialIndexPath;
+        }
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -163,11 +193,12 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.section == 0) {
+        //Close the menu
+        [delegateOfMenuAppearance menuSwitch];
+        
         //Turn to MyProfileView
         [delegateOfViewSwitch switchSelectMenuView:@"EditPlayerProfile"];
         
-        //Close the menu
-        [delegateOfMenuAppearance menuSwitch];
         visibleViewIndexPath = indexPath;
     }
     else {
@@ -177,6 +208,9 @@
             [self viewWillAppear:NO];
         }
         else {
+            //Close the menu
+            [delegateOfMenuAppearance menuSwitch];
+            
             //Format the cell
             [self formatCell:cell withFont:selectedFont];
             
@@ -187,9 +221,6 @@
                 [delegateOfViewSwitch switchSelectMenuView:selectedView];
             }
             NSLog(@"%@", [menuItem objectForKey:@"Title"]);
-
-            //Close the menu
-            [delegateOfMenuAppearance menuSwitch];
             
             visibleViewIndexPath = indexPath;
         }

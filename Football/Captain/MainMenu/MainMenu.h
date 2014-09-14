@@ -25,7 +25,9 @@
 @property id<MainMenuAppearenceDelegate>delegateOfMenuAppearance;
 @property id<MainMenuSwitchViewControllerDelegate>delegateOfViewSwitch;
 @property IBOutlet UIToolbar *toolBar;
+
 -(void)formatCell:(UITableViewCell *)cell withFont:(UIFont *)font;
 -(void)menuListGeneration;
 -(void)resetMenuFolder;
+-(void)initialFirtSelection:(NSIndexPath *)initialIndexPath;
 @end

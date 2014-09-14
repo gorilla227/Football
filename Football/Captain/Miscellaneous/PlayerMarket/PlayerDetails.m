@@ -69,11 +69,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO];
-    if (viewType == PlayerDetails_Applicant) {
-       [self.navigationController setToolbarHidden:message.status !=0 && message.status != 1];
-    }
-    else {
-        [self.navigationController setToolbarHidden:NO];
+    switch (viewType) {
+        case PlayerDetails_Applicant:
+            [self.navigationController setToolbarHidden:message.status !=0 && message.status != 1];
+            break;
+        default:
+            [self.navigationController setToolbarHidden:!gMyUserInfo.userType];
+            break;
     }
 }
 

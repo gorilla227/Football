@@ -66,7 +66,7 @@
 		A1C2803318F79CED004C644E /* register_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802A18F79CED004C644E /* register_qq.png */; };
 		A1C2803418F79CED004C644E /* soccer_grass_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802B18F79CED004C644E /* soccer_grass_bg.png */; };
 		A1C2803518F79CED004C644E /* soccer_grass_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802C18F79CED004C644E /* soccer_grass_bg@2x.png */; };
-		A1CF194619B19F0E0097E1DB /* SearchViewSwitchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CF194519B19F0E0097E1DB /* SearchViewSwitchButton.png */; };
+		A1CF194619B19F0E0097E1DB /* SearchViewSwitchButtonShow.png in Resources */ = {isa = PBXBuildFile; fileRef = A1CF194519B19F0E0097E1DB /* SearchViewSwitchButtonShow.png */; };
 		A1D07BD218CC1E4800FA3A8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD118CC1E4800FA3A8D /* Foundation.framework */; };
 		A1D07BD418CC1E4800FA3A8D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */; };
 		A1D07BD618CC1E4800FA3A8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D07BD518CC1E4800FA3A8D /* UIKit.framework */; };
@@ -118,6 +118,7 @@
 		B2168BEB198304B500F91C4B /* MenuList_Captain.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2168BE9198304B500F91C4B /* MenuList_Captain.plist */; };
 		B2168BF31983180C00F91C4B /* MenuList_PlayerWithTeam.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2168BF21983180B00F91C4B /* MenuList_PlayerWithTeam.plist */; };
 		B2168BF5198319F200F91C4B /* MenuList_PlayerWithoutTeam.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2168BF4198319F200F91C4B /* MenuList_PlayerWithoutTeam.plist */; };
+		B229B34719C50A6000D46D02 /* SearchViewSwitchButtonHide.png in Resources */ = {isa = PBXBuildFile; fileRef = B229B34619C50A6000D46D02 /* SearchViewSwitchButtonHide.png */; };
 		B22B10AE193A9683004BE83F /* Captain_BalanceManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B10AD193A9683004BE83F /* Captain_BalanceManagement.m */; };
 		B23C4F891936B59C00FC73F2 /* TeamIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B23C4F881936B59C00FC73F2 /* TeamIcon.jpg */; };
 		B251F9EA1953B3610031E4A8 /* ActivityRegions.json in Resources */ = {isa = PBXBuildFile; fileRef = B251F9E91953B3610031E4A8 /* ActivityRegions.json */; };
@@ -244,7 +245,7 @@
 		A1C2802C18F79CED004C644E /* soccer_grass_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "soccer_grass_bg@2x.png"; path = "Resource/soccer_grass_bg@2x.png"; sourceTree = "<group>"; };
 		A1C41F3119062943001A2EFD /* Captain_CreateMatch_EnterOpponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_EnterOpponent.h; sourceTree = "<group>"; };
 		A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoginAndRegisterProtocols.h; path = LoginAndRegister/LoginAndRegisterProtocols.h; sourceTree = "<group>"; };
-		A1CF194519B19F0E0097E1DB /* SearchViewSwitchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SearchViewSwitchButton.png; path = Resource/PlayerMarket/SearchViewSwitchButton.png; sourceTree = "<group>"; };
+		A1CF194519B19F0E0097E1DB /* SearchViewSwitchButtonShow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SearchViewSwitchButtonShow.png; path = Resource/PlayerMarket/SearchViewSwitchButtonShow.png; sourceTree = "<group>"; };
 		A1D07BCE18CC1E4800FA3A8D /* Football.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Football.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D07BD118CC1E4800FA3A8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -316,6 +317,7 @@
 		B2168BE9198304B500F91C4B /* MenuList_Captain.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuList_Captain.plist; sourceTree = "<group>"; };
 		B2168BF21983180B00F91C4B /* MenuList_PlayerWithTeam.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuList_PlayerWithTeam.plist; sourceTree = "<group>"; };
 		B2168BF4198319F200F91C4B /* MenuList_PlayerWithoutTeam.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuList_PlayerWithoutTeam.plist; sourceTree = "<group>"; };
+		B229B34619C50A6000D46D02 /* SearchViewSwitchButtonHide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SearchViewSwitchButtonHide.png; path = Resource/PlayerMarket/SearchViewSwitchButtonHide.png; sourceTree = "<group>"; };
 		B22B10AD193A9683004BE83F /* Captain_BalanceManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_BalanceManagement.m; path = Captain/FinanceManagement/BalanceManagement/Captain_BalanceManagement.m; sourceTree = "<group>"; };
 		B23C4F881936B59C00FC73F2 /* TeamIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TeamIcon.jpg; path = Resource/TeamIcon.jpg; sourceTree = "<group>"; };
 		B251F9E91953B3610031E4A8 /* ActivityRegions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ActivityRegions.json; path = Football/Utils/TextFieldCustomize/ActivityRegions.json; sourceTree = "<group>"; };
@@ -638,7 +640,8 @@
 		A1CF194719B19F1F0097E1DB /* PlayerMarket */ = {
 			isa = PBXGroup;
 			children = (
-				A1CF194519B19F0E0097E1DB /* SearchViewSwitchButton.png */,
+				A1CF194519B19F0E0097E1DB /* SearchViewSwitchButtonShow.png */,
+				B229B34619C50A6000D46D02 /* SearchViewSwitchButtonHide.png */,
 			);
 			name = PlayerMarket;
 			sourceTree = "<group>";
@@ -1124,7 +1127,7 @@
 				A1370A5A1904D7CC00E64949 /* leftIcon_createMatch_numOfPlayers.png in Resources */,
 				B2026505191C25E7004B8D74 /* menuIcon_finance.png in Resources */,
 				A1370A5B1904D7CC00E64949 /* leftIcon_createMatch_opponent.png in Resources */,
-				A1CF194619B19F0E0097E1DB /* SearchViewSwitchButton.png in Resources */,
+				A1CF194619B19F0E0097E1DB /* SearchViewSwitchButtonShow.png in Resources */,
 				A116278D197A34A1006B8E0C /* MessageTemplate.plist in Resources */,
 				A1C2803318F79CED004C644E /* register_qq.png in Resources */,
 				A17A73DD198217BE00AAE4A2 /* TextFieldIcon_Postion.png in Resources */,
@@ -1135,6 +1138,7 @@
 				A10BACB7190D9AA1000FA5A7 /* leftIcon_createMatch_score.png in Resources */,
 				A106EEA8198A089200F9765C /* Icon_NumOfTeamMember.png in Resources */,
 				A1370A5D1904D7CC00E64949 /* leftIcon_createMatch_time.png in Resources */,
+				B229B34719C50A6000D46D02 /* SearchViewSwitchButtonHide.png in Resources */,
 				B2026506191C25E7004B8D74 /* menuIcon_myMatches.png in Resources */,
 				A169F7421915F3AF00361796 /* enterScore_VS.png in Resources */,
 				B23C4F891936B59C00FC73F2 /* TeamIcon.jpg in Resources */,
