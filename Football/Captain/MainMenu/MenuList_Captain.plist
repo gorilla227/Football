@@ -41,7 +41,7 @@
 			<key>Title</key>
 			<string>我的队员</string>
 			<key>Identifier</key>
-			<string>Captain_MyPlayers</string>
+			<string>MyPlayers</string>
 		</dict>
 		<dict>
 			<key>Title</key>

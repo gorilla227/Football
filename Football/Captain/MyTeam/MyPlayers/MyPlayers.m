@@ -1,18 +1,17 @@
 //
-//  Captain_MyPlayers.m
+//  MyPlayers.m
 //  Football
 //
 //  Created by Andy Xu on 14-4-2.
 //  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
 //
 
-#import "Captain_MyPlayers.h"
+#import "MyPlayers.h"
 #import "PlayerDetails.h"
-#import "Captain_NotifyPlayers.h"
 #import "MessageCenter_Compose.h"
 
-#pragma Captain_MyPlayerCell
-@interface Captain_MyPlayerCell ()
+#pragma MyPlayerCell
+@interface MyPlayerCell ()
 @property IBOutlet UIView *checkMarkBackground;
 @property IBOutlet UIImageView *playerPortraitImageView;
 @property IBOutlet UILabel *nickNameLabel;
@@ -21,7 +20,7 @@
 @property IBOutlet UILabel *styleLabel;
 @end
 
-@implementation Captain_MyPlayerCell
+@implementation MyPlayerCell
 @synthesize myPlayer, delegate;
 @synthesize checkMarkBackground, playerPortraitImageView, nickNameLabel, ageLabel, positionLabel, styleLabel;
 
@@ -51,13 +50,13 @@
 }
 @end
 
-#pragma Captain_MyPlayer
-@interface Captain_MyPlayers ()
+#pragma MyPlayer
+@interface MyPlayers ()
 @property IBOutlet UIToolbar *actionBar;
 @property IBOutlet UIBarButtonItem *notifyButton;
 @end
 
-@implementation Captain_MyPlayers{
+@implementation MyPlayers{
     JSONConnect *connection;
     NSArray *playerList;
     NSArray *filterPlayerList;
@@ -141,8 +140,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Captain_MyPlayerCell";
-    Captain_MyPlayerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"MyPlayerCell";
+    MyPlayerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UserInfo *playerData = [[tableView isEqual:self.tableView]?playerList:filterPlayerList objectAtIndex:indexPath.row];
     
     // Configure the cell...
