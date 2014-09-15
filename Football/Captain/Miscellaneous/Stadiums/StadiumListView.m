@@ -45,14 +45,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setToolbarItems:addStadiumToolBar.items];
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
     
     //Set the tableview
     [stadiumListTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [connection requestAllStadiums];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,6 +83,11 @@
     NSSortDescriptor *sortByDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
     stadiumList = [stadiumList sortedArrayUsingDescriptors:@[sortByDistance]];
     [stadiumListTableView reloadData];
+}
+
+-(IBAction)returnToUserLocation:(id)sender
+{
+    [grandMapView showAnnotations:@[stadiumList.firstObject, grandMapView.userLocation] animated:YES];
 }
 
 #pragma UITableView Methods
@@ -139,6 +148,7 @@
     CLLocationCoordinate2D centerCoordinate = stadium.coordinate;
     centerCoordinate.latitude = centerCoordinate.latitude + 0.005;
     [mapView setCenterCoordinate:centerCoordinate animated:YES];
+    [mapView showAnnotations:@[view.annotation] animated:YES];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
