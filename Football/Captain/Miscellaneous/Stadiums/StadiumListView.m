@@ -22,6 +22,7 @@
 @property IBOutlet UIToolbar *addStadiumToolBar;
 @property IBOutlet MKMapView *grandMapView;
 @property IBOutlet UITableView *stadiumListTableView;
+@property IBOutlet UISearchBar *stadiumFilterBar;
 @end
 
 @implementation StadiumListView{
@@ -29,7 +30,7 @@
     NSArray *stadiumList;
     NSArray *filteredStadiumList;
 }
-@synthesize addStadiumToolBar, grandMapView, stadiumListTableView;
+@synthesize addStadiumToolBar, grandMapView, stadiumListTableView, stadiumFilterBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +49,8 @@
     
     //Set the tableview
     [stadiumListTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [stadiumListTableView.layer setCornerRadius:10.0f];
+    [stadiumListTableView.layer setMasksToBounds:YES];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [connection requestAllStadiums];
@@ -65,12 +68,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)cancelSearch:(id)sender
+{
+    [stadiumFilterBar resignFirstResponder];
+}
+
 -(void)receiveAllStadiums:(NSArray *)stadiums
 {
     stadiumList = stadiums;
+    filteredStadiumList = stadiums;
     [self calculateAndSortStadiumsByDistance];
     [grandMapView addAnnotations:stadiumList];
     [grandMapView showAnnotations:@[stadiumList.firstObject, grandMapView.userLocation] animated:YES];
+    
+    
+    CGRect tableFrame = stadiumListTableView.frame;
+    tableFrame.size.height = MIN(stadiumList.count, 2.5) * stadiumListTableView.rowHeight;
+    [stadiumListTableView setFrame:tableFrame];
 }
 
 -(void)calculateAndSortStadiumsByDistance
@@ -82,6 +96,7 @@
     }
     NSSortDescriptor *sortByDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
     stadiumList = [stadiumList sortedArrayUsingDescriptors:@[sortByDistance]];
+    filteredStadiumList = [filteredStadiumList sortedArrayUsingDescriptors:@[sortByDistance]];
     [stadiumListTableView reloadData];
 }
 
@@ -98,12 +113,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([tableView isEqual:stadiumListTableView]) {
-        return stadiumList.count;
-    }
-    else {
-        return filteredStadiumList.count;
-    }
+    return filteredStadiumList.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,12 +122,7 @@
     StadiumListView_Cell *cell = [stadiumListTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     Stadium *stadium;
-    if ([tableView isEqual:stadiumListTableView]) {
-        stadium = [stadiumList objectAtIndex:indexPath.row];
-    }
-    else {
-        stadium = [filteredStadiumList objectAtIndex:indexPath.row];
-    }
+    stadium = [filteredStadiumList objectAtIndex:indexPath.row];
 
     [cell.stadiumNameLabel setText:stadium.stadiumName];
     [cell.stadiumAddressLabel setText:stadium.address];
@@ -126,11 +131,26 @@
 }
 
 #pragma Search Methods
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+//{
+//    NSPredicate *searchCondition = [NSPredicate predicateWithFormat:@"self.stadiumName contains[c] %@ || self.address contains[c] %@", searchString, searchString];
+//    filteredStadiumList = [stadiumList filteredArrayUsingPredicate:searchCondition];
+//    return YES;
+//}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    NSPredicate *searchCondition = [NSPredicate predicateWithFormat:@"self.stadiumName contains[c] %@ || self.address contains[c] %@", searchString, searchString];
-    filteredStadiumList = [stadiumList filteredArrayUsingPredicate:searchCondition];
-    return YES;
+    if (searchText.length) {
+        NSPredicate *searchCondition = [NSPredicate predicateWithFormat:@"self.stadiumName contains[c] %@ || self.address contains[c] %@", searchText, searchText];
+        filteredStadiumList = [stadiumList filteredArrayUsingPredicate:searchCondition];
+    }
+    else {
+        filteredStadiumList = stadiumList;
+    }
+    CGRect tableFrame = stadiumListTableView.frame;
+    tableFrame.size.height = MIN(filteredStadiumList.count, 2.5) * stadiumListTableView.rowHeight;
+    [stadiumListTableView setFrame:tableFrame];
+    [stadiumListTableView reloadData];
 }
 
 #pragma MapViewDelegate

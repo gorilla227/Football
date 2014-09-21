@@ -13,6 +13,6 @@
 
 @end
 
-@interface StadiumListView : UIViewController<UITableViewDataSource, UITableViewDelegate, JSONConnectDelegate, MKMapViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface StadiumListView : UIViewController<UITableViewDataSource, UITableViewDelegate, JSONConnectDelegate, MKMapViewDelegate, UISearchBarDelegate>
 -(void)calculateAndSortStadiumsByDistance;
 @end

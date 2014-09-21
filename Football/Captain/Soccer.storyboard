@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="TjK-OM-Yjn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="TjK-OM-Yjn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Main Menu-->
@@ -147,13 +148,12 @@
             </objects>
             <point key="canvasLocation" x="-353" y="261"/>
         </scene>
-        <!--Soccer Base Navigation Controller - 主界面-->
+        <!--主界面-->
         <scene sceneID="Z2u-1O-9hN">
             <objects>
                 <navigationController storyboardIdentifier="Captain_RootNavigationController" title="主界面" definesPresentationContext="YES" modalTransitionStyle="flipHorizontal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TjK-OM-Yjn" customClass="Soccer_BaseNavigationController" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="oA4-LM-88w">
-                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -177,7 +177,7 @@
             </objects>
             <point key="canvasLocation" x="-89" y="197"/>
         </scene>
-        <!--Captain Match Arrangement - 比赛安排-->
+        <!--比赛安排-->
         <scene sceneID="uqB-Nd-wsA">
             <objects>
                 <viewController storyboardIdentifier="Captain_MatchArrangement" title="比赛安排" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dbN-VF-g7q" customClass="Captain_MatchArrangement" sceneMemberID="viewController">
@@ -372,7 +372,7 @@
             </objects>
             <point key="canvasLocation" x="322" y="197"/>
         </scene>
-        <!--Captain Warmup Match - 热身赛-->
+        <!--热身赛-->
         <scene sceneID="L5A-vW-fkS">
             <objects>
                 <viewController storyboardIdentifier="Captain_WarmupMatch" title="热身赛" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C9b-P3-Oec" customClass="Captain_WarmupMatch" sceneMemberID="viewController">
@@ -641,7 +641,7 @@
             </objects>
             <point key="canvasLocation" x="322" y="886"/>
         </scene>
-        <!--Captain Create Match - 建立比赛-->
+        <!--建立比赛-->
         <scene sceneID="cTr-pM-BwB">
             <objects>
                 <viewController storyboardIdentifier="Captain_CreateMatch" title="建立比赛" useStoryboardIdentifierAsRestorationIdentifier="YES" id="R6J-gK-DLQ" customClass="Captain_CreateMatch" sceneMemberID="viewController">
@@ -843,7 +843,7 @@
             </objects>
             <point key="canvasLocation" x="745" y="197"/>
         </scene>
-        <!--Captain Create Match Enter Opponent - 输入对手-->
+        <!--输入对手-->
         <scene sceneID="pXq-Zs-pv5">
             <objects>
                 <viewController storyboardIdentifier="Captain_CreateMatch_EnterOpponent" title="输入对手" useStoryboardIdentifierAsRestorationIdentifier="YES" id="D47-h1-sYj" customClass="Captain_CreateMatch_EnterOpponent" sceneMemberID="viewController">
@@ -904,7 +904,7 @@
             </objects>
             <point key="canvasLocation" x="1169" y="-467"/>
         </scene>
-        <!--Captain Create Match Team Market - 球队超市-->
+        <!--球队超市-->
         <scene sceneID="9eR-qX-PNd">
             <objects>
                 <tableViewController storyboardIdentifier="Captain_CreateMatch_TeamMarket" title="球队超市" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TJj-lJ-1UK" customClass="Captain_CreateMatch_TeamMarket" sceneMemberID="viewController">
@@ -1008,7 +1008,7 @@
             </objects>
             <point key="canvasLocation" x="1618" y="-467"/>
         </scene>
-        <!--Captain Create Match Select Match Stadium - 选择球场-->
+        <!--选择球场-->
         <scene sceneID="JZ7-X3-4Qd">
             <objects>
                 <viewController storyboardIdentifier="Captain_CreateMatch_SelectPlayground" title="选择球场" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1jn-PF-RVR" customClass="Captain_CreateMatch_SelectMatchStadium" sceneMemberID="viewController">
@@ -1114,7 +1114,7 @@
             </objects>
             <point key="canvasLocation" x="1169" y="197"/>
         </scene>
-        <!--Captain Create Match Enter Score - 输入比分-->
+        <!--输入比分-->
         <scene sceneID="YAb-AF-HMC">
             <objects>
                 <viewController storyboardIdentifier="Captain_CreateMatch_EnterScore" title="输入比分" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lPb-eJ-rbZ" customClass="Captain_CreateMatch_EnterScore" sceneMemberID="viewController">
@@ -1267,7 +1267,7 @@
             </objects>
             <point key="canvasLocation" x="1169" y="886"/>
         </scene>
-        <!--Captain New Player - 新人入队-->
+        <!--新人入队-->
         <scene sceneID="QIw-Sm-tLY">
             <objects>
                 <viewController storyboardIdentifier="Captain_NewPlayer" title="新人入队" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1KA-6F-QpJ" customClass="Captain_NewPlayer" sceneMemberID="viewController">
@@ -1467,7 +1467,6 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <size key="freeformSize" width="320" height="455"/>
                     <connections>
                         <outlet property="actionBar" destination="I7s-ST-Fog" id="nst-2B-H9v"/>
                         <outlet property="numOfApplyinLabel" destination="RcA-7l-zQV" id="7ro-N3-TTe"/>
@@ -1501,7 +1500,7 @@
             </objects>
             <point key="canvasLocation" x="322" y="2266"/>
         </scene>
-        <!--Player Market - 球员超市-->
+        <!--球员超市-->
         <scene sceneID="GRY-Kz-Xw3">
             <objects>
                 <tableViewController storyboardIdentifier="PlayerMarket" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e93-Fb-qcJ" customClass="PlayerMarket" sceneMemberID="viewController">
@@ -1789,7 +1788,7 @@
             </objects>
             <point key="canvasLocation" x="745" y="2266"/>
         </scene>
-        <!--Player Details - 球员数据-->
+        <!--球员数据-->
         <scene sceneID="78i-df-Unq">
             <objects>
                 <tableViewController storyboardIdentifier="PlayerDetails" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rDc-i7-2O5" customClass="PlayerDetails" sceneMemberID="viewController">
@@ -2295,7 +2294,7 @@
             </objects>
             <point key="canvasLocation" x="1169" y="2266"/>
         </scene>
-        <!--Captain Team Profile - 球队资料-->
+        <!--球队资料-->
         <scene sceneID="2Gh-yJ-vbN">
             <objects>
                 <viewController storyboardIdentifier="Captain_TeamProfile" title="球队资料" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yWa-wn-o1w" customClass="Captain_TeamProfile" sceneMemberID="viewController">
@@ -2503,7 +2502,7 @@
             </objects>
             <point key="canvasLocation" x="325" y="2951"/>
         </scene>
-        <!--My Players - 我的队员-->
+        <!--我的队员-->
         <scene sceneID="c3E-sP-V3C">
             <objects>
                 <tableViewController storyboardIdentifier="MyPlayers" title="我的队员" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wUp-3y-ZBH" customClass="MyPlayers" sceneMemberID="viewController">
@@ -2639,7 +2638,7 @@
             </objects>
             <point key="canvasLocation" x="322" y="1568"/>
         </scene>
-        <!--Captain Player Details - 队员数据-->
+        <!--队员数据-->
         <scene sceneID="eBr-oF-1xI">
             <objects>
                 <viewController storyboardIdentifier="Captain_PlayerDetails" title="队员数据" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ml2-mD-abv" customClass="Captain_PlayerDetails" sceneMemberID="viewController">
@@ -2813,7 +2812,7 @@
             </objects>
             <point key="canvasLocation" x="1169" y="1568"/>
         </scene>
-        <!--Captain Notify Players - 发送通知-->
+        <!--发送通知-->
         <scene sceneID="oPc-bR-DFc">
             <objects>
                 <viewController storyboardIdentifier="Captain_NotifyPlayers" title="发送通知" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TRJ-kb-wLT" customClass="Captain_NotifyPlayers" sceneMemberID="viewController">
@@ -2927,7 +2926,7 @@
             </objects>
             <point key="canvasLocation" x="1618" y="2266"/>
         </scene>
-        <!--Captain Balance Management - 收支管理-->
+        <!--收支管理-->
         <scene sceneID="Reo-5g-clM">
             <objects>
                 <viewController storyboardIdentifier="Captain_BalanceManagement" title="收支管理" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ubl-cF-H7E" customClass="Captain_BalanceManagement" sceneMemberID="viewController">
@@ -3062,7 +3061,7 @@
             </objects>
             <point key="canvasLocation" x="322" y="3644"/>
         </scene>
-        <!--Captain Team Fund Inquiry - 队费查询-->
+        <!--队费查询-->
         <scene sceneID="mmC-ao-LrT">
             <objects>
                 <viewController storyboardIdentifier="Captain_TeamFundInquiry" title="队费查询" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gDy-ht-Op2" customClass="Captain_TeamFundInquiry" sceneMemberID="viewController">
@@ -3257,7 +3256,7 @@
             </objects>
             <point key="canvasLocation" x="322" y="4328"/>
         </scene>
-        <!--Captain Enter Balance - 添加收支-->
+        <!--添加收支-->
         <scene sceneID="cAx-IG-pdD">
             <objects>
                 <viewController storyboardIdentifier="Captain_EnterBalance" title="添加收支" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qsa-cW-8op" customClass="Captain_EnterBalance" sceneMemberID="viewController">
@@ -3547,7 +3546,7 @@
             </objects>
             <point key="canvasLocation" x="2031" y="495"/>
         </scene>
-        <!--Edit Player Profile - 个人资料-->
+        <!--个人资料-->
         <scene sceneID="jTv-eo-RiH">
             <objects>
                 <tableViewController storyboardIdentifier="EditPlayerProfile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zOU-DJ-6ZQ" customClass="EditPlayerProfile" sceneMemberID="viewController">
@@ -3801,7 +3800,7 @@
             </objects>
             <point key="canvasLocation" x="322" y="-485"/>
         </scene>
-        <!--Stadium List View - 球场-->
+        <!--球场-->
         <scene sceneID="RfU-Vw-J53">
             <objects>
                 <viewController storyboardIdentifier="StadiumListView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sCs-Lj-TbQ" customClass="StadiumListView" sceneMemberID="viewController">
@@ -3810,25 +3809,19 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" id="h9p-Sj-yvZ">
-                                <rect key="frame" x="0.0" y="180" width="320" height="280"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="sCs-Lj-TbQ" id="5mo-zC-47X"/>
+                                    <outletCollection property="gestureRecognizers" destination="rV0-jh-Hbs" appends="YES" id="CNT-R9-UAq"/>
                                 </connections>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="h2h-da-eKE">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                                <rect key="frame" x="16" y="44" width="288" height="156"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="O0a-wj-qfh">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="sCs-Lj-TbQ" id="yOA-Bg-F6H"/>
-                                    </connections>
-                                </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="StadiumListViewCell" id="RTu-Sl-BXc" customClass="StadiumListView_Cell">
                                         <rect key="frame" x="0.0" y="66" width="320" height="50"/>
@@ -3838,20 +3831,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距离" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" id="opv-WO-I2M">
-                                                    <rect key="frame" x="216" y="14" width="71" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="176" y="12" width="71" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="球场名称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="7cD-xB-GdW">
-                                                    <rect key="frame" x="20" y="6" width="188" height="21"/>
+                                                    <rect key="frame" x="20" y="3" width="188" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="f0c-6b-8TB">
-                                                    <rect key="frame" x="20" y="26" width="188" height="21"/>
+                                                    <rect key="frame" x="20" y="21" width="188" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -3882,6 +3875,14 @@
                                     <action selector="returnToUserLocation:" destination="sCs-Lj-TbQ" eventType="touchUpInside" id="ELK-e5-q4A"/>
                                 </connections>
                             </button>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" id="O0a-wj-qfh">
+                                <rect key="frame" x="16" y="0.0" width="288" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="sCs-Lj-TbQ" id="yOA-Bg-F6H"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -3892,7 +3893,7 @@
                     <connections>
                         <outlet property="addStadiumToolBar" destination="0Aa-6d-Amq" id="L6S-eu-rCw"/>
                         <outlet property="grandMapView" destination="h9p-Sj-yvZ" id="sdC-m6-Oxc"/>
-                        <outlet property="searchDisplayController" destination="Ual-kl-zfQ" id="O6N-PM-Cbu"/>
+                        <outlet property="stadiumFilterBar" destination="O0a-wj-qfh" id="0Mh-in-pIu"/>
                         <outlet property="stadiumListTableView" destination="h2h-da-eKE" id="wt2-ul-vsL"/>
                     </connections>
                 </viewController>
@@ -3910,19 +3911,15 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="2Xf-wK-P5N"/>
                     </items>
                 </toolbar>
-                <searchDisplayController id="Ual-kl-zfQ">
+                <tapGestureRecognizer id="rV0-jh-Hbs">
                     <connections>
-                        <outlet property="delegate" destination="sCs-Lj-TbQ" id="Sxi-8n-QGq"/>
-                        <outlet property="searchBar" destination="O0a-wj-qfh" id="OQN-xD-giO"/>
-                        <outlet property="searchContentsController" destination="sCs-Lj-TbQ" id="6e0-Mk-lZJ"/>
-                        <outlet property="searchResultsDataSource" destination="sCs-Lj-TbQ" id="bZY-nM-e45"/>
-                        <outlet property="searchResultsDelegate" destination="sCs-Lj-TbQ" id="kjX-iu-7pw"/>
+                        <action selector="cancelSearch:" destination="sCs-Lj-TbQ" id="HfM-DW-ejo"/>
                     </connections>
-                </searchDisplayController>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-89" y="-1173"/>
         </scene>
-        <!--Stadium Details - 球场详情-->
+        <!--球场详情-->
         <scene sceneID="dgC-EN-132">
             <objects>
                 <tableViewController storyboardIdentifier="StadiumDetails" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xfT-J2-Uwn" customClass="StadiumDetails" sceneMemberID="viewController">
@@ -4105,7 +4102,7 @@
             </objects>
             <point key="canvasLocation" x="322" y="-1173"/>
         </scene>
-        <!--Add Stadium Select Address - 添加球场-->
+        <!--添加球场-->
         <scene sceneID="8St-wc-dDN">
             <objects>
                 <viewController storyboardIdentifier="AddStadium_SelectAddress" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oka-iM-dhQ" customClass="AddStadium_SelectAddress" sceneMemberID="viewController">
@@ -4193,7 +4190,7 @@
             </objects>
             <point key="canvasLocation" x="745" y="-1173"/>
         </scene>
-        <!--Edit Team Profile - 球队资料-->
+        <!--球队资料-->
         <scene sceneID="Q27-Tm-Bok">
             <objects>
                 <tableViewController storyboardIdentifier="EditTeamProfile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zme-Kh-0RT" customClass="EditTeamProfile" sceneMemberID="viewController">
@@ -4442,7 +4439,7 @@
             </objects>
             <point key="canvasLocation" x="-89" y="-485"/>
         </scene>
-        <!--Find Team - 寻找组织-->
+        <!--寻找组织-->
         <scene sceneID="PMk-SW-zpK">
             <objects>
                 <tableViewController storyboardIdentifier="FindTeam" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uoL-By-mSF" customClass="FindTeam" sceneMemberID="viewController">
