@@ -45,6 +45,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self setToolbarItems:actionBar.items];
     [self actionButtonInitialization];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     [stadiumMap showAnnotations:@[stadium] animated:YES];
     [stadiumMap selectAnnotation:stadium animated:YES];
@@ -57,6 +58,12 @@
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -65,21 +72,21 @@
 
 -(void)actionButtonInitialization
 {
-    if (gMyUserInfo.userType == 1) {
+    if (gMyUserInfo.team) {
         if (gMyUserInfo.team.homeStadium.stadiumId == stadium.stadiumId) {
             [homeStadiumSetButton setEnabled:NO];
             [homeStadiumSetButton setTitle:[gUIStrings objectForKey:@"UI_HomeStadiumSetButtonOwnTitle"]];
         }
         else {
-            [homeStadiumSetButton setEnabled:YES];
+            [homeStadiumSetButton setEnabled:gMyUserInfo.userType];
             [homeStadiumSetButton setTitle:[gUIStrings objectForKey:@"UI_HomeStadiumSetButtonTitle"]];
-            NSLog(@"%@", [gUIStrings objectForKey:@"UI_HomeStadiumSetButtonTitle"]);
         }
     }
     else {
         [homeStadiumSetButton setEnabled:NO];
         [homeStadiumSetButton setTitle:[gUIStrings objectForKey:@"UI_HomeStadiumSetButtonTitle"]];
     }
+    
     [contactStadiumButton setEnabled:stadium.phoneNumber];
 }
 

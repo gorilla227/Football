@@ -7,6 +7,8 @@
 //
 
 #import "StadiumListView.h"
+#import "StadiumDetails.h"
+#import "StadiumAdd.h"
 
 @interface StadiumListView_Cell()
 @property IBOutlet UILabel *stadiumNameLabel;
@@ -19,18 +21,19 @@
 @end
 
 @interface StadiumListView ()
-@property IBOutlet UIToolbar *addStadiumToolBar;
 @property IBOutlet MKMapView *grandMapView;
 @property IBOutlet UITableView *stadiumListTableView;
 @property IBOutlet UISearchBar *stadiumFilterBar;
+@property IBOutlet UIButton *cancelAddStadiumButton;
 @end
 
 @implementation StadiumListView{
     JSONConnect *connection;
     NSArray *stadiumList;
     NSArray *filteredStadiumList;
+    Stadium *newStadium;
 }
-@synthesize addStadiumToolBar, grandMapView, stadiumListTableView, stadiumFilterBar;
+@synthesize grandMapView, stadiumListTableView, stadiumFilterBar, cancelAddStadiumButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,8 +48,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self setToolbarItems:addStadiumToolBar.items];
-    
     //Set the tableview
     [stadiumListTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [stadiumListTableView.layer setCornerRadius:10.0f];
@@ -59,7 +60,25 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
+    [self.navigationController setToolbarHidden:YES];
+    
+    if (newStadium && newStadium.stadiumId) {
+        stadiumList = [stadiumList arrayByAddingObject:newStadium];
+        if ([stadiumFilterBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length) {
+            NSPredicate *searchCondition = [NSPredicate predicateWithFormat:@"self.stadiumName contains[c] %@ || self.address contains[c] %@", stadiumFilterBar.text, stadiumFilterBar.text];
+            filteredStadiumList = [stadiumList filteredArrayUsingPredicate:searchCondition];
+        }
+        else {
+            filteredStadiumList = stadiumList;
+        }
+        [self calculateAndSortStadiumsByDistance];
+        [grandMapView removeAnnotation:newStadium];
+        Stadium *savedStadium = newStadium;
+        newStadium = nil;
+        [grandMapView addAnnotation:savedStadium];
+        [grandMapView selectAnnotation:savedStadium animated:YES];
+    }
+    [cancelAddStadiumButton setEnabled:newStadium];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,36 +92,45 @@
     [stadiumFilterBar resignFirstResponder];
 }
 
+-(IBAction)cancelNewStadiumAnnotation:(id)sender
+{
+    if (newStadium) {
+        [grandMapView removeAnnotation:newStadium];
+        newStadium = nil;
+        [cancelAddStadiumButton setEnabled:NO];
+    }
+    [self returnToUserLocation:nil];
+}
+
 -(void)receiveAllStadiums:(NSArray *)stadiums
 {
     stadiumList = stadiums;
     filteredStadiumList = stadiums;
     [self calculateAndSortStadiumsByDistance];
-    [grandMapView addAnnotations:stadiumList];
-    [grandMapView showAnnotations:@[stadiumList.firstObject, grandMapView.userLocation] animated:YES];
-    
-    
-    CGRect tableFrame = stadiumListTableView.frame;
-    tableFrame.size.height = MIN(stadiumList.count, 2.5) * stadiumListTableView.rowHeight;
-    [stadiumListTableView setFrame:tableFrame];
+    [grandMapView addAnnotations:filteredStadiumList];
+    [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
 }
 
 -(void)calculateAndSortStadiumsByDistance
 {
-    for (Stadium *stadium in stadiumList) {
+    for (Stadium *stadium in filteredStadiumList) {
         CLLocation *location = [[CLLocation alloc] initWithLatitude:stadium.coordinate.latitude longitude:stadium.coordinate.longitude];
         CLLocationDistance distance = [location distanceFromLocation:grandMapView.userLocation.location];
         [stadium setDistance:distance/1000];
     }
     NSSortDescriptor *sortByDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
-    stadiumList = [stadiumList sortedArrayUsingDescriptors:@[sortByDistance]];
     filteredStadiumList = [filteredStadiumList sortedArrayUsingDescriptors:@[sortByDistance]];
-    [stadiumListTableView reloadData];
+    [self reloadStadiumListTableView];
 }
 
 -(IBAction)returnToUserLocation:(id)sender
 {
-    [grandMapView showAnnotations:@[stadiumList.firstObject, grandMapView.userLocation] animated:YES];
+    if (filteredStadiumList.count) {
+        [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
+    }
+    else {
+        [grandMapView showAnnotations:@[grandMapView.userLocation] animated:YES];
+    }
 }
 
 #pragma UITableView Methods
@@ -131,22 +159,30 @@
 }
 
 #pragma Search Methods
-//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-//{
-//    NSPredicate *searchCondition = [NSPredicate predicateWithFormat:@"self.stadiumName contains[c] %@ || self.address contains[c] %@", searchString, searchString];
-//    filteredStadiumList = [stadiumList filteredArrayUsingPredicate:searchCondition];
-//    return YES;
-//}
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    if (searchText.length) {
+    if ([searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length) {
         NSPredicate *searchCondition = [NSPredicate predicateWithFormat:@"self.stadiumName contains[c] %@ || self.address contains[c] %@", searchText, searchText];
         filteredStadiumList = [stadiumList filteredArrayUsingPredicate:searchCondition];
     }
     else {
         filteredStadiumList = stadiumList;
     }
+    [self reloadStadiumListTableView];
+    
+    [grandMapView removeAnnotations:grandMapView.annotations];
+    [grandMapView addAnnotations:filteredStadiumList];
+    if (filteredStadiumList.count) {
+        [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
+    }
+    else {
+        [grandMapView showAnnotations:@[grandMapView.userLocation] animated:YES];
+    }
+}
+
+-(void)reloadStadiumListTableView
+{
     CGRect tableFrame = stadiumListTableView.frame;
     tableFrame.size.height = MIN(filteredStadiumList.count, 2.5) * stadiumListTableView.rowHeight;
     [stadiumListTableView setFrame:tableFrame];
@@ -157,18 +193,15 @@
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     [self calculateAndSortStadiumsByDistance];
-    if (stadiumList.count > 0) {
-        [grandMapView showAnnotations:@[stadiumList.firstObject, grandMapView.userLocation] animated:YES];
+    if (filteredStadiumList.count > 0) {
+        [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
     }
 }
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     Stadium *stadium = view.annotation;
-    CLLocationCoordinate2D centerCoordinate = stadium.coordinate;
-    centerCoordinate.latitude = centerCoordinate.latitude + 0.005;
-    [mapView setCenterCoordinate:centerCoordinate animated:YES];
-    [mapView showAnnotations:@[view.annotation] animated:YES];
+    [mapView showAnnotations:@[stadium] animated:YES];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -176,25 +209,74 @@
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
-    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"Annotation"];
-    if (!annotationView) {
-        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Annotation"];
-        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [annotationView setRightCalloutAccessoryView:rightButton];
-        [annotationView setCanShowCallout:YES];
+    
+    if ([annotation isEqual:newStadium]) {
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"NewStadium"];
+        if (!annotationView) {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"NewStadium"];
+            [annotationView setPinColor:MKPinAnnotationColorPurple];
+            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+            [annotationView setRightCalloutAccessoryView:rightButton];
+            [annotationView setCanShowCallout:YES];
+            [annotationView setAnimatesDrop:YES];
+        }
+        else {
+            [annotationView setAnnotation:annotation];
+        }
+
+        return annotationView;
     }
     else {
-        [annotationView setAnnotation:annotation];
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"ExistedStadium"];
+        if (!annotationView) {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ExistedStadium"];
+            [annotationView setPinColor:MKPinAnnotationColorRed];
+            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [annotationView setRightCalloutAccessoryView:rightButton];
+            [annotationView setCanShowCallout:YES];
+        }
+        else {
+            [annotationView setAnnotation:annotation];
+        }
+        return annotationView;
     }
-    return annotationView;
 }
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     Stadium *selectedStadium = view.annotation;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[stadiumList indexOfObject:selectedStadium] inSection:0];
-    [stadiumListTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-    [self performSegueWithIdentifier:@"StadiumDetails" sender:self];
+    if ([selectedStadium isEqual:newStadium]) {
+        [self performSegueWithIdentifier:@"AddStadium" sender:self];
+    }
+    else {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[filteredStadiumList indexOfObject:selectedStadium] inSection:0];
+        [stadiumListTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self performSegueWithIdentifier:@"StadiumDetails" sender:self];
+    }
+}
+
+-(IBAction)longPressToAddNewStadium:(UILongPressGestureRecognizer *)longPressGestureRecognizer;
+{
+    if (longPressGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        CGPoint clickPoint = [longPressGestureRecognizer locationOfTouch:0 inView:grandMapView];
+        CLLocationCoordinate2D newStadiumCoordinate = [grandMapView convertPoint:clickPoint toCoordinateFromView:grandMapView];
+        if (newStadium) {
+            [grandMapView removeAnnotation:newStadium];
+        }
+        newStadium = [Stadium new];
+        [newStadium setCoordinate:newStadiumCoordinate];
+        CLGeocoder *geocoder = [CLGeocoder new];
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:newStadium.coordinate.latitude longitude:newStadium.coordinate.longitude];
+        [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            CLPlacemark *placemark = placemarks.firstObject;
+            [newStadium setAddress:[[placemark.addressDictionary objectForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "]];
+            [newStadium setStadiumName:[placemark.addressDictionary objectForKey:@"Name"]];
+            [grandMapView addAnnotation:newStadium];
+            [grandMapView selectAnnotation:newStadium animated:YES];
+        }];
+        
+        [cancelAddStadiumButton setEnabled:YES];
+    }
 }
 
 #pragma mark - Navigation
@@ -206,7 +288,11 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"StadiumDetails"]) {
         StadiumDetails *stadiumDetailsViewController = segue.destinationViewController;
-        [stadiumDetailsViewController setStadium:[stadiumList objectAtIndex:[stadiumListTableView indexPathForSelectedRow].row]];
+        [stadiumDetailsViewController setStadium:[filteredStadiumList objectAtIndex:[stadiumListTableView indexPathForSelectedRow].row]];
+    }
+    else if ([segue.identifier isEqualToString:@"AddStadium"]) {
+        StadiumAdd *stadiumAddViewController = segue.destinationViewController;
+        [stadiumAddViewController setPotentousStadium:newStadium];
     }
 }
 

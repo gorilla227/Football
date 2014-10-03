@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StadiumDetails.h"
+
 
 @interface StadiumListView_Cell : UITableViewCell
 
 @end
 
-@interface StadiumListView : UIViewController<UITableViewDataSource, UITableViewDelegate, JSONConnectDelegate, MKMapViewDelegate, UISearchBarDelegate>
+@interface StadiumListView : UIViewController<UITableViewDataSource, UITableViewDelegate, JSONConnectDelegate, MKMapViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate>
 -(void)calculateAndSortStadiumsByDistance;
+-(void)reloadStadiumListTableView;
 @end

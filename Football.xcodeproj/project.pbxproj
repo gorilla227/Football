@@ -51,7 +51,6 @@
 		A1988F4C193D909C0073332F /* Captain_TeamFundInquiry.m in Sources */ = {isa = PBXBuildFile; fileRef = A1988F4B193D909C0073332F /* Captain_TeamFundInquiry.m */; };
 		A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */; };
 		A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */; };
-		A1A79ADF198777960098453F /* AddStadium_SelectAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A79ADE198777960098453F /* AddStadium_SelectAddress.m */; };
 		A1AA7E8C198F4CFD002D638A /* MessageCenterTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AA7E8B198F4CFD002D638A /* MessageCenterTabBarController.m */; };
 		A1AF632F193B066400997255 /* Captain_EnterBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AF632E193B066400997255 /* Captain_EnterBalance.m */; };
 		A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */; };
@@ -98,6 +97,7 @@
 		A1F428E3191209DB00567A02 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428D8191209DB00567A02 /* AFURLResponseSerialization.m */; };
 		A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428DA191209DB00567A02 /* AFURLSessionManager.m */; };
 		A1F428E8191215A000567A02 /* JSONConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428E7191215A000567A02 /* JSONConnect.m */; };
+		A1FB4D3119D7E05D004237FD /* StadiumAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FB4D3019D7E05D004237FD /* StadiumAdd.m */; };
 		A1FC44511935A621007C4B68 /* CallFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC44501935A621007C4B68 /* CallFriends.m */; };
 		A1FC44581935B058007C4B68 /* callFriendsIcon_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FC44551935B058007C4B68 /* callFriendsIcon_phone.png */; };
 		A1FC44591935B058007C4B68 /* callFriendsIcon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FC44561935B058007C4B68 /* callFriendsIcon_qq.png */; };
@@ -108,6 +108,7 @@
 		A1FE233C19763DA5004A7622 /* FillAdditional_TeamProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FE233819763DA5004A7622 /* FillAdditional_TeamProfile.png */; };
 		A1FE233F19764C50004A7622 /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FE233D19764C50004A7622 /* menuIcon.png */; };
 		A1FE234019764C50004A7622 /* messageIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FE233E19764C50004A7622 /* messageIcon.png */; };
+		A1FF897319DBC66700BF06EF /* Cancel_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FF897219DBC66700BF06EF /* Cancel_Icon.png */; };
 		A1FFD1C21941737100C6F7CF /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FFD1C11941737100C6F7CF /* Login.m */; };
 		B20264B4191BF081004B8D74 /* menu_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B20264B3191BF081004B8D74 /* menu_bg@2x.png */; };
 		B20264B7191BF59C004B8D74 /* menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B20264B6191BF59C004B8D74 /* menu_bg.png */; };
@@ -223,8 +224,6 @@
 		A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_EnterOpponent.m; sourceTree = "<group>"; };
 		A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_SelectMatchStadium.h; sourceTree = "<group>"; };
 		A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_SelectMatchStadium.m; sourceTree = "<group>"; };
-		A1A79ADD198777960098453F /* AddStadium_SelectAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStadium_SelectAddress.h; sourceTree = "<group>"; };
-		A1A79ADE198777960098453F /* AddStadium_SelectAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStadium_SelectAddress.m; sourceTree = "<group>"; };
 		A1AA7E8A198F4CFD002D638A /* MessageCenterTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCenterTabBarController.h; path = Captain/MessageCenter/MessageCenterTabBarController.h; sourceTree = "<group>"; };
 		A1AA7E8B198F4CFD002D638A /* MessageCenterTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCenterTabBarController.m; path = Captain/MessageCenter/MessageCenterTabBarController.m; sourceTree = "<group>"; };
 		A1AF632D193B066400997255 /* Captain_EnterBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_EnterBalance.h; path = Captain/FinanceManagement/BalanceManagement/Captain_EnterBalance.h; sourceTree = "<group>"; };
@@ -295,6 +294,8 @@
 		A1F428E519120C3700567A02 /* JSONConnectionParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSONConnectionParameters.h; path = Football/Utils/JSONConnect/JSONConnectionParameters.h; sourceTree = "<group>"; };
 		A1F428E6191215A000567A02 /* JSONConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONConnect.h; path = Football/Utils/JSONConnect/JSONConnect.h; sourceTree = "<group>"; };
 		A1F428E7191215A000567A02 /* JSONConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONConnect.m; path = Football/Utils/JSONConnect/JSONConnect.m; sourceTree = "<group>"; };
+		A1FB4D2F19D7E05D004237FD /* StadiumAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StadiumAdd.h; sourceTree = "<group>"; };
+		A1FB4D3019D7E05D004237FD /* StadiumAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StadiumAdd.m; sourceTree = "<group>"; };
 		A1FC444F1935A621007C4B68 /* CallFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CallFriends.h; path = Football/Utils/CallFriends/CallFriends.h; sourceTree = "<group>"; };
 		A1FC44501935A621007C4B68 /* CallFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CallFriends.m; path = Football/Utils/CallFriends/CallFriends.m; sourceTree = "<group>"; };
 		A1FC44551935B058007C4B68 /* callFriendsIcon_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callFriendsIcon_phone.png; path = Resource/callFriendsIcon_phone.png; sourceTree = "<group>"; };
@@ -306,6 +307,7 @@
 		A1FE233819763DA5004A7622 /* FillAdditional_TeamProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FillAdditional_TeamProfile.png; sourceTree = "<group>"; };
 		A1FE233D19764C50004A7622 /* menuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon.png; path = Resource/Menu/menuIcon.png; sourceTree = "<group>"; };
 		A1FE233E19764C50004A7622 /* messageIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = messageIcon.png; path = Resource/Menu/messageIcon.png; sourceTree = "<group>"; };
+		A1FF897219DBC66700BF06EF /* Cancel_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel_Icon.png; sourceTree = "<group>"; };
 		A1FFD1C01941737100C6F7CF /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login.h; path = LoginAndRegister/Login/Login.h; sourceTree = "<group>"; };
 		A1FFD1C11941737100C6F7CF /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = LoginAndRegister/Login/Login.m; sourceTree = "<group>"; };
 		B20264B3191BF081004B8D74 /* menu_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu_bg@2x.png"; path = "Resource/Menu/menu_bg@2x.png"; sourceTree = "<group>"; };
@@ -782,6 +784,7 @@
 		A1E596DE19C65E6500829AB1 /* Stadium */ = {
 			isa = PBXGroup;
 			children = (
+				A1FF897219DBC66700BF06EF /* Cancel_Icon.png */,
 				A1E596DF19C65E6500829AB1 /* UserLocation_Icon.png */,
 			);
 			name = Stadium;
@@ -988,12 +991,12 @@
 		B2A01783198460F400ACDDD2 /* Stadiums */ = {
 			isa = PBXGroup;
 			children = (
+				A1FB4D2F19D7E05D004237FD /* StadiumAdd.h */,
+				A1FB4D3019D7E05D004237FD /* StadiumAdd.m */,
 				B2A01784198460F400ACDDD2 /* StadiumListView.h */,
 				B2A01785198460F400ACDDD2 /* StadiumListView.m */,
 				B2AE0A2F1985AB5F00E2DEE9 /* StadiumDetails.h */,
 				B2AE0A301985AB5F00E2DEE9 /* StadiumDetails.m */,
-				A1A79ADD198777960098453F /* AddStadium_SelectAddress.h */,
-				A1A79ADE198777960098453F /* AddStadium_SelectAddress.m */,
 			);
 			name = Stadiums;
 			path = Captain/Miscellaneous/Stadiums;
@@ -1166,6 +1169,7 @@
 				A17D3CD11960D82F0090F624 /* TextFieldIcon_Email.png in Resources */,
 				A1E170A319562ED700826610 /* TextFieldIcon_Birthday.png in Resources */,
 				B20264B4191BF081004B8D74 /* menu_bg@2x.png in Resources */,
+				A1FF897319DBC66700BF06EF /* Cancel_Icon.png in Resources */,
 				A1FE233C19763DA5004A7622 /* FillAdditional_TeamProfile.png in Resources */,
 				B202650A191C273D004B8D74 /* menuIcon_superMarket.png in Resources */,
 				A153ACBF190244880062EB44 /* hint_background_arrow.png in Resources */,
@@ -1225,7 +1229,6 @@
 				A18D7F7A1903912D003028FE /* Soccer_BaseNavigationController.m in Sources */,
 				A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */,
 				B2793E8119A952DD00441F3A /* MessageCenter_Compose.m in Sources */,
-				A1A79ADF198777960098453F /* AddStadium_SelectAddress.m in Sources */,
 				A1FFD1C21941737100C6F7CF /* Login.m in Sources */,
 				A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */,
 				B2B955CD194FC649004FB5E0 /* NSString+MD5.m in Sources */,
@@ -1246,6 +1249,7 @@
 				B25D501A19BD0A9000C5CDB7 /* PlayerDetails.m in Sources */,
 				B27BD6C919341DBD00F35A51 /* Captain_NotifyPlayers.m in Sources */,
 				A1F428DE191209DB00567A02 /* AFHTTPSessionManager.m in Sources */,
+				A1FB4D3119D7E05D004237FD /* StadiumAdd.m in Sources */,
 				A1F428E2191209DB00567A02 /* AFURLRequestSerialization.m in Sources */,
 				A1940B12197787EC00B152AC /* MessageBarButtonItem.m in Sources */,
 				A19865FC198DF76A009BA81C /* MessageCenter.m in Sources */,
@@ -1363,7 +1367,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Football/Football-Prefix.pch";
 				INFOPLIST_FILE = "Football/Football-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1380,7 +1384,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Football/Football-Prefix.pch";
 				INFOPLIST_FILE = "Football/Football-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

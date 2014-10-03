@@ -41,11 +41,16 @@ enum RequestMessageSourceType
 -(void)updatePlayerPortraitSuccessfully;//更新球员头像成功
 -(void)updateTeamProfileSuccessfully;//更新球队资料成功
 -(void)updateTeamLogoSuccessfully;//更新球队队标成功
--(void)receiveAllStadiums:(NSArray *)stadiums;//获取所有球场资料成功
 -(void)receiveAllTeams:(NSArray *)teams;//获取所有球队列表成功
 -(void)receiveTeam:(Team *)team;//获取指定的球队资料成功
 -(void)receiveTeamMembers:(NSArray *)players;//获取球队队员清单成功
 -(void)receivePlayers:(NSArray *)players;//获取符合条件的球员列表成功
+
+//Stadium
+-(void)receiveAllStadiums:(NSArray *)stadiums;//获取所有球场资料成功
+-(void)addStadiumSuccessfully:(NSInteger)stadiumId;//添加球场成功
+
+//Message
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType;//获取信息成功
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount;//获取未读消息数量成功
 -(void)readMessagesSuccessfully:(NSArray *)messageIdList;//设置消息已读成功
@@ -55,6 +60,7 @@ enum RequestMessageSourceType
 -(void)teamCallinSent;//队长邀请球员加入球队发送成功
 -(void)teamCallinFailed;//队长邀请球员加入球队发送失败
 -(void)replyCallinMessageSuccessfully:(NSInteger)responseCode;//球员回复队长的入队邀请成功
+
 
 #pragma zzOld_Server
 //-(void)receiveUserInfo:(UserInfo *)userInfo;
@@ -80,11 +86,15 @@ enum RequestMessageSourceType
 -(void)updatePlayerPortrait:(UIImage *)portrait forPlayer:(NSInteger)playerId;//更新球员头像
 -(void)updateTeamProfile:(NSDictionary *)teamProfile;//更新球队资料（除了队标），teamName的修改服务器暂不支持
 -(void)updateTeamLogo:(UIImage *)logo forTeam:(NSInteger)teamId;//更新球队队标
--(void)requestAllStadiums;//获取所有球场
+
 -(void)requestTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option;//获取所有球队
 -(void)requestTeamById:(NSInteger)teamId isSync:(BOOL)syncOption;//获取指定的球队
 -(void)requestTeamMembers:(NSInteger)teamId isSync:(BOOL)syncOption;//获取球队的队员清单
 -(void)requestPlayersBySearchCriteria:(NSDictionary *)searchCriteria startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取符合条件的球员列表
+
+//Stadium
+-(void)requestAllStadiums;//获取所有球场
+-(void)addStadium:(Stadium *)stadium;//添加球场
 
 //Messges
 -(void)requestReceivedMessage:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取收到的信息

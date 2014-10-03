@@ -50,6 +50,10 @@
 //Get AllStadiums
 #define CONNECT_AllStadiums_Suffix @"field/list"
 
+//Add New Stadium
+#define CONNECT_AddStadium_Suffix @"field/create"
+#define CONNECT_AddStadium_Parameters(name, address, price, phone, long, lat, comment) @{@"name":name, @"location":address, @"price":price, @"phone_number":phone, @"longitude":long, @"latitude":lat, @"comment":comment}
+
 //Get Team
 #define CONNECT_AllTeams_Suffix @"team/list"
 #define CONNECT_AllTeams_Parameters(start, count) [NSMutableDictionary dictionaryWithDictionary:@{@"start":start, @"count":count}]

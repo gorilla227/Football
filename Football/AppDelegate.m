@@ -19,10 +19,9 @@
     [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [[UIToolbar appearance] setBarTintColor:def_navigationBar_background];
     [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
+    [[UIToolbar appearance] setTranslucent:NO];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UIToolbar appearance] setBarTintColor:def_navigationBar_background];
-    [[UIToolbar appearance] setTintColor:[UIColor whiteColor]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     return YES;

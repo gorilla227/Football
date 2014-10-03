@@ -293,6 +293,20 @@
     }];
 }
 
+//AddNewStadium
+-(void)addStadium:(Stadium *)stadium
+{
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_AddStadium_Suffix];
+    NSDictionary *parameters = CONNECT_AddStadium_Parameters(stadium.stadiumName, stadium.address, [NSNumber numberWithInteger:stadium.price], stadium.phoneNumber, [NSNumber numberWithDouble:stadium.coordinate.longitude], [NSNumber numberWithDouble:stadium.coordinate.latitude], stadium.comment);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate addStadiumSuccessfully:[[responseObject objectForKey:@"id"] integerValue]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
 //RequestTeams
 -(void)requestTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option
 {

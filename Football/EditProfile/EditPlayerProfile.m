@@ -97,7 +97,9 @@
     [birthdateTextField setTintColor:[UIColor clearColor]];
     [datePicker addTarget:self action:@selector(finishDateEditing) forControlEvents:UIControlEventValueChanged];
     //Set minimumdate and Maximumdate for datepicker
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     [comps setYear:-100];
     NSDate *minDate = [calendar dateByAddingComponents:comps toDate:[NSDate date] options:0];

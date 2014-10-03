@@ -7,6 +7,7 @@
 //
 
 #import "Starting.h"
+@import CoreLocation;
 
 @interface Starting ()
 
@@ -14,6 +15,7 @@
 
 @implementation Starting{
     UIActivityIndicatorView *busyIndicator;
+    CLLocationManager *locationManager;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,12 +49,29 @@
     [busyIndicator setCenter:self.view.center];
     [busyIndicator setHidesWhenStopped:YES];
     [self.view addSubview:busyIndicator];
+    
+    //Grant Location Authrization
+    locationManager = [[CLLocationManager alloc] init];
+    [locationManager setDelegate:self];
+    [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [locationManager setDistanceFilter:kCLDistanceFilterNone];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusNotDetermined) {
+        [locationManager requestWhenInUseAuthorization];
+    }
+    else if (status == kCLAuthorizationStatusDenied) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"定位功能已禁用" message:@"禁用定位功能将导致部分功能失效，如需启用请前往“设置”-“隐私”-“定位服务”中修改设置。" delegate:self cancelButtonTitle:@"我确定" otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
 //BusyIndicatorDelegate
