@@ -32,6 +32,7 @@ enum RequestMessageSourceType
 @protocol JSONConnectDelegate <NSObject>
 @optional
 #pragma new Server
+//Login & Register & Update Profile
 -(void)loginVerificationSuccessfully:(NSInteger)userId;//登录验证成功
 -(void)loginVerificationFailed;//登录验证失败
 -(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference;//返回用户信息
@@ -41,6 +42,8 @@ enum RequestMessageSourceType
 -(void)updatePlayerPortraitSuccessfully;//更新球员头像成功
 -(void)updateTeamProfileSuccessfully;//更新球队资料成功
 -(void)updateTeamLogoSuccessfully;//更新球队队标成功
+
+//Team Management
 -(void)receiveAllTeams:(NSArray *)teams;//获取所有球队列表成功
 -(void)receiveTeam:(Team *)team;//获取指定的球队资料成功
 -(void)receiveTeamMembers:(NSArray *)players;//获取球队队员清单成功
@@ -61,12 +64,15 @@ enum RequestMessageSourceType
 -(void)teamCallinFailed;//队长邀请球员加入球队发送失败
 -(void)replyCallinMessageSuccessfully:(NSInteger)responseCode;//球员回复队长的入队邀请成功
 
+//Match Management
+-(void)receiveMatchesSuccessfully:(NSArray *)matches;
+
 
 #pragma zzOld_Server
 //-(void)receiveUserInfo:(UserInfo *)userInfo;
--(void)receiveMatches:(NSArray *)matches;
--(void)receiveTeams:(NSArray *)teams;
--(void)receiveStadiums:(NSArray *)stadiums;
+//-(void)receiveMatches:(NSArray *)matches;
+//-(void)receiveTeams:(NSArray *)teams;
+//-(void)receiveStadiums:(NSArray *)stadiums;
 
 @end
 
@@ -78,6 +84,7 @@ enum RequestMessageSourceType
 -(void)cancelAllOperations;
 
 #pragma new Server
+//Login & Register & Update Profile
 -(void)loginVerification:(NSString *)account password:(NSString *)password;//登录验证
 -(void)requestUserInfo:(NSInteger)userId withTeam:(BOOL)withTeam withReference:(id)reference;//获取用户信息
 -(void)registerCaptain:(NSString *)mobile email:(NSString *)email password:(NSString *)password nickName:(NSString *)nickName teamName:(NSString *)teamName;//注册队长
@@ -87,6 +94,7 @@ enum RequestMessageSourceType
 -(void)updateTeamProfile:(NSDictionary *)teamProfile;//更新球队资料（除了队标），teamName的修改服务器暂不支持
 -(void)updateTeamLogo:(UIImage *)logo forTeam:(NSInteger)teamId;//更新球队队标
 
+//Team Management
 -(void)requestTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option;//获取所有球队
 -(void)requestTeamById:(NSInteger)teamId isSync:(BOOL)syncOption;//获取指定的球队
 -(void)requestTeamMembers:(NSInteger)teamId isSync:(BOOL)syncOption;//获取球队的队员清单
@@ -106,12 +114,15 @@ enum RequestMessageSourceType
 -(void)callinFromTeam:(NSInteger)teamId toPlayer:(NSInteger)playerId withMessage:(NSString *)message;//队长邀请球员加入球队
 -(void)replyCallinMessage:(NSInteger)messageId response:(NSInteger)responseCode;//球员回复队长的入队邀请，2-同意，3-拒绝
 
+//Match Management
+-(void)requestMatchesByTeamId:(NSInteger)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption;
+
 #pragma zzOld_Server
--(void)requestUserInfoById:(NSNumber *)userId;
--(void)requestMatchesByUserId:(NSNumber *)userId count:(NSInteger)count startIndex:(NSInteger)startIndex;
--(void)requestMatchesByTeamId:(NSNumber *)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex;
--(void)requestAllTeamsWithCount:(NSInteger)count startIndex:(NSInteger)startIndex;
--(void)requestStadiumsOfTeam:(NSNumber *)teamId;
--(void)requestStadiumById:(NSNumber *)stadiumId;
--(void)requestPlayersByTeamId:(NSNumber *)teamId;
+//-(void)requestUserInfoById:(NSNumber *)userId;
+//-(void)requestMatchesByUserId:(NSNumber *)userId count:(NSInteger)count startIndex:(NSInteger)startIndex;
+//-(void)requestMatchesByTeamId:(NSNumber *)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex;
+//-(void)requestAllTeamsWithCount:(NSInteger)count startIndex:(NSInteger)startIndex;
+//-(void)requestStadiumsOfTeam:(NSNumber *)teamId;
+//-(void)requestStadiumById:(NSNumber *)stadiumId;
+//-(void)requestPlayersByTeamId:(NSNumber *)teamId;
 @end

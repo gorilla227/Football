@@ -18,11 +18,12 @@
 @property IBOutlet UILabel *ageLabel;
 @property IBOutlet UILabel *positionLabel;
 @property IBOutlet UILabel *styleLabel;
+@property IBOutlet UIImageView *captainIcon;
 @end
 
 @implementation MyPlayerCell
 @synthesize myPlayer, delegate;
-@synthesize checkMarkBackground, playerPortraitImageView, nickNameLabel, ageLabel, positionLabel, styleLabel;
+@synthesize checkMarkBackground, playerPortraitImageView, nickNameLabel, ageLabel, positionLabel, styleLabel,captainIcon;
 
 -(void)drawRect:(CGRect)rect
 {
@@ -153,6 +154,8 @@
     [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:playerData.birthday]].stringValue];
     [cell.positionLabel setText:[Position stringWithCode:playerData.position]];
     [cell.styleLabel setText:playerData.style];
+    [cell.captainIcon setHidden:!playerData.userType];
+    [cell setUserInteractionEnabled:(gMyUserInfo.userId != playerData.userId)];
     return cell;
 }
 

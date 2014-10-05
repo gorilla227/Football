@@ -42,6 +42,8 @@
 //    [self.layer setBorderColor:[UIColor clearColor].CGColor];
 //    [self.layer setBorderWidth:1.0f];
 //    [self.layer setMasksToBounds:YES];
+    
+    [recruitAnnouncementTextView setSelectable:NO];
 }
 @end
 
@@ -81,6 +83,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.searchDisplayController.searchResultsTableView setRowHeight:self.tableView.rowHeight];
+    [self.searchDisplayController.searchResultsTableView setAllowsSelection:NO];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     count = [[gSettings objectForKey:@"teamListCount"] integerValue];

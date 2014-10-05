@@ -34,7 +34,7 @@
     
     //Fake MainStadiums
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestStadiumById:[NSNumber numberWithInteger:1]];
+//    [connection requestStadiumById:[NSNumber numberWithInteger:1]];
 //    [connection requestStadiumById:[NSNumber numberWithInteger:4]];
 //    homeStadiumList = [[NSArray alloc] initWithObjects:@"北京邮电大学操场", @"北京大学一体", nil];
     homeStadiumList = [[NSArray alloc]init];

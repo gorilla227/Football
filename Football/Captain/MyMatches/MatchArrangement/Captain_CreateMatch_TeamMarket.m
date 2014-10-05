@@ -50,7 +50,7 @@
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     teamList = [[NSMutableArray alloc] init];
     
-    [connection requestAllTeamsWithCount:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
+//    [connection requestAllTeamsWithCount:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
 }
 
 -(void)receiveTeams:(NSArray *)teams

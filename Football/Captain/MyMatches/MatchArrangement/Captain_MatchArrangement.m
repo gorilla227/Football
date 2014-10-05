@@ -99,12 +99,19 @@
     
     //Request matches
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
+    [connection requestMatchesByTeamId:gMyUserInfo.team.teamId count:0 startIndex:0 isSync:YES];
 //    [connection requestMatchesByUserId:gMyUserInfo.userId count:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
 }
 
--(void)receiveMatches:(NSArray *)matches
+//-(void)receiveMatches:(NSArray *)matches
+//{
+//    [matchesList addObjectsFromArray:matches];
+//    [matchesTableView reloadData];
+//}
+
+-(void)receiveMatchesSuccessfully:(NSArray *)matches
 {
-    [matchesList addObjectsFromArray:matches];
+    matchesList = [NSMutableArray arrayWithArray:matches];
     [matchesTableView reloadData];
 }
 
@@ -128,7 +135,7 @@
     return matchesList.count;
 }
 
-- (Captain_MatchArrangementListCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Captain_MatchArrangementListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MatchArrangementListCell"];
     Match *matchData = [matchesList objectAtIndex:indexPath.row];

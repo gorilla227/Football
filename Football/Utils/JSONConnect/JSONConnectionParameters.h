@@ -103,6 +103,10 @@
 #define CONNECT_ReadMessages_Parameters(messageIdList) @{@"id_list":messageIdList}
 
 
+//Get Matchlist
+#define CONNECT_MatchList_Suffix @"match/list"
+#define CONNECT_MatchList_Parameters(teamId) @{@"team_id":teamId}
+
 
 
 #pragma zzOld_Server
