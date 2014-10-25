@@ -8,6 +8,8 @@
 	<integer>5</integer>
 	<key>playersSearchListCount</key>
 	<integer>5</integer>
+	<key>teamsSearchListCount</key>
+	<integer>5</integer>
 	<key>isRememberAccount</key>
 	<false/>
 	<key>accountName</key>

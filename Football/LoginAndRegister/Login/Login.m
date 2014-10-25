@@ -124,9 +124,9 @@
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
     //StadiumListView
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"StadiumListView"];
-    [self.navigationController pushViewController:targetViewController animated:YES];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"StadiumListView"];
+//    [self.navigationController pushViewController:targetViewController animated:YES];
     
     //EditTeamProfileView
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
@@ -142,6 +142,11 @@
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
 //    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"PlayerMarket"];
 //    [self.navigationController pushViewController:targetViewController animated:YES];
+    
+    //TeamMarket
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"TeamMarket"];
+    [self.navigationController pushViewController:targetViewController animated:YES];
 }
 //DissmissKeyboard
 -(void)dismissKeyboard

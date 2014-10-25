@@ -109,8 +109,8 @@ enum BalanceTypes
 //EditPlayerProfile & EditTeamProfile from Register or Main screen
 enum EditProfileViewSource
 {
-    EditProfileViewSource_Register,
-    EditProfileViewSource_Main
+    EditProfileViewSource_Main,
+    EditProfileViewSource_Register
 };
 
 //Dateformat

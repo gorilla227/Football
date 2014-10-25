@@ -74,6 +74,10 @@
 #define CONNECT_SearchPlayersCriteria_ParameterKey_AgeFloor @"ageFloor"
 #define CONNECT_SearchPlayersCriteria_ParameterKey_ActivityRegion @"location"
 
+//Create Team
+#define CONNECT_CreateTeam_Suffix @"team/create"
+#define CONNECT_CreateTeam_Parameter(captainId, teamName, activityRegion, homeStadiumId, slogan, recruitFlag, recruitSlogan, challengeFlag, challengeSlogan) @{@"member_id": captainId, @"name":teamName, @"location":activityRegion, @"home_field_id":homeStadiumId, @"slogan":slogan, @"call_for_new":recruitFlag, @"call_for_new_board":recruitSlogan, @"call_for_game":challengeFlag, @"call_for_game_board":challengeSlogan}
+
 
 //Applyin a Team
 #define CONNECT_Applyin_Suffix @"message/applyin"

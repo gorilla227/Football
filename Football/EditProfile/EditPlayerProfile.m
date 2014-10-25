@@ -38,8 +38,8 @@
     NSDateFormatter *birthdayDateFormatter;
     UIPickerView *positionPicker;
     JSONConnect *connection;
-    enum EditProfileViewSource viewSource;
 }
+@synthesize viewSource;
 @synthesize saveBar, playerPortraitImageView, nickNameTextField, qqTextField, birthdateTextField, activityRegionTextField, legalNameTextField, mobileTextField, mailTextField, positionTextField, styleTextField;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -65,14 +65,6 @@
     textFieldArray = @[legalNameTextField, nickNameTextField, mobileTextField, qqTextField, birthdateTextField, activityRegionTextField, mailTextField, legalNameTextField, positionTextField, styleTextField];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    
-    //Set menu button and message button
-    if (self.navigationController.viewControllers.count == 1) {
-        viewSource = EditProfileViewSource_Main;
-    }
-    else {
-        viewSource = EditProfileViewSource_Register;
-    }
     
     //Set DateFormatter
     birthdayDateFormatter = [[NSDateFormatter alloc] init];
@@ -135,6 +127,18 @@
     
     //Fill Initial PlayerInfo
     [self fillInitialPlayerProfile];
+    
+    //Set enable status for Phone/Nickname/Email
+    if (viewSource == EditProfileViewSource_Register) {
+        [mobileTextField setEnabled:NO];
+        [mailTextField setEnabled:NO];
+        [nickNameTextField setEnabled:NO];
+    }
+    else {
+        [mobileTextField setEnabled:YES];
+        [mailTextField setEnabled:YES];
+        [nickNameTextField setEnabled:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -168,6 +172,9 @@
 -(IBAction)saveButtonOnClicked:(id)sender
 {
     UserInfo *userInfo = [gMyUserInfo copy];
+    [userInfo setMobile:mobileTextField.text];
+    [userInfo setEmail:mailTextField.text];
+    [userInfo setNickName:nickNameTextField.text];
     [userInfo setBirthday:birthdateTextField.text];
     [userInfo setActivityRegion:activityRegionTextField.selectedActivityRegionCode];
     [userInfo setLegalName:legalNameTextField.text];

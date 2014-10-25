@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Football/LoginAndRegister/Register/FillAdditionalProfile.m"
-            timestampString = "427871791.153123"
+            timestampString = "435039473.265449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "207"
@@ -106,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Football/EditProfile/EditTeamProfile.m"
-            timestampString = "428714548.726591"
+            timestampString = "435820389.249805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "-receiveUserInfo:withReference:"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "-receiveAllStadiums:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,12 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Football/EditProfile/EditTeamProfile.m"
-            timestampString = "428714565.170402"
+            timestampString = "435820389.249805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "-updateTeamProfileSuccessfully"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "-receiveUserInfo:withReference:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -224,6 +224,22 @@
             startingLineNumber = "576"
             endingLineNumber = "576"
             landmarkName = "-requestMatchesByTeamId:count:startIndex:isSync:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Football/Utils/JSONConnect/JSONConnect.m"
+            timestampString = "435045452.165528"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-updatePlayerProfile:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

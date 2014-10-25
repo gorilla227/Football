@@ -15,6 +15,7 @@
 @end
 
 @interface EditPlayerProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate, JSONConnectDelegate>
+@property enum EditProfileViewSource viewSource;
 -(void)finishDateEditing;
 -(void)fillInitialPlayerProfile;
 @end

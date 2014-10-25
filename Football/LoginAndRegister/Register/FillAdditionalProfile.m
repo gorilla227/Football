@@ -7,6 +7,8 @@
 //
 
 #import "FillAdditionalProfile.h"
+#import "EditPlayerProfile.h"
+#import "EditTeamProfile.h"
 
 #pragma FillAdditionalProfile_Cell
 @interface FillAdditionalProfile_Cell ()
@@ -140,25 +142,23 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-    UIViewController *targetViewController;
-    switch (indexPath.row) {
-        case 0:
-            targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"EditPlayerProfile"];
-            [self.navigationController pushViewController:targetViewController animated:YES];
-            break;
-        case 1:
-            targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"EditTeamProfile"];
-            [self.navigationController pushViewController:targetViewController animated:YES];
-            break;
-        case 2:
-            [callFriends showInView:self.view];
-            break;
-        case 3:
-            targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"FindTeam"];
-            [self.navigationController pushViewController:targetViewController animated:YES];
-            break;
-        default:
-            break;
+    if (indexPath.row == 0) {
+        EditPlayerProfile *targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"EditPlayerProfile"];
+        [targetViewController setViewSource:EditProfileViewSource_Register];
+        [self.navigationController pushViewController:targetViewController animated:YES];
+
+    }
+    else if (indexPath.row == 1){
+        EditTeamProfile *targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"EditTeamProfile"];
+        [targetViewController setViewSource:EditProfileViewSource_Register];
+        [self.navigationController pushViewController:targetViewController animated:YES];
+    }
+    else if (indexPath.row == 2){
+        [callFriends showInView:self.view];
+    }
+    else if (indexPath.row == 3){
+        UIViewController *targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"FindTeam"];
+        [self.navigationController pushViewController:targetViewController animated:YES];
     }
 }
 

@@ -19,6 +19,7 @@
 
 @interface EditTeamProfile ()
 @property IBOutlet UIToolbar *saveBar;
+@property IBOutlet UIToolbar *createTeamBar;
 @property IBOutlet UIImageView *teamLogoImageView;
 @property IBOutlet UITextField *teamNameTextField;
 @property IBOutlet UITextFieldForActivityRegion *activityRegionTextField;
@@ -38,9 +39,9 @@
     UIImagePickerController *imagePicker;
     UIActionSheet *editTeamLogoMenu;
     JSONConnect *connection;
-    enum EditProfileViewSource viewSource;
 }
-@synthesize saveBar, teamLogoImageView, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, selectTeamLogoButton, numOfTeamMemberView, numOfTeamMemberLabel, recruitFlagSwitch, recruitAnnouncementTextView, challengeFlagSwitch, challengeAnnouncementTextView;
+@synthesize viewSource;
+@synthesize saveBar, createTeamBar, teamLogoImageView, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, selectTeamLogoButton, numOfTeamMemberView, numOfTeamMemberLabel, recruitFlagSwitch, recruitAnnouncementTextView, challengeFlagSwitch, challengeAnnouncementTextView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -62,27 +63,41 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    [self setToolbarItems:saveBar.items];
     textFieldArray = @[teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, recruitAnnouncementTextView, challengeAnnouncementTextView];
     
-    //Set menu button and message button
-    if (self.navigationController.viewControllers.count == 1) {
-        viewSource = EditProfileViewSource_Main;
-        [numOfTeamMemberView setHidden:NO];
+    //Set the controls enable status
+    if (viewSource == EditProfileViewSource_Main) {
+        if (gMyUserInfo.team) {
+            for (UIControl * control in textFieldArray) {
+                [control setEnabled:gMyUserInfo.userType];
+            }
+            [selectTeamLogoButton setEnabled:gMyUserInfo.userType];
+            [recruitFlagSwitch setEnabled:gMyUserInfo.userType];
+            [challengeFlagSwitch setEnabled:gMyUserInfo.userType];
+            [self.navigationController setToolbarHidden:!gMyUserInfo.userType];
+            [self setToolbarItems:saveBar.items];
+            [numOfTeamMemberView setHidden:NO];
+            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_EditTeamProfile_Title"]];
+        }
+        else {
+            for (UIControl * control in textFieldArray) {
+                [control setEnabled:YES];
+            }
+            [selectTeamLogoButton setEnabled:YES];
+            [recruitFlagSwitch setEnabled:YES];
+            [challengeFlagSwitch setEnabled:YES];
+            [self.navigationController setToolbarHidden:NO];
+            [self setToolbarItems:createTeamBar.items];
+            [numOfTeamMemberView setHidden:YES];
+            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_CreateTeam_Title"]];
+        }
     }
     else {
-        viewSource = EditProfileViewSource_Register;
+        [self setToolbarItems:saveBar.items];
         [numOfTeamMemberView setHidden:YES];
+        [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_EditTeamProfile_Title"]];
     }
     
-    //Set the controls enable status
-    if (gMyUserInfo.userType == 0) {
-        for (UIControl * control in textFieldArray) {
-            [control setEnabled:NO];
-        }
-        [selectTeamLogoButton setEnabled:NO];
-        [self.navigationController setToolbarHidden:YES];
-    }
     
     //Set the playerPortrait related controls
     [teamLogoImageView.layer setCornerRadius:10.0f];
@@ -95,6 +110,7 @@
     [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [imagePicker setDelegate:self];
     [imagePicker setAllowsEditing:YES];
+    [imagePicker.navigationBar setTranslucent:NO];
     [imagePicker.navigationBar setTitleTextAttributes:self.navigationController.navigationBar.titleTextAttributes];
     
     //Set EditteamLogo menu

@@ -19,6 +19,7 @@
 		A114302518F2545100A39F13 /* Captain_TeamProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A114302418F2545100A39F13 /* Captain_TeamProfile.m */; };
 		A116278D197A34A1006B8E0C /* MessageTemplate.plist in Resources */ = {isa = PBXBuildFile; fileRef = A116278C197A34A1006B8E0C /* MessageTemplate.plist */; };
 		A11D110A19AC48790097693B /* PlayerMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D110919AC48790097693B /* PlayerMarket.m */; };
+		A1347F9E19E24F3B003102E6 /* TeamMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347F9D19E24F3B003102E6 /* TeamMarket.m */; };
 		A135B14E1927242B001CB0EC /* rightArrow_white.png in Resources */ = {isa = PBXBuildFile; fileRef = A135B14D1927242B001CB0EC /* rightArrow_white.png */; };
 		A1370A591904D7CC00E64949 /* leftIcon_createMatch_cost.png in Resources */ = {isa = PBXBuildFile; fileRef = A1370A541904D7CC00E64949 /* leftIcon_createMatch_cost.png */; };
 		A1370A5A1904D7CC00E64949 /* leftIcon_createMatch_numOfPlayers.png in Resources */ = {isa = PBXBuildFile; fileRef = A1370A551904D7CC00E64949 /* leftIcon_createMatch_numOfPlayers.png */; };
@@ -178,6 +179,8 @@
 		A116278C197A34A1006B8E0C /* MessageTemplate.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MessageTemplate.plist; path = Pre_Define/MessageTemplate.plist; sourceTree = "<group>"; };
 		A11D110819AC48790097693B /* PlayerMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerMarket.h; path = Captain/Miscellaneous/PlayerMarket/PlayerMarket.h; sourceTree = "<group>"; };
 		A11D110919AC48790097693B /* PlayerMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerMarket.m; path = Captain/Miscellaneous/PlayerMarket/PlayerMarket.m; sourceTree = "<group>"; };
+		A1347F9C19E24F3B003102E6 /* TeamMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamMarket.h; path = Captain/Miscellaneous/TeamMarket/TeamMarket.h; sourceTree = "<group>"; };
+		A1347F9D19E24F3B003102E6 /* TeamMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeamMarket.m; path = Captain/Miscellaneous/TeamMarket/TeamMarket.m; sourceTree = "<group>"; };
 		A135B14D1927242B001CB0EC /* rightArrow_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rightArrow_white.png; path = Resource/rightArrow_white.png; sourceTree = "<group>"; };
 		A1370A541904D7CC00E64949 /* leftIcon_createMatch_cost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftIcon_createMatch_cost.png; path = Resource/leftIcon_createMatch_cost.png; sourceTree = "<group>"; };
 		A1370A551904D7CC00E64949 /* leftIcon_createMatch_numOfPlayers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftIcon_createMatch_numOfPlayers.png; path = Resource/leftIcon_createMatch_numOfPlayers.png; sourceTree = "<group>"; };
@@ -456,6 +459,15 @@
 				A1ED00A219B03F1E00C669D1 /* PositionCheckboxView.m */,
 			);
 			name = PlayerMarket;
+			sourceTree = "<group>";
+		};
+		A1347F9B19E246F8003102E6 /* TeamMarket */ = {
+			isa = PBXGroup;
+			children = (
+				A1347F9C19E24F3B003102E6 /* TeamMarket.h */,
+				A1347F9D19E24F3B003102E6 /* TeamMarket.m */,
+			);
+			name = TeamMarket;
 			sourceTree = "<group>";
 		};
 		A1370A441904D4D600E64949 /* Register */ = {
@@ -986,13 +998,14 @@
 		B2A017821984609F00ACDDD2 /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
+				A1347F9B19E246F8003102E6 /* TeamMarket */,
 				A11D110719AC470F0097693B /* PlayerMarket */,
-				B2A01783198460F400ACDDD2 /* Stadiums */,
+				B2A01783198460F400ACDDD2 /* StadiumMarket */,
 			);
 			name = Miscellaneous;
 			sourceTree = "<group>";
 		};
-		B2A01783198460F400ACDDD2 /* Stadiums */ = {
+		B2A01783198460F400ACDDD2 /* StadiumMarket */ = {
 			isa = PBXGroup;
 			children = (
 				A1FB4D2F19D7E05D004237FD /* StadiumAdd.h */,
@@ -1002,7 +1015,7 @@
 				B2AE0A2F1985AB5F00E2DEE9 /* StadiumDetails.h */,
 				B2AE0A301985AB5F00E2DEE9 /* StadiumDetails.m */,
 			);
-			name = Stadiums;
+			name = StadiumMarket;
 			path = Captain/Miscellaneous/Stadiums;
 			sourceTree = "<group>";
 		};
@@ -1228,6 +1241,7 @@
 				A1F428E1191209DB00567A02 /* AFURLConnectionOperation.m in Sources */,
 				A1AA7E8C198F4CFD002D638A /* MessageCenterTabBarController.m in Sources */,
 				A1F428DD191209DB00567A02 /* AFHTTPRequestOperationManager.m in Sources */,
+				A1347F9E19E24F3B003102E6 /* TeamMarket.m in Sources */,
 				A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */,
 				A1009A73192888F1008A125D /* UIImage+ImageConvert.m in Sources */,
 				A18D7F7A1903912D003028FE /* Soccer_BaseNavigationController.m in Sources */,

@@ -184,5 +184,9 @@
 	<string>正在加载...</string>
 	<key>UI_Message_SendingProgress_Label</key>
 	<string>正在发送 - %@/%@</string>
+	<key>UI_EditTeamProfile_Title</key>
+	<string>球队资料</string>
+	<key>UI_CreateTeam_Title</key>
+	<string>建立球队</string>
 </dict>
 </plist>

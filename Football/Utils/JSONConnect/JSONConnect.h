@@ -67,13 +67,6 @@ enum RequestMessageSourceType
 //Match Management
 -(void)receiveMatchesSuccessfully:(NSArray *)matches;
 
-
-#pragma zzOld_Server
-//-(void)receiveUserInfo:(UserInfo *)userInfo;
-//-(void)receiveMatches:(NSArray *)matches;
-//-(void)receiveTeams:(NSArray *)teams;
-//-(void)receiveStadiums:(NSArray *)stadiums;
-
 @end
 
 @interface JSONConnect : NSObject
@@ -99,6 +92,7 @@ enum RequestMessageSourceType
 -(void)requestTeamById:(NSInteger)teamId isSync:(BOOL)syncOption;//获取指定的球队
 -(void)requestTeamMembers:(NSInteger)teamId isSync:(BOOL)syncOption;//获取球队的队员清单
 -(void)requestPlayersBySearchCriteria:(NSDictionary *)searchCriteria startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取符合条件的球员列表
+-(void)createTeamByCaptainId:(NSInteger)captainId teamProfile:(Team *)teamProfile;//无球队球员创建球队
 
 //Stadium
 -(void)requestAllStadiums;//获取所有球场
@@ -117,12 +111,4 @@ enum RequestMessageSourceType
 //Match Management
 -(void)requestMatchesByTeamId:(NSInteger)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption;
 
-#pragma zzOld_Server
-//-(void)requestUserInfoById:(NSNumber *)userId;
-//-(void)requestMatchesByUserId:(NSNumber *)userId count:(NSInteger)count startIndex:(NSInteger)startIndex;
-//-(void)requestMatchesByTeamId:(NSNumber *)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex;
-//-(void)requestAllTeamsWithCount:(NSInteger)count startIndex:(NSInteger)startIndex;
-//-(void)requestStadiumsOfTeam:(NSNumber *)teamId;
-//-(void)requestStadiumById:(NSNumber *)stadiumId;
-//-(void)requestPlayersByTeamId:(NSNumber *)teamId;
 @end
