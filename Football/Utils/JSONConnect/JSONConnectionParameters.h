@@ -64,7 +64,7 @@
 #define CONNECT_TeamMembers_Suffix @"teammember/list"
 #define CONNECT_TeamMembers_Parameters(teamId) @{@"team_id":teamId}
 
-//Request PlayerBySearchCriteria
+//Request PlayersBySearchCriteria
 #define CONNECT_SearchPlayersCriteria_Suffix @"store/querymember"
 #define CONNECT_SearchPlayersCriteria_Parameters(start, count) [NSMutableDictionary dictionaryWithDictionary:@{@"start":start, @"count":count}]
 #define CONNECT_SearchPlayersCriteria_ParameterKey_Nickname @"nickname"
@@ -74,9 +74,18 @@
 #define CONNECT_SearchPlayersCriteria_ParameterKey_AgeFloor @"ageFloor"
 #define CONNECT_SearchPlayersCriteria_ParameterKey_ActivityRegion @"location"
 
+//Request TeamsBySearchCriteria
+#define CONNECT_SearchTeamsCriteria_Suffix @"store/queryteam"
+#define CONNECT_SearchTeamsCriteria_Parameters(start, count) [NSMutableDictionary dictionaryWithDictionary:@{@"start":start, @"count":count}]
+#define CONNECT_SearchTeamsCriteria_ParameterKey_Teamname @"teamname"
+#define CONNECT_SearchTeamsCriteria_ParameterKey_Flag @"flag"
+#define CONNECT_SearchTeamsCriteria_ParameterKey_TeamNumberCap @"teamNumberCap"
+#define CONNECT_SearchTeamsCriteria_ParameterKey_TeamNumberFloor @"teamNumberFloor"
+#define CONNECT_SearchTeamsCriteria_ParameterKey_ActivityRegion @"location"
+
 //Create Team
 #define CONNECT_CreateTeam_Suffix @"team/create"
-#define CONNECT_CreateTeam_Parameter(captainId, teamName, activityRegion, homeStadiumId, slogan, recruitFlag, recruitSlogan, challengeFlag, challengeSlogan) @{@"member_id": captainId, @"name":teamName, @"location":activityRegion, @"home_field_id":homeStadiumId, @"slogan":slogan, @"call_for_new":recruitFlag, @"call_for_new_board":recruitSlogan, @"call_for_game":challengeFlag, @"call_for_game_board":challengeSlogan}
+#define CONNECT_CreateTeam_Parameter(captainId, teamName) @{@"member_id":captainId, @"team_name":teamName}
 
 
 //Applyin a Team

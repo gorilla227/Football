@@ -112,6 +112,7 @@
 		A1FE234019764C50004A7622 /* messageIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FE233E19764C50004A7622 /* messageIcon.png */; };
 		A1FF897319DBC66700BF06EF /* Cancel_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FF897219DBC66700BF06EF /* Cancel_Icon.png */; };
 		A1FFD1C21941737100C6F7CF /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FFD1C11941737100C6F7CF /* Login.m */; };
+		B20051311A01AC800077A5A4 /* TeamDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B20051301A01AC800077A5A4 /* TeamDetails.m */; };
 		B20264B4191BF081004B8D74 /* menu_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B20264B3191BF081004B8D74 /* menu_bg@2x.png */; };
 		B20264B7191BF59C004B8D74 /* menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B20264B6191BF59C004B8D74 /* menu_bg.png */; };
 		B2026505191C25E7004B8D74 /* menuIcon_finance.png in Resources */ = {isa = PBXBuildFile; fileRef = B2026501191C25E7004B8D74 /* menuIcon_finance.png */; };
@@ -315,6 +316,8 @@
 		A1FF897219DBC66700BF06EF /* Cancel_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel_Icon.png; sourceTree = "<group>"; };
 		A1FFD1C01941737100C6F7CF /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login.h; path = LoginAndRegister/Login/Login.h; sourceTree = "<group>"; };
 		A1FFD1C11941737100C6F7CF /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login.m; path = LoginAndRegister/Login/Login.m; sourceTree = "<group>"; };
+		B200512F1A01AC800077A5A4 /* TeamDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamDetails.h; path = Captain/Miscellaneous/TeamMarket/TeamDetails.h; sourceTree = "<group>"; };
+		B20051301A01AC800077A5A4 /* TeamDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeamDetails.m; path = Captain/Miscellaneous/TeamMarket/TeamDetails.m; sourceTree = "<group>"; };
 		B20264B3191BF081004B8D74 /* menu_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu_bg@2x.png"; path = "Resource/Menu/menu_bg@2x.png"; sourceTree = "<group>"; };
 		B20264B6191BF59C004B8D74 /* menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_bg.png; path = Resource/Menu/menu_bg.png; sourceTree = "<group>"; };
 		B2026501191C25E7004B8D74 /* menuIcon_finance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuIcon_finance.png; path = Resource/Menu/menuIcon_finance.png; sourceTree = "<group>"; };
@@ -466,6 +469,8 @@
 			children = (
 				A1347F9C19E24F3B003102E6 /* TeamMarket.h */,
 				A1347F9D19E24F3B003102E6 /* TeamMarket.m */,
+				B200512F1A01AC800077A5A4 /* TeamDetails.h */,
+				B20051301A01AC800077A5A4 /* TeamDetails.m */,
 			);
 			name = TeamMarket;
 			sourceTree = "<group>";
@@ -1254,6 +1259,7 @@
 				A19865F8198D9FC5009BA81C /* UITextView+UITextFieldRoundCornerStyle.m in Sources */,
 				B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */,
 				B262D2FF1928297D0079526E /* Captain_WarmupMatch.m in Sources */,
+				B20051311A01AC800077A5A4 /* TeamDetails.m in Sources */,
 				B2D6981618ECC3F700603B87 /* MyPlayers.m in Sources */,
 				A11D110A19AC48790097693B /* PlayerMarket.m in Sources */,
 				A1F428E8191215A000567A02 /* JSONConnect.m in Sources */,

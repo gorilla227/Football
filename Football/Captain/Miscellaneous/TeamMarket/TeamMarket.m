@@ -7,6 +7,7 @@
 //
 
 #import "TeamMarket.h"
+#import "TeamDetails.h"
 
 #pragma TeamMarket_SearchView
 @interface TeamMarket_SearchView ()
@@ -24,6 +25,7 @@
 
 @implementation TeamMarket_SearchView
 @synthesize teamNumberView, teamNameSearchTextField, teamNumberFloorLabel, teamNumberFloorSlider, teamNumberCapLabel, teamNumberCapSlider, activityRegionSearchTextField, onlyChallenteamNumberSwitch, onlyRecruitSwitch, searchButton;
+@synthesize flag;
 -(void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
@@ -88,6 +90,15 @@
             [onlyChallenteamNumberSwitch setOn:NO animated:YES];
         }
     }
+    if (onlyRecruitSwitch.isOn) {
+        flag = 1;
+    }
+    else if (onlyChallenteamNumberSwitch.isOn) {
+        flag = 2;
+    }
+    else {
+        flag = 0;
+    }
 }
 
 -(NSDictionary *)searchCriteria
@@ -96,16 +107,27 @@
     //TeamName
     NSString *teamName = [teamNameSearchTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (teamName.length) {
-//        [searchCriteria setObject:teamName forKey:CONNECT_SearchPlayersCriteria_ParameterKey_teamName];
+        [searchCriteria setObject:teamName forKey:CONNECT_SearchTeamsCriteria_ParameterKey_Teamname];
     }
     
     //TeamNumberCap & TeamNumberFloor
-//    [searchCriteria setObject:teamNumberCapLabel.text forKey:CONNECT_SearchPlayersCriteria_ParameterKey_teamNumberCap];
-//    [searchCriteria setObject:teamNumberFloorLabel.text forKey:CONNECT_SearchPlayersCriteria_ParameterKey_teamNumberFloor];
+    [searchCriteria setObject:[teamNumberCapLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet symbolCharacterSet]] forKey:CONNECT_SearchTeamsCriteria_ParameterKey_TeamNumberCap];
+    [searchCriteria setObject:teamNumberFloorLabel.text forKey:CONNECT_SearchTeamsCriteria_ParameterKey_TeamNumberFloor];
     
     //ActivityRegion
     if (activityRegionSearchTextField.selectedActivityRegionCode) {
-        [searchCriteria setObject:activityRegionSearchTextField.selectedActivityRegionCode forKey:CONNECT_SearchPlayersCriteria_ParameterKey_ActivityRegion];
+        [searchCriteria setObject:activityRegionSearchTextField.selectedActivityRegionCode forKey:CONNECT_SearchTeamsCriteria_ParameterKey_ActivityRegion];
+    }
+    
+    //Flag
+    if (onlyRecruitSwitch.isOn) {
+        [searchCriteria setObject:[NSNumber numberWithInteger:1] forKey:CONNECT_SearchTeamsCriteria_ParameterKey_Flag];
+    }
+    else if (onlyChallenteamNumberSwitch.isOn) {
+        [searchCriteria setObject:[NSNumber numberWithInteger:2] forKey:CONNECT_SearchTeamsCriteria_ParameterKey_Flag];
+    }
+    else {
+        [searchCriteria setObject:[NSNumber numberWithInteger:0] forKey:CONNECT_SearchTeamsCriteria_ParameterKey_Flag];
     }
     
     return searchCriteria;
@@ -139,19 +161,27 @@
 
 #pragma TeamMarket
 @interface TeamMarket ()
-
+@property IBOutlet TeamMarket_SearchView *searchView;
+@property IBOutlet UIButton *searchViewSwitchButton;
+@property IBOutlet UILabel *moreLabel;
+@property IBOutlet UIActivityIndicatorView *moreActivityIndicator;
+@property IBOutlet UIView *moreFooterView;
 @end
 
 @implementation TeamMarket{
     JSONConnect *connection;
     NSMutableArray *teamList;
-    BOOL isLoading;
     NSInteger count;
     BOOL haveMoreTeams;
 }
+@synthesize searchView, searchViewSwitchButton, moreFooterView, moreActivityIndicator, moreLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
+    [self.tableView setTableHeaderView:searchView];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     haveMoreTeams = YES;
     teamList = [NSMutableArray new];
@@ -170,6 +200,44 @@
     [self.navigationController setToolbarHidden:YES];
 }
 
+-(IBAction)searchViewSwitchButtonOnClicked:(id)sender
+{
+    [searchViewSwitchButton setSelected:!searchViewSwitchButton.isSelected];
+    [self.tableView setTableHeaderView:searchViewSwitchButton.isSelected?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
+    if (teamList.count) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+}
+
+-(IBAction)searchButtonOnClicked:(id)sender
+{
+    [searchView.teamNameSearchTextField resignFirstResponder];
+    [searchView.activityRegionSearchTextField resignFirstResponder];
+    [teamList removeAllObjects];
+    haveMoreTeams = YES;
+    [connection requestTeamsBySearchCriteria:[searchView searchCriteria] startIndex:0 count:count isSync:YES];
+}
+
+-(void)receiveTeams:(NSArray *)teams
+{
+    [self.tableView setTableFooterView:moreFooterView];
+    if (teams.count < count) {
+        haveMoreTeams = NO;
+        //Set moreLabel
+        [moreLabel setText:(teamList.count + teams.count)?[gUIStrings objectForKey:@"UI_TeamMarket_NoMoreData"]:[gUIStrings objectForKey:@"UI_TeamMarket_NoData"]];
+    }
+    else {
+        //Set moreLabel
+        [moreLabel setText:[gUIStrings objectForKey:@"UI_TeamMarket_LoadMore"]];
+    }
+    [teamList addObjectsFromArray:teams];
+    
+    [searchViewSwitchButton setSelected:!teamList.count];
+    [self.tableView setTableHeaderView:searchViewSwitchButton.isSelected?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.tableView reloadData];
+    [moreActivityIndicator stopAnimating];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -179,27 +247,74 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 1;
+    return teamList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"TeamMarketCell";
     TeamMarket_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    Team *cellData = [teamList objectAtIndex:indexPath.row];
+    Team *cellData = [teamList objectAtIndex:indexPath.row];
     
     // Configure the cell...
-    
+    [cell.teamNameLabel setText:cellData.teamName];
+    if (gMyUserInfo.team) {
+        [cell.myTeamFlagLabel setHidden:cellData.teamId != gMyUserInfo.team.teamId];
+    }
+    else {
+        [cell.myTeamFlagLabel setHidden:YES];
+    }
+    [cell.teamNumberLabel setText:[NSNumber numberWithInteger:cellData.numOfMember].stringValue];
+    switch (searchView.flag) {
+        case 0:
+            [cell.boardNameLabel setText:[gUIStrings objectForKey:@"UI_TeamMarket_BoardName_Slogan"]];
+            [cell.boardContentTextView setText:cellData.slogan];
+            break;
+        case 1:
+            [cell.boardNameLabel setText:[gUIStrings objectForKey:@"UI_TeamMarket_BoardName_Recruit"]];
+            [cell.boardContentTextView setText:cellData.recruitAnnouncement];
+            break;
+        case 2:
+            [cell.boardNameLabel setText:[gUIStrings objectForKey:@"UI_TeamMarket_BoardName_Challenge"]];
+            [cell.boardContentTextView setText:cellData.challengeAnnouncement];
+        default:
+            break;
+    }
+    [cell.teamLogoImageView setImage:cellData.teamLogo?cellData.teamLogo:def_defaultTeamLogo];
+    [cell.activityRegionLabel setText:[[ActivityRegion stringWithCode:cellData.activityRegion] componentsJoinedByString:@" "]];
     return cell;
 }
 
-/*
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return searchViewSwitchButton;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return searchViewSwitchButton.frame.size.height;
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !moreActivityIndicator.isAnimating && haveMoreTeams) {
+        [connection requestTeamsBySearchCriteria:[searchView searchCriteria] startIndex:teamList.count count:count isSync:YES];
+        [moreActivityIndicator startAnimating];
+        //Set moreLabel
+        [moreLabel setText:[gUIStrings objectForKey:@"UI_TeamMarket_Loading"]];
+    }
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"TeamDetailsSegue"]) {
+        TeamDetails *teamDetails = segue.destinationViewController;
+        [teamDetails setTeamData:[teamList objectAtIndex:self.tableView.indexPathForSelectedRow.row]];
+    }
 }
-*/
 
 @end

@@ -20,6 +20,7 @@
 @interface EditTeamProfile ()
 @property IBOutlet UIToolbar *saveBar;
 @property IBOutlet UIToolbar *createTeamBar;
+@property IBOutlet UIBarButtonItem *createTeamButton;
 @property IBOutlet UIImageView *teamLogoImageView;
 @property IBOutlet UITextField *teamNameTextField;
 @property IBOutlet UITextFieldForActivityRegion *activityRegionTextField;
@@ -41,7 +42,7 @@
     JSONConnect *connection;
 }
 @synthesize viewSource;
-@synthesize saveBar, createTeamBar, teamLogoImageView, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, selectTeamLogoButton, numOfTeamMemberView, numOfTeamMemberLabel, recruitFlagSwitch, recruitAnnouncementTextView, challengeFlagSwitch, challengeAnnouncementTextView;
+@synthesize saveBar, createTeamBar, createTeamButton, teamLogoImageView, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, selectTeamLogoButton, numOfTeamMemberView, numOfTeamMemberLabel, recruitFlagSwitch, recruitAnnouncementTextView, challengeFlagSwitch, challengeAnnouncementTextView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -68,31 +69,32 @@
     //Set the controls enable status
     if (viewSource == EditProfileViewSource_Main) {
         if (gMyUserInfo.team) {
+            //Team Member check the teamProfile
             for (UIControl * control in textFieldArray) {
                 [control setEnabled:gMyUserInfo.userType];
             }
             [selectTeamLogoButton setEnabled:gMyUserInfo.userType];
             [recruitFlagSwitch setEnabled:gMyUserInfo.userType];
             [challengeFlagSwitch setEnabled:gMyUserInfo.userType];
-            [self.navigationController setToolbarHidden:!gMyUserInfo.userType];
             [self setToolbarItems:saveBar.items];
             [numOfTeamMemberView setHidden:NO];
             [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_EditTeamProfile_Title"]];
         }
         else {
+            //Player without Team creates new team
             for (UIControl * control in textFieldArray) {
                 [control setEnabled:YES];
             }
             [selectTeamLogoButton setEnabled:YES];
             [recruitFlagSwitch setEnabled:YES];
             [challengeFlagSwitch setEnabled:YES];
-            [self.navigationController setToolbarHidden:NO];
             [self setToolbarItems:createTeamBar.items];
             [numOfTeamMemberView setHidden:YES];
             [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_CreateTeam_Title"]];
         }
     }
     else {
+        //Register new player with new team
         [self setToolbarItems:saveBar.items];
         [numOfTeamMemberView setHidden:YES];
         [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_EditTeamProfile_Title"]];
@@ -136,6 +138,19 @@
     [connection requestAllStadiums];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    if (viewSource == EditProfileViewSource_Main) {
+        if (gMyUserInfo.team) {
+            [self.navigationController setToolbarHidden:!gMyUserInfo.userType];
+        }
+        else {
+            [self.navigationController setToolbarHidden:NO];
+        }
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -144,21 +159,34 @@
 
 -(void)fillInitialTeamProfile
 {
-    [teamNameTextField setText:gMyUserInfo.team.teamName];
-    [activityRegionTextField presetActivityRegionCode:gMyUserInfo.team.activityRegion];
-    [homeStadiumTextField presetHomeStadium:gMyUserInfo.team.homeStadium];
-    [sloganTextView setText:gMyUserInfo.team.slogan];
-    if (gMyUserInfo.team.teamLogo) {
-        [teamLogoImageView setImage:gMyUserInfo.team.teamLogo];
+    if (gMyUserInfo.team) {
+        [teamNameTextField setText:gMyUserInfo.team.teamName];
+        [activityRegionTextField presetActivityRegionCode:gMyUserInfo.team.activityRegion];
+        [homeStadiumTextField presetHomeStadium:gMyUserInfo.team.homeStadium];
+        [sloganTextView setText:gMyUserInfo.team.slogan];
+        if (gMyUserInfo.team.teamLogo) {
+            [teamLogoImageView setImage:gMyUserInfo.team.teamLogo];
+        }
+        else {
+            [teamLogoImageView setImage:def_defaultTeamLogo];
+        }
+        [numOfTeamMemberLabel setText:[NSString stringWithFormat:@"%li", (long)gMyUserInfo.team.numOfMember]];
+        [recruitFlagSwitch setOn:gMyUserInfo.team.recruitFlag];
+        [challengeFlagSwitch setOn:gMyUserInfo.team.challengeFlag];
+        [recruitAnnouncementTextView setText:gMyUserInfo.team.recruitAnnouncement];
+        [challengeAnnouncementTextView setText:gMyUserInfo.team.challengeAnnouncement];
     }
     else {
-        [teamLogoImageView setImage:def_defaultTeamLogo];
+        [activityRegionTextField presetActivityRegionCode:gMyUserInfo.activityRegion];
+        if (gMyUserInfo.team.teamLogo) {
+            [teamLogoImageView setImage:gMyUserInfo.team.teamLogo];
+        }
+        else {
+            [teamLogoImageView setImage:def_defaultTeamLogo];
+        }
+        [recruitFlagSwitch setOn:YES];
+        [challengeFlagSwitch setOn:YES];
     }
-    [numOfTeamMemberLabel setText:[NSString stringWithFormat:@"%li", (long)gMyUserInfo.team.numOfMember]];
-    [recruitFlagSwitch setOn:gMyUserInfo.team.recruitFlag];
-    [challengeFlagSwitch setOn:gMyUserInfo.team.challengeFlag];
-    [recruitAnnouncementTextView setText:gMyUserInfo.team.recruitAnnouncement];
-    [challengeAnnouncementTextView setText:gMyUserInfo.team.challengeAnnouncement];
 }
 
 -(IBAction)saveButtonOnClicked:(id)sender
@@ -182,6 +210,22 @@
     }
 }
 
+-(IBAction)createTeamButtonOnClicked:(id)sender
+{
+    Team *newTeamProfile = [Team new];
+    [newTeamProfile setTeamLogo:[teamLogoImageView.image isEqual:def_defaultTeamLogo]?nil:teamLogoImageView.image];
+    [newTeamProfile setTeamName:teamNameTextField.text];
+    [newTeamProfile setHomeStadium:homeStadiumTextField.selectedHomeStadium];
+    [newTeamProfile setActivityRegion:activityRegionTextField.selectedActivityRegionCode];
+    [newTeamProfile setSlogan:sloganTextView.text];
+    [newTeamProfile setRecruitFlag:recruitFlagSwitch.isOn];
+    [newTeamProfile setRecruitAnnouncement:recruitAnnouncementTextView.text];
+    [newTeamProfile setChallengeFlag:challengeFlagSwitch.isOn];
+    [newTeamProfile setChallengeAnnouncement:challengeAnnouncementTextView.text];
+    
+    [connection createTeamByCaptainId:gMyUserInfo.userId teamProfile:newTeamProfile];
+}
+
 //Update TeamProfile Sucessfully
 -(void)updateTeamProfileSuccessfully
 {
@@ -191,8 +235,15 @@
 //Receive updated UserInfo
 -(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
 {
-    gMyUserInfo = userInfo;
-    [self.navigationController popViewControllerAnimated:YES];
+    if (userInfo.team && !gMyUserInfo.team) {
+        //Create new team successfully
+        gMyUserInfo = userInfo;
+        NSLog(@"%@", self.navigationController.viewControllers);
+    }
+    else {
+        gMyUserInfo = userInfo;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 //Receive all stadiums
@@ -260,71 +311,14 @@
     return NO;
 }
 
-//#pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
+    if ([textField isEqual:teamNameTextField]) {
+        NSString *teamNameString = [teamNameTextField.text stringByReplacingCharactersInRange:range withString:string];
+        [createTeamButton setEnabled:[teamNameString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length];
+    }
     return YES;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 /*
 #pragma mark - Navigation
 

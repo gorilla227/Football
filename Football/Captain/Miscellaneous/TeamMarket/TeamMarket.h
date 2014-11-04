@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @interface TeamMarket_SearchView : UIView
+@property NSInteger flag;
 -(NSDictionary *)searchCriteria;
 @end
 

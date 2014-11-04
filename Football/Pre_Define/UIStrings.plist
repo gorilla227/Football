@@ -182,6 +182,20 @@
 	<string>就这么多了</string>
 	<key>UI_PlayerMarket_Loading</key>
 	<string>正在加载...</string>
+	<key>UI_TeamMarket_LoadMore</key>
+	<string>加载更多球队</string>
+	<key>UI_TeamMarket_NoData</key>
+	<string>条件太苛刻啦</string>
+	<key>UI_TeamMarket_NoMoreData</key>
+	<string>就这么多了</string>
+	<key>UI_TeamMarket_Loading</key>
+	<string>正在加载...</string>
+	<key>UI_TeamMarket_BoardName_Slogan</key>
+	<string>球队宣言</string>
+	<key>UI_TeamMarket_BoardName_Recruit</key>
+	<string>招新公告</string>
+	<key>UI_TeamMarket_BoardName_Challenge</key>
+	<string>约球公告</string>
 	<key>UI_Message_SendingProgress_Label</key>
 	<string>正在发送 - %@/%@</string>
 	<key>UI_EditTeamProfile_Title</key>

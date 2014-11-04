@@ -156,6 +156,7 @@
     [cell.styleLabel setText:playerData.style];
     [cell.captainIcon setHidden:!playerData.userType];
     [cell setUserInteractionEnabled:(gMyUserInfo.userId != playerData.userId)];
+    [cell setBackgroundColor:(playerData.userId == gMyUserInfo.userId)?cGray(1):[UIColor whiteColor]];
     return cell;
 }
 

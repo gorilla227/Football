@@ -246,12 +246,10 @@
         NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateTeamProfile_Suffix];
         [manager POST:urlString parameters:teamProfileParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if (manager.operationQueue.operationCount == 0) {
-                NSLog(@"%@", responseObject);
                 [busyIndicatorDelegate unlockView];
                 [delegate updateTeamProfileSuccessfully];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"%@, %@",operation.request, operation.responseString);
             [self showErrorAlertView:error otherInfo:operation.responseString];
         }];
     }
@@ -420,12 +418,62 @@
     }];
 }
 
+//RequestTeamsBySearchCriteria
+-(void)requestTeamsBySearchCriteria:(NSDictionary *)searchCriteria startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption
+{
+    if (syncOption) {
+        [busyIndicatorDelegate lockView];
+    }
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_SearchTeamsCriteria_Suffix];
+    NSMutableDictionary *parameters = CONNECT_SearchTeamsCriteria_Parameters([NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
+    if ([searchCriteria objectForKey:CONNECT_SearchTeamsCriteria_ParameterKey_Teamname]) {
+        [parameters setObject:[searchCriteria objectForKey:CONNECT_SearchTeamsCriteria_ParameterKey_Teamname] forKey:CONNECT_SearchTeamsCriteria_ParameterKey_Teamname];
+    }
+    if ([searchCriteria objectForKey:CONNECT_SearchTeamsCriteria_ParameterKey_Flag]) {
+        [parameters setObject:[searchCriteria objectForKey:CONNECT_SearchTeamsCriteria_ParameterKey_Flag] forKey:CONNECT_SearchTeamsCriteria_ParameterKey_Flag];
+    }
+    if ([searchCriteria objectForKey:CONNECT_SearchTeamsCriteria_ParameterKey_TeamNumberCap]) {
+        [parameters setObject:[searchCriteria objectForKey:CONNECT_SearchTeamsCriteria_ParameterKey_TeamNumberCap] forKey:CONNECT_SearchTeamsCriteria_ParameterKey_TeamNumberCap];
+    }
+    if ([searchCriteria objectForKey:CONNECT_SearchTeamsCriteria_ParameterKey_TeamNumberFloor]) {
+        [parameters setObject:[searchCriteria objectForKey:CONNECT_SearchTeamsCriteria_ParameterKey_TeamNumberFloor] forKey:CONNECT_SearchTeamsCriteria_ParameterKey_TeamNumberFloor];
+    }
+    if ([searchCriteria objectForKey:CONNECT_SearchTeamsCriteria_ParameterKey_ActivityRegion]) {
+        [parameters setObject:[[searchCriteria objectForKey:CONNECT_SearchTeamsCriteria_ParameterKey_ActivityRegion] componentsJoinedByString:@"-"] forKey:CONNECT_SearchTeamsCriteria_ParameterKey_ActivityRegion];
+    }
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (syncOption) {
+            [busyIndicatorDelegate unlockView];
+        }
+        NSMutableArray *teams = [NSMutableArray new];
+        for (NSDictionary *teamData in responseObject) {
+            Team *team = [[Team alloc] initWithData:teamData];
+            [teams addObject:team];
+        }
+        [delegate receiveTeams:teams];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", operation.responseObject);
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+
+}
+
 //PlayerCreateTeam
 -(void)createTeamByCaptainId:(NSInteger)captainId teamProfile:(Team *)teamProfile
 {
     [busyIndicatorDelegate lockView];
     [manager.operationQueue cancelAllOperations];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_CreateTeam_Suffix];
+    NSDictionary *parameters = CONNECT_CreateTeam_Parameter([NSNumber numberWithInteger:captainId], teamProfile.teamName);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        NSMutableDictionary *teamProfileForUpdate = [NSMutableDictionary dictionaryWithDictionary:[[teamProfile copy] dictionaryForUpdate:nil withPlayer:captainId]];
+        [teamProfileForUpdate removeObjectForKey:kTeam_teamName];
+        [teamProfileForUpdate addEntriesFromDictionary:responseObject];
+        [self updateTeamProfile:teamProfileForUpdate];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
     
 }
 
@@ -575,8 +623,8 @@
         [busyIndicatorDelegate lockView];
     }
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_MatchList_Suffix];
-    NSDictionary *paramters = CONNECT_MatchList_Parameters([NSNumber numberWithInteger:teamId]);
-    [manager POST:urlString parameters:paramters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSDictionary *Parameters = CONNECT_MatchList_Parameters([NSNumber numberWithInteger:teamId]);
+    [manager POST:urlString parameters:Parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (syncOption) {
             [busyIndicatorDelegate unlockView];
         }
