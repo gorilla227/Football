@@ -202,5 +202,11 @@
 	<string>球队资料</string>
 	<key>UI_CreateTeam_Title</key>
 	<string>建立球队</string>
+	<key>UI_CreateTeamSucc_AlertView_Title</key>
+	<string>恭喜</string>
+	<key>UI_CreateTeamSucc_AlertView_Message</key>
+	<string>创建球队成功！</string>
+	<key>UI_CreateTeamSucc_AlertView_Button</key>
+	<string>重新登录</string>
 </dict>
 </plist>

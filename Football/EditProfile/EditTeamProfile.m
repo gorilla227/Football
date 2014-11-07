@@ -238,11 +238,26 @@
     if (userInfo.team && !gMyUserInfo.team) {
         //Create new team successfully
         gMyUserInfo = userInfo;
-        NSLog(@"%@", self.navigationController.viewControllers);
+        UIAlertView *createTeamSuccessAleartView = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_CreateTeamSucc_AlertView_Title"]
+                                                                              message:[gUIStrings objectForKey:@"UI_CreateTeamSucc_AlertView_Message"]
+                                                                             delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_CreateTeamSucc_AlertView_Button"]
+                                                                    otherButtonTitles:nil];
+        [createTeamSuccessAleartView setTag:0];
+        [createTeamSuccessAleartView show];
     }
     else {
         gMyUserInfo = userInfo;
         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 0) {
+        [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+        UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+        UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
+        [self.view.window.rootViewController presentViewController:mainController animated:YES completion:nil];
     }
 }
 

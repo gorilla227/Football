@@ -13,7 +13,7 @@
 @property id<DismissKeyboard>delegateForDismissKeyboard;
 @end
 
-@interface EditTeamProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UITextViewDelegate, UIActionSheetDelegate, JSONConnectDelegate>
+@interface EditTeamProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UITextViewDelegate, UIActionSheetDelegate, JSONConnectDelegate, UIAlertViewDelegate>
 @property enum EditProfileViewSource viewSource;
 -(void)fillInitialTeamProfile;
 @end
