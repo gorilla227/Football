@@ -141,22 +141,39 @@
 
 
 #pragma Match
+#define kMatch_matchId @"id"
+#define kMatch_matchTitle @"title"
+#define kMatch_beginTime @"begin_time"
+#define kMatch_beginTimeLocal @"begin_time_local"
+#define kMatch_matchField @"field"
+#define kMatch_homeTeam @"host_team"
+#define kMatch_awayTeam @"guest_team"
+#define kMatch_homeTeamGoal @"host_team_goal"
+#define kMatch_awayTeamGoal @"guest_team_goal"
+#define kMatch_matchStandard @"standard"
+#define kMatch_withReferee @"with_referee"
+#define kMatch_organizerId @"organiser"
+#define kMatch_status @"status"
+#define kMatch_createTime @"create_time"
+#define kMatch_createTimeLocal @"create_time_local"
 @interface Match: NSObject
-@property NSString *name;
-@property NSString *description;
-@property NSDate *creationDate;
-@property NSNumber *matchId;
-@property NSString *matchPlace;
-@property NSDate *matchDate;
-@property BOOL announcable;
-@property BOOL recordable;
-@property Team *teamA;
-@property Team *teamB;
-@property NSString *rating;
-@property NSString *contactPersonId;
-@property NSString *matchType;
+@property NSInteger matchId;
+@property NSString *matchTitle;
+@property NSDate *beginTime;
+@property NSString *beginTimeLocal;
+@property Stadium *matchField;
+@property Team *homeTeam;
+@property Team *awayTeam;
+@property NSInteger homeTeamGoal;
+@property NSInteger awayTeamGoal;
+@property NSInteger matchStandard;
+@property BOOL withReferee;
+@property NSInteger organizerId;
+@property NSInteger status;
+@property NSDate *createTime;
+@property NSString *createTimeLocal;
 -(id)initWithData:(NSDictionary *)data;
--(NSDictionary *)exportToDictionary;
+-(NSDictionary *)dictionaryForUpdate:(Match *)originalMatch;
 @end
 
 @interface MatchScore : NSObject
@@ -169,24 +186,7 @@
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)exportToDictionary;
 @end
-#pragma data keys
 
-
-
-//Match
-#define kMatch_name @"name"
-#define kMatch_description @"description"
-#define kMatch_creationDate @"creationDate"
-#define kMatch_matchId @"id"
-#define kMatch_matchPlace @"place"
-#define kMatch_matchDate @"date"
-#define kMatch_announcable @"announcable"
-#define kMatch_recordable @"recordable"
-#define kMatch_teamA @"teamA"
-#define kMatch_teamB @"teamB"
-#define kMatch_rating @"rating"
-#define kMatch_contactPersonId @"contactPerson"
-#define kMatch_matchType @"type"
 //MatchScore
 #define kMatchScore_homeTeam @"homeTeam"
 #define kMatchScore_awayTeam @"awayTeam"

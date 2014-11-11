@@ -405,7 +405,27 @@
 
 #pragma Match
 @implementation Match
-@synthesize name, description, creationDate, matchId, matchPlace, matchDate, announcable, recordable, teamA, teamB, rating, contactPersonId, matchType;
+@synthesize matchId, matchTitle, beginTime, beginTimeLocal, matchField, homeTeam, awayTeam, homeTeamGoal, awayTeamGoal, matchStandard, withReferee, organizerId, status, createTime, createTimeLocal;
+-(id)copy
+{
+    Match *matchCopy = [[Match alloc] init];
+    [matchCopy setMatchId:matchId];
+    [matchCopy setMatchTitle:[matchTitle copy]];
+    [matchCopy setBeginTime:[beginTime copy]];
+    [matchCopy setBeginTimeLocal:[beginTimeLocal copy]];
+    [matchCopy setMatchField:[matchField copy]];
+    [matchCopy setHomeTeam:[homeTeam copy]];
+    [matchCopy setAwayTeam:[awayTeam copy]];
+    [matchCopy setHomeTeamGoal:homeTeamGoal];
+    [matchCopy setAwayTeamGoal:awayTeamGoal];
+    [matchCopy setMatchStandard:matchStandard];
+    [matchCopy setWithReferee:withReferee];
+    [matchCopy setOrganizerId:organizerId];
+    [matchCopy setStatus:status];
+    [matchCopy setCreateTime:[createTime copy]];
+    [matchCopy setCreateTimeLocal:[createTimeLocal copy]];
+    return matchCopy;
+}
 
 -(id)initWithData:(NSDictionary *)data
 {
@@ -414,48 +434,72 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:def_JSONDateformat];
         
-        [self setName:[data objectForKey:kMatch_name]];
-        [self setDescription:[data objectForKey:kMatch_description]];
-        NSString *dataCreationDate = [data objectForKey:kMatch_creationDate];
-        [self setCreationDate:[dateFormatter dateFromString:dataCreationDate]];
-        [self setMatchId:[data objectForKey:kMatch_matchId]];
-//        [self setMatchPlace:[data objectForKey:kMatch_matchPlace]];
-        NSString *dataMatchDate = [data objectForKey:kMatch_matchDate];
-        [self setMatchDate:[dateFormatter dateFromString:dataMatchDate]];
-        NSNumber *dataAnnouncable = [data objectForKey:kMatch_announcable];
-        [self setAnnouncable:dataAnnouncable.boolValue];
-        NSNumber *dataRecordable = [data objectForKey:kMatch_recordable];
-        [self setRecordable:dataRecordable.boolValue];
-        NSDictionary *dataTeamA = [data objectForKey:kMatch_teamA];
-        [self setTeamA:[[Team alloc] initWithData:dataTeamA]];
-        NSDictionary *dataTeamB = [data objectForKey:kMatch_teamB];
-        [self setTeamB:[[Team alloc] initWithData:dataTeamB]];
-        [self setRating:[data objectForKey:kMatch_rating]];
-        [self setContactPersonId:[data objectForKey:kMatch_contactPersonId]];
-        [self setMatchType:[data objectForKey:kMatch_matchType]];
+        [self setMatchId:[[data objectForKey:kMatch_matchId] integerValue]];
+        [self setMatchTitle:[data objectForKey:kMatch_matchTitle]];
+        [self setBeginTime:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kMatch_beginTime] integerValue]]];
+        [self setBeginTimeLocal:[data objectForKey:kMatch_beginTimeLocal]];
+        [self setMatchField:[[Stadium alloc] initWithData:[data objectForKey:kMatch_matchField]]];
+        [self setHomeTeam:[[Team alloc] initWithData:[data objectForKey:kMatch_homeTeam]]];
+        [self setAwayTeam:[[Team alloc] initWithData:[data objectForKey:kMatch_awayTeam]]];
+        [self setHomeTeamGoal:[[data objectForKey:kMatch_homeTeamGoal] integerValue]];
+        [self setAwayTeamGoal:[[data objectForKey:kMatch_awayTeamGoal] integerValue]];
+        [self setMatchStandard:[[data objectForKey:kMatch_matchStandard] integerValue]];
+        [self setWithReferee:[[data objectForKey:kMatch_withReferee] boolValue]];
+        [self setOrganizerId:[[data objectForKey:kMatch_organizerId] integerValue]];
+        [self setStatus:[[data objectForKey:kMatch_status] integerValue]];
+        [self setCreateTime:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kMatch_createTime] integerValue]]];
+        [self setCreateTimeLocal:[data objectForKey:kMatch_createTimeLocal]];
     }
     return self;
 }
 
--(NSDictionary *)exportToDictionary
+-(NSDictionary *)dictionaryForUpdate:(Match *)originalMatch
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:def_JSONDateformat];
-    
-    NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
-    [output setObject:name forKey:kMatch_name];
-    [output setObject:description forKey:kMatch_description];
-    [output setObject:[dateFormatter stringFromDate:creationDate] forKey:kMatch_creationDate];
-    [output setObject:[NSNumber numberWithInteger:matchId.integerValue] forKey:kMatch_matchId];
-//    [output setObject:matchPlace forKey:kMatch_matchPlace];
-    [output setObject:[dateFormatter stringFromDate:matchDate] forKey:kMatch_matchDate];
-    [output setObject:[NSNumber numberWithBool:announcable] forKey:kMatch_announcable];
-    [output setObject:[NSNumber numberWithBool:recordable] forKey:kMatch_recordable];
-//    [output setObject:[teamA exportToDictionary] forKey:kMatch_teamA];
-//    [output setObject:[teamB exportToDictionary] forKey:kMatch_teamB];
-    [output setObject:rating forKey:kMatch_rating];
-    [output setObject:matchType forKey:kMatch_matchType];
-    return output;
+    NSMutableDictionary *ouput = [[NSMutableDictionary alloc] init];
+    [ouput setObject:[NSNumber numberWithInteger:matchId] forKey:kMatch_matchId];
+    if (![matchTitle isEqualToString:originalMatch.matchTitle]) {
+        [ouput setObject:matchTitle forKey:kMatch_matchTitle];
+    }
+    if (![beginTime isEqualToDate:originalMatch.beginTime]) {
+        [ouput setObject:beginTime forKey:kMatch_beginTime];
+    }
+    if (![beginTimeLocal isEqualToString:originalMatch.beginTimeLocal]) {
+        [ouput setObject:beginTimeLocal forKey:kMatch_beginTimeLocal];
+    }
+    if (matchField.stadiumId != originalMatch.matchField.stadiumId) {
+        [ouput setObject:matchField forKey:kMatch_matchField];
+    }
+    if (homeTeam.teamId != originalMatch.homeTeam.teamId) {
+        [ouput setObject:homeTeam forKey:kMatch_homeTeam];
+    }
+    if (awayTeam.teamId != originalMatch.awayTeam.teamId) {
+        [ouput setObject:awayTeam forKey:kMatch_awayTeam];
+    }
+    if (homeTeamGoal != originalMatch.homeTeamGoal) {
+        [ouput setObject:[NSNumber numberWithInteger:homeTeamGoal] forKey:kMatch_homeTeamGoal];
+    }
+    if (awayTeamGoal != originalMatch.awayTeamGoal) {
+        [ouput setObject:[NSNumber numberWithInteger:awayTeamGoal] forKey:kMatch_awayTeamGoal];
+    }
+    if (matchStandard != originalMatch.matchStandard) {
+        [ouput setObject:[NSNumber numberWithInteger:matchStandard] forKey:kMatch_matchStandard];
+    }
+    if (withReferee != originalMatch.withReferee) {
+        [ouput setObject:[NSNumber numberWithBool:withReferee] forKey:kMatch_withReferee];
+    }
+    if (organizerId != originalMatch.organizerId) {
+        [ouput setObject:[NSNumber numberWithInteger:organizerId] forKey:kMatch_organizerId];
+    }
+    if (status != originalMatch.status) {
+        [ouput setObject:[NSNumber numberWithInteger:status] forKey:kMatch_status];
+    }
+    if (![createTime isEqualToDate:originalMatch.createTime]) {
+        [ouput setObject:createTime forKey:kMatch_createTime];
+    }
+    if (![createTimeLocal isEqualToString:originalMatch.createTimeLocal]) {
+        [ouput setObject:createTimeLocal forKey:kMatch_createTimeLocal];
+    }
+    return ouput;
 }
 @end
 

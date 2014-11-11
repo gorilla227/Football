@@ -208,5 +208,7 @@
 	<string>创建球队成功！</string>
 	<key>UI_CreateTeamSucc_AlertView_Button</key>
 	<string>重新登录</string>
+	<key>UI_MatchArrangement_MatchType</key>
+	<string>%@人制</string>
 </dict>
 </plist>

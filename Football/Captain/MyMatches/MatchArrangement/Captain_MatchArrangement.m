@@ -9,6 +9,19 @@
 #import "Captain_MatchArrangement.h"
 
 #pragma Captain_MatchArrangementListCell
+@interface Captain_MatchArrangementListCell ()
+@property IBOutlet UILabel *numberOfPlayers;
+@property IBOutlet UILabel *typeOfPlayerNumber;
+@property IBOutlet UILabel *matchDate;
+@property IBOutlet UILabel *matchTime;
+@property IBOutlet UILabel *matchOpponent;
+@property IBOutlet UILabel *matchPlace;
+@property IBOutlet UILabel *matchType;
+@property IBOutlet UIImageView *actionIcon;
+@property IBOutlet UIButton *actionButton;
+@property IBOutlet UILabel *matchResult;
+@end
+
 @implementation Captain_MatchArrangementListCell
 @synthesize numberOfPlayers, typeOfPlayerNumber;
 @synthesize matchDate, matchTime, matchOpponent, matchPlace, matchType;
@@ -34,19 +47,6 @@
 {
     // Initialization code
 }
-//
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-//{
-//    [super setSelected:selected animated:animated];
-//    
-//    // Configure the view for the selected state
-//}
-//
-//-(IBAction)actionButtonOnClicked:(id)sender
-//{
-//    UIButton *actionButton = (UIButton *)sender;
-//    NSLog(actionButton.titleLabel.text);
-//}
 @end
 
 #pragma Captain_MatchArrangement
@@ -59,7 +59,7 @@
 @end
 
 @implementation Captain_MatchArrangement{
-    NSMutableArray *matchesList;
+    NSArray *matchesList;
     NSIndexPath *indexPathOfCancelMatch;
     JSONConnect *connection;
 }
@@ -79,11 +79,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //Set Toolbar
-    [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:createMatchToolBar.items];
     
     [matchesTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    matchesList = [[NSMutableArray alloc] init];
+    matchesList = [NSArray new];
     //Set TeamInfo
     [teamLogo.layer setBorderColor:[UIColor whiteColor].CGColor];
     [teamLogo.layer setBorderWidth:2.0f];
@@ -96,22 +95,22 @@
         [teamLogo setImage:def_defaultTeamLogo];
     }
     [teamName setText:gMyUserInfo.team.teamName];
+    [numberOfTeamMembers setText:[NSNumber numberWithInteger:gMyUserInfo.team.numOfMember].stringValue];
     
     //Request matches
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [connection requestMatchesByTeamId:gMyUserInfo.team.teamId count:0 startIndex:0 isSync:YES];
-//    [connection requestMatchesByUserId:gMyUserInfo.userId count:JSON_parameter_common_count_default startIndex:JSON_parameter_common_startIndex_default];
 }
 
-//-(void)receiveMatches:(NSArray *)matches
-//{
-//    [matchesList addObjectsFromArray:matches];
-//    [matchesTableView reloadData];
-//}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
+}
 
 -(void)receiveMatchesSuccessfully:(NSArray *)matches
 {
-    matchesList = [NSMutableArray arrayWithArray:matches];
+    matchesList = [matchesList arrayByAddingObjectsFromArray:matches];
     [matchesTableView reloadData];
 }
 
@@ -139,13 +138,7 @@
 {
     Captain_MatchArrangementListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MatchArrangementListCell"];
     Match *matchData = [matchesList objectAtIndex:indexPath.row];
-    Team *opponentTeam;
-//    if ([matchData.teamA.teamId isEqual:gMyUserInfo.team.teamId]) {
-//        opponentTeam = matchData.teamB;
-//    }
-//    else {
-//        opponentTeam = matchData.teamA;
-//    }
+    Team *opponentTeam = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam:matchData.homeTeam;
     
     // Configure the cell...
     [cell.numberOfPlayers setText:[NSString stringWithFormat:@"%li/10", (long)indexPath.row]];
@@ -156,17 +149,12 @@
     [outputDateFormatter setDateFormat:def_MatchDateformat];
     NSDateFormatter *outputTimeFormatter = [[NSDateFormatter alloc] init];
     [outputTimeFormatter setDateFormat:def_MatchTimeformat];
-    [cell.matchDate setText:[outputDateFormatter stringFromDate:matchData.matchDate]];
-    [cell.matchTime setText:[outputTimeFormatter stringFromDate:matchData.matchDate]];
+    [cell.matchDate setText:[outputDateFormatter stringFromDate:matchData.beginTime]];
+    [cell.matchTime setText:[outputTimeFormatter stringFromDate:matchData.beginTime]];
     
     [cell.matchOpponent setText:opponentTeam.teamName];
-//    [cell.matchPlace setText:matchData.matchPlace];
-    if ([matchData.matchType isEqual:[NSNull null]]) {
-        [cell.matchType setText:@"未知类型"];
-    }
-    else {
-        [cell.matchType setText:matchData.matchType];
-    }
+    [cell.matchPlace setText:matchData.matchField.stadiumName];
+    [cell.matchType setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_MatchType"], [NSNumber numberWithInteger:matchData.matchStandard]]];
     switch (indexPath.row%3) {
         case 0:
             [cell.actionButton setTitle:def_MA_actionButton_announce forState:UIControlStateNormal];
@@ -244,7 +232,7 @@
 {
     if (buttonIndex == 0) {
         //Cancel the match
-        [matchesList removeObjectAtIndex:indexPathOfCancelMatch.row];
+//        [matchesList removeObjectAtIndex:indexPathOfCancelMatch.row];
         [matchesTableView deleteRowsAtIndexPaths:@[indexPathOfCancelMatch] withRowAnimation:UITableViewRowAnimationFade];
     }
     else {
@@ -255,13 +243,13 @@
 -(void)actionButtonOnClicked_announce:(UIButton *)sender
 {
     Match *selectMatch = [matchesList objectAtIndex:sender.tag];
-    NSLog(@"Announce: %@", selectMatch.matchId);
+    NSLog(@"Announce: %i", selectMatch.matchId);
 }
 
 -(void)actionButtonOnClicked_fillRecord:(UIButton *)sender
 {
     Match *selectMatch = [matchesList objectAtIndex:sender.tag];
-    NSLog(@"%@", selectMatch.matchId);
+    NSLog(@"%i", selectMatch.matchId);
     [self performSegueWithIdentifier:@"FillRecord" sender:selectMatch];
 }
 
