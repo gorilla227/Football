@@ -85,16 +85,6 @@
     [self.navigationController setToolbarHidden:!self.toolbarItems.count];
 }
 
--(IBAction)debugButtonAction:(id)sender {
-//    if (creationProgress == MatchDetailsCreationProgress_Initial) {
-//        
-//    }
-//    else {
-//        creationProgress = MatchDetailsCreationProgress_Initial;
-//    }
-//    [self.tableView reloadData];
-}
-
 -(void)initialMatchTime
 {
     matchTimePicker = [[UIDatePicker alloc] init];

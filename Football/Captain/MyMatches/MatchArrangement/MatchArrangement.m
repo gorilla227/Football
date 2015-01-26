@@ -8,7 +8,7 @@
 
 #import "MatchArrangement.h"
 #import "MessageCenter_Compose.h"
-#import "Captain_CreateMatch.h"
+#import "MatchDetails.h"
 
 @interface MatchArrangement ()
 @property IBOutlet UIView *teamSummaryView;
@@ -81,8 +81,8 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"CreateMatch"]) {
-        Captain_CreateMatch *matchView = segue.destinationViewController;
-        [matchView setSegueIdentifier:segue.identifier];
+        MatchDetails *matchView = segue.destinationViewController;
+        [matchView setViewType:MatchDetailsViewType_CreateMatch];
     }
 }
 
