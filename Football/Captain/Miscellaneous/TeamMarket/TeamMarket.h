@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+
+enum TeamMarketViewType {
+    TeamMarketViewType_Default,
+    TeamMarketViewType_CreateMatch
+};
+
 @interface TeamMarket_SearchView : UIView
 @property NSInteger flag;
 -(NSDictionary *)searchCriteria;
@@ -17,5 +23,5 @@
 @end
 
 @interface TeamMarket : UITableViewController<JSONConnectDelegate>
-
+@property enum TeamMarketViewType viewType;
 @end

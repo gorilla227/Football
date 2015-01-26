@@ -14,4 +14,5 @@
 -(void)keyboardWillHide;
 -(void)initialTextFields;
 -(void)dismissKeyboard;
+-(void)enterMainScreen;
 @end

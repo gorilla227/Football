@@ -105,6 +105,8 @@
 	<string>%@/%@条申请已提交，请耐心等待对方的回复。</string>
 	<key>UI_Callin_SendingResultMessage</key>
 	<string>%@/%@条邀请已发送，请耐心等待对方的回复。</string>
+	<key>UI_MatchNotice_SendingResultMessage</key>
+	<string>%@/%@条比赛通知已发送，请耐心等待对方的回复。</string>
 	<key>UI_MessageTypes</key>
 	<array>
 		<dict>
@@ -210,5 +212,22 @@
 	<string>重新登录</string>
 	<key>UI_MatchArrangement_MatchType</key>
 	<string>%@人制</string>
+	<key>UI_MatchArrangement_CancelTitle</key>
+	<string>取消比赛</string>
+	<key>UI_MatchArrangement_ConfirmMessage</key>
+	<string>确定要取消比赛？</string>
+	<key>UI_MatchArrangement_ConfirmOK</key>
+	<string>确定</string>
+	<key>UI_MatchArrangement_ConfirmCancel</key>
+	<string>取消</string>
+	<key>UI_MatchArrangement_CancelFailedMessage</key>
+	<string>无法取消比赛。</string>
+	<key>UI_MatchArrangement_BeginTimeString</key>
+	<string>开赛时间：%@</string>
+	<key>Hint_CreateMatch_MatchTime</key>
+	<string>请选择比赛开始时间。如果该比赛已经开始，则进入比赛数据记录界面；如果该比赛未开始，则进入新建比赛界面。</string>
+	<key>Hint_CreateMatch_MatchOpponent</key>
+	<string>请输入比赛对手，有两种方式： 1、对手球队不在“我要踢球”中，手动输入对手，可以直接建立比赛；
+2、对手球队已加入“我要踢球”，从“球队超市”中选择对手，需要等待对手反馈。</string>
 </dict>
 </plist>

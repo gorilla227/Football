@@ -563,9 +563,11 @@
     NSDictionary *parameters = CONNECT_Applyin_Parameters([NSNumber numberWithInteger:playerId], [NSNumber numberWithInteger:teamId], message);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-        [delegate playerApplyinSent];
+//        [delegate playerApplyinSent];
+        [delegate playerApplyinSent:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [delegate playerApplyinFailed];
+//        [delegate playerApplyinFailed];
+        [delegate playerApplyinSent:NO];
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
@@ -596,9 +598,11 @@
     NSDictionary *parameters = CONNECT_Callin_Parameters([NSNumber numberWithInteger:teamId], [NSNumber numberWithInteger:playerId], message);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-        [delegate teamCallinSent];
+//        [delegate teamCallinSent];
+        [delegate teamCallinSent:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [delegate teamCallinFailed];
+//        [delegate teamCallinFailed];
+        [delegate teamCallinSent:NO];
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
@@ -616,15 +620,30 @@
     }];
 }
 
+//Send MatchNotice
+-(void)sendMatchNotice:(NSInteger)matchId fromTeam:(NSInteger)teamId toPlayer:(NSInteger)playerId withMessage:(NSString *)message
+{
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_SendMatchNotice_Suffix];
+    NSDictionary *parameters = CONNECT_SendMatchNotice_Parameters([NSNumber numberWithInteger:matchId], [NSNumber numberWithInteger:teamId], [NSNumber numberWithInteger:playerId], message);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate matchNoticeSent:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [delegate matchNoticeSent:NO];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
 //Request Matches
--(void)requestMatchesByTeamId:(NSInteger)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption
+-(void)requestMatchesByTeamId:(NSInteger)teamId inStatus:(NSArray *)status sort:(NSInteger)sort count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption
 {
     if (syncOption) {
         [busyIndicatorDelegate lockView];
     }
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_MatchList_Suffix];
-    NSDictionary *Parameters = CONNECT_MatchList_Parameters([NSNumber numberWithInteger:teamId]);
-    [manager POST:urlString parameters:Parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSDictionary *parameters = CONNECT_MatchList_Parameters([NSNumber numberWithInteger:teamId], [status componentsJoinedByString:@","], [NSNumber numberWithInteger:sort], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (syncOption) {
             [busyIndicatorDelegate unlockView];
         }
@@ -640,4 +659,23 @@
     }];
 }
 
+//Update Match Status
+-(void)updateMatchStatus:(NSInteger)statusId organizer:(NSInteger)organizerId match:(NSInteger)matchId
+{
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateMatchStatus_Suffix];
+    NSDictionary *parameters = CONNECT_UpdateMatchStatus_Parameters(matchId, organizerId, statusId);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        NSNumber *errorNumber = [responseObject objectForKey:@"error"];
+        if (errorNumber.boolValue) {
+            [delegate updateMatchStatusFailed];
+        }
+        else {
+            [delegate updateMatchStatusSuccessfully];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
 @end

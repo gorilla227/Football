@@ -26,7 +26,7 @@
     NSInteger numOfCompletedMessages;
     NSInteger numOfFailedMessages;
 }
-@synthesize composeType, toList;
+@synthesize composeType, toList, otherParameters;
 @synthesize playerListTableView, composeTextView, selectionSegment, actionBar, sendNotificationButton, sendingProgressView, sendingProgressBar, sendingProgressCancelButton, sendingProgressLabel, sendingProgressBackgroundView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -103,6 +103,12 @@
         case MessageComposeType_Applyin:
             [composeTextView setText:[messageTemplate objectForKey:@"Applyin_Default"]];
             [self selectAllInToList];
+            break;
+        case MessageComposeType_MatchNotice:
+            [composeTextView setText:[messageTemplate objectForKey:@"MatchNotice_Default"]];
+            [self selectAllInToList];
+            [selectionSegment setUserInteractionEnabled:NO];
+            [playerListTableView setAllowsSelection:NO];
             break;
         default:
             break;
@@ -210,6 +216,7 @@
     [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:0], [NSNumber numberWithInteger:toList.count]]];
     [self.navigationController.navigationBar setUserInteractionEnabled:NO];
     [self.navigationController.toolbar setUserInteractionEnabled:NO];
+    Match *matchData = [otherParameters objectForKey:@"matchData"];
     numOfCompletedMessages = 0;
     numOfFailedMessages = 0;
     
@@ -230,6 +237,11 @@
                 [connection applyinFromPlayer:gMyUserInfo.userId toTeam:teamForMessage.teamId withMessage:composeTextView.text];
             }
             break;
+        case MessageComposeType_MatchNotice:
+            for (UserInfo *playerForMessage in toList) {
+                [connection sendMatchNotice:matchData.matchId fromTeam:gMyUserInfo.team.teamId toPlayer:playerForMessage.userId withMessage:composeTextView.text];
+            }
+            break;
         default:
             break;
     }
@@ -244,48 +256,94 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)playerApplyinSent
+//-(void)playerApplyinSent
+//{
+//    numOfCompletedMessages++;
+//    [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]]];
+//    [sendingProgressBar setProgress:numOfCompletedMessages/toList.count animated:YES];
+//    if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
+//        [sendingProgressBackgroundView setHidden:YES];
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_FindTeam_Successful_Message"]         delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+//        [alertView show];
+//    }
+//}
+//
+//-(void)playerApplyinFailed
+//{
+//    numOfFailedMessages++;
+//    if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
+//        [sendingProgressBackgroundView setHidden:YES];
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_FindTeam_SendingResultMessage"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+//        [alertView show];
+//    }
+//}
+
+//-(void)teamCallinSent
+//{
+//    numOfCompletedMessages++;
+//    [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]]];
+//    [sendingProgressBar setProgress:numOfCompletedMessages/toList.count animated:YES];
+//    if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
+//        [sendingProgressBackgroundView setHidden:YES];
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Callin_SendingResultMessage"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+//        [alertView show];
+//    }
+//}
+//
+//-(void)teamCallinFailed
+//{
+//    numOfFailedMessages++;
+//    if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
+//        [sendingProgressBackgroundView setHidden:YES];
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Callin_SendingResultMessage"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+//        [alertView show];
+//    }
+//}
+
+-(void)playerApplyinSent:(BOOL)result
 {
-    numOfCompletedMessages++;
-    [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]]];
-    [sendingProgressBar setProgress:numOfCompletedMessages/toList.count animated:YES];
+    [self updateMessageProgress:result];
+    
     if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
-        [sendingProgressBackgroundView setHidden:YES];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_FindTeam_Successful_Message"]         delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
-        [alertView show];
+        [self composeSent:@"UI_FindTeam_Successful_Message"];
     }
 }
 
--(void)playerApplyinFailed
+-(void)teamCallinSent:(BOOL)result
 {
-    numOfFailedMessages++;
+    [self updateMessageProgress:result];
+    
     if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
-        [sendingProgressBackgroundView setHidden:YES];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_FindTeam_SendingResultMessage"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
-        [alertView show];
+        [self composeSent:@"UI_Callin_SendingResultMessage"];
     }
 }
 
--(void)teamCallinSent
+-(void)matchNoticeSent:(BOOL)result
 {
-    numOfCompletedMessages++;
-    [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]]];
-    [sendingProgressBar setProgress:numOfCompletedMessages/toList.count animated:YES];
+    [self updateMessageProgress:result];
+    
     if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
-        [sendingProgressBackgroundView setHidden:YES];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Callin_SendingResultMessage"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
-        [alertView show];
+        [self composeSent:@"UI_MatchNotice_SendingResultMessage"];
     }
 }
 
--(void)teamCallinFailed
+-(void)updateMessageProgress:(BOOL)messageResult
 {
-    numOfFailedMessages++;
-    if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
-        [sendingProgressBackgroundView setHidden:YES];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Callin_SendingResultMessage"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
-        [alertView show];
+    if (messageResult) {
+        numOfCompletedMessages++;
+        [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]]];
+        [sendingProgressBar setProgress:numOfCompletedMessages/toList.count animated:YES];
     }
+    else {
+        numOfFailedMessages++;
+    }
+}
+
+-(void)composeSent:(NSString *)alertMessageKey
+{
+    [sendingProgressBackgroundView setHidden:YES];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:alertMessageKey], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+    [alertView show];
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

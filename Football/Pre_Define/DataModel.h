@@ -156,6 +156,9 @@
 #define kMatch_status @"status"
 #define kMatch_createTime @"create_time"
 #define kMatch_createTimeLocal @"create_time_local"
+#define kMatch_sentMatchNotices @"match_notice_sent"
+#define kMatch_confirmedMember @"member_confirmed"
+#define kMatch_confirmedTemp @"temp_member_confirmed"
 @interface Match: NSObject
 @property NSInteger matchId;
 @property NSString *matchTitle;
@@ -172,6 +175,9 @@
 @property NSInteger status;
 @property NSDate *createTime;
 @property NSString *createTimeLocal;
+@property NSNumber *sentMatchNotices;
+@property NSNumber *confirmedMember;
+@property NSNumber *confirmedTemp;
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)dictionaryForUpdate:(Match *)originalMatch;
 @end

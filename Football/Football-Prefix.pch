@@ -24,4 +24,5 @@
 #import "UITextField+LeftIconAndLabel.h"
 #import "UITextFieldForStadiumSelection.h"
 #import "UITextFieldForActivityRegion.h"
+#import "UITextFieldForMatchScore.h"
 #import "UITextView+UITextFieldRoundCornerStyle.h"

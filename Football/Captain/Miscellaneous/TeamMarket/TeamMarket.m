@@ -175,6 +175,7 @@
     BOOL haveMoreTeams;
 }
 @synthesize searchView, searchViewSwitchButton, moreFooterView, moreActivityIndicator, moreLabel;
+@synthesize viewType;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -182,6 +183,18 @@
     [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setTableHeaderView:searchView];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    switch (viewType) {
+        case TeamMarketViewType_Default:
+            
+            break;
+        case TeamMarketViewType_CreateMatch:
+            [searchView.onlyChallenteamNumberSwitch setOn:YES];
+            [searchView.onlyChallenteamNumberSwitch setEnabled:NO];
+            [searchView.onlyRecruitSwitch setEnabled:NO];
+            break;
+        default:
+            break;
+    }
     
     haveMoreTeams = YES;
     teamList = [NSMutableArray new];
@@ -314,6 +327,14 @@
     if ([segue.identifier isEqualToString:@"TeamDetailsSegue"]) {
         TeamDetails *teamDetails = segue.destinationViewController;
         [teamDetails setTeamData:[teamList objectAtIndex:self.tableView.indexPathForSelectedRow.row]];
+        switch (viewType) {
+            case TeamMarketViewType_CreateMatch:
+                [teamDetails setViewType:TeamDetailsViewTypeViewType_CreateMatch];
+                break;       
+            default:
+                [teamDetails setViewType:TeamDetailsViewTypeViewType_Default];
+                break;
+        }
     }
 }
 

@@ -33,7 +33,7 @@
     JSONConnect *connection;
 }
 @synthesize teamLogoImageView, teamNameLabel, teamNameBackgroundView, teamNumberLabel, averAgeCell, activityRegionCell, homeStadiumCell, homeStadiumMapCell, homeStadiumMapView, sloganLabel, recruitAnnouncementLabel, recruitFlagSwitch, challengeAnnouncementLabel, challengeFlagSwitch, actionBar, applyInButton, challengeButton;
-@synthesize teamData;
+@synthesize teamData, viewType, delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,8 +58,17 @@
     if (teamData) {
         [self initWithTeamData];
         //Set Action button Status
-        [applyInButton setEnabled:teamData.recruitFlag && !gMyUserInfo.team];
-        [challengeButton setEnabled:teamData.challengeFlag && gMyUserInfo.userType];
+        switch (viewType) {
+            case TeamDetailsViewTypeViewType_CreateMatch:
+                [applyInButton setEnabled:NO];
+                [challengeButton setEnabled:YES];
+                break;
+            default:
+                [applyInButton setEnabled:teamData.recruitFlag && !gMyUserInfo.team];
+                [challengeButton setEnabled:teamData.challengeFlag && gMyUserInfo.userType];
+                break;
+        }
+        
     }
 }
 
@@ -113,7 +122,15 @@
 
 -(IBAction)challengeButtonOnClicked:(id)sender
 {
-    
+    switch (viewType) {
+        case TeamDetailsViewTypeViewType_CreateMatch:
+            delegate = (id)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3];
+            [delegate selectedOpponentTeam:teamData];
+            [self.navigationController popToViewController:(UIViewController *)delegate animated:YES];
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - Table view data source

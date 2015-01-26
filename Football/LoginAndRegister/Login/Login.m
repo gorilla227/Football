@@ -102,6 +102,17 @@
 -(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
 {
     gMyUserInfo = userInfo;
+    [connection requestAllStadiums];
+}
+
+-(void)receiveAllStadiums:(NSArray *)stadiums
+{
+    gStadiums = stadiums;
+    [self enterMainScreen];
+}
+
+-(void)enterMainScreen
+{
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
     UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
     [self presentViewController:mainController animated:YES completion:nil];
@@ -143,9 +154,19 @@
 //    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"PlayerMarket"];
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
-    //TeamMarket
+//    //TeamMarket
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"TeamMarket"];
+//    [self.navigationController pushViewController:targetViewController animated:YES];
+    
+//    //New MatchArrangement
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchArrangement"];
+//    [self.navigationController pushViewController:targetViewController animated:YES];
+    
+    //Create Match
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"TeamMarket"];
+    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchDetails"];
     [self.navigationController pushViewController:targetViewController animated:YES];
 }
 //DissmissKeyboard

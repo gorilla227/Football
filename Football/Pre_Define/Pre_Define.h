@@ -80,6 +80,10 @@
 #define cRed(alphaValue) [UIColor colorWithRed:255/255.0 green:0/255.0 blue:0/255.0 alpha:alphaValue]
 #define cGray(alphaValue) [UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:alphaValue]
 #define cLightGreen(alphaValue) [UIColor colorWithRed:153/255.0 green:204/255.0 blue:153/255.0 alpha:alphaValue]
+#define cMatchCellBG [UIColor colorWithRed:79/255.0 green:193/255.0 blue:233/255.0 alpha:1]
+#define cMatchCellNoticeButtonBG [UIColor colorWithRed:36/255.0 green:67/255.0 blue:87/255.0 alpha:1]
+#define cMatchCellMatchTimeBG [UIColor colorWithRed:222/255.0 green:251/255.0 blue:255/255.0 alpha:1]
+#define cMatchCellMatchTimeFont [UIColor colorWithRed:37/255.0 green:67/255.0 blue:87/255.0 alpha:1]
 
 //NotifyPlayers_ViewTypes
 enum NotifyPlayers_ViewTypes
@@ -122,6 +126,7 @@ enum EditProfileViewSource
 
 //Global variables
 UserInfo *gMyUserInfo;
+NSArray *gStadiums;
 NSDictionary *gUIStrings;
 NSDictionary *gUnreadMessageAmount;
 NSDictionary *gSettings;

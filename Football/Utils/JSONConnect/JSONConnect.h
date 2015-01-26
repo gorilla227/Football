@@ -58,15 +58,20 @@ enum RequestMessageSourceType
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType;//获取信息成功
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount;//获取未读消息数量成功
 -(void)readMessagesSuccessfully:(NSArray *)messageIdList;//设置消息已读成功
--(void)playerApplyinSent;//球员申请加入球队发送成功
--(void)playerApplyinFailed;//球员申请加入球队发送失败
+//-(void)playerApplyinSent;//球员申请加入球队发送成功
+//-(void)playerApplyinFailed;//球员申请加入球队发送失败
+-(void)playerApplyinSent:(BOOL)result;//球员申请加入球队发送返回结果
 -(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode;//队长回复球员的入队申请成功
--(void)teamCallinSent;//队长邀请球员加入球队发送成功
--(void)teamCallinFailed;//队长邀请球员加入球队发送失败
+//-(void)teamCallinSent;//队长邀请球员加入球队发送成功
+//-(void)teamCallinFailed;//队长邀请球员加入球队发送失败
+-(void)teamCallinSent:(BOOL)result;//队长邀请球员加入球队发送返回结果
 -(void)replyCallinMessageSuccessfully:(NSInteger)responseCode;//球员回复队长的入队邀请成功
+-(void)matchNoticeSent:(BOOL)result;//队长发送比赛通知返回结果
 
 //Match Management
--(void)receiveMatchesSuccessfully:(NSArray *)matches;
+-(void)receiveMatchesSuccessfully:(NSArray *)matches;//获取比赛列表成功
+-(void)updateMatchStatusSuccessfully;//修改比赛状态成功
+-(void)updateMatchStatusFailed;//修改比赛状态失败
 
 @end
 
@@ -109,8 +114,10 @@ enum RequestMessageSourceType
 -(void)replyApplyinMessage:(NSInteger)messageId response:(NSInteger)responseCode;//队长回复球员的入队申请，2-同意，3-拒绝
 -(void)callinFromTeam:(NSInteger)teamId toPlayer:(NSInteger)playerId withMessage:(NSString *)message;//队长邀请球员加入球队
 -(void)replyCallinMessage:(NSInteger)messageId response:(NSInteger)responseCode;//球员回复队长的入队邀请，2-同意，3-拒绝
+-(void)sendMatchNotice:(NSInteger)matchId fromTeam:(NSInteger)teamId toPlayer:(NSInteger)playerId withMessage:(NSString *)message;//队长发送比赛通知（包括临时帮忙邀请）
 
 //Match Management
--(void)requestMatchesByTeamId:(NSInteger)teamId count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption;
+-(void)requestMatchesByTeamId:(NSInteger)teamId inStatus:(NSArray *)status sort:(NSInteger)sort count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption;//获取球队的比赛列表
+-(void)updateMatchStatus:(NSInteger)statusId organizer:(NSInteger)organizerId match:(NSInteger)matchId;//修改比赛状态
 
 @end

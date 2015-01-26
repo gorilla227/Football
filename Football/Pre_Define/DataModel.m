@@ -405,7 +405,7 @@
 
 #pragma Match
 @implementation Match
-@synthesize matchId, matchTitle, beginTime, beginTimeLocal, matchField, homeTeam, awayTeam, homeTeamGoal, awayTeamGoal, matchStandard, withReferee, organizerId, status, createTime, createTimeLocal;
+@synthesize matchId, matchTitle, beginTime, beginTimeLocal, matchField, homeTeam, awayTeam, homeTeamGoal, awayTeamGoal, matchStandard, withReferee, organizerId, status, createTime, createTimeLocal, sentMatchNotices, confirmedMember, confirmedTemp;
 -(id)copy
 {
     Match *matchCopy = [[Match alloc] init];
@@ -424,6 +424,9 @@
     [matchCopy setStatus:status];
     [matchCopy setCreateTime:[createTime copy]];
     [matchCopy setCreateTimeLocal:[createTimeLocal copy]];
+    [matchCopy setSentMatchNotices:[sentMatchNotices copy]];
+    [matchCopy setConfirmedMember:[confirmedMember copy]];
+    [matchCopy setConfirmedTemp:[confirmedTemp copy]];
     return matchCopy;
 }
 
@@ -432,12 +435,12 @@
     self = [super init];
     if (self) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:def_JSONDateformat];
+        [dateFormatter setDateFormat:def_MatchDateAndTimeformat];
         
         [self setMatchId:[[data objectForKey:kMatch_matchId] integerValue]];
         [self setMatchTitle:[data objectForKey:kMatch_matchTitle]];
         [self setBeginTime:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kMatch_beginTime] integerValue]]];
-        [self setBeginTimeLocal:[data objectForKey:kMatch_beginTimeLocal]];
+        [self setBeginTimeLocal:[dateFormatter stringFromDate:self.beginTime]];
         [self setMatchField:[[Stadium alloc] initWithData:[data objectForKey:kMatch_matchField]]];
         [self setHomeTeam:[[Team alloc] initWithData:[data objectForKey:kMatch_homeTeam]]];
         [self setAwayTeam:[[Team alloc] initWithData:[data objectForKey:kMatch_awayTeam]]];
@@ -448,7 +451,10 @@
         [self setOrganizerId:[[data objectForKey:kMatch_organizerId] integerValue]];
         [self setStatus:[[data objectForKey:kMatch_status] integerValue]];
         [self setCreateTime:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kMatch_createTime] integerValue]]];
-        [self setCreateTimeLocal:[data objectForKey:kMatch_createTimeLocal]];
+        [self setCreateTimeLocal:[dateFormatter stringFromDate:createTime]];
+        [self setSentMatchNotices:[data objectForKey:kMatch_sentMatchNotices]];
+        [self setConfirmedMember:[data objectForKey:kMatch_confirmedMember]];
+        [self setConfirmedTemp:[data objectForKey:kMatch_confirmedTemp]];
     }
     return self;
 }
@@ -498,6 +504,15 @@
     }
     if (![createTimeLocal isEqualToString:originalMatch.createTimeLocal]) {
         [ouput setObject:createTimeLocal forKey:kMatch_createTimeLocal];
+    }
+    if (![sentMatchNotices isEqualToNumber:originalMatch.sentMatchNotices]) {
+        [ouput setObject:sentMatchNotices forKey:kMatch_sentMatchNotices];
+    }
+    if (![confirmedMember isEqualToNumber:originalMatch.confirmedMember]) {
+        [ouput setObject:confirmedMember forKey:kMatch_confirmedMember];
+    }
+    if (![confirmedTemp isEqualToNumber:originalMatch.confirmedTemp]) {
+        [ouput setObject:confirmedTemp forKey:kMatch_confirmedTemp];
     }
     return ouput;
 }

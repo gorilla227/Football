@@ -100,6 +100,10 @@
 #define CONNECT_ReplyCallin_Suffix @"message/replycallin"
 #define CONNECT_ReplyCallin_Parameters(messageId, response) @{@"message_id":messageId, @"response":response}
 
+//Send MatchNotice
+#define CONNECT_SendMatchNotice_Suffix @"message/matchnotice"
+#define CONNECT_SendMatchNotice_Parameters(matchId, teamId, playerId, message) @{@"match_id":matchId, @"from_team_id":teamId, @"to":playerId, @"message":message}
+
 
 //Get Messages
 #define CONNECT_RequestMessages_Suffix @"message/receive"
@@ -118,9 +122,11 @@
 
 //Get Matchlist
 #define CONNECT_MatchList_Suffix @"match/list"
-#define CONNECT_MatchList_Parameters(teamId) @{@"team_id":teamId}
+#define CONNECT_MatchList_Parameters(teamId, status, sort, startIndex, count) @{@"team_id":teamId, @"status":status, @"order":sort, @"start":startIndex, @"count":count}
 
-
+//Update Match Status
+#define CONNECT_UpdateMatchStatus_Suffix @"match/update"
+#define CONNECT_UpdateMatchStatus_Parameters(matchId, organizerId, statusId) @{@"match_id":[NSNumber numberWithInteger:matchId], @"member_id":[NSNumber numberWithInteger:organizerId], @"status":[NSNumber numberWithInteger:statusId]}
 
 #pragma zzOld_Server
 //JSON variables

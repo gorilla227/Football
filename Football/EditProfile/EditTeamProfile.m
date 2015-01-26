@@ -162,7 +162,7 @@
     if (gMyUserInfo.team) {
         [teamNameTextField setText:gMyUserInfo.team.teamName];
         [activityRegionTextField presetActivityRegionCode:gMyUserInfo.team.activityRegion];
-        [homeStadiumTextField presetHomeStadium:gMyUserInfo.team.homeStadium];
+        [homeStadiumTextField presetStadium:gMyUserInfo.team.homeStadium];
         [sloganTextView setText:gMyUserInfo.team.slogan];
         if (gMyUserInfo.team.teamLogo) {
             [teamLogoImageView setImage:gMyUserInfo.team.teamLogo];
@@ -194,7 +194,7 @@
     Team *teamInfo = [gMyUserInfo.team copy];
     [teamInfo setTeamName:teamNameTextField.text];
     [teamInfo setActivityRegion:activityRegionTextField.selectedActivityRegionCode];
-    [teamInfo setHomeStadium:homeStadiumTextField.selectedHomeStadium];
+    [teamInfo setHomeStadium:homeStadiumTextField.selectedStadium];
     [teamInfo setSlogan:sloganTextView.text];
     [teamInfo setTeamLogo:[teamLogoImageView.image isEqual:def_defaultTeamLogo]?nil:teamLogoImageView.image];
     [teamInfo setRecruitFlag:recruitFlagSwitch.on];
@@ -215,7 +215,7 @@
     Team *newTeamProfile = [Team new];
     [newTeamProfile setTeamLogo:[teamLogoImageView.image isEqual:def_defaultTeamLogo]?nil:teamLogoImageView.image];
     [newTeamProfile setTeamName:teamNameTextField.text];
-    [newTeamProfile setHomeStadium:homeStadiumTextField.selectedHomeStadium];
+    [newTeamProfile setHomeStadium:homeStadiumTextField.selectedStadium];
     [newTeamProfile setActivityRegion:activityRegionTextField.selectedActivityRegionCode];
     [newTeamProfile setSlogan:sloganTextView.text];
     [newTeamProfile setRecruitFlag:recruitFlagSwitch.isOn];
@@ -264,7 +264,7 @@
 //Receive all stadiums
 -(void)receiveAllStadiums:(NSArray *)stadiums
 {
-    [homeStadiumTextField textFieldInitialization:stadiums];
+    [homeStadiumTextField textFieldInitialization:stadiums homeStadium:nil showSelectHomeStadium:NO];
     
     //Fill Initial TeamInfo
     [self fillInitialTeamProfile];

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UITextFieldForStadiumSelection : UITextField<UIPickerViewDataSource, UIPickerViewDelegate>
--(void)textFieldInitialization:(NSArray *)stadiums;
--(void)presetHomeStadium:(Stadium *)stadium;
--(Stadium *)selectedHomeStadium;
+-(void)textFieldInitialization:(NSArray *)stadiums homeStadium:(Stadium *)homeStadium showSelectHomeStadium:(BOOL)shouldShowHomeStadium;
+-(void)presetStadium:(Stadium *)stadium;
+-(Stadium *)selectedStadium;
+-(void)selectHomeStadium;
 @end

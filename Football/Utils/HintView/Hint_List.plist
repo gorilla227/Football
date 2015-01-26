@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>EnterOpponent_MatchNotStarted_Subpage</key>
-	<string>1、如果对手不再“我要踢球”中，可手动输入对手名称，并点击“邀请对手”邀请对方队长加入“我要踢球”。 2、如果目前没有对手，可点击“球队超市”，寻找合适球队。</string>
+	<string>1、如果对手不在“我要踢球”中，可手动输入对手名称，并点击“邀请对手”邀请对方队长加入“我要踢球”。 2、如果目前没有对手，可点击“球队超市”，寻找合适球队。</string>
 	<key>EnterOpponent_MatchStarted</key>
 	<string>可邀请对手加入“我要踢球”，基数越大，基友越多，约球更容易，你懂的。</string>
 	<key>EnterScore</key>

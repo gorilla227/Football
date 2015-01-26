@@ -12,6 +12,8 @@
     NSArray *stadiumList;
     UIPickerView *staidumPicker;
     MKMapView *stadiumMap;
+    UIButton *selectHomeStadiumButton;
+    Stadium *myHomeStadium;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -23,8 +25,11 @@
     return self;
 }
 
--(void)textFieldInitialization:(NSArray *)stadiums
+-(void)textFieldInitialization:(NSArray *)stadiums homeStadium:(Stadium *)homeStadium showSelectHomeStadium:(BOOL)shouldShowHomeStadium
 {
+    myHomeStadium = homeStadium;
+    
+    //Set Picker
     stadiumList = stadiums;
     staidumPicker = [[UIPickerView alloc] init];
     [staidumPicker setDelegate:self];
@@ -33,11 +38,31 @@
     [stadiumMap setShowsUserLocation:YES];
     [self setInputView:staidumPicker];
     [self setInputAccessoryView:stadiumMap];
+    
+    //Set SelectHomeStadiumButton
+    selectHomeStadiumButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [selectHomeStadiumButton setShowsTouchWhenHighlighted:YES];
+    [selectHomeStadiumButton addTarget:self action:@selector(selectHomeStadium) forControlEvents:UIControlEventTouchUpInside];
+    [selectHomeStadiumButton.titleLabel setFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]];
+    [selectHomeStadiumButton setTitle:@"我的主场" forState:UIControlStateNormal];
+    [selectHomeStadiumButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [selectHomeStadiumButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    [selectHomeStadiumButton setBackgroundColor:cLightBlue(1.0)];
+    [selectHomeStadiumButton.layer setCornerRadius:8.0f];
+    [selectHomeStadiumButton.layer setMasksToBounds:YES];
+    [selectHomeStadiumButton sizeToFit];
+    [selectHomeStadiumButton.titleLabel setFont:[UIFont systemFontOfSize:[UIFont smallSystemFontSize]]];
+    [self setRightView:selectHomeStadiumButton];
+    [self setRightViewMode:(shouldShowHomeStadium && homeStadium)?UITextFieldViewModeWhileEditing:UITextFieldViewModeNever];
 }
 
--(void)presetHomeStadium:(Stadium *)stadium
+-(void)presetStadium:(Stadium *)stadium
 {
     if (stadium) {
+        if (myHomeStadium) {
+            [selectHomeStadiumButton setEnabled:(stadium.stadiumId != myHomeStadium.stadiumId)];
+        }
+        
         for (Stadium *stadiumInList in stadiumList) {
             if (stadiumInList.stadiumId == stadium.stadiumId) {
                 [staidumPicker selectRow:[stadiumList indexOfObject:stadiumInList] + 1 inComponent:0 animated:NO];
@@ -50,13 +75,23 @@
     [self pickerView:staidumPicker didSelectRow:0 inComponent:0];
 }
 
--(Stadium *)selectedHomeStadium
+-(Stadium *)selectedStadium
 {
     if ([staidumPicker selectedRowInComponent:0] == 0) {
         return nil;
     }
     else {
         return [stadiumList objectAtIndex:[staidumPicker selectedRowInComponent:0] - 1];
+    }
+}
+
+-(void)selectHomeStadium
+{
+    for (Stadium *stadium in stadiumList) {
+        if (stadium.stadiumId == myHomeStadium.stadiumId) {
+            [self presetStadium:stadium];
+            [self resignFirstResponder];
+        }
     }
 }
 
@@ -87,6 +122,7 @@
         [self setText:nil];
         [self setInputAccessoryView:nil];
         [self reloadInputViews];
+        [selectHomeStadiumButton setEnabled:YES];
     }
     else {
         Stadium *stadium = [stadiumList objectAtIndex:row - 1];
@@ -96,6 +132,9 @@
         [self setText:stadium.title];
         [self setInputAccessoryView:stadiumMap];
         [self reloadInputViews];
+        if (myHomeStadium) {
+            [selectHomeStadiumButton setEnabled:(stadium.stadiumId != myHomeStadium.stadiumId)];
+        }
     }
 }
 

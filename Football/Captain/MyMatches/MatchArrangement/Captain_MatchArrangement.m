@@ -99,7 +99,7 @@
     
     //Request matches
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestMatchesByTeamId:gMyUserInfo.team.teamId count:0 startIndex:0 isSync:YES];
+//    [connection requestMatchesByTeamId:gMyUserInfo.team.teamId count:0 startIndex:0 isSync:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -139,6 +139,8 @@
     Captain_MatchArrangementListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Captain_MatchArrangementListCell"];
     Match *matchData = [matchesList objectAtIndex:indexPath.row];
     Team *opponentTeam = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam:matchData.homeTeam;
+    NSInteger myTeamGoal = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.homeTeamGoal:matchData.awayTeamGoal;
+    NSInteger opponentTeamGoal = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeamGoal:matchData.homeTeamGoal;
     
     // Configure the cell...
     [cell.numberOfPlayers setText:[NSString stringWithFormat:@"%li/10", (long)indexPath.row]];
@@ -155,8 +157,11 @@
     [cell.matchOpponent setText:opponentTeam.teamName];
     [cell.matchPlace setText:matchData.matchField.stadiumName];
     [cell.matchType setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_MatchType"], [NSNumber numberWithInteger:matchData.matchStandard]]];
-    switch (indexPath.row%3) {
-        case 0:
+    
+    //Config cell base on matchStatus
+    switch (matchData.status) {
+        case 3:
+            //未开始-通知队员
             [cell.actionButton setTitle:def_MA_actionButton_announce forState:UIControlStateNormal];
             [cell.actionButton setBackgroundColor:def_actionButtonColor_BeforeMatch];
             [cell.actionButton addTarget:self action:@selector(actionButtonOnClicked_announce:) forControlEvents:UIControlEventTouchUpInside];
@@ -166,33 +171,38 @@
             [cell.matchResult setHidden:YES];
             [cell.actionIcon setImage:[UIImage imageNamed:@"icon_noticePlayers.png"]];
             [cell.actionIcon setHidden:NO];
-            [cell setAnnouncable:YES];
-            [cell setRecordable:NO];
+//            [cell setAnnouncable:YES];
+//            [cell setRecordable:NO];
             break;
-        case 1:
-            [cell.actionButton setTitle:def_MA_actionButton_record forState:UIControlStateNormal];
-            [cell.actionButton setBackgroundColor:def_actionButtonColor_AfterMatch];
-            [cell.actionButton addTarget:self action:@selector(actionButtonOnClicked_fillRecord:) forControlEvents:UIControlEventTouchUpInside];
-            [cell.actionButton setTag:indexPath.row];
-            [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_ShowUp];
-            [cell setBackgroundColor:def_backgroundColor_AfterMatch];
-            [cell.matchResult setHidden:YES];
-            [cell.actionIcon setImage:[UIImage imageNamed:@"icon_fillMatchData.png"]];
-            [cell.actionIcon setHidden:NO];
-            [cell setAnnouncable:NO];
-            [cell setRecordable:YES];
-            break;
-        case 2:
-            [cell.actionButton setTitle:def_MA_actionButton_detail forState:UIControlStateNormal];
-            [cell.actionButton setBackgroundColor:def_actionButtonColor_FilledDetail];
-            [cell.actionButton addTarget:self action:@selector(actionButtonOnClicked_viewRecord:) forControlEvents:UIControlEventTouchUpInside];
-            [cell.actionButton setTag:indexPath.row];
-            [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_ShowUp];
-            [cell setBackgroundColor:def_backgroundColor_FilledDetail];
-            [cell.matchResult setHidden:NO];
-            [cell.actionIcon setHidden:YES];
-            [cell setAnnouncable:NO];
-            [cell setRecordable:NO];
+        case 4:
+            if (myTeamGoal == -1) {
+                //已结束-未输入结果
+                [cell.actionButton setTitle:def_MA_actionButton_record forState:UIControlStateNormal];
+                [cell.actionButton setBackgroundColor:def_actionButtonColor_AfterMatch];
+                [cell.actionButton addTarget:self action:@selector(actionButtonOnClicked_fillRecord:) forControlEvents:UIControlEventTouchUpInside];
+                [cell.actionButton setTag:indexPath.row];
+                [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_ShowUp];
+                [cell setBackgroundColor:def_backgroundColor_AfterMatch];
+                [cell.matchResult setHidden:YES];
+                [cell.actionIcon setImage:[UIImage imageNamed:@"icon_fillMatchData.png"]];
+                [cell.actionIcon setHidden:NO];
+//                [cell setAnnouncable:NO];
+//                [cell setRecordable:YES];
+            }
+            else {
+                //已结束-已输入结果
+                [cell.actionButton setTitle:def_MA_actionButton_detail forState:UIControlStateNormal];
+                [cell.actionButton setBackgroundColor:def_actionButtonColor_FilledDetail];
+                [cell.actionButton addTarget:self action:@selector(actionButtonOnClicked_viewRecord:) forControlEvents:UIControlEventTouchUpInside];
+                [cell.actionButton setTag:indexPath.row];
+                [cell.typeOfPlayerNumber setText:def_typeOfPlayerNumber_ShowUp];
+                [cell setBackgroundColor:def_backgroundColor_FilledDetail];
+                [cell.matchResult setHidden:NO];
+                [cell.matchResult setText:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:myTeamGoal], (opponentTeamGoal == -1)?@"-":[NSNumber numberWithInteger:opponentTeamGoal]]];
+                [cell.actionIcon setHidden:YES];
+//                [cell setAnnouncable:NO];
+//                [cell setRecordable:NO];
+            }
             break;
         default:
             break;
@@ -203,10 +213,10 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    BOOL announcable = (indexPath.row % 3 == 0);
-    if (announcable) {
-        return YES;
-    }
+//    BOOL announcable = (indexPath.row % 3 == 0);
+//    if (announcable) {
+//        return YES;
+//    }
     return NO;
 }
 

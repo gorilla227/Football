@@ -23,9 +23,11 @@
 -(void)initialLeftViewWithLabelName:(NSString *)labelName labelWidth:(CGFloat)labelWidth iconImage:(NSString *)imageFileName
 {
     CGRect leftViewFrame = self.bounds;
-    UIImageView *leftIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, leftViewFrame.size.height, leftViewFrame.size.height)];
-    [leftIcon setImage:[UIImage imageNamed:imageFileName]];
-    UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftIcon.frame.size.width, 0, labelWidth, leftViewFrame.size.height)];
+    UIImageView *leftIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageFileName]];
+    CGFloat scaleValue = self.frame.size.height / leftIcon.frame.size.height;
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(scaleValue, scaleValue);
+    [leftIcon setTransform:scaleTransform];
+    UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftIcon.frame.size.width + 10, 0, labelWidth, leftViewFrame.size.height)];
     [leftLabel setText:labelName];
     [leftLabel setTextAlignment:NSTextAlignmentLeft];
     [leftLabel setBaselineAdjustment:UIBaselineAdjustmentAlignCenters];

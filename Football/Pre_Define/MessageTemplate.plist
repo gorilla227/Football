@@ -12,5 +12,7 @@
 	<string>招募队员预定义消息</string>
 	<key>TemporaryFavor_Default</key>
 	<string>临时帮忙预定义消息</string>
+	<key>MatchNotice_Default</key>
+	<string>比赛通知预定义消息</string>
 </dict>
 </plist>

@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+enum TeamDetailsViewType {
+    TeamDetailsViewTypeViewType_Default,
+    TeamDetailsViewTypeViewType_CreateMatch
+};
+
+@protocol TeamMarketSelectionDelegate <NSObject>
+-(void)selectedOpponentTeam:(Team *)selectedTeam;
+@end
 
 @interface TeamDetails : UITableViewController<JSONConnectDelegate>
 @property Team *teamData;
+@property enum TeamDetailsViewType viewType;
+@property id<TeamMarketSelectionDelegate>delegate;
 @end
