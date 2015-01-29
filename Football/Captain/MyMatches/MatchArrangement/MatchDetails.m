@@ -264,16 +264,16 @@
             case MatchDetailsViewType_CreateMatch:
                 switch (creationProgress) {
                     case MatchDetailsCreationProgress_Initial:
-                        [createMatchButton setTitle:@"创建比赛"];
+                        [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateFinishedMatch"]];
                         return 1;
                     case MatchDetailsCreationProgress_Passed:
-                        [createMatchButton setTitle:@"创建比赛"];
+                        [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateFinishedMatch"]];
                         return [super numberOfSectionsInTableView:tableView];
                     case MatchDetailsCreationProgress_Future_WithoutOppo:
-                        [createMatchButton setTitle:@"发出约赛请求"];
+                        [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateRegularMatch"]];
                         return 1;
                     case MatchDetailsCreationProgress_Future_WithOppo:
-                        [createMatchButton setTitle:@"发出约赛请求"];
+                        [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateRegularMatch"]];
                         return 2;
                     default:
                         return 0;
@@ -374,6 +374,8 @@
         [matchOpponentTextField setTextColor:[UIColor orangeColor]];
         UIImageView *selectedTeamLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, matchOpponentTextField.frame.size.height, matchOpponentTextField.frame.size.height)];
         [selectedTeamLogo setImage:selectedOpponentTeam.teamLogo];
+        [selectedTeamLogo.layer setCornerRadius:5.0f];
+        [selectedTeamLogo.layer setMasksToBounds:YES];
         [matchOpponentTextField setLeftView:selectedTeamLogo];
     }
     else {

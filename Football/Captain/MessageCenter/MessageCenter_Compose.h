@@ -18,10 +18,11 @@ enum MessageComposeType
     MessageComposeType_MatchNotice
 };
 
-@interface MessageCenter_Compose : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, JSONConnectDelegate, UIAlertViewDelegate>
+@interface MessageCenter_Compose : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, JSONConnectDelegate, UIAlertViewDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 @property enum MessageComposeType composeType;
 @property NSArray *toList;
 @property NSDictionary *otherParameters;
+@property UIViewController *viewControllerAfterSending;
 
 -(void)updateButtonsStatus;
 -(void)updateSendNotificationButtonStatus;

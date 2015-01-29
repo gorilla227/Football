@@ -18,5 +18,6 @@ enum PlayerDetails_ViewTypes
 @interface PlayerDetails : UITableViewController<JSONConnectDelegate>
 @property Message *message;
 @property UserInfo *playerData;
+@property Match *matchData;
 @property enum PlayerDetails_ViewTypes viewType;
 @end

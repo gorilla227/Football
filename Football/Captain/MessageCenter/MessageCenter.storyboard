@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="erq-SG-YPt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="erq-SG-YPt">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -554,6 +554,17 @@
                                 <rect key="frame" x="0.0" y="146" width="320" height="314"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <textField key="tableHeaderView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择一场比赛" textAlignment="center" minimumFontSize="17" id="Xnj-hZ-Iqc">
+                                    <rect key="frame" x="0.0" y="-30" width="320" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="Vcv-df-BA7" id="4hi-tO-hdZ"/>
+                                    </connections>
+                                </textField>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ToCell" textLabel="LnC-gP-VYv" style="IBUITableViewCellStyleDefault" id="b6z-aC-vez">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -578,17 +589,6 @@
                                     <outlet property="delegate" destination="Vcv-df-BA7" id="pEK-6N-M0B"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="QpK-m6-jHM">
-                                <rect key="frame" x="11" y="110" width="300" height="29"/>
-                                <segments>
-                                    <segment title="全选"/>
-                                    <segment title="取消全选"/>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="selectAllOrSelectNone:" destination="Vcv-df-BA7" eventType="valueChanged" id="bg8-zY-rg7"/>
-                                </connections>
-                            </segmentedControl>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ug5-KY-FfJ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <subviews>
@@ -619,6 +619,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="QpK-m6-jHM">
+                                <rect key="frame" x="11" y="110" width="300" height="29"/>
+                                <segments>
+                                    <segment title="全选"/>
+                                    <segment title="取消全选"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="selectAllOrSelectNone:" destination="Vcv-df-BA7" eventType="valueChanged" id="bg8-zY-rg7"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -628,6 +639,7 @@
                     <connections>
                         <outlet property="actionBar" destination="MuP-cN-eHs" id="ssn-LT-QaF"/>
                         <outlet property="composeTextView" destination="L6s-Md-yFD" id="Qy5-8V-mvn"/>
+                        <outlet property="matchTextField" destination="Xnj-hZ-Iqc" id="Wdh-at-MJK"/>
                         <outlet property="playerListTableView" destination="gUS-Bh-ydc" id="1Bh-DT-6jP"/>
                         <outlet property="selectionSegment" destination="QpK-m6-jHM" id="6A5-mY-W5l"/>
                         <outlet property="sendNotificationButton" destination="SME-Zo-Te5" id="QLg-5b-v3N"/>

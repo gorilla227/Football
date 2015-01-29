@@ -19,15 +19,20 @@
 @property IBOutlet UILabel *sendingProgressLabel;
 @property IBOutlet UIButton *sendingProgressCancelButton;
 @property IBOutlet UIView *sendingProgressBackgroundView;
+@property IBOutlet UITextField *matchTextField;
 @end
 
 @implementation MessageCenter_Compose{
     JSONConnect *connection;
     NSInteger numOfCompletedMessages;
     NSInteger numOfFailedMessages;
+    UIPickerView *matchPicker;
+    NSArray *matchList;
+    NSDateFormatter *dateFormatter;
+    Match *matchData;
 }
-@synthesize composeType, toList, otherParameters;
-@synthesize playerListTableView, composeTextView, selectionSegment, actionBar, sendNotificationButton, sendingProgressView, sendingProgressBar, sendingProgressCancelButton, sendingProgressLabel, sendingProgressBackgroundView;
+@synthesize composeType, toList, otherParameters, viewControllerAfterSending;
+@synthesize playerListTableView, composeTextView, selectionSegment, actionBar, sendNotificationButton, sendingProgressView, sendingProgressBar, sendingProgressCancelButton, sendingProgressLabel, sendingProgressBackgroundView, matchTextField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,7 +51,10 @@
     [self setToolbarItems:actionBar.items];
     [composeTextView initializeUITextFieldRoundCornerStyle];
     [playerListTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [matchTextField setTintColor:[UIColor clearColor]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
+    dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:def_MatchDateAndTimeformat];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
     [sendingProgressBackgroundView setHidden:YES];
@@ -72,6 +80,7 @@
 {
     [super touchesBegan:touches withEvent:event];
     [composeTextView resignFirstResponder];
+    [matchTextField resignFirstResponder];
 }
 
 -(void)presetNotification
@@ -87,31 +96,51 @@
             else {
                 [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
             }
+            [playerListTableView setTableHeaderView:nil];
             break;
         case MessageComposeType_Trial:
             [composeTextView setText:[messageTemplate objectForKey:@"Trial_Default"]];
             [self selectAllInToList];
+            [playerListTableView setTableHeaderView:nil];
             break;
         case MessageComposeType_Recurit:
             [composeTextView setText:[messageTemplate objectForKey:@"Recruit_Default"]];
             [self selectAllInToList];
+            [playerListTableView setTableHeaderView:nil];
             break;
         case MessageComposeType_TemporaryFavor:
             [composeTextView setText:[messageTemplate objectForKey:@"TemporaryFavor_Default"]];
             [self selectAllInToList];
+            [playerListTableView setTableHeaderView:matchTextField];
+            matchPicker = [UIPickerView new];
+            [matchPicker setDelegate:self];
+            [matchPicker setDataSource:self];
+            [matchTextField setInputView:matchPicker];
             break;
         case MessageComposeType_Applyin:
             [composeTextView setText:[messageTemplate objectForKey:@"Applyin_Default"]];
             [self selectAllInToList];
+            [playerListTableView setTableHeaderView:nil];
             break;
         case MessageComposeType_MatchNotice:
             [composeTextView setText:[messageTemplate objectForKey:@"MatchNotice_Default"]];
             [self selectAllInToList];
             [selectionSegment setUserInteractionEnabled:NO];
             [playerListTableView setAllowsSelection:NO];
+            [playerListTableView setTableHeaderView:matchTextField];
             break;
         default:
             break;
+    }
+    
+    if (composeType == MessageComposeType_MatchNotice || composeType == MessageComposeType_TemporaryFavor) {
+        matchData = [otherParameters objectForKey:@"matchData"];
+        if (matchData) {
+            [matchTextField setText:[NSString stringWithFormat:@"%@ - %@", [dateFormatter stringFromDate:matchData.beginTime], (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam.teamName:matchData.homeTeam.teamName]];
+        }
+        else {
+            [connection requestMatchesByTeamId:gMyUserInfo.userId inStatus:@[[NSNumber numberWithInteger:3]] sort:0 count:5 startIndex:0 isSync:YES];
+        }
     }
 }
 
@@ -123,7 +152,18 @@
 -(void)updateSendNotificationButtonStatus
 {
     NSString *notificationText = [[composeTextView.text stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    [sendNotificationButton setEnabled:(playerListTableView.indexPathsForSelectedRows.count && notificationText.length)];
+    [sendNotificationButton setEnabled:(playerListTableView.indexPathsForSelectedRows.count && notificationText.length && (matchData || matchList[[matchPicker selectedRowInComponent:0]]))];
+    if (sendNotificationButton.isEnabled && composeType == MessageComposeType_TemporaryFavor) {
+        Match *match = matchData?matchData:matchList[[matchPicker selectedRowInComponent:0]];
+        Team *opponentTeam = (match.homeTeam.teamId == gMyUserInfo.team.teamId)?match.awayTeam:match.homeTeam;
+        for (NSIndexPath *indexPath in playerListTableView.indexPathsForSelectedRows) {
+            UserInfo *selectedPlayer = toList[indexPath.row];
+            if (selectedPlayer.team.teamId == opponentTeam.teamId || selectedPlayer.team.teamId == gMyUserInfo.team.teamId) {
+                [sendNotificationButton setEnabled:NO];
+                return;
+            }
+        }
+    }
 }
 
 -(void)updateSelectionButtonStatus
@@ -159,6 +199,34 @@
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
     [playerListTableView setUserInteractionEnabled:YES];
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return NO;
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    return !matchData;
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return matchList.count;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    Match *match = matchList[row];
+    return [NSString stringWithFormat:@"%@ - %@", [dateFormatter stringFromDate:match.beginTime], (match.homeTeam.teamId == gMyUserInfo.team.teamId)?match.awayTeam.teamName:match.homeTeam.teamName];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    Match *match = matchList[row];
+    [matchTextField setText:[NSString stringWithFormat:@"%@ - %@", [dateFormatter stringFromDate:match.beginTime], (match.homeTeam.teamId == gMyUserInfo.team.teamId)?match.awayTeam.teamName:match.homeTeam.teamName]];
+    [self updateSendNotificationButtonStatus];
+    [matchTextField resignFirstResponder];
 }
 
 -(IBAction)selectAllOrSelectNone:(id)sender
@@ -204,6 +272,10 @@
     [self updateButtonsStatus];
 }
 
+-(void)receiveMatchesSuccessfully:(NSArray *)matches {
+    matchList = matches;
+}
+
 -(IBAction)sendNotificationButtonOnClicked:(id)sender
 {
     [sendingProgressBackgroundView setHidden:NO];
@@ -216,7 +288,6 @@
     [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:0], [NSNumber numberWithInteger:toList.count]]];
     [self.navigationController.navigationBar setUserInteractionEnabled:NO];
     [self.navigationController.toolbar setUserInteractionEnabled:NO];
-    Match *matchData = [otherParameters objectForKey:@"matchData"];
     numOfCompletedMessages = 0;
     numOfFailedMessages = 0;
     
@@ -231,6 +302,12 @@
             }
             break;
         case MessageComposeType_TemporaryFavor:
+            if (!matchData) {
+                matchData = matchList[[matchPicker selectedRowInComponent:0]];
+            }
+            for (UserInfo *playerForMessage in toList) {
+                [connection sendMatchNotice:matchData.matchId fromTeam:gMyUserInfo.team.teamId toPlayer:playerForMessage.userId withMessage:composeTextView.text];
+            }
             break;
         case MessageComposeType_Applyin:
             for (Team *teamForMessage in toList) {
@@ -253,7 +330,12 @@
     [sendingProgressBackgroundView setHidden:YES];
     [self.navigationController.navigationBar setUserInteractionEnabled:YES];
     [self.navigationController.toolbar setUserInteractionEnabled:YES];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (viewControllerAfterSending) {
+        [self.navigationController popToViewController:viewControllerAfterSending animated:YES];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 //-(void)playerApplyinSent
@@ -350,7 +432,12 @@
 {
     [self.navigationController.navigationBar setUserInteractionEnabled:YES];
     [self.navigationController.toolbar setUserInteractionEnabled:YES];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (viewControllerAfterSending) {
+        [self.navigationController popToViewController:viewControllerAfterSending animated:YES];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma TableView

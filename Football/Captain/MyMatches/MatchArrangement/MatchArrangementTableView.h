@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol MatchArrangementActionDelegate <NSObject>
 -(void)noticeTeamMembers:(Match *)matchData;
+-(void)noticeTempFavor:(Match *)matchData;
 //-(void)enterScore:(Match *)matchData;
 //-(void)viewScore:(Match *)matchData;
 @end

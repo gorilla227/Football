@@ -37,8 +37,9 @@
     JSONConnect *connection;
     UIAlertView *acceptConfirm;
     UIAlertView *declineConfirm;
+    Team *opponentTeam;
 }
-@synthesize message, playerData, viewType;
+@synthesize message, playerData, matchData, viewType;
 @synthesize playerMarketActionBar, applicantActionBar, myPlayerActionBar, nickNameLabel, nickNameBackgroundView, teamNameLabel, playerProtraitImageView, teamLogoImageView, teamNameBackgroundView, recruitButton, temporaryFavorButton, legalNameCell, ageCell, emailCell, qqCell, mobileCell, positionCell, activityRegionCell, styleCell;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -97,7 +98,12 @@
     switch (viewType) {
         case PlayerDetails_FromPlayerMarket:
             [self setToolbarItems:playerMarketActionBar.items];
-            [recruitButton setEnabled:!playerData.team];
+            [recruitButton setEnabled:!playerData.team && !matchData];
+            
+            if (matchData) {
+                opponentTeam = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam:matchData.homeTeam;
+            }
+            [temporaryFavorButton setEnabled:gMyUserInfo.userType && playerData.team.teamId != opponentTeam.teamId && playerData.team.teamId != gMyUserInfo.team.teamId];
             break;
         case PlayerDetails_Applicant:
             [self setToolbarItems:applicantActionBar.items];
@@ -237,6 +243,11 @@
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_TemporaryFavor];
     [composeViewController setToList:@[playerData]];
+    
+    if (matchData) {
+        [composeViewController setOtherParameters:@{@"matchData":matchData}];
+        [composeViewController setViewControllerAfterSending:self.navigationController.viewControllers[self.navigationController.viewControllers.count - 3]];
+    }
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 

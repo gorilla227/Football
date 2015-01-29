@@ -19,7 +19,8 @@
 @property IBOutlet UILabel *matchDateAndTimeLabel;
 @end
 
-@implementation MatchArrangementTableView_Cell@synthesize numberOfPlayersLabel, matchOpponentLabel, matchStadiumLabel, matchStandardLabel, actionIcon, actionButton, matchDateAndTimeLabel;
+@implementation MatchArrangementTableView_Cell
+@synthesize numberOfPlayersLabel, matchOpponentLabel, matchStadiumLabel, matchStandardLabel, actionIcon, actionButton, matchDateAndTimeLabel;
 @synthesize matchData, delegate;
 
 -(void)drawRect:(CGRect)rect{
@@ -34,16 +35,26 @@
 }
 
 -(IBAction)actionButtonOnClicked:(id)sender {
-    UIActionSheet *activeSheet = [[UIActionSheet alloc] initWithTitle:@"请选择要通知的人员" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"我的队员", @"临时帮忙", nil];
-    [activeSheet showInView:actionButton];
+    if (matchData.status == 3) {//未开始比赛-通知球员
+        UIActionSheet *activeSheet = [[UIActionSheet alloc] initWithTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerTitle"]
+                                                                 delegate:self
+                                                        cancelButtonTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerCancel"]
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerMyTeamates"], [gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerTempFavor"], nil];
+        [activeSheet showInView:actionButton];
+    }
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:
+            //通知队员
             [delegate noticeTeamMembers:matchData];
             break;
-            
+        case 1:
+            //临时帮忙
+            [delegate noticeTempFavor:matchData];
+            break;
         default:
             break;
     }
@@ -77,6 +88,10 @@
     //Request matches
     tabViewControllerIndex = [self.tabBarController.viewControllers indexOfObject:self];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    matchesList = [NSMutableArray new];
     switch (tabViewControllerIndex) {
         case 0:
             [connection requestMatchesByTeamId:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:3]] sort:1 count:5 startIndex:0 isSync:YES];
@@ -134,18 +149,30 @@
     [cell setMatchData:matchData];
     [cell.matchOpponentLabel setText:opponent.teamName];
     [cell.matchStadiumLabel setText:matchData.matchField.stadiumName];
-    [cell.matchStandardLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_MatchType"], [NSNumber numberWithInteger:matchData.matchStandard].stringValue]];
+    [cell.matchStandardLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_MatchType"], [NSNumber numberWithInteger:matchData.matchStandard]]];
     [cell.matchDateAndTimeLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_BeginTimeString"], matchData.beginTimeLocal]];
     
     NSString *numberOfNoticeString = [NSString stringWithFormat:@"%@/%@/%@", matchData.confirmedMember, matchData.confirmedTemp, matchData.sentMatchNotices];
-    NSString *descOfNoticeString = @" - 参加/临时/通知";
+    NSString *descOfNoticeString = [gUIStrings objectForKey:@"UI_MatchArrangement_NoticeString_Desc"];
     NSMutableAttributedString *numberOfPlayersString = [[NSMutableAttributedString alloc] initWithString:[numberOfNoticeString stringByAppendingString:descOfNoticeString]];
     [numberOfPlayersString setAttributes:attri_NumberOfNotices range:[numberOfPlayersString.string rangeOfString:numberOfNoticeString]];
     [numberOfPlayersString setAttributes:attri_DescOfNotices range:[numberOfPlayersString.string rangeOfString:descOfNoticeString]];
     [cell.numberOfPlayersLabel setAttributedText:numberOfPlayersString];
     
-    
     [cell.actionIcon setTintColor:[UIColor whiteColor]];
+    switch (matchData.status) {
+        case 3://未开始比赛
+            [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_NoticePlayer"] forState:UIControlStateNormal];
+            break;
+        case 4://已结束比赛-比分未输入
+            [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"] forState:UIControlStateNormal];
+            break;
+        case 5://已结束比赛-比分已输入
+            [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_SeeDetails"] forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
     
     return cell;
 }

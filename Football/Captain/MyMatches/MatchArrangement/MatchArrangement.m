@@ -9,6 +9,7 @@
 #import "MatchArrangement.h"
 #import "MessageCenter_Compose.h"
 #import "MatchDetails.h"
+#import "PlayerMarket.h"
 
 @interface MatchArrangement ()
 @property IBOutlet UIView *teamSummaryView;
@@ -68,10 +69,17 @@
 }
 
 #pragma MatchArrangementActionDelegate
--(void)noticeTeamMembers:(Match *)matchData
-{
+-(void)noticeTeamMembers:(Match *)matchData {
     matchNotice_MatchData = matchData;
     [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
+}
+
+-(void)noticeTempFavor:(Match *)matchData {
+    matchNotice_MatchData = matchData;
+    PlayerMarket *playerMarket = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerMarket"];
+    [playerMarket setViewType:PlayerMarketViewType_FromMatchArrangement];
+    [playerMarket setMatchData:matchData];
+    [self.navigationController pushViewController:playerMarket animated:YES];
 }
 
 #pragma mark - Navigation

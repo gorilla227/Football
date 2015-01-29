@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+
+enum PlayerMarketViewType {
+    PlayerMarketViewType_Default,
+    PlayerMarketViewType_FromMatchArrangement
+};
+
 @protocol PlayerMarketDelegate <NSObject>
 -(void)pushPlayerDetails:(UserInfo *)player;
 @end
@@ -21,5 +27,6 @@
 @end
 
 @interface PlayerMarket : UITableViewController<JSONConnectDelegate, PlayerMarketDelegate>
-
+@property enum PlayerMarketViewType viewType;
+@property Match *matchData;
 @end

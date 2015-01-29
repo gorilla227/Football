@@ -169,8 +169,10 @@
     BOOL isLoading;
     NSInteger count;
     BOOL haveMorePlayers;
+    Team *opponentTeam;
 }
 @synthesize searchView, searchViewSwitchButton, actionBar, recruitButton, temporaryFavorButton, moreActivityIndicator, moreFooterView, moreLabel;
+@synthesize viewType, matchData;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -185,11 +187,6 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setTableHeaderView:searchView];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -200,6 +197,10 @@
     playerList = [NSMutableArray new];
     count = [[gSettings objectForKey:@"playersSearchListCount"] integerValue];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
+    
+    if (matchData) {
+        opponentTeam = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam:matchData.homeTeam;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -219,6 +220,7 @@
     PlayerDetails *playerDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerDetails"];
     [playerDetails setPlayerData:player];
     [playerDetails setViewType:PlayerDetails_FromPlayerMarket];
+    [playerDetails setMatchData:matchData];
     [self.navigationController pushViewController:playerDetails animated:YES];
 }
 
@@ -242,16 +244,31 @@
 
 -(void)updateActionButtonsStatus
 {
-    [temporaryFavorButton setEnabled:self.tableView.indexPathsForSelectedRows.count];
-    [recruitButton setEnabled:self.tableView.indexPathsForSelectedRows.count];
-    for (NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
-        UserInfo *selectedPlayer = [playerList objectAtIndex:indexPath.row];
-        if (selectedPlayer.team) {
+    switch (viewType) {
+        case PlayerMarketViewType_FromMatchArrangement:
             [recruitButton setEnabled:NO];
             break;
-        }
-        else {
-            [recruitButton setEnabled:YES];
+        default:
+            [recruitButton setEnabled:self.tableView.indexPathsForSelectedRows.count];
+            for (NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
+                UserInfo *selectedPlayer = [playerList objectAtIndex:indexPath.row];
+                if (selectedPlayer.team) {
+                    [recruitButton setEnabled:NO];
+                    break;
+                }
+            }
+            break;
+    }
+    
+    [temporaryFavorButton setEnabled:NO];
+    if (gMyUserInfo.userType) {
+        [temporaryFavorButton setEnabled:self.tableView.indexPathsForSelectedRows.count];
+        for (NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
+            UserInfo *selectedPlayer = [playerList objectAtIndex:indexPath.row];
+            if (selectedPlayer.team.teamId == gMyUserInfo.team.teamId || selectedPlayer.team.teamId == opponentTeam.teamId) {
+                [temporaryFavorButton setEnabled:NO];
+                break;
+            }
         }
     }
 }
@@ -376,6 +393,12 @@
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_TemporaryFavor];
     [composeViewController setToList:selectedPlayerList];
+    if (matchData) {
+        [composeViewController setOtherParameters:@{@"matchData":matchData}];
+        if (viewType == PlayerMarketViewType_FromMatchArrangement) {
+            [composeViewController setViewControllerAfterSending:self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2]];
+        }
+    }
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 /*

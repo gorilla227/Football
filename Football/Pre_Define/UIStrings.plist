@@ -229,5 +229,25 @@
 	<key>Hint_CreateMatch_MatchOpponent</key>
 	<string>请输入比赛对手，有两种方式： 1、对手球队不在“我要踢球”中，手动输入对手，可以直接建立比赛；
 2、对手球队已加入“我要踢球”，从“球队超市”中选择对手，需要等待对手反馈。</string>
+	<key>UI_MatchDetails_ActionButton_CreateRegularMatch</key>
+	<string>发出约赛请求</string>
+	<key>UI_MatchDetails_ActionButton_CreateFinishedMatch</key>
+	<string>创建比赛</string>
+	<key>UI_MatchArrangement_NoticeString_Desc</key>
+	<string> - 参加/临时/通知</string>
+	<key>UI_MatchArrangement_ActionButton_NoticePlayer</key>
+	<string>通知球员</string>
+	<key>UI_MatchArrangement_ActionButton_EnterScore</key>
+	<string>输入比分</string>
+	<key>UI_MatchArrangement_ActionButton_SeeDetails</key>
+	<string>查看详情</string>
+	<key>UI_MatchArrangement_NoticePlayerTitle</key>
+	<string>请选择要通知的人员</string>
+	<key>UI_MatchArrangement_NoticePlayerCancel</key>
+	<string>取消</string>
+	<key>UI_MatchArrangement_NoticePlayerMyTeamates</key>
+	<string>我的队员</string>
+	<key>UI_MatchArrangement_NoticePlayerTempFavor</key>
+	<string>临时帮忙</string>
 </dict>
 </plist>
