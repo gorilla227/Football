@@ -9,6 +9,7 @@
 #import "MatchDetails.h"
 #import "TeamMarket.h"
 #import "TeamDetails.h"
+#import "StadiumDetails.h"
 
 @interface MatchDetails_MatchScoreDetails_Cell ()
 @property IBOutlet UILabel *goalPlayerName;
@@ -100,6 +101,8 @@
         [matchTimeTextField setText:[dateFormatter stringFromDate:matchData.beginTime]];
         [matchOpponentTextField setText:selectedOpponentTeam.teamName];
         [matchStadiumTextFiedld setText:matchData.matchField.stadiumName];
+        [matchStandardTextField setText:[NSNumber numberWithInteger:matchData.matchStandard].stringValue];
+        
     }
 }
 
@@ -372,7 +375,9 @@
             [self.navigationController pushViewController:teamDetails animated:YES];
         }
         else if ([cell.contentView.subviews containsObject:matchStadiumTextFiedld]) {
-            
+            StadiumDetails *stadiumDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"StadiumDetails"];
+            [stadiumDetails setStadium:matchData.matchField];
+            [self.navigationController pushViewController:stadiumDetails animated:YES];
         }
     }
     else {
