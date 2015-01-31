@@ -34,6 +34,10 @@
     [matchDateAndTimeLabel setTextColor:cMatchCellMatchTimeFont];
 }
 
+-(void)pushMatchDetails {
+    [delegate viewMatchDetails:matchData];
+}
+
 -(IBAction)actionButtonOnClicked:(id)sender {
     if (matchData.status == 3) {//未开始比赛-通知球员
         UIActionSheet *activeSheet = [[UIActionSheet alloc] initWithTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerTitle"]
@@ -168,7 +172,12 @@
             [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"] forState:UIControlStateNormal];
             break;
         case 5://已结束比赛-比分已输入
-            [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_SeeDetails"] forState:UIControlStateNormal];
+            if (opponent.teamId == gMyUserInfo.team.teamId) {
+                [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
+            }
+            else {
+                [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
+            }
             break;
         default:
             break;
@@ -185,6 +194,11 @@
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
     [cell setBackgroundColor:cMatchCellBG];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MatchArrangementTableView_Cell *selectedCell = (MatchArrangementTableView_Cell *)[tableView cellForRowAtIndexPath:indexPath];
+    [selectedCell pushMatchDetails];
 }
 
 // Override to support conditional editing of the table view.

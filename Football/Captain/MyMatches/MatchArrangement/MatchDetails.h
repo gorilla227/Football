@@ -28,5 +28,6 @@ enum MatchDetailsViewType {
 @interface MatchDetails : UITableViewController<UITextFieldDelegate, TeamMarketSelectionDelegate>
 @property enum MatchDetailsViewType viewType;
 @property Match *matchData;
+-(void)presetMatchData;
 -(void)formatMatchOpponent:(BOOL)isRealTeam;
 @end

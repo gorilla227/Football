@@ -59,9 +59,9 @@
         [self initWithTeamData];
         //Set Action button Status
         switch (viewType) {
-            case TeamDetailsViewTypeViewType_CreateMatch:
+            case TeamDetailsViewType_CreateMatch:
                 [applyInButton setEnabled:NO];
-                [challengeButton setEnabled:YES];
+                [challengeButton setEnabled:(teamData.teamId != gMyUserInfo.team.teamId)];
                 break;
             default:
                 [applyInButton setEnabled:teamData.recruitFlag && !gMyUserInfo.team];
@@ -75,7 +75,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
+    [self.navigationController setToolbarHidden:(viewType == TeamDetailsViewType_NoAction)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,7 +123,7 @@
 -(IBAction)challengeButtonOnClicked:(id)sender
 {
     switch (viewType) {
-        case TeamDetailsViewTypeViewType_CreateMatch:
+        case TeamDetailsViewType_CreateMatch:
             delegate = (id)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3];
             [delegate selectedOpponentTeam:teamData];
             [self.navigationController popToViewController:(UIViewController *)delegate animated:YES];

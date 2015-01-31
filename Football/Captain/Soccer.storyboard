@@ -270,13 +270,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcJ-vv-cWC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="735" y="308"/>
+            <point key="canvasLocation" x="-89" y="978"/>
         </scene>
         <!--未开始-->
         <scene sceneID="RcO-Xe-96c">
             <objects>
                 <tableViewController storyboardIdentifier="NotStartedMatch" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h3x-2Z-VbN" customClass="MatchArrangementTableView" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="90" sectionHeaderHeight="10" sectionFooterHeight="1" id="CQU-sD-JNK">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="90" sectionHeaderHeight="10" sectionFooterHeight="1" id="CQU-sD-JNK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="297"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -426,13 +426,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjZ-VV-NhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1169" y="86"/>
+            <point key="canvasLocation" x="322" y="757"/>
         </scene>
         <!--已结束-->
         <scene sceneID="AFi-lN-PAh">
             <objects>
                 <tableViewController storyboardIdentifier="EndedMatch" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8dn-GE-8Qv" customClass="MatchArrangementTableView" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="90" sectionHeaderHeight="10" sectionFooterHeight="1" id="2bB-EK-bRn">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="90" sectionHeaderHeight="10" sectionFooterHeight="1" id="2bB-EK-bRn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="297"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -582,7 +582,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PFR-G2-B6T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1169" y="497"/>
+            <point key="canvasLocation" x="322" y="1168"/>
         </scene>
         <!--热身赛-->
         <scene sceneID="L5A-vW-fkS">
@@ -851,7 +851,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7lG-qO-AZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="885" y="1656"/>
+            <point key="canvasLocation" x="886" y="1762"/>
         </scene>
         <!--建立比赛-->
         <scene sceneID="oz6-Ld-nAj">
@@ -1177,6 +1177,7 @@
                         <outlet property="costTextField" destination="ajt-UE-MY8" id="Vm5-9K-UyX"/>
                         <outlet property="createMatchActionBar" destination="I9U-RP-O8u" id="Nju-xq-f6M"/>
                         <outlet property="createMatchButton" destination="nwf-8q-kfi" id="SDf-JB-i86"/>
+                        <outlet property="dismissKeyboardGestureRecognizer" destination="uNL-dc-q6Q" id="rTf-lJ-Zwp"/>
                         <outlet property="inviteOpponentButton" destination="YOX-kx-G0w" id="ChI-T6-xVI"/>
                         <outlet property="matchOpponentTextField" destination="Jez-VY-cRV" id="0Rw-bO-TGJ"/>
                         <outlet property="matchStadiumTextFiedld" destination="0Oq-Rr-iGE" id="q8M-sr-chb"/>
@@ -2041,7 +2042,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="322" y="2266"/>
+            <point key="canvasLocation" x="323" y="2372"/>
         </scene>
         <!--球员超市-->
         <scene sceneID="GRY-Kz-Xw3">
@@ -2329,7 +2330,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="745" y="2266"/>
+            <point key="canvasLocation" x="746" y="2372"/>
         </scene>
         <!--球员数据-->
         <scene sceneID="78i-df-Unq">
@@ -2835,7 +2836,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="1169" y="2266"/>
+            <point key="canvasLocation" x="1170" y="2372"/>
         </scene>
         <!--球队资料-->
         <scene sceneID="2Gh-yJ-vbN">
@@ -3043,7 +3044,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q06-9X-cLX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-59" y="2266"/>
+            <point key="canvasLocation" x="-58" y="2372"/>
         </scene>
         <!--我的队员-->
         <scene sceneID="c3E-sP-V3C">
@@ -3184,7 +3185,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="322" y="1656"/>
+            <point key="canvasLocation" x="323" y="1762"/>
         </scene>
         <!--收支管理-->
         <scene sceneID="Reo-5g-clM">
@@ -5201,7 +5202,7 @@
                     </connections>
                 </button>
             </objects>
-            <point key="canvasLocation" x="322" y="2922"/>
+            <point key="canvasLocation" x="323" y="3028"/>
         </scene>
         <!--球队数据-->
         <scene sceneID="JDm-Rh-Chu">
@@ -5565,7 +5566,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="745" y="2922"/>
+            <point key="canvasLocation" x="746" y="3028"/>
         </scene>
     </scenes>
     <resources>

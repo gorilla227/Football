@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 enum TeamDetailsViewType {
-    TeamDetailsViewTypeViewType_Default,
-    TeamDetailsViewTypeViewType_CreateMatch
+    TeamDetailsViewType_Default,
+    TeamDetailsViewType_CreateMatch,
+    TeamDetailsViewType_NoAction
 };
 
 @protocol TeamMarketSelectionDelegate <NSObject>

@@ -82,6 +82,13 @@
     [self.navigationController pushViewController:playerMarket animated:YES];
 }
 
+-(void)viewMatchDetails:(Match *)matchData {
+    MatchDetails *matchDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"MatchDetails"];
+    [matchDetails setViewType:MatchDetailsViewType_ViewDetails];
+    [matchDetails setMatchData:matchData];
+    [self.navigationController pushViewController:matchDetails animated:YES];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

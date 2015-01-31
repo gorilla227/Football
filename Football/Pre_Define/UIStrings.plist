@@ -239,8 +239,6 @@
 	<string>通知球员</string>
 	<key>UI_MatchArrangement_ActionButton_EnterScore</key>
 	<string>输入比分</string>
-	<key>UI_MatchArrangement_ActionButton_SeeDetails</key>
-	<string>查看详情</string>
 	<key>UI_MatchArrangement_NoticePlayerTitle</key>
 	<string>请选择要通知的人员</string>
 	<key>UI_MatchArrangement_NoticePlayerCancel</key>
@@ -249,5 +247,9 @@
 	<string>我的队员</string>
 	<key>UI_MatchArrangement_NoticePlayerTempFavor</key>
 	<string>临时帮忙</string>
+	<key>UI_MatchDetails_Title_CreateMatch</key>
+	<string>建立比赛</string>
+	<key>UI_MatchDetails_Title_ViewDetails</key>
+	<string>比赛详情</string>
 </dict>
 </plist>

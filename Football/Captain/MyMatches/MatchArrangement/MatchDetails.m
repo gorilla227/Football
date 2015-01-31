@@ -8,6 +8,7 @@
 
 #import "MatchDetails.h"
 #import "TeamMarket.h"
+#import "TeamDetails.h"
 
 @interface MatchDetails_MatchScoreDetails_Cell ()
 @property IBOutlet UILabel *goalPlayerName;
@@ -31,6 +32,7 @@
 @property IBOutlet UIButton *inviteOpponentButton;
 @property IBOutlet UIToolbar *createMatchActionBar;
 @property IBOutlet UIBarButtonItem *createMatchButton;
+@property IBOutlet UIGestureRecognizer *dismissKeyboardGestureRecognizer;
 @end
 
 @implementation MatchDetails{
@@ -41,7 +43,7 @@
     NSArray *textFields;
     Team *selectedOpponentTeam;
 }
-@synthesize matchTimeTextField, matchOpponentTextField, matchStadiumTextFiedld, matchStandardTextField, costTextField, costOption_Referee, costOption_Water, scoreTextField, scoreDetailsTableView, inviteOpponentButton, createMatchActionBar, createMatchButton;
+@synthesize matchTimeTextField, matchOpponentTextField, matchStadiumTextFiedld, matchStandardTextField, costTextField, costOption_Referee, costOption_Water, scoreTextField, scoreDetailsTableView, inviteOpponentButton, createMatchActionBar, createMatchButton, dismissKeyboardGestureRecognizer;
 @synthesize viewType, matchData;
 
 - (void)viewDidLoad {
@@ -61,15 +63,20 @@
     [self initialMatchStandard];
     [self initialCost];
     [self initialMatchScore];
-    
-    viewType = MatchDetailsViewType_CreateMatch;
-    creationProgress = MatchDetailsCreationProgress_Initial;
+//    
+//    viewType = MatchDetailsViewType_CreateMatch;
+//    creationProgress = MatchDetailsCreationProgress_Initial;
     
     switch (viewType) {
         case MatchDetailsViewType_CreateMatch:
             [self setToolbarItems:createMatchActionBar.items animated:YES];
+            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_Title_CreateMatch"]];
             break;
         case MatchDetailsViewType_ViewDetails:
+            [self setToolbarItems:nil];
+            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_Title_ViewDetails"]];
+            [self presetMatchData];
+            [dismissKeyboardGestureRecognizer setEnabled:NO];
             break;
         default:
             break;
@@ -80,9 +87,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:!self.toolbarItems.count];
+}
+
+-(void)presetMatchData {
+    if (matchData) {
+        selectedOpponentTeam = (matchData.homeTeam == gMyUserInfo.team)?matchData.awayTeam:matchData.homeTeam;
+        
+        [matchTimeTextField setText:[dateFormatter stringFromDate:matchData.beginTime]];
+        [matchOpponentTextField setText:selectedOpponentTeam.teamName];
+        [matchStadiumTextFiedld setText:matchData.matchField.stadiumName];
+    }
 }
 
 -(void)initialMatchTime
@@ -102,6 +120,7 @@
     [matchTimePicker setMaximumDate:maxDate];
     [matchTimePicker addTarget:self action:@selector(matchTimeSelected) forControlEvents:UIControlEventValueChanged];
     [matchTimeTextField setInputView:matchTimePicker];
+    [matchTimeTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
     [matchTimeTextField setTintColor:[UIColor clearColor]];
     
 //    [matchTimeTextField initialLeftViewWithLabelName:def_createMatch_time labelWidth:75 iconImage:@"leftIcon_createMatch_time.png"];
@@ -118,12 +137,14 @@
     [matchOpponentTextField setRightView:inviteOpponentButton];
     [matchOpponentTextField setRightViewMode:UITextFieldViewModeWhileEditing];
     [matchOpponentTextField setLeftViewMode:UITextFieldViewModeAlways];
+    [matchOpponentTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
 -(void)initialMatchStadium
 {
 //    [matchStadiumTextFiedld initialLeftViewWithLabelName:def_createMatch_place labelWidth:75 iconImage:@"leftIcon_createMatch_place.png"];
     [matchStadiumTextFiedld textFieldInitialization:gStadiums homeStadium:gMyUserInfo.team.homeStadium showSelectHomeStadium:YES];
+    [matchStadiumTextFiedld setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
 -(void)initialMatchStandard
@@ -141,11 +162,14 @@
     [matchStandardTextField setRightView:matchStandardStepper];
     [matchStandardTextField setRightViewMode:UITextFieldViewModeAlways];
     [matchStandardTextField setText:[NSNumber numberWithDouble:matchStandardStepper.value].stringValue];
+    [matchStandardTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
+    [matchStandardStepper setHidden:(viewType != MatchDetailsViewType_CreateMatch)];
 }
 
 -(void)initialCost
 {
 //    [costTextField initialLeftViewWithLabelName:def_createMatch_cost labelWidth:75 iconImage:@"leftIcon_createMatch_cost.png"];
+    [costTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
 -(void)initialMatchScore
@@ -154,6 +178,7 @@
     [scoreTextField initialTextFieldForMatchScore];
     [scoreTextField setIsRegularMatch:(viewType != MatchDetailsViewType_CreateMatch)];
     [scoreTextField presetHomeScore:3 andAwayScore:1];
+    [scoreTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
 -(void)matchTimeSelected
@@ -321,7 +346,6 @@
     }
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([tableView isEqual:self.tableView]) {
         UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -335,6 +359,24 @@
         // Configure the cell...
         
         return cell;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (viewType == MatchDetailsViewType_ViewDetails) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if ([cell.contentView.subviews containsObject:matchOpponentTextField]) {
+            TeamDetails *teamDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"TeamDetails"];
+            [teamDetails setViewType:TeamDetailsViewType_NoAction];
+            [teamDetails setTeamData:selectedOpponentTeam];
+            [self.navigationController pushViewController:teamDetails animated:YES];
+        }
+        else if ([cell.contentView.subviews containsObject:matchStadiumTextFiedld]) {
+            
+        }
+    }
+    else {
+        [self dismissKeyboard:nil];
     }
 }
 

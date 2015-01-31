@@ -329,10 +329,10 @@
         [teamDetails setTeamData:[teamList objectAtIndex:self.tableView.indexPathForSelectedRow.row]];
         switch (viewType) {
             case TeamMarketViewType_CreateMatch:
-                [teamDetails setViewType:TeamDetailsViewTypeViewType_CreateMatch];
+                [teamDetails setViewType:TeamDetailsViewType_CreateMatch];
                 break;       
             default:
-                [teamDetails setViewType:TeamDetailsViewTypeViewType_Default];
+                [teamDetails setViewType:TeamDetailsViewType_Default];
                 break;
         }
     }
