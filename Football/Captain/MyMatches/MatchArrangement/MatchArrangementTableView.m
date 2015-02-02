@@ -101,7 +101,7 @@
             [connection requestMatchesByTeamId:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:3]] sort:1 count:5 startIndex:0 isSync:YES];
             break;
         case 1:
-            [connection requestMatchesByTeamId:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:4], [NSNumber numberWithInteger:5]] sort:2 count:5 startIndex:0 isSync:YES];
+            [connection requestMatchesByTeamId:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:4]] sort:2 count:5 startIndex:0 isSync:YES];
             break;
         default:
             break;
@@ -168,15 +168,12 @@
         case 3://未开始比赛
             [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_NoticePlayer"] forState:UIControlStateNormal];
             break;
-        case 4://已结束比赛-比分未输入
-            [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"] forState:UIControlStateNormal];
-            break;
-        case 5://已结束比赛-比分已输入
-            if (opponent.teamId == gMyUserInfo.team.teamId) {
-                [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
+        case 4://已结束比赛
+            if (opponent.teamId == matchData.awayTeam.teamId) {
+                [cell.actionButton setTitle:matchData.homeTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
             }
             else {
-                [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
+                [cell.actionButton setTitle:matchData.awayTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
             }
             break;
         default:

@@ -96,13 +96,16 @@
 
 -(void)presetMatchData {
     if (matchData) {
-        selectedOpponentTeam = (matchData.homeTeam == gMyUserInfo.team)?matchData.awayTeam:matchData.homeTeam;
+        selectedOpponentTeam = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam:matchData.homeTeam;
         
         [matchTimeTextField setText:[dateFormatter stringFromDate:matchData.beginTime]];
         [matchOpponentTextField setText:selectedOpponentTeam.teamName];
         [matchStadiumTextFiedld setText:matchData.matchField.stadiumName];
         [matchStandardTextField setText:[NSNumber numberWithInteger:matchData.matchStandard].stringValue];
-        
+        //cost
+        //cost_water
+        [costOption_Referee setOn:matchData.withReferee];
+        [scoreTextField setText:(selectedOpponentTeam.teamId == matchData.awayTeam.teamId)?[NSString stringWithFormat:@"%@ : %@", matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]]:[NSString stringWithFormat:@"%@ : %@", matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]]];
     }
 }
 
@@ -173,6 +176,8 @@
 {
 //    [costTextField initialLeftViewWithLabelName:def_createMatch_cost labelWidth:75 iconImage:@"leftIcon_createMatch_cost.png"];
     [costTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
+    [costOption_Referee setEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
+    [costOption_Water setEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
 -(void)initialMatchScore
