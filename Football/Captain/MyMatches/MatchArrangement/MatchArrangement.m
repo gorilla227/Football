@@ -68,6 +68,10 @@
     }
 }
 
+-(void)replyMatchNoticeSent:(BOOL)result{
+    NSLog(@"%@", result?@"YES":@"NO");
+}
+
 #pragma MatchArrangementActionDelegate
 -(void)noticeTeamMembers:(Match *)matchData {
     matchNotice_MatchData = matchData;
@@ -89,6 +93,10 @@
     [self.navigationController pushViewController:matchDetails animated:YES];
 }
 
+-(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer {
+    [connection replyMatchNotice:messageId withAnswer:answer];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -99,6 +107,22 @@
         MatchDetails *matchView = segue.destinationViewController;
         [matchView setViewType:MatchDetailsViewType_CreateMatch];
     }
+}
+
+@end
+
+@implementation MatchArrangement_TabView
+
+-(void)viewDidLoad {
+    [super viewDidLoad];
+    NSMutableArray *tableViews = [NSMutableArray new];
+    for (NSDictionary *tabInfo in [gUIStrings objectForKey:@"UI_MatchArrangement_Tab"]) {
+        MatchArrangementTableView *tableView = [self.storyboard instantiateViewControllerWithIdentifier:@"MatchListTableView"];
+        [tableView.tabBarItem setTitle:[tabInfo objectForKey:@"Title"]];
+//        [tableView.tabBarItem setImage:[tabInfo objectForKey:@"Icon"]];
+        [tableViews addObject:tableView];
+    }
+    [self setViewControllers:tableViews];
 }
 
 @end

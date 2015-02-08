@@ -12,3 +12,7 @@
 @interface MatchArrangement : UIViewController<MatchArrangementActionDelegate, JSONConnectDelegate>
 
 @end
+
+@interface MatchArrangement_TabView : UITabBarController
+
+@end

@@ -17,10 +17,11 @@
 @property IBOutlet UIImageView *actionIcon;
 @property IBOutlet UIButton *actionButton;
 @property IBOutlet UILabel *matchDateAndTimeLabel;
+@property IBOutlet UIView *actionView;
 @end
 
 @implementation MatchArrangementTableView_Cell
-@synthesize numberOfPlayersLabel, matchOpponentLabel, matchStadiumLabel, matchStandardLabel, actionIcon, actionButton, matchDateAndTimeLabel;
+@synthesize numberOfPlayersLabel, matchOpponentLabel, matchStadiumLabel, matchStandardLabel, actionIcon, actionButton, matchDateAndTimeLabel, actionView;
 @synthesize matchData, delegate;
 
 -(void)drawRect:(CGRect)rect{
@@ -32,6 +33,9 @@
     [actionButton setBackgroundColor:cMatchCellNoticeButtonBG];
     [matchDateAndTimeLabel setBackgroundColor:cMatchCellMatchTimeBG];
     [matchDateAndTimeLabel setTextColor:cMatchCellMatchTimeFont];
+    
+    [self setAccessoryView:actionView];
+    
 }
 
 -(void)pushMatchDetails {
@@ -39,28 +43,58 @@
 }
 
 -(IBAction)actionButtonOnClicked:(id)sender {
-    if (matchData.status == 3) {//未开始比赛-通知球员
-        UIActionSheet *activeSheet = [[UIActionSheet alloc] initWithTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerTitle"]
-                                                                 delegate:self
-                                                        cancelButtonTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerCancel"]
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerMyTeamates"], [gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerTempFavor"], nil];
-        [activeSheet showInView:actionButton];
+    if (gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId)) {
+        if (matchData.status == 3) {//未开始比赛-通知球员
+            UIActionSheet *activeSheet = [[UIActionSheet alloc] initWithTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerTitle"]
+                                                                     delegate:self
+                                                            cancelButtonTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerCancel"]
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerMyTeamates"], [gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerTempFavor"], nil];
+            [activeSheet showInView:actionButton];
+        }
+    }
+    else {
+        if (matchData.status == 3) {//未开始比赛-回应参赛邀请
+            UIActionSheet *activeSheet = [[UIActionSheet alloc] initWithTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseTitle"]
+                                                                     delegate:self
+                                                            cancelButtonTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseCancel"]
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseAccept"], [gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseRefuse"], nil];
+            [activeSheet showInView:actionButton];
+        }
     }
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    switch (buttonIndex) {
-        case 0:
-            //通知队员
-            [delegate noticeTeamMembers:matchData];
-            break;
-        case 1:
-            //临时帮忙
-            [delegate noticeTempFavor:matchData];
-            break;
-        default:
-            break;
+    if (gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId)) {
+        //For Captain
+        switch (buttonIndex) {
+            case 0:
+                //通知队员
+                [delegate noticeTeamMembers:matchData];
+                break;
+            case 1:
+                //临时帮忙
+                [delegate noticeTempFavor:matchData];
+                break;
+            default:
+                break;
+        }
+    }
+    else {
+        //For Regular Player
+        switch (buttonIndex) {
+            case 0:
+                //同意参赛
+                [delegate replyMatchNotice:76 withAnswer:YES];
+                break;
+            case 1:
+                //拒绝参赛
+                [delegate replyMatchNotice:76 withAnswer:NO];
+                break;
+            default:
+                break;
+        }
     }
 }
 @end
@@ -83,7 +117,7 @@
     [super viewDidLoad];
     
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     matchesList = [NSMutableArray new];
     attri_NumberOfNotices = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:28] forKey:NSFontAttributeName];
@@ -143,7 +177,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *CellIdentifier = [NSString stringWithFormat:@"MatchArrangementCell_%@", self.restorationIdentifier];
+    NSString *CellIdentifier = @"MatchArrangementCell";
     MatchArrangementTableView_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Match *matchData = [matchesList objectAtIndex:indexPath.section];
     Team *opponent = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam:matchData.homeTeam;
@@ -162,22 +196,49 @@
     [numberOfPlayersString setAttributes:attri_NumberOfNotices range:[numberOfPlayersString.string rangeOfString:numberOfNoticeString]];
     [numberOfPlayersString setAttributes:attri_DescOfNotices range:[numberOfPlayersString.string rangeOfString:descOfNoticeString]];
     [cell.numberOfPlayersLabel setAttributedText:numberOfPlayersString];
-    
     [cell.actionIcon setTintColor:[UIColor whiteColor]];
-    switch (matchData.status) {
-        case 3://未开始比赛
-            [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_NoticePlayer"] forState:UIControlStateNormal];
-            break;
-        case 4://已结束比赛
-            if (opponent.teamId == matchData.awayTeam.teamId) {
-                [cell.actionButton setTitle:matchData.homeTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
-            }
-            else {
-                [cell.actionButton setTitle:matchData.awayTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
-            }
-            break;
-        default:
-            break;
+    
+    if(gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId)) {
+        //For Captain
+        [cell.actionButton setEnabled:YES];
+        switch (matchData.status) {
+            case 3://未开始比赛
+                [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_noticePlayers.png"]];
+                [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_NoticePlayer"] forState:UIControlStateNormal];
+                break;
+            case 4://已结束比赛
+                [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_fillMatchData.png"]];
+                if (opponent.teamId == matchData.awayTeam.teamId) {
+                    [cell.actionButton setTitle:matchData.homeTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
+                }
+                else {
+                    [cell.actionButton setTitle:matchData.awayTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    else {
+        //For Regular Player
+        [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_fillMatchData.png"]];
+        switch (matchData.status) {
+            case 3://未开始比赛
+                [cell.actionButton setEnabled:YES];
+                [cell.actionButton setTitle:@"回应邀请" forState:UIControlStateNormal];
+                break;
+            case 4://已结束比赛
+                [cell.actionButton setEnabled:NO];
+                if (opponent.teamId == matchData.awayTeam.teamId) {
+                    [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
+                }
+                else {
+                    [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
+                }
+                break;
+            default:
+                break;
+        }
     }
     
     return cell;

@@ -104,6 +104,10 @@
 #define CONNECT_SendMatchNotice_Suffix @"message/matchnotice"
 #define CONNECT_SendMatchNotice_Parameters(matchId, teamId, playerId, message) @{@"match_id":matchId, @"from_team_id":teamId, @"to":playerId, @"message":message}
 
+//Reply MatchNotice
+#define CONNECT_ReplyMatchNotice_Suffix @"message/replymatchnotice"
+#define CONNECT_ReplyMatchNotice_Parameters(messageId, response) @{@"message_id":messageId, @"response":response}
+
 
 //Get Messages
 #define CONNECT_RequestMessages_Suffix @"message/receive"

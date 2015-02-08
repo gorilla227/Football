@@ -11,6 +11,7 @@
 -(void)noticeTeamMembers:(Match *)matchData;
 -(void)noticeTempFavor:(Match *)matchData;
 -(void)viewMatchDetails:(Match *)matchData;
+-(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer;
 //-(void)enterScore:(Match *)matchData;
 //-(void)viewScore:(Match *)matchData;
 @end

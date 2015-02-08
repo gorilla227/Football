@@ -635,6 +635,20 @@
     }];
 }
 
+//Response MatchNotice
+-(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ReplyMatchNotice_Suffix];
+    NSDictionary *parameters = CONNECT_ReplyMatchNotice_Parameters([NSNumber numberWithInteger:messageId], [NSNumber numberWithInteger:answer?2:3]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate replyMatchNoticeSent:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [delegate replyMatchNoticeSent:NO];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
 //Request Matches
 -(void)requestMatchesByTeamId:(NSInteger)teamId inStatus:(NSArray *)status sort:(NSInteger)sort count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption
 {
