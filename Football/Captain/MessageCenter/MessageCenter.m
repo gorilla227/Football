@@ -17,6 +17,7 @@
 @property IBOutlet UILabel *messageTypeLabel;
 @property IBOutlet UIView *unreadFlag;
 @property IBOutlet UILabel *statusLabel;
+
 @end
 
 @implementation MessageCell
@@ -37,6 +38,7 @@
 @property IBOutlet UILabel *moreLabel;
 @property IBOutlet UIActivityIndicatorView *moreActivityIndicator;
 @property IBOutlet UIView *moreFooterView;
+@property IBOutlet UITableView *messageTableView;
 @end
 
 @implementation MessageCenter{
@@ -51,16 +53,16 @@
     BOOL isLoading;
     NSArray *messageSubtypeStatus;
 }
-@synthesize sourceTypeController, moreLabel, moreActivityIndicator, moreFooterView;
+@synthesize sourceTypeController, moreLabel, moreActivityIndicator, moreFooterView, messageTableView;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+//    self = [super initWithStyle:style];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
@@ -71,7 +73,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [messageTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     NSArray *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
     messageSubtypes = [[messageTypes objectAtIndex:self.tabBarItem.tag] objectForKey:@"Subtypes"];
@@ -87,7 +89,7 @@
     
     [sourceTypeController setBackgroundColor:def_navigationBar_background];
     [sourceTypeController setTintColor:[UIColor whiteColor]];
-    [self.tableView setTableHeaderView:sourceTypeController];
+//    [messageTableView setTableHeaderView:sourceTypeController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,13 +107,13 @@
 
 -(void)refreshTableView
 {
-    [self.tableView reloadData];
+    [messageTableView reloadData];
 }
 
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType
 {
-    if (![self.tableView.tableFooterView isEqual:moreFooterView]) {
-        [self.tableView setTableFooterView:moreFooterView];
+    if (![messageTableView.tableFooterView isEqual:moreFooterView]) {
+        [messageTableView setTableFooterView:moreFooterView];
     }
     
     switch (sourceType) {
@@ -124,7 +126,7 @@
             }
             haveMoreReceivedMessage = (messages.count == count);
             if (sourceTypeController.selectedSegmentIndex == 0) {
-                [self.tableView reloadData];
+                [messageTableView reloadData];
             }
             break;
         case RequestMessageSourceType_Sender:
@@ -136,7 +138,7 @@
             }
             haveMoreSentMessage = (messages.count == count);
             if (sourceTypeController.selectedSegmentIndex == 1) {
-                [self.tableView reloadData];
+                [messageTableView reloadData];
             }
             break;
         default:
@@ -155,13 +157,13 @@
             }
         }
     }
-    [self.tableView reloadData];
+    [messageTableView reloadData];
 }
 
 -(IBAction)switchReceivedAndSent:(id)sender
 {
-    [self.tableView setAllowsSelection:sourceTypeController.selectedSegmentIndex == 0];
-    [self.tableView reloadData];
+    [messageTableView setAllowsSelection:sourceTypeController.selectedSegmentIndex == 0];
+    [messageTableView reloadData];
 }
 
 #pragma mark - Table view data source

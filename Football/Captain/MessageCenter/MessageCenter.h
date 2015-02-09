@@ -14,6 +14,6 @@
 @interface MessageCell : UITableViewCell
 @end
 
-@interface MessageCenter : UITableViewController<JSONConnectDelegate>
+@interface MessageCenter : UIViewController<JSONConnectDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @end
