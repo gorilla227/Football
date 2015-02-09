@@ -10,7 +10,8 @@
 enum TeamDetailsViewType {
     TeamDetailsViewType_Default,
     TeamDetailsViewType_CreateMatch,
-    TeamDetailsViewType_NoAction
+    TeamDetailsViewType_NoAction,
+    TeamDetailsViewType_CallinTeamProfile
 };
 
 @protocol TeamMarketSelectionDelegate <NSObject>
@@ -21,4 +22,5 @@ enum TeamDetailsViewType {
 @property Team *teamData;
 @property enum TeamDetailsViewType viewType;
 @property id<TeamMarketSelectionDelegate>delegate;
+@property Message *message;
 @end

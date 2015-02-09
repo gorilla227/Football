@@ -116,10 +116,8 @@
 			<string>menuIcon_myMatches.png</string>
 			<key>Subtypes</key>
 			<dict>
-				<key>1</key>
-				<string>邀请入队</string>
-				<key>2</key>
-				<string>入队申请</string>
+				<key>3</key>
+				<string>比赛通知</string>
 			</dict>
 		</dict>
 		<dict>
@@ -133,6 +131,10 @@
 				<string>邀请入队</string>
 				<key>2</key>
 				<string>入队申请</string>
+				<key>4</key>
+				<string>临时帮忙</string>
+				<key>5</key>
+				<string>比赛邀请</string>
 			</dict>
 		</dict>
 	</array>

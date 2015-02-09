@@ -10,6 +10,7 @@
 #import "MessageCenter_CallinTeamProfile.h"
 #import "MessageCenter_ApplyinPlayerProfile.h"
 #import "PlayerDetails.h"
+#import "TeamDetails.h"
 
 @interface MessageCell()
 @property IBOutlet UITextView *messageBody;
@@ -89,7 +90,6 @@
     
     [sourceTypeController setBackgroundColor:def_navigationBar_background];
     [sourceTypeController setTintColor:[UIColor whiteColor]];
-//    [messageTableView setTableHeaderView:sourceTypeController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -241,12 +241,17 @@
 {
     Message *message = [sourceTypeController.selectedSegmentIndex?sentMessageList:receivedMessageList objectAtIndex:indexPath.row];
     PlayerDetails *playerDetails;
+    TeamDetails *teamDetails;
     switch (message.messageType) {
         case 1:
             if (message.status == 0 && sourceTypeController.selectedSegmentIndex == 0) {
                 [connection readMessages:@[[NSNumber numberWithInteger:message.messageId]]];
             }
-            [self performSegueWithIdentifier:@"CallinTeamProfile" sender:message];
+//            [self performSegueWithIdentifier:@"CallinTeamProfile" sender:message];
+            teamDetails = [[UIStoryboard storyboardWithName:@"Soccer" bundle:nil] instantiateViewControllerWithIdentifier:@"TeamDetails"];
+            [teamDetails setViewType:TeamDetailsViewType_CallinTeamProfile];
+            [teamDetails setMessage:message];
+            [self.navigationController pushViewController:teamDetails animated:YES];
             break;
         case 2:
             if (message.status == 0 && sourceTypeController.selectedSegmentIndex == 0) {

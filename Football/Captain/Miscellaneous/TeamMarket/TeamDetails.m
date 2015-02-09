@@ -24,22 +24,25 @@
 @property IBOutlet UISwitch *recruitFlagSwitch;
 @property IBOutlet UILabel *challengeAnnouncementLabel;
 @property IBOutlet UISwitch *challengeFlagSwitch;
-@property IBOutlet UIToolbar *actionBar;
+@property IBOutlet UIToolbar *createMatchActionBar;
 @property IBOutlet UIBarButtonItem *applyInButton;
 @property IBOutlet UIBarButtonItem *challengeButton;
+@property IBOutlet UIToolbar *callinActionBar;
+@property IBOutlet UIBarButtonItem *acceptButton;
+@property IBOutlet UIBarButtonItem *refuseButton;
 @end
 
 @implementation TeamDetails{
     JSONConnect *connection;
 }
-@synthesize teamLogoImageView, teamNameLabel, teamNameBackgroundView, teamNumberLabel, averAgeCell, activityRegionCell, homeStadiumCell, homeStadiumMapCell, homeStadiumMapView, sloganLabel, recruitAnnouncementLabel, recruitFlagSwitch, challengeAnnouncementLabel, challengeFlagSwitch, actionBar, applyInButton, challengeButton;
-@synthesize teamData, viewType, delegate;
+@synthesize teamLogoImageView, teamNameLabel, teamNameBackgroundView, teamNumberLabel, averAgeCell, activityRegionCell, homeStadiumCell, homeStadiumMapCell, homeStadiumMapView, sloganLabel, recruitAnnouncementLabel, recruitFlagSwitch, challengeAnnouncementLabel, challengeFlagSwitch, createMatchActionBar, applyInButton, challengeButton, callinActionBar, acceptButton, refuseButton;
+@synthesize teamData, viewType, delegate, message;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self setToolbarItems:actionBar.items];
+    
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
     //Set controllers appearance
@@ -57,30 +60,52 @@
     //Fill Data
     if (teamData) {
         [self initWithTeamData];
-        //Set Action button Status
-        switch (viewType) {
-            case TeamDetailsViewType_CreateMatch:
-                [applyInButton setEnabled:NO];
-                [challengeButton setEnabled:(teamData.teamId != gMyUserInfo.team.teamId)];
-                break;
-            default:
-                [applyInButton setEnabled:teamData.recruitFlag && !gMyUserInfo.team];
-                [challengeButton setEnabled:teamData.challengeFlag && gMyUserInfo.userType];
-                break;
-        }
-        
+    }
+    else {
+        [connection requestTeamById:message.senderId isSync:YES];
+    }
+    
+    //Set Action button Status
+    switch (viewType) {
+        case TeamDetailsViewType_CreateMatch:
+            [self setToolbarItems:createMatchActionBar.items];
+            [applyInButton setEnabled:NO];
+            [challengeButton setEnabled:(teamData.teamId != gMyUserInfo.team.teamId)];
+            break;
+        case TeamDetailsViewType_CallinTeamProfile:
+            if ((message.status == 0 || message.status == 1) && !gMyUserInfo.team) {
+                [self setToolbarItems:callinActionBar.items];
+            }
+            else {
+                [self setToolbarItems:nil];
+            }
+            break;
+        case TeamDetailsViewType_NoAction:
+            [self setToolbarItems:nil];
+            break;
+        default:
+            [self setToolbarItems:createMatchActionBar.items];
+            [applyInButton setEnabled:teamData.recruitFlag && !gMyUserInfo.team];
+            [challengeButton setEnabled:teamData.challengeFlag && gMyUserInfo.userType];
+            break;
     }
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:(viewType == TeamDetailsViewType_NoAction)];
+    [self.navigationController setToolbarHidden:!self.toolbarItems.count];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)receiveTeam:(Team *)team {
+    teamData = team;
+    [self initWithTeamData];
+    [self.tableView reloadData];
 }
 
 -(void)initWithTeamData

@@ -5377,13 +5377,14 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="actionBar" destination="7D1-kf-pbk" id="vvy-uf-17z"/>
                         <outlet property="activityRegionCell" destination="uJB-T2-pl7" id="CS8-Ph-bzs"/>
                         <outlet property="applyInButton" destination="96Z-cN-DvT" id="9a9-Vt-L2U"/>
                         <outlet property="averAgeCell" destination="Nlw-BE-ITr" id="sHC-pw-tme"/>
+                        <outlet property="callinActionBar" destination="ZuW-xQ-r4E" id="rJb-3N-2OU"/>
                         <outlet property="challengeAnnouncementLabel" destination="uGM-eC-riO" id="0o5-Sf-aFj"/>
                         <outlet property="challengeButton" destination="JwH-Qp-m9b" id="a3P-vR-abi"/>
                         <outlet property="challengeFlagSwitch" destination="gch-cs-LuQ" id="LkK-eJ-0mO"/>
+                        <outlet property="createMatchActionBar" destination="7D1-kf-pbk" id="mQP-Pb-zXW"/>
                         <outlet property="homeStadiumCell" destination="QNl-uC-vOW" id="Xqg-k8-7qY"/>
                         <outlet property="homeStadiumMapCell" destination="Ytk-sm-kP0" id="Wvh-cI-cJL"/>
                         <outlet property="homeStadiumMapView" destination="BRn-nI-kK6" id="bcj-jp-Gif"/>
@@ -5397,6 +5398,17 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXu-zK-7RM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ZuW-xQ-r4E">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="089-fF-SCy"/>
+                        <barButtonItem title="同意" id="Yxf-NS-Rl5"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="7CL-3B-4yP"/>
+                        <barButtonItem title="拒绝" id="lSC-uU-Zyr"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="P2h-Vh-Mw0"/>
+                    </items>
+                </toolbar>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="7D1-kf-pbk">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
