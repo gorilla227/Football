@@ -67,12 +67,13 @@ enum RequestMessageSourceType
 -(void)teamCallinSent:(BOOL)result;//队长邀请球员加入球队发送返回结果
 -(void)replyCallinMessageSuccessfully:(NSInteger)responseCode;//球员回复队长的入队邀请成功
 -(void)matchNoticeSent:(BOOL)result;//队长发送比赛通知返回结果
--(void)replyMatchNoticeSent:(BOOL)result;//球员回应参赛邀请返回结果
+-(void)replyMatchNoticeAnswer:(BOOL)answer isSent:(BOOL)result;//球员回应参赛邀请返回结果
 
 //Match Management
 -(void)receiveMatchesSuccessfully:(NSArray *)matches;//获取比赛列表成功
 -(void)updateMatchStatusSuccessfully;//修改比赛状态成功
 -(void)updateMatchStatusFailed;//修改比赛状态失败
+-(void)receiveMatch:(Match *)match;//获取指定id的Match成功
 
 @end
 
@@ -121,5 +122,6 @@ enum RequestMessageSourceType
 //Match Management
 -(void)requestMatchesByTeamId:(NSInteger)teamId inStatus:(NSArray *)status sort:(NSInteger)sort count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption;//获取球队的比赛列表
 -(void)updateMatchStatus:(NSInteger)statusId organizer:(NSInteger)organizerId match:(NSInteger)matchId;//修改比赛状态
+-(void)requestMatchesByMatchId:(NSInteger)matchId;
 
 @end

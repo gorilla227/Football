@@ -362,7 +362,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" id="OSb-05-KSt">
-                                            <rect key="frame" x="242" y="0.0" width="70" height="87"/>
+                                            <rect key="frame" x="241" y="0.0" width="70" height="87"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4Fi-xq-Zv6">
@@ -1023,6 +1023,8 @@
                     <navigationItem key="navigationItem" title="建立比赛" id="Y3F-lL-NL6"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
+                        <outlet property="acceptMatchInvitationButton" destination="GQH-29-Frr" id="o3V-6u-nau"/>
+                        <outlet property="acceptMatchNoticeButton" destination="6Hm-Hb-aGK" id="nap-nB-Kqy"/>
                         <outlet property="costOption_Referee" destination="9jc-Vd-dyO" id="j6I-f9-ML6"/>
                         <outlet property="costOption_Water" destination="knw-Iq-aac" id="EJS-5s-RW2"/>
                         <outlet property="costTextField" destination="ajt-UE-MY8" id="Vm5-9K-UyX"/>
@@ -1030,15 +1032,49 @@
                         <outlet property="createMatchButton" destination="nwf-8q-kfi" id="SDf-JB-i86"/>
                         <outlet property="dismissKeyboardGestureRecognizer" destination="uNL-dc-q6Q" id="rTf-lJ-Zwp"/>
                         <outlet property="inviteOpponentButton" destination="YOX-kx-G0w" id="ChI-T6-xVI"/>
+                        <outlet property="matchInvitationActionBar" destination="QOz-YQ-x8B" id="gz3-xZ-Ryc"/>
+                        <outlet property="matchNoticeActionBar" destination="F0n-vR-iOM" id="cG5-9o-QiG"/>
                         <outlet property="matchOpponentTextField" destination="Jez-VY-cRV" id="0Rw-bO-TGJ"/>
                         <outlet property="matchStadiumTextFiedld" destination="0Oq-Rr-iGE" id="q8M-sr-chb"/>
                         <outlet property="matchStandardTextField" destination="8Hr-qf-mix" id="y4T-EC-i7o"/>
                         <outlet property="matchTimeTextField" destination="27b-de-ijJ" id="P7C-dh-hgV"/>
+                        <outlet property="refuseMatchInvitationButton" destination="4Yv-H4-xzc" id="Opg-x7-gko"/>
+                        <outlet property="refuseMatchNoticeButton" destination="ceC-Bb-lDB" id="8m1-C3-k1G"/>
                         <outlet property="scoreDetailsTableView" destination="hV3-a8-q6W" id="JXL-z2-BQD"/>
                         <outlet property="scoreTextField" destination="yNC-ra-4R3" id="naj-pq-s7E"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BvY-Zq-zsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="F0n-vR-iOM">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="6l4-nQ-SV9"/>
+                        <barButtonItem title="同意参赛" id="6Hm-Hb-aGK">
+                            <connections>
+                                <action selector="acceptMatchNoticeButtonOnClicked:" destination="oSq-8e-yP8" id="KzS-oO-VNN"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="X6q-Qf-H8G"/>
+                        <barButtonItem title="拒绝参赛" id="ceC-Bb-lDB">
+                            <connections>
+                                <action selector="refuseMatchNoticeButtonOnClicked:" destination="oSq-8e-yP8" id="nEW-ny-TeF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="RPx-ww-E50"/>
+                    </items>
+                </toolbar>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="QOz-YQ-x8B">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="aHH-k5-Q24"/>
+                        <barButtonItem title="接受挑战" id="GQH-29-Frr"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="7f5-ZT-hZN"/>
+                        <barButtonItem title="拒绝挑战" id="4Yv-H4-xzc"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="uu7-4a-JI9"/>
+                    </items>
+                </toolbar>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="I9U-RP-O8u">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>

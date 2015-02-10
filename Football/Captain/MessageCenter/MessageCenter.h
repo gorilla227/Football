@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define MessageBodyFormat_Receiver(sender, date) [NSString stringWithFormat:@"发送者：%@ 发送时间：%@", sender, date]
-#define MessageBodyFormat_Sender(receiver, date) [NSString stringWithFormat:@"接收者：%@ 发送时间：%@", receiver, date]
-
 @interface MessageCell : UITableViewCell
 @end
 

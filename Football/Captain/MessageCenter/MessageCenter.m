@@ -11,6 +11,7 @@
 #import "MessageCenter_ApplyinPlayerProfile.h"
 #import "PlayerDetails.h"
 #import "TeamDetails.h"
+#import "MatchDetails.h"
 
 @interface MessageCell()
 @property IBOutlet UITextView *messageBody;
@@ -56,15 +57,6 @@
 }
 @synthesize sourceTypeController, moreLabel, moreActivityIndicator, moreFooterView, messageTableView;
 
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -74,6 +66,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"MessageStatusUpdated" object:nil];
     [messageTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     NSArray *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
@@ -102,7 +95,6 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MessageStatusUpdated" object:nil];
 }
 
 -(void)refreshTableView
@@ -221,10 +213,10 @@
     [cell.messageBody setText:message.messageBody];
     [cell.messageTypeLabel setText:[messageSubtypes objectForKey:[NSNumber numberWithInteger:message.messageType].stringValue]];
     if (sourceTypeController.selectedSegmentIndex == 0) {
-        [cell.messageHead setText:MessageBodyFormat_Receiver(message.senderName, [dateFormatter stringFromDate:message.creationDate])];
+        [cell.messageHead setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MessageHead_Format"], [gUIStrings objectForKey:@"UI_MessageHead_Received"], message.senderName, [dateFormatter stringFromDate:message.creationDate]]];
     }
     else {
-        [cell.messageHead setText:MessageBodyFormat_Sender(message.receiverName, [dateFormatter stringFromDate:message.creationDate])];
+        [cell.messageHead setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MessageHead_Format"], [gUIStrings objectForKey:@"UI_MessageHead_Sent"], message.receiverName, [dateFormatter stringFromDate:message.creationDate]]];
     }
 //    [cell.unreadFlag setHidden:message.status != 0 || sourceTypeController.selectedSegmentIndex];
     [cell.statusLabel setText:messageSubtypeStatus[message.status]];
@@ -242,26 +234,32 @@
     Message *message = [sourceTypeController.selectedSegmentIndex?sentMessageList:receivedMessageList objectAtIndex:indexPath.row];
     PlayerDetails *playerDetails;
     TeamDetails *teamDetails;
+    MatchDetails *matchDetails;
+    if (message.status == 0 && sourceTypeController.selectedSegmentIndex == 0) {
+        [connection readMessages:@[[NSNumber numberWithInteger:message.messageId]]];
+    }
     switch (message.messageType) {
-        case 1:
-            if (message.status == 0 && sourceTypeController.selectedSegmentIndex == 0) {
-                [connection readMessages:@[[NSNumber numberWithInteger:message.messageId]]];
-            }
-//            [self performSegueWithIdentifier:@"CallinTeamProfile" sender:message];
+        case 1://邀请加入
             teamDetails = [[UIStoryboard storyboardWithName:@"Soccer" bundle:nil] instantiateViewControllerWithIdentifier:@"TeamDetails"];
             [teamDetails setViewType:TeamDetailsViewType_CallinTeamProfile];
             [teamDetails setMessage:message];
             [self.navigationController pushViewController:teamDetails animated:YES];
             break;
-        case 2:
-            if (message.status == 0 && sourceTypeController.selectedSegmentIndex == 0) {
-                [connection readMessages:@[[NSNumber numberWithInteger:message.messageId]]];
-            }
-//            [self performSegueWithIdentifier:@"ApplyinPlayerProfile" sender:message];
+        case 2://申请入队
             playerDetails = [[UIStoryboard storyboardWithName:@"Soccer" bundle:nil] instantiateViewControllerWithIdentifier:@"PlayerDetails"];
             [playerDetails setViewType:PlayerDetails_Applicant];
             [playerDetails setMessage:message];
             [self.navigationController pushViewController:playerDetails animated:YES];
+            break;
+        case 3://比赛通知
+            matchDetails = [[UIStoryboard storyboardWithName:@"Soccer" bundle:nil] instantiateViewControllerWithIdentifier:@"MatchDetails"];
+            [matchDetails setViewType:MatchDetailsViewType_MatchNotice];
+            [matchDetails setMessage:message];
+            [self.navigationController pushViewController:matchDetails animated:YES];
+            break;
+        case 4://临时帮忙
+            break;
+        case 5://比赛邀请
             break;
         default:
             break;
@@ -295,7 +293,7 @@
 }
 
 #pragma mark - Navigation
-
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -310,5 +308,5 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"MessageStatusUpdated" object:nil];
     }
 }
-
+*/
 @end

@@ -111,7 +111,7 @@
 
 #pragma Message
 @implementation Message
-@synthesize messageId, senderId, receiverId, senderName, receiverName, creationDate, messageBody, messageType, status;
+@synthesize messageId, senderId, receiverId, senderName, receiverName, creationDate, messageBody, messageType, status, matchId;
 -(id)initWithData:(NSDictionary *)data
 {
     self = [super init];
@@ -125,6 +125,7 @@
         [self setMessageBody:[data objectForKey:kMessage_body]];
         [self setMessageType:[[data objectForKey:kMessage_type] integerValue]];
         [self setStatus:[[data objectForKey:kMessage_status] integerValue]];
+        [self setMatchId:[[data objectForKey:kMessage_matchId] integerValue]];
     }
     return self;
 }

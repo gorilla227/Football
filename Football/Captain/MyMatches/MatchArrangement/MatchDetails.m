@@ -33,6 +33,12 @@
 @property IBOutlet UIButton *inviteOpponentButton;
 @property IBOutlet UIToolbar *createMatchActionBar;
 @property IBOutlet UIBarButtonItem *createMatchButton;
+@property IBOutlet UIToolbar *matchInvitationActionBar;
+@property IBOutlet UIBarButtonItem *acceptMatchInvitationButton;
+@property IBOutlet UIBarButtonItem *refuseMatchInvitationButton;
+@property IBOutlet UIToolbar *matchNoticeActionBar;
+@property IBOutlet UIBarButtonItem *acceptMatchNoticeButton;
+@property IBOutlet UIBarButtonItem *refuseMatchNoticeButton;
 @property IBOutlet UIGestureRecognizer *dismissKeyboardGestureRecognizer;
 @end
 
@@ -43,9 +49,10 @@
     NSDateFormatter *dateFormatter;
     NSArray *textFields;
     Team *selectedOpponentTeam;
+    JSONConnect *connection;
 }
-@synthesize matchTimeTextField, matchOpponentTextField, matchStadiumTextFiedld, matchStandardTextField, costTextField, costOption_Referee, costOption_Water, scoreTextField, scoreDetailsTableView, inviteOpponentButton, createMatchActionBar, createMatchButton, dismissKeyboardGestureRecognizer;
-@synthesize viewType, matchData;
+@synthesize matchTimeTextField, matchOpponentTextField, matchStadiumTextFiedld, matchStandardTextField, costTextField, costOption_Referee, costOption_Water, scoreTextField, scoreDetailsTableView, inviteOpponentButton, createMatchActionBar, createMatchButton, matchInvitationActionBar, acceptMatchInvitationButton, refuseMatchInvitationButton, matchNoticeActionBar, acceptMatchNoticeButton, refuseMatchNoticeButton, dismissKeyboardGestureRecognizer;
+@synthesize viewType, matchData, message;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,6 +62,7 @@
     //Set dateformatter
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:def_MatchDateAndTimeformat];
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
     //Initial TextFields
     textFields = @[matchTimeTextField, matchOpponentTextField, matchStadiumTextFiedld, matchStandardTextField, costTextField, scoreTextField];
@@ -64,9 +72,6 @@
     [self initialMatchStandard];
     [self initialCost];
     [self initialMatchScore];
-//    
-//    viewType = MatchDetailsViewType_CreateMatch;
-//    creationProgress = MatchDetailsCreationProgress_Initial;
     
     switch (viewType) {
         case MatchDetailsViewType_CreateMatch:
@@ -77,6 +82,20 @@
             [self setToolbarItems:nil];
             [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_Title_ViewDetails"]];
             [self presetMatchData];
+            [dismissKeyboardGestureRecognizer setEnabled:NO];
+            break;
+        case MatchDetailsViewType_MatchInvitation:
+            [self setToolbarItems:matchInvitationActionBar.items];
+            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_Title_ViewDetails"]];
+            [self presetMatchData];
+            [dismissKeyboardGestureRecognizer setEnabled:NO];
+            break;
+        case MatchDetailsViewType_MatchNotice:
+            [self setToolbarItems:matchNoticeActionBar.items];
+            [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_Title_ViewDetails"]];
+            [self presetMatchData];
+            [acceptMatchNoticeButton setEnabled:(message.status == 0 || message.status == 1)];
+            [refuseMatchNoticeButton setEnabled:(message.status == 0 || message.status == 1)];
             [dismissKeyboardGestureRecognizer setEnabled:NO];
             break;
         default:
@@ -106,9 +125,39 @@
         //cost_water
         [costOption_Referee setOn:matchData.withReferee];
         [scoreTextField setText:(selectedOpponentTeam.teamId == matchData.awayTeam.teamId)?[NSString stringWithFormat:@"%@ : %@", matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]]:[NSString stringWithFormat:@"%@ : %@", matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]]];
+        [self.tableView reloadData];
+    }
+    else {
+        //Request match data via matchId in message.
+        [connection requestMatchesByMatchId:message.matchId];
     }
 }
 
+#pragma JSONConnectDelegate
+-(void)receiveMatch:(Match *)match {
+    matchData = match;
+    [self presetMatchData];
+}
+
+-(void)replyMatchNoticeAnswer:(BOOL)answer isSent:(BOOL)result {
+    if (result) {
+        [message setStatus:answer?2:3];
+    }
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:result?[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Title_Succ"]:[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Title_Fail"]
+                                                        message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Message"], answer?[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Message_Accept"]:[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Message_Refuse"]]
+                                                       delegate:self
+                                              cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma Initial TextFields
 -(void)initialMatchTime
 {
     matchTimePicker = [[UIDatePicker alloc] init];
@@ -233,6 +282,14 @@
     }
 }
 
+-(IBAction)acceptMatchNoticeButtonOnClicked:(id)sender {
+    [connection replyMatchNotice:message.messageId withAnswer:YES];
+}
+
+-(IBAction)refuseMatchNoticeButtonOnClicked:(id)sender {
+    [connection replyMatchNotice:message.messageId withAnswer:NO];
+}
+
 #pragma UITextFieldDelegate
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     if ([textField isEqual:matchOpponentTextField]) {
@@ -318,6 +375,19 @@
                 else {
                     return [super numberOfSectionsInTableView:tableView] - 1;
                 }
+            case MatchDetailsViewType_MatchInvitation:
+            case MatchDetailsViewType_MatchNotice:
+                switch (matchData.status) {
+                    case 1:
+                    case 2:
+                    case 3:
+                        return [super numberOfSectionsInTableView:tableView] - 1;
+                        break;
+                    default:
+                        return [super numberOfSectionsInTableView:tableView];
+                        break;
+                }
+                break;
             default:
                 return [super numberOfSectionsInTableView:tableView];
         }

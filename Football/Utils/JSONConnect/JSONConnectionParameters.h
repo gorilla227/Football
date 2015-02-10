@@ -128,6 +128,10 @@
 #define CONNECT_MatchList_Suffix @"match/list"
 #define CONNECT_MatchList_Parameters(teamId, status, sort, startIndex, count) @{@"team_id":teamId, @"status":status, @"order":sort, @"start":startIndex, @"count":count}
 
+//Get Match by matchId
+#define CONNECT_RequestMatchByMatchID_Suffix @"match/getmatchbyid"
+#define CONNECT_RequestMatchByMatchID_Parameter(matchId) @{@"match_id": matchId}
+
 //Update Match Status
 #define CONNECT_UpdateMatchStatus_Suffix @"match/update"
 #define CONNECT_UpdateMatchStatus_Parameters(matchId, organizerId, statusId) @{@"match_id":[NSNumber numberWithInteger:matchId], @"member_id":[NSNumber numberWithInteger:organizerId], @"status":[NSNumber numberWithInteger:statusId]}

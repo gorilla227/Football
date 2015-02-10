@@ -154,6 +154,12 @@
 	<string>只有这么多消息</string>
 	<key>UI_MessageCenter_Loading</key>
 	<string>正在加载...</string>
+	<key>UI_MessageHead_Format</key>
+	<string>%@：%@ 发送时间：%@</string>
+	<key>UI_MessageHead_Sent</key>
+	<string>接受者</string>
+	<key>UI_MessageHead_Received</key>
+	<string>发送者</string>
 	<key>UI_ReplayApplyin_Accepted</key>
 	<string>你已接受&apos;%@&apos;成为球队的一员！</string>
 	<key>UI_ReplayApplyin_Declined</key>
@@ -276,5 +282,17 @@
 			<string>TeamIcon.jpg</string>
 		</dict>
 	</array>
+	<key>UI_ReplyMatchNoticeAlertView_Title_Succ</key>
+	<string>成功！</string>
+	<key>UI_ReplyMatchNoticeAlertView_Title_Fail</key>
+	<string>失败！</string>
+	<key>UI_ReplyMatchNoticeAlertView_Message</key>
+	<string>你已确认%@该比赛。</string>
+	<key>UI_ReplyMatchNoticeAlertView_Message_Accept</key>
+	<string>参加</string>
+	<key>UI_ReplyMatchNoticeAlertView_Message_Refuse</key>
+	<string>不参加</string>
+	<key>New item</key>
+	<string></string>
 </dict>
 </plist>

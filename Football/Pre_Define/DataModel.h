@@ -36,6 +36,7 @@
 #define kMessage_body @"message"
 #define kMessage_type @"type"
 #define kMessage_status @"status"
+#define kMessage_matchId @"match_id"
 @interface Message : NSObject
 @property NSInteger messageId;
 @property NSInteger senderId;
@@ -46,6 +47,7 @@
 @property NSString *messageBody;
 @property NSInteger messageType;
 @property NSInteger status;
+@property NSInteger matchId;
 -(id)initWithData:(NSDictionary *)data;
 @end
 

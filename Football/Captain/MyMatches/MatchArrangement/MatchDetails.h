@@ -18,16 +18,19 @@ enum MatchDetailsCreationProgress {
 
 enum MatchDetailsViewType {
     MatchDetailsViewType_CreateMatch,
-    MatchDetailsViewType_ViewDetails
+    MatchDetailsViewType_ViewDetails,
+    MatchDetailsViewType_MatchInvitation,
+    MatchDetailsViewType_MatchNotice
 };
 
 @interface MatchDetails_MatchScoreDetails_Cell : UITableViewCell
 
 @end
 
-@interface MatchDetails : UITableViewController<UITextFieldDelegate, TeamMarketSelectionDelegate>
+@interface MatchDetails : UITableViewController<UITextFieldDelegate, TeamMarketSelectionDelegate, JSONConnectDelegate, UIAlertViewDelegate>
 @property enum MatchDetailsViewType viewType;
 @property Match *matchData;
+@property Message *message;
 -(void)presetMatchData;
 -(void)formatMatchOpponent:(BOOL)isRealTeam;
 @end

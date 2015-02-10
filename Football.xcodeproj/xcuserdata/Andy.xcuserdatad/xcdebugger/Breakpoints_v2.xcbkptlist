@@ -313,7 +313,7 @@
                   symbolName = "-[PlayerMarket scrollViewDidEndDragging:willDecelerate:]"
                   moduleName = "Football"
                   urlString = "file:///Users/Andy/Dropbox/Soccer_SourceCode/Football/Football/Captain/Miscellaneous/PlayerMarket/PlayerMarket.m"
-                  timestampString = "445151543.619752"
+                  timestampString = "445243697.027392"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "363"
@@ -327,7 +327,7 @@
                   symbolName = "-[PlayerMarket scrollViewDidEndDragging:willDecelerate:]"
                   moduleName = "Football"
                   urlString = "file:///Users/Andy/Dropbox/Soccer_SourceCode/Football/Football/Captain/Miscellaneous/PlayerMarket/PlayerMarket.m"
-                  timestampString = "445151543.619946"
+                  timestampString = "445243697.027589"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "363"
@@ -335,22 +335,6 @@
                   offsetFromSymbolStart = "89">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Football/Utils/JSONConnect/JSONConnect.m"
-            timestampString = "445055011.558352"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "677"
-            endingLineNumber = "677"
-            landmarkName = "-updateMatchStatus:organizer:match:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -482,6 +482,17 @@
 			name = PlayerMarket;
 			sourceTree = "<group>";
 		};
+		A12A40841A887B1B00C7E7CD /* zzzOld */ = {
+			isa = PBXGroup;
+			children = (
+				A1BB0E791998852B0082E91A /* MessageCenter_CallinTeamProfile.h */,
+				A1BB0E7A1998852B0082E91A /* MessageCenter_CallinTeamProfile.m */,
+				B27F6C0319A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.h */,
+				B27F6C0419A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.m */,
+			);
+			name = zzzOld;
+			sourceTree = "<group>";
+		};
 		A1347F9B19E246F8003102E6 /* TeamMarket */ = {
 			isa = PBXGroup;
 			children = (
@@ -663,15 +674,12 @@
 		A19865F9198DF73B009BA81C /* MessageCenter */ = {
 			isa = PBXGroup;
 			children = (
+				A12A40841A887B1B00C7E7CD /* zzzOld */,
 				A1BB0E7719987CBB0082E91A /* MessageCenter.storyboard */,
 				A1AA7E8A198F4CFD002D638A /* MessageCenterTabBarController.h */,
 				A1AA7E8B198F4CFD002D638A /* MessageCenterTabBarController.m */,
 				A19865FA198DF76A009BA81C /* MessageCenter.h */,
 				A19865FB198DF76A009BA81C /* MessageCenter.m */,
-				A1BB0E791998852B0082E91A /* MessageCenter_CallinTeamProfile.h */,
-				A1BB0E7A1998852B0082E91A /* MessageCenter_CallinTeamProfile.m */,
-				B27F6C0319A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.h */,
-				B27F6C0419A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.m */,
 				B2793E7F19A952DD00441F3A /* MessageCenter_Compose.h */,
 				B2793E8019A952DD00441F3A /* MessageCenter_Compose.m */,
 			);

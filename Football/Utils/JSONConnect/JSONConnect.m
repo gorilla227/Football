@@ -642,14 +642,14 @@
     NSDictionary *parameters = CONNECT_ReplyMatchNotice_Parameters([NSNumber numberWithInteger:messageId], [NSNumber numberWithInteger:answer?2:3]);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-        [delegate replyMatchNoticeSent:YES];
+        [delegate replyMatchNoticeAnswer:answer isSent:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [delegate replyMatchNoticeSent:NO];
+        [delegate replyMatchNoticeAnswer:answer isSent:NO];
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
-//Request Matches
+//Request MatchList
 -(void)requestMatchesByTeamId:(NSInteger)teamId inStatus:(NSArray *)status sort:(NSInteger)sort count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption
 {
     if (syncOption) {
@@ -668,6 +668,19 @@
             [matches addObject:match];
         }
         [delegate receiveMatchesSuccessfully:matches];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//Request Match by matchId
+-(void)requestMatchesByMatchId:(NSInteger)matchId {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestMatchByMatchID_Suffix];
+    NSDictionary *parameters = CONNECT_RequestMatchByMatchID_Parameter([NSNumber numberWithInteger:matchId]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate receiveMatch:[[Match alloc] initWithData:responseObject]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
