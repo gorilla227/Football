@@ -39,7 +39,7 @@
     UIPickerView *positionPicker;
     JSONConnect *connection;
 }
-@synthesize viewSource;
+@synthesize viewType;
 @synthesize saveBar, playerPortraitImageView, nickNameTextField, qqTextField, birthdateTextField, activityRegionTextField, legalNameTextField, mobileTextField, mailTextField, positionTextField, styleTextField;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -112,7 +112,6 @@
 
     //Set activityregion Picker
     [activityRegionTextField setTintColor:[UIColor clearColor]];
-    [activityRegionTextField activityRegionTextField];
     
     //Set LeftIcon for textFields
     [mobileTextField initialLeftViewWithIconImage:@"TextFieldIcon_Mobile.png"];
@@ -129,7 +128,7 @@
     [self fillInitialPlayerProfile];
     
     //Set enable status for Phone/Nickname/Email
-    if (viewSource == EditProfileViewSource_Register) {
+    if (viewType == EditProfileViewType_Register) {
         [mobileTextField setEnabled:NO];
         [mailTextField setEnabled:NO];
         [nickNameTextField setEnabled:NO];
@@ -187,7 +186,7 @@
         [connection updatePlayerProfile:updatedDictionary];
     }
     else {
-        if (viewSource == EditProfileViewSource_Register) {
+        if (viewType == EditProfileViewType_Register) {
             [self.navigationController popViewControllerAnimated:YES];
         }
         else {
@@ -211,7 +210,7 @@
 -(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
 {
     gMyUserInfo = userInfo;
-    if (viewSource == EditProfileViewSource_Register) {
+    if (viewType == EditProfileViewType_Register) {
         [self.navigationController popViewControllerAnimated:YES];
     }
     else {

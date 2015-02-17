@@ -10,6 +10,9 @@
 
 @interface UITextFieldForActivityRegion : UITextField<UIPickerViewDataSource, UIPickerViewDelegate>
 @property NSArray *selectedActivityRegionCode;
--(void)activityRegionTextField;
 -(void)presetActivityRegionCode:(NSArray *)activityRegionCode;
+@end
+
+@interface ActivityRegionPicker : UIPickerView
+@property NSArray *selectedRows;
 @end

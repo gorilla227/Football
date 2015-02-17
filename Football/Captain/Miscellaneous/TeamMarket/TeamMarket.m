@@ -35,8 +35,6 @@
     [teamNumberView.layer setCornerRadius:6.0f];
     [teamNumberView.layer setMasksToBounds:YES];
     
-    [activityRegionSearchTextField activityRegionTextField];
-    
     CAGradientLayer *gradient = [CAGradientLayer layer];
     [gradient setFrame:self.bounds];
     [gradient setColors:@[(id)cLightBlue(1).CGColor, (id)[UIColor grayColor].CGColor, (id)cLightBlue(1).CGColor]];

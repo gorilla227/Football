@@ -14,6 +14,6 @@
 @end
 
 @interface EditTeamProfile : UITableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, DismissKeyboard, UITextFieldDelegate, UITextViewDelegate, UIActionSheetDelegate, JSONConnectDelegate, UIAlertViewDelegate>
-@property enum EditProfileViewSource viewSource;
+@property enum EditProfileViewTypes viewType;
 -(void)fillInitialTeamProfile;
 @end

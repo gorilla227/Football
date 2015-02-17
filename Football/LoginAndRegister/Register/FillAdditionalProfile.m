@@ -144,13 +144,13 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
     if (indexPath.row == 0) {
         EditPlayerProfile *targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"EditPlayerProfile"];
-        [targetViewController setViewSource:EditProfileViewSource_Register];
+        [targetViewController setViewType:EditProfileViewType_Register];
         [self.navigationController pushViewController:targetViewController animated:YES];
 
     }
     else if (indexPath.row == 1){
         EditTeamProfile *targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"EditTeamProfile"];
-        [targetViewController setViewSource:EditProfileViewSource_Register];
+        [targetViewController setViewType:EditProfileViewType_Register];
         [self.navigationController pushViewController:targetViewController animated:YES];
     }
     else if (indexPath.row == 2){

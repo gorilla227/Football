@@ -229,6 +229,50 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" id="RZF-Sp-ZGb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TeamIcon.jpg" id="fAd-7c-RFj">
+                                        <rect key="frame" x="30" y="20" width="120" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="V9t-zQ-IGL">
+                                        <rect key="frame" x="158" y="65" width="132" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="寻找组织">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="uoL-By-mSF" kind="push" identifier="FindTeam" id="gFZ-ND-RHV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="znb-Cv-Jxl">
+                                        <rect key="frame" x="158" y="110" width="132" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="建立球队">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="zme-Kh-0RT" kind="push" identifier="CreateTeam" id="6qs-Ey-S1o"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="ycl-MF-1mq">
+                                        <rect key="frame" x="158" y="30" width="132" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" id="rTk-Ix-u7f">
                                 <rect key="frame" x="0.0" y="158" width="320" height="346"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -243,7 +287,12 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="createMatchButton" destination="54L-xV-FLG" id="0SV-Vk-Vuc"/>
+                        <outlet property="createTeamButton" destination="znb-Cv-Jxl" id="kSt-fy-jSL"/>
+                        <outlet property="findTeamButton" destination="V9t-zQ-IGL" id="sOU-MM-H3A"/>
+                        <outlet property="nonTeamSummaryView" destination="RZF-Sp-ZGb" id="e9B-wa-EAu"/>
                         <outlet property="numberOfTeamMembers" destination="xQA-i3-tvT" id="34r-qc-Zao"/>
+                        <outlet property="playerName" destination="ycl-MF-1mq" id="nrA-uz-f05"/>
+                        <outlet property="playerPortrait" destination="fAd-7c-RFj" id="wJg-MH-lr7"/>
                         <outlet property="teamLogo" destination="62e-ld-570" id="sy0-GD-ARY"/>
                         <outlet property="teamName" destination="wxI-l3-MPE" id="kUz-4N-orN"/>
                         <outlet property="teamSummaryView" destination="ASl-O8-c5g" id="Bg9-vI-GQo"/>

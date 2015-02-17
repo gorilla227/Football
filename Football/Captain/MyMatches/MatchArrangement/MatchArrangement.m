@@ -10,6 +10,7 @@
 #import "MessageCenter_Compose.h"
 #import "MatchDetails.h"
 #import "PlayerMarket.h"
+#import "EditTeamProfile.h"
 
 @interface MatchArrangement ()
 @property IBOutlet UIView *teamSummaryView;
@@ -17,32 +18,64 @@
 @property IBOutlet UILabel *teamName;
 @property IBOutlet UILabel *numberOfTeamMembers;
 @property IBOutlet UIButton *createMatchButton;
+@property IBOutlet UIImageView *playerPortrait;
+@property IBOutlet UIView *nonTeamSummaryView;
+@property IBOutlet UILabel *playerName;
+@property IBOutlet UIButton *findTeamButton;
+@property IBOutlet UIButton *createTeamButton;
 @end
 
 @implementation MatchArrangement{
     JSONConnect *connection;
     Match *matchNotice_MatchData;
 }
-@synthesize teamSummaryView, teamLogo, teamName, numberOfTeamMembers, createMatchButton;
+@synthesize teamSummaryView, teamLogo, teamName, numberOfTeamMembers, createMatchButton, nonTeamSummaryView, playerPortrait, playerName, findTeamButton, createTeamButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [teamSummaryView setBackgroundColor:[UIColor clearColor]];
-    [teamLogo.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [teamLogo.layer setBorderWidth:2.0f];
-    [teamLogo.layer setCornerRadius:10.0f];
-    [teamLogo.layer setMasksToBounds:YES];
-    if (gMyUserInfo.team.teamLogo) {
-        [teamLogo setImage:gMyUserInfo.team.teamLogo];
+    if (gMyUserInfo.team) {
+        [teamSummaryView setHidden:NO];
+        [nonTeamSummaryView setHidden:YES];
+        
+        [teamSummaryView setBackgroundColor:[UIColor clearColor]];
+        [teamLogo.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [teamLogo.layer setBorderWidth:2.0f];
+        [teamLogo.layer setCornerRadius:10.0f];
+        [teamLogo.layer setMasksToBounds:YES];
+        if (gMyUserInfo.team.teamLogo) {
+            [teamLogo setImage:gMyUserInfo.team.teamLogo];
+        }
+        else {
+            [teamLogo setImage:def_defaultTeamLogo];
+        }
+        [teamName setText:gMyUserInfo.team.teamName];
+        [numberOfTeamMembers setText:[NSNumber numberWithInteger:gMyUserInfo.team.numOfMember].stringValue];
+        [createMatchButton.layer setCornerRadius:5.0f];
+        [createMatchButton.layer setMasksToBounds:YES];
+        [createMatchButton setHidden:!gMyUserInfo.userType];
     }
     else {
-        [teamLogo setImage:def_defaultTeamLogo];
+        [teamSummaryView setHidden:YES];
+        [nonTeamSummaryView setHidden:NO];
+        
+        [nonTeamSummaryView setBackgroundColor:[UIColor clearColor]];
+        [playerPortrait.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [playerPortrait.layer setBorderWidth:2.0f];
+        [playerPortrait.layer setCornerRadius:10.0f];
+        [playerPortrait.layer setMasksToBounds:YES];
+        if (gMyUserInfo.playerPortrait) {
+            [playerPortrait setImage:gMyUserInfo.playerPortrait];
+        }
+        else {
+            [playerPortrait setImage:def_defaultPlayerPortrait];
+        }
+        [playerName setText:gMyUserInfo.nickName];
+        [findTeamButton.layer setCornerRadius:5.0f];
+        [findTeamButton.layer setMasksToBounds:YES];
+        [createTeamButton.layer setCornerRadius:5.0f];
+        [createTeamButton.layer setMasksToBounds:YES];
     }
-    [teamName setText:gMyUserInfo.team.teamName];
-    [numberOfTeamMembers setText:[NSNumber numberWithInteger:gMyUserInfo.team.numOfMember].stringValue];
-    [createMatchButton.layer setCornerRadius:5.0f];
-    [createMatchButton.layer setMasksToBounds:YES];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
 }

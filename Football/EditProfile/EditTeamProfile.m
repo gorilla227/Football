@@ -41,7 +41,7 @@
     UIActionSheet *editTeamLogoMenu;
     JSONConnect *connection;
 }
-@synthesize viewSource;
+@synthesize viewType;
 @synthesize saveBar, createTeamBar, createTeamButton, teamLogoImageView, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, selectTeamLogoButton, numOfTeamMemberView, numOfTeamMemberLabel, recruitFlagSwitch, recruitAnnouncementTextView, challengeFlagSwitch, challengeAnnouncementTextView;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -67,7 +67,7 @@
     textFieldArray = @[teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, recruitAnnouncementTextView, challengeAnnouncementTextView];
     
     //Set the controls enable status
-    if (viewSource == EditProfileViewSource_Main) {
+    if (viewType == EditProfileViewType_Default) {
         if (gMyUserInfo.team) {
             //Team Member check the teamProfile
             for (UIControl * control in textFieldArray) {
@@ -76,7 +76,7 @@
             [selectTeamLogoButton setEnabled:gMyUserInfo.userType];
             [recruitFlagSwitch setEnabled:gMyUserInfo.userType];
             [challengeFlagSwitch setEnabled:gMyUserInfo.userType];
-            [self setToolbarItems:saveBar.items];
+            [self setToolbarItems:gMyUserInfo.userType?saveBar.items:nil];
             [numOfTeamMemberView setHidden:NO];
             [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_EditTeamProfile_Title"]];
         }
@@ -122,7 +122,6 @@
     
     //Set activityregion Picker
     [activityRegionTextField setTintColor:[UIColor clearColor]];
-    [activityRegionTextField activityRegionTextField];
     
     //Set slogan, recruitAnnouncement, challengeAnnouncement textViews border style consistent with TextField
     [sloganTextView initializeUITextFieldRoundCornerStyle];
@@ -141,14 +140,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO];
-    if (viewSource == EditProfileViewSource_Main) {
-        if (gMyUserInfo.team) {
-            [self.navigationController setToolbarHidden:!gMyUserInfo.userType];
-        }
-        else {
-            [self.navigationController setToolbarHidden:NO];
-        }
-    }
+    [self.navigationController setToolbarHidden:!self.toolbarItems.count];
 }
 
 - (void)didReceiveMemoryWarning

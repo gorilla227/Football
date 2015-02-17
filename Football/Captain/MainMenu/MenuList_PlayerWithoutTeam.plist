@@ -21,6 +21,12 @@
 	<array>
 		<dict>
 			<key>Title</key>
+			<string>比赛安排</string>
+			<key>Identifier</key>
+			<string>MatchArrangement</string>
+		</dict>
+		<dict>
+			<key>Title</key>
 			<string>寻找组织</string>
 			<key>Identifier</key>
 			<string>FindTeam</string>

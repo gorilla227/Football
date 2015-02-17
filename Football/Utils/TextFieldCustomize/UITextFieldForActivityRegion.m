@@ -10,50 +10,44 @@
 
 @implementation UITextFieldForActivityRegion{
     NSArray *locationList;
-    UIPickerView *locationPicker;
+    ActivityRegionPicker *locationPicker;
 }
 @synthesize selectedActivityRegionCode;
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
--(void)activityRegionTextField
-{
-    //Load ActivityRegions.json
-    NSString *fileString = [[NSBundle mainBundle] pathForResource:@"ActivityRegions" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:fileString];
-    locationList = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    
-    locationPicker = [[UIPickerView alloc] init];
-    [locationPicker setDelegate:self];
-    [locationPicker setDataSource:self];
-    [self setInputView:locationPicker];
-}
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+     //Load ActivityRegions.json
+     NSString *fileString = [[NSBundle mainBundle] pathForResource:@"ActivityRegions" ofType:@"json"];
+     NSData *data = [NSData dataWithContentsOfFile:fileString];
+     locationList = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+     
+     locationPicker = [[ActivityRegionPicker alloc] init];
+     [locationPicker setDelegate:self];
+     [locationPicker setDataSource:self];
+     [self setInputView:locationPicker];
+ }
 
 -(void)presetActivityRegionCode:(NSArray *)activityRegionCode
 {
     NSMutableString *regionString;
     selectedActivityRegionCode = activityRegionCode;
+    NSMutableArray *selectedRows;
     for (NSDictionary *province in locationList) {
         if ([[province objectForKey:@"id"] isEqualToString:selectedActivityRegionCode[0]]) {
             regionString = [[NSMutableString alloc] initWithString:[province objectForKey:@"name"]];
-            [locationPicker selectRow:[locationList indexOfObject:province] inComponent:0 animated:NO];
+            selectedRows = [NSMutableArray arrayWithObject:[NSNumber numberWithInteger:[locationList indexOfObject:province] + 1]];
             if (selectedActivityRegionCode.count > 1) {
                 for (NSDictionary *city in [province objectForKey:@"city"]) {
                     if ([[city objectForKey:@"id"] isEqualToString:selectedActivityRegionCode[1]]) {
                         [regionString appendString:[NSString stringWithFormat:@" %@", [city objectForKey:@"name"]]];
-                        [locationPicker selectRow:[[province objectForKey:@"city"] indexOfObject:city] inComponent:1 animated:NO];
+                        [selectedRows addObject:[NSNumber numberWithInteger:[[province objectForKey:@"city"] indexOfObject:city] + 1]];
                         if (selectedActivityRegionCode.count > 2) {
                             for (NSDictionary *district in [city objectForKey:@"district"]) {
                                 if ([[district objectForKey:@"id"] isEqualToString:selectedActivityRegionCode[2]]) {
                                     [regionString appendString:[NSString stringWithFormat:@" %@", [district objectForKey:@"name"]]];
-                                    [locationPicker selectRow:[[city objectForKey:@"district"] indexOfObject:district] inComponent:2 animated:NO];
+                                    [selectedRows addObject:[NSNumber numberWithInteger:[[city objectForKey:@"district"] indexOfObject:district] + 1]];
                                     break;
                                 }
                             }
@@ -66,6 +60,13 @@
         }
     }
     [self setText:regionString];
+    [locationPicker setSelectedRows:selectedRows];
+    for (NSNumber *selectedRow in selectedRows) {
+        if ([locationPicker selectedRowInComponent:[selectedRows indexOfObject:selectedRow]] != selectedRow.integerValue) {
+            [locationPicker drawRect:locationPicker.bounds];
+            break;
+        }
+    }
 }
 
 #pragma UIPickerView Methods
@@ -133,11 +134,19 @@
 
     //Save the code of selected ActivityRegion
     selectedActivityRegionCode = [NSArray arrayWithArray:code];
+    [locationPicker setSelectedRows:@[[NSNumber numberWithInteger:[locationPicker selectedRowInComponent:0]], [NSNumber numberWithInteger:[locationPicker selectedRowInComponent:1]], [NSNumber numberWithInteger:[locationPicker selectedRowInComponent:2]]]];
 }
 
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 105, 30)];
+    UILabel *label = (UILabel *)view;
+    if (!label) {
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [pickerView rowSizeForComponent:component].width, [pickerView rowSizeForComponent:component].height)];
+        [label setTextAlignment:NSTextAlignmentCenter];
+        [label setMinimumScaleFactor:0.5f];
+        [label adjustsFontSizeToFitWidth];
+    }
+    
     if (row == 0) {
         [label setText:[gUIStrings objectForKey:@"UI_ActivityRegion_UnselectedTitle"]];
     }
@@ -156,18 +165,25 @@
                 break;
         }
     }
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setMinimumScaleFactor:0.5f];
-    [label adjustsFontSizeToFitWidth];
+    
     return label;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+
+@end
+
+@implementation ActivityRegionPicker
+@synthesize selectedRows;
+
+-(void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    if (selectedRows) {
+        for (int i = 0; i < selectedRows.count; i++) {
+            [self selectRow:[[selectedRows objectAtIndex:i] integerValue] inComponent:i animated:NO];
+            if (i < selectedRows.count - 1) {
+                [self reloadComponent:i + 1];
+            }
+        }
+    }
 }
-*/
 
 @end
