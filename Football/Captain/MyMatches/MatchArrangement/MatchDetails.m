@@ -121,9 +121,9 @@
         [matchOpponentTextField setText:selectedOpponentTeam.teamName];
         [matchStadiumTextFiedld setText:matchData.matchField.stadiumName];
         [matchStandardTextField setText:[NSNumber numberWithInteger:matchData.matchStandard].stringValue];
-        //cost
-        //cost_water
+        [costTextField setText:[NSString stringWithFormat:@"%.2f", matchData.cost.floatValue]];
         [costOption_Referee setOn:matchData.withReferee];
+        [costOption_Water setOn:matchData.withWater];
         [scoreTextField setText:(selectedOpponentTeam.teamId == matchData.awayTeam.teamId)?[NSString stringWithFormat:@"%@ : %@", matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]]:[NSString stringWithFormat:@"%@ : %@", matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]]];
         [self.tableView reloadData];
     }

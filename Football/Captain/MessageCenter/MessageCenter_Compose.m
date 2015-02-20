@@ -139,7 +139,7 @@
             [matchTextField setText:[NSString stringWithFormat:@"%@ - %@", [dateFormatter stringFromDate:matchData.beginTime], (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam.teamName:matchData.homeTeam.teamName]];
         }
         else {
-            [connection requestMatchesByTeamId:gMyUserInfo.userId inStatus:@[[NSNumber numberWithInteger:3]] sort:0 count:5 startIndex:0 isSync:YES];
+            [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.userId inStatus:@[[NSNumber numberWithInteger:3]] sort:0 count:5 startIndex:0 isSync:YES];
         }
     }
 }

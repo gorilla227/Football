@@ -642,26 +642,26 @@
     NSDictionary *parameters = CONNECT_ReplyMatchNotice_Parameters([NSNumber numberWithInteger:messageId], [NSNumber numberWithInteger:answer?2:3]);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-        [delegate replyMatchNoticeAnswer:answer isSent:YES];
+        [delegate replyMatchNotice:messageId withAnswer:answer isSent:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [delegate replyMatchNoticeAnswer:answer isSent:NO];
+        [delegate replyMatchNotice:messageId withAnswer:answer isSent:NO];
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
 
 //Request MatchList
--(void)requestMatchesByTeamId:(NSInteger)teamId inStatus:(NSArray *)status sort:(NSInteger)sort count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption
+-(void)requestMatchesByPlayer:(NSInteger)playerId forTeam:(NSInteger)teamId inStatus:(NSArray *)status sort:(NSInteger)sort count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption
 {
     if (syncOption) {
         [busyIndicatorDelegate lockView];
     }
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_MatchList_Suffix];
-    NSDictionary *parameters = CONNECT_MatchList_Parameters([NSNumber numberWithInteger:teamId], [status componentsJoinedByString:@","], [NSNumber numberWithInteger:sort], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
+    NSDictionary *parameters = CONNECT_MatchList_Parameters([NSNumber numberWithInteger:playerId], [NSNumber numberWithInteger:teamId], [status componentsJoinedByString:@","], [NSNumber numberWithInteger:sort], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (syncOption) {
             [busyIndicatorDelegate unlockView];
         }
-        NSLog(@"%@", responseObject);
+//        NSLog(@"%@", responseObject);
         NSMutableArray *matches = [NSMutableArray new];
         for (NSDictionary *matchData in responseObject) {
             Match *match = [[Match alloc] initWithData:matchData];

@@ -126,7 +126,7 @@
 
 //Get Matchlist
 #define CONNECT_MatchList_Suffix @"match/list"
-#define CONNECT_MatchList_Parameters(teamId, status, sort, startIndex, count) @{@"team_id":teamId, @"status":status, @"order":sort, @"start":startIndex, @"count":count}
+#define CONNECT_MatchList_Parameters(playerId, teamId, status, sort, startIndex, count) @{@"player_id":playerId, @"team_id":teamId, @"status":status, @"order":sort, @"start":startIndex, @"count":count}
 
 //Get Match by matchId
 #define CONNECT_RequestMatchByMatchID_Suffix @"match/getmatchbyid"

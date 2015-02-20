@@ -305,36 +305,38 @@
             endingLineNumber = "363"
             landmarkName = "-scrollViewDidEndDragging:willDecelerate:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[PlayerMarket scrollViewDidEndDragging:willDecelerate:]"
-                  moduleName = "Football"
-                  urlString = "file:///Users/Andy/Dropbox/Soccer_SourceCode/Football/Football/Captain/Miscellaneous/PlayerMarket/PlayerMarket.m"
-                  timestampString = "445848905.255697"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "363"
-                  endingLineNumber = "363"
-                  offsetFromSymbolStart = "55">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[PlayerMarket scrollViewDidEndDragging:willDecelerate:]"
-                  moduleName = "Football"
-                  urlString = "file:///Users/Andy/Dropbox/Soccer_SourceCode/Football/Football/Captain/Miscellaneous/PlayerMarket/PlayerMarket.m"
-                  timestampString = "445848905.255876"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "363"
-                  endingLineNumber = "363"
-                  offsetFromSymbolStart = "89">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Football/Captain/Soccer_BaseNavigationController.m"
+            timestampString = "446015561.657999"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-lockView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Football/Utils/JSONConnect/JSONConnect.m"
+            timestampString = "446015673.292343"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "655"
+            endingLineNumber = "655"
+            landmarkName = "-requestMatchesByPlayer:forTeam:inStatus:sort:count:startIndex:isSync:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

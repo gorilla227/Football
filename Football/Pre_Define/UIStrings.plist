@@ -247,6 +247,16 @@
 	<string>通知球员</string>
 	<key>UI_MatchArrangement_ActionButton_EnterScore</key>
 	<string>输入比分</string>
+	<key>UI_MatchArrangement_ActionButton_Response</key>
+	<string>回应邀请</string>
+	<key>UI_MatchArrangement_ActionButton_NotInvited</key>
+	<string>未被邀请</string>
+	<key>UI_MatchArrangement_ActionButton_Accepted</key>
+	<string>同意参赛</string>
+	<key>UI_MatchArrangement_ActionButton_Refused</key>
+	<string>拒绝参赛</string>
+	<key>UI_MatchArrangement_ActionButton_Expired</key>
+	<string>已过期</string>
 	<key>UI_MatchArrangement_NoticePlayerTitle</key>
 	<string>请选择要通知的人员</string>
 	<key>UI_MatchArrangement_NoticePlayerCancel</key>
@@ -292,7 +302,5 @@
 	<string>参加</string>
 	<key>UI_ReplyMatchNoticeAlertView_Message_Refuse</key>
 	<string>不参加</string>
-	<key>New item</key>
-	<string></string>
 </dict>
 </plist>

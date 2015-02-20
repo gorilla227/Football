@@ -406,7 +406,7 @@
 
 #pragma Match
 @implementation Match
-@synthesize matchId, matchTitle, beginTime, beginTimeLocal, matchField, homeTeam, awayTeam, homeTeamGoal, awayTeamGoal, matchStandard, withReferee, organizerId, status, createTime, createTimeLocal, sentMatchNotices, confirmedMember, confirmedTemp;
+@synthesize matchId, matchTitle, beginTime, beginTimeLocal, matchField, homeTeam, awayTeam, homeTeamGoal, awayTeamGoal, matchStandard, cost, withReferee, withWater, organizerId, status, createTime, createTimeLocal, sentMatchNotices, confirmedMember, confirmedTemp, matchNotice;
 -(id)copy
 {
     Match *matchCopy = [[Match alloc] init];
@@ -420,7 +420,9 @@
     [matchCopy setHomeTeamGoal:homeTeamGoal];
     [matchCopy setAwayTeamGoal:awayTeamGoal];
     [matchCopy setMatchStandard:matchStandard];
+    [matchCopy setCost:[cost copy]];
     [matchCopy setWithReferee:withReferee];
+    [matchCopy setWithWater:withWater];
     [matchCopy setOrganizerId:organizerId];
     [matchCopy setStatus:status];
     [matchCopy setCreateTime:[createTime copy]];
@@ -428,6 +430,7 @@
     [matchCopy setSentMatchNotices:[sentMatchNotices copy]];
     [matchCopy setConfirmedMember:[confirmedMember copy]];
     [matchCopy setConfirmedTemp:[confirmedTemp copy]];
+    [matchCopy setMatchNotice:[matchNotice copy]];
     return matchCopy;
 }
 
@@ -448,7 +451,9 @@
         [self setHomeTeamGoal:[[data objectForKey:kMatch_homeTeamGoal] integerValue]];
         [self setAwayTeamGoal:[[data objectForKey:kMatch_awayTeamGoal] integerValue]];
         [self setMatchStandard:[[data objectForKey:kMatch_matchStandard] integerValue]];
+        [self setCost:[data objectForKey:kMatch_cost]];
         [self setWithReferee:[[data objectForKey:kMatch_withReferee] boolValue]];
+        [self setWithWater:[[data objectForKey:kMatch_withWater] boolValue]];
         [self setOrganizerId:[[data objectForKey:kMatch_organizerId] integerValue]];
         [self setStatus:[[data objectForKey:kMatch_status] integerValue]];
         [self setCreateTime:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kMatch_createTime] integerValue]]];
@@ -456,6 +461,9 @@
         [self setSentMatchNotices:[data objectForKey:kMatch_sentMatchNotices]];
         [self setConfirmedMember:[data objectForKey:kMatch_confirmedMember]];
         [self setConfirmedTemp:[data objectForKey:kMatch_confirmedTemp]];
+        if ([[data objectForKey:kMatch_matchNotice] isKindOfClass:[NSDictionary class]]) {
+            [self setMatchNotice:[[Message alloc] initWithData:[data objectForKey:kMatch_matchNotice]]];
+        }
     }
     return self;
 }
@@ -491,8 +499,14 @@
     if (matchStandard != originalMatch.matchStandard) {
         [ouput setObject:[NSNumber numberWithInteger:matchStandard] forKey:kMatch_matchStandard];
     }
+    if (![cost isEqualToNumber:originalMatch.cost]) {
+        [ouput setObject:cost forKey:kMatch_cost];
+    }
     if (withReferee != originalMatch.withReferee) {
         [ouput setObject:[NSNumber numberWithBool:withReferee] forKey:kMatch_withReferee];
+    }
+    if (withWater != originalMatch.withWater) {
+        [ouput setObject:[NSNumber numberWithBool:withWater] forKey:kMatch_withWater];
     }
     if (organizerId != originalMatch.organizerId) {
         [ouput setObject:[NSNumber numberWithInteger:organizerId] forKey:kMatch_organizerId];
@@ -514,6 +528,9 @@
     }
     if (![confirmedTemp isEqualToNumber:originalMatch.confirmedTemp]) {
         [ouput setObject:confirmedTemp forKey:kMatch_confirmedTemp];
+    }
+    if (matchNotice.messageId != originalMatch.matchNotice.messageId) {
+        [ouput setObject:matchNotice forKey:kMatch_matchNotice];
     }
     return ouput;
 }

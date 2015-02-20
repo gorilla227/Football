@@ -153,7 +153,9 @@
 #define kMatch_homeTeamGoal @"host_team_goal"
 #define kMatch_awayTeamGoal @"guest_team_goal"
 #define kMatch_matchStandard @"standard"
+#define kMatch_cost @"cost"
 #define kMatch_withReferee @"with_referee"
+#define kMatch_withWater @"with_water"
 #define kMatch_organizerId @"organiser"
 #define kMatch_status @"status"
 #define kMatch_createTime @"create_time"
@@ -161,6 +163,7 @@
 #define kMatch_sentMatchNotices @"match_notice_sent"
 #define kMatch_confirmedMember @"member_confirmed"
 #define kMatch_confirmedTemp @"temp_member_confirmed"
+#define kMatch_matchNotice @"player_message"
 @interface Match: NSObject
 @property NSInteger matchId;
 @property NSString *matchTitle;
@@ -172,7 +175,9 @@
 @property NSInteger homeTeamGoal;
 @property NSInteger awayTeamGoal;
 @property NSInteger matchStandard;
+@property NSNumber *cost;
 @property BOOL withReferee;
+@property BOOL withWater;
 @property NSInteger organizerId;
 @property NSInteger status;
 @property NSDate *createTime;
@@ -180,6 +185,7 @@
 @property NSNumber *sentMatchNotices;
 @property NSNumber *confirmedMember;
 @property NSNumber *confirmedTemp;
+@property Message *matchNotice;
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)dictionaryForUpdate:(Match *)originalMatch;
 @end

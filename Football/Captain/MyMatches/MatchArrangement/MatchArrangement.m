@@ -101,10 +101,6 @@
     }
 }
 
--(void)replyMatchNoticeSent:(BOOL)result{
-    NSLog(@"%@", result?@"YES":@"NO");
-}
-
 #pragma MatchArrangementActionDelegate
 -(void)noticeTeamMembers:(Match *)matchData {
     matchNotice_MatchData = matchData;
@@ -124,10 +120,6 @@
     [matchDetails setViewType:MatchDetailsViewType_ViewDetails];
     [matchDetails setMatchData:matchData];
     [self.navigationController pushViewController:matchDetails animated:YES];
-}
-
--(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer {
-    [connection replyMatchNotice:messageId withAnswer:answer];
 }
 
 #pragma mark - Navigation
