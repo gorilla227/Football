@@ -115,9 +115,22 @@
     [self.navigationController pushViewController:playerMarket animated:YES];
 }
 
--(void)viewMatchDetails:(Match *)matchData {
+-(void)viewMatchDetails:(Match *)matchData forResponseType:(enum MatchResponseTypes)responseType {
     MatchDetails *matchDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"MatchDetails"];
-    [matchDetails setViewType:MatchDetailsViewType_ViewDetails];
+    switch (responseType) {
+        case MatchResponseType_Default:
+            [matchDetails setViewType:MatchDetailsViewType_ViewDetails];
+            break;
+        case MatchResponseType_MatchInvitation:
+            [matchDetails setViewType:MatchDetailsViewType_MatchInvitation];
+            break;
+        case MatchResponseType_MatchNotice:
+            [matchDetails setViewType:MatchDetailsViewType_MatchNotice];
+            break;
+        default:
+            break;
+    }
+    
     [matchDetails setMatchData:matchData];
     [self.navigationController pushViewController:matchDetails animated:YES];
 }

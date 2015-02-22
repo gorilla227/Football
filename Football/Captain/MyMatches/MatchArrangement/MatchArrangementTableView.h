@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+enum MatchResponseTypes {
+    MatchResponseType_Default,
+    MatchResponseType_MatchInvitation,
+    MatchResponseType_MatchNotice
+};
+
 @protocol MatchArrangementReplyMatchNoticeDelegate <NSObject>
 -(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer;
 @end
@@ -14,12 +20,13 @@
 @protocol MatchArrangementActionDelegate <NSObject>
 -(void)noticeTeamMembers:(Match *)matchData;
 -(void)noticeTempFavor:(Match *)matchData;
--(void)viewMatchDetails:(Match *)matchData;
+-(void)viewMatchDetails:(Match *)matchData forResponseType:(enum MatchResponseTypes)responseType;
 //-(void)enterScore:(Match *)matchData;
 //-(void)viewScore:(Match *)matchData;
 @end
 
 @interface MatchArrangementTableView_Cell : UITableViewCell<UIActionSheetDelegate>
+@property enum MatchResponseTypes responseType;
 @property Match *matchData;
 @property id<MatchArrangementActionDelegate>delegate;
 @property id<MatchArrangementReplyMatchNoticeDelegate>replyMatchNoticeDelegate;

@@ -164,6 +164,11 @@
 #define kMatch_confirmedMember @"member_confirmed"
 #define kMatch_confirmedTemp @"temp_member_confirmed"
 #define kMatch_matchNotice @"player_message"
+#define kMatch_fieldId @"field_id"
+#define kMatch_homeTeamId @"host_team_id"
+#define kMatch_awayTeamId @"guest_team_id"
+#define kMatch_homeTeamCaptainId @"host_team_captain_id"
+#define kMatch_awayTeamCaptainId @"guest_team_captain_id"
 @interface Match: NSObject
 @property NSInteger matchId;
 @property NSString *matchTitle;
@@ -188,6 +193,7 @@
 @property Message *matchNotice;
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)dictionaryForUpdate:(Match *)originalMatch;
+-(NSDictionary *)dictionaryForCreateMatchWithRealTeam;
 @end
 
 @interface MatchScore : NSObject

@@ -139,9 +139,9 @@
     [self presetMatchData];
 }
 
--(void)replyMatchNoticeAnswer:(BOOL)answer isSent:(BOOL)result {
+-(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer isSent:(BOOL)result {
     if (result) {
-        [message setStatus:answer?2:3];
+        [matchData.matchNotice setStatus:answer?2:3];
     }
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:result?[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Title_Succ"]:[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Title_Fail"]
@@ -177,16 +177,10 @@
     [matchTimeTextField setInputView:matchTimePicker];
     [matchTimeTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
     [matchTimeTextField setTintColor:[UIColor clearColor]];
-    
-//    [matchTimeTextField initialLeftViewWithLabelName:def_createMatch_time labelWidth:75 iconImage:@"leftIcon_createMatch_time.png"];
-    
-    //Initial hint
-//    [hintView settingHintWithTextKey:@"EnterTime" underView:matchTimeTextField wantShow:YES];
 }
 
 -(void)initialMatchOpponent
 {
-//    [matchOpponentTextField initialLeftViewWithLabelName:def_createMatch_opponent labelWidth:75 iconImage:@"leftIcon_createMatch_opponent.png"];
     [inviteOpponentButton.layer setCornerRadius:5.0f];
     [inviteOpponentButton.layer setMasksToBounds:YES];
     [matchOpponentTextField setRightView:inviteOpponentButton];
@@ -197,15 +191,12 @@
 
 -(void)initialMatchStadium
 {
-//    [matchStadiumTextFiedld initialLeftViewWithLabelName:def_createMatch_place labelWidth:75 iconImage:@"leftIcon_createMatch_place.png"];
     [matchStadiumTextFiedld textFieldInitialization:gStadiums homeStadium:gMyUserInfo.team.homeStadium showSelectHomeStadium:YES];
     [matchStadiumTextFiedld setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
 -(void)initialMatchStandard
 {
-//    [matchStandardTextField initialLeftViewWithLabelName:def_createMatch_numOfPlayers labelWidth:75 iconImage:@"leftIcon_createMatch_numOfPlayers.png"];
-    
     //Set UIStepper as rightView
     matchStandardStepper = [[UIStepper alloc] init];
     [matchStandardStepper setTintColor:cLightBlue(1.0)];
@@ -223,7 +214,6 @@
 
 -(void)initialCost
 {
-//    [costTextField initialLeftViewWithLabelName:def_createMatch_cost labelWidth:75 iconImage:@"leftIcon_createMatch_cost.png"];
     [costTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
     [costOption_Referee setEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
     [costOption_Water setEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
@@ -231,7 +221,6 @@
 
 -(void)initialMatchScore
 {
-//    [scoreTextField initialLeftViewWithLabelName:def_createMatch_score labelWidth:75 iconImage:@"leftIcon_createMatch_score.png"];
     [scoreTextField initialTextFieldForMatchScore];
     [scoreTextField setIsRegularMatch:(viewType != MatchDetailsViewType_CreateMatch)];
     [scoreTextField presetHomeScore:3 andAwayScore:1];
@@ -242,11 +231,6 @@
 {
     //Fill the date to matchTime textfield
     [matchTimeTextField setText:[dateFormatter stringFromDate:matchTimePicker.date]];
-    
-//    //Remove the tint
-//    if (hintView) {
-//        [hintView showOrHideHint:NO];
-//    }
     
     //Refresh controller status after matchTime entered
     NSTimeInterval timeInterval = [matchTimePicker.date timeIntervalSinceNow];
@@ -262,6 +246,7 @@
         //MatchTime is Future now
         if (creationProgress == MatchDetailsCreationProgress_Passed) {
             [matchOpponentTextField setText:nil];
+            [self formatMatchOpponent:NO];
         }
         if (creationProgress != MatchDetailsCreationProgress_Future_WithOppo) {
             creationProgress = MatchDetailsCreationProgress_Future_WithoutOppo;
@@ -283,11 +268,11 @@
 }
 
 -(IBAction)acceptMatchNoticeButtonOnClicked:(id)sender {
-    [connection replyMatchNotice:message.messageId withAnswer:YES];
+    [connection replyMatchNotice:matchData.matchNotice.messageId withAnswer:YES];
 }
 
 -(IBAction)refuseMatchNoticeButtonOnClicked:(id)sender {
-    [connection replyMatchNotice:message.messageId withAnswer:NO];
+    [connection replyMatchNotice:matchData.matchNotice.messageId withAnswer:NO];
 }
 
 #pragma UITextFieldDelegate
@@ -512,6 +497,7 @@
     [matchOpponentTextField setText:selectedTeam.teamName];
     selectedOpponentTeam = selectedTeam;
     [self formatMatchOpponent:YES];
+    [self textFieldDidEndEditing:matchOpponentTextField];
 }
 
 #pragma mark - Navigation

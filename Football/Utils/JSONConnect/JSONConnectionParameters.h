@@ -136,6 +136,10 @@
 #define CONNECT_UpdateMatchStatus_Suffix @"match/update"
 #define CONNECT_UpdateMatchStatus_Parameters(matchId, organizerId, statusId) @{@"match_id":[NSNumber numberWithInteger:matchId], @"member_id":[NSNumber numberWithInteger:organizerId], @"status":[NSNumber numberWithInteger:statusId]}
 
+//Create Match With Real Team
+#define CONNECT_CreateMatchWithRealTeam_Suffix @"match/create"
+#define CONNECT_CreateMatchWithRealTeam_Parameters(matchData) matchData
+
 #pragma zzOld_Server
 //JSON variables
 #define JSON_serverURL @"http://inomind.de:8080/SoccerServer"

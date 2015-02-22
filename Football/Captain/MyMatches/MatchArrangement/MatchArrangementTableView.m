@@ -22,7 +22,7 @@
 
 @implementation MatchArrangementTableView_Cell
 @synthesize numberOfPlayersLabel, matchOpponentLabel, matchStadiumLabel, matchStandardLabel, actionIcon, actionButton, matchDateAndTimeLabel, actionView;
-@synthesize matchData, delegate, replyMatchNoticeDelegate;
+@synthesize responseType, matchData, delegate, replyMatchNoticeDelegate;
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
@@ -39,7 +39,7 @@
 }
 
 -(void)pushMatchDetails {
-    [delegate viewMatchDetails:matchData];
+    [delegate viewMatchDetails:matchData forResponseType:self.responseType];
 }
 
 -(IBAction)actionButtonOnClicked:(id)sender {
@@ -207,7 +207,7 @@
     Team *opponent = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam:matchData.homeTeam;
     
     // Configure the cell...
-    [cell setDelegate:(id)self.parentViewController.parentViewController];
+    [cell setDelegate:(id)self.navigationController.visibleViewController];
     [cell setReplyMatchNoticeDelegate:self];
     [cell setMatchData:matchData];
     [cell.matchOpponentLabel setText:opponent.teamName];
@@ -230,6 +230,7 @@
             case 3://未开始比赛
                 [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_noticePlayers.png"]];
                 [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_NoticePlayer"] forState:UIControlStateNormal];
+                [cell setResponseType:(gMyUserInfo.userId == matchData.organizerId)?MatchResponseType_Default:MatchResponseType_MatchInvitation];
                 break;
             case 4://已结束比赛
                 [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_fillMatchData.png"]];
@@ -239,6 +240,7 @@
                 else {
                     [cell.actionButton setTitle:matchData.awayTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
                 }
+                [cell setResponseType:MatchResponseType_Default];
                 break;
             default:
                 break;
@@ -255,18 +257,22 @@
                         case 1:
                             [cell.actionButton setEnabled:YES];
                             [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Response"] forState:UIControlStateNormal];
+                            [cell setResponseType:MatchResponseType_MatchNotice];
                             break;
                         case 2:
                             [cell.actionButton setEnabled:NO];
                             [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Accepted"] forState:UIControlStateNormal];
+                            [cell setResponseType:MatchResponseType_Default];
                             break;
                         case 3:
                             [cell.actionButton setEnabled:NO];
                             [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Refused"] forState:UIControlStateNormal];
+                            [cell setResponseType:MatchResponseType_Default];
                             break;
                         case 4:
                             [cell.actionButton setEnabled:NO];
                             [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Expired"] forState:UIControlStateNormal];
+                            [cell setResponseType:MatchResponseType_Default];
                         default:
                             break;
                     }
@@ -274,6 +280,7 @@
                 else {
                     [cell.actionButton setEnabled:NO];
                     [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_NotInvited"] forState:UIControlStateNormal];
+                    [cell setResponseType:MatchResponseType_Default];
                 }
                 break;
             case 4://已结束比赛
@@ -284,6 +291,7 @@
                 else {
                     [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
                 }
+                [cell setResponseType:MatchResponseType_Default];
                 break;
             default:
                 break;

@@ -74,6 +74,7 @@ enum RequestMessageSourceType
 -(void)updateMatchStatusSuccessfully;//修改比赛状态成功
 -(void)updateMatchStatusFailed;//修改比赛状态失败
 -(void)receiveMatch:(Match *)match;//获取指定id的Match成功
+-(void)createMatchWithRealTeam:(Match *)newMatch result:(BOOL)result;//创建与实体球队
 
 @end
 
@@ -122,6 +123,7 @@ enum RequestMessageSourceType
 //Match Management
 -(void)requestMatchesByPlayer:(NSInteger)playerId forTeam:(NSInteger)teamId inStatus:(NSArray *)status sort:(NSInteger)sort count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption;//获取球队的比赛列表
 -(void)updateMatchStatus:(NSInteger)statusId organizer:(NSInteger)organizerId match:(NSInteger)matchId;//修改比赛状态
--(void)requestMatchesByMatchId:(NSInteger)matchId;
+-(void)requestMatchesByMatchId:(NSInteger)matchId;//通过比赛id获取比赛详情
+-(void)createMatchWithRealTeam:(Match *)newMatch;//创建与实体队的比赛
 
 @end

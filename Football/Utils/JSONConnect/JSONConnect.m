@@ -687,8 +687,7 @@
 }
 
 //Update Match Status
--(void)updateMatchStatus:(NSInteger)statusId organizer:(NSInteger)organizerId match:(NSInteger)matchId
-{
+-(void)updateMatchStatus:(NSInteger)statusId organizer:(NSInteger)organizerId match:(NSInteger)matchId {
     [busyIndicatorDelegate lockView];
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateMatchStatus_Suffix];
     NSDictionary *parameters = CONNECT_UpdateMatchStatus_Parameters(matchId, organizerId, statusId);
@@ -701,6 +700,18 @@
         else {
             [delegate updateMatchStatusSuccessfully];
         }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//Create Match With Real Team
+-(void)createMatchWithRealTeam:(Match *)newMatch {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_CreateMatchWithRealTeam_Suffix];
+    NSDictionary *parameters = CONNECT_CreateMatchWithRealTeam_Parameters([newMatch dictionaryForCreateMatchWithRealTeam]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
