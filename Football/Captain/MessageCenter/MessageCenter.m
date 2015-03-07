@@ -36,26 +36,23 @@
 @end
 
 @interface MessageCenter ()
-@property IBOutlet UISegmentedControl *sourceTypeController;
+@property IBOutlet UITextFieldForMessageTypeSelection *messageTypeTextField;
 @property IBOutlet UILabel *moreLabel;
 @property IBOutlet UIActivityIndicatorView *moreActivityIndicator;
 @property IBOutlet UIView *moreFooterView;
-@property IBOutlet UITableView *messageTableView;
+@property IBOutlet UITapGestureRecognizer *dismissKeyboardGestureRecognizer;
 @end
 
 @implementation MessageCenter{
-    NSMutableArray *receivedMessageList;
-    NSMutableArray *sentMessageList;
-    NSDictionary *messageSubtypes;
+    NSMutableArray *messageList;
+    NSDictionary *messageTypes;
     JSONConnect *connection;
     NSDictionary *unreadMessageAmount;
     NSInteger count;
-    BOOL haveMoreReceivedMessage;
-    BOOL haveMoreSentMessage;
-    BOOL isLoading;
-    NSArray *messageSubtypeStatus;
+    BOOL haveMoreMessage;
+    NSArray *messageStatusType;
 }
-@synthesize sourceTypeController, moreLabel, moreActivityIndicator, moreFooterView, messageTableView;
+@synthesize messageTypeTextField, moreLabel, moreActivityIndicator, moreFooterView, dismissKeyboardGestureRecognizer;
 
 - (void)viewDidLoad
 {
@@ -67,22 +64,21 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"MessageStatusUpdated" object:nil];
-    [messageTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleTapGesture) name:UITextFieldTextDidBeginEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleTapGesture) name:UITextFieldTextDidEndEditingNotification object:nil];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.tableView setAllowsSelection:!self.tabBarItem.tag];
+    [messageTypeTextField initialMessageTypes:self.tabBarItem.tag userType:0];
     
-    NSArray *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
-    messageSubtypes = [[messageTypes objectAtIndex:self.tabBarItem.tag] objectForKey:@"Subtypes"];
-    messageSubtypeStatus = [gUIStrings objectForKey:@"UI_MessageSubtypeStatus"];
+    messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
+    messageStatusType = [gUIStrings objectForKey:@"UI_MessageStatusType"];
     
     count = [[gSettings objectForKey:@"messageListCount"] integerValue];
-    haveMoreReceivedMessage = YES;
-    haveMoreSentMessage = YES;
-    
+    messageList = [NSMutableArray new];
+    haveMoreMessage = YES;    
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:count isSync:YES];
-    [connection requestSentMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:count isSync:NO];
     
-    [sourceTypeController setBackgroundColor:def_navigationBar_background];
-    [sourceTypeController setTintColor:[UIColor whiteColor]];
+    [self requestMessage];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,63 +95,41 @@
 
 -(void)refreshTableView
 {
-    [messageTableView reloadData];
+    [self.tableView reloadData];
+}
+
+-(void)toggleTapGesture {
+    [dismissKeyboardGestureRecognizer setEnabled:messageTypeTextField.isFirstResponder];
 }
 
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType
 {
-    if (![messageTableView.tableFooterView isEqual:moreFooterView]) {
-        [messageTableView setTableFooterView:moreFooterView];
+    if (![self.tableView.tableFooterView isEqual:moreFooterView]) {
+        [self.tableView setTableFooterView:moreFooterView];
     }
     
-    switch (sourceType) {
-        case RequestMessageSourceType_Receiver:
-            if (receivedMessageList) {
-                [receivedMessageList addObjectsFromArray:messages];
-            }
-            else {
-                receivedMessageList = [NSMutableArray arrayWithArray:messages];
-            }
-            haveMoreReceivedMessage = (messages.count == count);
-            if (sourceTypeController.selectedSegmentIndex == 0) {
-                [messageTableView reloadData];
-            }
-            break;
-        case RequestMessageSourceType_Sender:
-            if (sentMessageList) {
-                [sentMessageList addObjectsFromArray:messages];
-            }
-            else {
-                sentMessageList = [NSMutableArray arrayWithArray:messages];
-            }
-            haveMoreSentMessage = (messages.count == count);
-            if (sourceTypeController.selectedSegmentIndex == 1) {
-                [messageTableView reloadData];
-            }
-            break;
-        default:
-            break;
+    if (messageList) {
+        [messageList addObjectsFromArray:messages];
     }
+    else {
+        messageList = [NSMutableArray arrayWithArray:messages];
+    }
+    haveMoreMessage = (messages.count == count);
+    [self.tableView reloadData];
+
     [moreActivityIndicator stopAnimating];
-    isLoading = NO;
 }
 
 -(void)readMessagesSuccessfully:(NSArray *)messageIdList
 {
     for (NSNumber *messageId in messageIdList) {
-        for (Message *message in receivedMessageList) {
+        for (Message *message in messageList) {
             if (message.messageId == messageId.integerValue) {
                 [message setStatus:1];
             }
         }
     }
-    [messageTableView reloadData];
-}
-
--(IBAction)switchReceivedAndSent:(id)sender
-{
-    [messageTableView setAllowsSelection:sourceTypeController.selectedSegmentIndex == 0];
-    [messageTableView reloadData];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -169,36 +143,18 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    switch (sourceTypeController.selectedSegmentIndex) {
-        case 0:
-            if (haveMoreReceivedMessage) {
-                [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_LoadMore"]];
-            }
-            else {
-                if (receivedMessageList.count == 0) {
-                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoData"]];
-                }
-                else {
-                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoMoreData"]];
-                }
-            }
-            return receivedMessageList.count;
-        case 1:
-            if (haveMoreSentMessage) {
-                [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_LoadMore"]];
-            }
-            else {
-                if (sentMessageList.count == 0) {
-                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoData"]];
-                }
-                else {
-                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoMoreData"]];
-                }
-            }
-            return sentMessageList.count;
-        default:
-            return 0;
+    if (haveMoreMessage) {
+        [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_LoadMore"]];
     }
+    else {
+        if (messageList.count == 0) {
+            [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoData"]];
+        }
+        else {
+            [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoMoreData"]];
+        }
+    }
+    return messageList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -207,20 +163,20 @@
     [dateFormatter setDateFormat:def_MessageDateformat];
     static NSString *CellIdentifier = @"MessageCell";
     MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    Message *message = [sourceTypeController.selectedSegmentIndex?sentMessageList:receivedMessageList objectAtIndex:indexPath.row];
+    Message *message = [messageList objectAtIndex:indexPath.row];
     
     // Configure the cell...
     [cell.messageBody setText:message.messageBody];
-    [cell.messageTypeLabel setText:[messageSubtypes objectForKey:[NSNumber numberWithInteger:message.messageType].stringValue]];
-    if (sourceTypeController.selectedSegmentIndex == 0) {
+    [cell.messageTypeLabel setText:[messageTypes objectForKey:[NSNumber numberWithInteger:message.messageType].stringValue]];
+    if (self.tabBarItem.tag == 0) {
         [cell.messageHead setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MessageHead_Format"], [gUIStrings objectForKey:@"UI_MessageHead_Received"], message.senderName, [dateFormatter stringFromDate:message.creationDate]]];
     }
     else {
         [cell.messageHead setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MessageHead_Format"], [gUIStrings objectForKey:@"UI_MessageHead_Sent"], message.receiverName, [dateFormatter stringFromDate:message.creationDate]]];
     }
-//    [cell.unreadFlag setHidden:message.status != 0 || sourceTypeController.selectedSegmentIndex];
-    [cell.statusLabel setText:messageSubtypeStatus[message.status]];
-    if (sourceTypeController.selectedSegmentIndex == 0) {
+//    [cell.unreadFlag setHidden:message.status != 0 || self.tabBarItem.tag];
+    [cell.statusLabel setText:messageStatusType[message.status]];
+    if (self.tabBarItem.tag == 0) {
         [cell.statusLabel setBackgroundColor:(message.status == 0)?cRed(1):cLightBlue(1)];
     }
     else {
@@ -231,11 +187,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Message *message = [sourceTypeController.selectedSegmentIndex?sentMessageList:receivedMessageList objectAtIndex:indexPath.row];
+    Message *message = [messageList objectAtIndex:indexPath.row];
     PlayerDetails *playerDetails;
     TeamDetails *teamDetails;
     MatchDetails *matchDetails;
-    if (message.status == 0 && sourceTypeController.selectedSegmentIndex == 0) {
+    if (message.status == 0 && self.tabBarItem.tag == 0) {
         [connection readMessages:@[[NSNumber numberWithInteger:message.messageId]]];
     }
     switch (message.messageType) {
@@ -252,14 +208,17 @@
             [self.navigationController pushViewController:playerDetails animated:YES];
             break;
         case 3://比赛通知
+        case 4://临时帮忙
             matchDetails = [[UIStoryboard storyboardWithName:@"Soccer" bundle:nil] instantiateViewControllerWithIdentifier:@"MatchDetails"];
             [matchDetails setViewType:MatchDetailsViewType_MatchNotice];
             [matchDetails setMessage:message];
             [self.navigationController pushViewController:matchDetails animated:YES];
             break;
-        case 4://临时帮忙
-            break;
         case 5://比赛邀请
+            matchDetails = [[UIStoryboard storyboardWithName:@"Soccer" bundle:nil] instantiateViewControllerWithIdentifier:@"MatchDetails"];
+            [matchDetails setViewType:MatchDetailsViewType_MatchInvitation];
+            [matchDetails setMessage:message];
+            [self.navigationController pushViewController:matchDetails animated:YES];
             break;
         default:
             break;
@@ -268,28 +227,35 @@
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !isLoading) {
-        switch (sourceTypeController.selectedSegmentIndex) {
-            case 0:
-                if (haveMoreReceivedMessage) {
-                    [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:receivedMessageList.count count:count isSync:NO];
-                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_Loading"]];
-                    [moreActivityIndicator startAnimating];
-                    isLoading = YES;
-                }
-                break;
-            case 1:
-                if (haveMoreSentMessage) {
-                    [connection requestSentMessage:gMyUserInfo.userId messageTypes:messageSubtypes.allKeys status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:sentMessageList.count count:count isSync:NO];
-                    [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_Loading"]];
-                    [moreActivityIndicator startAnimating];
-                    isLoading = YES;
-                }
-                break;
-            default:
-                break;
-        }
+    if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !moreActivityIndicator.isAnimating) {
+        [self requestMessage];
+        [moreActivityIndicator startAnimating];
     }
+}
+
+- (void)requestMessage {
+    switch (self.tabBarItem.tag) {
+        case 0:
+            [connection requestReceivedMessage:gMyUserInfo messageType:[messageTypeTextField selectedMessageType] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:messageList.count count:count isSync:YES];
+            break;
+        case 1:
+            [connection requestSentMessage:gMyUserInfo messageType:[messageTypeTextField selectedMessageType] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:messageList.count count:count isSync:YES];
+            break;
+        default:
+            break;
+    }
+}
+
+- (IBAction)dismissKeyboard:(id)sender {
+    [messageTypeTextField resignFirstResponder];
+}
+
+
+#pragma MessageTypeSelectionDelegate
+- (void)didSelectMessageType:(NSString *)messageTypeId {
+    messageList = [NSMutableArray new];
+    haveMoreMessage = YES;
+    [self requestMessage];
 }
 
 #pragma mark - Navigation

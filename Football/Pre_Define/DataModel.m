@@ -534,21 +534,6 @@
     }
     return ouput;
 }
-
--(NSDictionary *)dictionaryForCreateMatchWithRealTeam {
-    NSMutableDictionary *output = [NSMutableDictionary new];
-    [output setObject:matchTitle forKey:kMatch_matchTitle];
-    [output setObject:[NSNumber numberWithInteger:[beginTime timeIntervalSince1970]] forKey:kMatch_beginTime];
-    [output setObject:[NSNumber numberWithInteger:12] forKey:kMatch_homeTeamCaptainId];
-    [output setObject:[NSNumber numberWithInteger:6] forKey:kMatch_awayTeamCaptainId];
-    [output setObject:[NSNumber numberWithInteger:matchStandard] forKey:kMatch_matchStandard];
-    [output setObject:cost forKey:kMatch_cost];
-    [output setObject:[NSNumber numberWithBool:withReferee] forKey:kMatch_withReferee];
-    [output setObject:[NSNumber numberWithBool:withWater] forKey:kMatch_withWater];
-    [output setObject:[NSNumber numberWithInteger:organizerId] forKey:kMatch_organizerId];
-    return output;
-}
-
 @end
 
 @implementation MatchScore

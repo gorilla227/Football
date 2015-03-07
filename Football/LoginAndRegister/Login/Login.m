@@ -154,19 +154,25 @@
 //    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"PlayerMarket"];
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
-//    //TeamMarket
+    //TeamMarket
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
 //    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"TeamMarket"];
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
-//    //New MatchArrangement
+    //New MatchArrangement
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
 //    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchArrangement"];
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
     //Create Match
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchDetails"];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchDetails"];
+//    [self.navigationController pushViewController:targetViewController animated:YES];
+    
+    //Test Message Center
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil];
+    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"Test_MC"];
+    [self setToolbarItems:[[UIBarButtonItem alloc] initWithCustomView:[[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 30)]]];
     [self.navigationController pushViewController:targetViewController animated:YES];
 }
 //DissmissKeyboard

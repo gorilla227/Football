@@ -32,13 +32,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
+    messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes_ForCaptain"];
     NSMutableArray *tabBarViewControllers = [NSMutableArray new];
-    for (NSDictionary *messageType in messageTypes) {
+//    for (NSDictionary *messageType in messageTypes) {
+//        MessageCenter *messageCenter = [self.storyboard instantiateViewControllerWithIdentifier:@"MessageCenter"];
+//        [messageCenter setTabBarItem:[[UITabBarItem alloc] initWithTitle:[messageType objectForKey:@"TypeName"] image:[[UIImage imageNamed:[messageType objectForKey:@"TypeIcon"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] tag:[messageTypes indexOfObject:messageType]]];
+//        [tabBarViewControllers addObject:messageCenter];
+//    }
+    for (NSDictionary *boxInfo in messageTypes) {
         MessageCenter *messageCenter = [self.storyboard instantiateViewControllerWithIdentifier:@"MessageCenter"];
-        [messageCenter setTabBarItem:[[UITabBarItem alloc] initWithTitle:[messageType objectForKey:@"TypeName"] image:[[UIImage imageNamed:[messageType objectForKey:@"TypeIcon"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] tag:[messageTypes indexOfObject:messageType]]];
+        [messageCenter setTabBarItem:[[UITabBarItem alloc] initWithTitle:[boxInfo objectForKey:@"TabBarItemName"] image:[[UIImage imageNamed:[boxInfo objectForKey:@"TabBarItemImage"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] tag:[messageTypes indexOfObject:boxInfo]]];
         [tabBarViewControllers addObject:messageCenter];
     }
+    
+    
     [self.tabBar setBarTintColor:def_navigationBar_background];
     [self setViewControllers:tabBarViewControllers];
     [composeButton setEnabled:gMyUserInfo.team];
@@ -57,23 +64,23 @@
 
 -(void)refreshUnreadMessageAmount;
 {
-    for (NSDictionary *messageType in messageTypes) {
-        NSArray *amountArray = [gUnreadMessageAmount objectsForKeys:[[messageType objectForKey:@"Subtypes"] allKeys] notFoundMarker:[NSNull null]];
-        NSNumber *amount = [amountArray valueForKeyPath:@"@sum.self"];
-        NSString *badgeString;
-        if (amount.integerValue == 0) {
-            badgeString = nil;
-        }
-        else if (amount.integerValue > 10) {
-            badgeString = @"10+";
-        }
-        else {
-            badgeString = [NSString stringWithFormat:@"%@", amount];
-        }
-        
-        UIViewController *tabController = [self.viewControllers objectAtIndex:[messageTypes indexOfObject:messageType]];
-        [tabController.tabBarItem setBadgeValue:badgeString];
-    }
+//    for (NSDictionary *messageType in messageTypes) {
+//        NSArray *amountArray = [gUnreadMessageAmount objectsForKeys:[[messageType objectForKey:@"Subtypes"] allKeys] notFoundMarker:[NSNull null]];
+//        NSNumber *amount = [amountArray valueForKeyPath:@"@sum.self"];
+//        NSString *badgeString;
+//        if (amount.integerValue == 0) {
+//            badgeString = nil;
+//        }
+//        else if (amount.integerValue > 10) {
+//            badgeString = @"10+";
+//        }
+//        else {
+//            badgeString = [NSString stringWithFormat:@"%@", amount];
+//        }
+//        
+//        UIViewController *tabController = [self.viewControllers objectAtIndex:[messageTypes indexOfObject:messageType]];
+//        [tabController.tabBarItem setBadgeValue:badgeString];
+//    }
 }
 
 #pragma mark - Navigation

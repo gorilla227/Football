@@ -157,8 +157,7 @@
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="textShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <offsetWrapper key="textShadowOffset" horizontal="1" vertical="1"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -329,7 +328,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MatchArrangementCell" id="NM8-hw-0Es" customClass="MatchArrangementTableView_Cell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MatchArrangementCell_ForCaptain" id="NM8-hw-0Es" customClass="MatchArrangementTableView_Cell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NM8-hw-0Es" id="1fO-V0-1qr">
@@ -470,6 +469,92 @@
                                     <outlet property="matchStadiumLabel" destination="5mN-sh-XmM" id="px1-XY-NXu"/>
                                     <outlet property="matchStandardLabel" destination="hE5-PB-bwB" id="zer-Ac-q5g"/>
                                     <outlet property="numberOfPlayersLabel" destination="K7M-P0-BlX" id="umt-fP-f5F"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MatchArrangementCell_ForRegularPlayer" id="yMh-wn-kth" customClass="MatchArrangementTableView_Cell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yMh-wn-kth" id="nCa-1f-vW1">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matchCell_Opponent.png" id="ygg-Cy-41i">
+                                            <rect key="frame" x="8" y="8" width="41" height="41"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开赛时间：20XX-XX-XX XX:XX:XX" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pfP-y3-07V">
+                                            <rect key="frame" x="0.0" y="75" width="320" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" id="xyO-x2-cz0">
+                                            <rect key="frame" x="241" y="0.0" width="70" height="87"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5xR-r5-or2">
+                                                    <rect key="frame" x="0.0" y="42" width="70" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="通知球员">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="disabled">
+                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="actionButtonOnClicked:" destination="yMh-wn-kth" eventType="touchUpInside" id="A31-qd-Q0S"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matchCell_noticePlayers.png" id="8qe-aK-8EX">
+                                                    <rect key="frame" x="20" y="8" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="gsF-6m-KmL">
+                                            <rect key="frame" x="157" y="56" width="70" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matchCell_Stadium.png" id="e60-g9-D6Z">
+                                            <rect key="frame" x="134" y="56" width="15" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="五人制" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="pNO-5w-h1B">
+                                            <rect key="frame" x="31" y="57" width="70" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="matchCell_Standard.png" id="QF0-QN-ClN">
+                                            <rect key="frame" x="8" y="57" width="15" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opponent" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="mKa-Yg-tr7">
+                                            <rect key="frame" x="57" y="8" width="170" height="41"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="actionButton" destination="5xR-r5-or2" id="GxE-Ln-fhP"/>
+                                    <outlet property="actionIcon" destination="8qe-aK-8EX" id="td1-82-WG2"/>
+                                    <outlet property="actionView" destination="xyO-x2-cz0" id="67w-SD-zdH"/>
+                                    <outlet property="matchDateAndTimeLabel" destination="pfP-y3-07V" id="HgW-ye-TUh"/>
+                                    <outlet property="matchOpponentLabel" destination="mKa-Yg-tr7" id="2XD-UF-jfj"/>
+                                    <outlet property="matchStadiumLabel" destination="gsF-6m-KmL" id="X5a-M4-Row"/>
+                                    <outlet property="matchStandardLabel" destination="pNO-5w-h1B" id="xPK-LW-z70"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1118,9 +1203,17 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="aHH-k5-Q24"/>
-                        <barButtonItem title="接受挑战" id="GQH-29-Frr"/>
+                        <barButtonItem title="接受挑战" id="GQH-29-Frr">
+                            <connections>
+                                <action selector="acceptMatchInvitationButtonOnClicked:" destination="oSq-8e-yP8" id="InG-kr-I35"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="7f5-ZT-hZN"/>
-                        <barButtonItem title="拒绝挑战" id="4Yv-H4-xzc"/>
+                        <barButtonItem title="拒绝挑战" id="4Yv-H4-xzc">
+                            <connections>
+                                <action selector="refuseMatchInvitationButtonOnClicked:" destination="oSq-8e-yP8" id="PIw-nX-0Ky"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="uu7-4a-JI9"/>
                     </items>
                 </toolbar>
@@ -1129,7 +1222,11 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="zHQ-yt-HOV"/>
-                        <barButtonItem title="发出约赛请求" id="nwf-8q-kfi"/>
+                        <barButtonItem title="发出约赛请求" id="nwf-8q-kfi">
+                            <connections>
+                                <action selector="createMatchButtonOnClicked:" destination="oSq-8e-yP8" id="rVi-zf-swq"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="OdZ-Su-IuH"/>
                     </items>
                 </toolbar>

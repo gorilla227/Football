@@ -71,13 +71,15 @@ enum RequestMessageSourceType
 
 //Match Management
 -(void)receiveMatchesSuccessfully:(NSArray *)matches;//获取比赛列表成功
--(void)updateMatchStatusSuccessfully;//修改比赛状态成功
--(void)updateMatchStatusFailed;//修改比赛状态失败
+-(void)updateMatchStatus:(BOOL)result;//修改比赛状态成功与否
 -(void)receiveMatch:(Match *)match;//获取指定id的Match成功
--(void)createMatchWithRealTeam:(Match *)newMatch result:(BOOL)result;//创建与实体球队
-
+-(void)createMatchWithRealTeam:(NSInteger)matchId;//创建与实体球队的比赛
+-(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer isSent:(BOOL)result;//队长回应约赛邀请返回结果
 @end
 
+
+
+#pragma new Server
 @interface JSONConnect : NSObject
 @property id<JSONConnectDelegate>delegate;
 @property id<BusyIndicatorDelegate>busyIndicatorDelegate;
@@ -85,7 +87,7 @@ enum RequestMessageSourceType
 -(void)showErrorAlertView:(NSError *)error otherInfo:(NSString *)otherInfo;
 -(void)cancelAllOperations;
 
-#pragma new Server
+
 //Login & Register & Update Profile
 -(void)loginVerification:(NSString *)account password:(NSString *)password;//登录验证
 -(void)requestUserInfo:(NSInteger)userId withTeam:(BOOL)withTeam withReference:(id)reference;//获取用户信息
@@ -109,8 +111,8 @@ enum RequestMessageSourceType
 -(void)addStadium:(Stadium *)stadium;//添加球场
 
 //Messges
--(void)requestReceivedMessage:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取收到的信息
--(void)requestSentMessage:(NSInteger)senderId messageTypes:(NSArray *)messageTypes status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取发出的信息
+-(void)requestReceivedMessage:(UserInfo *)receiver messageType:(NSString *)messageTypeId status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取收到的信息
+-(void)requestSentMessage:(UserInfo *)sender messageType:(NSString *)messageTypeId status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取发出的信息
 -(void)requestUnreadMessageAmount:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes;//获取未读消息数量
 -(void)readMessages:(NSArray *)messageIdList;//设置消息为已读
 -(void)applyinFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message;//球员申请加入球队
@@ -124,6 +126,6 @@ enum RequestMessageSourceType
 -(void)requestMatchesByPlayer:(NSInteger)playerId forTeam:(NSInteger)teamId inStatus:(NSArray *)status sort:(NSInteger)sort count:(NSInteger)count startIndex:(NSInteger)startIndex isSync:(BOOL)syncOption;//获取球队的比赛列表
 -(void)updateMatchStatus:(NSInteger)statusId organizer:(NSInteger)organizerId match:(NSInteger)matchId;//修改比赛状态
 -(void)requestMatchesByMatchId:(NSInteger)matchId;//通过比赛id获取比赛详情
--(void)createMatchWithRealTeam:(Match *)newMatch;//创建与实体队的比赛
-
+-(void)createMatchWithRealTeam:(NSDictionary *)newMatch;//创建与实体队的比赛
+-(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer;//队长回应约战邀请
 @end

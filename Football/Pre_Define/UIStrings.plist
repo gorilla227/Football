@@ -108,37 +108,74 @@
 	<key>UI_MatchNotice_SendingResultMessage</key>
 	<string>%@/%@条比赛通知已发送，请耐心等待对方的回复。</string>
 	<key>UI_MessageTypes</key>
+	<dict>
+		<key>1</key>
+		<string>邀请加入</string>
+		<key>2</key>
+		<string>申请加入</string>
+		<key>3</key>
+		<string>比赛通知</string>
+		<key>4</key>
+		<string>临时帮忙</string>
+		<key>5</key>
+		<string>比赛邀请</string>
+	</dict>
+	<key>UI_MessageTypes_ForCaptain</key>
 	<array>
 		<dict>
-			<key>TypeName</key>
-			<string>队内消息</string>
-			<key>TypeIcon</key>
-			<string>menuIcon_myMatches.png</string>
-			<key>Subtypes</key>
-			<dict>
-				<key>3</key>
-				<string>比赛通知</string>
-			</dict>
+			<key>TabBarItemName</key>
+			<string>收件箱</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>球队消息</string>
+					<key>Types</key>
+					<array>
+						<string>2</string>
+						<string>5</string>
+					</array>
+				</dict>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>个人消息</string>
+					<key>Types</key>
+					<array>
+						<string>4</string>
+					</array>
+				</dict>
+			</array>
 		</dict>
 		<dict>
-			<key>TypeName</key>
-			<string>其他消息</string>
-			<key>TypeIcon</key>
-			<string>menuIcon_myMatches.png</string>
-			<key>Subtypes</key>
-			<dict>
-				<key>1</key>
-				<string>邀请入队</string>
-				<key>2</key>
-				<string>入队申请</string>
-				<key>4</key>
-				<string>临时帮忙</string>
-				<key>5</key>
-				<string>比赛邀请</string>
-			</dict>
+			<key>TabBarItemName</key>
+			<string>发件箱</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>球队消息</string>
+					<key>Types</key>
+					<array>
+						<string>1</string>
+						<string>3</string>
+						<string>4</string>
+						<string>5</string>
+					</array>
+				</dict>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>个人消息</string>
+					<key>Types</key>
+					<array/>
+				</dict>
+			</array>
 		</dict>
 	</array>
-	<key>UI_MessageSubtypeStatus</key>
+	<key>UI_MessageStatusType</key>
 	<array>
 		<string>未读</string>
 		<string>已读</string>
@@ -247,8 +284,12 @@
 	<string>通知球员</string>
 	<key>UI_MatchArrangement_ActionButton_EnterScore</key>
 	<string>输入比分</string>
-	<key>UI_MatchArrangement_ActionButton_Response</key>
+	<key>UI_MatchArrangement_ActionButton_ResponseNotice</key>
 	<string>回应邀请</string>
+	<key>UI_MatchArrangement_ActionButton_ResponseInvitation</key>
+	<string>回应约战</string>
+	<key>UI_MatchArrangement_ActionButton_Pending</key>
+	<string>等待回应</string>
 	<key>UI_MatchArrangement_ActionButton_NotInvited</key>
 	<string>未被邀请</string>
 	<key>UI_MatchArrangement_ActionButton_Accepted</key>
@@ -257,6 +298,8 @@
 	<string>拒绝参赛</string>
 	<key>UI_MatchArrangement_ActionButton_Expired</key>
 	<string>已过期</string>
+	<key>UI_MatchArrangement_ActionButton_OpponentRefused</key>
+	<string>对手拒战</string>
 	<key>UI_MatchArrangement_NoticePlayerTitle</key>
 	<string>请选择要通知的人员</string>
 	<key>UI_MatchArrangement_NoticePlayerCancel</key>
@@ -273,6 +316,14 @@
 	<string>同意参赛</string>
 	<key>UI_MatchArrangement_PlayerResponseRefuse</key>
 	<string>拒绝参赛</string>
+	<key>UI_MatchArrangement_InvitationResponseTitle</key>
+	<string>回应约战邀请</string>
+	<key>UI_MatchArrangement_InvitationResponseCancel</key>
+	<string>取消</string>
+	<key>UI_MatchArrangement_InvitationResponseAccept</key>
+	<string>接受约战</string>
+	<key>UI_MatchArrangement_InvitationResponseRefuse</key>
+	<string>拒绝约战</string>
 	<key>UI_MatchDetails_Title_CreateMatch</key>
 	<string>建立比赛</string>
 	<key>UI_MatchDetails_Title_ViewDetails</key>
@@ -302,5 +353,15 @@
 	<string>参加</string>
 	<key>UI_ReplyMatchNoticeAlertView_Message_Refuse</key>
 	<string>不参加</string>
+	<key>UI_ReplyMatchInvitationAlertView_Title_Succ</key>
+	<string>成功！</string>
+	<key>UI_ReplyMatchInvitationAlertView_Title_Fail</key>
+	<string>失败！</string>
+	<key>UI_ReplyMatchInvitationAlertView_Message</key>
+	<string>你已确认%@&lt;%@&gt;的挑战。</string>
+	<key>UI_ReplyMatchInvitationAlertView_Message_Accept</key>
+	<string>接受</string>
+	<key>UI_ReplyMatchInvitationAlertView_Message_Refuse</key>
+	<string>不接受</string>
 </dict>
 </plist>

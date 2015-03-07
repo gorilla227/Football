@@ -13,8 +13,9 @@ enum MatchResponseTypes {
     MatchResponseType_MatchNotice
 };
 
-@protocol MatchArrangementReplyMatchNoticeDelegate <NSObject>
+@protocol ReplyMatchInvitationAndNoticeDelegate <NSObject>
 -(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer;
+-(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer;
 @end
 
 @protocol MatchArrangementActionDelegate <NSObject>
@@ -29,10 +30,10 @@ enum MatchResponseTypes {
 @property enum MatchResponseTypes responseType;
 @property Match *matchData;
 @property id<MatchArrangementActionDelegate>delegate;
-@property id<MatchArrangementReplyMatchNoticeDelegate>replyMatchNoticeDelegate;
+@property id<ReplyMatchInvitationAndNoticeDelegate>replyMatchInvitationAndNoticeDelegate;
 -(void)pushMatchDetails;
 @end
 
-@interface MatchArrangementTableView : UITableViewController<UIAlertViewDelegate, JSONConnectDelegate, MatchArrangementReplyMatchNoticeDelegate>
+@interface MatchArrangementTableView : UITableViewController<UIAlertViewDelegate, JSONConnectDelegate, ReplyMatchInvitationAndNoticeDelegate>
 
 @end

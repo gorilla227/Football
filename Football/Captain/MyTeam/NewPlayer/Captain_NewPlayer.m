@@ -188,8 +188,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"MessageStatusUpdated" object:nil];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:@[[NSNumber numberWithInteger:2]] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:[[gSettings objectForKey:@"messageListCount"] integerValue] isSync:YES];
-    [connection requestSentMessage:gMyUserInfo.userId messageTypes:@[[NSNumber numberWithInteger:1]] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:[[gSettings objectForKey:@"messageListCount"] integerValue] isSync:YES];
+//    [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:@[[NSNumber numberWithInteger:2]] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:[[gSettings objectForKey:@"messageListCount"] integerValue] isSync:YES];
+//    [connection requestSentMessage:gMyUserInfo.userId messageTypes:@[[NSNumber numberWithInteger:1]] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:0 count:[[gSettings objectForKey:@"messageListCount"] integerValue] isSync:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -219,7 +219,7 @@
             applyinList = messages;
         }
         if (messages.count == [[gSettings objectForKey:@"messageListCount"] integerValue]) {
-            [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:@[[NSNumber numberWithInteger:2]] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:applyinList.count count:[[gSettings objectForKey:@"messageListCount"] integerValue] isSync:YES];
+//            [connection requestReceivedMessage:gMyUserInfo.userId messageTypes:@[[NSNumber numberWithInteger:2]] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:applyinList.count count:[[gSettings objectForKey:@"messageListCount"] integerValue] isSync:YES];
         }
         else {
             for (Message *message in applyinList) {
@@ -238,7 +238,7 @@
             callinList = messages;
         }
         if (messages.count == [[gSettings objectForKey:@"messageListCount"] integerValue]) {
-            [connection requestSentMessage:gMyUserInfo.userId messageTypes:@[[NSNumber numberWithInteger:1]] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:callinList.count count:[[gSettings objectForKey:@"messageListCount"] integerValue] isSync:YES];
+//            [connection requestSentMessage:gMyUserInfo.userId messageTypes:@[[NSNumber numberWithInteger:1]] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:callinList.count count:[[gSettings objectForKey:@"messageListCount"] integerValue] isSync:YES];
         }
         else {
             for (Message *message in callinList) {
@@ -320,8 +320,8 @@
             default:
                 break;
         }
-        NSArray *messageSubtypeStatus = [gUIStrings objectForKey:@"UI_MessageSubtypeStatus"];
-        [cell.statusLabel setText:[messageSubtypeStatus objectAtIndex:message.status]];
+        NSArray *messageStatusType = [gUIStrings objectForKey:@"UI_MessageStatusType"];
+        [cell.statusLabel setText:[messageStatusType objectAtIndex:message.status]];
         [cell.statusLabel setBackgroundColor:[UIColor clearColor]];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:def_MessageDateformat];

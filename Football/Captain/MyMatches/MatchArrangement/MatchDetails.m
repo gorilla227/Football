@@ -94,8 +94,6 @@
             [self setToolbarItems:matchNoticeActionBar.items];
             [self.navigationItem setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_Title_ViewDetails"]];
             [self presetMatchData];
-            [acceptMatchNoticeButton setEnabled:(message.status == 0 || message.status == 1)];
-            [refuseMatchNoticeButton setEnabled:(message.status == 0 || message.status == 1)];
             [dismissKeyboardGestureRecognizer setEnabled:NO];
             break;
         default:
@@ -125,6 +123,18 @@
         [costOption_Referee setOn:matchData.withReferee];
         [costOption_Water setOn:matchData.withWater];
         [scoreTextField setText:(selectedOpponentTeam.teamId == matchData.awayTeam.teamId)?[NSString stringWithFormat:@"%@ : %@", matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]]:[NSString stringWithFormat:@"%@ : %@", matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]]];
+        switch (viewType) {
+            case MatchDetailsViewType_MatchInvitation:
+                [acceptMatchInvitationButton setEnabled:(matchData.matchNotice.status == 0 || matchData.matchNotice.status == 1)];
+                [refuseMatchInvitationButton setEnabled:(matchData.matchNotice.status == 0 || matchData.matchNotice.status == 1)];
+                break;
+            case MatchDetailsViewType_MatchNotice:
+                [acceptMatchNoticeButton setEnabled:(matchData.matchNotice.status == 0 || matchData.matchNotice.status == 1)];
+                [refuseMatchNoticeButton setEnabled:(matchData.matchNotice.status == 0 || matchData.matchNotice.status == 1)];
+                break;
+            default:
+                break;
+        }
         [self.tableView reloadData];
     }
     else {
@@ -139,6 +149,10 @@
     [self presetMatchData];
 }
 
+-(void)createMatchWithRealTeam:(NSInteger)matchId {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer isSent:(BOOL)result {
     if (result) {
         [matchData.matchNotice setStatus:answer?2:3];
@@ -146,6 +160,19 @@
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:result?[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Title_Succ"]:[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Title_Fail"]
                                                         message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Message"], answer?[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Message_Accept"]:[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Message_Refuse"]]
+                                                       delegate:self
+                                              cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+-(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer isSent:(BOOL)result {
+    if (result) {
+        [matchData.matchNotice setStatus:answer?2:3];
+        [matchData setStatus:answer?3:2];
+    }
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:result?[gUIStrings objectForKey:@"UI_ReplyMatchInvitationAlertView_Title_Succ"]:[gUIStrings objectForKey:@"UI_ReplyMatchInvitationAlertView_Title_Fail"]
+                                                        message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_ReplyMatchInvitationAlertView_Message"], answer?[gUIStrings objectForKey:@"UI_ReplyMatchInvitationAlertView_Message_Accept"]:[gUIStrings objectForKey:@"UI_ReplyMatchInvitationAlertView_Message_Refuse"], matchData.homeTeam.teamName]
                                                        delegate:self
                                               cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
                                               otherButtonTitles:nil];
@@ -273,6 +300,29 @@
 
 -(IBAction)refuseMatchNoticeButtonOnClicked:(id)sender {
     [connection replyMatchNotice:matchData.matchNotice.messageId withAnswer:NO];
+}
+
+-(IBAction)acceptMatchInvitationButtonOnClicked:(id)sender {
+    [connection replyMatchInvitation:matchData.matchNotice withAnswer:YES];
+}
+
+-(IBAction)refuseMatchInvitationButtonOnClicked:(id)sender {
+    [connection replyMatchInvitation:matchData.matchNotice withAnswer:NO];
+}
+
+-(IBAction)createMatchButtonOnClicked:(id)sender {
+    NSMutableDictionary *newMatch = [NSMutableDictionary new];
+    [newMatch setObject:@"" forKey:kMatch_matchTitle];
+    [newMatch setObject:[NSNumber numberWithInteger:[matchTimePicker.date timeIntervalSince1970]] forKey:kMatch_beginTime];
+    [newMatch setObject:[NSNumber numberWithInteger:gMyUserInfo.team.teamId] forKey:kMatch_homeTeamId];
+    [newMatch setObject:[NSNumber numberWithInteger:selectedOpponentTeam.teamId] forKey:kMatch_awayTeamId];
+    [newMatch setObject:matchStandardTextField.text forKey:kMatch_matchStandard];
+    [newMatch setObject:costTextField.text forKey:kMatch_cost];
+    [newMatch setObject:[NSNumber numberWithBool:costOption_Referee.isOn] forKey:kMatch_withReferee];
+    [newMatch setObject:[NSNumber numberWithBool:costOption_Water.isOn] forKey:kMatch_withWater];
+    [newMatch setObject:[NSNumber numberWithInteger:gMyUserInfo.userId] forKey:kMatch_organizerId];
+    [newMatch setObject:[NSNumber numberWithInteger:matchStadiumTextFiedld.selectedStadium.stadiumId] forKey:kMatch_fieldId];
+    [connection createMatchWithRealTeam:newMatch];
 }
 
 #pragma UITextFieldDelegate
@@ -480,7 +530,7 @@
     if (isRealTeam) {
         [matchOpponentTextField setTextColor:[UIColor orangeColor]];
         UIImageView *selectedTeamLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, matchOpponentTextField.frame.size.height, matchOpponentTextField.frame.size.height)];
-        [selectedTeamLogo setImage:selectedOpponentTeam.teamLogo];
+        [selectedTeamLogo setImage:selectedOpponentTeam.teamLogo?selectedOpponentTeam.teamLogo:def_defaultTeamLogo];
         [selectedTeamLogo.layer setCornerRadius:5.0f];
         [selectedTeamLogo.layer setMasksToBounds:YES];
         [matchOpponentTextField setLeftView:selectedTeamLogo];

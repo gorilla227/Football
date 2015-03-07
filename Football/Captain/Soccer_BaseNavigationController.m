@@ -57,17 +57,16 @@
     [self.view addSubview:busyIndicator];
     
     //Load the initial view
-//    [mainMenu tableView:mainMenu.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
     [mainMenu initialFirtSelection:[NSIndexPath indexPathForRow:1 inSection:1]];
     
     //Set JSONConnect for request unread message amount repeatly.
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self];
-    messageSubtypes = [NSArray new];
-    NSArray *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
-    for (NSDictionary *messageType in messageTypes) {
-        messageSubtypes = [messageSubtypes arrayByAddingObjectsFromArray:[[messageType objectForKey:@"Subtypes"] allKeys]];
-    }
-    [self refreshUnreadMessageAmount];
+//    messageSubtypes = [NSArray new];
+//    NSDictionary *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
+//    for (NSDictionary *messageType in messageTypes) {
+//        messageSubtypes = [messageSubtypes arrayByAddingObjectsFromArray:[[messageType objectForKey:@"Subtypes"] allKeys]];
+//    }
+//    [self refreshUnreadMessageAmount];
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:[[gSettings objectForKey:@"refreshUnreadMessageAmountDuration"] integerValue] target:self selector:@selector(refreshUnreadMessageAmount) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
@@ -76,7 +75,7 @@
 
 -(void)refreshUnreadMessageAmount
 {
-    [connection requestUnreadMessageAmount:gMyUserInfo.userId messageTypes:messageSubtypes];
+//    [connection requestUnreadMessageAmount:gMyUserInfo.userId messageTypes:messageSubtypes];
 }
 
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount

@@ -133,6 +133,7 @@
 		B229B34719C50A6000D46D02 /* SearchViewSwitchButtonHide.png in Resources */ = {isa = PBXBuildFile; fileRef = B229B34619C50A6000D46D02 /* SearchViewSwitchButtonHide.png */; };
 		B22B10AE193A9683004BE83F /* Captain_BalanceManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = B22B10AD193A9683004BE83F /* Captain_BalanceManagement.m */; };
 		B23C4F891936B59C00FC73F2 /* TeamIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B23C4F881936B59C00FC73F2 /* TeamIcon.jpg */; };
+		B242BA551AA8D7BB00850855 /* UITextFieldForMessageTypeSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = B242BA541AA8D7BB00850855 /* UITextFieldForMessageTypeSelection.m */; };
 		B251F9EA1953B3610031E4A8 /* ActivityRegions.json in Resources */ = {isa = PBXBuildFile; fileRef = B251F9E91953B3610031E4A8 /* ActivityRegions.json */; };
 		B251F9ED1953B4830031E4A8 /* UITextFieldForActivityRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = B251F9EC1953B4830031E4A8 /* UITextFieldForActivityRegion.m */; };
 		B25D501A19BD0A9000C5CDB7 /* PlayerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B25D501919BD0A9000C5CDB7 /* PlayerDetails.m */; };
@@ -350,6 +351,8 @@
 		B229B34619C50A6000D46D02 /* SearchViewSwitchButtonHide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SearchViewSwitchButtonHide.png; path = Resource/PlayerMarket/SearchViewSwitchButtonHide.png; sourceTree = "<group>"; };
 		B22B10AD193A9683004BE83F /* Captain_BalanceManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_BalanceManagement.m; path = Captain/FinanceManagement/BalanceManagement/Captain_BalanceManagement.m; sourceTree = "<group>"; };
 		B23C4F881936B59C00FC73F2 /* TeamIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = TeamIcon.jpg; path = Resource/TeamIcon.jpg; sourceTree = "<group>"; };
+		B242BA531AA8D7BA00850855 /* UITextFieldForMessageTypeSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextFieldForMessageTypeSelection.h; path = Football/Utils/TextFieldCustomize/UITextFieldForMessageTypeSelection.h; sourceTree = "<group>"; };
+		B242BA541AA8D7BB00850855 /* UITextFieldForMessageTypeSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITextFieldForMessageTypeSelection.m; path = Football/Utils/TextFieldCustomize/UITextFieldForMessageTypeSelection.m; sourceTree = "<group>"; };
 		B251F9E91953B3610031E4A8 /* ActivityRegions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ActivityRegions.json; path = Football/Utils/TextFieldCustomize/ActivityRegions.json; sourceTree = "<group>"; };
 		B251F9EB1953B4830031E4A8 /* UITextFieldForActivityRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextFieldForActivityRegion.h; path = Football/Utils/TextFieldCustomize/UITextFieldForActivityRegion.h; sourceTree = "<group>"; };
 		B251F9EC1953B4830031E4A8 /* UITextFieldForActivityRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITextFieldForActivityRegion.m; path = Football/Utils/TextFieldCustomize/UITextFieldForActivityRegion.m; sourceTree = "<group>"; };
@@ -1077,6 +1080,8 @@
 				B251F9EC1953B4830031E4A8 /* UITextFieldForActivityRegion.m */,
 				A10E83DD1973A690000493A5 /* UITextFieldForStadiumSelection.h */,
 				A10E83DE1973A690000493A5 /* UITextFieldForStadiumSelection.m */,
+				B242BA531AA8D7BA00850855 /* UITextFieldForMessageTypeSelection.h */,
+				B242BA541AA8D7BB00850855 /* UITextFieldForMessageTypeSelection.m */,
 				A177A7AA1A74BE0100A3D450 /* UITextFieldForMatchScore.h */,
 				A177A7AB1A74BE0100A3D450 /* UITextFieldForMatchScore.m */,
 				B251F9E91953B3610031E4A8 /* ActivityRegions.json */,
@@ -1311,6 +1316,7 @@
 				B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */,
 				B262D2FF1928297D0079526E /* Captain_WarmupMatch.m in Sources */,
 				B20051311A01AC800077A5A4 /* TeamDetails.m in Sources */,
+				B242BA551AA8D7BB00850855 /* UITextFieldForMessageTypeSelection.m in Sources */,
 				A13A4E361A1AFED200B95D8A /* MatchArrangement.m in Sources */,
 				B2D6981618ECC3F700603B87 /* MyPlayers.m in Sources */,
 				A11D110A19AC48790097693B /* PlayerMarket.m in Sources */,

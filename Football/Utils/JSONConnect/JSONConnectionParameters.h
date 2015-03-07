@@ -140,6 +140,11 @@
 #define CONNECT_CreateMatchWithRealTeam_Suffix @"match/create"
 #define CONNECT_CreateMatchWithRealTeam_Parameters(matchData) matchData
 
+//Replay Match Invitation
+#define CONNECT_ReplyMatchInvitation_Suffix @"message/replymatchinvitation"
+#define CONNECT_ReplyMatchInvitation_Parameters(messageId, matchId, response) @{@"message_id":messageId, @"match_id":matchId, @"response":response}
+
+/*
 #pragma zzOld_Server
 //JSON variables
 #define JSON_serverURL @"http://inomind.de:8080/SoccerServer"
@@ -183,3 +188,4 @@
 #define JSON_suffix_stadiumById @"stadium"
 #define JSON_parameter_stadiumId @"id"
 #define JSON_parameter_stadiums_teamId @"team_id"
+*/

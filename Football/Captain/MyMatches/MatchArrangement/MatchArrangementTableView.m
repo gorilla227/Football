@@ -22,7 +22,7 @@
 
 @implementation MatchArrangementTableView_Cell
 @synthesize numberOfPlayersLabel, matchOpponentLabel, matchStadiumLabel, matchStandardLabel, actionIcon, actionButton, matchDateAndTimeLabel, actionView;
-@synthesize responseType, matchData, delegate, replyMatchNoticeDelegate;
+@synthesize responseType, matchData, delegate, replyMatchInvitationAndNoticeDelegate;
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
@@ -35,7 +35,6 @@
     [matchDateAndTimeLabel setTextColor:cMatchCellMatchTimeFont];
     
     [self setAccessoryView:actionView];
-    
 }
 
 -(void)pushMatchDetails {
@@ -45,22 +44,30 @@
 -(IBAction)actionButtonOnClicked:(id)sender {
     if (gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId)) {//比赛双方的队长
         if (matchData.status == 3) {//未开始比赛-通知球员
-            UIActionSheet *activeSheet = [[UIActionSheet alloc] initWithTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerTitle"]
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerTitle"]
                                                                      delegate:self
                                                             cancelButtonTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerCancel"]
                                                        destructiveButtonTitle:nil
                                                             otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerMyTeamates"], [gUIStrings objectForKey:@"UI_MatchArrangement_NoticePlayerTempFavor"], nil];
-            [activeSheet showInView:actionButton];
+            [actionSheet showInView:actionButton];
+        }
+        else if (matchData.status == 1) {//待确认比赛-回应约赛邀请
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_InvitationResponseTitle"]
+                                                                     delegate:self
+                                                            cancelButtonTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_InvitationResponseCancel"]
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_InvitationResponseAccept"], [gUIStrings objectForKey:@"UI_MatchArrangement_InvitationResponseRefuse"], nil];
+            [actionSheet showInView:actionButton];
         }
     }
     else {//比赛双方的球员或临时帮忙的球员
         if (matchData.status == 3) {//未开始比赛-回应参赛邀请
-            UIActionSheet *activeSheet = [[UIActionSheet alloc] initWithTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseTitle"]
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseTitle"]
                                                                      delegate:self
                                                             cancelButtonTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseCancel"]
                                                        destructiveButtonTitle:nil
                                                             otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseAccept"], [gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseRefuse"], nil];
-            [activeSheet showInView:actionButton];
+            [actionSheet showInView:actionButton];
         }
     }
 }
@@ -68,14 +75,34 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId)) {
         //For Captain
-        switch (buttonIndex) {
-            case 0:
-                //通知队员
-                [delegate noticeTeamMembers:matchData];
-                break;
+        switch (matchData.status) {
             case 1:
-                //临时帮忙
-                [delegate noticeTempFavor:matchData];
+                switch (buttonIndex) {
+                    case 0:
+                        //接受约战
+                        [replyMatchInvitationAndNoticeDelegate replyMatchInvitation:matchData.matchNotice withAnswer:YES];
+                        break;
+                    case 1:
+                        //拒绝约战
+                        [replyMatchInvitationAndNoticeDelegate replyMatchInvitation:matchData.matchNotice withAnswer:NO];
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 3:
+                switch (buttonIndex) {
+                    case 0:
+                        //通知队员
+                        [delegate noticeTeamMembers:matchData];
+                        break;
+                    case 1:
+                        //临时帮忙
+                        [delegate noticeTempFavor:matchData];
+                        break;
+                    default:
+                        break;
+                }
                 break;
             default:
                 break;
@@ -86,11 +113,11 @@
         switch (buttonIndex) {
             case 0:
                 //同意参赛
-                [replyMatchNoticeDelegate replyMatchNotice:matchData.matchNotice.messageId withAnswer:YES];
+                [replyMatchInvitationAndNoticeDelegate replyMatchNotice:matchData.matchNotice.messageId withAnswer:YES];
                 break;
             case 1:
                 //拒绝参赛
-                [replyMatchNoticeDelegate replyMatchNotice:matchData.matchNotice.messageId withAnswer:NO];
+                [replyMatchInvitationAndNoticeDelegate replyMatchNotice:matchData.matchNotice.messageId withAnswer:NO];
                 break;
             default:
                 break;
@@ -138,7 +165,12 @@
     }
     switch (tabViewControllerIndex) {
         case 0:
-            [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:3]] sort:1 count:5 startIndex:0 isSync:YES];
+            if (gMyUserInfo.userType) {
+                [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:1], [NSNumber numberWithInteger:2], [NSNumber numberWithInteger:3]] sort:1 count:5 startIndex:0 isSync:YES];
+            }
+            else {
+                [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:3]] sort:1 count:5 startIndex:0 isSync:YES];
+            }
             break;
         case 1:
             [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:4]] sort:2 count:5 startIndex:0 isSync:YES];
@@ -174,7 +206,6 @@
     [connection replyMatchNotice:messageId withAnswer:answer];
 }
 
-
 -(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer isSent:(BOOL)result {
     if (result) {
         for (Match *match in matchesList) {
@@ -188,8 +219,25 @@
     }
 }
 
-#pragma mark - Table view data source
+-(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer {
+    [connection replyMatchInvitation:message withAnswer:answer];
+}
 
+-(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer isSent:(BOOL)result {
+    if (result) {
+        for (Match *match in matchesList) {
+            if (match.matchNotice.messageId == message.messageId) {
+                [match.matchNotice setStatus:answer?2:3];
+                [match setStatus:answer?3:2];
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[matchesList indexOfObject:match] inSection:0];
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                break;
+            }
+        }
+    }
+}
+
+#pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return matchesList.count;
@@ -201,36 +249,67 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *CellIdentifier = @"MatchArrangementCell";
-    MatchArrangementTableView_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSString *CellIdentifierForCaptain = @"MatchArrangementCell_ForCaptain";
+    NSString *CellIdentifierForRegularPlayer = @"MatchArrangementCell_ForRegularPlayer";
+    MatchArrangementTableView_Cell *cell;
     Match *matchData = [matchesList objectAtIndex:indexPath.section];
     Team *opponent = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam:matchData.homeTeam;
     
     // Configure the cell...
-    [cell setDelegate:(id)self.navigationController.visibleViewController];
-    [cell setReplyMatchNoticeDelegate:self];
-    [cell setMatchData:matchData];
-    [cell.matchOpponentLabel setText:opponent.teamName];
-    [cell.matchStadiumLabel setText:matchData.matchField.stadiumName];
-    [cell.matchStandardLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_MatchType"], [NSNumber numberWithInteger:matchData.matchStandard]]];
-    [cell.matchDateAndTimeLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_BeginTimeString"], [dateFormatter stringFromDate:matchData.beginTime]]];
     
-    NSString *numberOfNoticeString = [NSString stringWithFormat:@"%@/%@/%@", matchData.confirmedMember, matchData.confirmedTemp, matchData.sentMatchNotices];
-    NSString *descOfNoticeString = [gUIStrings objectForKey:@"UI_MatchArrangement_NoticeString_Desc"];
-    NSMutableAttributedString *numberOfPlayersString = [[NSMutableAttributedString alloc] initWithString:[numberOfNoticeString stringByAppendingString:descOfNoticeString]];
-    [numberOfPlayersString setAttributes:attri_NumberOfNotices range:[numberOfPlayersString.string rangeOfString:numberOfNoticeString]];
-    [numberOfPlayersString setAttributes:attri_DescOfNotices range:[numberOfPlayersString.string rangeOfString:descOfNoticeString]];
-    [cell.numberOfPlayersLabel setAttributedText:numberOfPlayersString];
-    [cell.actionIcon setTintColor:[UIColor whiteColor]];
     
     if(gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId)) {
         //For Captain
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierForCaptain forIndexPath:indexPath];
+        
+        [cell setDelegate:(id)self.navigationController.visibleViewController];
+        [cell setReplyMatchInvitationAndNoticeDelegate:self];
+        [cell setMatchData:matchData];
+        [cell.matchOpponentLabel setText:opponent.teamName];
+        [cell.matchStadiumLabel setText:matchData.matchField.stadiumName];
+        [cell.matchStandardLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_MatchType"], [NSNumber numberWithInteger:matchData.matchStandard]]];
+        [cell.matchDateAndTimeLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_BeginTimeString"], [dateFormatter stringFromDate:matchData.beginTime]]];
+        
+        NSString *numberOfNoticeString = [NSString stringWithFormat:@"%@/%@/%@", matchData.confirmedMember, matchData.confirmedTemp, matchData.sentMatchNotices];
+        NSString *descOfNoticeString = [gUIStrings objectForKey:@"UI_MatchArrangement_NoticeString_Desc"];
+        NSMutableAttributedString *numberOfPlayersString = [[NSMutableAttributedString alloc] initWithString:[numberOfNoticeString stringByAppendingString:descOfNoticeString]];
+        [numberOfPlayersString setAttributes:attri_NumberOfNotices range:[numberOfPlayersString.string rangeOfString:numberOfNoticeString]];
+        [numberOfPlayersString setAttributes:attri_DescOfNotices range:[numberOfPlayersString.string rangeOfString:descOfNoticeString]];
+        [cell.numberOfPlayersLabel setAttributedText:numberOfPlayersString];
+        [cell.actionIcon setTintColor:[UIColor whiteColor]];
         [cell.actionButton setEnabled:YES];
         switch (matchData.status) {
+            case 1://待邀请比赛
+                if (gMyUserInfo.userId == matchData.organizerId) {//比赛发起方
+                    [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_noticePlayers.png"]];
+                    [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Pending"] forState:UIControlStateNormal];
+                    [cell setResponseType:MatchResponseType_Default];
+                    [cell.actionButton setEnabled:NO];
+                }
+                else {//接受约战方
+                    [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_noticePlayers.png"]];
+                    [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_ResponseInvitation"] forState:UIControlStateNormal];
+                    [cell setResponseType:MatchResponseType_MatchInvitation];
+                }
+                break;
+            case 2://邀请被拒绝比赛
+                if (gMyUserInfo.userId == matchData.organizerId) {//比赛发起方
+                    [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_noticePlayers.png"]];
+                    [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_OpponentRefused"] forState:UIControlStateNormal];
+                    [cell setResponseType:MatchResponseType_Default];
+                    [cell.actionButton setEnabled:NO];
+                }
+                else {//接受约战方
+                    [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_noticePlayers.png"]];
+                    [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Refused"] forState:UIControlStateNormal];
+                    [cell setResponseType:MatchResponseType_Default];
+                    [cell.actionButton setEnabled:NO];
+                }
+                break;
             case 3://未开始比赛
                 [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_noticePlayers.png"]];
                 [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_NoticePlayer"] forState:UIControlStateNormal];
-                [cell setResponseType:(gMyUserInfo.userId == matchData.organizerId)?MatchResponseType_Default:MatchResponseType_MatchInvitation];
+                [cell setResponseType:MatchResponseType_Default];
                 break;
             case 4://已结束比赛
                 [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_fillMatchData.png"]];
@@ -248,6 +327,16 @@
     }
     else {
         //For Regular Player
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierForRegularPlayer forIndexPath:indexPath];
+        
+        [cell setDelegate:(id)self.navigationController.visibleViewController];
+        [cell setReplyMatchInvitationAndNoticeDelegate:self];
+        [cell setMatchData:matchData];
+        [cell.matchOpponentLabel setText:opponent.teamName];
+        [cell.matchStadiumLabel setText:matchData.matchField.stadiumName];
+        [cell.matchStandardLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_MatchType"], [NSNumber numberWithInteger:matchData.matchStandard]]];
+        [cell.matchDateAndTimeLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MatchArrangement_BeginTimeString"], [dateFormatter stringFromDate:matchData.beginTime]]];
+        [cell.actionIcon setTintColor:[UIColor whiteColor]];
         [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_fillMatchData.png"]];
         switch (matchData.status) {
             case 3://未开始比赛
@@ -256,7 +345,7 @@
                         case 0:
                         case 1:
                             [cell.actionButton setEnabled:YES];
-                            [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Response"] forState:UIControlStateNormal];
+                            [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_ResponseNotice"] forState:UIControlStateNormal];
                             [cell setResponseType:MatchResponseType_MatchNotice];
                             break;
                         case 2:
@@ -264,11 +353,11 @@
                             [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Accepted"] forState:UIControlStateNormal];
                             [cell setResponseType:MatchResponseType_Default];
                             break;
-                        case 3:
-                            [cell.actionButton setEnabled:NO];
-                            [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Refused"] forState:UIControlStateNormal];
-                            [cell setResponseType:MatchResponseType_Default];
-                            break;
+//                        case 3:
+//                            [cell.actionButton setEnabled:NO];
+//                            [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Refused"] forState:UIControlStateNormal];
+//                            [cell setResponseType:MatchResponseType_Default];
+//                            break;
                         case 4:
                             [cell.actionButton setEnabled:NO];
                             [cell.actionButton setTitle:[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_Expired"] forState:UIControlStateNormal];
@@ -370,22 +459,21 @@
     }
 }
 
--(void)updateMatchStatusSuccessfully
-{
-    [matchesList removeObjectAtIndex:cancelledMatchIndex];
-    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:cancelledMatchIndex] withRowAnimation:UITableViewRowAnimationFade];
-//    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:cancelledMatchIndex]] withRowAnimation:UITableViewRowAnimationFade];
-}
-
--(void)updateMatchStatusFailed
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:[gUIStrings objectForKey:@"UI_MatchArrangement_CancelFailedMessage"]
-                                                       delegate:nil
-                                              cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
-                                              otherButtonTitles:nil];
-    [alertView show];
-    [self.tableView setEditing:NO animated:YES];
+-(void)updateMatchStatus:(BOOL)result {
+    if (result) {
+        [matchesList removeObjectAtIndex:cancelledMatchIndex];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:cancelledMatchIndex] withRowAnimation:UITableViewRowAnimationFade];
+//        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:cancelledMatchIndex]] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:[gUIStrings objectForKey:@"UI_MatchArrangement_CancelFailedMessage"]
+                                                           delegate:nil
+                                                  cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        [self.tableView setEditing:NO animated:YES];
+    }
 }
 
 /*
