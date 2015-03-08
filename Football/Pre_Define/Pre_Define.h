@@ -128,5 +128,5 @@ enum EditProfileViewTypes
 UserInfo *gMyUserInfo;
 NSArray *gStadiums;
 NSDictionary *gUIStrings;
-NSDictionary *gUnreadMessageAmount;
+NSMutableDictionary *gUnreadMessageAmount;
 NSDictionary *gSettings;

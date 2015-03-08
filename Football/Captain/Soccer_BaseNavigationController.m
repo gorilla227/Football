@@ -17,7 +17,7 @@
     MainMenu *mainMenu;
     UIActivityIndicatorView *busyIndicator;
     JSONConnect *connection;
-    NSArray *messageSubtypes;
+    NSArray *unreadMessageTypes;
     BOOL isMenuShow;
 }
 @synthesize menuButton, messageButton;
@@ -61,27 +61,45 @@
     
     //Set JSONConnect for request unread message amount repeatly.
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self];
-//    messageSubtypes = [NSArray new];
-//    NSDictionary *messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
-//    for (NSDictionary *messageType in messageTypes) {
-//        messageSubtypes = [messageSubtypes arrayByAddingObjectsFromArray:[[messageType objectForKey:@"Subtypes"] allKeys]];
-//    }
-//    [self refreshUnreadMessageAmount];
+    unreadMessageTypes = [NSArray new];
+
+    NSArray *messageTypes;
+    if (gMyUserInfo.userType) {
+        messageTypes = [[[gUIStrings objectForKey:@"UI_MessageTypes_ForCaptain"] firstObject] objectForKey:@"TypeGroups"];
+    }
+    else if (gMyUserInfo.team) {
+        messageTypes = [[[gUIStrings objectForKey:@"UI_MessageTypes_ForPlayerWithTeam"] firstObject] objectForKey:@"TypeGroups"];
+    }
+    else {
+        messageTypes = [[[gUIStrings objectForKey:@"UI_MessageTypes_ForPlayerWithoutTeam"] firstObject] objectForKey:@"TypeGroups"];
+    }
+    for (NSDictionary *messageTypeGroup in messageTypes) {
+        unreadMessageTypes = [unreadMessageTypes arrayByAddingObjectsFromArray:[messageTypeGroup objectForKey:@"Types"]];
+    }
+    
+    [self refreshUnreadMessageAmount];
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:[[gSettings objectForKey:@"refreshUnreadMessageAmountDuration"] integerValue] target:self selector:@selector(refreshUnreadMessageAmount) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUnreadMessageAmount) name:@"MessageStatusUpdated" object:nil];
 }
 
 -(void)refreshUnreadMessageAmount
 {
-//    [connection requestUnreadMessageAmount:gMyUserInfo.userId messageTypes:messageSubtypes];
+    [connection requestUnreadMessageAmount:gMyUserInfo messageTypes:unreadMessageTypes];
 }
 
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount
 {
-    gUnreadMessageAmount = unreadMessageAmount;
+    if (gUnreadMessageAmount) {
+        for (NSString *key in unreadMessageAmount.allKeys) {
+            [gUnreadMessageAmount setObject:[unreadMessageAmount objectForKey:key] forKey:key];
+        }
+    }
+    else {
+        gUnreadMessageAmount = [NSMutableDictionary dictionaryWithDictionary:unreadMessageAmount];
+    }
     [messageButton setBadgeNumber:[[gUnreadMessageAmount.allValues valueForKeyPath:@"@sum.self"] integerValue]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
 }
 
 -(void)logout

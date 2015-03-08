@@ -557,11 +557,34 @@
 }
 
 //RequestUnreadMessageAmount
--(void)requestUnreadMessageAmount:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes
+-(void)requestUnreadMessageAmount:(UserInfo *)receiver messageTypes:(NSArray *)messageTypes
 {
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UnreadMessageAmount_Suffix];
-    NSDictionary *parameters = CONNECT_UnreadMessageAmount_Parameters([messageTypes componentsJoinedByString:@","], [NSNumber numberWithInteger:receiverId]);
-    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSMutableArray *messageTypesForTeamReceiver = [NSMutableArray new];
+    NSMutableArray *messageTypesForPlayerReceiver = [NSMutableArray new];
+    for (NSString *messageTypeId in messageTypes) {
+        switch (messageTypeId.integerValue) {
+            case 1:
+            case 3:
+            case 4:
+                [messageTypesForPlayerReceiver addObject:messageTypeId];
+                break;
+            case 2:
+            case 5:
+                [messageTypesForTeamReceiver addObject:messageTypeId];
+                break;
+            default:
+                break;
+        }
+    }
+    NSDictionary *parametersForTeamReceiver = CONNECT_UnreadMessageAmount_Parameters([messageTypesForTeamReceiver componentsJoinedByString:@","], [NSNumber numberWithInteger:gMyUserInfo.team.teamId]);
+    NSDictionary *parametersForPlayerReceiver = CONNECT_UnreadMessageAmount_Parameters([messageTypesForPlayerReceiver componentsJoinedByString:@","], [NSNumber numberWithInteger:gMyUserInfo.userId]);
+    [manager POST:urlString parameters:parametersForPlayerReceiver success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [delegate receiveUnreadMessageAmount:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+    [manager POST:urlString parameters:parametersForTeamReceiver success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [delegate receiveUnreadMessageAmount:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        [self showErrorAlertView:error otherInfo:operation.responseString];

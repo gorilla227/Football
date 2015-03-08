@@ -68,7 +68,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleTapGesture) name:UITextFieldTextDidEndEditingNotification object:nil];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setAllowsSelection:!self.tabBarItem.tag];
-    [messageTypeTextField initialMessageTypes:self.tabBarItem.tag userType:0];
+    if (gMyUserInfo.userType) {
+        [messageTypeTextField initialMessageTypes:self.tabBarItem.tag userType:0];
+    }
+    else if (gMyUserInfo.team) {
+        [messageTypeTextField initialMessageTypes:self.tabBarItem.tag userType:1];
+    }
+    else {
+        [messageTypeTextField initialMessageTypes:self.tabBarItem.tag userType:2];
+    }
     
     messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes"];
     messageStatusType = [gUIStrings objectForKey:@"UI_MessageStatusType"];
@@ -79,6 +87,10 @@
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
     [self requestMessage];
+    if (self.tabBarItem.tag == 0) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUnreadMessageAmount) name:@"MessageStatusUpdated" object:nil];
+        [self refreshUnreadMessageAmount];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,6 +108,17 @@
 -(void)refreshTableView
 {
     [self.tableView reloadData];
+}
+
+-(void)refreshUnreadMessageAmount {
+    if (gUnreadMessageAmount) {
+        if ([[gUnreadMessageAmount.allValues valueForKeyPath:@"@sum.self"] integerValue] == 0) {
+            [self.tabBarItem setBadgeValue:nil];
+        }
+        else {
+            [self.tabBarItem setBadgeValue:[[gUnreadMessageAmount.allValues valueForKeyPath:@"@sum.self"] stringValue]];
+        }
+    }
 }
 
 -(void)toggleTapGesture {

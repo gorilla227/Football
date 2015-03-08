@@ -58,12 +58,8 @@ enum RequestMessageSourceType
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType;//获取信息成功
 -(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount;//获取未读消息数量成功
 -(void)readMessagesSuccessfully:(NSArray *)messageIdList;//设置消息已读成功
-//-(void)playerApplyinSent;//球员申请加入球队发送成功
-//-(void)playerApplyinFailed;//球员申请加入球队发送失败
 -(void)playerApplyinSent:(BOOL)result;//球员申请加入球队发送返回结果
 -(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode;//队长回复球员的入队申请成功
-//-(void)teamCallinSent;//队长邀请球员加入球队发送成功
-//-(void)teamCallinFailed;//队长邀请球员加入球队发送失败
 -(void)teamCallinSent:(BOOL)result;//队长邀请球员加入球队发送返回结果
 -(void)replyCallinMessageSuccessfully:(NSInteger)responseCode;//球员回复队长的入队邀请成功
 -(void)matchNoticeSent:(BOOL)result;//队长发送比赛通知返回结果
@@ -113,7 +109,7 @@ enum RequestMessageSourceType
 //Messges
 -(void)requestReceivedMessage:(UserInfo *)receiver messageType:(NSString *)messageTypeId status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取收到的信息
 -(void)requestSentMessage:(UserInfo *)sender messageType:(NSString *)messageTypeId status:(NSArray *)status startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取发出的信息
--(void)requestUnreadMessageAmount:(NSInteger)receiverId messageTypes:(NSArray *)messageTypes;//获取未读消息数量
+-(void)requestUnreadMessageAmount:(UserInfo *)receiver messageTypes:(NSArray *)messageTypes;//获取未读消息数量
 -(void)readMessages:(NSArray *)messageIdList;//设置消息为已读
 -(void)applyinFromPlayer:(NSInteger)playerId toTeam:(NSInteger)teamId withMessage:(NSString *)message;//球员申请加入球队
 -(void)replyApplyinMessage:(NSInteger)messageId response:(NSInteger)responseCode;//队长回复球员的入队申请，2-同意，3-拒绝

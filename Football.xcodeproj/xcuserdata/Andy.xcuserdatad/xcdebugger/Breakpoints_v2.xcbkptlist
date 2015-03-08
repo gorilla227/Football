@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Football/Captain/Soccer_BaseNavigationController.m"
-            timestampString = "446015561.657999"
+            timestampString = "447483180.965764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "-lockView"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,12 +330,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Football/Utils/JSONConnect/JSONConnect.m"
-            timestampString = "446015673.292343"
+            timestampString = "447469380.989336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "655"
-            endingLineNumber = "655"
-            landmarkName = "-requestMatchesByPlayer:forTeam:inStatus:sort:count:startIndex:isSync:"
+            startingLineNumber = "678"
+            endingLineNumber = "678"
+            landmarkName = "-sendMatchNotice:fromTeam:toPlayer:withMessage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
