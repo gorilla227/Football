@@ -66,7 +66,7 @@
     [self setDelegate:self];
     
     UIButton *confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, messageTypePicker.bounds.size.width, 30)];
-    [confirmButton setTitle:@"确认" forState:UIControlStateNormal];
+    [confirmButton setTitle:[gUIStrings objectForKey:@"UI_MessageTypeSelection_Confirm"] forState:UIControlStateNormal];
     [confirmButton addTarget:self action:@selector(confirmButton_OnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [confirmButton setBackgroundColor:[UIColor lightGrayColor]];
     [confirmButton setShowsTouchWhenHighlighted:YES];
@@ -96,7 +96,13 @@
     
     if (keyForUserType) {
         messageTypesList = [[[gUIStrings objectForKey:keyForUserType] objectAtIndex:boxType] objectForKey:@"TypeGroups"];
-        [self setText:[NSString stringWithFormat:@"%@ - %@", [[messageTypesList objectAtIndex:0] objectForKey:@"TypeGroupName"], [messageTypes objectForKey:[[[messageTypesList objectAtIndex:0] objectForKey:@"Types"] objectAtIndex:0]]]];
+        if (messageTypesList.count) {
+            [self setText:[NSString stringWithFormat:@"%@ - %@", [[messageTypesList objectAtIndex:0] objectForKey:@"TypeGroupName"], [messageTypes objectForKey:[[[messageTypesList objectAtIndex:0] objectForKey:@"Types"] objectAtIndex:0]]]];
+        }
+        else {
+            [self setText:@"无"];
+            [self setEnabled:NO];
+        }
     }
     
     shouldShowUnreadMessageAmount = (boxType == 0);
@@ -110,7 +116,12 @@
 }
 
 - (NSString *)selectedMessageType {
-    return [[[messageTypesList objectAtIndex:[messageTypePicker selectedRowInComponent:0]] objectForKey:@"Types"] objectAtIndex:[messageTypePicker selectedRowInComponent:1]];
+    if (messageTypesList.count) {
+        return [[[messageTypesList objectAtIndex:[messageTypePicker selectedRowInComponent:0]] objectForKey:@"Types"] objectAtIndex:[messageTypePicker selectedRowInComponent:1]];
+    }
+    else {
+        return nil;
+    }
 }
 
 - (IBAction)confirmButton_OnClicked:(id)sender {
@@ -142,7 +153,9 @@
         case 0:
             return messageTypesList.count;
         case 1:
-            return [[[messageTypesList objectAtIndex:[pickerView selectedRowInComponent:0]] objectForKey:@"Types"] count];
+            if (messageTypesList.count) {
+                return [[[messageTypesList objectAtIndex:[pickerView selectedRowInComponent:0]] objectForKey:@"Types"] count];
+            }
         default:
             return 0;
     }

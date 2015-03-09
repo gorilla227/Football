@@ -257,15 +257,17 @@
 }
 
 - (void)requestMessage {
-    switch (self.tabBarItem.tag) {
-        case 0:
-            [connection requestReceivedMessage:gMyUserInfo messageType:[messageTypeTextField selectedMessageType] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:messageList.count count:count isSync:YES];
-            break;
-        case 1:
-            [connection requestSentMessage:gMyUserInfo messageType:[messageTypeTextField selectedMessageType] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:messageList.count count:count isSync:YES];
-            break;
-        default:
-            break;
+    if ([messageTypeTextField selectedMessageType]) {
+        switch (self.tabBarItem.tag) {
+            case 0:
+                [connection requestReceivedMessage:gMyUserInfo messageType:[messageTypeTextField selectedMessageType] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:messageList.count count:count isSync:YES];
+                break;
+            case 1:
+                [connection requestSentMessage:gMyUserInfo messageType:[messageTypeTextField selectedMessageType] status:CONNECT_RequestMessages_Parameters_DefaultStatus startIndex:messageList.count count:count isSync:YES];
+                break;
+            default:
+                break;
+        }
     }
 }
 

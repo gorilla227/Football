@@ -107,6 +107,8 @@
 	<string>%@/%@条邀请已发送，请耐心等待对方的回复。</string>
 	<key>UI_MatchNotice_SendingResultMessage</key>
 	<string>%@/%@条比赛通知已发送，请耐心等待对方的回复。</string>
+	<key>UI_MessageTypeSelection_Confirm</key>
+	<string>确认</string>
 	<key>UI_MessageTypes</key>
 	<dict>
 		<key>1</key>
@@ -166,11 +168,79 @@
 						<string>5</string>
 					</array>
 				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>UI_MessageTypes_ForPlayerWithTeam</key>
+	<array>
+		<dict>
+			<key>TabBarItemName</key>
+			<string>收件箱</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>球队消息</string>
+					<key>Types</key>
+					<array>
+						<string>3</string>
+					</array>
+				</dict>
 				<dict>
 					<key>TypeGroupName</key>
 					<string>个人消息</string>
 					<key>Types</key>
-					<array/>
+					<array>
+						<string>4</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>TabBarItemName</key>
+			<string>发件箱</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array/>
+		</dict>
+	</array>
+	<key>UI_MessageTypes_ForPlayerWithoutTeam</key>
+	<array>
+		<dict>
+			<key>TabBarItemName</key>
+			<string>收件箱</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>个人消息</string>
+					<key>Types</key>
+					<array>
+						<string>4</string>
+						<string>1</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>TabBarItemName</key>
+			<string>发件箱</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>个人消息</string>
+					<key>Types</key>
+					<array>
+						<string>2</string>
+					</array>
 				</dict>
 			</array>
 		</dict>
