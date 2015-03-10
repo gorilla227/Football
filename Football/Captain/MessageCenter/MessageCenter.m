@@ -37,9 +37,6 @@
 
 @interface MessageCenter ()
 @property IBOutlet UITextFieldForMessageTypeSelection *messageTypeTextField;
-@property IBOutlet UILabel *moreLabel;
-@property IBOutlet UIActivityIndicatorView *moreActivityIndicator;
-@property IBOutlet UIView *moreFooterView;
 @property IBOutlet UITapGestureRecognizer *dismissKeyboardGestureRecognizer;
 @end
 
@@ -51,7 +48,7 @@
     NSInteger count;
     NSArray *messageStatusType;
 }
-@synthesize messageTypeTextField, moreLabel, moreActivityIndicator, moreFooterView, dismissKeyboardGestureRecognizer;
+@synthesize messageTypeTextField, dismissKeyboardGestureRecognizer;
 
 - (void)viewDidLoad
 {
