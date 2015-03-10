@@ -169,10 +169,9 @@
 //    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchDetails"];
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
-    //Test Message Center
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil];
-    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"Test_MC"];
-    [self setToolbarItems:[[UIBarButtonItem alloc] initWithCustomView:[[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 30)]]];
+    //Test TableView
+    UIStoryboard *storyboard= [UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil];
+    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MoreTableViewController"];
     [self.navigationController pushViewController:targetViewController animated:YES];
 }
 //DissmissKeyboard

@@ -101,6 +101,31 @@
 	<string>只有这么多球队</string>
 	<key>UI_FindTeam_Loading</key>
 	<string>正在加载...</string>
+	<key>UI_TableViewMore</key>
+	<dict>
+		<key>MessageCenter</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>加载更多消息</string>
+			<key>Loading</key>
+			<string>正在加载...</string>
+			<key>NoData</key>
+			<string>没有找到消息</string>
+			<key>NoMoreData</key>
+			<string>只有这么多消息</string>
+		</dict>
+		<key>Default</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>加载更多</string>
+			<key>Loading</key>
+			<string>正在加载...</string>
+			<key>NoData</key>
+			<string>无数据</string>
+			<key>NoMoreData</key>
+			<string>只有这么多了</string>
+		</dict>
+	</dict>
 	<key>UI_FindTeam_SendingResultMessage</key>
 	<string>%@/%@条申请已提交，请耐心等待对方的回复。</string>
 	<key>UI_Callin_SendingResultMessage</key>
@@ -253,14 +278,6 @@
 		<string>已拒绝</string>
 		<string>已过期</string>
 	</array>
-	<key>UI_MessageCenter_LoadMore</key>
-	<string>加载更多消息</string>
-	<key>UI_MessageCenter_NoData</key>
-	<string>没有找到消息</string>
-	<key>UI_MessageCenter_NoMoreData</key>
-	<string>只有这么多消息</string>
-	<key>UI_MessageCenter_Loading</key>
-	<string>正在加载...</string>
 	<key>UI_MessageHead_Format</key>
 	<string>%@：%@ 发送时间：%@</string>
 	<key>UI_MessageHead_Sent</key>

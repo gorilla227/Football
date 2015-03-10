@@ -11,6 +11,7 @@
 		A103338A18D419A300050A61 /* Soccer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A103338918D419A300050A61 /* Soccer.storyboard */; };
 		A106EEA8198A089200F9765C /* Icon_NumOfTeamMember.png in Resources */ = {isa = PBXBuildFile; fileRef = A106EEA7198A089200F9765C /* Icon_NumOfTeamMember.png */; };
 		A10723221933026100F26A39 /* icon_like.png in Resources */ = {isa = PBXBuildFile; fileRef = A10723211933026100F26A39 /* icon_like.png */; };
+		A109263B1AAD620800A73C32 /* TableViewController_More.m in Sources */ = {isa = PBXBuildFile; fileRef = A109263A1AAD620800A73C32 /* TableViewController_More.m */; };
 		A10BACB7190D9AA1000FA5A7 /* leftIcon_createMatch_score.png in Resources */ = {isa = PBXBuildFile; fileRef = A10BACB6190D9AA1000FA5A7 /* leftIcon_createMatch_score.png */; };
 		A10BAD0A190E1245000FA5A7 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A10BAD09190E1245000FA5A7 /* DataModel.m */; };
 		A10E83DA1973A0DA000493A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10E83D91973A0DA000493A5 /* MapKit.framework */; };
@@ -176,6 +177,8 @@
 		A103338918D419A300050A61 /* Soccer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Soccer.storyboard; path = Captain/Soccer.storyboard; sourceTree = "<group>"; };
 		A106EEA7198A089200F9765C /* Icon_NumOfTeamMember.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_NumOfTeamMember.png; sourceTree = "<group>"; };
 		A10723211933026100F26A39 /* icon_like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_like.png; path = Resource/icon_like.png; sourceTree = "<group>"; };
+		A10926391AAD620800A73C32 /* TableViewController_More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewController_More.h; path = Football/Utils/TableViewController_More/TableViewController_More.h; sourceTree = "<group>"; };
+		A109263A1AAD620800A73C32 /* TableViewController_More.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewController_More.m; path = Football/Utils/TableViewController_More/TableViewController_More.m; sourceTree = "<group>"; };
 		A10BACB6190D9AA1000FA5A7 /* leftIcon_createMatch_score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftIcon_createMatch_score.png; path = Resource/leftIcon_createMatch_score.png; sourceTree = "<group>"; };
 		A10BAD08190E1245000FA5A7 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataModel.h; path = Pre_Define/DataModel.h; sourceTree = "<group>"; };
 		A10BAD09190E1245000FA5A7 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataModel.m; path = Pre_Define/DataModel.m; sourceTree = "<group>"; };
@@ -472,6 +475,15 @@
 			name = MyPlayers;
 			sourceTree = "<group>";
 		};
+		A10926311AAD551C00A73C32 /* TableViewController_More */ = {
+			isa = PBXGroup;
+			children = (
+				A10926391AAD620800A73C32 /* TableViewController_More.h */,
+				A109263A1AAD620800A73C32 /* TableViewController_More.m */,
+			);
+			name = TableViewController_More;
+			sourceTree = "<group>";
+		};
 		A11D110719AC470F0097693B /* PlayerMarket */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,6 +632,7 @@
 		A173033D18FB5A0A00702015 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A10926311AAD551C00A73C32 /* TableViewController_More */,
 				A1940B0F197787AD00B152AC /* MessageBarButtonItem */,
 				B2B955CA194FC649004FB5E0 /* MD5_Encryption */,
 				A19865F5198D9F4C009BA81C /* TextViewCustomize */,
@@ -1321,6 +1334,7 @@
 				B2D6981618ECC3F700603B87 /* MyPlayers.m in Sources */,
 				A11D110A19AC48790097693B /* PlayerMarket.m in Sources */,
 				A1F428E8191215A000567A02 /* JSONConnect.m in Sources */,
+				A109263B1AAD620800A73C32 /* TableViewController_More.m in Sources */,
 				A1F428E0191209DB00567A02 /* AFSecurityPolicy.m in Sources */,
 				A13A4E391A1B047600B95D8A /* MatchArrangementTableView.m in Sources */,
 				B27BD360194930B300802F4A /* FillAdditionalProfile.m in Sources */,

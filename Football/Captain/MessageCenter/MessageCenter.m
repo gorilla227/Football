@@ -49,7 +49,6 @@
     JSONConnect *connection;
     NSDictionary *unreadMessageAmount;
     NSInteger count;
-    BOOL haveMoreMessage;
     NSArray *messageStatusType;
 }
 @synthesize messageTypeTextField, moreLabel, moreActivityIndicator, moreFooterView, dismissKeyboardGestureRecognizer;
@@ -58,15 +57,10 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"MessageStatusUpdated" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleTapGesture) name:UITextFieldTextDidBeginEditingNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleTapGesture) name:UITextFieldTextDidEndEditingNotification object:nil];
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self initialWithLabelTexts:@"MessageCenter"];
     [self.tableView setAllowsSelection:!self.tabBarItem.tag];
     if (gMyUserInfo.userType) {
         [messageTypeTextField initialMessageTypes:self.tabBarItem.tag userType:0];
@@ -83,10 +77,9 @@
     
     count = [[gSettings objectForKey:@"messageListCount"] integerValue];
     messageList = [NSMutableArray new];
-    haveMoreMessage = YES;    
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
-    [self requestMessage];
+    [self startLoadingMore];
     if (self.tabBarItem.tag == 0) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUnreadMessageAmount) name:@"MessageStatusUpdated" object:nil];
         [self refreshUnreadMessageAmount];
@@ -127,20 +120,19 @@
 
 -(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType
 {
-    if (![self.tableView.tableFooterView isEqual:moreFooterView]) {
-        [self.tableView setTableFooterView:moreFooterView];
-    }
-    
     if (messageList) {
         [messageList addObjectsFromArray:messages];
     }
     else {
         messageList = [NSMutableArray arrayWithArray:messages];
     }
-    haveMoreMessage = (messages.count == count);
+    if (messageList.count == 0) {
+        [self finishedLoadingWithNewStatus:LoadMoreStatus_NoData];
+    }
+    else {
+        [self finishedLoadingWithNewStatus:(messages.count == count)?LoadMoreStatus_LoadMore:LoadMoreStatus_NoMoreData];
+    }
     [self.tableView reloadData];
-
-    [moreActivityIndicator stopAnimating];
 }
 
 -(void)readMessagesSuccessfully:(NSArray *)messageIdList
@@ -166,17 +158,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (haveMoreMessage) {
-        [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_LoadMore"]];
-    }
-    else {
-        if (messageList.count == 0) {
-            [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoData"]];
-        }
-        else {
-            [moreLabel setText:[gUIStrings objectForKey:@"UI_MessageCenter_NoMoreData"]];
-        }
-    }
     return messageList.count;
 }
 
@@ -248,12 +229,12 @@
     }
 }
 
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !moreActivityIndicator.isAnimating) {
+- (BOOL)startLoadingMore {
+    if ([super startLoadingMore]) {
         [self requestMessage];
-        [moreActivityIndicator startAnimating];
+        return YES;
     }
+    return NO;
 }
 
 - (void)requestMessage {
@@ -279,8 +260,8 @@
 #pragma MessageTypeSelectionDelegate
 - (void)didSelectMessageType:(NSString *)messageTypeId {
     messageList = [NSMutableArray new];
-    haveMoreMessage = YES;
-    [self requestMessage];
+    [self setLoadMoreStatus:LoadMoreStatus_LoadMore];
+    [self startLoadingMore];
 }
 
 #pragma mark - Navigation
