@@ -34,6 +34,6 @@ enum MatchResponseTypes {
 -(void)pushMatchDetails;
 @end
 
-@interface MatchArrangementTableView : UITableViewController<UIAlertViewDelegate, JSONConnectDelegate, ReplyMatchInvitationAndNoticeDelegate>
+@interface MatchArrangementTableView : TableViewController_More<UIAlertViewDelegate, JSONConnectDelegate, ReplyMatchInvitationAndNoticeDelegate>
 
 @end

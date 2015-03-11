@@ -139,15 +139,18 @@
     NSDictionary *attri_DescOfNotices;
     NSInteger tabViewControllerIndex;
     NSDateFormatter *dateFormatter;
+    NSInteger count;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+//    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self initialWithLabelTexts:@"Default"];
     
     matchesList = [NSMutableArray new];
+    count = [[gUIStrings objectForKey:@"matchListCount"] integerValue];
     attri_NumberOfNotices = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:28] forKey:NSFontAttributeName];
     attri_DescOfNotices = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:13] forKey:NSFontAttributeName];
     dateFormatter = [NSDateFormatter new];
@@ -160,24 +163,11 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     matchesList = [NSMutableArray new];
+    [self setLoadMoreStatus:LoadMoreStatus_LoadMore];
     if (!connection.busyIndicatorDelegate) {
         [connection setBusyIndicatorDelegate:(id)self.navigationController];
     }
-    switch (tabViewControllerIndex) {
-        case 0:
-            if (gMyUserInfo.userType) {
-                [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:1], [NSNumber numberWithInteger:2], [NSNumber numberWithInteger:3]] sort:1 count:5 startIndex:0 isSync:YES];
-            }
-            else {
-                [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:3]] sort:1 count:5 startIndex:0 isSync:YES];
-            }
-            break;
-        case 1:
-            [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:4]] sort:2 count:5 startIndex:0 isSync:YES];
-            break;
-        default:
-            break;
-    }
+    [self startLoadingMore];
 }
 
 -(void)viewDidLayoutSubviews
@@ -196,9 +186,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)startLoadingMore {
+    if ([super startLoadingMore]) {
+        switch (tabViewControllerIndex) {
+            case 0:
+                if (gMyUserInfo.userType) {
+                    [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:1], [NSNumber numberWithInteger:2], [NSNumber numberWithInteger:3]] sort:1 count:count startIndex:matchesList.count isSync:YES];
+                }
+                else {
+                    [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:3]] sort:1 count:count startIndex:matchesList.count isSync:YES];
+                }
+                break;
+            case 1:
+                [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:4]] sort:2 count:count startIndex:matchesList.count isSync:YES];
+                break;
+            default:
+                break;
+        }
+        return YES;
+    }
+    return NO;
+}
+
 -(void)receiveMatchesSuccessfully:(NSArray *)matches
 {
     [matchesList addObjectsFromArray:matches];
+    if (matchesList.count == 0) {
+        [self finishedLoadingWithNewStatus:LoadMoreStatus_NoData];
+    }
+    else {
+        [self finishedLoadingWithNewStatus:(matches.count == count)?LoadMoreStatus_LoadMore:LoadMoreStatus_NoMoreData];
+    }
     [self.tableView reloadData];
 }
 
