@@ -93,16 +93,41 @@
 	<string>否</string>
 	<key>UI_HomeStadiumSetConfirmationMessage</key>
 	<string>要将该球场设为主场吗？</string>
-	<key>UI_FindTeam_LoadMore</key>
-	<string>加载更多球队</string>
-	<key>UI_FindTeam_NoData</key>
-	<string>没有找到球队</string>
-	<key>UI_FindTeam_NoMoreData</key>
-	<string>只有这么多球队</string>
-	<key>UI_FindTeam_Loading</key>
-	<string>正在加载...</string>
 	<key>UI_TableViewMore</key>
 	<dict>
+		<key>FindTeam</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>加载更多球队</string>
+			<key>Loading</key>
+			<string>正在加载...</string>
+			<key>NoData</key>
+			<string>没有找到球队</string>
+			<key>NoMoreData</key>
+			<string>只有这么多球队</string>
+		</dict>
+		<key>PlayerMarket</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>加载更多球员</string>
+			<key>Loading</key>
+			<string>正在加载...</string>
+			<key>NoData</key>
+			<string>条件太苛刻啦</string>
+			<key>NoMoreData</key>
+			<string>就这么多了</string>
+		</dict>
+		<key>TeamMarket</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>加载更多球队</string>
+			<key>Loading</key>
+			<string>正在加载...</string>
+			<key>NoData</key>
+			<string>条件太苛刻啦</string>
+			<key>NoMoreData</key>
+			<string>就这么多了</string>
+		</dict>
 		<key>MessageCenter</key>
 		<dict>
 			<key>LoadMore</key>
@@ -308,22 +333,6 @@
 	<string>取消</string>
 	<key>UI_ActivityRegion_UnselectedTitle</key>
 	<string>&lt;无&gt;</string>
-	<key>UI_PlayerMarket_LoadMore</key>
-	<string>加载更多球员</string>
-	<key>UI_PlayerMarket_NoData</key>
-	<string>条件太苛刻啦</string>
-	<key>UI_PlayerMarket_NoMoreData</key>
-	<string>就这么多了</string>
-	<key>UI_PlayerMarket_Loading</key>
-	<string>正在加载...</string>
-	<key>UI_TeamMarket_LoadMore</key>
-	<string>加载更多球队</string>
-	<key>UI_TeamMarket_NoData</key>
-	<string>条件太苛刻啦</string>
-	<key>UI_TeamMarket_NoMoreData</key>
-	<string>就这么多了</string>
-	<key>UI_TeamMarket_Loading</key>
-	<string>正在加载...</string>
 	<key>UI_TeamMarket_BoardName_Slogan</key>
 	<string>球队宣言</string>
 	<key>UI_TeamMarket_BoardName_Recruit</key>

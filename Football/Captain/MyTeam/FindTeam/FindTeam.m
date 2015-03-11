@@ -49,9 +49,7 @@
 
 #pragma FindTeam
 @interface FindTeam ()
-@property IBOutlet UILabel *moreLabel;
-@property IBOutlet UIActivityIndicatorView *moreActivityIndicator;
-@property IBOutlet UIView *moreFooterView;
+
 @end
 
 @implementation FindTeam{
@@ -59,10 +57,7 @@
     NSArray *filteredTeamList;
     JSONConnect *connection;
     NSInteger count;
-    BOOL haveMoreData;
-    BOOL isLoading;
 }
-@synthesize moreLabel, moreActivityIndicator, moreFooterView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -77,20 +72,15 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.searchDisplayController.searchResultsTableView setRowHeight:self.tableView.rowHeight];
     [self.searchDisplayController.searchResultsTableView setAllowsSelection:NO];
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self initialWithLabelTexts:@"FindTeam"];
     
     count = [[gSettings objectForKey:@"teamListCount"] integerValue];
-    haveMoreData = YES;
+    teamList = [NSMutableArray new];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestTeamsStart:0 count:count option:RequestTeamsOption_Recruit];
+    [self startLoadingMore];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -108,33 +98,14 @@
 //Receive TeamList
 -(void)receiveAllTeams:(NSArray *)teams
 {
-    isLoading = NO;
-    if (![self.tableView.tableFooterView isEqual:moreFooterView]) {
-        [self.tableView setTableFooterView:moreFooterView];
-    }
+    [teamList addObjectsFromArray:teams];
     
-    if (teamList) {
-        [teamList addObjectsFromArray:teams];
+    if (teamList.count == 0) {
+        [self finishedLoadingWithNewStatus:LoadMoreStatus_NoData];
     }
     else {
-        teamList = [NSMutableArray arrayWithArray:teams];
-    }
-    
-    if (teams.count < count) {
-        if (teamList.count == 0) {
-            [moreLabel setText:[gUIStrings objectForKey:@"UI_FindTeam_NoData"]];
-        }
-        else {
-            [moreLabel setText:[gUIStrings objectForKey:@"UI_FindTeam_NoMoreData"]];
-        }
-        haveMoreData = NO;
-    }
-    else {
-        [moreLabel setText:[gUIStrings objectForKey:@"UI_FindTeam_LoadMore"]];
-    }
-    
-    [moreActivityIndicator stopAnimating];
-    [self.tableView reloadData];
+        [self finishedLoadingWithNewStatus:(teams.count == count)?LoadMoreStatus_LoadMore:LoadMoreStatus_NoMoreData];
+    }    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -184,16 +155,12 @@
     return cell;
 }
 
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if ([scrollView isEqual:self.tableView]) {
-        if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && haveMoreData && !isLoading) {
-            [moreLabel setText:[gUIStrings objectForKey:@"UI_FindTeam_Loading"]];
-            [moreActivityIndicator startAnimating];
-            isLoading = YES;
-            [connection requestTeamsStart:teamList.count count:count option:RequestTeamsOption_Recruit];
-        }
+- (BOOL)startLoadingMore {
+    if ([super startLoadingMore]) {
+        [connection requestTeamsStart:teamList.count count:count option:RequestTeamsOption_Recruit];
+        return YES;
     }
+    return NO;
 }
 
 #pragma Search Methods

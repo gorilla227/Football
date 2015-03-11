@@ -161,18 +161,14 @@
 @interface TeamMarket ()
 @property IBOutlet TeamMarket_SearchView *searchView;
 @property IBOutlet UIButton *searchViewSwitchButton;
-@property IBOutlet UILabel *moreLabel;
-@property IBOutlet UIActivityIndicatorView *moreActivityIndicator;
-@property IBOutlet UIView *moreFooterView;
 @end
 
 @implementation TeamMarket{
     JSONConnect *connection;
     NSMutableArray *teamList;
     NSInteger count;
-    BOOL haveMoreTeams;
 }
-@synthesize searchView, searchViewSwitchButton, moreFooterView, moreActivityIndicator, moreLabel;
+@synthesize searchView, searchViewSwitchButton;
 @synthesize viewType;
 
 - (void)viewDidLoad {
@@ -180,7 +176,7 @@
     
     [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setTableHeaderView:searchView];
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self initialWithLabelTexts:@"TeamMarket"];
     switch (viewType) {
         case TeamMarketViewType_Default:
             
@@ -194,7 +190,6 @@
             break;
     }
     
-    haveMoreTeams = YES;
     teamList = [NSMutableArray new];
     count = [[gSettings objectForKey:@"teamsSearchListCount"] integerValue];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
@@ -211,6 +206,14 @@
     [self.navigationController setToolbarHidden:YES];
 }
 
+- (BOOL)startLoadingMore {
+    if ([super startLoadingMore]) {
+        [connection requestTeamsBySearchCriteria:[searchView searchCriteria] startIndex:teamList.count count:count isSync:YES];
+        return YES;
+    }
+    return NO;
+}
+
 -(IBAction)searchViewSwitchButtonOnClicked:(id)sender
 {
     [searchViewSwitchButton setSelected:!searchViewSwitchButton.isSelected];
@@ -225,28 +228,23 @@
     [searchView.teamNameSearchTextField resignFirstResponder];
     [searchView.activityRegionSearchTextField resignFirstResponder];
     [teamList removeAllObjects];
-    haveMoreTeams = YES;
-    [connection requestTeamsBySearchCriteria:[searchView searchCriteria] startIndex:0 count:count isSync:YES];
+
+    [self startLoadingMore];
 }
 
 -(void)receiveTeams:(NSArray *)teams
 {
-    [self.tableView setTableFooterView:moreFooterView];
-    if (teams.count < count) {
-        haveMoreTeams = NO;
-        //Set moreLabel
-        [moreLabel setText:(teamList.count + teams.count)?[gUIStrings objectForKey:@"UI_TeamMarket_NoMoreData"]:[gUIStrings objectForKey:@"UI_TeamMarket_NoData"]];
+    [teamList addObjectsFromArray:teams];
+    if (teamList.count == 0) {
+        [self finishedLoadingWithNewStatus:LoadMoreStatus_NoData];
     }
     else {
-        //Set moreLabel
-        [moreLabel setText:[gUIStrings objectForKey:@"UI_TeamMarket_LoadMore"]];
+        [self finishedLoadingWithNewStatus:(teams.count == count)?LoadMoreStatus_LoadMore:LoadMoreStatus_NoMoreData];
     }
-    [teamList addObjectsFromArray:teams];
     
     [searchViewSwitchButton setSelected:!teamList.count];
     [self.tableView setTableHeaderView:searchViewSwitchButton.isSelected?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView reloadData];
-    [moreActivityIndicator stopAnimating];
 }
 
 #pragma mark - Table view data source
@@ -304,17 +302,6 @@
 {
     return searchViewSwitchButton.frame.size.height;
 }
-
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !moreActivityIndicator.isAnimating && haveMoreTeams) {
-        [connection requestTeamsBySearchCriteria:[searchView searchCriteria] startIndex:teamList.count count:count isSync:YES];
-        [moreActivityIndicator startAnimating];
-        //Set moreLabel
-        [moreLabel setText:[gUIStrings objectForKey:@"UI_TeamMarket_Loading"]];
-    }
-}
-
 
 #pragma mark - Navigation
 

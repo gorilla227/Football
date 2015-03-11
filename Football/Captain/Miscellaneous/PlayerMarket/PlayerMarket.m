@@ -156,20 +156,15 @@
 @property IBOutlet UIToolbar *actionBar;
 @property IBOutlet UIBarButtonItem *recruitButton;
 @property IBOutlet UIBarButtonItem *temporaryFavorButton;
-@property IBOutlet UILabel *moreLabel;
-@property IBOutlet UIActivityIndicatorView *moreActivityIndicator;
-@property IBOutlet UIView *moreFooterView;
 @end
 
 @implementation PlayerMarket{
     JSONConnect *connection;
     NSMutableArray *playerList;
-    BOOL isLoading;
     NSInteger count;
-    BOOL haveMorePlayers;
     Team *opponentTeam;
 }
-@synthesize searchView, searchViewSwitchButton, actionBar, recruitButton, temporaryFavorButton, moreActivityIndicator, moreFooterView, moreLabel;
+@synthesize searchView, searchViewSwitchButton, actionBar, recruitButton, temporaryFavorButton;
 @synthesize viewType, matchData;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -187,11 +182,10 @@
     
     [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setTableHeaderView:searchView];
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self initialWithLabelTexts:@"PlayerMarket"];
     [self setToolbarItems:actionBar.items];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActionButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
     
-    haveMorePlayers = YES;
     playerList = [NSMutableArray new];
     count = [[gSettings objectForKey:@"playersSearchListCount"] integerValue];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
@@ -211,6 +205,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)startLoadingMore {
+    if ([super startLoadingMore]) {
+        [connection requestPlayersBySearchCriteria:[searchView searchCriteria] startIndex:playerList.count count:count isSync:YES];
+        return YES;
+    }
+    return NO;
 }
 
 -(void)pushPlayerDetails:(UserInfo *)player
@@ -236,8 +238,7 @@
     [searchView.nickNameSearchTextField resignFirstResponder];
     [searchView.activityRegionSearchTextField resignFirstResponder];
     [playerList removeAllObjects];
-    haveMorePlayers = YES;
-    [connection requestPlayersBySearchCriteria:[searchView searchCriteria] startIndex:0 count:count isSync:YES];
+    [self startLoadingMore];
 }
 
 -(void)updateActionButtonsStatus
@@ -273,24 +274,18 @@
 
 -(void)receivePlayers:(NSArray *)players
 {
-    [self.tableView setTableFooterView:moreFooterView];
-    if (players.count < count) {
-        haveMorePlayers = NO;
-        //Set moreLabel
-        [moreLabel setText:(playerList.count + players.count)?[gUIStrings objectForKey:@"UI_PlayerMarket_NoMoreData"]:[gUIStrings objectForKey:@"UI_PlayerMarket_NoData"]];
+    [playerList addObjectsFromArray:players];
+    if (playerList.count == 0) {
+        [self finishedLoadingWithNewStatus:LoadMoreStatus_NoData];
     }
     else {
-        //Set moreLabel
-        [moreLabel setText:[gUIStrings objectForKey:@"UI_PlayerMarket_LoadMore"]];
+        [self finishedLoadingWithNewStatus:(players.count == count)?LoadMoreStatus_LoadMore:LoadMoreStatus_NoMoreData];
     }
-    [playerList addObjectsFromArray:players];
     
     [searchViewSwitchButton setSelected:!playerList.count];
     [self.tableView setTableHeaderView:searchViewSwitchButton.isSelected?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView reloadData];
     [self updateActionButtonsStatus];
-    [moreActivityIndicator stopAnimating];
-    isLoading = NO;
 }
 
 #pragma mark - Table view data source
@@ -354,17 +349,6 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
-}
-
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !isLoading && haveMorePlayers) {
-        [connection requestPlayersBySearchCriteria:[searchView searchCriteria] startIndex:playerList.count count:count isSync:YES];
-        isLoading = YES;
-        [moreActivityIndicator startAnimating];
-        //Set moreLabel
-        [moreLabel setText:[gUIStrings objectForKey:@"UI_PlayerMarket_Loading"]];
-    }
 }
 
 #pragma Button Actions

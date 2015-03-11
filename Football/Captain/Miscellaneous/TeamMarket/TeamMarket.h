@@ -22,6 +22,6 @@ enum TeamMarketViewType {
 
 @end
 
-@interface TeamMarket : UITableViewController<JSONConnectDelegate>
+@interface TeamMarket : TableViewController_More<JSONConnectDelegate>
 @property enum TeamMarketViewType viewType;
 @end

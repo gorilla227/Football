@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="TjK-OM-Yjn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="TjK-OM-Yjn">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--Main Menu-->
@@ -2081,7 +2081,7 @@
         <scene sceneID="GRY-Kz-Xw3">
             <objects>
                 <tableViewController storyboardIdentifier="PlayerMarket" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e93-Fb-qcJ" customClass="PlayerMarket" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="p7v-HU-52G">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="p7v-HU-52G">
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2190,23 +2190,6 @@
                                 <outlet property="nickNameSearchTextField" destination="PMx-K7-M75" id="KNK-jK-KJ2"/>
                                 <outlet property="positionView" destination="7Aq-k2-eq3" id="hsv-DT-i0Q"/>
                             </connections>
-                        </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="Qct-2b-j2i">
-                            <rect key="frame" x="0.0" y="345" width="320" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" id="iLd-la-Vmb">
-                                    <rect key="frame" x="67" y="5" width="20" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </activityIndicatorView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下载更多..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kXa-gS-AWv">
-                                    <rect key="frame" x="95" y="0.0" width="130" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerMarketCell" id="KHz-Ge-Z7n" customClass="PlayerMarket_Cell">
@@ -2320,9 +2303,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="actionBar" destination="8af-Qc-qp1" id="1wy-I1-hg2"/>
-                        <outlet property="moreActivityIndicator" destination="iLd-la-Vmb" id="2gt-yT-Ywu"/>
-                        <outlet property="moreFooterView" destination="Qct-2b-j2i" id="xLI-9H-5B8"/>
-                        <outlet property="moreLabel" destination="kXa-gS-AWv" id="kY6-tT-6C0"/>
                         <outlet property="recruitButton" destination="W9j-Gr-3xj" id="mc6-0N-0zQ"/>
                         <outlet property="searchView" destination="rVU-W4-UDu" id="m12-Jj-Bri"/>
                         <outlet property="searchViewSwitchButton" destination="jSB-gb-It7" id="Cki-i8-zIE"/>
@@ -4867,23 +4847,6 @@
                                 <outlet property="delegate" destination="uoL-By-mSF" id="pag-Vx-jqK"/>
                             </connections>
                         </searchBar>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="2bI-fI-T7j">
-                            <rect key="frame" x="0.0" y="518" width="320" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" id="Rgg-gy-2Qh">
-                                    <rect key="frame" x="67" y="5" width="20" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </activityIndicatorView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下载更多..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HqV-tg-rdy">
-                                    <rect key="frame" x="95" y="0.0" width="130" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FindTeamCell" rowHeight="100" id="G3x-cl-ykv" customClass="FindTeam_Cell">
                                 <rect key="frame" x="0.0" y="66" width="320" height="100"/>
@@ -4975,9 +4938,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="moreActivityIndicator" destination="Rgg-gy-2Qh" id="iNt-lK-kJ9"/>
-                        <outlet property="moreFooterView" destination="2bI-fI-T7j" id="pWb-i6-drn"/>
-                        <outlet property="moreLabel" destination="HqV-tg-rdy" id="7HF-Os-U0z"/>
                         <outlet property="searchDisplayController" destination="ChT-CL-UhJ" id="Vfh-RZ-FGa"/>
                     </connections>
                 </tableViewController>
@@ -5120,23 +5080,6 @@
                                 <outlet property="teamNumberView" destination="FgC-FT-A7j" id="nvU-Xj-E50"/>
                             </connections>
                         </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="tUS-Hv-zZp">
-                            <rect key="frame" x="0.0" y="345" width="320" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" id="K4r-bf-Poz">
-                                    <rect key="frame" x="67" y="5" width="20" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </activityIndicatorView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下载更多..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v76-5r-stk">
-                                    <rect key="frame" x="95" y="0.0" width="130" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeamMarketCell" id="vWZ-57-7F7" customClass="TeamMarket_Cell">
                                 <rect key="frame" x="0.0" y="257" width="320" height="88"/>
@@ -5213,9 +5156,6 @@
                     <navigationItem key="navigationItem" title="球队超市" id="w5H-EL-R5m"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="moreActivityIndicator" destination="K4r-bf-Poz" id="elK-JI-Hbk"/>
-                        <outlet property="moreFooterView" destination="tUS-Hv-zZp" id="rEU-0E-CyL"/>
-                        <outlet property="moreLabel" destination="v76-5r-stk" id="Iwg-Jh-aiB"/>
                         <outlet property="searchView" destination="Ybm-m0-LhB" id="Bko-RJ-oHG"/>
                         <outlet property="searchViewSwitchButton" destination="7U1-uE-dab" id="lSI-aE-ZJq"/>
                     </connections>

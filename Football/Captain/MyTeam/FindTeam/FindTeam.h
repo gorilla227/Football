@@ -12,6 +12,6 @@
 
 @end
 
-@interface FindTeam : UITableViewController<JSONConnectDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface FindTeam : TableViewController_More<JSONConnectDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @end

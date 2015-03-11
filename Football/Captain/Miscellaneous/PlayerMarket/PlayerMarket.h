@@ -26,7 +26,7 @@ enum PlayerMarketViewType {
 @property id<PlayerMarketDelegate>delegate;
 @end
 
-@interface PlayerMarket : UITableViewController<JSONConnectDelegate, PlayerMarketDelegate>
+@interface PlayerMarket : TableViewController_More<JSONConnectDelegate, PlayerMarketDelegate>
 @property enum PlayerMarketViewType viewType;
 @property Match *matchData;
 @end
