@@ -146,6 +146,7 @@
 #pragma JSONConnectDelegate
 -(void)receiveMatch:(Match *)match {
     matchData = match;
+    [matchData setMatchNotice:message];
     [self presetMatchData];
 }
 
@@ -384,6 +385,10 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (!matchData && viewType != MatchDetailsViewType_CreateMatch) {
+        return 0;
+    }
+    
     if ([tableView isEqual:self.tableView]) {
         switch (viewType) {
             case MatchDetailsViewType_CreateMatch:

@@ -76,7 +76,9 @@
     messageList = [NSMutableArray new];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
-    [self startLoadingMore];
+    if ([messageTypeTextField selectedMessageType]) {
+        [self startLoadingMore];
+    }
     if (self.tabBarItem.tag == 0) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUnreadMessageAmount) name:@"MessageStatusUpdated" object:nil];
         [self refreshUnreadMessageAmount];
