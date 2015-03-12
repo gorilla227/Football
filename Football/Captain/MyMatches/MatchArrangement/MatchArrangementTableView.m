@@ -80,11 +80,11 @@
                 switch (buttonIndex) {
                     case 0:
                         //接受约战
-                        [replyMatchInvitationAndNoticeDelegate replyMatchInvitation:matchData.matchNotice withAnswer:YES];
+                        [replyMatchInvitationAndNoticeDelegate replyMatchInvitation:matchData.matchMessage withAnswer:YES];
                         break;
                     case 1:
                         //拒绝约战
-                        [replyMatchInvitationAndNoticeDelegate replyMatchInvitation:matchData.matchNotice withAnswer:NO];
+                        [replyMatchInvitationAndNoticeDelegate replyMatchInvitation:matchData.matchMessage withAnswer:NO];
                         break;
                     default:
                         break;
@@ -113,11 +113,11 @@
         switch (buttonIndex) {
             case 0:
                 //同意参赛
-                [replyMatchInvitationAndNoticeDelegate replyMatchNotice:matchData.matchNotice.messageId withAnswer:YES];
+                [replyMatchInvitationAndNoticeDelegate replyMatchNotice:matchData.matchMessage.messageId withAnswer:YES];
                 break;
             case 1:
                 //拒绝参赛
-                [replyMatchInvitationAndNoticeDelegate replyMatchNotice:matchData.matchNotice.messageId withAnswer:NO];
+                [replyMatchInvitationAndNoticeDelegate replyMatchNotice:matchData.matchMessage.messageId withAnswer:NO];
                 break;
             default:
                 break;
@@ -227,8 +227,8 @@
 -(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer isSent:(BOOL)result {
     if (result) {
         for (Match *match in matchesList) {
-            if (match.matchNotice.messageId == messageId) {
-                [match.matchNotice setStatus:answer?2:3];
+            if (match.matchMessage.messageId == messageId) {
+                [match.matchMessage setStatus:answer?2:3];
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[matchesList indexOfObject:match] inSection:0];
                 [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 break;
@@ -244,8 +244,8 @@
 -(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer isSent:(BOOL)result {
     if (result) {
         for (Match *match in matchesList) {
-            if (match.matchNotice.messageId == message.messageId) {
-                [match.matchNotice setStatus:answer?2:3];
+            if (match.matchMessage.messageId == message.messageId) {
+                [match.matchMessage setStatus:answer?2:3];
                 [match setStatus:answer?3:2];
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[matchesList indexOfObject:match] inSection:0];
                 [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -358,8 +358,8 @@
         [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_fillMatchData.png"]];
         switch (matchData.status) {
             case 3://未开始比赛
-                if (matchData.matchNotice) {
-                    switch (matchData.matchNotice.status) {
+                if (matchData.matchMessage) {
+                    switch (matchData.matchMessage.status) {
                         case 0:
                         case 1:
                             [cell.actionButton setEnabled:YES];

@@ -163,7 +163,7 @@
 #define kMatch_sentMatchNotices @"match_notice_sent"
 #define kMatch_confirmedMember @"member_confirmed"
 #define kMatch_confirmedTemp @"temp_member_confirmed"
-#define kMatch_matchNotice @"player_message"
+#define kMatch_matchMessage @"player_message"
 #define kMatch_fieldId @"field_id"
 #define kMatch_homeTeamId @"host_team_id"
 #define kMatch_awayTeamId @"guest_team_id"
@@ -188,7 +188,7 @@
 @property NSNumber *sentMatchNotices;
 @property NSNumber *confirmedMember;
 @property NSNumber *confirmedTemp;
-@property Message *matchNotice;
+@property Message *matchMessage;
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)dictionaryForUpdate:(Match *)originalMatch;
 @end

@@ -125,12 +125,12 @@
         [scoreTextField setText:(selectedOpponentTeam.teamId == matchData.awayTeam.teamId)?[NSString stringWithFormat:@"%@ : %@", matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]]:[NSString stringWithFormat:@"%@ : %@", matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]]];
         switch (viewType) {
             case MatchDetailsViewType_MatchInvitation:
-                [acceptMatchInvitationButton setEnabled:(matchData.matchNotice.status == 0 || matchData.matchNotice.status == 1)];
-                [refuseMatchInvitationButton setEnabled:(matchData.matchNotice.status == 0 || matchData.matchNotice.status == 1)];
+                [acceptMatchInvitationButton setEnabled:(matchData.matchMessage.status == 0 || matchData.matchMessage.status == 1)];
+                [refuseMatchInvitationButton setEnabled:(matchData.matchMessage.status == 0 || matchData.matchMessage.status == 1)];
                 break;
             case MatchDetailsViewType_MatchNotice:
-                [acceptMatchNoticeButton setEnabled:(matchData.matchNotice.status == 0 || matchData.matchNotice.status == 1)];
-                [refuseMatchNoticeButton setEnabled:(matchData.matchNotice.status == 0 || matchData.matchNotice.status == 1)];
+                [acceptMatchNoticeButton setEnabled:(matchData.matchMessage.status == 0 || matchData.matchMessage.status == 1)];
+                [refuseMatchNoticeButton setEnabled:(matchData.matchMessage.status == 0 || matchData.matchMessage.status == 1)];
                 break;
             default:
                 break;
@@ -146,7 +146,7 @@
 #pragma JSONConnectDelegate
 -(void)receiveMatch:(Match *)match {
     matchData = match;
-    [matchData setMatchNotice:message];
+    [matchData setMatchMessage:message];
     [self presetMatchData];
 }
 
@@ -156,7 +156,7 @@
 
 -(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer isSent:(BOOL)result {
     if (result) {
-        [matchData.matchNotice setStatus:answer?2:3];
+        [matchData.matchMessage setStatus:answer?2:3];
     }
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:result?[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Title_Succ"]:[gUIStrings objectForKey:@"UI_ReplyMatchNoticeAlertView_Title_Fail"]
@@ -169,7 +169,7 @@
 
 -(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer isSent:(BOOL)result {
     if (result) {
-        [matchData.matchNotice setStatus:answer?2:3];
+        [matchData.matchMessage setStatus:answer?2:3];
         [matchData setStatus:answer?3:2];
     }
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:result?[gUIStrings objectForKey:@"UI_ReplyMatchInvitationAlertView_Title_Succ"]:[gUIStrings objectForKey:@"UI_ReplyMatchInvitationAlertView_Title_Fail"]
@@ -296,19 +296,19 @@
 }
 
 -(IBAction)acceptMatchNoticeButtonOnClicked:(id)sender {
-    [connection replyMatchNotice:matchData.matchNotice.messageId withAnswer:YES];
+    [connection replyMatchNotice:matchData.matchMessage.messageId withAnswer:YES];
 }
 
 -(IBAction)refuseMatchNoticeButtonOnClicked:(id)sender {
-    [connection replyMatchNotice:matchData.matchNotice.messageId withAnswer:NO];
+    [connection replyMatchNotice:matchData.matchMessage.messageId withAnswer:NO];
 }
 
 -(IBAction)acceptMatchInvitationButtonOnClicked:(id)sender {
-    [connection replyMatchInvitation:matchData.matchNotice withAnswer:YES];
+    [connection replyMatchInvitation:matchData.matchMessage withAnswer:YES];
 }
 
 -(IBAction)refuseMatchInvitationButtonOnClicked:(id)sender {
-    [connection replyMatchInvitation:matchData.matchNotice withAnswer:NO];
+    [connection replyMatchInvitation:matchData.matchMessage withAnswer:NO];
 }
 
 -(IBAction)createMatchButtonOnClicked:(id)sender {

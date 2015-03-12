@@ -406,7 +406,7 @@
 
 #pragma Match
 @implementation Match
-@synthesize matchId, matchTitle, beginTime, beginTimeLocal, matchField, homeTeam, awayTeam, homeTeamGoal, awayTeamGoal, matchStandard, cost, withReferee, withWater, organizerId, status, createTime, createTimeLocal, sentMatchNotices, confirmedMember, confirmedTemp, matchNotice;
+@synthesize matchId, matchTitle, beginTime, beginTimeLocal, matchField, homeTeam, awayTeam, homeTeamGoal, awayTeamGoal, matchStandard, cost, withReferee, withWater, organizerId, status, createTime, createTimeLocal, sentMatchNotices, confirmedMember, confirmedTemp, matchMessage;
 -(id)copy
 {
     Match *matchCopy = [[Match alloc] init];
@@ -430,7 +430,7 @@
     [matchCopy setSentMatchNotices:[sentMatchNotices copy]];
     [matchCopy setConfirmedMember:[confirmedMember copy]];
     [matchCopy setConfirmedTemp:[confirmedTemp copy]];
-    [matchCopy setMatchNotice:[matchNotice copy]];
+    [matchCopy setMatchMessage:[matchMessage copy]];
     return matchCopy;
 }
 
@@ -461,8 +461,8 @@
         [self setSentMatchNotices:[data objectForKey:kMatch_sentMatchNotices]];
         [self setConfirmedMember:[data objectForKey:kMatch_confirmedMember]];
         [self setConfirmedTemp:[data objectForKey:kMatch_confirmedTemp]];
-        if ([[data objectForKey:kMatch_matchNotice] isKindOfClass:[NSDictionary class]]) {
-            [self setMatchNotice:[[Message alloc] initWithData:[data objectForKey:kMatch_matchNotice]]];
+        if ([[data objectForKey:kMatch_matchMessage] isKindOfClass:[NSDictionary class]]) {
+            [self setMatchMessage:[[Message alloc] initWithData:[data objectForKey:kMatch_matchMessage]]];
         }
     }
     return self;
@@ -529,8 +529,8 @@
     if (![confirmedTemp isEqualToNumber:originalMatch.confirmedTemp]) {
         [ouput setObject:confirmedTemp forKey:kMatch_confirmedTemp];
     }
-    if (matchNotice.messageId != originalMatch.matchNotice.messageId) {
-        [ouput setObject:matchNotice forKey:kMatch_matchNotice];
+    if (matchMessage.messageId != originalMatch.matchMessage.messageId) {
+        [ouput setObject:matchMessage forKey:kMatch_matchMessage];
     }
     return ouput;
 }
