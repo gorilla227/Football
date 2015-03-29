@@ -777,4 +777,65 @@
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
+
+//Request MatchScoreDetails
+- (void)requestMatchScoreDetails:(NSInteger)matchId forTeam:(NSInteger)teamId {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestMatchScoreDetails_Suffix];
+    NSDictionary *parameters = CONNECT_RequestMatchScoreDetails_Parameters([NSNumber numberWithInteger:matchId], [NSNumber numberWithInteger:teamId]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSMutableArray *scoreDetails = [NSMutableArray new];
+        for (NSDictionary *scoreDetail in responseObject) {
+            MatchScore *matchScore = [[MatchScore alloc] initWithData:scoreDetail];
+            [scoreDetails addObject:matchScore];
+        }
+        [busyIndicatorDelegate unlockView];
+        [delegate receiveMatchScoreDetails:scoreDetails];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//Add MatchScore Detail
+- (void)addMatchScoreDetail:(NSDictionary *)parameters {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_AddMatchScoreDetail_Suffix];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate addedMatchScoreDetail:![[responseObject objectForKey:@"error"] boolValue]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//Update MatchScore Detail
+- (void)updateMatchScoreDetail:(NSDictionary *)parameters {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateMatchScoreDetail_Suffix];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate updatedMatchScoreDetail:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+        [delegate updatedMatchScoreDetail:NO];
+    }];
+}
+
+//Request Match Attendence
+- (void)requestMatchAttendence:(NSInteger)matchId forTeam:(NSInteger)teamId {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestMatchAttendence_Suffix];
+    NSDictionary *parameters = CONNECT_RequestMatchAttendence_Parameters([NSNumber numberWithInteger:matchId], [NSNumber numberWithInteger:teamId]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSMutableArray *attendenceList = [NSMutableArray new];
+        for (NSDictionary *attendenceData in responseObject) {
+            UserInfo *attendence = [[UserInfo alloc] initWithData:attendenceData];
+            [attendenceList addObject:attendence];
+        }
+        [busyIndicatorDelegate unlockView];
+        [delegate receiveMatchAttendence:attendenceList];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
 @end

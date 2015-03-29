@@ -88,10 +88,10 @@
     [hintView settingHintWithTextKey:@"EnterScore" underView:summaryView wantShow:YES];
     
     //Fill score if already have score
-    [homeTeamLabel setText:matchScore.home.teamName];
-    [awayTeamLabel setText:matchScore.awayTeamName];
-    [homeTeamScoreTextField setText:matchScore.homeScore.stringValue];
-    [awayTeamScoreTextField setText:matchScore.awayScore.stringValue];
+//    [homeTeamLabel setText:matchScore.home.teamName];
+//    [awayTeamLabel setText:matchScore.awayTeamName];
+//    [homeTeamScoreTextField setText:matchScore.homeScore.stringValue];
+//    [awayTeamScoreTextField setText:matchScore.awayScore.stringValue];
     
     //Set tableview
     [scoreDetailsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -139,7 +139,7 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if ([textField isEqual:homeTeamScoreTextField]) {
-        [matchScore setHomeScore:[NSNumber numberWithInteger:homeTeamScoreTextField.text.integerValue]];
+//        [matchScore setHomeScore:[NSNumber numberWithInteger:homeTeamScoreTextField.text.integerValue]];
     }
 ////    else if ([textField isEqual:awayTeamScoreTextField]) {
 ////        [matchScore setAwayScore:[NSNumber numberWithInteger:awayTeamScoreTextField.text.integerValue]];
@@ -155,7 +155,8 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return matchScore.homeScore.integerValue;
+    return 0;
+//    return matchScore.homeScore.integerValue;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -173,25 +174,25 @@
 
 -(IBAction)saveButtonOnClicked:(id)sender
 {
-    matchScore.homeScore = [NSNumber numberWithInteger:homeTeamScoreTextField.text.integerValue];
-    matchScore.awayScore = [NSNumber numberWithInteger:awayTeamScoreTextField.text.integerValue];
-    NSMutableArray *goalPlayers = [[NSMutableArray alloc] init];
-    NSMutableArray *assistPlayers = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < matchScore.homeScore.integerValue; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        Captain_CreateMatch_EnterScoreTableView_Cell *cell = (Captain_CreateMatch_EnterScoreTableView_Cell *)[scoreDetailsTableView cellForRowAtIndexPath:indexPath];
-        for (UserInfo *player in playersCandidateList) {
-//            NSLog(@"%@,%@,%@", player.name, cell.goalPlayerName.text, cell.assistPlayerName.text);
-            if ([player.nickName isEqualToString:cell.goalPlayerName.text]) {
-                [goalPlayers addObject:player];
-            }
-            if ([player.nickName isEqualToString:cell.assistPlayerName.text]) {
-                [assistPlayers addObject:player];
-            }
-        }
-    }
-    matchScore.goalPlayers = goalPlayers;
-    matchScore.assistPlayers = assistPlayers;
+//    matchScore.homeScore = [NSNumber numberWithInteger:homeTeamScoreTextField.text.integerValue];
+//    matchScore.awayScore = [NSNumber numberWithInteger:awayTeamScoreTextField.text.integerValue];
+//    NSMutableArray *goalPlayers = [[NSMutableArray alloc] init];
+//    NSMutableArray *assistPlayers = [[NSMutableArray alloc] init];
+//    for (NSInteger i = 0; i < matchScore.homeScore.integerValue; i++) {
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+//        Captain_CreateMatch_EnterScoreTableView_Cell *cell = (Captain_CreateMatch_EnterScoreTableView_Cell *)[scoreDetailsTableView cellForRowAtIndexPath:indexPath];
+//        for (UserInfo *player in playersCandidateList) {
+////            NSLog(@"%@,%@,%@", player.name, cell.goalPlayerName.text, cell.assistPlayerName.text);
+//            if ([player.nickName isEqualToString:cell.goalPlayerName.text]) {
+//                [goalPlayers addObject:player];
+//            }
+//            if ([player.nickName isEqualToString:cell.assistPlayerName.text]) {
+//                [assistPlayers addObject:player];
+//            }
+//        }
+//    }
+//    matchScore.goalPlayers = goalPlayers;
+//    matchScore.assistPlayers = assistPlayers;
     
     [delegate receiveScore:matchScore];
     [self.navigationController popViewControllerAnimated:YES];

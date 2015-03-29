@@ -10,15 +10,7 @@
 #import "TeamMarket.h"
 #import "TeamDetails.h"
 #import "StadiumDetails.h"
-
-@interface MatchDetails_MatchScoreDetails_Cell ()
-@property IBOutlet UILabel *goalPlayerName;
-@property IBOutlet UILabel *assistPlayerName;
-@end
-
-@implementation MatchDetails_MatchScoreDetails_Cell
-@synthesize goalPlayerName, assistPlayerName;
-@end
+#import "MatchScoreDetails.h"
 
 @interface MatchDetails ()
 @property IBOutlet UITextField *matchTimeTextField;
@@ -29,7 +21,6 @@
 @property IBOutlet UISwitch *costOption_Referee;
 @property IBOutlet UISwitch *costOption_Water;
 @property IBOutlet UITextFieldForMatchScore *scoreTextField;
-@property IBOutlet UITableView *scoreDetailsTableView;
 @property IBOutlet UIButton *inviteOpponentButton;
 @property IBOutlet UIToolbar *createMatchActionBar;
 @property IBOutlet UIBarButtonItem *createMatchButton;
@@ -40,6 +31,7 @@
 @property IBOutlet UIBarButtonItem *acceptMatchNoticeButton;
 @property IBOutlet UIBarButtonItem *refuseMatchNoticeButton;
 @property IBOutlet UIGestureRecognizer *dismissKeyboardGestureRecognizer;
+@property IBOutlet UIButton *scoreDetailsButton;
 @end
 
 @implementation MatchDetails{
@@ -51,13 +43,15 @@
     Team *selectedOpponentTeam;
     JSONConnect *connection;
 }
-@synthesize matchTimeTextField, matchOpponentTextField, matchStadiumTextFiedld, matchStandardTextField, costTextField, costOption_Referee, costOption_Water, scoreTextField, scoreDetailsTableView, inviteOpponentButton, createMatchActionBar, createMatchButton, matchInvitationActionBar, acceptMatchInvitationButton, refuseMatchInvitationButton, matchNoticeActionBar, acceptMatchNoticeButton, refuseMatchNoticeButton, dismissKeyboardGestureRecognizer;
+@synthesize matchTimeTextField, matchOpponentTextField, matchStadiumTextFiedld, matchStandardTextField, costTextField, costOption_Referee, costOption_Water, scoreTextField, inviteOpponentButton, createMatchActionBar, createMatchButton, matchInvitationActionBar, acceptMatchInvitationButton, refuseMatchInvitationButton, matchNoticeActionBar, acceptMatchNoticeButton, refuseMatchNoticeButton, dismissKeyboardGestureRecognizer, scoreDetailsButton;
 @synthesize viewType, matchData, message;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    [self.scoreDetailsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [scoreDetailsButton.layer setCornerRadius:5.0f];
+    [scoreDetailsButton.layer setMasksToBounds:YES];
     
     //Set dateformatter
     dateFormatter = [[NSDateFormatter alloc] init];
@@ -113,7 +107,12 @@
 
 -(void)presetMatchData {
     if (matchData) {
-        selectedOpponentTeam = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam:matchData.homeTeam;
+        if (matchData.matchMessage.messageType == 4) {
+            selectedOpponentTeam = (matchData.homeTeam.teamId == matchData.matchMessage.senderId)?matchData.awayTeam:matchData.homeTeam;
+        }
+        else {
+            selectedOpponentTeam = (matchData.homeTeam.teamId == gMyUserInfo.team.teamId)?matchData.awayTeam:matchData.homeTeam;
+        }
         
         [matchTimeTextField setText:[dateFormatter stringFromDate:matchData.beginTime]];
         [matchOpponentTextField setText:selectedOpponentTeam.teamName];
@@ -122,7 +121,7 @@
         [costTextField setText:[NSString stringWithFormat:@"%.2f", matchData.cost.floatValue]];
         [costOption_Referee setOn:matchData.withReferee];
         [costOption_Water setOn:matchData.withWater];
-        [scoreTextField setText:(selectedOpponentTeam.teamId == matchData.awayTeam.teamId)?[NSString stringWithFormat:@"%@ : %@", matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]]:[NSString stringWithFormat:@"%@ : %@", matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]]];
+        [scoreTextField setText:(selectedOpponentTeam.teamId == matchData.awayTeam.teamId)?[NSString stringWithFormat:@"%@ : %@", matchData.homeTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.awayTeamGoal]]:[NSString stringWithFormat:@"%@ : %@", matchData.awayTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.homeTeamGoal]]];
         switch (viewType) {
             case MatchDetailsViewType_MatchInvitation:
                 [acceptMatchInvitationButton setEnabled:(matchData.matchMessage.status == 0 || matchData.matchMessage.status == 1)];
@@ -249,9 +248,8 @@
 
 -(void)initialMatchScore
 {
-    [scoreTextField initialTextFieldForMatchScore];
-    [scoreTextField setIsRegularMatch:(viewType != MatchDetailsViewType_CreateMatch)];
-    [scoreTextField presetHomeScore:3 andAwayScore:1];
+    [scoreTextField initialTextFieldForMatchScore:(viewType != MatchDetailsViewType_CreateMatch)];
+    [scoreTextField presetHomeScore:0 andAwayScore:0];
     [scoreTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
@@ -389,94 +387,68 @@
         return 0;
     }
     
-    if ([tableView isEqual:self.tableView]) {
-        switch (viewType) {
-            case MatchDetailsViewType_CreateMatch:
-                switch (creationProgress) {
-                    case MatchDetailsCreationProgress_Initial:
-                        [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateFinishedMatch"]];
-                        return 1;
-                    case MatchDetailsCreationProgress_Passed:
-                        [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateFinishedMatch"]];
-                        return [super numberOfSectionsInTableView:tableView];
-                    case MatchDetailsCreationProgress_Future_WithoutOppo:
-                        [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateRegularMatch"]];
-                        return 1;
-                    case MatchDetailsCreationProgress_Future_WithOppo:
-                        [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateRegularMatch"]];
-                        return 2;
-                    default:
-                        return 0;
-                }
-            case MatchDetailsViewType_ViewDetails:
-                if (matchData.status == 4 || matchData.status == 5) {
+    switch (viewType) {
+        case MatchDetailsViewType_CreateMatch:
+            switch (creationProgress) {
+                case MatchDetailsCreationProgress_Initial:
+                    [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateFinishedMatch"]];
+                    return 1;
+                case MatchDetailsCreationProgress_Passed:
+                    [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateFinishedMatch"]];
                     return [super numberOfSectionsInTableView:tableView];
-                }
-                else {
-                    return [super numberOfSectionsInTableView:tableView] - 1;
-                }
-            case MatchDetailsViewType_MatchInvitation:
-            case MatchDetailsViewType_MatchNotice:
-                switch (matchData.status) {
-                    case 1:
-                    case 2:
-                    case 3:
-                        return [super numberOfSectionsInTableView:tableView] - 1;
-                        break;
-                    default:
-                        return [super numberOfSectionsInTableView:tableView];
-                        break;
-                }
-                break;
-            default:
+                case MatchDetailsCreationProgress_Future_WithoutOppo:
+                    [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateRegularMatch"]];
+                    return 1;
+                case MatchDetailsCreationProgress_Future_WithOppo:
+                    [createMatchButton setTitle:[gUIStrings objectForKey:@"UI_MatchDetails_ActionButton_CreateRegularMatch"]];
+                    return 2;
+                default:
+                    return 0;
+            }
+        case MatchDetailsViewType_ViewDetails:
+            if (matchData.status == 4 || matchData.status == 5) {
                 return [super numberOfSectionsInTableView:tableView];
-        }
-    }
-    else {
-        return 1;
+            }
+            else {
+                return [super numberOfSectionsInTableView:tableView] - 1;
+            }
+        case MatchDetailsViewType_MatchInvitation:
+        case MatchDetailsViewType_MatchNotice:
+            switch (matchData.status) {
+                case 1:
+                case 2:
+                case 3:
+                    return [super numberOfSectionsInTableView:tableView] - 1;
+                    break;
+                default:
+                    return [super numberOfSectionsInTableView:tableView];
+                    break;
+            }
+            break;
+        default:
+            return [super numberOfSectionsInTableView:tableView];
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([tableView isEqual:self.tableView]) {
-        switch (viewType) {
-            case MatchDetailsViewType_CreateMatch:
-                switch (creationProgress) {
-                    case MatchDetailsCreationProgress_Initial:
-                        return 1;
-                    case MatchDetailsCreationProgress_Passed:
-                        return [super tableView:tableView numberOfRowsInSection:section];
-                    case MatchDetailsCreationProgress_Future_WithoutOppo:
-                        return 2;
-                    case MatchDetailsCreationProgress_Future_WithOppo:
-                        return [super tableView:tableView numberOfRowsInSection:section];
-                    default:
-                        return 0;
-                }
-            case MatchDetailsViewType_ViewDetails:
-                return [super tableView:tableView numberOfRowsInSection:section];
-            default:
-                return [super tableView:tableView numberOfRowsInSection:section];
-        }
-    }
-    else {
-        return 1;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([tableView isEqual:self.tableView]) {
-        UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-
-        return cell;
-    }
-    else {
-        static NSString *CellIdentifier = @"MatchScoreCell";
-        MatchDetails_MatchScoreDetails_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        
-        // Configure the cell...
-        
-        return cell;
+    switch (viewType) {
+        case MatchDetailsViewType_CreateMatch:
+            switch (creationProgress) {
+                case MatchDetailsCreationProgress_Initial:
+                    return 1;
+                case MatchDetailsCreationProgress_Passed:
+                    return [super tableView:tableView numberOfRowsInSection:section];
+                case MatchDetailsCreationProgress_Future_WithoutOppo:
+                    return 2;
+                case MatchDetailsCreationProgress_Future_WithOppo:
+                    return [super tableView:tableView numberOfRowsInSection:section];
+                default:
+                    return 0;
+            }
+        case MatchDetailsViewType_ViewDetails:
+            return [super tableView:tableView numberOfRowsInSection:section];
+        default:
+            return [super tableView:tableView numberOfRowsInSection:section];
     }
 }
 
@@ -502,19 +474,14 @@
 
 //HintText
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    if ([tableView isEqual:self.tableView]) {
-        if (viewType == MatchDetailsViewType_CreateMatch && section == 0) {
-            switch (creationProgress) {
-                case MatchDetailsCreationProgress_Initial:
-                    return [gUIStrings objectForKey:@"Hint_CreateMatch_MatchTime"];
-                case MatchDetailsCreationProgress_Future_WithoutOppo:
-                    return [gUIStrings objectForKey:@"Hint_CreateMatch_MatchOpponent"];
-                default:
-                    return nil;
-            }
-        }
-        else {
-            return nil;
+    if (viewType == MatchDetailsViewType_CreateMatch && section == 0) {
+        switch (creationProgress) {
+            case MatchDetailsCreationProgress_Initial:
+                return [gUIStrings objectForKey:@"Hint_CreateMatch_MatchTime"];
+            case MatchDetailsCreationProgress_Future_WithoutOppo:
+                return [gUIStrings objectForKey:@"Hint_CreateMatch_MatchOpponent"];
+            default:
+                return nil;
         }
     }
     else {
@@ -564,6 +531,11 @@
     if ([segue.identifier isEqualToString:@"SelectOpponentViaTeamMarket"]) {
         TeamMarket *teamMarket = (TeamMarket *)segue.destinationViewController;
         [teamMarket setViewType:TeamMarketViewType_CreateMatch];
+    }
+    else if ([segue.identifier isEqualToString:@"MatchScoreDetails"]) {
+        MatchScoreDetails *matchScoreDetails = (MatchScoreDetails *)segue.destinationViewController;
+        [matchScoreDetails setMatchData:matchData];
+        [matchScoreDetails setEditable:(gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId))];
     }
 }
 

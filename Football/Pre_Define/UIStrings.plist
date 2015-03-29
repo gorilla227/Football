@@ -306,7 +306,7 @@
 	<key>UI_MessageHead_Format</key>
 	<string>%@：%@ 发送时间：%@</string>
 	<key>UI_MessageHead_Sent</key>
-	<string>接受者</string>
+	<string>接收者</string>
 	<key>UI_MessageHead_Received</key>
 	<string>发送者</string>
 	<key>UI_ReplayApplyin_Accepted</key>

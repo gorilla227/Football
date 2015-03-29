@@ -169,9 +169,9 @@
 //    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchDetails"];
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
-    //Test TableView
-    UIStoryboard *storyboard= [UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil];
-    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MoreTableViewController"];
+    //Match Score
+    UIStoryboard *storyboard= [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchScoreDetails"];
     [self.navigationController pushViewController:targetViewController animated:YES];
 }
 //DissmissKeyboard

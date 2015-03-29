@@ -537,48 +537,84 @@
 @end
 
 @implementation MatchScore
-@synthesize home, awayTeamName, homeScore, awayScore, goalPlayers, assistPlayers;
+@synthesize scoreId, matchId, teamId, goalPlayerId, assistPlayerId, recordType, recordTime, recordTimeLocal, comment;
 
--(id)initWithData:(NSDictionary *)data
-{
+- (id)copy {
+    MatchScore *matchScoreCopy = [[MatchScore alloc] init];
+    [matchScoreCopy setScoreId:scoreId];
+    [matchScoreCopy setMatchId:matchId];
+    [matchScoreCopy setTeamId:teamId];
+    [matchScoreCopy setGoalPlayerId:goalPlayerId];
+    [matchScoreCopy setAssistPlayerId:assistPlayerId];
+    [matchScoreCopy setRecordType:recordType];
+    [matchScoreCopy setRecordTime:[recordTime copy]];
+    [matchScoreCopy setRecordTimeLocal:[recordTimeLocal copy]];
+    [matchScoreCopy setComment:[comment copy]];
+    return matchScoreCopy;
+}
+
+- (id)initWithData:(NSDictionary *)data {
     self = [super init];
     if (self) {
-        [self setHome:[[Team alloc] initWithData:[data objectForKey:kMatchScore_homeTeam]]];
-        [self setAwayTeamName:[data objectForKey:kMatchScore_awayTeam]];
-        [self setHomeScore:[data objectForKey:kMatchScore_homeScore]];
-        [self setAwayScore:[data objectForKey:kMatchScore_awayScore]];
-        NSMutableArray *goalPlayersArray = [[NSMutableArray alloc] init];
-        for (NSDictionary *player in [data objectForKey:kMatchScore_goalPlayers]) {
-            [goalPlayersArray addObject:[[UserInfo alloc] initWithData:player]];
-        }
-        [self setGoalPlayers:goalPlayersArray];
-        NSMutableArray *assistPlayersArray = [[NSMutableArray alloc] init];
-        for (NSDictionary *player in [data objectForKey:kMatchScore_assistPlayers]) {
-            [assistPlayersArray addObject:[[UserInfo alloc] initWithData:player]];
-        }
-        [self setAssistPlayers:assistPlayersArray];
+        [self setScoreId:[[data objectForKey:kMatchScore_scoreId] integerValue]];
+        [self setMatchId:[[data objectForKey:kMatchScore_matchId] integerValue]];
+        [self setTeamId:[[data objectForKey:kMatchScore_teamId] integerValue]];
+        [self setGoalPlayerId:[[data objectForKey:kMatchScore_goalPlayerId] integerValue]];
+        [self setAssistPlayerId:[[data objectForKey:kMatchScore_assistPlayerId] integerValue]];
+        [self setRecordType:[[data objectForKey:kMatchScore_recordType] integerValue]];
+        [self setRecordTime:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kMatchScore_recordTime] integerValue]]];
+        [self setRecordTimeLocal:[data objectForKey:kMatchScore_recordTimeLocal]];
+        [self setComment:[data objectForKey:kMatchScore_comment]];
     }
     return self;
 }
 
--(NSDictionary *)exportToDictionary
-{
-    NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
-//    [output setObject:[home exportToDictionary] forKey:kMatchScore_homeTeam];
-    [output setObject:awayTeamName forKey:kMatchScore_awayTeam];
-    [output setObject:homeScore forKey:kMatchScore_homeScore];
-    [output setObject:awayScore forKey:kMatchScore_awayScore];
-    NSMutableArray *goalPlayersArray = [[NSMutableArray alloc] init];
-    for (UserInfo *player in goalPlayers) {
-//        [goalPlayersArray addObject:[player exportToDictionary]];
+- (NSDictionary *)dictionaryForUpdate:(MatchScore *)originalMatchScore {
+    NSMutableDictionary *output = [NSMutableDictionary new];
+    if (originalMatchScore && ![originalMatchScore isEqual:[NSNull null]]) {
+        [output setObject:[NSNumber numberWithInteger:scoreId] forKey:kMatchScore_scoreId];
+        
+        if (matchId != originalMatchScore.matchId) {
+            [output setObject:[NSNumber numberWithInteger:matchId] forKey:kMatchScore_matchId];
+        }
+        if (teamId != originalMatchScore.teamId) {
+            [output setObject:[NSNumber numberWithInteger:teamId] forKey:kMatchScore_teamId];
+        }
+        if (goalPlayerId != originalMatchScore.goalPlayerId) {
+            [output setObject:[NSNumber numberWithInteger:goalPlayerId] forKey:kMatchScore_goalPlayerId];
+        }
+        if (assistPlayerId != originalMatchScore.assistPlayerId) {
+            [output setObject:[NSNumber numberWithInteger:assistPlayerId] forKey:kMatchScore_assistPlayerId];
+        }
+        if (recordType != originalMatchScore.recordType) {
+            [output setObject:[NSNumber numberWithInteger:recordType] forKey:kMatchScore_recordType];
+        }
+        if (![recordTime isEqualToDate:originalMatchScore.recordTime]) {
+            [output setObject:recordTime forKey:kMatchScore_recordTime];
+        }
+        if (![recordTimeLocal isEqualToString:originalMatchScore.recordTimeLocal]) {
+            [output setObject:recordTimeLocal forKey:kMatchScore_recordTimeLocal];
+        }
+        if (![comment isEqualToString:originalMatchScore.comment]) {
+            [output setObject:comment forKey:kMatchScore_comment];
+        }
+        
+        if (output.count == 1) {
+            return nil;
+        }
     }
-    [output setObject:goalPlayersArray forKey:kMatchScore_goalPlayers];
-    NSMutableArray *assistPlayersArray = [[NSMutableArray alloc] init];
-    for (UserInfo *player in assistPlayers) {
-//        [assistPlayersArray addObject:[player exportToDictionary]];
+    else {
+        [output setObject:[NSNumber numberWithInteger:matchId] forKey:kMatchScore_matchId];
+        [output setObject:[NSNumber numberWithInteger:teamId] forKey:kMatchScore_teamId];
+        [output setObject:[NSNumber numberWithInteger:goalPlayerId] forKey:kMatchScore_goalPlayerId];
+        [output setObject:[NSNumber numberWithInteger:assistPlayerId] forKey:kMatchScore_assistPlayerId];
+        [output setObject:[NSNumber numberWithInteger:recordType] forKey:kMatchScore_recordType];
+        [output setObject:[NSNumber numberWithInteger:[recordTime timeIntervalSince1970]] forKey:kMatchScore_recordTime];
+        if (comment) {
+            [output setObject:comment forKey:kMatchScore_comment];
+        }
     }
-    [output setObject:assistPlayersArray forKey:kMatchScore_assistPlayers];
+    
     return output;
 }
-
 @end

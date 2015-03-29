@@ -332,10 +332,10 @@
             case 4://已结束比赛
                 [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_fillMatchData.png"]];
                 if (opponent.teamId == matchData.awayTeam.teamId) {
-                    [cell.actionButton setTitle:matchData.homeTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
+                    [cell.actionButton setTitle:matchData.homeTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
                 }
                 else {
-                    [cell.actionButton setTitle:matchData.awayTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
+                    [cell.actionButton setTitle:matchData.awayTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
                 }
                 [cell setResponseType:MatchResponseType_Default];
                 break;
@@ -393,10 +393,10 @@
             case 4://已结束比赛
                 [cell.actionButton setEnabled:NO];
                 if (opponent.teamId == matchData.awayTeam.teamId) {
-                    [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
+                    [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", matchData.homeTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
                 }
                 else {
-                    [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", matchData.awayTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"--":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
+                    [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", matchData.awayTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.awayTeamGoal], matchData.homeTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.homeTeamGoal]] forState:UIControlStateNormal];
                 }
                 [cell setResponseType:MatchResponseType_Default];
                 break;

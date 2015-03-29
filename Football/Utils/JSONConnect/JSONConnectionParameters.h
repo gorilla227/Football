@@ -144,6 +144,20 @@
 #define CONNECT_ReplyMatchInvitation_Suffix @"message/replymatchinvitation"
 #define CONNECT_ReplyMatchInvitation_Parameters(messageId, matchId, response) @{@"message_id":messageId, @"match_id":matchId, @"response":response}
 
+//Request Match Score Details
+#define CONNECT_RequestMatchScoreDetails_Suffix @"record/fetch"
+#define CONNECT_RequestMatchScoreDetails_Parameters(matchId, teamId) @{@"match_id":matchId, @"team_id":teamId}
+
+//Add MatchScore Detail
+#define CONNECT_AddMatchScoreDetail_Suffix @"record/add"
+
+//Update MatchScore Detail
+#define CONNECT_UpdateMatchScoreDetail_Suffix @"record/update"
+
+//Request Match Attendence
+#define CONNECT_RequestMatchAttendence_Suffix @"message/attendence"
+#define CONNECT_RequestMatchAttendence_Parameters(matchId, teamId) @{@"match_id":matchId, @"from":teamId}
+
 /*
 #pragma zzOld_Server
 //JSON variables

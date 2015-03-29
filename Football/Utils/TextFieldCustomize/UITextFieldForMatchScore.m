@@ -12,9 +12,9 @@
     UIPickerView *scorePicker;
     NSInteger homeTeamScore;
     NSInteger awayTeamScore;
+    BOOL isRegularMatch;
 }
-@synthesize isRegularMatch;
-
+@synthesize delegateForScore;
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -23,11 +23,12 @@
 }
 */
 
--(void)initialTextFieldForMatchScore
+-(void)initialTextFieldForMatchScore:(BOOL)regularMatchFlag
 {
     scorePicker = [[UIPickerView alloc] init];
     [scorePicker setDelegate:self];
     [scorePicker setDataSource:self];
+    isRegularMatch = regularMatchFlag;
     [self setInputView:scorePicker];
     [self setTintColor:[UIColor clearColor]];
 }
@@ -37,7 +38,7 @@
     homeTeamScore = homeScore;
     awayTeamScore = awayScore;
     if (awayTeamScore < 0) {
-        [self setText:[NSString stringWithFormat:@"%@ : --", [NSNumber numberWithInteger:homeTeamScore]]];
+        [self setText:[NSString stringWithFormat:@"%@ : -", [NSNumber numberWithInteger:homeTeamScore]]];
     }
     else {
         [self setText:[NSString stringWithFormat:@"%@ : %@", [NSNumber numberWithInteger:homeTeamScore], [NSNumber numberWithInteger:awayTeamScore]]];
@@ -47,6 +48,14 @@
     if (!isRegularMatch) {
         [scorePicker selectRow:awayTeamScore inComponent:1 animated:NO];
     }
+}
+
+- (NSInteger)homeScore {
+    return homeTeamScore;
+}
+
+- (NSInteger)awayScore {
+    return awayTeamScore;
 }
 
 //UIPickerViewDelegate
@@ -70,7 +79,16 @@
         awayTeamScore = [pickerView selectedRowInComponent:1];
     }
     
-    [self setText:[NSString stringWithFormat:@"%@ : %@", [NSNumber numberWithInteger:homeTeamScore], [NSNumber numberWithInteger:awayTeamScore]]];
+    if (awayTeamScore < 0) {
+        [self setText:[NSString stringWithFormat:@"%@ : -", [NSNumber numberWithInteger:homeTeamScore]]];
+    }
+    else {
+        [self setText:[NSString stringWithFormat:@"%@ : %@", [NSNumber numberWithInteger:homeTeamScore], [NSNumber numberWithInteger:awayTeamScore]]];
+    }
+    
+    if (delegateForScore) {
+        [delegateForScore didScoreChangedWithHomeScore:homeTeamScore andAwayScore:awayTeamScore];
+    }
 }
 
 @end

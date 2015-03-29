@@ -23,10 +23,6 @@ enum MatchDetailsViewType {
     MatchDetailsViewType_MatchNotice
 };
 
-@interface MatchDetails_MatchScoreDetails_Cell : UITableViewCell
-
-@end
-
 @interface MatchDetails : UITableViewController<UITextFieldDelegate, TeamMarketSelectionDelegate, JSONConnectDelegate, UIAlertViewDelegate>
 @property enum MatchDetailsViewType viewType;
 @property Match *matchData;

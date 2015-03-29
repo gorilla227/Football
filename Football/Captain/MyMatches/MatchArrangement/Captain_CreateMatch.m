@@ -346,7 +346,7 @@
 -(void)receiveScore:(MatchScore *)score
 {
     matchScore = score;
-    [matchScoreTextField setText:[NSString stringWithFormat:@"%@:%@", matchScore.homeScore, matchScore.awayScore]];
+//    [matchScoreTextField setText:[NSString stringWithFormat:@"%@:%@", matchScore.homeScore, matchScore.awayScore]];
     [matchScoreTableView reloadData];
 }
 
@@ -422,18 +422,19 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [matchScoreTableView setHidden:matchScore.homeScore.integerValue==0];
-    [matchScoreTableViewHeader setHidden:matchScore.homeScore.integerValue==0];
-    return matchScore.homeScore.integerValue;
+//    [matchScoreTableView setHidden:matchScore.homeScore.integerValue==0];
+//    [matchScoreTableViewHeader setHidden:matchScore.homeScore.integerValue==0];
+//    return matchScore.homeScore.integerValue;
+    return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Captain_CreateMatch_MatchScoreTableView_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchScoreCell"];
-    UserInfo *goalPlayer = [matchScore.goalPlayers objectAtIndex:indexPath.row];
-    UserInfo *assistPlayer = [matchScore.assistPlayers objectAtIndex:indexPath.row];
-    [cell.goalPlayerName setText:goalPlayer.nickName];
-    [cell.assistPlayerName setText:assistPlayer.nickName];
+//    UserInfo *goalPlayer = [matchScore.goalPlayers objectAtIndex:indexPath.row];
+//    UserInfo *assistPlayer = [matchScore.assistPlayers objectAtIndex:indexPath.row];
+//    [cell.goalPlayerName setText:goalPlayer.nickName];
+//    [cell.assistPlayerName setText:assistPlayer.nickName];
     return cell;
 }
 
@@ -468,12 +469,12 @@
         //Enter Score
         Captain_CreateMatch_EnterScore *enterScore = segue.destinationViewController;
         [enterScore setDelegate:self];
-        if (selectedOpponentTeam) {
-            [matchScore setAwayTeamName:selectedOpponentTeam.teamName];
-        }
-        else {
-            [matchScore setAwayTeamName:matchOpponent.text];
-        }
+//        if (selectedOpponentTeam) {
+//            [matchScore setAwayTeamName:selectedOpponentTeam.teamName];
+//        }
+//        else {
+//            [matchScore setAwayTeamName:matchOpponent.text];
+//        }
         [enterScore setMatchScore:matchScore];
     }
 }

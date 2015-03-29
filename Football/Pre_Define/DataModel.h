@@ -140,8 +140,6 @@
 -(NSDictionary *)dictionaryForUpdate:(UserInfo *)originalUserInfo;
 @end
 
-
-
 #pragma Match
 #define kMatch_matchId @"id"
 #define kMatch_matchTitle @"title"
@@ -193,21 +191,27 @@
 -(NSDictionary *)dictionaryForUpdate:(Match *)originalMatch;
 @end
 
+//MatchScore
+#define kMatchScore_scoreId @"id"
+#define kMatchScore_matchId @"match_id"
+#define kMatchScore_teamId @"team_id"
+#define kMatchScore_goalPlayerId @"goal_member_id"
+#define kMatchScore_assistPlayerId @"assist_member_id"
+#define kMatchScore_recordType @"record_type"
+#define kMatchScore_recordTime @"record_time"
+#define kMatchScore_recordTimeLocal @"record_time_local"
+#define kMatchScore_comment @"remark"
 @interface MatchScore : NSObject
-@property Team *home;
-@property NSString *awayTeamName;
-@property NSNumber *homeScore;
-@property NSNumber *awayScore;
-@property NSArray *goalPlayers;
-@property NSArray *assistPlayers;
+@property NSInteger scoreId;
+@property NSInteger matchId;
+@property NSInteger teamId;
+@property NSInteger goalPlayerId;
+@property NSInteger assistPlayerId;
+@property NSInteger recordType;
+@property NSDate *recordTime;
+@property NSString *recordTimeLocal;
+@property NSString *comment;
 -(id)initWithData:(NSDictionary *)data;
--(NSDictionary *)exportToDictionary;
+-(NSDictionary *)dictionaryForUpdate:(MatchScore *)originalMatchScore;
 @end
 
-//MatchScore
-#define kMatchScore_homeTeam @"homeTeam"
-#define kMatchScore_awayTeam @"awayTeam"
-#define kMatchScore_homeScore @"homeScore"
-#define kMatchScore_awayScore @"awayScore"
-#define kMatchScore_goalPlayers @"goalPlayers"
-#define kMatchScore_assistPlayers @"assistPlayers"
