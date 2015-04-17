@@ -62,7 +62,7 @@
 
 //Get Team Members
 #define CONNECT_TeamMembers_Suffix @"teammember/list"
-#define CONNECT_TeamMembers_Parameters(teamId) @{@"team_id":teamId}
+#define CONNECT_TeamMembers_Parameters(teamId, teamFundHistoryFlag) @{@"team_id":teamId, @"with_teamFund_history_sum":teamFundHistoryFlag}
 
 //Request PlayersBySearchCriteria
 #define CONNECT_SearchPlayersCriteria_Suffix @"store/querymember"
@@ -157,6 +157,17 @@
 //Request Match Attendence
 #define CONNECT_RequestMatchAttendence_Suffix @"message/attendence"
 #define CONNECT_RequestMatchAttendence_Parameters(matchId, teamId) @{@"match_id":matchId, @"from":teamId}
+
+//Request Team Balance
+#define CONNECT_RequestTeamBalance_Suffix @"balance/left"
+#define CONNECT_RequestTeamBalance_Parameters(teamId, playerId) @{@"team_id":teamId, @"member_id":playerId}
+
+//Request Team Balance Translactions
+#define CONNECT_RequestTeamBalanceTransactions_Suffix @"balance/query"
+#define CONNECT_RequestTeamBalanceTransactions_Parameters(teamId, playerId, start, count) @{@"team_id":teamId, @"member_id":playerId, @"start":start, @"count":count}
+
+//Add Balance Transaction
+#define CONNECT_AddTransaction_Suffix @"balance/add"
 
 /*
 #pragma zzOld_Server

@@ -80,7 +80,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActionButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
+    [connection requestTeamMembers:gMyUserInfo.team.teamId withTeamFundHistory:NO isSync:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated

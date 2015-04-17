@@ -39,45 +39,45 @@
 }
 
 - (void)initialWithLabelTexts:(NSString *)labelTextsKey {
-    labelTextsDictionary = [[gUIStrings objectForKey:@"UI_TableViewMore"] objectForKey:labelTextsKey];
-    if (labelTextsDictionary) {
-        loadMoreStatus = LoadMoreStatus_NoData;
-        [moreLabel setText:[labelTextsDictionary objectForKey:@"NoData"]];
-        [moreActivityIndicator stopAnimating];
+    if (!labelTextsKey) {
+        labelTextsKey = @"Default";
     }
+    labelTextsDictionary = [[gUIStrings objectForKey:@"UI_TableViewMore"] objectForKey:labelTextsKey];
+    if (!labelTextsDictionary) {
+        labelTextsDictionary = [[gUIStrings objectForKey:@"UI_TableViewMore"] objectForKey:@"Default"];
+    }
+    loadMoreStatus = LoadMoreStatus_NoData;
+    [moreLabel setText:[labelTextsDictionary objectForKey:@"NoData"]];
+    [moreActivityIndicator stopAnimating];
 }
 
 - (void)finishedLoadingWithNewStatus:(enum LoadMoreStatus)newStatus {
-    if (labelTextsDictionary) {
-        switch (newStatus) {
-            case LoadMoreStatus_LoadMore:
-                [moreLabel setText:[labelTextsDictionary objectForKey:@"LoadMore"]];
-                break;
-            case LoadMoreStatus_NoData:
-                [moreLabel setText:[labelTextsDictionary objectForKey:@"NoData"]];
-                break;
-            case LoadMoreStatus_NoMoreData:
-                [moreLabel setText:[labelTextsDictionary objectForKey:@"NoMoreData"]];
-                break;
-            default:
-                break;
-        }
-        loadMoreStatus = newStatus;
-        [moreActivityIndicator stopAnimating];
+    switch (newStatus) {
+        case LoadMoreStatus_LoadMore:
+            [moreLabel setText:[labelTextsDictionary objectForKey:@"LoadMore"]];
+            break;
+        case LoadMoreStatus_NoData:
+            [moreLabel setText:[labelTextsDictionary objectForKey:@"NoData"]];
+            break;
+        case LoadMoreStatus_NoMoreData:
+            [moreLabel setText:[labelTextsDictionary objectForKey:@"NoMoreData"]];
+            break;
+        default:
+            break;
     }
+    loadMoreStatus = newStatus;
+    [moreActivityIndicator stopAnimating];
 }
 
 - (BOOL)startLoadingMore {
-    if (labelTextsDictionary) {
-        if (loadMoreStatus == LoadMoreStatus_LoadMore || ![self.tableView.tableFooterView isEqual:moreFooterView]) {
-            if (![self.tableView.tableFooterView isEqual:moreFooterView]) {
-                [self.tableView setTableFooterView:moreFooterView];
-            }
-            [moreActivityIndicator startAnimating];
-            [moreLabel setText:[labelTextsDictionary objectForKey:@"Loading"]];
-            loadMoreStatus = LoadMoreStatus_Loading;
-            return YES;
+    if (loadMoreStatus == LoadMoreStatus_LoadMore || ![self.tableView.tableFooterView isEqual:moreFooterView]) {
+        if (![self.tableView.tableFooterView isEqual:moreFooterView]) {
+            [self.tableView setTableFooterView:moreFooterView];
         }
+        [moreActivityIndicator startAnimating];
+        [moreLabel setText:[labelTextsDictionary objectForKey:@"Loading"]];
+        loadMoreStatus = LoadMoreStatus_Loading;
+        return YES;
     }
     return NO;
 }

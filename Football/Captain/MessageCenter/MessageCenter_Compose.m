@@ -94,7 +94,7 @@
                 [self selectAllInToList];
             }
             else {
-                [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
+                [connection requestTeamMembers:gMyUserInfo.team.teamId withTeamFundHistory:NO isSync:YES];
             }
             [playerListTableView setTableHeaderView:nil];
             break;

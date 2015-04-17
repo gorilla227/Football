@@ -121,6 +121,7 @@
 #define kUserInfo_legalname @"real_name"
 #define kUserInfo_gender @"gender"
 #define kUserInfo_team @"team"
+#define kUserInfo_teamFundHistory @"fee_history"
 @interface UserInfo : NSObject
 @property NSInteger userId;
 @property NSString *mobile;
@@ -136,6 +137,7 @@
 @property NSString *style;
 @property UIImage *playerPortrait;
 @property Team *team;
+@property NSString *teamFundHistory;
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)dictionaryForUpdate:(UserInfo *)originalUserInfo;
 @end
@@ -213,5 +215,27 @@
 @property NSString *comment;
 -(id)initWithData:(NSDictionary *)data;
 -(NSDictionary *)dictionaryForUpdate:(MatchScore *)originalMatchScore;
+@end
+
+//BalanceTransaction
+#define kBalance_id @"id"
+#define kBalance_paymentType @"payment"
+#define kBalance_amount @"account"
+#define kBalance_transactionDate @"deal_time_uts"
+#define kBalance_balance @"balance"
+#define kBalance_transactionName @"remark"
+#define kBalance_paymentPlayers @"pay_member_id"
+#define kBalance_teamId @"team_id"
+#define kBalance_captainId @"member_id"
+@interface BalanceTransaction : NSObject
+@property NSInteger transactionId;
+@property BOOL paymentType;//0-Debit, 1-Credit
+@property NSNumber *amount;
+@property NSDate *transactionDate;
+@property NSNumber *balance;
+@property NSString *transactionName;
+@property NSArray *paymentPlayers;
+-(id)initWithData:(NSDictionary *)data;
+//-(NSDictionary *)dictionaryForUpdate:(BalanceTransaction *)originalBalanceTransaction;
 @end
 

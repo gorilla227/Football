@@ -75,6 +75,11 @@ enum RequestMessageSourceType
 -(void)addedMatchScoreDetail:(BOOL)result;//添加比赛详细记录成功与否
 -(void)updatedMatchScoreDetail:(BOOL)result;//更新比赛详细记录成功与否
 -(void)receiveMatchAttendence:(NSArray *)matchAttendence;//获取参赛者成功
+
+//Balance Management
+-(void)receiveTeamBalance:(NSNumber *)teamBalance;//获取球队经费余额成功
+-(void)receiveTeamBalanceTransactions:(NSArray *)transactions;//获取球队收支明细成功
+-(void)transactionAdded:(BOOL)result;//添加收支记录成功与否
 @end
 
 
@@ -101,7 +106,7 @@ enum RequestMessageSourceType
 //Team Management
 -(void)requestTeamsStart:(NSInteger)start count:(NSInteger)count option:(enum RequestTeamsOption)option;//获取所有球队
 -(void)requestTeamById:(NSInteger)teamId isSync:(BOOL)syncOption;//获取指定的球队
--(void)requestTeamMembers:(NSInteger)teamId isSync:(BOOL)syncOption;//获取球队的队员清单
+-(void)requestTeamMembers:(NSInteger)teamId withTeamFundHistory:(BOOL)withTeamFundHistory isSync:(BOOL)syncOption;//获取球队的队员清单
 -(void)requestPlayersBySearchCriteria:(NSDictionary *)searchCriteria startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取符合条件的球员列表
 -(void)requestTeamsBySearchCriteria:(NSDictionary *)searchCriteria startIndex:(NSInteger)startIndex count:(NSInteger)count isSync:(BOOL)syncOption;//获取符合条件的球队列表
 -(void)createTeamByCaptainId:(NSInteger)captainId teamProfile:(Team *)teamProfile;//无球队球员创建球队
@@ -132,4 +137,9 @@ enum RequestMessageSourceType
 -(void)addMatchScoreDetail:(NSDictionary *)parameters;//添加新比赛详细记录
 -(void)updateMatchScoreDetail:(NSDictionary *)parameters;//更新比赛详细记录
 -(void)requestMatchAttendence:(NSInteger)matchId forTeam:(NSInteger)teamId;//获取参赛者列表
+
+//Balance Management
+-(void)requestTeamBalance:(NSInteger)teamId forPlayer:(NSInteger)playerId;//获取球队经费余额
+-(void)requestTeamBalanceTransactions:(NSInteger)teamId forPlayer:(NSInteger)playerId startIndex:(NSInteger)startIndex count:(NSInteger)count;//获取球队经费收支明细
+-(void)addTransaction:(NSDictionary *)parameters;//添加收支记录
 @end

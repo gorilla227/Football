@@ -291,7 +291,7 @@
 
 #pragma UserInfo
 @implementation UserInfo
-@synthesize userId, mobile, userType, nickName, legalName, gender, email, qq, birthday, activityRegion, position, style, playerPortrait, team;
+@synthesize userId, mobile, userType, nickName, legalName, gender, email, qq, birthday, activityRegion, position, style, playerPortrait, team, teamFundHistory;
 
 -(id)copy
 {
@@ -326,6 +326,9 @@
     if (playerPortrait) {
         [userInfoCopy setPlayerPortrait:[playerPortrait copy]];
     }
+    if (teamFundHistory) {
+        [userInfoCopy setTeamFundHistory:[teamFundHistory copy]];
+    }
     return userInfoCopy;
 }
 
@@ -351,6 +354,7 @@
         if ([teamData isKindOfClass:[NSDictionary class]]) {
             [self setTeam:[[Team alloc] initWithData:teamData]];
         }
+        [self setTeamFundHistory:[data objectForKey:kUserInfo_teamFundHistory]];
     }
     return self;
 }
@@ -399,6 +403,9 @@
     }
     else if (playerPortrait && ![UIImagePNGRepresentation(playerPortrait) isEqual:UIImagePNGRepresentation(originalUserInfo.playerPortrait)]){
         [output setObject:playerPortrait forKey:kUserInfo_playerPortrait];
+    }
+    if (![teamFundHistory isEqual:originalUserInfo.teamFundHistory]) {
+        [output setObject:teamFundHistory forKey:kUserInfo_teamFundHistory];
     }
     return output;
 }
@@ -536,6 +543,7 @@
 }
 @end
 
+#pragma MatchScore
 @implementation MatchScore
 @synthesize scoreId, matchId, teamId, goalPlayerId, assistPlayerId, recordType, recordTime, recordTimeLocal, comment;
 
@@ -617,4 +625,38 @@
     
     return output;
 }
+@end
+
+#pragma BalanceTransaction
+@implementation BalanceTransaction
+@synthesize transactionId, paymentType, amount, transactionDate, balance, transactionName, paymentPlayers;
+- (id)copy {
+    BalanceTransaction *balanceTransactionCopy = [[BalanceTransaction alloc] init];
+    [balanceTransactionCopy setTransactionId:transactionId];
+    [balanceTransactionCopy setPaymentType:paymentType];
+    [balanceTransactionCopy setAmount:[amount copy]];
+    [balanceTransactionCopy setTransactionDate:[transactionDate copy]];
+    [balanceTransactionCopy setBalance:[balance copy]];
+    [balanceTransactionCopy setTransactionName:[transactionName copy]];
+    [balanceTransactionCopy setPaymentPlayers:[paymentPlayers copy]];
+    return balanceTransactionCopy;
+}
+
+- (id)initWithData:(NSDictionary *)data {
+    self = [super init];
+    if (self) {
+        [self setTransactionId:[[data objectForKey:kBalance_id] integerValue]];
+        [self setPaymentType:[[data objectForKey:kBalance_paymentType] boolValue]];
+        [self setAmount:[data objectForKey:kBalance_amount]];
+        [self setTransactionDate:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kBalance_transactionDate] integerValue]]];
+        [self setTransactionName:[data objectForKey:kBalance_transactionName]];
+        [self setPaymentPlayers:[[data objectForKey:kBalance_paymentPlayers] componentsSeparatedByString:@","]];
+    }
+    return self;
+}
+
+//- (NSDictionary *)dictionaryForUpdate:(BalanceTransaction *)originalBalanceTransaction {
+//    NSMutableDictionary *ouput = [NSMutableDictionary new];
+//    return ouput;
+//}
 @end

@@ -104,7 +104,7 @@
 #pragma MatchArrangementActionDelegate
 -(void)noticeTeamMembers:(Match *)matchData {
     matchNotice_MatchData = matchData;
-    [connection requestTeamMembers:gMyUserInfo.team.teamId isSync:YES];
+    [connection requestTeamMembers:gMyUserInfo.team.teamId withTeamFundHistory:NO isSync:YES];
 }
 
 -(void)noticeTempFavor:(Match *)matchData {

@@ -95,6 +95,17 @@
 	<string>要将该球场设为主场吗？</string>
 	<key>UI_TableViewMore</key>
 	<dict>
+		<key>BalanceManagement</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>加载更多明细</string>
+			<key>Loading</key>
+			<string>正在加载...</string>
+			<key>NoData</key>
+			<string>没有找到收支记录</string>
+			<key>NoMoreData</key>
+			<string>只有这么多记录</string>
+		</dict>
 		<key>FindTeam</key>
 		<dict>
 			<key>LoadMore</key>
@@ -459,5 +470,25 @@
 	<string>接受</string>
 	<key>UI_ReplyMatchInvitationAlertView_Message_Refuse</key>
 	<string>不接受</string>
+	<key>DateFormatter_BalanceTransaction</key>
+	<string>yyyy-MM-dd</string>
+	<key>UI_BalanceTransaction_Title_Add</key>
+	<string>添加收支</string>
+	<key>UI_BalanceTransaction_Title_View</key>
+	<string>收支详情</string>
+	<key>UI_BalanceTransaction_AmountUnit</key>
+	<string>元</string>
+	<key>UI_BalanceTransaction_Type_TeamFund</key>
+	<string>队费</string>
+	<key>UI_BalanceTransaction_AlertView_Added_Title</key>
+	<string>成功！</string>
+	<key>UI_BalanceTransaction_AlertView_Added_Message</key>
+	<string>添加收支项目成功。</string>
+	<key>UI_BalanceTransaction_PlayerUnit</key>
+	<string>人</string>
+	<key>UI_BalanceTransaction_HistoryTitle</key>
+	<string>历史队费：</string>
+	<key>UI_BalanceTransaction_PlayerListTitle</key>
+	<string>球员列表</string>
 </dict>
 </plist>

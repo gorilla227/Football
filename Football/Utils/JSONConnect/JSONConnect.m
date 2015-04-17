@@ -354,13 +354,13 @@
 }
 
 //RequestTeamMembers
--(void)requestTeamMembers:(NSInteger)teamId isSync:(BOOL)syncOption
+-(void)requestTeamMembers:(NSInteger)teamId withTeamFundHistory:(BOOL)withTeamFundHistory isSync:(BOOL)syncOption
 {
     if (syncOption) {
         [busyIndicatorDelegate lockView];
     }
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_TeamMembers_Suffix];
-    NSDictionary *parameters = CONNECT_TeamMembers_Parameters([NSNumber numberWithInteger:teamId]);
+    NSDictionary *parameters = CONNECT_TeamMembers_Parameters([NSNumber numberWithInteger:teamId], [NSNumber numberWithBool:withTeamFundHistory]);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (syncOption) {
             [busyIndicatorDelegate unlockView];
@@ -834,6 +834,50 @@
         }
         [busyIndicatorDelegate unlockView];
         [delegate receiveMatchAttendence:attendenceList];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//Request Team Balance
+- (void)requestTeamBalance:(NSInteger)teamId forPlayer:(NSInteger)playerId {
+//    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestTeamBalance_Suffix];
+    NSDictionary *parameters = CONNECT_RequestTeamBalance_Parameters([NSNumber numberWithInteger:teamId], [NSNumber numberWithInteger:playerId]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        [busyIndicatorDelegate unlockView];
+        [delegate receiveTeamBalance:[responseObject objectForKey:@"left"]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+    
+}
+
+//Request Balance Transactions
+- (void)requestTeamBalanceTransactions:(NSInteger)teamId forPlayer:(NSInteger)playerId startIndex:(NSInteger)startIndex count:(NSInteger)count {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestTeamBalanceTransactions_Suffix];
+    NSDictionary *parameters = CONNECT_RequestTeamBalanceTransactions_Parameters([NSNumber numberWithInteger:teamId], [NSNumber numberWithInteger:playerId], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        NSMutableArray *transactionList = [NSMutableArray new];
+        for (NSDictionary *transactionData in responseObject) {
+            BalanceTransaction *transaction = [[BalanceTransaction alloc] initWithData:transactionData];
+            [transactionList addObject:transaction];
+        }
+        [delegate receiveTeamBalanceTransactions:transactionList];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//Add Balance Transaction
+- (void)addTransaction:(NSDictionary *)parameters {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_AddTransaction_Suffix];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate transactionAdded:![[responseObject objectForKey:@"error"] boolValue]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
