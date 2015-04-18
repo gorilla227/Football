@@ -33,6 +33,7 @@
     UIDatePicker *dpTransactionDate;
     NSDateFormatter *dateFormatter;
     NSArray *playerList;
+    NSMutableArray *paidPlayerList;
     JSONConnect *connection;
 }
 @synthesize viewType, transaction;
@@ -132,6 +133,15 @@
             [tfTransactionAmount setText:[NSString stringWithFormat:@"%lu", transaction.amount.integerValue / transaction.paymentPlayers.count]];
             [tfTransactionAmount setTextColor:transaction.paymentType?cBalanceTypeCredit:cBalanceTypeDebit];
             
+            paidPlayerList = [NSMutableArray new];
+            for (UserInfo *player in playerList) {
+                for (NSString *paidPlayerId in transaction.paymentPlayers) {
+                    if (paidPlayerId.integerValue == player.userId) {
+                        [paidPlayerList addObject:player];
+                        break;
+                    }
+                }
+            }
             break;
         default:
             break;
@@ -267,7 +277,14 @@
         case 0:
             return 1;
         case 1:
-            return playerList.count;
+            switch (viewType) {
+                case BalanceTransactionDetailsViewType_Add:
+                    return playerList.count;
+                case BalanceTransactionDetailsViewType_View:
+                    return paidPlayerList.count;
+                default:
+                    return 0;
+            }
         default:
             return 0;
     }
@@ -297,23 +314,18 @@
     else {
         static NSString *CellIdentifier = @"PlayerListCell";
         UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        UserInfo *player = [playerList objectAtIndex:indexPath.row];
-        [cell.textLabel setText:player.nickName];
-        [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@%@", [gUIStrings objectForKey:@"UI_BalanceTransaction_HistoryTitle"], [player.teamFundHistory isEqual:[NSNull null]]?@"0":player.teamFundHistory]];
 
         if (viewType == BalanceTransactionDetailsViewType_Add) {
+            UserInfo *player = [playerList objectAtIndex:indexPath.row];
+            [cell.textLabel setText:player.nickName];
+            [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@%@", [gUIStrings objectForKey:@"UI_BalanceTransaction_HistoryTitle"], [player.teamFundHistory isEqual:[NSNull null]]?@"0":player.teamFundHistory]];
             [cell setAccessoryType:[self.tableView.indexPathsForSelectedRows containsObject:indexPath]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone];
         }
         else if (viewType == BalanceTransactionDetailsViewType_View) {
-            for (NSString *playerId in transaction.paymentPlayers) {
-                if (playerId.integerValue == player.userId) {
-                    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-                    break;
-                }
-                else {
-                    [cell setAccessoryType:UITableViewCellAccessoryNone];
-                }
-            }
+            UserInfo *player = [paidPlayerList objectAtIndex:indexPath.row];
+            [cell.textLabel setText:player.nickName];
+            [cell.detailTextLabel setText:nil];
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
         }
         
         return cell;
@@ -331,7 +343,14 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return [gUIStrings objectForKey:@"UI_BalanceTransaction_PlayerListTitle"];
+        switch (viewType) {
+            case BalanceTransactionDetailsViewType_Add:
+                return [gUIStrings objectForKey:@"UI_BalanceTransaction_PlayerListTitle_Add"];
+            case BalanceTransactionDetailsViewType_View:
+                return [gUIStrings objectForKey:@"UI_BalanceTransaction_PlayerListTitle_View"];
+            default:
+                return nil;
+        }
     }
     return nil;
 }

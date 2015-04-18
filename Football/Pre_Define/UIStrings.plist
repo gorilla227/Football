@@ -488,7 +488,9 @@
 	<string>人</string>
 	<key>UI_BalanceTransaction_HistoryTitle</key>
 	<string>历史队费：</string>
-	<key>UI_BalanceTransaction_PlayerListTitle</key>
-	<string>球员列表</string>
+	<key>UI_BalanceTransaction_PlayerListTitle_Add</key>
+	<string>选择缴费球员</string>
+	<key>UI_BalanceTransaction_PlayerListTitle_View</key>
+	<string>缴费球员</string>
 </dict>
 </plist>
