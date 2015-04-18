@@ -63,7 +63,6 @@
 		A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */; };
 		A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */; };
 		A1AA7E8C198F4CFD002D638A /* MessageCenterTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AA7E8B198F4CFD002D638A /* MessageCenterTabBarController.m */; };
-		A1AF632F193B066400997255 /* Captain_EnterBalance.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AF632E193B066400997255 /* Captain_EnterBalance.m */; };
 		A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */; };
 		A1B401131ABE737000194E91 /* UITextFieldForMatchDetailScore.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B401121ABE737000194E91 /* UITextFieldForMatchDetailScore.m */; };
 		A1BB0E7819987CBB0082E91A /* MessageCenter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1BB0E7719987CBB0082E91A /* MessageCenter.storyboard */; };
@@ -259,8 +258,6 @@
 		A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_SelectMatchStadium.m; sourceTree = "<group>"; };
 		A1AA7E8A198F4CFD002D638A /* MessageCenterTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCenterTabBarController.h; path = Captain/MessageCenter/MessageCenterTabBarController.h; sourceTree = "<group>"; };
 		A1AA7E8B198F4CFD002D638A /* MessageCenterTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCenterTabBarController.m; path = Captain/MessageCenter/MessageCenterTabBarController.m; sourceTree = "<group>"; };
-		A1AF632D193B066400997255 /* Captain_EnterBalance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_EnterBalance.h; path = Captain/FinanceManagement/BalanceManagement/Captain_EnterBalance.h; sourceTree = "<group>"; };
-		A1AF632E193B066400997255 /* Captain_EnterBalance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_EnterBalance.m; path = Captain/FinanceManagement/BalanceManagement/Captain_EnterBalance.m; sourceTree = "<group>"; };
 		A1AF6330193B06BA00997255 /* BalanceManagement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BalanceManagement.h; path = Captain/FinanceManagement/BalanceManagement/BalanceManagement.h; sourceTree = "<group>"; };
 		A1B0DA1B18EA785C00671383 /* Captain_MatchArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_MatchArrangement.h; sourceTree = "<group>"; };
 		A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_MatchArrangement.m; sourceTree = "<group>"; };
@@ -1045,8 +1042,6 @@
 			children = (
 				A1AF6330193B06BA00997255 /* BalanceManagement.h */,
 				B22B10AD193A9683004BE83F /* BalanceManagement.m */,
-				A1AF632D193B066400997255 /* Captain_EnterBalance.h */,
-				A1AF632E193B066400997255 /* Captain_EnterBalance.m */,
 				A11039D21AD79C94004A27E1 /* BalanceTransactionDetails.h */,
 				A11039D31AD79C94004A27E1 /* BalanceTransactionDetails.m */,
 			);
@@ -1312,7 +1307,6 @@
 			files = (
 				A1ED00A319B03F1E00C669D1 /* PositionCheckboxView.m in Sources */,
 				A1F428DC191209DB00567A02 /* AFHTTPRequestOperation.m in Sources */,
-				A1AF632F193B066400997255 /* Captain_EnterBalance.m in Sources */,
 				A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */,
 				A177A7AC1A74BE0100A3D450 /* UITextFieldForMatchScore.m in Sources */,
 				A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */,

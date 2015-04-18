@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BalanceTransactionDetails.h"
-#import "Captain_EnterBalance.h"
 
 @protocol SelectBalanceTransactionDelegate <NSObject>
 - (void)showTransaction:(BalanceTransaction *)transaction;
