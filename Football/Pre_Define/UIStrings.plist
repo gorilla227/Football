@@ -492,5 +492,9 @@
 	<string>选择缴费球员</string>
 	<key>UI_BalanceTransaction_PlayerListTitle_View</key>
 	<string>缴费球员</string>
+	<key>UI_BalanceManagement_Type_Credit</key>
+	<string>支出</string>
+	<key>UI_BalanceManagement_Type_Debit</key>
+	<string>收入</string>
 </dict>
 </plist>

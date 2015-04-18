@@ -15,6 +15,7 @@
     JSONConnect *connection;
     NSArray *transactionList;
     NSDateFormatter *dateFormatter;
+    NSInteger count;
 }
 @synthesize delegateOfSelectTransaction;
 
@@ -24,6 +25,7 @@
     //Get Transaction List
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:[gUIStrings objectForKey:@"DateFormatter_BalanceTransaction"]];
+    count = [[gSettings objectForKey:@"balanceManagementCount"] integerValue];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.parentViewController.navigationController];
     [self initialWithLabelTexts:@"BalanceManagement"];
@@ -41,14 +43,14 @@
         [self finishedLoadingWithNewStatus:LoadMoreStatus_NoData];
     }
     else {
-        [self finishedLoadingWithNewStatus:(transactions.count == 5)?LoadMoreStatus_LoadMore:LoadMoreStatus_NoMoreData];
+        [self finishedLoadingWithNewStatus:(transactions.count == count)?LoadMoreStatus_LoadMore:LoadMoreStatus_NoMoreData];
     }
     [self.tableView reloadData];
 }
 
 - (BOOL)startLoadingMore {
     if ([super startLoadingMore]) {
-        [connection requestTeamBalanceTransactions:gMyUserInfo.team.teamId forPlayer:gMyUserInfo.userId startIndex:transactionList.count count:5];
+        [connection requestTeamBalanceTransactions:gMyUserInfo.team.teamId forPlayer:gMyUserInfo.userId startIndex:transactionList.count count:count];
         return YES;
     }
     return NO;
@@ -68,15 +70,10 @@
     BalanceManagement_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     BalanceTransaction *transactionData = [transactionList objectAtIndex:indexPath.row];
     
-    [cell.balanceType setText:transactionData.paymentType?@"支出":@"收入"];
+    [cell.balanceType setText:transactionData.paymentType?[gUIStrings objectForKey:@"UI_BalanceManagement_Type_Credit"]:[gUIStrings objectForKey:@"UI_BalanceManagement_Type_Debit"]];
     [cell.balanceType setBackgroundColor:transactionData.paymentType?cBalanceTypeCredit:cBalanceTypeDebit];
     [cell.balanceName setText:transactionData.transactionName];
     [cell.balanceDate setText:[dateFormatter stringFromDate:transactionData.transactionDate]];
-//    NSMutableAttributedString *balanceAmountString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", transactionData.paymentType?@"-":@"+", transactionData.amount]];
-//    [balanceAmountString addAttribute:NSForegroundColorAttributeName value:transactionData.paymentType?cBalanceTypeCredit:cBalanceTypeDebit range:NSMakeRange(0, balanceAmountString.length)];
-//    NSAttributedString *balanceAmountUnit = [[NSAttributedString alloc] initWithString:@"元" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0f]}];
-//    [balanceAmountString appendAttributedString:balanceAmountUnit];
-//    [cell.balanceAmount setAttributedText:balanceAmountString];
     [cell.balanceAmount setText:[NSString stringWithFormat:@"%@%@", transactionData.paymentType?@"-":@"+", transactionData.amount]];
     [cell.balanceAmount setTextColor:transactionData.paymentType?cBalanceTypeCredit:cBalanceTypeDebit];
     return cell;
@@ -128,7 +125,7 @@
 }
 
 - (void)receiveTeamBalance:(NSNumber *)teamBalance {
-    [lbTeamBalance setText:[NSString stringWithFormat:@"%@元", teamBalance]];
+    [lbTeamBalance setText:[NSString stringWithFormat:@"%@%@", teamBalance, [gUIStrings objectForKey:@"UI_BalanceTransaction_AmountUnit"]]];
 }
 
 - (void)showTransaction:(BalanceTransaction *)transaction {
@@ -141,15 +138,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-//    if ([segue.identifier isEqualToString:@"AddBalanceRecord"]) {
-//        Captain_EnterBalance *enterBalance = segue.destinationViewController;
-//        [enterBalance setViewType:EnterBalance_Add];
-//    }
-//    else if ([segue.identifier isEqualToString:@"EditBalanceRecord"]) {
-//        Captain_EnterBalance *enterBalance = segue.destinationViewController;
-//        [enterBalance setViewType:EnterBalance_Edit];
-//        [enterBalance setBalanceDataForEditing:sender];
-//    }
     if ([segue.identifier isEqualToString:@"AddTransaction"]) {
         BalanceTransactionDetails *detailsView = segue.destinationViewController;
         [detailsView setViewType:BalanceTransactionDetailsViewType_Add];
