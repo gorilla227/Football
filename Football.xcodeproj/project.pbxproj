@@ -33,6 +33,7 @@
 		A1370A5D1904D7CC00E64949 /* leftIcon_createMatch_time.png in Resources */ = {isa = PBXBuildFile; fileRef = A1370A581904D7CC00E64949 /* leftIcon_createMatch_time.png */; };
 		A13A4E361A1AFED200B95D8A /* MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A13A4E351A1AFED200B95D8A /* MatchArrangement.m */; };
 		A13A4E391A1B047600B95D8A /* MatchArrangementTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A13A4E381A1B047600B95D8A /* MatchArrangementTableView.m */; };
+		A13B6FB81AE22B3F00089546 /* TeamFundInquiry.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B6FB71AE22B3F00089546 /* TeamFundInquiry.m */; };
 		A146685F191B53A600589785 /* Captain_CreateMatch_StadiumList.m in Sources */ = {isa = PBXBuildFile; fileRef = A146685E191B53A600589785 /* Captain_CreateMatch_StadiumList.m */; };
 		A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A153ACBA19023ECF0062EB44 /* HintTextView.m */; };
 		A153ACBD19023F640062EB44 /* Hint_List.plist in Resources */ = {isa = PBXBuildFile; fileRef = A153ACBC19023F640062EB44 /* Hint_List.plist */; };
@@ -59,7 +60,6 @@
 		A1940B161977955E00B152AC /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1940B151977955E00B152AC /* AddressBookUI.framework */; };
 		A19865F8198D9FC5009BA81C /* UITextView+UITextFieldRoundCornerStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A19865F7198D9FC5009BA81C /* UITextView+UITextFieldRoundCornerStyle.m */; };
 		A19865FC198DF76A009BA81C /* MessageCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A19865FB198DF76A009BA81C /* MessageCenter.m */; };
-		A1988F4C193D909C0073332F /* Captain_TeamFundInquiry.m in Sources */ = {isa = PBXBuildFile; fileRef = A1988F4B193D909C0073332F /* Captain_TeamFundInquiry.m */; };
 		A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */; };
 		A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */; };
 		A1AA7E8C198F4CFD002D638A /* MessageCenterTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AA7E8B198F4CFD002D638A /* MessageCenterTabBarController.m */; };
@@ -211,6 +211,8 @@
 		A13A4E351A1AFED200B95D8A /* MatchArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchArrangement.m; sourceTree = "<group>"; };
 		A13A4E371A1B047600B95D8A /* MatchArrangementTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchArrangementTableView.h; sourceTree = "<group>"; };
 		A13A4E381A1B047600B95D8A /* MatchArrangementTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchArrangementTableView.m; sourceTree = "<group>"; };
+		A13B6FB61AE22B3F00089546 /* TeamFundInquiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamFundInquiry.h; path = Captain/FinanceManagement/TeamFundInquiry/TeamFundInquiry.h; sourceTree = "<group>"; };
+		A13B6FB71AE22B3F00089546 /* TeamFundInquiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeamFundInquiry.m; path = Captain/FinanceManagement/TeamFundInquiry/TeamFundInquiry.m; sourceTree = "<group>"; };
 		A146685D191B53A600589785 /* Captain_CreateMatch_StadiumList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_StadiumList.h; sourceTree = "<group>"; };
 		A146685E191B53A600589785 /* Captain_CreateMatch_StadiumList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_StadiumList.m; sourceTree = "<group>"; };
 		A153ACB919023ECF0062EB44 /* HintTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HintTextView.h; path = Football/Utils/HintView/HintTextView.h; sourceTree = "<group>"; };
@@ -251,8 +253,6 @@
 		A19865F7198D9FC5009BA81C /* UITextView+UITextFieldRoundCornerStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+UITextFieldRoundCornerStyle.m"; path = "Football/Utils/UITextViewCustomize/UITextView+UITextFieldRoundCornerStyle.m"; sourceTree = "<group>"; };
 		A19865FA198DF76A009BA81C /* MessageCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCenter.h; path = Captain/MessageCenter/MessageCenter.h; sourceTree = "<group>"; };
 		A19865FB198DF76A009BA81C /* MessageCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCenter.m; path = Captain/MessageCenter/MessageCenter.m; sourceTree = "<group>"; };
-		A1988F4A193D909C0073332F /* Captain_TeamFundInquiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_TeamFundInquiry.h; path = Captain/FinanceManagement/TeamFundInquiry/Captain_TeamFundInquiry.h; sourceTree = "<group>"; };
-		A1988F4B193D909C0073332F /* Captain_TeamFundInquiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_TeamFundInquiry.m; path = Captain/FinanceManagement/TeamFundInquiry/Captain_TeamFundInquiry.m; sourceTree = "<group>"; };
 		A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_EnterOpponent.m; sourceTree = "<group>"; };
 		A1A3DB7B190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_SelectMatchStadium.h; sourceTree = "<group>"; };
 		A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_SelectMatchStadium.m; sourceTree = "<group>"; };
@@ -713,8 +713,8 @@
 		A1988F49193D90340073332F /* TeamFundInquiry */ = {
 			isa = PBXGroup;
 			children = (
-				A1988F4A193D909C0073332F /* Captain_TeamFundInquiry.h */,
-				A1988F4B193D909C0073332F /* Captain_TeamFundInquiry.m */,
+				A13B6FB61AE22B3F00089546 /* TeamFundInquiry.h */,
+				A13B6FB71AE22B3F00089546 /* TeamFundInquiry.m */,
 			);
 			name = TeamFundInquiry;
 			sourceTree = "<group>";
@@ -1348,6 +1348,7 @@
 				A109263B1AAD620800A73C32 /* TableViewController_More.m in Sources */,
 				A1F428E0191209DB00567A02 /* AFSecurityPolicy.m in Sources */,
 				A13A4E391A1B047600B95D8A /* MatchArrangementTableView.m in Sources */,
+				A13B6FB81AE22B3F00089546 /* TeamFundInquiry.m in Sources */,
 				B27BD360194930B300802F4A /* FillAdditionalProfile.m in Sources */,
 				A10E83DF1973A690000493A5 /* UITextFieldForStadiumSelection.m in Sources */,
 				A172432B1908CF04008F4948 /* Captain_CreateMatch_TeamMarket.m in Sources */,
@@ -1372,7 +1373,6 @@
 				A10BAD0A190E1245000FA5A7 /* DataModel.m in Sources */,
 				A153ACC2190248F80062EB44 /* Captain_CreateMatch.m in Sources */,
 				A114302518F2545100A39F13 /* Captain_TeamProfile.m in Sources */,
-				A1988F4C193D909C0073332F /* Captain_TeamFundInquiry.m in Sources */,
 				B2168BEA198304B500F91C4B /* MainMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

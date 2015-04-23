@@ -236,6 +236,22 @@
 @property NSString *transactionName;
 @property NSArray *paymentPlayers;
 -(id)initWithData:(NSDictionary *)data;
-//-(NSDictionary *)dictionaryForUpdate:(BalanceTransaction *)originalBalanceTransaction;
 @end
 
+//TeamFund
+#define kTeamFund_balanceId @"balance_id"
+#define kTeamFund_playerId @"member_id"
+#define kTeamFund_amount @"account"
+#define kTeamFund_transactionDate @"pay_time_uts"
+@interface TeamFund : NSObject
+@property NSInteger balanceId;
+@property NSInteger playerId;
+@property NSNumber *amount;
+@property NSDate *transactionDate;
+-(id)initWithData:(NSDictionary *)data;
+@end
+
+@interface TeamFundStatistics : NSObject
+@property UserInfo *player;
+@property NSNumber *amount;
+@end

@@ -62,13 +62,13 @@
 			<key>Title</key>
 			<string>收支管理</string>
 			<key>Identifier</key>
-			<string>Captain_BalanceManagement</string>
+			<string>BalanceManagement</string>
 		</dict>
 		<dict>
 			<key>Title</key>
 			<string>队费查询</string>
 			<key>Identifier</key>
-			<string>Captain_TeamFundInquiry</string>
+			<string>TeamFundInquiry</string>
 		</dict>
 	</array>
 	<key>2</key>

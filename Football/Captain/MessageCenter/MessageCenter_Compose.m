@@ -127,7 +127,16 @@
             [self selectAllInToList];
             [selectionSegment setUserInteractionEnabled:NO];
             [playerListTableView setAllowsSelection:NO];
+            [playerListTableView setAllowsMultipleSelection:NO];
             [playerListTableView setTableHeaderView:matchTextField];
+            break;
+        case MessageComposeType_TeamFundNotice:
+            [composeTextView setText:[messageTemplate objectForKey:@"TeamFundNotice_Default"]];
+            [self selectAllInToList];
+            [selectionSegment setUserInteractionEnabled:YES];
+            [playerListTableView setAllowsSelection:YES];
+            [playerListTableView setAllowsMultipleSelection:YES];
+            [playerListTableView setTableHeaderView:nil];
             break;
         default:
             break;
@@ -152,7 +161,16 @@
 -(void)updateSendNotificationButtonStatus
 {
     NSString *notificationText = [[composeTextView.text stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    [sendNotificationButton setEnabled:(playerListTableView.indexPathsForSelectedRows.count && notificationText.length && (matchData || matchList[[matchPicker selectedRowInComponent:0]]))];
+    switch (composeType) {
+        case MessageComposeType_MatchNotice:
+        case MessageComposeType_TemporaryFavor:
+            [sendNotificationButton setEnabled:(playerListTableView.indexPathsForSelectedRows.count && notificationText.length && (matchData || matchList[[matchPicker selectedRowInComponent:0]]))];
+            break;
+        default:
+            [sendNotificationButton setEnabled:(playerListTableView.indexPathsForSelectedRows.count && notificationText.length)];
+            break;
+    }
+    
     if (sendNotificationButton.isEnabled && composeType == MessageComposeType_TemporaryFavor) {
         Match *match = matchData?matchData:matchList[[matchPicker selectedRowInComponent:0]];
         Team *opponentTeam = (match.homeTeam.teamId == gMyUserInfo.team.teamId)?match.awayTeam:match.homeTeam;
@@ -318,6 +336,9 @@
             for (UserInfo *playerForMessage in toList) {
                 [connection sendMatchNotice:matchData.matchId fromTeam:gMyUserInfo.team.teamId toPlayer:playerForMessage.userId withMessage:composeTextView.text];
             }
+            break;
+        case MessageComposeType_TeamFundNotice:
+            
             break;
         default:
             break;

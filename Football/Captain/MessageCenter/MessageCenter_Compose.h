@@ -15,7 +15,8 @@ enum MessageComposeType
     MessageComposeType_Recurit,
     MessageComposeType_TemporaryFavor,
     MessageComposeType_Applyin,
-    MessageComposeType_MatchNotice
+    MessageComposeType_MatchNotice,
+    MessageComposeType_TeamFundNotice
 };
 
 @interface MessageCenter_Compose : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, JSONConnectDelegate, UIAlertViewDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>

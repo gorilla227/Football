@@ -882,4 +882,22 @@
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }
+
+//Request TeamFunds
+- (void)requestTeamFunds:(NSInteger)teamId forCaptain:(NSInteger)captainId startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_RequestTeamFunds_Suffix];
+    NSDictionary *parameters = CONNECT_RequestTeamFunds_Parameters([NSNumber numberWithInteger:teamId], [NSNumber numberWithInteger:captainId], [NSNumber numberWithInteger:startDate.timeIntervalSince1970], [NSNumber numberWithInteger:endDate.timeIntervalSince1970]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        NSMutableArray *teamFunds = [NSMutableArray new];
+        for (NSDictionary *teamFundData in responseObject) {
+            TeamFund *teamFund = [[TeamFund alloc] initWithData:teamFundData];
+            [teamFunds addObject:teamFund];
+        }
+        [delegate receiveTeamFunds:teamFunds];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
 @end

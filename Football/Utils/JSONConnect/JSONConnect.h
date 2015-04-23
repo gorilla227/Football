@@ -80,6 +80,7 @@ enum RequestMessageSourceType
 -(void)receiveTeamBalance:(NSNumber *)teamBalance;//获取球队经费余额成功
 -(void)receiveTeamBalanceTransactions:(NSArray *)transactions;//获取球队收支明细成功
 -(void)transactionAdded:(BOOL)result;//添加收支记录成功与否
+-(void)receiveTeamFunds:(NSArray *)teamFunds;//获取队费记录成功
 @end
 
 
@@ -142,4 +143,5 @@ enum RequestMessageSourceType
 -(void)requestTeamBalance:(NSInteger)teamId forPlayer:(NSInteger)playerId;//获取球队经费余额
 -(void)requestTeamBalanceTransactions:(NSInteger)teamId forPlayer:(NSInteger)playerId startIndex:(NSInteger)startIndex count:(NSInteger)count;//获取球队经费收支明细
 -(void)addTransaction:(NSDictionary *)parameters;//添加收支记录
+-(void)requestTeamFunds:(NSInteger)teamId forCaptain:(NSInteger)captainId startDate:(NSDate *)startDate endDate:(NSDate *)endDate;//获取指定时间段的队费记录
 @end

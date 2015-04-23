@@ -169,6 +169,10 @@
 //Add Balance Transaction
 #define CONNECT_AddTransaction_Suffix @"balance/add"
 
+//Request Team Funds
+#define CONNECT_RequestTeamFunds_Suffix @"balance/queryfee"
+#define CONNECT_RequestTeamFunds_Parameters(teamId, captainId, startDate, endDate) @{@"team_id":teamId, @"member_id":captainId, @"start_date":startDate, @"end_date":endDate}
+
 /*
 #pragma zzOld_Server
 //JSON variables

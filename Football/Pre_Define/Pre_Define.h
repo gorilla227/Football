@@ -55,8 +55,6 @@
 #define def_EnterBalance_Title_Date @"日期"
 #define def_EnterBalance_Title_Name @"项目"
 #define def_EnterBalance_Title_Amount @"金额"
-#define def_TeamFundInquiry_Title_StartDate @"起始时间"
-#define def_TeamFundInquiry_Title_EndDate @"结束时间"
 
 //Color
 #define def_textFieldLeftIconBackground [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]

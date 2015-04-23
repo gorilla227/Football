@@ -169,9 +169,9 @@
 //    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchDetails"];
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
-    //Balance Transaction Details
+    //Team Fund Inquiry
     UIStoryboard *storyboard= [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"BalanceTransactionDetails"];
+    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"TeamFundInquiry"];
     [self.navigationController pushViewController:targetViewController animated:YES];
 }
 //DissmissKeyboard

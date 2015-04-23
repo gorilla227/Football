@@ -647,16 +647,39 @@
     if (self) {
         [self setTransactionId:[[data objectForKey:kBalance_id] integerValue]];
         [self setPaymentType:[[data objectForKey:kBalance_paymentType] boolValue]];
-        [self setAmount:[data objectForKey:kBalance_amount]];
+        [self setAmount:[NSNumber numberWithInteger:[[data objectForKey:kBalance_amount] integerValue]]];
         [self setTransactionDate:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kBalance_transactionDate] integerValue]]];
         [self setTransactionName:[data objectForKey:kBalance_transactionName]];
         [self setPaymentPlayers:[[data objectForKey:kBalance_paymentPlayers] componentsSeparatedByString:@","]];
     }
     return self;
 }
+@end
 
-//- (NSDictionary *)dictionaryForUpdate:(BalanceTransaction *)originalBalanceTransaction {
-//    NSMutableDictionary *ouput = [NSMutableDictionary new];
-//    return ouput;
-//}
+#pragma TeamFund
+@implementation TeamFund
+@synthesize balanceId, playerId, amount, transactionDate;
+- (id)copy {
+    TeamFund *teamFundCopy = [[TeamFund alloc] init];
+    [teamFundCopy setBalanceId:balanceId];
+    [teamFundCopy setPlayerId:playerId];
+    [teamFundCopy setAmount:[amount copy]];
+    [teamFundCopy setTransactionDate:[transactionDate copy]];
+    return teamFundCopy;
+}
+
+-(id)initWithData:(NSDictionary *)data {
+    self = [super init];
+    if (self) {
+        [self setBalanceId:[[data objectForKey:kTeamFund_balanceId] integerValue]];
+        [self setPlayerId:[[data objectForKey:kTeamFund_playerId] integerValue]];
+        [self setAmount:[NSNumber numberWithInteger:[[data objectForKey:kTeamFund_amount] integerValue]]];
+        [self setTransactionDate:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kTeamFund_transactionDate] integerValue]]];
+    }
+    return self;
+}
+@end
+
+@implementation TeamFundStatistics
+@synthesize player, amount;
 @end

@@ -496,5 +496,11 @@
 	<string>支出</string>
 	<key>UI_BalanceManagement_Type_Debit</key>
 	<string>收入</string>
+	<key>UI_TeamFundInquiry_StartDateTitle</key>
+	<string>起始日期</string>
+	<key>UI_TeamFundInquiry_EndDateTitle</key>
+	<string>结束日期</string>
+	<key>UI_TeamFundInquiry_PaidSectionTitle</key>
+	<string>个人队费金额：</string>
 </dict>
 </plist>
