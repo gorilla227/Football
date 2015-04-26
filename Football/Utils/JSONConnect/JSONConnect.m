@@ -746,7 +746,20 @@
     NSDictionary *parameters = CONNECT_UpdateMatchStatus_Parameters(matchId, organizerId, statusId);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-        [delegate updateMatchStatus:![[responseObject objectForKey:@"error"] boolValue]];
+        [delegate updatedMatchStatus:![[responseObject objectForKey:@"error"] boolValue]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//Update Match Score
+-(void)updateMatchScore:(NSInteger)matchId captainId:(NSInteger)captainId homeScore:(NSInteger)homeScore awayScore:(NSInteger)awayScore {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_UpdateMatchScore_Suffix];
+    NSDictionary *parameters = CONNECT_UpdateMatchScore_Parameters([NSNumber numberWithInteger:matchId], [NSNumber numberWithInteger:captainId], [NSNumber numberWithInteger:homeScore], [NSNumber numberWithInteger:awayScore]);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate updatedMatchScore:![[responseObject objectForKey:@"error"] boolValue]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];

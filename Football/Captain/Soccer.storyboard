@@ -317,7 +317,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcJ-vv-cWC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-89" y="978"/>
+            <point key="canvasLocation" x="-89" y="764"/>
         </scene>
         <!--MatchTableView-->
         <scene sceneID="RcO-Xe-96c">
@@ -567,7 +567,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjZ-VV-NhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="322" y="978"/>
+            <point key="canvasLocation" x="322" y="764"/>
         </scene>
         <!--热身赛-->
         <scene sceneID="L5A-vW-fkS">
@@ -1188,7 +1188,7 @@
                         <segue destination="I7g-Tw-dAj" kind="push" identifier="SelectOpponentViaTeamMarket" id="2EA-BN-wkt"/>
                     </connections>
                 </button>
-                <tapGestureRecognizer delaysTouchesBegan="YES" delaysTouchesEnded="NO" id="uNL-dc-q6Q">
+                <tapGestureRecognizer enabled="NO" delaysTouchesBegan="YES" delaysTouchesEnded="NO" id="uNL-dc-q6Q">
                     <connections>
                         <action selector="dismissKeyboard:" destination="oSq-8e-yP8" id="9T1-I9-bCZ"/>
                         <outlet property="delegate" destination="oSq-8e-yP8" id="cQx-tK-S6Z"/>
@@ -1201,13 +1201,13 @@
         <scene sceneID="K6X-0V-td1">
             <objects>
                 <tableViewController storyboardIdentifier="MatchScoreDetails" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Dh-qw-ot5" customClass="MatchScoreDetails" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="vEh-UC-JUn">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="vEh-UC-JUn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScoreCell" id="fSc-Tk-hVy" customClass="MatchScoreCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ScoreCell" id="fSc-Tk-hVy" customClass="MatchScoreCell">
                                 <rect key="frame" x="0.0" y="50" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fSc-Tk-hVy" id="PUW-Ei-QXj">
@@ -1243,6 +1243,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
+                                                <outlet property="delegate" destination="8Dh-qw-ot5" id="djH-PO-OFP"/>
                                                 <outlet property="delegateForScoreDetail" destination="8Dh-qw-ot5" id="FzU-ml-YJR"/>
                                             </connections>
                                         </textField>
@@ -1277,7 +1278,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="KwW-Ve-Jsl"/>
-                        <barButtonItem title="保存" id="3Lb-Of-Cn0">
+                        <barButtonItem enabled="NO" title="保存" id="3Lb-Of-Cn0">
                             <connections>
                                 <action selector="saveButtonOnClicked:" destination="8Dh-qw-ot5" id="c2v-LE-tgb"/>
                             </connections>

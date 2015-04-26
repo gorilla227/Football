@@ -16,7 +16,7 @@
 @property IBOutlet UITextFieldForMatchDetailScore *scoreDetailTextField;
 @end
 
-@interface MatchScoreDetails : UITableViewController<JSONConnectDelegate, ScoreDetailChanged, ScoreChanged>
+@interface MatchScoreDetails : UITableViewController<JSONConnectDelegate, ScoreDetailChanged, ScoreChanged, UITextFieldDelegate>
 @property Match *matchData;
 @property BOOL editable;
 - (void)presetData;

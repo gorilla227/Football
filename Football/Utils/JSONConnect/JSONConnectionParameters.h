@@ -136,6 +136,10 @@
 #define CONNECT_UpdateMatchStatus_Suffix @"match/update"
 #define CONNECT_UpdateMatchStatus_Parameters(matchId, organizerId, statusId) @{@"match_id":[NSNumber numberWithInteger:matchId], @"member_id":[NSNumber numberWithInteger:organizerId], @"status":[NSNumber numberWithInteger:statusId]}
 
+//Update MatchScore
+#define CONNECT_UpdateMatchScore_Suffix @"match/score"
+#define CONNECT_UpdateMatchScore_Parameters(matchId, captainId, homeScore, awayScore) @{@"match_id":matchId, @"member_id":captainId, @"host_team_goal":homeScore, @"guest_team_goal":awayScore}
+
 //Create Match With Real Team
 #define CONNECT_CreateMatchWithRealTeam_Suffix @"match/create"
 #define CONNECT_CreateMatchWithRealTeam_Parameters(matchData) matchData

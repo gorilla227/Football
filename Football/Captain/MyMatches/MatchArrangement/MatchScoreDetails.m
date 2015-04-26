@@ -55,7 +55,7 @@
 - (void)presetData {
     if (matchData) {
         newMatchData = [matchData copy];
-        if (matchData.matchMessage.messageType == 4) {
+        if (matchData.matchMessage.messageType == 4) {//临时帮忙的队员
             if (matchData.matchMessage.senderId == matchData.homeTeam.teamId) {
                 myScore = matchData.homeTeamGoal;
                 opponentScore = matchData.awayTeamGoal;
@@ -108,13 +108,13 @@
         }
     }
     [self.tableView reloadData];
+    [self checkSaveButtonStatus];
 }
 
 - (void)addedMatchScoreDetail:(BOOL)result {
     if (result) {
         saveProgress--;
         if (saveProgress == 0) {
-            NSLog(@"Completed");
             [self updateMatchScore];
         }
     }
@@ -127,7 +127,6 @@
     if (result) {
         saveProgress--;
         if (saveProgress == 0) {
-            NSLog(@"Completed");
             [self updateMatchScore];
         }
     }
@@ -136,9 +135,25 @@
     }
 }
 
+- (void)updatedMatchScore:(BOOL)result {
+    if (result) {
+        NSLog(@"Completed");
+        [matchData setHomeTeamGoal:newMatchData.homeTeamGoal];
+        [matchData setAwayTeamGoal:newMatchData.awayTeamGoal];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        NSLog(@"Update MatchScore Failed");
+    }
+}
+
 - (void)updateMatchScore {
     if (newMatchData && (newMatchData.homeTeamGoal != matchData.homeTeamGoal || newMatchData.awayTeamGoal != matchData.awayTeamGoal)) {
-        NSDictionary *updatedMatchData = [newMatchData dictionaryForUpdate:matchData];
+        [connection updateMatchScore:matchData.matchId captainId:gMyUserInfo.userId homeScore:newMatchData.homeTeamGoal awayScore:newMatchData.awayTeamGoal];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -160,6 +175,9 @@
                 }
             }
         }
+        if (saveProgress == 0) {
+            [self updateMatchScore];
+        }
     }
     else {
         //New Match
@@ -177,7 +195,9 @@
             [newMatchData setAwayTeamGoal:homeScore];
         }
     }
-    
+    if (!matchScoreList) {
+        matchScoreList = [NSMutableArray new];
+    }
     for (NSInteger i = 0; i < homeScore; i++) {
         if (i >= myScore) {
             if (i < matchScoreList.count) {
@@ -193,10 +213,27 @@
     }
     myScore = homeScore;
     [self.tableView reloadData];
+    [self checkSaveButtonStatus];
 }
 
 - (void)didScoreDetailChanged:(MatchScore *)updatedScore forIndex:(NSInteger)index {
     [matchScoreList replaceObjectAtIndex:index withObject:updatedScore];
+    [self checkSaveButtonStatus];
+}
+
+- (void)checkSaveButtonStatus {
+    [saveButton setEnabled:![matchScoreList containsObject:[NSNull null]]];
+    if (saveButton.isEnabled) {
+        BOOL noChangeFlag = NO;
+        for (MatchScore *matchScore in matchScoreList) {
+            MatchScore *originalMatchScore = [originalMatchScoreList objectAtIndex:[matchScoreList indexOfObject:matchScore]];
+            if (matchScore.goalPlayerId != originalMatchScore.goalPlayerId || matchScore.assistPlayerId != originalMatchScore.assistPlayerId) {
+                noChangeFlag = YES;
+                break;
+            }
+        }
+        [saveButton setEnabled:noChangeFlag];
+    }
 }
 
 //UITableView
@@ -250,6 +287,24 @@
             return @"进球者 - 助攻者";
         default:
             return nil;
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    for (UITableViewCell *cell in self.tableView.visibleCells) {
+        if ([cell.contentView.subviews containsObject:textField]) {
+            [self.tableView selectRowAtIndexPath:[self.tableView indexPathForCell:cell] animated:YES scrollPosition:UITableViewScrollPositionTop];
+            break;
+        }
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    for (UITableViewCell *cell in self.tableView.visibleCells) {
+        if ([cell.contentView.subviews containsObject:textField]) {
+            [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForCell:cell] animated:YES];
+            break;
+        }
     }
 }
 

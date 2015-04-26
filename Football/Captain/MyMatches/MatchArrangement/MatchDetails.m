@@ -65,8 +65,15 @@
     [self initialMatchStadium];
     [self initialMatchStandard];
     [self initialCost];
-    [self initialMatchScore];
-    
+    [self initialMatchScore]; 
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     switch (viewType) {
         case MatchDetailsViewType_CreateMatch:
             [self setToolbarItems:createMatchActionBar.items animated:YES];
@@ -93,14 +100,7 @@
         default:
             break;
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+    
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:!self.toolbarItems.count];
 }
@@ -342,6 +342,7 @@
     else if ([textField isEqual:costTextField]) {
         [costTextField setText:[NSString stringWithFormat:@"%.2f", costTextField.text.floatValue]];
     }
+    [dismissKeyboardGestureRecognizer setEnabled:NO];
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -349,6 +350,7 @@
         return NO;
     }
     else {
+        [dismissKeyboardGestureRecognizer setEnabled:YES];
         for (UITableViewCell *cell in self.tableView.visibleCells) {
             if ([cell.contentView.subviews containsObject:textField]) {
                 [self.tableView scrollToRowAtIndexPath:[self.tableView indexPathForCell:cell] atScrollPosition:UITableViewScrollPositionTop animated:YES];

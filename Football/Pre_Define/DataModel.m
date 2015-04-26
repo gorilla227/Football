@@ -437,7 +437,7 @@
     [matchCopy setSentMatchNotices:[sentMatchNotices copy]];
     [matchCopy setConfirmedMember:[confirmedMember copy]];
     [matchCopy setConfirmedTemp:[confirmedTemp copy]];
-    [matchCopy setMatchMessage:[matchMessage copy]];
+    [matchCopy setMatchMessage:matchMessage];
     return matchCopy;
 }
 
@@ -458,16 +458,16 @@
         [self setHomeTeamGoal:[[data objectForKey:kMatch_homeTeamGoal] integerValue]];
         [self setAwayTeamGoal:[[data objectForKey:kMatch_awayTeamGoal] integerValue]];
         [self setMatchStandard:[[data objectForKey:kMatch_matchStandard] integerValue]];
-        [self setCost:[data objectForKey:kMatch_cost]];
+        [self setCost:[NSNumber numberWithInteger:[[data objectForKey:kMatch_cost] integerValue]]];
         [self setWithReferee:[[data objectForKey:kMatch_withReferee] boolValue]];
         [self setWithWater:[[data objectForKey:kMatch_withWater] boolValue]];
         [self setOrganizerId:[[data objectForKey:kMatch_organizerId] integerValue]];
         [self setStatus:[[data objectForKey:kMatch_status] integerValue]];
         [self setCreateTime:[NSDate dateWithTimeIntervalSince1970:[[data objectForKey:kMatch_createTime] integerValue]]];
         [self setCreateTimeLocal:[dateFormatter stringFromDate:createTime]];
-        [self setSentMatchNotices:[data objectForKey:kMatch_sentMatchNotices]];
-        [self setConfirmedMember:[data objectForKey:kMatch_confirmedMember]];
-        [self setConfirmedTemp:[data objectForKey:kMatch_confirmedTemp]];
+        [self setSentMatchNotices:[NSNumber numberWithInteger:[[data objectForKey:kMatch_sentMatchNotices] integerValue]]];
+        [self setConfirmedMember:[NSNumber numberWithInteger:[[data objectForKey:kMatch_confirmedMember] integerValue]]];
+        [self setConfirmedTemp:[NSNumber numberWithInteger:[[data objectForKey:kMatch_confirmedTemp] integerValue]]];
         if ([[data objectForKey:kMatch_matchMessage] isKindOfClass:[NSDictionary class]]) {
             [self setMatchMessage:[[Message alloc] initWithData:[data objectForKey:kMatch_matchMessage]]];
         }
@@ -580,7 +580,7 @@
 - (NSDictionary *)dictionaryForUpdate:(MatchScore *)originalMatchScore {
     NSMutableDictionary *output = [NSMutableDictionary new];
     if (originalMatchScore && ![originalMatchScore isEqual:[NSNull null]]) {
-        [output setObject:[NSNumber numberWithInteger:scoreId] forKey:kMatchScore_scoreId];
+        [output setObject:[NSNumber numberWithInteger:scoreId?scoreId:originalMatchScore.scoreId] forKey:kMatchScore_scoreId];
         
         if (matchId != originalMatchScore.matchId) {
             [output setObject:[NSNumber numberWithInteger:matchId] forKey:kMatchScore_matchId];
@@ -597,14 +597,14 @@
         if (recordType != originalMatchScore.recordType) {
             [output setObject:[NSNumber numberWithInteger:recordType] forKey:kMatchScore_recordType];
         }
-        if (![recordTime isEqualToDate:originalMatchScore.recordTime]) {
-            [output setObject:recordTime forKey:kMatchScore_recordTime];
-        }
-        if (![recordTimeLocal isEqualToString:originalMatchScore.recordTimeLocal]) {
-            [output setObject:recordTimeLocal forKey:kMatchScore_recordTimeLocal];
-        }
+//        if (![recordTime isEqualToDate:originalMatchScore.recordTime]) {
+//            [output setObject:recordTime forKey:kMatchScore_recordTime];
+//        }
+//        if (![recordTimeLocal isEqualToString:originalMatchScore.recordTimeLocal]) {
+//            [output setObject:recordTimeLocal forKey:kMatchScore_recordTimeLocal];
+//        }
         if (![comment isEqualToString:originalMatchScore.comment]) {
-            [output setObject:comment forKey:kMatchScore_comment];
+            [output setObject:comment?comment:@"" forKey:kMatchScore_comment];
         }
         
         if (output.count == 1) {
@@ -617,10 +617,8 @@
         [output setObject:[NSNumber numberWithInteger:goalPlayerId] forKey:kMatchScore_goalPlayerId];
         [output setObject:[NSNumber numberWithInteger:assistPlayerId] forKey:kMatchScore_assistPlayerId];
         [output setObject:[NSNumber numberWithInteger:recordType] forKey:kMatchScore_recordType];
-        [output setObject:[NSNumber numberWithInteger:[recordTime timeIntervalSince1970]] forKey:kMatchScore_recordTime];
-        if (comment) {
-            [output setObject:comment forKey:kMatchScore_comment];
-        }
+//        [output setObject:[NSNumber numberWithInteger:[recordTime timeIntervalSince1970]] forKey:kMatchScore_recordTime];
+        [output setObject:comment?comment:@"" forKey:kMatchScore_comment];
     }
     
     return output;

@@ -53,8 +53,8 @@
         [self setPlaceholder:nil];
         
         if (matchScore.goalPlayerId == 0) {
-            [goalPlayerLabel setText:@"对方乌龙"];
-            [assistPlayerLabel setText:@"无"];
+            [goalPlayerLabel setText:[gUIStrings objectForKey:@"UI_MatchScoreDetails_OwnGoal"]];
+            [assistPlayerLabel setText:[gUIStrings objectForKey:@"UI_MatchScoreDetails_None"]];
             [matchAttendancePickerView setGoalPlayerIndex:0];
             [matchAttendancePickerView setAssistPlayerIndex:0];
         }
@@ -65,7 +65,7 @@
                     [matchAttendancePickerView setGoalPlayerIndex:[matchAttendanceList indexOfObject:goalPlayer] + 1];
                     
                     if (matchScore.assistPlayerId == 0) {
-                        [assistPlayerLabel setText:@"无"];
+                        [assistPlayerLabel setText:[gUIStrings objectForKey:@"UI_MatchScoreDetails_None"]];
                         [matchAttendancePickerView setAssistPlayerIndex:0];
                         break;
                     }
@@ -87,7 +87,7 @@
     else {
         [self setLeftViewMode:UITextFieldViewModeNever];
         [self setRightViewMode:UITextFieldViewModeNever];
-        [self setPlaceholder:@"选择队员"];
+        [self setPlaceholder:[gUIStrings objectForKey:@"UI_MatchScoreDetails_Placeholder"]];
     }
 }
 
@@ -110,7 +110,7 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (component == 0) {
         if (row == 0) {
-            return @"对方乌龙";
+            return [gUIStrings objectForKey:@"UI_MatchScoreDetails_OwnGoal"];
         }
         else {
             UserInfo *player = [matchAttendanceList objectAtIndex:row - 1];
@@ -119,7 +119,7 @@
     }
     else {
         if (row == 0) {
-            return @"无";
+            return [gUIStrings objectForKey:@"UI_MatchScoreDetails_None"];
         }
         else {
             NSMutableArray *assistList = [NSMutableArray arrayWithArray:matchAttendanceList];
@@ -140,7 +140,7 @@
     }
     if (component == 0) {
         if (row == 0) {
-            [goalPlayerLabel setText:@"对方乌龙"];
+            [goalPlayerLabel setText:[gUIStrings objectForKey:@"UI_MatchScoreDetails_OwnGoal"]];
             [matchScore setGoalPlayerId:0];
         }
         else {
@@ -150,12 +150,12 @@
         }
         [pickerView reloadComponent:1];
         [pickerView selectRow:0 inComponent:1 animated:YES];
-        [assistPlayerLabel setText:@"无"];
+        [assistPlayerLabel setText:[gUIStrings objectForKey:@"UI_MatchScoreDetails_None"]];
         [matchScore setAssistPlayerId:0];
     }
     else {
         if (row == 0) {
-            [assistPlayerLabel setText:@"无"];
+            [assistPlayerLabel setText:[gUIStrings objectForKey:@"UI_MatchScoreDetails_None"]];
             [matchScore setAssistPlayerId:0];
         }
         else {

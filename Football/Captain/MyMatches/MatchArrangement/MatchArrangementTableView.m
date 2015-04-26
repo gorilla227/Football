@@ -477,7 +477,7 @@
     }
 }
 
--(void)updateMatchStatus:(BOOL)result {
+-(void)updatedMatchStatus:(BOOL)result {
     if (result) {
         [matchesList removeObjectAtIndex:cancelledMatchIndex];
         [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:cancelledMatchIndex] withRowAnimation:UITableViewRowAnimationFade];

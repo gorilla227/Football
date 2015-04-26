@@ -502,5 +502,11 @@
 	<string>结束日期</string>
 	<key>UI_TeamFundInquiry_PaidSectionTitle</key>
 	<string>个人队费金额：</string>
+	<key>UI_MatchScoreDetails_OwnGoal</key>
+	<string>对方乌龙</string>
+	<key>UI_MatchScoreDetails_None</key>
+	<string>无</string>
+	<key>UI_MatchScoreDetails_Placeholder</key>
+	<string>选择队员</string>
 </dict>
 </plist>

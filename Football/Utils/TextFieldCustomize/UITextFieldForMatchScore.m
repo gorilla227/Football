@@ -37,12 +37,7 @@
 {
     homeTeamScore = homeScore;
     awayTeamScore = awayScore;
-    if (awayTeamScore < 0) {
-        [self setText:[NSString stringWithFormat:@"%@ : -", [NSNumber numberWithInteger:homeTeamScore]]];
-    }
-    else {
-        [self setText:[NSString stringWithFormat:@"%@ : %@", [NSNumber numberWithInteger:homeTeamScore], [NSNumber numberWithInteger:awayTeamScore]]];
-    }
+    [self setText:[NSString stringWithFormat:@"%@ : %@", (homeTeamScore < 0)?@"-":[NSNumber numberWithInteger:homeTeamScore], (awayTeamScore < 0)?@"-":[NSNumber numberWithInteger:awayTeamScore]]];
     
     [scorePicker selectRow:homeTeamScore inComponent:0 animated:NO];
     if (!isRegularMatch) {
