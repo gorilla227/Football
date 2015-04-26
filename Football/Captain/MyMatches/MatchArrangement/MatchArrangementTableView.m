@@ -140,6 +140,7 @@
     NSInteger tabViewControllerIndex;
     NSDateFormatter *dateFormatter;
     NSInteger count;
+    NSDate *lastRefreshDate;
 }
 
 - (void)viewDidLoad {
@@ -162,12 +163,15 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    matchesList = [NSMutableArray new];
-    [self setLoadMoreStatus:LoadMoreStatus_LoadMore];
     if (!connection.busyIndicatorDelegate) {
         [connection setBusyIndicatorDelegate:(id)self.navigationController];
     }
-    [self startLoadingMore];
+    if (!lastRefreshDate || [[NSDate date] timeIntervalSinceDate:lastRefreshDate] > [[gSettings objectForKey:@"autoRefreshPeriod"] integerValue]) {
+        matchesList = [NSMutableArray new];
+        [self setLoadMoreStatus:LoadMoreStatus_LoadMore];
+        
+        [self startLoadingMore];
+    }
 }
 
 -(void)viewDidLayoutSubviews
@@ -217,6 +221,7 @@
     else {
         [self finishedLoadingWithNewStatus:(matches.count == count)?LoadMoreStatus_LoadMore:LoadMoreStatus_NoMoreData];
     }
+    lastRefreshDate = [NSDate date];
     [self.tableView reloadData];
 }
 
