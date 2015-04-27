@@ -22,8 +22,7 @@ enum MatchResponseTypes {
 -(void)noticeTeamMembers:(Match *)matchData;
 -(void)noticeTempFavor:(Match *)matchData;
 -(void)viewMatchDetails:(Match *)matchData forResponseType:(enum MatchResponseTypes)responseType;
-//-(void)enterScore:(Match *)matchData;
-//-(void)viewScore:(Match *)matchData;
+-(void)viewScore:(Match *)matchData editable:(BOOL)editable;
 @end
 
 @interface MatchArrangementTableView_Cell : UITableViewCell<UIActionSheetDelegate>

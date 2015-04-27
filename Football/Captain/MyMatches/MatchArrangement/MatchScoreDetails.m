@@ -42,6 +42,7 @@
     if (editable) {
         [self setToolbarItems:saveBar.items];
     }
+    [self.tableView setAllowsSelection:editable];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     [self presetData];
@@ -226,8 +227,14 @@
     if (saveButton.isEnabled) {
         BOOL noChangeFlag = NO;
         for (MatchScore *matchScore in matchScoreList) {
-            MatchScore *originalMatchScore = [originalMatchScoreList objectAtIndex:[matchScoreList indexOfObject:matchScore]];
-            if (matchScore.goalPlayerId != originalMatchScore.goalPlayerId || matchScore.assistPlayerId != originalMatchScore.assistPlayerId) {
+            if ([matchScoreList indexOfObject:matchScore] < originalMatchScoreList.count) {
+                MatchScore *originalMatchScore = [originalMatchScoreList objectAtIndex:[matchScoreList indexOfObject:matchScore]];
+                if (matchScore.goalPlayerId != originalMatchScore.goalPlayerId || matchScore.assistPlayerId != originalMatchScore.assistPlayerId) {
+                    noChangeFlag = YES;
+                    break;
+                }
+            }
+            else {
                 noChangeFlag = YES;
                 break;
             }
@@ -256,6 +263,7 @@
         MatchScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         [cell.scoreTextField initialTextFieldForMatchScore:YES];
         [cell.scoreTextField presetHomeScore:myScore andAwayScore:opponentScore];
+        [cell.scoreTextField setEnabled:editable];
         return cell;
     }
     else if (indexPath.section == 1) {
@@ -264,6 +272,7 @@
         if (matchAttendenceList) {
             [cell.scoreDetailTextField initialTextFieldForMatchDetailScore:matchScoreList[indexPath.row] withMatchAttendance:matchAttendenceList forMatch:matchData];
             [cell.scoreDetailTextField setTag:indexPath.row];
+            [cell.scoreDetailTextField setEnabled:editable];
         }
         
         return cell;

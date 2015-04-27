@@ -59,6 +59,9 @@
                                                             otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_InvitationResponseAccept"], [gUIStrings objectForKey:@"UI_MatchArrangement_InvitationResponseRefuse"], nil];
             [actionSheet showInView:actionButton];
         }
+        else if (matchData.status == 4) {//已结束比赛-输入比分
+            [delegate viewScore:matchData editable:YES];
+        }
     }
     else {//比赛双方的球员或临时帮忙的球员
         if (matchData.status == 3) {//未开始比赛-回应参赛邀请
@@ -68,6 +71,9 @@
                                                        destructiveButtonTitle:nil
                                                             otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseAccept"], [gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseRefuse"], nil];
             [actionSheet showInView:actionButton];
+        }
+        else if (matchData.status == 4) {//已结束比赛-查看比分
+            [delegate viewScore:matchData editable:NO];
         }
     }
 }
@@ -148,8 +154,7 @@
     [self.tableView setBackgroundColor:[UIColor clearColor]];
 //    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self initialWithLabelTexts:@"Default"];
-    
-    matchesList = [NSMutableArray new];
+
     count = [[gUIStrings objectForKey:@"matchListCount"] integerValue];
     attri_NumberOfNotices = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:28] forKey:NSFontAttributeName];
     attri_DescOfNotices = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:13] forKey:NSFontAttributeName];

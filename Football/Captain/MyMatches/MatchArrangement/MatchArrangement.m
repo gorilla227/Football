@@ -11,6 +11,7 @@
 #import "MatchDetails.h"
 #import "PlayerMarket.h"
 #import "EditTeamProfile.h"
+#import "MatchScoreDetails.h"
 
 @interface MatchArrangement ()
 @property IBOutlet UIView *teamSummaryView;
@@ -102,12 +103,12 @@
 }
 
 #pragma MatchArrangementActionDelegate
--(void)noticeTeamMembers:(Match *)matchData {
+- (void)noticeTeamMembers:(Match *)matchData {
     matchNotice_MatchData = matchData;
     [connection requestTeamMembers:gMyUserInfo.team.teamId withTeamFundHistory:NO isSync:YES];
 }
 
--(void)noticeTempFavor:(Match *)matchData {
+- (void)noticeTempFavor:(Match *)matchData {
     matchNotice_MatchData = matchData;
     PlayerMarket *playerMarket = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerMarket"];
     [playerMarket setViewType:PlayerMarketViewType_FromMatchArrangement];
@@ -115,7 +116,7 @@
     [self.navigationController pushViewController:playerMarket animated:YES];
 }
 
--(void)viewMatchDetails:(Match *)matchData forResponseType:(enum MatchResponseTypes)responseType {
+- (void)viewMatchDetails:(Match *)matchData forResponseType:(enum MatchResponseTypes)responseType {
     MatchDetails *matchDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"MatchDetails"];
     switch (responseType) {
         case MatchResponseType_Default:
@@ -133,6 +134,13 @@
     
     [matchDetails setMatchData:matchData];
     [self.navigationController pushViewController:matchDetails animated:YES];
+}
+
+- (void)viewScore:(Match *)matchData editable:(BOOL)editable {
+    MatchScoreDetails *scoreDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"MatchScoreDetails"];
+    [scoreDetails setMatchData:matchData];
+    [scoreDetails setEditable:editable];
+    [self.navigationController pushViewController:scoreDetails animated:YES];
 }
 
 #pragma mark - Navigation

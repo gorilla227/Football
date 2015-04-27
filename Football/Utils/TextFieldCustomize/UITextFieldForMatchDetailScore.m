@@ -36,13 +36,13 @@
     if (!goalPlayerLabel) {
         goalPlayerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width / 2, self.bounds.size.height)];
         [goalPlayerLabel setTextAlignment:NSTextAlignmentCenter];
-        [goalPlayerLabel setBackgroundColor:[UIColor whiteColor]];
+        [goalPlayerLabel setBackgroundColor:[UIColor clearColor]];
         [self setLeftView:goalPlayerLabel];
     }
     if (!assistPlayerLabel) {
         assistPlayerLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width / 2, 0, self.bounds.size.width / 2, self.bounds.size.height)];
         [assistPlayerLabel setTextAlignment:NSTextAlignmentCenter];
-        [assistPlayerLabel setBackgroundColor:[UIColor whiteColor]];
+        [assistPlayerLabel setBackgroundColor:[UIColor clearColor]];
         [self setRightView:assistPlayerLabel];
     }
     
