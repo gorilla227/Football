@@ -80,7 +80,7 @@
     teamList = [NSMutableArray new];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [self startLoadingMore];
+    [self startLoadingMore:NO];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -155,8 +155,8 @@
     return cell;
 }
 
-- (BOOL)startLoadingMore {
-    if ([super startLoadingMore]) {
+- (BOOL)startLoadingMore:(BOOL)isReload {
+    if ([super startLoadingMore:isReload]) {
         [connection requestTeamsStart:teamList.count count:count option:RequestTeamsOption_Recruit];
         return YES;
     }

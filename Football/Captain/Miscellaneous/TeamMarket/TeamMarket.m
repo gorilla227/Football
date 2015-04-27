@@ -177,6 +177,7 @@
     [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setTableHeaderView:searchView];
     [self initialWithLabelTexts:@"TeamMarket"];
+    [self setAllowAutoRefreshing:NO];
     switch (viewType) {
         case TeamMarketViewType_Default:
             
@@ -190,7 +191,6 @@
             break;
     }
     
-    teamList = [NSMutableArray new];
     count = [[gSettings objectForKey:@"teamsSearchListCount"] integerValue];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
 }
@@ -204,10 +204,14 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
+    [super viewWillAppear:animated];
 }
 
-- (BOOL)startLoadingMore {
-    if ([super startLoadingMore]) {
+- (BOOL)startLoadingMore:(BOOL)isReload {
+    if (isReload) {
+        teamList = [NSMutableArray new];
+    }
+    if ([super startLoadingMore:isReload]) {
         [connection requestTeamsBySearchCriteria:[searchView searchCriteria] startIndex:teamList.count count:count isSync:YES];
         return YES;
     }
@@ -229,7 +233,7 @@
     [searchView.activityRegionSearchTextField resignFirstResponder];
     [teamList removeAllObjects];
 
-    [self startLoadingMore];
+    [self startLoadingMore:YES];
 }
 
 -(void)receiveTeams:(NSArray *)teams

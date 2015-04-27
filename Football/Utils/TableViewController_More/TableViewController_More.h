@@ -19,11 +19,12 @@ enum LoadMoreStatus {
 @property UILabel *moreLabel;
 @property UIActivityIndicatorView *moreActivityIndicator;
 @property enum LoadMoreStatus loadMoreStatus;
+@property BOOL allowAutoRefreshing;
 
 //Configuraion
 - (void)initialWithLabelTexts:(NSString *)labelTextsKey;
 
 //Actions
-- (BOOL)startLoadingMore;
+- (BOOL)startLoadingMore:(BOOL)isReload;
 - (void)finishedLoadingWithNewStatus:(enum LoadMoreStatus)newStatus;
 @end

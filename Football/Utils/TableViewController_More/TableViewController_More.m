@@ -10,8 +10,9 @@
 
 @implementation TableViewController_More {
     NSDictionary *labelTextsDictionary;
+    NSDate *lastRefreshingDate;
 }
-@synthesize moreFooterView, moreLabel, moreActivityIndicator, loadMoreStatus;
+@synthesize moreFooterView, moreLabel, moreActivityIndicator, loadMoreStatus, allowAutoRefreshing;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,10 +32,18 @@
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    if (allowAutoRefreshing) {
+        if (!lastRefreshingDate || [[NSDate date] timeIntervalSinceDate:lastRefreshingDate] > [[gSettings objectForKey:@"autoRefreshPeriod"] integerValue]) {
+            [self setLoadMoreStatus:LoadMoreStatus_LoadMore];
+            [self startLoadingMore:YES];
+        }
+    }
+}
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !moreActivityIndicator.isAnimating) {
-        [self startLoadingMore];
+        [self startLoadingMore:NO];
     }
 }
 
@@ -67,10 +76,11 @@
     }
     loadMoreStatus = newStatus;
     [moreActivityIndicator stopAnimating];
+    lastRefreshingDate = [NSDate date];
 }
 
-- (BOOL)startLoadingMore {
-    if (loadMoreStatus == LoadMoreStatus_LoadMore || ![self.tableView.tableFooterView isEqual:moreFooterView]) {
+- (BOOL)startLoadingMore:(BOOL)isReload {
+    if (isReload || loadMoreStatus == LoadMoreStatus_LoadMore || ![self.tableView.tableFooterView isEqual:moreFooterView]) {
         if (![self.tableView.tableFooterView isEqual:moreFooterView]) {
             [self.tableView setTableFooterView:moreFooterView];
         }

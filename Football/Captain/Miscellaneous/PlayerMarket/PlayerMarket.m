@@ -183,10 +183,10 @@
     [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setTableHeaderView:searchView];
     [self initialWithLabelTexts:@"PlayerMarket"];
+    [self setAllowAutoRefreshing:NO];
     [self setToolbarItems:actionBar.items];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActionButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
     
-    playerList = [NSMutableArray new];
     count = [[gSettings objectForKey:@"playersSearchListCount"] integerValue];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
@@ -199,6 +199,7 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:!gMyUserInfo.userType];
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -207,8 +208,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)startLoadingMore {
-    if ([super startLoadingMore]) {
+- (BOOL)startLoadingMore:(BOOL)isReload {
+    if (isReload) {
+        playerList = [NSMutableArray new];
+    }
+    if ([super startLoadingMore:isReload]) {
         [connection requestPlayersBySearchCriteria:[searchView searchCriteria] startIndex:playerList.count count:count isSync:YES];
         return YES;
     }
@@ -238,7 +242,7 @@
     [searchView.nickNameSearchTextField resignFirstResponder];
     [searchView.activityRegionSearchTextField resignFirstResponder];
     [playerList removeAllObjects];
-    [self startLoadingMore];
+    [self startLoadingMore:YES];
 }
 
 -(void)updateActionButtonsStatus

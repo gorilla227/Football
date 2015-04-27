@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setAllowAutoRefreshing:YES];
     
     //Get Transaction List
     dateFormatter = [[NSDateFormatter alloc] init];
@@ -29,12 +30,6 @@
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.parentViewController.navigationController];
     [self initialWithLabelTexts:@"BalanceManagement"];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    transactionList = [NSArray new];
-    [self setLoadMoreStatus:LoadMoreStatus_LoadMore];
-    [self startLoadingMore];
 }
 
 - (void)receiveTeamBalanceTransactions:(NSArray *)transactions {
@@ -48,8 +43,11 @@
     [self.tableView reloadData];
 }
 
-- (BOOL)startLoadingMore {
-    if ([super startLoadingMore]) {
+- (BOOL)startLoadingMore:(BOOL)isReload {
+    if (isReload) {
+        transactionList = [NSArray new];
+    }
+    if ([super startLoadingMore:isReload]) {
         [connection requestTeamBalanceTransactions:gMyUserInfo.team.teamId forPlayer:gMyUserInfo.userId startIndex:transactionList.count count:count];
         return YES;
     }

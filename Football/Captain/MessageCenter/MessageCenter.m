@@ -76,9 +76,7 @@
     messageList = [NSMutableArray new];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
-    if ([messageTypeTextField selectedMessageType]) {
-        [self startLoadingMore];
-    }
+    [self setAllowAutoRefreshing:[messageTypeTextField selectedMessageType]];
     if (self.tabBarItem.tag == 0) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUnreadMessageAmount) name:@"MessageStatusUpdated" object:nil];
         [self refreshUnreadMessageAmount];
@@ -95,6 +93,7 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
+    [super viewWillAppear:animated];
 }
 
 -(void)refreshTableView
@@ -228,8 +227,11 @@
     }
 }
 
-- (BOOL)startLoadingMore {
-    if ([super startLoadingMore]) {
+- (BOOL)startLoadingMore:(BOOL)isReload {
+    if (isReload) {
+        messageList = [NSMutableArray new];
+    }
+    if ([super startLoadingMore:isReload]) {
         [self requestMessage];
         return YES;
     }
@@ -260,7 +262,7 @@
 - (void)didSelectMessageType:(NSString *)messageTypeId {
     messageList = [NSMutableArray new];
     [self setLoadMoreStatus:LoadMoreStatus_LoadMore];
-    [self startLoadingMore];
+    [self startLoadingMore:NO];
 }
 
 #pragma mark - Navigation

@@ -140,7 +140,6 @@
     NSInteger tabViewControllerIndex;
     NSDateFormatter *dateFormatter;
     NSInteger count;
-    NSDate *lastRefreshDate;
 }
 
 - (void)viewDidLoad {
@@ -160,18 +159,14 @@
     //Request matches
     tabViewControllerIndex = [self.tabBarController.viewControllers indexOfObject:self];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
+    [self setAllowAutoRefreshing:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     if (!connection.busyIndicatorDelegate) {
         [connection setBusyIndicatorDelegate:(id)self.navigationController];
     }
-    if (!lastRefreshDate || [[NSDate date] timeIntervalSinceDate:lastRefreshDate] > [[gSettings objectForKey:@"autoRefreshPeriod"] integerValue]) {
-        matchesList = [NSMutableArray new];
-        [self setLoadMoreStatus:LoadMoreStatus_LoadMore];
-        
-        [self startLoadingMore];
-    }
+    [super viewWillAppear:animated];
 }
 
 -(void)viewDidLayoutSubviews
@@ -190,8 +185,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)startLoadingMore {
-    if ([super startLoadingMore]) {
+- (BOOL)startLoadingMore:(BOOL)isReload {
+    if (isReload) {
+        matchesList = [NSMutableArray new];
+    }
+    if ([super startLoadingMore:isReload]) {
         switch (tabViewControllerIndex) {
             case 0:
                 if (gMyUserInfo.userType) {
@@ -221,7 +219,6 @@
     else {
         [self finishedLoadingWithNewStatus:(matches.count == count)?LoadMoreStatus_LoadMore:LoadMoreStatus_NoMoreData];
     }
-    lastRefreshDate = [NSDate date];
     [self.tableView reloadData];
 }
 
