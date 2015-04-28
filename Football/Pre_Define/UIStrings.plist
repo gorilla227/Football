@@ -508,5 +508,9 @@
 	<string>无</string>
 	<key>UI_MatchScoreDetails_Placeholder</key>
 	<string>选择队员</string>
+	<key>UI_MatchScoreDetails_ScoreTitle</key>
+	<string>比分</string>
+	<key>UI_MatchScoreDetails_DetailsTitle</key>
+	<string>进球者 - 助攻者</string>
 </dict>
 </plist>

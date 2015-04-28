@@ -291,9 +291,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return scoreTitle?scoreTitle:@"比分";
+            return scoreTitle?scoreTitle:[gUIStrings objectForKey:@"UI_MatchScoreDetails_ScoreTitle"];
         case 1:
-            return @"进球者 - 助攻者";
+            return [gUIStrings objectForKey:@"UI_MatchScoreDetails_DetailsTitle"];
         default:
             return nil;
     }
