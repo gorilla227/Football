@@ -1181,9 +1181,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Xinyi Xu";
 				TargetAttributes = {
-					A1D07BCD18CC1E4800FA3A8D = {
-						DevelopmentTeam = 96U9EGGZ95;
-					};
 					A1D07BEE18CC1E4900FA3A8D = {
 						TestTargetID = A1D07BCD18CC1E4800FA3A8D;
 					};

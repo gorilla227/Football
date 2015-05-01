@@ -836,7 +836,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7lG-qO-AZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886" y="1762"/>
+            <point key="canvasLocation" x="745" y="817"/>
         </scene>
         <!--建立比赛-->
         <scene sceneID="oz6-Ld-nAj">
@@ -1184,9 +1184,6 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <connections>
-                        <segue destination="I7g-Tw-dAj" kind="push" identifier="SelectOpponentViaTeamMarket" id="2EA-BN-wkt"/>
-                    </connections>
                 </button>
                 <tapGestureRecognizer enabled="NO" delaysTouchesBegan="YES" delaysTouchesEnded="NO" id="uNL-dc-q6Q">
                     <connections>
@@ -1523,7 +1520,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="Captain_CreateMatch_TeamMarket" title="球队超市" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TJj-lJ-1UK" customClass="Captain_CreateMatch_TeamMarket" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="0w2-YU-oyv">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2112,7 +2109,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="323" y="2372"/>
+            <point key="canvasLocation" x="323" y="2694"/>
         </scene>
         <!--球员超市-->
         <scene sceneID="GRY-Kz-Xw3">
@@ -2380,7 +2377,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="746" y="2372"/>
+            <point key="canvasLocation" x="746" y="2694"/>
         </scene>
         <!--球员数据-->
         <scene sceneID="78i-df-Unq">
@@ -2886,7 +2883,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="1170" y="2372"/>
+            <point key="canvasLocation" x="1170" y="2694"/>
         </scene>
         <!--球队资料-->
         <scene sceneID="2Gh-yJ-vbN">
@@ -3094,7 +3091,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q06-9X-cLX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58" y="2372"/>
+            <point key="canvasLocation" x="2193" y="1592"/>
         </scene>
         <!--我的队员-->
         <scene sceneID="c3E-sP-V3C">
@@ -3235,7 +3232,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="323" y="1762"/>
+            <point key="canvasLocation" x="323" y="2038"/>
         </scene>
         <!--收支管理-->
         <scene sceneID="Reo-5g-clM">
@@ -3297,7 +3294,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="323" y="3644"/>
+            <point key="canvasLocation" x="323" y="4006"/>
         </scene>
         <!--队费查询-->
         <scene sceneID="kO9-SF-9Ir">
@@ -3453,7 +3450,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="322" y="4330"/>
+            <point key="canvasLocation" x="322" y="4676"/>
         </scene>
         <!--Balance Management Table View-->
         <scene sceneID="wxa-nF-i6U">
@@ -3525,7 +3522,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e4m-hy-GpM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="746" y="3714"/>
+            <point key="canvasLocation" x="746" y="4076"/>
         </scene>
         <!--Balance Transaction Details-->
         <scene sceneID="hGP-CC-9za">
@@ -3693,7 +3690,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="1170" y="3644"/>
+            <point key="canvasLocation" x="1170" y="4006"/>
         </scene>
         <!--Captain Create Match Stadium List Base-->
         <scene sceneID="EC3-Py-5M0">
@@ -5187,7 +5184,7 @@
                     </connections>
                 </button>
             </objects>
-            <point key="canvasLocation" x="323" y="3028"/>
+            <point key="canvasLocation" x="323" y="3350"/>
         </scene>
         <!--球队数据-->
         <scene sceneID="JDm-Rh-Chu">
@@ -5573,7 +5570,7 @@
                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </segmentedControl>
             </objects>
-            <point key="canvasLocation" x="746" y="3028"/>
+            <point key="canvasLocation" x="746" y="3350"/>
         </scene>
     </scenes>
     <resources>
@@ -5614,7 +5611,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mkN-NA-bmm"/>
+        <segue reference="rOL-c9-VkO"/>
         <segue reference="NxK-fC-4kt"/>
     </inferredMetricsTieBreakers>
 </document>

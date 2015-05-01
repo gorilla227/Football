@@ -33,12 +33,6 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>热身赛</string>
-			<key>Identifier</key>
-			<string>Captain_WarmupMatch</string>
-		</dict>
-		<dict>
-			<key>Title</key>
 			<string>我的队员</string>
 			<key>Identifier</key>
 			<string>MyPlayers</string>
