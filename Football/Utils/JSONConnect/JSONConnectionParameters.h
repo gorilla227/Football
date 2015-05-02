@@ -108,6 +108,10 @@
 #define CONNECT_ReplyMatchNotice_Suffix @"message/replymatchnotice"
 #define CONNECT_ReplyMatchNotice_Parameters(messageId, response) @{@"message_id":messageId, @"response":response}
 
+//Send TeamFundNotice
+#define CONNECT_SendTeamFundNotice_Suffix @"message/teamfundnotice"
+#define CONNECT_SendTeamFundNotice_Parameters(teamId, playerId, message) @{@"from_team_id":teamId, @"to":playerId, @"message":message}
+
 
 //Get Messages
 #define CONNECT_RequestMessages_Suffix @"message/receive"

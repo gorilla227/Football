@@ -222,6 +222,8 @@
             [matchDetails setMessage:message];
             [self.navigationController pushViewController:matchDetails animated:YES];
             break;
+        case 6://队费通知
+            break;
         default:
             break;
     }
@@ -260,9 +262,8 @@
 
 #pragma MessageTypeSelectionDelegate
 - (void)didSelectMessageType:(NSString *)messageTypeId {
-    messageList = [NSMutableArray new];
     [self setLoadMoreStatus:LoadMoreStatus_LoadMore];
-    [self startLoadingMore:NO];
+    [self startLoadingMore:YES];
 }
 
 #pragma mark - Navigation

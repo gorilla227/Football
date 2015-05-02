@@ -338,7 +338,9 @@
             }
             break;
         case MessageComposeType_TeamFundNotice:
-            
+            for (UserInfo *playerForMessage in toList) {
+                [connection sendTeamFundNotice:composeTextView.text fromTeam:gMyUserInfo.team.teamId toPlayer:playerForMessage.userId];
+            }
             break;
         default:
             break;
@@ -403,8 +405,7 @@
 //    }
 //}
 
--(void)playerApplyinSent:(BOOL)result
-{
+- (void)playerApplyinSent:(BOOL)result {
     [self updateMessageProgress:result];
     
     if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
@@ -412,8 +413,7 @@
     }
 }
 
--(void)teamCallinSent:(BOOL)result
-{
+- (void)teamCallinSent:(BOOL)result {
     [self updateMessageProgress:result];
     
     if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
@@ -421,8 +421,15 @@
     }
 }
 
--(void)matchNoticeSent:(BOOL)result
-{
+- (void)matchNoticeSent:(BOOL)result {
+    [self updateMessageProgress:result];
+    
+    if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
+        [self composeSent:@"UI_MatchNotice_SendingResultMessage"];
+    }
+}
+
+- (void)teamFundNoticeSent:(BOOL)result {
     [self updateMessageProgress:result];
     
     if (numOfCompletedMessages + numOfFailedMessages == toList.count) {

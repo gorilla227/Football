@@ -489,6 +489,7 @@
         case 1:
         case 3:
         case 4:
+        case 6:
             parameters = CONNECT_RequestMessages_ReceivedParameters([NSNumber numberWithInteger:receiver.userId], messageTypeId, [status componentsJoinedByString:@","], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
             break;
         case 2:
@@ -529,6 +530,7 @@
         case 3:
         case 4:
         case 5:
+        case 6:
             parameters = CONNECT_RequestMessages_SentParameters([NSNumber numberWithInteger:sender.team.teamId], messageTypeId, [status componentsJoinedByString:@","], [NSNumber numberWithInteger:startIndex], [NSNumber numberWithInteger:count]);
             break;
         case 2:
@@ -567,6 +569,7 @@
             case 1:
             case 3:
             case 4:
+            case 6:
                 [messageTypesForPlayerReceiver addObject:messageTypeId];
                 break;
             case 2:
@@ -681,7 +684,7 @@
     NSDictionary *parameters = CONNECT_SendMatchNotice_Parameters([NSNumber numberWithInteger:matchId], [NSNumber numberWithInteger:teamId], [NSNumber numberWithInteger:playerId], message);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-        [delegate matchNoticeSent:YES];
+        [delegate matchNoticeSent:![[responseObject objectForKey:@"error"] boolValue]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [delegate matchNoticeSent:NO];
         [self showErrorAlertView:error otherInfo:operation.responseString];
@@ -698,6 +701,20 @@
         [delegate replyMatchNotice:messageId withAnswer:answer isSent:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [delegate replyMatchNotice:messageId withAnswer:answer isSent:NO];
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//Send TeamFundNotice
+-(void)sendTeamFundNotice:(NSString *)message fromTeam:(NSInteger)teamId toPlayer:(NSInteger)playerId {
+    [busyIndicatorDelegate lockView];
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_SendTeamFundNotice_Suffix];
+    NSDictionary *parameters = CONNECT_SendTeamFundNotice_Parameters([NSNumber numberWithInteger:teamId], [NSNumber numberWithInteger:playerId], message);
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate teamFundNoticeSent:![[responseObject objectForKey:@"error"] boolValue]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [delegate teamFundNoticeSent:NO];
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
 }

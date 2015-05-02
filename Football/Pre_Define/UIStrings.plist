@@ -168,6 +168,8 @@
 	<string>%@/%@条邀请已发送，请耐心等待对方的回复。</string>
 	<key>UI_MatchNotice_SendingResultMessage</key>
 	<string>%@/%@条比赛通知已发送，请耐心等待对方的回复。</string>
+	<key>UI_TeamFundNotice_SendingResultMessage</key>
+	<string>%@/%@条队费通知已发送，请耐心等待对方的回复。</string>
 	<key>UI_MessageTypeSelection_Confirm</key>
 	<string>确认</string>
 	<key>UI_MessageTypes</key>
@@ -182,6 +184,8 @@
 		<string>临时帮忙</string>
 		<key>5</key>
 		<string>比赛邀请</string>
+		<key>6</key>
+		<string>队费通知</string>
 	</dict>
 	<key>UI_MessageTypes_ForCaptain</key>
 	<array>
@@ -199,6 +203,7 @@
 					<array>
 						<string>2</string>
 						<string>5</string>
+						<string>6</string>
 					</array>
 				</dict>
 				<dict>
@@ -227,6 +232,7 @@
 						<string>3</string>
 						<string>4</string>
 						<string>5</string>
+						<string>6</string>
 					</array>
 				</dict>
 			</array>
@@ -247,6 +253,7 @@
 					<key>Types</key>
 					<array>
 						<string>3</string>
+						<string>6</string>
 					</array>
 				</dict>
 				<dict>
