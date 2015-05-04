@@ -278,7 +278,7 @@
 		A1C41F3119062943001A2EFD /* Captain_CreateMatch_EnterOpponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_CreateMatch_EnterOpponent.h; sourceTree = "<group>"; };
 		A1C8FA4118DFB8D700BE42D4 /* LoginAndRegisterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoginAndRegisterProtocols.h; path = LoginAndRegister/LoginAndRegisterProtocols.h; sourceTree = "<group>"; };
 		A1CF194519B19F0E0097E1DB /* SearchViewSwitchButtonShow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SearchViewSwitchButtonShow.png; path = Resource/PlayerMarket/SearchViewSwitchButtonShow.png; sourceTree = "<group>"; };
-		A1D07BCE18CC1E4800FA3A8D /* Football.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Football.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1D07BCE18CC1E4800FA3A8D /* Soccer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soccer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D07BD118CC1E4800FA3A8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A1D07BD318CC1E4800FA3A8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A1D07BD518CC1E4800FA3A8D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -288,7 +288,7 @@
 		A1D07BE018CC1E4800FA3A8D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A1D07BE118CC1E4800FA3A8D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A1D07BE918CC1E4800FA3A8D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A1D07BEF18CC1E4900FA3A8D /* FootballTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FootballTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1D07BEF18CC1E4900FA3A8D /* SoccerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoccerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D07BF018CC1E4900FA3A8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A1D07BF818CC1E4900FA3A8D /* FootballTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FootballTests-Info.plist"; sourceTree = "<group>"; };
 		A1D07BFC18CC1E4900FA3A8D /* FootballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FootballTests.m; sourceTree = "<group>"; };
@@ -752,8 +752,8 @@
 		A1D07BCF18CC1E4800FA3A8D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1D07BCE18CC1E4800FA3A8D /* Football.app */,
-				A1D07BEF18CC1E4900FA3A8D /* FootballTests.xctest */,
+				A1D07BCE18CC1E4800FA3A8D /* Soccer.app */,
+				A1D07BEF18CC1E4900FA3A8D /* SoccerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1137,9 +1137,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1D07BCD18CC1E4800FA3A8D /* Football */ = {
+		A1D07BCD18CC1E4800FA3A8D /* Soccer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1D07C0018CC1E4900FA3A8D /* Build configuration list for PBXNativeTarget "Football" */;
+			buildConfigurationList = A1D07C0018CC1E4900FA3A8D /* Build configuration list for PBXNativeTarget "Soccer" */;
 			buildPhases = (
 				A1D07BCA18CC1E4800FA3A8D /* Sources */,
 				A1D07BCB18CC1E4800FA3A8D /* Frameworks */,
@@ -1149,14 +1149,14 @@
 			);
 			dependencies = (
 			);
-			name = Football;
+			name = Soccer;
 			productName = Football;
-			productReference = A1D07BCE18CC1E4800FA3A8D /* Football.app */;
+			productReference = A1D07BCE18CC1E4800FA3A8D /* Soccer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A1D07BEE18CC1E4900FA3A8D /* FootballTests */ = {
+		A1D07BEE18CC1E4900FA3A8D /* SoccerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1D07C0318CC1E4900FA3A8D /* Build configuration list for PBXNativeTarget "FootballTests" */;
+			buildConfigurationList = A1D07C0318CC1E4900FA3A8D /* Build configuration list for PBXNativeTarget "SoccerTests" */;
 			buildPhases = (
 				A1D07BEB18CC1E4900FA3A8D /* Sources */,
 				A1D07BEC18CC1E4900FA3A8D /* Frameworks */,
@@ -1167,9 +1167,9 @@
 			dependencies = (
 				A1D07BF518CC1E4900FA3A8D /* PBXTargetDependency */,
 			);
-			name = FootballTests;
+			name = SoccerTests;
 			productName = FootballTests;
-			productReference = A1D07BEF18CC1E4900FA3A8D /* FootballTests.xctest */;
+			productReference = A1D07BEF18CC1E4900FA3A8D /* SoccerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1181,6 +1181,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Xinyi Xu";
 				TargetAttributes = {
+					A1D07BCD18CC1E4800FA3A8D = {
+						DevelopmentTeam = 96U9EGGZ95;
+					};
 					A1D07BEE18CC1E4900FA3A8D = {
 						TestTargetID = A1D07BCD18CC1E4800FA3A8D;
 					};
@@ -1200,8 +1203,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A1D07BCD18CC1E4800FA3A8D /* Football */,
-				A1D07BEE18CC1E4900FA3A8D /* FootballTests */,
+				A1D07BCD18CC1E4800FA3A8D /* Soccer */,
+				A1D07BEE18CC1E4900FA3A8D /* SoccerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1387,7 +1390,7 @@
 /* Begin PBXTargetDependency section */
 		A1D07BF518CC1E4900FA3A8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A1D07BCD18CC1E4800FA3A8D /* Football */;
+			target = A1D07BCD18CC1E4800FA3A8D /* Soccer */;
 			targetProxy = A1D07BF418CC1E4900FA3A8D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1409,6 +1412,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinyi Xu (96U9EGGZ95)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1427,6 +1431,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "a0afc1b6-516f-41f5-871d-a3ddc867a7d6";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1447,6 +1452,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Xinyi Xu (96U9EGGZ95)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1458,6 +1464,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "a0afc1b6-516f-41f5-871d-a3ddc867a7d6";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1549,7 +1556,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1D07C0018CC1E4900FA3A8D /* Build configuration list for PBXNativeTarget "Football" */ = {
+		A1D07C0018CC1E4900FA3A8D /* Build configuration list for PBXNativeTarget "Soccer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1D07C0118CC1E4900FA3A8D /* Debug */,
@@ -1558,7 +1565,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1D07C0318CC1E4900FA3A8D /* Build configuration list for PBXNativeTarget "FootballTests" */ = {
+		A1D07C0318CC1E4900FA3A8D /* Build configuration list for PBXNativeTarget "SoccerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1D07C0418CC1E4900FA3A8D /* Debug */,

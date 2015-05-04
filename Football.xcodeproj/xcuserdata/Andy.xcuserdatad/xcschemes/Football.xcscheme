@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A1D07BCD18CC1E4800FA3A8D"
-               BuildableName = "Football.app"
-               BlueprintName = "Football"
+               BuildableName = "Soccer.app"
+               BlueprintName = "Soccer"
                ReferencedContainer = "container:Football.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A1D07BEE18CC1E4900FA3A8D"
-               BuildableName = "FootballTests.xctest"
-               BlueprintName = "FootballTests"
+               BuildableName = "SoccerTests.xctest"
+               BlueprintName = "SoccerTests"
                ReferencedContainer = "container:Football.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1D07BCD18CC1E4800FA3A8D"
-            BuildableName = "Football.app"
-            BlueprintName = "Football"
+            BuildableName = "Soccer.app"
+            BlueprintName = "Soccer"
             ReferencedContainer = "container:Football.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,8 +63,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1D07BCD18CC1E4800FA3A8D"
-            BuildableName = "Football.app"
-            BlueprintName = "Football"
+            BuildableName = "Soccer.app"
+            BlueprintName = "Soccer"
             ReferencedContainer = "container:Football.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,8 +82,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1D07BCD18CC1E4800FA3A8D"
-            BuildableName = "Football.app"
-            BlueprintName = "Football"
+            BuildableName = "Soccer.app"
+            BlueprintName = "Soccer"
             ReferencedContainer = "container:Football.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
