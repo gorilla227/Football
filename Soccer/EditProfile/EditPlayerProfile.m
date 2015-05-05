@@ -1,0 +1,321 @@
+//
+//  EditPlayerProfile.m
+//  Soccer
+//
+//  Created by Andy on 14-6-14.
+//  Copyright (c) 2014年 Xinyi Xu. All rights reserved.
+//
+
+#import "EditPlayerProfile.h"
+
+@implementation EditPlayerProfile_TableView
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self setDelegateForDismissKeyboard:(id)self.delegate];
+    [self.delegateForDismissKeyboard dismissKeyboard];
+}
+@end
+
+@interface EditPlayerProfile ()
+@property IBOutlet UIToolbar *saveBar;
+@property IBOutlet UIImageView *playerPortraitImageView;
+@property IBOutlet UITextField *mailTextField;
+@property IBOutlet UITextField *nickNameTextField;
+@property IBOutlet UITextField *qqTextField;
+@property IBOutlet UITextField *birthdateTextField;
+@property IBOutlet UITextFieldForActivityRegion *activityRegionTextField;
+@property IBOutlet UITextField *legalNameTextField;
+@property IBOutlet UITextField *mobileTextField;
+@property IBOutlet UITextField *positionTextField;
+@property IBOutlet UITextField *styleTextField;
+@end
+
+@implementation EditPlayerProfile{
+    UIDatePicker *datePicker;
+    UIImagePickerController *imagePicker;
+    UIActionSheet *editPlayerPortraitMenu;
+    NSArray *textFieldArray;
+    NSDateFormatter *birthdayDateFormatter;
+    UIPickerView *positionPicker;
+    JSONConnect *connection;
+}
+@synthesize viewType;
+@synthesize saveBar, playerPortraitImageView, nickNameTextField, qqTextField, birthdateTextField, activityRegionTextField, legalNameTextField, mobileTextField, mailTextField, positionTextField, styleTextField;
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.navigationController setToolbarHidden:NO];
+    [self setToolbarItems:saveBar.items];
+    textFieldArray = @[legalNameTextField, nickNameTextField, mobileTextField, qqTextField, birthdateTextField, activityRegionTextField, mailTextField, legalNameTextField, positionTextField, styleTextField];
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
+    
+    //Set DateFormatter
+    birthdayDateFormatter = [[NSDateFormatter alloc] init];
+    [birthdayDateFormatter setDateFormat:def_MatchDateformat];
+    
+    //Set the playerPortrait related controls
+    [playerPortraitImageView.layer setCornerRadius:10.0f];
+    [playerPortraitImageView.layer setMasksToBounds:YES];
+    [playerPortraitImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [playerPortraitImageView.layer setBorderWidth:1.0f];
+    
+    //Set Position picker
+    positionPicker = [[UIPickerView alloc] init];
+    [positionPicker setDelegate:self];
+    [positionPicker setDataSource:self];
+    [positionTextField setInputView:positionPicker];
+    
+    //Set Datepicker for birthdateTextField
+    datePicker = [[UIDatePicker alloc] init];
+    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    [birthdateTextField setInputView:datePicker];
+    [birthdateTextField setTintColor:[UIColor clearColor]];
+    [datePicker addTarget:self action:@selector(finishDateEditing) forControlEvents:UIControlEventValueChanged];
+    //Set minimumdate and Maximumdate for datepicker
+//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setYear:-100];
+    NSDate *minDate = [calendar dateByAddingComponents:comps toDate:[NSDate date] options:0];
+    [datePicker setMaximumDate:[NSDate date]];
+    [datePicker setMinimumDate:minDate];
+    
+    //Set imagePicker
+    imagePicker = [[UIImagePickerController alloc] init];
+    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [imagePicker setDelegate:self];
+    [imagePicker setAllowsEditing:YES];
+    [imagePicker.navigationBar setTitleTextAttributes:self.navigationController.navigationBar.titleTextAttributes];
+    
+    //Set EditteamLogo menu
+    NSString *menuTitleFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
+    NSArray *menuTitleList = [[[NSDictionary alloc] initWithContentsOfFile:menuTitleFile] objectForKey:@"EditplayerPortraitMenu"];
+    editPlayerPortraitMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:menuTitleList.lastObject otherButtonTitles:menuTitleList[0], nil];
+
+    //Set activityregion Picker
+    [activityRegionTextField setTintColor:[UIColor clearColor]];
+    
+    //Set LeftIcon for textFields
+    [mobileTextField initialLeftViewWithIconImage:@"TextFieldIcon_Mobile.png"];
+    [mailTextField initialLeftViewWithIconImage:@"TextFieldIcon_Email.png"];
+    [nickNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_Account.png"];
+    [legalNameTextField initialLeftViewWithIconImage:@"TextFieldIcon_Account.png"];
+    [qqTextField initialLeftViewWithIconImage:@"TextFieldIcon_QQ.png"];
+    [birthdateTextField initialLeftViewWithIconImage:@"TextFieldIcon_Birthday.png"];
+    [activityRegionTextField initialLeftViewWithIconImage:@"TextFieldIcon_ActivityRegion.png"];
+    [positionTextField initialLeftViewWithIconImage:@"TextFieldIcon_Postion.png"];
+    [styleTextField initialLeftViewWithIconImage:@"TextFieldIcon_Style.png"];
+    
+    //Fill Initial PlayerInfo
+    [self fillInitialPlayerProfile];
+    
+    //Set enable status for Phone/Nickname/Email
+    if (viewType == EditProfileViewType_Register) {
+        [mobileTextField setEnabled:NO];
+        [mailTextField setEnabled:NO];
+        [nickNameTextField setEnabled:NO];
+    }
+    else {
+        [mobileTextField setEnabled:YES];
+        [mailTextField setEnabled:YES];
+        [nickNameTextField setEnabled:YES];
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)fillInitialPlayerProfile
+{
+    if (gMyUserInfo) {
+        [mobileTextField setText:gMyUserInfo.mobile];
+        [mailTextField setText:gMyUserInfo.email];
+        [nickNameTextField setText:gMyUserInfo.nickName];
+        [legalNameTextField setText:gMyUserInfo.legalName];
+        [qqTextField setText:gMyUserInfo.qq];
+        [birthdateTextField setText:gMyUserInfo.birthday];
+        [activityRegionTextField presetActivityRegionCode:gMyUserInfo.activityRegion];
+        [positionTextField setText:[Position stringWithCode:gMyUserInfo.position]];
+        [positionPicker selectRow:gMyUserInfo.position inComponent:0 animated:NO];
+        [styleTextField setText:gMyUserInfo.style];
+        if (gMyUserInfo.playerPortrait) {
+            [playerPortraitImageView setImage:gMyUserInfo.playerPortrait];
+        }
+        else {
+            [playerPortraitImageView setImage:def_defaultPlayerPortrait];
+        }
+    }
+}
+
+-(IBAction)saveButtonOnClicked:(id)sender
+{
+    UserInfo *userInfo = [gMyUserInfo copy];
+    [userInfo setMobile:mobileTextField.text];
+    [userInfo setEmail:mailTextField.text];
+    [userInfo setNickName:nickNameTextField.text];
+    [userInfo setBirthday:birthdateTextField.text];
+    [userInfo setActivityRegion:activityRegionTextField.selectedActivityRegionCode];
+    [userInfo setLegalName:legalNameTextField.text];
+    [userInfo setQq:qqTextField.text];
+    [userInfo setPosition:[positionPicker selectedRowInComponent:0]];
+    [userInfo setStyle:styleTextField.text];
+    [userInfo setPlayerPortrait:[playerPortraitImageView.image isEqual:def_defaultPlayerPortrait]?nil:playerPortraitImageView.image];
+    NSDictionary *updatedDictionary = [userInfo dictionaryForUpdate:gMyUserInfo];
+    if (updatedDictionary.count > 1) {
+        [connection updatePlayerProfile:updatedDictionary];
+    }
+    else {
+        if (viewType == EditProfileViewType_Register) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:[gUIStrings objectForKey:@"UI_EditPlayerProfile_NoChange"]
+                                                               delegate:nil
+                                                      cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+    }
+}
+
+//Update PlayerProfile Sucessfully
+-(void)updatePlayerProfileSuccessfully
+{
+    [connection requestUserInfo:gMyUserInfo.userId withTeam:YES withReference:nil];
+}
+
+//Receive updated UserInfo
+-(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
+{
+    gMyUserInfo = userInfo;
+    if (viewType == EditProfileViewType_Register) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:[gUIStrings objectForKey:@"UI_EditPlayerProfile_Successful"]
+                                                           delegate:nil
+                                                  cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+-(IBAction)selectplayerPortraitButtonOnClicked:(id)sender
+{
+    if (![playerPortraitImageView.image isEqual:def_defaultPlayerPortrait]) {
+        [editPlayerPortraitMenu showInView:self.view];
+    }
+    else {
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+}
+
+//Position Selections
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [Position positionList].count;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [Position positionList][row];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    [positionTextField setText:[Position positionList][row]];
+}
+
+//Portrait Methods
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([actionSheet isEqual:editPlayerPortraitMenu]) {
+        switch (buttonIndex) {
+            case 0://Reset playerPortrait
+                [playerPortraitImageView setImage:def_defaultPlayerPortrait];
+                break;
+            case 1://Change playerPortrait
+                [self presentViewController:imagePicker animated:YES completion:nil];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *imageType = [info objectForKey:UIImagePickerControllerMediaType];
+    if ([imageType isEqualToString:@"public.image"]) {
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+        [playerPortraitImageView setImage:image];
+        [picker dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+//Protocol DismissKeyboard
+-(void)dismissKeyboard
+{
+    for (UITextField *textField in textFieldArray) {
+        [textField resignFirstResponder];
+    }
+}
+
+//TextField
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return NO;
+}
+
+#pragma DatePicker
+-(void)finishDateEditing
+{
+    [birthdateTextField setText:[birthdayDateFormatter stringFromDate:datePicker.date]];
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
