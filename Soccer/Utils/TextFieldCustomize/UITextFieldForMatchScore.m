@@ -39,9 +39,14 @@
     awayTeamScore = awayScore;
     [self setText:[NSString stringWithFormat:@"%@ : %@", (homeTeamScore < 0)?@"-":[NSNumber numberWithInteger:homeTeamScore], (awayTeamScore < 0)?@"-":[NSNumber numberWithInteger:awayTeamScore]]];
     
-    [scorePicker selectRow:homeTeamScore inComponent:0 animated:NO];
+    if (homeScore >= 0) {
+        [scorePicker selectRow:homeTeamScore inComponent:0 animated:NO];
+    }
+    
     if (!isRegularMatch) {
-        [scorePicker selectRow:awayTeamScore inComponent:1 animated:NO];
+        if (awayScore >= 0) {
+            [scorePicker selectRow:awayTeamScore inComponent:1 animated:NO];
+        }
     }
 }
 
@@ -74,12 +79,7 @@
         awayTeamScore = [pickerView selectedRowInComponent:1];
     }
     
-    if (awayTeamScore < 0) {
-        [self setText:[NSString stringWithFormat:@"%@ : -", [NSNumber numberWithInteger:homeTeamScore]]];
-    }
-    else {
-        [self setText:[NSString stringWithFormat:@"%@ : %@", [NSNumber numberWithInteger:homeTeamScore], [NSNumber numberWithInteger:awayTeamScore]]];
-    }
+    [self setText:[NSString stringWithFormat:@"%@ : %@", (homeTeamScore < 0)?@"-":[NSNumber numberWithInteger:homeTeamScore], (awayTeamScore < 0)?@"-":[NSNumber numberWithInteger:awayTeamScore]]];
     
     if (delegateForScore) {
         [delegateForScore didScoreChangedWithHomeScore:homeTeamScore andAwayScore:awayTeamScore];

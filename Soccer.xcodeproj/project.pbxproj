@@ -23,6 +23,7 @@
 		A11D110A19AC48790097693B /* PlayerMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D110919AC48790097693B /* PlayerMarket.m */; };
 		A12293051A33C5BA000F0E45 /* matchCell_fillMatchData.png in Resources */ = {isa = PBXBuildFile; fileRef = A12293031A33C5BA000F0E45 /* matchCell_fillMatchData.png */; };
 		A12293061A33C5BA000F0E45 /* matchCell_noticePlayers.png in Resources */ = {isa = PBXBuildFile; fileRef = A12293041A33C5BA000F0E45 /* matchCell_noticePlayers.png */; };
+		A1246E5A1B006ABD00B55D8F /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = A1246E591B006ABD00B55D8F /* Settings.m */; };
 		A131E2FC1A352D9900F604C8 /* MatchDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = A131E2FB1A352D9900F604C8 /* MatchDetails.m */; };
 		A1347F9E19E24F3B003102E6 /* TeamMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347F9D19E24F3B003102E6 /* TeamMarket.m */; };
 		A135B14E1927242B001CB0EC /* rightArrow_white.png in Resources */ = {isa = PBXBuildFile; fileRef = A135B14D1927242B001CB0EC /* rightArrow_white.png */; };
@@ -197,6 +198,8 @@
 		A11D110919AC48790097693B /* PlayerMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerMarket.m; path = Captain/Miscellaneous/PlayerMarket/PlayerMarket.m; sourceTree = "<group>"; };
 		A12293031A33C5BA000F0E45 /* matchCell_fillMatchData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matchCell_fillMatchData.png; sourceTree = "<group>"; };
 		A12293041A33C5BA000F0E45 /* matchCell_noticePlayers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matchCell_noticePlayers.png; sourceTree = "<group>"; };
+		A1246E581B006ABD00B55D8F /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Settings.h; path = Settings/Settings.h; sourceTree = "<group>"; };
+		A1246E591B006ABD00B55D8F /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Settings.m; path = Settings/Settings.m; sourceTree = "<group>"; };
 		A131E2FA1A352D9900F604C8 /* MatchDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchDetails.h; sourceTree = "<group>"; };
 		A131E2FB1A352D9900F604C8 /* MatchDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchDetails.m; sourceTree = "<group>"; };
 		A1347F9C19E24F3B003102E6 /* TeamMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamMarket.h; path = Captain/Miscellaneous/TeamMarket/TeamMarket.h; sourceTree = "<group>"; };
@@ -501,6 +504,15 @@
 				A1ED00A219B03F1E00C669D1 /* PositionCheckboxView.m */,
 			);
 			name = PlayerMarket;
+			sourceTree = "<group>";
+		};
+		A1246E571B00699A00B55D8F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A1246E581B006ABD00B55D8F /* Settings.h */,
+				A1246E591B006ABD00B55D8F /* Settings.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		A12A40841A887B1B00C7E7CD /* zzzOld */ = {
@@ -837,6 +849,7 @@
 				A103338918D419A300050A61 /* Soccer.storyboard */,
 				A18D7F781903912D003028FE /* Soccer_BaseNavigationController.h */,
 				A18D7F791903912D003028FE /* Soccer_BaseNavigationController.m */,
+				A1246E571B00699A00B55D8F /* Settings */,
 				A19865F9198DF73B009BA81C /* MessageCenter */,
 				B2168BE6198304B500F91C4B /* MainMenu */,
 				B2D6981318ECC35500603B87 /* MyTeam */,
@@ -1367,6 +1380,7 @@
 				B2FEC5E41915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m in Sources */,
 				B22B10AE193A9683004BE83F /* BalanceManagement.m in Sources */,
 				A1FC44511935A621007C4B68 /* CallFriends.m in Sources */,
+				A1246E5A1B006ABD00B55D8F /* Settings.m in Sources */,
 				A1818977194D671E00BE18BC /* EditTeamProfile.m in Sources */,
 				B2AE0A311985AB5F00E2DEE9 /* StadiumDetails.m in Sources */,
 				B2A01786198460F400ACDDD2 /* StadiumListView.m in Sources */,

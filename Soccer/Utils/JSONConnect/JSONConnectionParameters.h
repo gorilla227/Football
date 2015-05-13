@@ -145,8 +145,12 @@
 #define CONNECT_UpdateMatchScore_Parameters(matchId, captainId, homeScore, awayScore) @{@"match_id":matchId, @"member_id":captainId, @"host_team_goal":homeScore, @"guest_team_goal":awayScore}
 
 //Create Match With Real Team
-#define CONNECT_CreateMatchWithRealTeam_Suffix @"match/create"
-#define CONNECT_CreateMatchWithRealTeam_Parameters(matchData) matchData
+#define CONNECT_CreateMatchWithRealTeamFuture_Suffix @"match/create"
+#define CONNECT_CreateMatchWithRealTeamPassed_Suffix @"match/createpassed"
+
+//Create Match With Fake Team
+#define CONNECT_CreateMatchWithFakeTeamFuture_Suffix @"match/fakecreate"
+#define CONNECT_CreateMatchWithFakeTeamPassed_Suffix @"match/fakecreatepassed"
 
 //Replay Match Invitation
 #define CONNECT_ReplyMatchInvitation_Suffix @"message/replymatchinvitation"

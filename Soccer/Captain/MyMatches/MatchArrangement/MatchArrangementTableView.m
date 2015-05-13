@@ -59,7 +59,7 @@
                                                             otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_InvitationResponseAccept"], [gUIStrings objectForKey:@"UI_MatchArrangement_InvitationResponseRefuse"], nil];
             [actionSheet showInView:actionButton];
         }
-        else if (matchData.status == 4) {//已结束比赛-输入比分
+        else if (matchData.status == 4 || matchData.status == 5) {//已结束比赛-输入比分
             [delegate viewScore:matchData editable:YES];
         }
     }
@@ -72,7 +72,7 @@
                                                             otherButtonTitles:[gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseAccept"], [gUIStrings objectForKey:@"UI_MatchArrangement_PlayerResponseRefuse"], nil];
             [actionSheet showInView:actionButton];
         }
-        else if (matchData.status == 4) {//已结束比赛-查看比分
+        else if (matchData.status == 4 || matchData.status == 5) {//已结束比赛-查看比分
             [delegate viewScore:matchData editable:NO];
         }
     }
@@ -205,7 +205,7 @@
                 }
                 break;
             case 1:
-                [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:4]] sort:2 count:count startIndex:matchesList.count isSync:YES];
+                [connection requestMatchesByPlayer:gMyUserInfo.userId forTeam:gMyUserInfo.team.teamId inStatus:@[[NSNumber numberWithInteger:4], [NSNumber numberWithInteger:5]] sort:2 count:count startIndex:matchesList.count isSync:YES];
                 break;
             default:
                 break;
@@ -282,7 +282,6 @@
     
     // Configure the cell...
     
-    
     if(gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId)) {
         //For Captain
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierForCaptain forIndexPath:indexPath];
@@ -337,6 +336,7 @@
                 [cell setResponseType:MatchResponseType_Default];
                 break;
             case 4://已结束比赛
+            case 5:
                 [cell.actionIcon setImage:[UIImage imageNamed:@"matchCell_fillMatchData.png"]];
                 if (opponent.teamId == matchData.awayTeam.teamId) {
                     [cell.actionButton setTitle:matchData.homeTeamGoal < 0?[gUIStrings objectForKey:@"UI_MatchArrangement_ActionButton_EnterScore"]:[NSString stringWithFormat:@"%@:%@", [NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];
@@ -398,6 +398,7 @@
                 }
                 break;
             case 4://已结束比赛
+            case 5:
                 [cell.actionButton setEnabled:NO];
                 if (opponent.teamId == matchData.awayTeam.teamId) {
                     [cell.actionButton setTitle:[NSString stringWithFormat:@"%@:%@", matchData.homeTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.homeTeamGoal], matchData.awayTeamGoal < 0?@"-":[NSNumber numberWithInteger:matchData.awayTeamGoal]] forState:UIControlStateNormal];

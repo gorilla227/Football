@@ -14,6 +14,7 @@
 
 @protocol MainMenuSwitchViewControllerDelegate <NSObject>
 -(void)switchSelectMenuView:(NSString *)selectedView;
+-(void)settings;
 -(void)logout;
 @end
 

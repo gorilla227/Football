@@ -39,8 +39,16 @@
     gUIStrings = [NSDictionary dictionaryWithContentsOfFile:fileNameOfUIStrings];
     
     //Get Settings
-    NSString *settingFile = [[NSBundle mainBundle] pathForResource:@"Setting" ofType:@"plist"];
-    gSettings = [[NSDictionary alloc] initWithContentsOfFile:settingFile];
+    NSArray *sandBoxPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *settingFile = [[sandBoxPaths firstObject] stringByAppendingPathComponent:@"Setting.plist"];
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:settingFile]) {
+        NSString *defaultSettingFile = [[NSBundle mainBundle] pathForResource:@"Setting" ofType:@"plist"];
+        NSError *error;
+        [[NSFileManager defaultManager] copyItemAtPath:defaultSettingFile toPath:settingFile error:&error];
+    }
+    
+    gSettings = [[NSMutableDictionary alloc] initWithContentsOfFile:settingFile];
     
     //Set busyIndicator
     busyIndicator = [[UIActivityIndicatorView alloc] init];

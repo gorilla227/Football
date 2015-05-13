@@ -102,6 +102,11 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
 }
 
+- (void)settings {
+    UIViewController *settingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Settings"];
+    [self pushViewController:settingViewController animated:YES];
+}
+
 -(void)logout
 {
     [self dismissViewControllerAnimated:YES completion:nil];

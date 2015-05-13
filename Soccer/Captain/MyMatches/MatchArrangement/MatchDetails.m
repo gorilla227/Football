@@ -10,7 +10,6 @@
 #import "TeamMarket.h"
 #import "TeamDetails.h"
 #import "StadiumDetails.h"
-#import "MatchScoreDetails.h"
 
 @interface MatchDetails ()
 @property IBOutlet UITextField *matchTimeTextField;
@@ -31,7 +30,6 @@
 @property IBOutlet UIBarButtonItem *acceptMatchNoticeButton;
 @property IBOutlet UIBarButtonItem *refuseMatchNoticeButton;
 @property IBOutlet UIGestureRecognizer *dismissKeyboardGestureRecognizer;
-@property IBOutlet UIButton *scoreDetailsButton;
 @end
 
 @implementation MatchDetails{
@@ -41,17 +39,17 @@
     NSDateFormatter *dateFormatter;
     NSArray *textFields;
     Team *selectedOpponentTeam;
+    NSArray *matchScoreDetailList;
     JSONConnect *connection;
+    NSInteger saveProgress;
 }
-@synthesize matchTimeTextField, matchOpponentTextField, matchStadiumTextFiedld, matchStandardTextField, costTextField, costOption_Referee, costOption_Water, scoreTextField, inviteOpponentButton, createMatchActionBar, createMatchButton, matchInvitationActionBar, acceptMatchInvitationButton, refuseMatchInvitationButton, matchNoticeActionBar, acceptMatchNoticeButton, refuseMatchNoticeButton, dismissKeyboardGestureRecognizer, scoreDetailsButton;
+@synthesize matchTimeTextField, matchOpponentTextField, matchStadiumTextFiedld, matchStandardTextField, costTextField, costOption_Referee, costOption_Water, scoreTextField, inviteOpponentButton, createMatchActionBar, createMatchButton, matchInvitationActionBar, acceptMatchInvitationButton, refuseMatchInvitationButton, matchNoticeActionBar, acceptMatchNoticeButton, refuseMatchNoticeButton, dismissKeyboardGestureRecognizer;
 @synthesize viewType, matchData, message;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [scoreDetailsButton.layer setCornerRadius:5.0f];
-    [scoreDetailsButton.layer setMasksToBounds:YES];
     
     //Set dateformatter
     dateFormatter = [[NSDateFormatter alloc] init];
@@ -143,17 +141,57 @@
 }
 
 #pragma JSONConnectDelegate
--(void)receiveMatch:(Match *)match {
+- (void)receiveMatch:(Match *)match {
     matchData = match;
     [matchData setMatchMessage:message];
     [self presetMatchData];
 }
 
--(void)createMatchWithRealTeam:(NSInteger)matchId {
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)createdMatchWithRealTeam:(NSInteger)matchId {
+    if (creationProgress == MatchDetailsCreationProgress_Passed && (scoreTextField.homeScore != -1 || scoreTextField.awayScore != -1)) {
+        [connection updateMatchScore:matchId captainId:gMyUserInfo.userId homeScore:scoreTextField.homeScore awayScore:scoreTextField.awayScore];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
--(void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer isSent:(BOOL)result {
+- (void)createdMatchWithFakeTeam:(NSInteger)matchId {
+    if (creationProgress == MatchDetailsCreationProgress_Passed && (scoreTextField.homeScore != -1 || scoreTextField.awayScore != -1)) {
+        [connection updateMatchScore:matchId captainId:gMyUserInfo.userId homeScore:scoreTextField.homeScore awayScore:scoreTextField.awayScore];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)updatedMatchScore:(BOOL)result {
+    if (result) {
+        if (matchScoreDetailList) {
+            saveProgress = matchScoreDetailList.count;
+            for (MatchScore *score in matchScoreDetailList) {
+                [connection addMatchScoreDetail:[score dictionaryForUpdate:nil]];
+            }
+        }
+    }
+    else {
+        NSLog(@"Update MatchScore failed.");
+    }
+}
+
+- (void)addedMatchScoreDetail:(BOOL)result {
+    if (result) {
+        saveProgress--;
+        if (saveProgress == 0) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+    else {
+        NSLog(@"Save MatchScoreDetail failed.");
+    }
+}
+
+- (void)replyMatchNotice:(NSInteger)messageId withAnswer:(BOOL)answer isSent:(BOOL)result {
     if (result) {
         [matchData.matchMessage setStatus:answer?2:3];
     }
@@ -166,7 +204,7 @@
     [alertView show];
 }
 
--(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer isSent:(BOOL)result {
+- (void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer isSent:(BOOL)result {
     if (result) {
         [matchData.matchMessage setStatus:answer?2:3];
         [matchData setStatus:answer?3:2];
@@ -179,14 +217,13 @@
     [alertView show];
 }
 
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma Initial TextFields
--(void)initialMatchTime
-{
+- (void)initialMatchTime {
     matchTimePicker = [[UIDatePicker alloc] init];
     [matchTimePicker setDatePickerMode:UIDatePickerModeDateAndTime];
     [matchTimePicker setLocale:[NSLocale currentLocale]];
@@ -206,8 +243,7 @@
     [matchTimeTextField setTintColor:[UIColor clearColor]];
 }
 
--(void)initialMatchOpponent
-{
+- (void)initialMatchOpponent {
     [inviteOpponentButton.layer setCornerRadius:5.0f];
     [inviteOpponentButton.layer setMasksToBounds:YES];
     [matchOpponentTextField setRightView:inviteOpponentButton];
@@ -216,14 +252,12 @@
     [matchOpponentTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
--(void)initialMatchStadium
-{
+- (void)initialMatchStadium {
     [matchStadiumTextFiedld textFieldInitialization:gStadiums homeStadium:gMyUserInfo.team.homeStadium showSelectHomeStadium:YES];
     [matchStadiumTextFiedld setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
--(void)initialMatchStandard
-{
+- (void)initialMatchStandard {
     //Set UIStepper as rightView
     matchStandardStepper = [[UIStepper alloc] init];
     [matchStandardStepper setTintColor:cLightBlue(1.0)];
@@ -239,22 +273,19 @@
     [matchStandardStepper setHidden:(viewType != MatchDetailsViewType_CreateMatch)];
 }
 
--(void)initialCost
-{
+- (void)initialCost {
     [costTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
     [costOption_Referee setEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
     [costOption_Water setEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
--(void)initialMatchScore
-{
+- (void)initialMatchScore {
     [scoreTextField initialTextFieldForMatchScore:(viewType != MatchDetailsViewType_CreateMatch)];
-    [scoreTextField presetHomeScore:0 andAwayScore:0];
+    [scoreTextField presetHomeScore:-1 andAwayScore:-1];
     [scoreTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
--(void)matchTimeSelected
-{
+- (void)matchTimeSelected {
     //Fill the date to matchTime textfield
     [matchTimeTextField setText:[dateFormatter stringFromDate:matchTimePicker.date]];
     
@@ -281,51 +312,67 @@
     [self.tableView reloadData];
 }
 
--(void)standardStepperChanged
-{
+- (void)standardStepperChanged {
     [matchStandardTextField setText:[NSNumber numberWithDouble:matchStandardStepper.value].stringValue];
 }
 
--(IBAction)dismissKeyboard:(UITapGestureRecognizer *)tapGestureRecognizer
-{
+- (IBAction)dismissKeyboard:(UITapGestureRecognizer *)tapGestureRecognizer {
     for (UITextField *textField in textFields) {
         [textField resignFirstResponder];
     }
 }
 
--(IBAction)acceptMatchNoticeButtonOnClicked:(id)sender {
+- (IBAction)acceptMatchNoticeButtonOnClicked:(id)sender {
     [connection replyMatchNotice:matchData.matchMessage.messageId withAnswer:YES];
 }
 
--(IBAction)refuseMatchNoticeButtonOnClicked:(id)sender {
+- (IBAction)refuseMatchNoticeButtonOnClicked:(id)sender {
     [connection replyMatchNotice:matchData.matchMessage.messageId withAnswer:NO];
 }
 
--(IBAction)acceptMatchInvitationButtonOnClicked:(id)sender {
+- (IBAction)acceptMatchInvitationButtonOnClicked:(id)sender {
     [connection replyMatchInvitation:matchData.matchMessage withAnswer:YES];
 }
 
--(IBAction)refuseMatchInvitationButtonOnClicked:(id)sender {
+- (IBAction)refuseMatchInvitationButtonOnClicked:(id)sender {
     [connection replyMatchInvitation:matchData.matchMessage withAnswer:NO];
 }
 
--(IBAction)createMatchButtonOnClicked:(id)sender {
+- (IBAction)createMatchButtonOnClicked:(id)sender {
     NSMutableDictionary *newMatch = [NSMutableDictionary new];
     [newMatch setObject:@"" forKey:kMatch_matchTitle];
     [newMatch setObject:[NSNumber numberWithInteger:[matchTimePicker.date timeIntervalSince1970]] forKey:kMatch_beginTime];
     [newMatch setObject:[NSNumber numberWithInteger:gMyUserInfo.team.teamId] forKey:kMatch_homeTeamId];
-    [newMatch setObject:[NSNumber numberWithInteger:selectedOpponentTeam.teamId] forKey:kMatch_awayTeamId];
     [newMatch setObject:matchStandardTextField.text forKey:kMatch_matchStandard];
     [newMatch setObject:costTextField.text forKey:kMatch_cost];
     [newMatch setObject:[NSNumber numberWithBool:costOption_Referee.isOn] forKey:kMatch_withReferee];
     [newMatch setObject:[NSNumber numberWithBool:costOption_Water.isOn] forKey:kMatch_withWater];
     [newMatch setObject:[NSNumber numberWithInteger:gMyUserInfo.userId] forKey:kMatch_organizerId];
     [newMatch setObject:[NSNumber numberWithInteger:matchStadiumTextFiedld.selectedStadium.stadiumId] forKey:kMatch_fieldId];
-    [connection createMatchWithRealTeam:newMatch];
+    if (selectedOpponentTeam) {
+        [newMatch setObject:[NSNumber numberWithInteger:selectedOpponentTeam.teamId] forKey:kMatch_awayTeamId];
+        [connection createMatchWithRealTeam:newMatch];
+    }
+    else {
+        [newMatch setObject:matchOpponentTextField.text forKey:kMatch_awayTeamName];
+        [connection createMatchWithFakeTeam:newMatch];
+    }
+}
+
+- (void)checkCreateMatchButtonStatus {
+    switch (creationProgress) {
+        case MatchDetailsCreationProgress_Future_WithOppo:
+        case MatchDetailsCreationProgress_Passed:
+            [createMatchButton setEnabled:(matchTimeTextField.text.length && matchOpponentTextField.text.length && costTextField.text.length && matchStadiumTextFiedld.selectedStadium)];
+            break;
+        default:
+            [createMatchButton setEnabled:NO];
+            break;
+    }
 }
 
 #pragma UITextFieldDelegate
--(void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     if ([textField isEqual:matchOpponentTextField]) {
         if ([textField hasText] && creationProgress == MatchDetailsCreationProgress_Future_WithoutOppo) {
             creationProgress = MatchDetailsCreationProgress_Future_WithOppo;
@@ -343,9 +390,10 @@
         [costTextField setText:[NSString stringWithFormat:@"%.2f", costTextField.text.floatValue]];
     }
     [dismissKeyboardGestureRecognizer setEnabled:NO];
+    [self checkCreateMatchButtonStatus];
 }
 
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if ([textField isEqual:matchStandardTextField]) {
         return NO;
     }
@@ -361,7 +409,7 @@
     }
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if ([textField isEqual:costTextField]) {
         NSString *potentialString = [textField.text stringByReplacingCharactersInRange:range withString:string];
         NSArray *potentialStringArray = [potentialString componentsSeparatedByString:@"."];
@@ -499,8 +547,7 @@
     [footerView.layer setMasksToBounds:YES];
 }
 
--(void)formatMatchOpponent:(BOOL)isRealTeam
-{
+- (void)formatMatchOpponent:(BOOL)isRealTeam {
     if (isRealTeam) {
         [matchOpponentTextField setTextColor:[UIColor orangeColor]];
         UIImageView *selectedTeamLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, matchOpponentTextField.frame.size.height, matchOpponentTextField.frame.size.height)];
@@ -516,12 +563,17 @@
 }
 
 //TeamMarketSelectionDelegate
--(void)selectedOpponentTeam:(Team *)selectedTeam
-{
+- (void)selectedOpponentTeam:(Team *)selectedTeam {
     [matchOpponentTextField setText:selectedTeam.teamName];
     selectedOpponentTeam = selectedTeam;
     [self formatMatchOpponent:YES];
     [self textFieldDidEndEditing:matchOpponentTextField];
+}
+
+//SaveScoreForNewMatchDelegate
+- (void)saveScoreDetails:(NSArray *)scoreDetails homeScore:(NSInteger)homeScore awayScore:(NSInteger)awayScore {
+    matchScoreDetailList = scoreDetails;
+    [scoreTextField presetHomeScore:homeScore andAwayScore:awayScore];
 }
 
 #pragma mark - Navigation
@@ -536,8 +588,17 @@
     }
     else if ([segue.identifier isEqualToString:@"MatchScoreDetails"]) {
         MatchScoreDetails *matchScoreDetails = (MatchScoreDetails *)segue.destinationViewController;
-        [matchScoreDetails setMatchData:matchData];
-        [matchScoreDetails setEditable:(gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId))];
+        if (matchData) {
+            [matchScoreDetails setMatchData:matchData];
+            [matchScoreDetails setEditable:(gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId))];
+        }
+        else {
+            [matchScoreDetails setEditable:YES];
+            [matchScoreDetails setDelegate:(id)self];
+            [matchScoreDetails setMyScore:scoreTextField.homeScore];
+            [matchScoreDetails setOpponentScore:scoreTextField.awayScore];
+            [matchScoreDetails setOriginalMatchScoreList:matchScoreDetailList];
+        }
     }
 }
 

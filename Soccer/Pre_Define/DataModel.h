@@ -167,6 +167,7 @@
 #define kMatch_fieldId @"field_id"
 #define kMatch_homeTeamId @"host_team_id"
 #define kMatch_awayTeamId @"guest_team_id"
+#define kMatch_awayTeamName @"guest_team_name"
 @interface Match: NSObject
 @property NSInteger matchId;
 @property NSString *matchTitle;

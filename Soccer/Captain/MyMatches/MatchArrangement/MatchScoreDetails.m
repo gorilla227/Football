@@ -25,15 +25,12 @@
     JSONConnect *connection;
     NSArray *matchAttendenceList;
     NSMutableArray *matchScoreList;
-    NSArray *originalMatchScoreList;
     NSString *scoreTitle;
-    NSInteger myScore;
-    NSInteger opponentScore;
     NSInteger homeTeamId;
     NSInteger saveProgress;
     Match *newMatchData;
 }
-@synthesize matchData, editable;
+@synthesize matchData, editable, delegate, originalMatchScoreList, myScore, opponentScore;
 @synthesize saveBar, saveButton;
 
 - (void)viewDidLoad {
@@ -89,11 +86,30 @@
             }
         }
     }
+    else {
+        [connection requestTeamMembers:gMyUserInfo.team.teamId withTeamFundHistory:NO isSync:YES];
+    }
 }
 
 - (void)receiveMatchAttendence:(NSArray *)matchAttendence {
     matchAttendenceList = matchAttendence;
     [connection requestMatchScoreDetails:matchData.matchId forTeam:homeTeamId];
+}
+
+- (void)receiveTeamMembers:(NSArray *)players {
+    matchAttendenceList = players;
+    matchScoreList = [NSMutableArray new];
+    
+    for (int i = 0; i < myScore; i++) {
+        if (i < originalMatchScoreList.count) {
+            [matchScoreList addObject:[originalMatchScoreList[i] copy]];
+        }
+        else {
+            [matchScoreList addObject:[NSNull null]];
+        }
+    }
+    [self.tableView reloadData];
+    [self checkSaveButtonStatus];
 }
 
 - (void)receiveMatchScoreDetails:(NSArray *)matchScoreDetails {
@@ -182,6 +198,11 @@
     }
     else {
         //New Match
+        if (!delegate) {
+            delegate = (id)self.parentViewController;
+        }
+        [delegate saveScoreDetails:matchScoreList homeScore:myScore awayScore:opponentScore];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -199,20 +220,24 @@
     if (!matchScoreList) {
         matchScoreList = [NSMutableArray new];
     }
-    for (NSInteger i = 0; i < homeScore; i++) {
-        if (i >= myScore) {
-            if (i < matchScoreList.count) {
-                [matchScoreList replaceObjectAtIndex:i withObject:[NSNull null]];
-            }
-            else {
-                [matchScoreList addObject:[NSNull null]];
+    if (homeScore >= 0) {
+        for (NSInteger i = 0; i < homeScore; i++) {
+            if (i >= myScore) {
+                if (i < matchScoreList.count) {
+                    [matchScoreList replaceObjectAtIndex:i withObject:[NSNull null]];
+                }
+                else {
+                    [matchScoreList addObject:[NSNull null]];
+                }
             }
         }
+        while (matchScoreList.count != homeScore) {
+            [matchScoreList removeLastObject];
+        }
     }
-    while (matchScoreList.count != homeScore) {
-        [matchScoreList removeLastObject];
-    }
+    
     myScore = homeScore;
+    opponentScore = awayScore;
     [self.tableView reloadData];
     [self checkSaveButtonStatus];
 }
@@ -261,7 +286,7 @@
     if (indexPath.section == 0) {
         static NSString *CellIdentifier = @"ScoreCell";
         MatchScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        [cell.scoreTextField initialTextFieldForMatchScore:YES];
+        [cell.scoreTextField initialTextFieldForMatchScore:matchData];
         [cell.scoreTextField presetHomeScore:myScore andAwayScore:opponentScore];
         [cell.scoreTextField setEnabled:editable];
         return cell;

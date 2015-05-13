@@ -129,4 +129,4 @@ UserInfo *gMyUserInfo;
 NSArray *gStadiums;
 NSDictionary *gUIStrings;
 NSMutableDictionary *gUnreadMessageAmount;
-NSDictionary *gSettings;
+NSMutableDictionary *gSettings;

@@ -71,7 +71,8 @@ enum RequestMessageSourceType
 -(void)updatedMatchStatus:(BOOL)result;//修改比赛状态成功与否
 -(void)updatedMatchScore:(BOOL)result;//修改比分成功与否
 -(void)receiveMatch:(Match *)match;//获取指定id的Match成功
--(void)createMatchWithRealTeam:(NSInteger)matchId;//创建与实体球队的比赛
+-(void)createdMatchWithRealTeam:(NSInteger)matchId;//创建与实体球队的比赛
+-(void)createdMatchWithFakeTeam:(NSInteger)matchId;//创建与虚拟球队的比赛
 -(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer isSent:(BOOL)result;//队长回应约赛邀请返回结果
 -(void)receiveMatchScoreDetails:(NSArray *)matchScoreDetails;//获取比赛详细记录成功
 -(void)addedMatchScoreDetail:(BOOL)result;//添加比赛详细记录成功与否
@@ -137,6 +138,7 @@ enum RequestMessageSourceType
 -(void)updateMatchScore:(NSInteger)matchId captainId:(NSInteger)captainId homeScore:(NSInteger)homeScore awayScore:(NSInteger)awayScore;//修改比分
 -(void)requestMatchesByMatchId:(NSInteger)matchId;//通过比赛id获取比赛详情
 -(void)createMatchWithRealTeam:(NSDictionary *)newMatch;//创建与实体队的比赛
+-(void)createMatchWithFakeTeam:(NSDictionary *)newMatch;//创建与虚拟队的比赛
 -(void)replyMatchInvitation:(Message *)message withAnswer:(BOOL)answer;//队长回应约战邀请
 -(void)requestMatchScoreDetails:(NSInteger)matchId forTeam:(NSInteger)teamId;//获取比赛详细记录
 -(void)addMatchScoreDetail:(NSDictionary *)parameters;//添加新比赛详细记录

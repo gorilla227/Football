@@ -301,6 +301,86 @@
             </objects>
             <point key="canvasLocation" x="-89" y="197"/>
         </scene>
+        <!--设置-->
+        <scene sceneID="7EL-S7-nZm">
+            <objects>
+                <tableViewController storyboardIdentifier="Settings" title="设置" useStoryboardIdentifierAsRestorationIdentifier="YES" id="O33-mm-IGB" customClass="Settings" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ZBw-ip-PB9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection id="kSd-HN-Zdh">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vwy-my-X9Y">
+                                        <rect key="frame" x="0.0" y="35" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vwy-my-X9Y" id="rr2-Og-g9f">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动登录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="laH-Bg-1gF">
+                                                    <rect key="frame" x="15" y="11" width="143" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="bwV-aw-Odu">
+                                                    <rect key="frame" x="263" y="6" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="swAutoLoginValueChanged:" destination="O33-mm-IGB" eventType="valueChanged" id="Nd7-Ou-MjS"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="关于" id="d8L-fI-VOg">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="cBn-jc-psT" detailTextLabel="v85-5d-rqG" style="IBUITableViewCellStyleValue1" id="Kyn-0k-A6A">
+                                        <rect key="frame" x="0.0" y="122" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kyn-0k-A6A" id="BSk-Fg-tSo">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="我要踢球" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cBn-jc-psT">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="1.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v85-5d-rqG">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="O33-mm-IGB" id="ZFs-VV-SAR"/>
+                            <outlet property="delegate" destination="O33-mm-IGB" id="a9E-QS-i5Q"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="1UN-rU-0k2"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="lbVersion" destination="v85-5d-rqG" id="Woo-hi-X8q"/>
+                        <outlet property="swAutoLogin" destination="bwV-aw-Odu" id="BRc-hb-qrz"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZD7-Si-fMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-494" y="875"/>
+        </scene>
         <!--Match Arrangement Tab View-->
         <scene sceneID="ZZ3-Hx-JyL">
             <objects>
@@ -836,7 +916,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7lG-qO-AZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="745" y="817"/>
+            <point key="canvasLocation" x="1769" y="-416"/>
         </scene>
         <!--建立比赛-->
         <scene sceneID="oz6-Ld-nAj">
@@ -1167,7 +1247,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="zHQ-yt-HOV"/>
-                        <barButtonItem title="发出约赛请求" id="nwf-8q-kfi">
+                        <barButtonItem enabled="NO" title="发出约赛请求" id="nwf-8q-kfi">
                             <connections>
                                 <action selector="createMatchButtonOnClicked:" destination="oSq-8e-yP8" id="rVi-zf-swq"/>
                             </connections>
@@ -1184,6 +1264,9 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <segue destination="I7g-Tw-dAj" kind="push" identifier="SelectOpponentViaTeamMarket" id="79S-Aa-dvs"/>
+                    </connections>
                 </button>
                 <tapGestureRecognizer enabled="NO" delaysTouchesBegan="YES" delaysTouchesEnded="NO" id="uNL-dc-q6Q">
                     <connections>

@@ -785,11 +785,24 @@
 //Create Match With Real Team
 -(void)createMatchWithRealTeam:(NSDictionary *)newMatch {
     [busyIndicatorDelegate lockView];
-    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_CreateMatchWithRealTeam_Suffix];
-    NSDictionary *parameters = CONNECT_CreateMatchWithRealTeam_Parameters(newMatch);
-    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    BOOL isFuture = [[newMatch objectForKey:kMatch_beginTime] integerValue] > [NSDate date].timeIntervalSince1970;
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:isFuture?CONNECT_CreateMatchWithRealTeamFuture_Suffix:CONNECT_CreateMatchWithRealTeamPassed_Suffix];
+    [manager POST:urlString parameters:newMatch success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-        [delegate createMatchWithRealTeam:[[responseObject objectForKey:@"id"] integerValue]];
+        [delegate createdMatchWithRealTeam:[[responseObject objectForKey:@"id"] integerValue]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorAlertView:error otherInfo:operation.responseString];
+    }];
+}
+
+//Create Match With Fake Team
+-(void)createMatchWithFakeTeam:(NSDictionary *)newMatch {
+    [busyIndicatorDelegate lockView];
+    BOOL isFuture = [[newMatch objectForKey:kMatch_beginTime] integerValue] > [NSDate date].timeIntervalSince1970;
+    NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:isFuture?CONNECT_CreateMatchWithFakeTeamFuture_Suffix:CONNECT_CreateMatchWithFakeTeamPassed_Suffix];
+    [manager POST:urlString parameters:newMatch success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [busyIndicatorDelegate unlockView];
+        [delegate createdMatchWithFakeTeam:[[responseObject objectForKey:@"id"] integerValue]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];

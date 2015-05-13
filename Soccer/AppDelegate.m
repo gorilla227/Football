@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 @implementation AppDelegate
 
@@ -22,6 +23,16 @@
     [[UIToolbar appearance] setTranslucent:NO];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    //Register Device for Push Notification
+    if (IS_OS_8_OR_LATER) {
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+    }
+    else {
+        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
+    }
     return YES;
 }
 							
@@ -50,6 +61,14 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"My token is : %@", deviceToken);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Failed to get token, error: %@", error);
 }
 
 @end

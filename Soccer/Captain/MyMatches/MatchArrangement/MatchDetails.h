@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TeamDetails.h"
+#import "MatchScoreDetails.h"
 
 enum MatchDetailsCreationProgress {
     MatchDetailsCreationProgress_Initial,//1-1
@@ -23,7 +24,7 @@ enum MatchDetailsViewType {
     MatchDetailsViewType_MatchNotice
 };
 
-@interface MatchDetails : UITableViewController<UITextFieldDelegate, TeamMarketSelectionDelegate, JSONConnectDelegate, UIAlertViewDelegate>
+@interface MatchDetails : UITableViewController<UITextFieldDelegate, TeamMarketSelectionDelegate, JSONConnectDelegate, UIAlertViewDelegate, SaveScoreForNewMatchDelegate>
 @property enum MatchDetailsViewType viewType;
 @property Match *matchData;
 @property Message *message;

@@ -264,6 +264,7 @@
 {
     NSLog(@"设置");
     [delegateOfMenuAppearance menuSwitch];
+    [delegateOfViewSwitch settings];
 }
 
 -(void)resetMenuFolder
