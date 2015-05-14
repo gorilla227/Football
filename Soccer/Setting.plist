@@ -17,9 +17,7 @@
 	<key>autoRefreshPeriod</key>
 	<integer>60</integer>
 	<key>isRememberAccount</key>
-	<false/>
-	<key>accountName</key>
-	<string></string>
+	<true/>
 	<key>refreshUnreadMessageAmountDuration</key>
 	<integer>10</integer>
 </dict>

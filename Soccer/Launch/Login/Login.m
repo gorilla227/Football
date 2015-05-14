@@ -85,13 +85,15 @@
     [connection loginVerification:accountField.text password:passwordField.text.MD5];
 }
 
--(void)loginVerificationSuccessfully:(NSInteger)userId
-{
+- (void)loginVerificationSuccessfully:(NSInteger)userId {
+    [gSettings setObject:accountField.text forKey:@"accountName"];
+    [gSettings setObject:passwordField.text.MD5 forKey:@"passwordMD5"];
+    [gSettings writeToFile:gSettingsFile atomically:YES];
+    
     [connection requestUserInfo:userId withTeam:YES withReference:nil];
 }
 
--(void)loginVerificationFailed
-{
+- (void)loginVerificationFailed {
     UIAlertView *loginFailedAlertView = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_LoginView_VerificationFailed_Title"]
                                                                    message:[gUIStrings objectForKey:@"UI_LoginView_VerificationFailed_Message"]
                                                                   delegate:self
@@ -99,20 +101,15 @@
     [loginFailedAlertView show];
 }
 
--(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
-{
+- (void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference {
     gMyUserInfo = userInfo;
-    [connection requestAllStadiums];
-}
-
--(void)receiveAllStadiums:(NSArray *)stadiums
-{
-    gStadiums = stadiums;
     [self enterMainScreen];
 }
 
--(void)enterMainScreen
-{
+- (void)enterMainScreen {
+    [accountField setText:nil];
+    [passwordField setText:nil];
+    
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
     UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
     [self presentViewController:mainController animated:YES completion:nil];
@@ -170,9 +167,9 @@
 //    [self.navigationController pushViewController:targetViewController animated:YES];
     
     //Team Fund Inquiry
-    UIStoryboard *storyboard= [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"TeamFundInquiry"];
-    [self.navigationController pushViewController:targetViewController animated:YES];
+//    UIStoryboard *storyboard= [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"TeamFundInquiry"];
+//    [self.navigationController pushViewController:targetViewController animated:YES];
 }
 //DissmissKeyboard
 -(void)dismissKeyboard

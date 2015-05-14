@@ -107,8 +107,10 @@
     [self pushViewController:settingViewController animated:YES];
 }
 
--(void)logout
-{
+- (void)logout {
+    [gSettings removeObjectForKey:@"accountName"];
+    [gSettings removeObjectForKey:@"passwordMD5"];
+    [gSettings writeToFile:gSettingsFile atomically:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -130,3 +130,4 @@ NSArray *gStadiums;
 NSDictionary *gUIStrings;
 NSMutableDictionary *gUnreadMessageAmount;
 NSMutableDictionary *gSettings;
+NSString *gSettingsFile;

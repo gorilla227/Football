@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bWS-B6-q9m">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KWP-3A-5Au">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -162,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FP6-KH-SwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1772" y="-2322"/>
+            <point key="canvasLocation" x="-1736" y="-2322"/>
         </scene>
         <!--Register-->
         <scene sceneID="CC5-56-TdC">
@@ -346,8 +346,9 @@
         <!--登录-->
         <scene sceneID="bqh-JV-uD8">
             <objects>
-                <navigationController title="登录" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="bWS-B6-q9m" customClass="Starting" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Starting" title="登录" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="flipHorizontal" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="bWS-B6-q9m" customClass="Starting" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="bOv-IA-TZa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="FQg-CF-VE5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -358,12 +359,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="P6b-ds-GMJ" kind="relationship" relationship="rootViewController" id="f2G-T2-fmS"/>
+                        <segue destination="P6b-ds-GMJ" kind="relationship" relationship="rootViewController" id="HBH-ZO-mdd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CiP-Nj-UV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2205" y="-2322"/>
+            <point key="canvasLocation" x="-2174" y="-2322"/>
         </scene>
         <!--补充资料-->
         <scene sceneID="MFR-qV-5fP">
@@ -444,6 +445,47 @@
                 </toolbar>
             </objects>
             <point key="canvasLocation" x="-855" y="-2322"/>
+        </scene>
+        <!--Launch Screen-->
+        <scene sceneID="FbS-Nq-x1s">
+            <objects>
+                <viewController id="KWP-3A-5Au" customClass="LaunchScreen" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qWk-Kq-Bho"/>
+                        <viewControllerLayoutGuide type="bottom" id="Chy-On-ujO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nTy-0A-hWt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xon-bh-Noc">
+                                <rect key="frame" x="107" y="87" width="107" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Xon-bh-Noc" secondAttribute="height" multiplier="97:99" id="ecR-90-Osi"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="PoI-OK-Dll">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xon-bh-Noc" firstAttribute="centerY" secondItem="nTy-0A-hWt" secondAttribute="centerY" multiplier="1/2" id="P6Q-dR-y9c"/>
+                            <constraint firstAttribute="centerX" secondItem="PoI-OK-Dll" secondAttribute="centerX" constant="-0.5" id="Pa3-Hf-Omb"/>
+                            <constraint firstAttribute="centerY" secondItem="PoI-OK-Dll" secondAttribute="centerY" constant="0.5" id="Sa7-ri-SQq"/>
+                            <constraint firstAttribute="centerX" secondItem="Xon-bh-Noc" secondAttribute="centerX" id="Us5-e5-2ha"/>
+                            <constraint firstItem="Xon-bh-Noc" firstAttribute="width" secondItem="nTy-0A-hWt" secondAttribute="width" multiplier="1/3" constant="1" id="tab-Gj-LdV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="sfK-n9-iNM"/>
+                    <connections>
+                        <outlet property="aiLoading" destination="PoI-OK-Dll" id="HQZ-Z3-yXR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gGm-aa-APl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2597" y="-2322"/>
         </scene>
     </scenes>
     <resources>

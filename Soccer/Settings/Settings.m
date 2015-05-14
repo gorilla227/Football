@@ -22,11 +22,6 @@
     
     [swAutoLogin setOn:[[gSettings objectForKey:@"isRememberAccount"] boolValue]];
     [lbVersion setText:[infoDictionary objectForKey:@"CFBundleShortVersionString"]];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,11 +30,12 @@
 }
 
 - (IBAction)swAutoLoginValueChanged:(id)sender {
-    NSArray *sandBoxPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *settingFile = [[sandBoxPaths firstObject] stringByAppendingPathComponent:@"Setting.plist"];
-    
     [gSettings setObject:[NSNumber numberWithBool:swAutoLogin.isOn] forKey:@"isRememberAccount"];
-    [gSettings writeToFile:settingFile atomically:YES];
+    if (!swAutoLogin.isOn) {
+        [gSettings removeObjectForKey:@"accountName"];
+        [gSettings removeObjectForKey:@"passwordMD5"];
+    }
+    [gSettings writeToFile:gSettingsFile atomically:YES];
 }
 
 /*
