@@ -51,7 +51,7 @@
     [super viewDidLoad];
     
     //Set the original frame
-    [self.view setFrame:def_mainMenuFrame];
+    [self.view setFrame:CGRectMake(-windowSize.width * 0.45, 64, windowSize.width * 0.45, windowSize.height - 64)];
     
     //Set the static string for cell identifiers
     menuCellIdentifier_root = @"RootMenu";

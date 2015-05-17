@@ -524,6 +524,6 @@
 	<key>UI_LocationDisableWarning_Title</key>
 	<string>定位功能已禁用</string>
 	<key>UI_LocationDisableWarning_Message</key>
-	<string></string>
+	<string>禁用定位功能将导致部分功能失效，如需启用请前往“设置”-“隐私”-“定位服务”中修改设置。</string>
 </dict>
 </plist>
