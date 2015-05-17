@@ -23,16 +23,17 @@
     [[UIToolbar appearance] setTranslucent:NO];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    windowSize = [[UIScreen mainScreen] bounds].size;
     
-    //Register Device for Push Notification
-    if (IS_OS_8_OR_LATER) {
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-        UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-    }
-    else {
-        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
-    }
+//    //Register Device for Push Notification
+//    if (IS_OS_8_OR_LATER) {
+//        [[UIApplication sharedApplication] registerForRemoteNotifications];
+//        UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
+//        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+//    }
+//    else {
+//        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
+//    }
     return YES;
 }
 							

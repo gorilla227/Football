@@ -123,7 +123,7 @@
         [locationManager requestWhenInUseAuthorization];
     }
     else if (status == kCLAuthorizationStatusDenied) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"定位功能已禁用" message:@"禁用定位功能将导致部分功能失效，如需启用请前往“设置”-“隐私”-“定位服务”中修改设置。" delegate:self cancelButtonTitle:@"我确定" otherButtonTitles:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_LocationDisableWarning_Title"] message:[gUIStrings objectForKey:@"UI_LocationDisableWarning_Message"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
         [alertView show];
     }
 }

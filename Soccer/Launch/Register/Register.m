@@ -144,8 +144,10 @@
         if ([cell.contentView.subviews containsObject:textField]) {
             if ([textField hasText]) {
                 [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+                [cell setAccessoryView:nil];
             }
             else {
+                [cell setAccessoryView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 24, 0)]];
                 [cell setAccessoryType:UITableViewCellAccessoryNone];
             }
             [self refreshRegisterButtonEnable];
@@ -216,6 +218,23 @@
 //    [headerView.textLabel setTextColor:[UIColor whiteColor]];
 //    [headerView.textLabel setTextAlignment:NSTextAlignmentCenter];
     [headerView.textLabel setFont:[UIFont fontWithName:headerView.textLabel.font.fontName size:17.0f]];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    for (UIView *subview in cell.contentView.subviews) {
+        if ([subview isKindOfClass:[UITextField class]]) {
+            UITextField *textField = (UITextField *)subview;
+            if ([textField hasText]) {
+                [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+                [cell setAccessoryView:nil];
+            }
+            else {
+                [cell setAccessoryView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 24, 0)]];
+                [cell setAccessoryType:UITableViewCellAccessoryNone];
+            }
+            break;
+        }
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

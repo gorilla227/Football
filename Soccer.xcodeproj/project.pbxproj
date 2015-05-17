@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A1009A73192888F1008A125D /* UIImage+ImageConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = A1009A72192888F1008A125D /* UIImage+ImageConvert.m */; };
 		A103338A18D419A300050A61 /* Soccer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A103338918D419A300050A61 /* Soccer.storyboard */; };
+		A104EECB1B05BD5300E49B2C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A104EECA1B05BD5300E49B2C /* LaunchScreen.xib */; };
 		A106EEA8198A089200F9765C /* Icon_NumOfTeamMember.png in Resources */ = {isa = PBXBuildFile; fileRef = A106EEA7198A089200F9765C /* Icon_NumOfTeamMember.png */; };
 		A10723221933026100F26A39 /* icon_like.png in Resources */ = {isa = PBXBuildFile; fileRef = A10723211933026100F26A39 /* icon_like.png */; };
 		A109263B1AAD620800A73C32 /* TableViewController_More.m in Sources */ = {isa = PBXBuildFile; fileRef = A109263A1AAD620800A73C32 /* TableViewController_More.m */; };
@@ -179,6 +180,7 @@
 		A1009A71192888F1008A125D /* UIImage+ImageConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageConvert.h"; path = "Soccer/Utils/ImageConvert/UIImage+ImageConvert.h"; sourceTree = "<group>"; };
 		A1009A72192888F1008A125D /* UIImage+ImageConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageConvert.m"; path = "Soccer/Utils/ImageConvert/UIImage+ImageConvert.m"; sourceTree = "<group>"; };
 		A103338918D419A300050A61 /* Soccer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Soccer.storyboard; path = Captain/Soccer.storyboard; sourceTree = "<group>"; };
+		A104EECA1B05BD5300E49B2C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		A106EEA7198A089200F9765C /* Icon_NumOfTeamMember.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_NumOfTeamMember.png; sourceTree = "<group>"; };
 		A10723211933026100F26A39 /* icon_like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_like.png; path = Resource/icon_like.png; sourceTree = "<group>"; };
 		A10926391AAD620800A73C32 /* TableViewController_More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewController_More.h; path = Soccer/Utils/TableViewController_More/TableViewController_More.h; sourceTree = "<group>"; };
@@ -706,6 +708,7 @@
 			children = (
 				A1ACC3441B03288700BB08B4 /* LaunchScreen.h */,
 				A1ACC3451B03288700BB08B4 /* LaunchScreen.m */,
+				A104EECA1B05BD5300E49B2C /* LaunchScreen.xib */,
 			);
 			path = LaunchScreen;
 			sourceTree = "<group>";
@@ -1250,6 +1253,7 @@
 				A1E170A619562ED700826610 /* TextFieldIcon_QQ.png in Resources */,
 				A1C2803518F79CED004C644E /* soccer_grass_bg@2x.png in Resources */,
 				A16EECBE197A32B000F59621 /* UIStrings.plist in Resources */,
+				A104EECB1B05BD5300E49B2C /* LaunchScreen.xib in Resources */,
 				A1E170A119562ED700826610 /* TextFieldIcon_Account.png in Resources */,
 				B2D13972194A7B53008E6CE9 /* Launch.storyboard in Resources */,
 				A12293051A33C5BA000F0E45 /* matchCell_fillMatchData.png in Resources */,

@@ -120,56 +120,10 @@
     [self performSegueWithIdentifier:@"Register" sender:self];
 }
 
--(IBAction)forgetPasswordButtonOnClicked:(id)sender
-{
-    //Login
-//    [connection loginVerification:@"18611542707" password:@"123456"];
-//    UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FillPlayerProfile"];
-    
-    //FindTeam
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"FindTeam"];
-//    [self.navigationController pushViewController:targetViewController animated:YES];
-    
-    //StadiumListView
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"StadiumListView"];
-//    [self.navigationController pushViewController:targetViewController animated:YES];
-    
-    //EditTeamProfileView
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"EditTeamProfile"];
-//    [self.navigationController pushViewController:targetViewController animated:YES];
-    
-    //MessageCenter
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil];
-//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MessageCenterTabBarController"];
-//    [self.navigationController pushViewController:targetViewController animated:YES];
-    
-    //PlayerMarket
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"PlayerMarket"];
-//    [self.navigationController pushViewController:targetViewController animated:YES];
-    
-    //TeamMarket
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"TeamMarket"];
-//    [self.navigationController pushViewController:targetViewController animated:YES];
-    
-    //New MatchArrangement
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchArrangement"];
-//    [self.navigationController pushViewController:targetViewController animated:YES];
-    
-    //Create Match
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"MatchDetails"];
-//    [self.navigationController pushViewController:targetViewController animated:YES];
-    
-    //Team Fund Inquiry
-//    UIStoryboard *storyboard= [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
-//    UIViewController *targetViewController = [storyboard instantiateViewControllerWithIdentifier:@"TeamFundInquiry"];
-//    [self.navigationController pushViewController:targetViewController animated:YES];
+- (IBAction)forgetPasswordButtonOnClicked:(id)sender {
+    //FillAdditionProfile
+    UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FillAdditionalProfile"];
+    [self.navigationController pushViewController:targetViewController animated:YES];
 }
 //DissmissKeyboard
 -(void)dismissKeyboard

@@ -31,10 +31,10 @@
     
     //Set Picker
     stadiumList = stadiums;
-    staidumPicker = [[UIPickerView alloc] init];
+    staidumPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, windowSize.width, windowSize.height / 3)];
     [staidumPicker setDelegate:self];
     [staidumPicker setDataSource:self];
-    stadiumMap = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 150)];
+    stadiumMap = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, windowSize.width, windowSize.height / 4)];
     [stadiumMap setShowsUserLocation:YES];
     [self setInputView:staidumPicker];
     [self setInputAccessoryView:stadiumMap];
@@ -44,7 +44,7 @@
     [selectHomeStadiumButton setShowsTouchWhenHighlighted:YES];
     [selectHomeStadiumButton addTarget:self action:@selector(selectHomeStadium) forControlEvents:UIControlEventTouchUpInside];
     [selectHomeStadiumButton.titleLabel setFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]];
-    [selectHomeStadiumButton setTitle:@"我的主场" forState:UIControlStateNormal];
+    [selectHomeStadiumButton setTitle:[gUIStrings objectForKey:@"UI_StadiumSelection_Home"] forState:UIControlStateNormal];
     [selectHomeStadiumButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [selectHomeStadiumButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [selectHomeStadiumButton setBackgroundColor:cLightBlue(1.0)];
@@ -108,7 +108,7 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (row == 0) {
-        return @"无";
+        return [gUIStrings objectForKey:@"UI_StadiumSelection_None"];
     }
     else {
         Stadium *stadium = [stadiumList objectAtIndex:row - 1];

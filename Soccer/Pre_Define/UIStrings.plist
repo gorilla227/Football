@@ -517,7 +517,13 @@
 	<string>选择队员</string>
 	<key>UI_MatchScoreDetails_ScoreTitle</key>
 	<string>比分</string>
-	<key>UI_MatchScoreDetails_DetailsTitle</key>
-	<string>进球者 - 助攻者</string>
+	<key>UI_StadiumSelection_Home</key>
+	<string>我的主场</string>
+	<key>UI_StadiumSelection_None</key>
+	<string>无</string>
+	<key>UI_LocationDisableWarning_Title</key>
+	<string>定位功能已禁用</string>
+	<key>UI_LocationDisableWarning_Message</key>
+	<string></string>
 </dict>
 </plist>

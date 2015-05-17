@@ -38,25 +38,13 @@
 }
 @synthesize toolBar;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:toolBar.items];
-    
     roleCode = gMyUserInfo.userType;
+    [self.collectionView setCollectionViewLayout:[self collectionViewFlowLayoutByScreenResolution]];
 
     //Get UI strings
     actionButtons = [gUIStrings objectForKey:@"UI_FillAdditionalProfile_Actions"];
@@ -64,21 +52,23 @@
     callFriends = [[CallFriends alloc] initWithDelegate:self];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:NO];
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)cancelButtonOnClicked:(id)sender
-{
+- (IBAction)cancelButtonOnClicked:(id)sender {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.navigationController popToRootViewControllerAnimated:YES];
 //    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
--(IBAction)completeButtonOnClicked:(id)sender
-{
+- (IBAction)completeButtonOnClicked:(id)sender {
     UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Captain" bundle:nil];
     UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
     [self presentViewController:mainController animated:YES completion:^{
@@ -87,18 +77,28 @@
 }
 
 //CollectionView
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
+- (UICollectionViewFlowLayout *)collectionViewFlowLayoutByScreenResolution {
+    UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+    CGSize screenSize = self.collectionView.bounds.size;
+    [layout setItemSize:CGSizeMake(screenSize.width / 2 * 0.85, screenSize.width / 2 * 0.85)];
+    [layout setHeaderReferenceSize:CGSizeMake(screenSize.width, (screenSize.height - screenSize.width - 88) / 2)];
+    [layout setFooterReferenceSize:CGSizeZero];
+    [layout setMinimumInteritemSpacing:screenSize.width / 2 * 0.05];
+    [layout setMinimumLineSpacing:screenSize.width / 2 * 0.1];
+    [layout setSectionInset:UIEdgeInsetsMake(0, screenSize.width / 2 * 0.1, 0, screenSize.width / 2 * 0.1)];
+    NSLog(@"%f, %f", self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
+    return layout;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return actionButtons.count;
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"FillAdditionalProfile_Cell";
     FillAdditionalProfile_Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     [cell.actionIcon setImage:[UIImage imageNamed:[actionButtons[indexPath.row] objectForKey:@"Icon"]]];
@@ -123,8 +123,7 @@
     return cell;
 }
 
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     static NSString *HeaderIdentifier = @"FillAdditionalProfile_Header";
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:HeaderIdentifier forIndexPath:indexPath];
@@ -139,8 +138,7 @@
     return nil;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
     if (indexPath.row == 0) {
         EditPlayerProfile *targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"EditPlayerProfile"];
@@ -163,8 +161,7 @@
 }
 
 //CallFriends
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"%@", [actionSheet buttonTitleAtIndex:buttonIndex]);
     if (buttonIndex == 0) {
         //Phone_Message
@@ -175,20 +172,17 @@
     }
 }
 
--(void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
-{
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
     [peoplePicker dismissViewControllerAnimated:YES completion:nil];
 }
 
--(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
-{
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     NSArray *displayedProperties = @[[NSNumber numberWithInt:kABPersonPhoneProperty], [NSNumber numberWithInt:kABPersonEmailProperty]];
     [peoplePicker setDisplayedProperties:displayedProperties];
     return YES;
 }
 
--(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
-{
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
     if (property == kABPersonPhoneProperty) {
         //MFMessage
         if ([MFMessageComposeViewController canSendText]) {
@@ -210,8 +204,7 @@
     return NO;
 }
 
--(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     UIAlertView *alertView;
     switch (result) {
         case MessageComposeResultCancelled:

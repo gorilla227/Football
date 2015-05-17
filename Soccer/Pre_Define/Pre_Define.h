@@ -131,3 +131,4 @@ NSDictionary *gUIStrings;
 NSMutableDictionary *gUnreadMessageAmount;
 NSMutableDictionary *gSettings;
 NSString *gSettingsFile;
+CGSize windowSize;
