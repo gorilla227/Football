@@ -42,7 +42,6 @@
     [self.tableView setAllowsSelection:editable];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [self presetData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -50,39 +49,52 @@
     [self.navigationController setToolbarHidden:!self.toolbarItems.count];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self presetData];
+}
+
 - (void)presetData {
     if (matchData) {
         newMatchData = [matchData copy];
-        if (matchData.matchMessage.messageType == 4) {//临时帮忙的队员
-            if (matchData.matchMessage.senderId == matchData.homeTeam.teamId) {
-                myScore = matchData.homeTeamGoal;
-                opponentScore = matchData.awayTeamGoal;
-                homeTeamId = matchData.homeTeam.teamId;
-                scoreTitle = [NSString stringWithFormat:@"%@ : %@", matchData.homeTeam.teamName, matchData.awayTeam.teamName];
-                [connection requestMatchAttendence:matchData.matchId forTeam:matchData.homeTeam.teamId];
-            }
-            else {
-                myScore = matchData.awayTeamGoal;
-                opponentScore = matchData.homeTeamGoal;
-                homeTeamId = matchData.awayTeam.teamId;
-                scoreTitle = [NSString stringWithFormat:@"%@ : %@", matchData.awayTeam.teamName, matchData.homeTeam.teamName];
-                [connection requestMatchAttendence:matchData.matchId forTeam:matchData.awayTeam.teamId];
-            }
+        if (matchData.beginTime.timeIntervalSince1970 < matchData.createTime.timeIntervalSince1970) {//直接创建的过去比赛
+            myScore = matchData.homeTeamGoal;
+            opponentScore = matchData.awayTeamGoal;
+            homeTeamId = matchData.homeTeam.teamId;
+            scoreTitle = [NSString stringWithFormat:@"%@ : %@", matchData.homeTeam.teamName, matchData.awayTeam.teamName];
+            [connection requestTeamMembers:gMyUserInfo.team.teamId withTeamFundHistory:NO isSync:YES];
         }
-        else {
-            if (gMyUserInfo.team.teamId == matchData.homeTeam.teamId) {
-                myScore = matchData.homeTeamGoal;
-                opponentScore = matchData.awayTeamGoal;
-                homeTeamId = matchData.homeTeam.teamId;
-                scoreTitle = [NSString stringWithFormat:@"%@ : %@", matchData.homeTeam.teamName, matchData.awayTeam.teamName];
-                [connection requestMatchAttendence:matchData.matchId forTeam:matchData.homeTeam.teamId];
+        else {//创建时还未开始的比赛
+            if (matchData.matchMessage.messageType == 4) {//临时帮忙的队员
+                if (matchData.matchMessage.senderId == matchData.homeTeam.teamId) {
+                    myScore = matchData.homeTeamGoal;
+                    opponentScore = matchData.awayTeamGoal;
+                    homeTeamId = matchData.homeTeam.teamId;
+                    scoreTitle = [NSString stringWithFormat:@"%@ : %@", matchData.homeTeam.teamName, matchData.awayTeam.teamName];
+                    [connection requestMatchAttendence:matchData.matchId forTeam:matchData.homeTeam.teamId];
+                }
+                else {
+                    myScore = matchData.awayTeamGoal;
+                    opponentScore = matchData.homeTeamGoal;
+                    homeTeamId = matchData.awayTeam.teamId;
+                    scoreTitle = [NSString stringWithFormat:@"%@ : %@", matchData.awayTeam.teamName, matchData.homeTeam.teamName];
+                    [connection requestMatchAttendence:matchData.matchId forTeam:matchData.awayTeam.teamId];
+                }
             }
             else {
-                myScore = matchData.awayTeamGoal;
-                opponentScore = matchData.homeTeamGoal;
-                homeTeamId = matchData.awayTeam.teamId;
-                scoreTitle = [NSString stringWithFormat:@"%@ : %@", matchData.awayTeam.teamName, matchData.homeTeam.teamName];
-                [connection requestMatchAttendence:matchData.matchId forTeam:matchData.awayTeam.teamId];
+                if (gMyUserInfo.team.teamId == matchData.homeTeam.teamId) {
+                    myScore = matchData.homeTeamGoal;
+                    opponentScore = matchData.awayTeamGoal;
+                    homeTeamId = matchData.homeTeam.teamId;
+                    scoreTitle = [NSString stringWithFormat:@"%@ : %@", matchData.homeTeam.teamName, matchData.awayTeam.teamName];
+                    [connection requestMatchAttendence:matchData.matchId forTeam:matchData.homeTeam.teamId];
+                }
+                else {
+                    myScore = matchData.awayTeamGoal;
+                    opponentScore = matchData.homeTeamGoal;
+                    homeTeamId = matchData.awayTeam.teamId;
+                    scoreTitle = [NSString stringWithFormat:@"%@ : %@", matchData.awayTeam.teamName, matchData.homeTeam.teamName];
+                    [connection requestMatchAttendence:matchData.matchId forTeam:matchData.awayTeam.teamId];
+                }
             }
         }
     }
@@ -98,18 +110,23 @@
 
 - (void)receiveTeamMembers:(NSArray *)players {
     matchAttendenceList = players;
-    matchScoreList = [NSMutableArray new];
-    
-    for (int i = 0; i < myScore; i++) {
-        if (i < originalMatchScoreList.count) {
-            [matchScoreList addObject:[originalMatchScoreList[i] copy]];
-        }
-        else {
-            [matchScoreList addObject:[NSNull null]];
-        }
+    if (matchData) {
+        [connection requestMatchScoreDetails:matchData.matchId forTeam:homeTeamId];
     }
-    [self.tableView reloadData];
-    [self checkSaveButtonStatus];
+    else {
+        matchScoreList = [NSMutableArray new];
+        
+        for (int i = 0; i < myScore; i++) {
+            if (i < originalMatchScoreList.count) {
+                [matchScoreList addObject:[originalMatchScoreList[i] copy]];
+            }
+            else {
+                [matchScoreList addObject:[NSNull null]];
+            }
+        }
+        [self.tableView reloadData];
+        [self checkSaveButtonStatus];
+    }
 }
 
 - (void)receiveMatchScoreDetails:(NSArray *)matchScoreDetails {

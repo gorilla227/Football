@@ -149,6 +149,10 @@
 
 - (void)createdMatchWithRealTeam:(NSInteger)matchId {
     if (creationProgress == MatchDetailsCreationProgress_Passed && (scoreTextField.homeScore != -1 || scoreTextField.awayScore != -1)) {
+        for (MatchScore *score in matchScoreDetailList) {
+            [score setMatchId:matchId];
+            [score setTeamId:gMyUserInfo.team.teamId];
+        }
         [connection updateMatchScore:matchId captainId:gMyUserInfo.userId homeScore:scoreTextField.homeScore awayScore:scoreTextField.awayScore];
     }
     else {
@@ -158,6 +162,10 @@
 
 - (void)createdMatchWithFakeTeam:(NSInteger)matchId {
     if (creationProgress == MatchDetailsCreationProgress_Passed && (scoreTextField.homeScore != -1 || scoreTextField.awayScore != -1)) {
+        for (MatchScore *score in matchScoreDetailList) {
+            [score setMatchId:matchId];
+            [score setTeamId:gMyUserInfo.team.teamId];
+        }
         [connection updateMatchScore:matchId captainId:gMyUserInfo.userId homeScore:scoreTextField.homeScore awayScore:scoreTextField.awayScore];
     }
     else {
