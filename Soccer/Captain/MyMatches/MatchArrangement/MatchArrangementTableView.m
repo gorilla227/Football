@@ -33,8 +33,6 @@
     [actionButton setBackgroundColor:cMatchCellNoticeButtonBG];
     [matchDateAndTimeLabel setBackgroundColor:cMatchCellMatchTimeBG];
     [matchDateAndTimeLabel setTextColor:cMatchCellMatchTimeFont];
-    
-    [self setAccessoryView:actionView];
 }
 
 -(void)pushMatchDetails {
@@ -434,7 +432,8 @@
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    if (tabViewControllerIndex == 0) {
+    Match *matchData = [matchesList objectAtIndex:indexPath.section];
+    if (tabViewControllerIndex == 0 && gMyUserInfo.userType && (gMyUserInfo.team.teamId == matchData.homeTeam.teamId || gMyUserInfo.team.teamId == matchData.awayTeam.teamId)) {
         return YES;
     }
     else {
