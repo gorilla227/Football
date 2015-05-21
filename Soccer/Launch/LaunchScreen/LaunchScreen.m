@@ -25,14 +25,20 @@
     //Get Settings
     NSArray *sandBoxPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     gSettingsFile = [[sandBoxPaths firstObject] stringByAppendingPathComponent:@"Setting.plist"];
+    NSString *defaultSettingFile = [[NSBundle mainBundle] pathForResource:@"Setting" ofType:@"plist"];
+    NSDictionary *defaultSetting = [[NSDictionary alloc] initWithContentsOfFile:defaultSettingFile];
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:gSettingsFile]) {
-        NSString *defaultSettingFile = [[NSBundle mainBundle] pathForResource:@"Setting" ofType:@"plist"];
-        NSError *error;
-        [[NSFileManager defaultManager] copyItemAtPath:defaultSettingFile toPath:gSettingsFile error:&error];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:gSettingsFile] || [[defaultSetting objectForKey:@"clearSettingWhileLaunch"] boolValue]) {
+//        NSError *error;
+//        [[NSFileManager defaultManager] copyItemAtPath:defaultSettingFile toPath:gSettingsFile error:&error];
+        [defaultSetting writeToFile:gSettingsFile atomically:YES];
     }
     
     gSettings = [[NSMutableDictionary alloc] initWithContentsOfFile:gSettingsFile];
+    if (![[gSettings objectForKey:@"isDebug"] isEqualToNumber:[defaultSetting objectForKey:@"isDebug"]]) {
+        [gSettings setObject:[defaultSetting objectForKey:@"isDebug"] forKey:@"isDebug"];
+        [gSettings writeToFile:gSettingsFile atomically:YES];
+    }
     
     //Get UIStrings
     NSString *fileNameOfUIStrings = [[NSBundle mainBundle] pathForResource:@"UIStrings" ofType:@"plist"];

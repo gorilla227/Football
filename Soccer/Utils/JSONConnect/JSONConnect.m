@@ -30,6 +30,7 @@
     UIAlertView *errorAlertView;
     if (error.code < 0) {
         errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:error.localizedDescription delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
+        NSLog(@"%@", error.localizedDescription);
     }
     else if (otherInfo){
         if ([otherInfo isEqualToString:@"team name duplicate"]) {
@@ -44,6 +45,7 @@
         else {
             errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:[NSString stringWithFormat:@"未知错误:%@", otherInfo] delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
         }
+        NSLog(@"%@", otherInfo);
     }
     else {
         errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:@"未知错误" delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
@@ -731,7 +733,6 @@
         if (syncOption) {
             [busyIndicatorDelegate unlockView];
         }
-//        NSLog(@"%@", responseObject);
         NSMutableArray *matches = [NSMutableArray new];
         for (NSDictionary *matchData in responseObject) {
             Match *match = [[Match alloc] initWithData:matchData];

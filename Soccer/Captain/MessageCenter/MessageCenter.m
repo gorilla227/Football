@@ -17,19 +17,16 @@
 @property IBOutlet UITextView *messageBody;
 @property IBOutlet UILabel *messageHead;
 @property IBOutlet UILabel *messageTypeLabel;
-@property IBOutlet UIView *unreadFlag;
 @property IBOutlet UILabel *statusLabel;
 
 @end
 
 @implementation MessageCell
-@synthesize messageBody, messageHead, messageTypeLabel, unreadFlag, statusLabel;
+@synthesize messageBody, messageHead, messageTypeLabel, statusLabel;
 
 -(void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    [unreadFlag.layer setCornerRadius:unreadFlag.frame.size.height/2];
-    [unreadFlag.layer setMasksToBounds:YES];
     [statusLabel.layer setCornerRadius:5.0f];
     [statusLabel.layer setMasksToBounds:YES];
 }
@@ -176,7 +173,6 @@
     else {
         [cell.messageHead setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_MessageHead_Format"], [gUIStrings objectForKey:@"UI_MessageHead_Sent"], message.receiverName, [dateFormatter stringFromDate:message.creationDate]]];
     }
-//    [cell.unreadFlag setHidden:message.status != 0 || self.tabBarItem.tag];
     [cell.statusLabel setText:messageStatusType[message.status]];
     if (self.tabBarItem.tag == 0) {
         [cell.statusLabel setBackgroundColor:(message.status == 0)?cRed(1):cLightBlue(1)];

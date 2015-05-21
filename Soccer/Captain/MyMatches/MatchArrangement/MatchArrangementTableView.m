@@ -18,15 +18,17 @@
 @property IBOutlet UIButton *actionButton;
 @property IBOutlet UILabel *matchDateAndTimeLabel;
 @property IBOutlet UIView *actionView;
+@property IBOutlet UILabel *lbMatchIdDebug;
 @end
 
 @implementation MatchArrangementTableView_Cell
-@synthesize numberOfPlayersLabel, matchOpponentLabel, matchStadiumLabel, matchStandardLabel, actionIcon, actionButton, matchDateAndTimeLabel, actionView;
+@synthesize numberOfPlayersLabel, matchOpponentLabel, matchStadiumLabel, matchStandardLabel, actionIcon, actionButton, matchDateAndTimeLabel, actionView, lbMatchIdDebug;
 @synthesize responseType, matchData, delegate, replyMatchInvitationAndNoticeDelegate;
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-
+    [lbMatchIdDebug setHidden:![[gSettings objectForKey:@"isDebug"] boolValue]];
+    
     [actionButton.layer setCornerRadius:5.0f];
     [actionButton.layer setMasksToBounds:YES];
     
@@ -153,7 +155,7 @@
 //    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self initialWithLabelTexts:@"Default"];
 
-    count = [[gUIStrings objectForKey:@"matchListCount"] integerValue];
+    count = [[gSettings objectForKey:@"matchListCount"] integerValue];
     attri_NumberOfNotices = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:28] forKey:NSFontAttributeName];
     attri_DescOfNotices = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:13] forKey:NSFontAttributeName];
     dateFormatter = [NSDateFormatter new];
@@ -172,8 +174,7 @@
     [super viewWillAppear:animated];
 }
 
--(void)viewDidLayoutSubviews
-{
+- (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -410,7 +411,7 @@
                 break;
         }
     }
-    
+    [cell.lbMatchIdDebug setText:[NSNumber numberWithInteger:matchData.matchId].stringValue];
     return cell;
 }
 

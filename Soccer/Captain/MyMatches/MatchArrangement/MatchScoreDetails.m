@@ -303,7 +303,7 @@
     if (indexPath.section == 0) {
         static NSString *CellIdentifier = @"ScoreCell";
         MatchScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        [cell.scoreTextField initialTextFieldForMatchScore:matchData];
+        [cell.scoreTextField initialTextFieldForMatchScore:(matchData.status == 4)];
         [cell.scoreTextField presetHomeScore:myScore andAwayScore:opponentScore];
         [cell.scoreTextField setEnabled:editable];
         return cell;

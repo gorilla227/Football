@@ -20,5 +20,9 @@
 	<true/>
 	<key>refreshUnreadMessageAmountDuration</key>
 	<integer>10</integer>
+	<key>isDebug</key>
+	<false/>
+	<key>clearSettingWhileLaunch</key>
+	<false/>
 </dict>
 </plist>

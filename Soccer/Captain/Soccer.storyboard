@@ -374,13 +374,17 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bwV-aw-Odu">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bwV-aw-Odu">
                                                     <rect key="frame" x="263" y="6" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="swAutoLoginValueChanged:" destination="O33-mm-IGB" eventType="valueChanged" id="Nd7-Ou-MjS"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="bwV-aw-Odu" secondAttribute="centerY" id="TsV-u2-OaO"/>
+                                                <constraint firstAttribute="trailing" secondItem="bwV-aw-Odu" secondAttribute="trailing" constant="8" id="bkw-Su-LJB"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -615,6 +619,13 @@
                                                 <constraint firstAttribute="centerX" secondItem="4Fi-xq-Zv6" secondAttribute="centerX" id="fMa-q0-9ZK"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xYC-QK-hdV">
+                                            <rect key="frame" x="214" y="0.0" width="18" height="21"/>
+                                            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="EQp-tf-jcD" firstAttribute="trailing" secondItem="1fO-V0-1qr" secondAttribute="trailing" id="0XM-Fd-XH5"/>
@@ -648,6 +659,7 @@
                                     <outlet property="actionButton" destination="4Fi-xq-Zv6" id="SmH-WG-c49"/>
                                     <outlet property="actionIcon" destination="OIp-UQ-SyY" id="omN-3w-f0Q"/>
                                     <outlet property="actionView" destination="OSb-05-KSt" id="e8J-z3-u2E"/>
+                                    <outlet property="lbMatchIdDebug" destination="xYC-QK-hdV" id="0IN-Fg-LVE"/>
                                     <outlet property="matchDateAndTimeLabel" destination="EQp-tf-jcD" id="g7K-lC-5WS"/>
                                     <outlet property="matchOpponentLabel" destination="e3a-N7-03X" id="f9N-5G-HTM"/>
                                     <outlet property="matchStadiumLabel" destination="5mN-sh-XmM" id="px1-XY-NXu"/>
@@ -757,11 +769,23 @@
                                                 <constraint firstAttribute="centerX" secondItem="8qe-aK-8EX" secondAttribute="centerX" constant="1" id="lhV-kP-w7d"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QT9-mP-rXM">
+                                            <rect key="frame" x="214" y="-1" width="18" height="21"/>
+                                            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="18" id="9Ft-QV-fae"/>
+                                                <constraint firstAttribute="height" constant="21" id="rvD-Rd-6Ow"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="e60-g9-D6Z" firstAttribute="centerY" secondItem="gsF-6m-KmL" secondAttribute="centerY" id="3gK-4Q-ntD"/>
                                         <constraint firstItem="e60-g9-D6Z" firstAttribute="leading" secondItem="pNO-5w-h1B" secondAttribute="trailing" constant="33" id="5lS-b5-xxo"/>
                                         <constraint firstItem="pNO-5w-h1B" firstAttribute="width" secondItem="gsF-6m-KmL" secondAttribute="width" id="7hU-YK-WRa"/>
+                                        <constraint firstItem="QT9-mP-rXM" firstAttribute="top" secondItem="nCa-1f-vW1" secondAttribute="topMargin" constant="-9" id="83Z-IE-MO1"/>
                                         <constraint firstItem="xyO-x2-cz0" firstAttribute="leading" secondItem="mKa-Yg-tr7" secondAttribute="trailing" constant="13" id="99b-wC-RMG"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="pfP-y3-07V" secondAttribute="bottom" constant="-8" id="B2I-6Y-e17"/>
                                         <constraint firstItem="pNO-5w-h1B" firstAttribute="centerY" secondItem="QF0-QN-ClN" secondAttribute="centerY" id="Cxu-po-5Xm"/>
@@ -779,6 +803,7 @@
                                         <constraint firstItem="xyO-x2-cz0" firstAttribute="trailing" secondItem="nCa-1f-vW1" secondAttribute="trailing" constant="-8" id="oy4-WE-1mT"/>
                                         <constraint firstItem="QF0-QN-ClN" firstAttribute="leading" secondItem="nCa-1f-vW1" secondAttribute="leading" constant="8" id="te2-9E-cvU"/>
                                         <constraint firstAttribute="centerY" secondItem="gsF-6m-KmL" secondAttribute="centerY" constant="-18.5" id="vBb-l5-lyv"/>
+                                        <constraint firstItem="xyO-x2-cz0" firstAttribute="leading" secondItem="QT9-mP-rXM" secondAttribute="trailing" constant="8" id="vRK-MS-AlI"/>
                                         <constraint firstItem="pNO-5w-h1B" firstAttribute="leading" secondItem="QF0-QN-ClN" secondAttribute="trailing" constant="8" id="xbh-sp-qAv"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -787,6 +812,7 @@
                                     <outlet property="actionButton" destination="5xR-r5-or2" id="GxE-Ln-fhP"/>
                                     <outlet property="actionIcon" destination="8qe-aK-8EX" id="td1-82-WG2"/>
                                     <outlet property="actionView" destination="xyO-x2-cz0" id="67w-SD-zdH"/>
+                                    <outlet property="lbMatchIdDebug" destination="QT9-mP-rXM" id="c2m-Ti-fYu"/>
                                     <outlet property="matchDateAndTimeLabel" destination="pfP-y3-07V" id="HgW-ye-TUh"/>
                                     <outlet property="matchOpponentLabel" destination="mKa-Yg-tr7" id="2XD-UF-jfj"/>
                                     <outlet property="matchStadiumLabel" destination="gsF-6m-KmL" id="X5a-M4-Row"/>

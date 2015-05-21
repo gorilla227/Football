@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>354FCAAC-6915-4BE4-928E-1C77ACB9B80A</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Soccer</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>ECE5B59395F2D60DDBEE726A4AB12DCDBB14AC4C</key>
 		<string>https://github.com/gorilla227/Football.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Soccer.xcodeproj/project.xcworkspace</string>
+	<string>Soccer.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>ECE5B59395F2D60DDBEE726A4AB12DCDBB14AC4C</key>
