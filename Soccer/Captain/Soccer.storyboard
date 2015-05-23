@@ -1421,8 +1421,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="比分" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rOt-PI-dTd" customClass="UITextFieldForMatchScore">
-                                            <rect key="frame" x="8" y="9" width="304" height="28"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="比分" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rOt-PI-dTd" customClass="UITextFieldForMatchScore">
+                                            <rect key="frame" x="8" y="7" width="304" height="29"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                             <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
@@ -1431,6 +1431,12 @@
                                             </connections>
                                         </textField>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="rOt-PI-dTd" firstAttribute="top" secondItem="PUW-Ei-QXj" secondAttribute="topMargin" constant="-1" id="ZdD-VA-G5V"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="rOt-PI-dTd" secondAttribute="bottom" constant="-1" id="bX3-cR-DDK"/>
+                                        <constraint firstItem="rOt-PI-dTd" firstAttribute="trailing" secondItem="PUW-Ei-QXj" secondAttribute="trailingMargin" id="kFb-Un-2Vz"/>
+                                        <constraint firstItem="rOt-PI-dTd" firstAttribute="leading" secondItem="PUW-Ei-QXj" secondAttribute="leadingMargin" id="uRG-Ov-DH3"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="scoreTextField" destination="rOt-PI-dTd" id="7tn-MU-YnG"/>
@@ -1443,8 +1449,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择队员" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ofu-Kl-F3r" customClass="UITextFieldForMatchDetailScore">
-                                            <rect key="frame" x="15" y="8" width="290" height="30"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择队员" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ofu-Kl-F3r" customClass="UITextFieldForMatchDetailScore">
+                                            <rect key="frame" x="15" y="7" width="290" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
@@ -1453,6 +1459,12 @@
                                             </connections>
                                         </textField>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ofu-Kl-F3r" secondAttribute="trailing" constant="7" id="ACK-2K-Ml6"/>
+                                        <constraint firstItem="ofu-Kl-F3r" firstAttribute="leading" secondItem="HvF-LC-wMv" secondAttribute="leadingMargin" constant="7" id="Ae5-UK-iHq"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ofu-Kl-F3r" secondAttribute="bottom" constant="-1" id="IR4-Rz-BPl"/>
+                                        <constraint firstItem="ofu-Kl-F3r" firstAttribute="top" secondItem="HvF-LC-wMv" secondAttribute="topMargin" constant="-1" id="ydG-nA-o9y"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="scoreDetailTextField" destination="ofu-Kl-F3r" id="77x-L6-3En"/>
