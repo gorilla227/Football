@@ -525,5 +525,15 @@
 	<string>定位功能已禁用</string>
 	<key>UI_LocationDisableWarning_Message</key>
 	<string>禁用定位功能将导致部分功能失效，如需启用请前往“设置”-“隐私”-“定位服务”中修改设置。</string>
+	<key>UI_MatchDetails_Time</key>
+	<string>时间</string>
+	<key>UI_MatchDetails_Opponent</key>
+	<string>对手</string>
+	<key>UI_MatchDetails_Stadium</key>
+	<string>球场</string>
+	<key>UI_MatchDetails_Standard</key>
+	<string>赛制</string>
+	<key>UI_MatchDetails_Cost</key>
+	<string>费用</string>
 </dict>
 </plist>

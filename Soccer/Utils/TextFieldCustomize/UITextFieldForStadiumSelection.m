@@ -12,9 +12,9 @@
     NSArray *stadiumList;
     UIPickerView *staidumPicker;
     MKMapView *stadiumMap;
-    UIButton *selectHomeStadiumButton;
     Stadium *myHomeStadium;
 }
+@synthesize selectHomeStadiumButton;
 
 - (id)initWithFrame:(CGRect)frame
 {

@@ -232,6 +232,10 @@
 
 #pragma Initial TextFields
 - (void)initialMatchTime {
+    //Set Left Label and Icon
+    [matchTimeTextField initialLeftViewWithLabelName:[gUIStrings objectForKey:@"UI_MatchDetails_Time"] labelWidth:60 iconImage:@"leftIcon_createMatch_time.png"];
+    
+    //Set MatchTimePicker
     matchTimePicker = [[UIDatePicker alloc] init];
     [matchTimePicker setDatePickerMode:UIDatePickerModeDateAndTime];
     [matchTimePicker setLocale:[NSLocale currentLocale]];
@@ -252,20 +256,30 @@
 }
 
 - (void)initialMatchOpponent {
+    //Set Left Label and Icon
+    [matchOpponentTextField initialLeftViewWithLabelName:[gUIStrings objectForKey:@"UI_MatchDetails_Opponent"] labelWidth:60 iconImage:@"leftIcon_createMatch_opponent.png"];
+    
     [inviteOpponentButton.layer setCornerRadius:5.0f];
     [inviteOpponentButton.layer setMasksToBounds:YES];
     [matchOpponentTextField setRightView:inviteOpponentButton];
     [matchOpponentTextField setRightViewMode:UITextFieldViewModeWhileEditing];
-    [matchOpponentTextField setLeftViewMode:UITextFieldViewModeAlways];
     [matchOpponentTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
 - (void)initialMatchStadium {
+    //Set Left Label and Icon
+    [matchStadiumTextFiedld initialLeftViewWithLabelName:[gUIStrings objectForKey:@"UI_MatchDetails_Stadium"] labelWidth:60 iconImage:@"leftIcon_createMatch_place.png"];
+    
     [matchStadiumTextFiedld textFieldInitialization:gStadiums homeStadium:gMyUserInfo.team.homeStadium showSelectHomeStadium:YES];
+    [matchStadiumTextFiedld.selectHomeStadiumButton setBounds:inviteOpponentButton.bounds];
+    [matchStadiumTextFiedld.selectHomeStadiumButton.titleLabel setFont:inviteOpponentButton.titleLabel.font];
     [matchStadiumTextFiedld setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
 }
 
 - (void)initialMatchStandard {
+    //Set Left Label and Icon
+    [matchStandardTextField initialLeftViewWithLabelName:[gUIStrings objectForKey:@"UI_MatchDetails_Standard"] labelWidth:60 iconImage:@"leftIcon_createMatch_numOfPlayers.png"];
+    
     //Set UIStepper as rightView
     matchStandardStepper = [[UIStepper alloc] init];
     [matchStandardStepper setTintColor:cLightBlue(1.0)];
@@ -282,6 +296,9 @@
 }
 
 - (void)initialCost {
+    //Set Left Label and Icon
+    [costTextField initialLeftViewWithLabelName:[gUIStrings objectForKey:@"UI_MatchDetails_Cost"] labelWidth:60 iconImage:@"leftIcon_createMatch_cost.png"];
+    
     [costTextField setUserInteractionEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
     [costOption_Referee setEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
     [costOption_Water setEnabled:(viewType == MatchDetailsViewType_CreateMatch)];
