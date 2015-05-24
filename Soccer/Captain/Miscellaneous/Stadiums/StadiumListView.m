@@ -35,17 +35,7 @@
 }
 @synthesize grandMapView, stadiumListTableView, stadiumFilterBar, cancelAddStadiumButton;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //Set the tableview
@@ -54,11 +44,15 @@
     [stadiumListTableView.layer setMasksToBounds:YES];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [connection requestAllStadiums];
+    
+    stadiumList = gStadiums;
+    filteredStadiumList = gStadiums;
+    [self calculateAndSortStadiumsByDistance];
+    [grandMapView addAnnotations:filteredStadiumList];
+    [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewDidAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
     
@@ -79,21 +73,22 @@
         [grandMapView selectAnnotation:savedStadium animated:YES];
     }
     [cancelAddStadiumButton setEnabled:newStadium];
+    
+    CGRect tableFrame = stadiumListTableView.frame;
+    tableFrame.size.height = MIN(filteredStadiumList.count, 4) * stadiumListTableView.rowHeight;
+    [stadiumListTableView setFrame:tableFrame];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)cancelSearch:(id)sender
-{
+- (IBAction)cancelSearch:(id)sender {
     [stadiumFilterBar resignFirstResponder];
 }
 
--(IBAction)cancelNewStadiumAnnotation:(id)sender
-{
+- (IBAction)cancelNewStadiumAnnotation:(id)sender {
     if (newStadium) {
         [grandMapView removeAnnotation:newStadium];
         newStadium = nil;
@@ -102,17 +97,7 @@
     [self returnToUserLocation:nil];
 }
 
--(void)receiveAllStadiums:(NSArray *)stadiums
-{
-    stadiumList = stadiums;
-    filteredStadiumList = stadiums;
-    [self calculateAndSortStadiumsByDistance];
-    [grandMapView addAnnotations:filteredStadiumList];
-    [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
-}
-
--(void)calculateAndSortStadiumsByDistance
-{
+- (void)calculateAndSortStadiumsByDistance {
     for (Stadium *stadium in filteredStadiumList) {
         CLLocation *location = [[CLLocation alloc] initWithLatitude:stadium.coordinate.latitude longitude:stadium.coordinate.longitude];
         CLLocationDistance distance = [location distanceFromLocation:grandMapView.userLocation.location];
@@ -120,11 +105,10 @@
     }
     NSSortDescriptor *sortByDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
     filteredStadiumList = [filteredStadiumList sortedArrayUsingDescriptors:@[sortByDistance]];
-    [self reloadStadiumListTableView];
+    [stadiumListTableView reloadData];
 }
 
--(IBAction)returnToUserLocation:(id)sender
-{
+- (IBAction)returnToUserLocation:(id)sender {
     if (filteredStadiumList.count) {
         [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
     }
@@ -134,18 +118,18 @@
 }
 
 #pragma UITableView Methods
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    CGRect tableFrame = stadiumListTableView.frame;
+    tableFrame.size.height = MIN(filteredStadiumList.count, 4) * stadiumListTableView.rowHeight;
+    [stadiumListTableView setFrame:tableFrame];
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return filteredStadiumList.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"StadiumListViewCell";
     StadiumListView_Cell *cell = [stadiumListTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -160,8 +144,7 @@
 
 #pragma Search Methods
 
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length) {
         NSPredicate *searchCondition = [NSPredicate predicateWithFormat:@"self.stadiumName contains[c] %@ || self.address contains[c] %@", searchText, searchText];
         filteredStadiumList = [stadiumList filteredArrayUsingPredicate:searchCondition];
@@ -169,7 +152,7 @@
     else {
         filteredStadiumList = stadiumList;
     }
-    [self reloadStadiumListTableView];
+    [stadiumListTableView reloadData];
     
     [grandMapView removeAnnotations:grandMapView.annotations];
     [grandMapView addAnnotations:filteredStadiumList];
@@ -181,31 +164,20 @@
     }
 }
 
--(void)reloadStadiumListTableView
-{
-    CGRect tableFrame = stadiumListTableView.frame;
-    tableFrame.size.height = MIN(filteredStadiumList.count, 2.5) * stadiumListTableView.rowHeight;
-    [stadiumListTableView setFrame:tableFrame];
-    [stadiumListTableView reloadData];
-}
-
 #pragma MapViewDelegate
--(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     [self calculateAndSortStadiumsByDistance];
     if (filteredStadiumList.count > 0) {
         [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
     }
 }
 
--(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-{
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     Stadium *stadium = view.annotation;
     [mapView showAnnotations:@[stadium] animated:YES];
 }
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
-{
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
     }
@@ -242,8 +214,7 @@
     }
 }
 
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
-{
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     Stadium *selectedStadium = view.annotation;
     if ([selectedStadium isEqual:newStadium]) {
         [self performSegueWithIdentifier:@"AddStadium" sender:self];
@@ -255,8 +226,15 @@
     }
 }
 
--(IBAction)longPressToAddNewStadium:(UILongPressGestureRecognizer *)longPressGestureRecognizer;
-{
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+    [stadiumListTableView setAlpha:0.5];
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    [stadiumListTableView setAlpha:1.0];
+}
+
+- (IBAction)longPressToAddNewStadium:(UILongPressGestureRecognizer *)longPressGestureRecognizer; {
     if (longPressGestureRecognizer.state == UIGestureRecognizerStateEnded) {
         CGPoint clickPoint = [longPressGestureRecognizer locationOfTouch:0 inView:grandMapView];
         CLLocationCoordinate2D newStadiumCoordinate = [grandMapView convertPoint:clickPoint toCoordinateFromView:grandMapView];
@@ -282,8 +260,7 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"StadiumDetails"]) {

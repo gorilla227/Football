@@ -15,5 +15,4 @@
 
 @interface StadiumListView : UIViewController<UITableViewDataSource, UITableViewDelegate, JSONConnectDelegate, MKMapViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate>
 -(void)calculateAndSortStadiumsByDistance;
--(void)reloadStadiumListTableView;
 @end
