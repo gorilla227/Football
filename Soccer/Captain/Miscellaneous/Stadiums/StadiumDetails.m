@@ -25,17 +25,7 @@
 }
 @synthesize stadium, stadiumMap, stadiumNameLabel, stadiumAddressLabel, stadiumPhoneLabel, stadiumPriceLabel, stadiumCommentLabel, actionBar, homeStadiumSetButton, contactStadiumButton;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -55,23 +45,24 @@
     [stadiumPriceLabel setText:[NSString stringWithFormat:@"%li", (long)stadium.price]];
     [stadiumCommentLabel setText:stadium.comment];
     
+    CGRect mapFrame = CGRectMake(0, 0, windowSize.width, self.tableView.bounds.size.height - self.tableView.contentSize.height - self.navigationController.navigationBar.bounds.size.height - self.navigationController.toolbar.bounds.size.height - [[UIApplication sharedApplication] statusBarFrame].size.height);
+    [stadiumMap setFrame:mapFrame];
+    [self.tableView setTableHeaderView:stadiumMap];
+    
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)actionButtonInitialization
-{
+- (void)actionButtonInitialization {
     if (gMyUserInfo.team) {
         if (gMyUserInfo.team.homeStadium.stadiumId == stadium.stadiumId) {
             [homeStadiumSetButton setEnabled:NO];
@@ -90,13 +81,11 @@
     [contactStadiumButton setEnabled:stadium.phoneNumber];
 }
 
--(IBAction)contactStadiumButtonOnClicked:(id)sender
-{
+- (IBAction)contactStadiumButtonOnClicked:(id)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@", stadium.phoneNumber]]];
 }
 
--(IBAction)homeStadiumSetButtonOnClicked:(id)sender
-{
+- (IBAction)homeStadiumSetButtonOnClicked:(id)sender {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                         message:[gUIStrings objectForKey:@"UI_HomeStadiumSetConfirmationMessage"]
                                                        delegate:self
@@ -105,8 +94,7 @@
     [alertView show];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         Team *updateTeam = [gMyUserInfo.team copy];
         [updateTeam setHomeStadium:stadium];
@@ -114,8 +102,7 @@
     }
 }
 
--(void)updateTeamProfileSuccessfully
-{
+- (void)updateTeamProfileSuccessfully {
     [gMyUserInfo.team setHomeStadium:stadium];
     [self actionButtonInitialization];
 }
