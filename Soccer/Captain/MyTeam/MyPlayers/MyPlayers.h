@@ -14,6 +14,8 @@
 @interface MyPlayerCell : UITableViewCell
 @property UserInfo *myPlayer;
 @property id<MyPlayerDelegate>delegate;
+- (void)changeCheckMarkStatus:(BOOL)status;
+- (void)shouldHiddenCheckMarkBackground:(BOOL)shouldHidden;
 @end
 
 @interface MyPlayers : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate, JSONConnectDelegate, MyPlayerDelegate>
