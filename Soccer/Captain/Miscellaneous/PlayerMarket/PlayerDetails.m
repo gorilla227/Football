@@ -42,17 +42,7 @@
 @synthesize message, playerData, matchData, viewType;
 @synthesize playerMarketActionBar, applicantActionBar, myPlayerActionBar, nickNameLabel, nickNameBackgroundView, teamNameLabel, playerProtraitImageView, teamLogoImageView, teamNameBackgroundView, recruitButton, temporaryFavorButton, legalNameCell, ageCell, emailCell, qqCell, mobileCell, positionCell, activityRegionCell, styleCell;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
@@ -67,8 +57,7 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     switch (viewType) {
         case PlayerDetails_Applicant:
@@ -80,21 +69,18 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
-{
+- (void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference {
     playerData = userInfo;
     [self initWithPlayerData];
     [self.tableView reloadData];
 }
 
--(void)initWithPlayerData
-{
+- (void)initWithPlayerData {
     switch (viewType) {
         case PlayerDetails_FromPlayerMarket:
             [self setToolbarItems:playerMarketActionBar.items];
@@ -171,8 +157,7 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     switch (viewType) {
         case PlayerDetails_Applicant:
@@ -186,16 +171,14 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-{
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *headerView = (UITableViewHeaderFooterView *)view;
     [headerView.textLabel setTextAlignment:NSTextAlignmentCenter];
     [headerView.contentView setBackgroundColor:cLightGreen(1)];
 }
 
 #pragma Button Actions
--(IBAction)acceptButtonOnClicked:(id)sender
-{
+- (IBAction)acceptButtonOnClicked:(id)sender {
     acceptConfirm = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptTitle"]
                                                message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_NewPlayer_AcceptMessage"], nickNameLabel.text]
                                               delegate:self
@@ -204,8 +187,7 @@
     [acceptConfirm show];
 }
 
--(IBAction)declineButtonOnClicked:(id)sender
-{
+- (IBAction)declineButtonOnClicked:(id)sender {
     declineConfirm = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineTitle"]
                                                 message:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_NewPlayer_DeclineMessage"], nickNameLabel.text]
                                                delegate:self
@@ -214,32 +196,28 @@
     [declineConfirm show];
 }
 
--(IBAction)trialNotificationButtonOnClicked:(id)sender
-{
+- (IBAction)trialNotificationButtonOnClicked:(id)sender {
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_Trial];
     [composeViewController setToList:@[playerData]];
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
--(IBAction)notifyMyPlayerButtonOnClicked:(id)sender
-{
+- (IBAction)notifyMyPlayerButtonOnClicked:(id)sender {
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_Blank];
     [composeViewController setToList:@[playerData]];
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
--(IBAction)recruitButtonOnClicked:(id)sender
-{
+- (IBAction)recruitButtonOnClicked:(id)sender {
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_Recurit];
     [composeViewController setToList:@[playerData]];
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
--(IBAction)temporaryFavorButtonOnClicked:(id)sender
-{
+- (IBAction)temporaryFavorButtonOnClicked:(id)sender {
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_TemporaryFavor];
     [composeViewController setToList:@[playerData]];
@@ -251,8 +229,7 @@
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
--(void)replyApplyinMessageSuccessfully:(NSInteger)responseCode
-{
+- (void)replyApplyinMessageSuccessfully:(NSInteger)responseCode {
     [message setStatus:responseCode];
     NSString *responseString;
     switch (responseCode) {
@@ -269,8 +246,7 @@
     [alertView show];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([alertView isEqual:acceptConfirm]) {
         if (buttonIndex == 1) {
             [connection replyApplyinMessage:message.messageId response:2];

@@ -86,22 +86,16 @@
 @property IBOutlet UIBarButtonItem *notifyButton;
 @end
 
-@implementation MyPlayers{
+@implementation MyPlayers {
     JSONConnect *connection;
     NSArray *playerList;
     NSArray *filterPlayerList;
 }
 @synthesize actionBar, notifyButton;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self setToolbarItems:actionBar.items];
     [self.searchDisplayController.searchResultsTableView setRowHeight:self.tableView.rowHeight];
@@ -109,7 +103,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActionButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -134,8 +127,7 @@
     [self.tableView reloadData];
 }
 
--(void)updateActionButtonsStatus
-{
+- (void)updateActionButtonsStatus {
     if (self.searchDisplayController.isActive) {
         [notifyButton setEnabled:self.searchDisplayController.searchResultsTableView.indexPathsForSelectedRows.count];
         [self.searchDisplayController.searchBar resignFirstResponder];
@@ -145,8 +137,7 @@
     }
 }
 
--(void)pushPlayerDetails:(UserInfo *)player
-{
+- (void)pushPlayerDetails:(UserInfo *)player {
     PlayerDetails *playerDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerDetails"];
     [playerDetails setPlayerData:player];
     [playerDetails setViewType:PlayerDetails_MyPlayer];
@@ -155,14 +146,12 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if ([tableView isEqual:self.tableView]) {
         return playerList.count;
@@ -172,8 +161,7 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"MyPlayerCell";
     MyPlayerCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     UserInfo *playerData = [[tableView isEqual:self.tableView]?playerList:filterPlayerList objectAtIndex:indexPath.row];
@@ -194,27 +182,23 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MyPlayerCell *cell = (MyPlayerCell *)[tableView cellForRowAtIndexPath:indexPath];
     [cell changeCheckMarkStatus:YES];
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     MyPlayerCell *cell = (MyPlayerCell *)[tableView cellForRowAtIndexPath:indexPath];
     [cell changeCheckMarkStatus:NO];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"self.nickName contains[c] %@", searchString];
     filterPlayerList = [playerList filteredArrayUsingPredicate:searchPredicate];
     return YES;
 }
 
--(IBAction)notifyButtonOnClicked:(id)sender
-{
+- (IBAction)notifyButtonOnClicked:(id)sender {
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_Blank];
     NSMutableArray *selectedPlayerList = [NSMutableArray new];
@@ -227,13 +211,13 @@
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-
+*/
 @end
