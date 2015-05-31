@@ -91,4 +91,11 @@
     }
     return NO;
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.y <= 0) {
+        [scrollView setContentOffset:CGPointZero];
+    }
+}
+
 @end

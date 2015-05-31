@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableViewCell_CheckMark.h"
 
 enum PlayerMarketViewType {
     PlayerMarketViewType_Default,
@@ -21,7 +22,7 @@ enum PlayerMarketViewType {
 -(NSDictionary *)searchCriteria;
 @end
 
-@interface PlayerMarket_Cell : UITableViewCell
+@interface PlayerMarket_Cell : TableViewCell_CheckMark
 @property UserInfo *playerInfo;
 @property id<PlayerMarketDelegate>delegate;
 @end

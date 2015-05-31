@@ -33,6 +33,7 @@
 		A1370A5B1904D7CC00E64949 /* leftIcon_createMatch_opponent.png in Resources */ = {isa = PBXBuildFile; fileRef = A1370A561904D7CC00E64949 /* leftIcon_createMatch_opponent.png */; };
 		A1370A5C1904D7CC00E64949 /* leftIcon_createMatch_place.png in Resources */ = {isa = PBXBuildFile; fileRef = A1370A571904D7CC00E64949 /* leftIcon_createMatch_place.png */; };
 		A1370A5D1904D7CC00E64949 /* leftIcon_createMatch_time.png in Resources */ = {isa = PBXBuildFile; fileRef = A1370A581904D7CC00E64949 /* leftIcon_createMatch_time.png */; };
+		A13A3D171B18326E005FFA89 /* TableViewCell_CheckMark.m in Sources */ = {isa = PBXBuildFile; fileRef = A13A3D161B18326E005FFA89 /* TableViewCell_CheckMark.m */; };
 		A13A4E361A1AFED200B95D8A /* MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A13A4E351A1AFED200B95D8A /* MatchArrangement.m */; };
 		A13A4E391A1B047600B95D8A /* MatchArrangementTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A13A4E381A1B047600B95D8A /* MatchArrangementTableView.m */; };
 		A13B6FB81AE22B3F00089546 /* TeamFundInquiry.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B6FB71AE22B3F00089546 /* TeamFundInquiry.m */; };
@@ -213,6 +214,8 @@
 		A1370A561904D7CC00E64949 /* leftIcon_createMatch_opponent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftIcon_createMatch_opponent.png; path = Resource/leftIcon_createMatch_opponent.png; sourceTree = "<group>"; };
 		A1370A571904D7CC00E64949 /* leftIcon_createMatch_place.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftIcon_createMatch_place.png; path = Resource/leftIcon_createMatch_place.png; sourceTree = "<group>"; };
 		A1370A581904D7CC00E64949 /* leftIcon_createMatch_time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftIcon_createMatch_time.png; path = Resource/leftIcon_createMatch_time.png; sourceTree = "<group>"; };
+		A13A3D151B18326E005FFA89 /* TableViewCell_CheckMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell_CheckMark.h; path = Soccer/Utils/TableViewCell_CheckMark/TableViewCell_CheckMark.h; sourceTree = "<group>"; };
+		A13A3D161B18326E005FFA89 /* TableViewCell_CheckMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewCell_CheckMark.m; path = Soccer/Utils/TableViewCell_CheckMark/TableViewCell_CheckMark.m; sourceTree = "<group>"; };
 		A13A4E341A1AFED200B95D8A /* MatchArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchArrangement.h; sourceTree = "<group>"; };
 		A13A4E351A1AFED200B95D8A /* MatchArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchArrangement.m; sourceTree = "<group>"; };
 		A13A4E371A1B047600B95D8A /* MatchArrangementTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchArrangementTableView.h; sourceTree = "<group>"; };
@@ -596,6 +599,15 @@
 			name = CreateMatch;
 			sourceTree = "<group>";
 		};
+		A13A3D141B183203005FFA89 /* TableViewCell_CheckMark */ = {
+			isa = PBXGroup;
+			children = (
+				A13A3D151B18326E005FFA89 /* TableViewCell_CheckMark.h */,
+				A13A3D161B18326E005FFA89 /* TableViewCell_CheckMark.m */,
+			);
+			name = TableViewCell_CheckMark;
+			sourceTree = "<group>";
+		};
 		A13A4E331A1AFE9F00B95D8A /* zzzOld */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,6 +669,7 @@
 		A173033D18FB5A0A00702015 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A13A3D141B183203005FFA89 /* TableViewCell_CheckMark */,
 				A10926311AAD551C00A73C32 /* TableViewController_More */,
 				A1940B0F197787AD00B152AC /* MessageBarButtonItem */,
 				B2B955CA194FC649004FB5E0 /* MD5_Encryption */,
@@ -1366,6 +1379,7 @@
 				A1F428E4191209DB00567A02 /* AFURLSessionManager.m in Sources */,
 				B2B955CD194FC649004FB5E0 /* NSString+MD5.m in Sources */,
 				B2FED3281946835E00E6ABB8 /* Starting.m in Sources */,
+				A13A3D171B18326E005FFA89 /* TableViewCell_CheckMark.m in Sources */,
 				A131E2FC1A352D9900F604C8 /* MatchDetails.m in Sources */,
 				A19865F8198D9FC5009BA81C /* UITextView+UITextFieldRoundCornerStyle.m in Sources */,
 				B2B1EE48193FDCE900915CA8 /* UITextField+LeftIconAndLabel.m in Sources */,

@@ -26,8 +26,7 @@
 
 @implementation PlayerMarket_SearchView
 @synthesize haveTeamSegement, positionView, ageView, ageFloorLabel, ageFloorSlider, ageCapLabel, ageCapSlider, nickNameSearchTextField, activityRegionSearchTextField;
--(void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     [positionView initWithPositionTitles:[gUIStrings objectForKey:@"UI_Positions"] padding:CGPointMake(5, 5)];
     [positionView changeButtonFont:[UIFont systemFontOfSize:14.0f]];
@@ -49,15 +48,13 @@
     [self.layer insertSublayer:gradient atIndex:0];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
     [nickNameSearchTextField resignFirstResponder];
     [activityRegionSearchTextField resignFirstResponder];
 }
 
--(IBAction)ageSliderValueChanged:(id)sender
-{
+- (IBAction)ageSliderValueChanged:(id)sender {
     if (ageFloorSlider.value <= ageCapSlider.value) {
         if ([sender isEqual:ageFloorSlider]) {
             [ageFloorLabel setText:[NSNumber numberWithFloat:floorf(ageFloorSlider.value)].stringValue];
@@ -78,8 +75,7 @@
     }
 }
 
--(NSDictionary *)searchCriteria
-{
+- (NSDictionary *)searchCriteria {
     NSMutableDictionary *searchCriteria = [NSMutableDictionary new];
     //Nickname
     NSString *nickname = [nickNameSearchTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -117,7 +113,6 @@
 
 #pragma PlayerMarket_Cell
 @interface PlayerMarket_Cell ()
-@property IBOutlet UIView *checkMarkBackground;
 @property IBOutlet UIImageView *playerPortraitImageView;
 @property IBOutlet UILabel *nickNameLabel;
 @property IBOutlet UILabel *teamNameLabel;
@@ -129,23 +124,20 @@
 
 @implementation PlayerMarket_Cell
 @synthesize playerInfo, delegate;
-@synthesize checkMarkBackground, playerPortraitImageView, nickNameLabel, teamNameLabel, positionLabel, styleLabel, ageLabel, activityRegionLabel;
+@synthesize playerPortraitImageView, nickNameLabel, teamNameLabel, positionLabel, styleLabel, ageLabel, activityRegionLabel;
 
--(void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
-    [checkMarkBackground.layer setCornerRadius:15.0f];
-    [checkMarkBackground.layer setMasksToBounds:YES];
+- (IBAction)showPlayerDetails:(id)sender {
+    [delegate pushPlayerDetails:playerInfo];
+}
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    // Initialization code
     [playerPortraitImageView.layer setCornerRadius:10.0f];
     [playerPortraitImageView.layer setMasksToBounds:YES];
     [teamNameLabel.layer setCornerRadius:3.0f];
     [teamNameLabel.layer setMasksToBounds:YES];
     [teamNameLabel setBackgroundColor:cGray(0.9)];
-}
-
--(IBAction)showPlayerDetails:(id)sender
-{
-    [delegate pushPlayerDetails:playerInfo];
 }
 @end
 
@@ -158,7 +150,7 @@
 @property IBOutlet UIBarButtonItem *temporaryFavorButton;
 @end
 
-@implementation PlayerMarket{
+@implementation PlayerMarket {
     JSONConnect *connection;
     NSMutableArray *playerList;
     NSInteger count;
@@ -167,17 +159,7 @@
 @synthesize searchView, searchViewSwitchButton, actionBar, recruitButton, temporaryFavorButton;
 @synthesize viewType, matchData;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
@@ -195,15 +177,12 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:!gMyUserInfo.userType];
-    [super viewWillAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -219,8 +198,7 @@
     return NO;
 }
 
--(void)pushPlayerDetails:(UserInfo *)player
-{
+- (void)pushPlayerDetails:(UserInfo *)player {
     PlayerDetails *playerDetails = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerDetails"];
     [playerDetails setPlayerData:player];
     [playerDetails setViewType:PlayerDetails_FromPlayerMarket];
@@ -228,8 +206,7 @@
     [self.navigationController pushViewController:playerDetails animated:YES];
 }
 
--(IBAction)searchViewSwitchButtonOnClicked:(id)sender
-{
+- (IBAction)searchViewSwitchButtonOnClicked:(id)sender {
     [searchViewSwitchButton setSelected:!searchViewSwitchButton.isSelected];
     [self.tableView setTableHeaderView:searchViewSwitchButton.isSelected?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
     if (playerList.count) {
@@ -237,16 +214,14 @@
     }
 }
 
--(IBAction)searchButtonOnClicked:(id)sender
-{
+- (IBAction)searchButtonOnClicked:(id)sender {
     [searchView.nickNameSearchTextField resignFirstResponder];
     [searchView.activityRegionSearchTextField resignFirstResponder];
     [playerList removeAllObjects];
     [self startLoadingMore:YES];
 }
 
--(void)updateActionButtonsStatus
-{
+- (void)updateActionButtonsStatus {
     switch (viewType) {
         case PlayerMarketViewType_FromMatchArrangement:
             [recruitButton setEnabled:NO];
@@ -276,8 +251,7 @@
     }
 }
 
--(void)receivePlayers:(NSArray *)players
-{
+- (void)receivePlayers:(NSArray *)players {
     [playerList addObjectsFromArray:players];
     if (playerList.count == 0) {
         [self finishedLoadingWithNewStatus:LoadMoreStatus_NoData];
@@ -294,21 +268,18 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return playerList.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"PlayerMarketCell";
     PlayerMarket_Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     UserInfo *playerData = [playerList objectAtIndex:indexPath.row];
@@ -316,7 +287,7 @@
     // Configure the cell...
     [cell setPlayerInfo:playerData];
     [cell setDelegate:self];
-    [cell setAccessoryType:[tableView.indexPathsForSelectedRows containsObject:indexPath]?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone];
+    [cell changeCheckMarkStatus:[tableView.indexPathsForSelectedRows containsObject:indexPath]];
     [cell.nickNameLabel setText:playerData.nickName];
     [cell.ageLabel setText:[NSNumber numberWithInteger:[Age ageFromString:playerData.birthday]].stringValue];
     [cell.positionLabel setText:[Position stringWithCode:playerData.position]];
@@ -333,31 +304,26 @@
     return cell;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return searchViewSwitchButton;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return searchViewSwitchButton.frame.size.height;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PlayerMarket_Cell *cell = (PlayerMarket_Cell *)[tableView cellForRowAtIndexPath:indexPath];
+    [cell changeCheckMarkStatus:YES];
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [cell setAccessoryType:UITableViewCellAccessoryNone];
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PlayerMarket_Cell *cell = (PlayerMarket_Cell *)[tableView cellForRowAtIndexPath:indexPath];
+    [cell changeCheckMarkStatus:NO];
 }
 
 #pragma Button Actions
--(IBAction)recruitButtonOnClicked:(id)sender
-{
+- (IBAction)recruitButtonOnClicked:(id)sender {
     NSMutableArray *selectedPlayerList = [NSMutableArray new];
     for (NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
         [selectedPlayerList addObject:[playerList objectAtIndex:indexPath.row]];
@@ -369,8 +335,7 @@
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
--(IBAction)temporaryFavorButtonOnClicked:(id)sender
-{
+- (IBAction)temporaryFavorButtonOnClicked:(id)sender {
     NSMutableArray *selectedPlayerList = [NSMutableArray new];
     for (NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
         [selectedPlayerList addObject:[playerList objectAtIndex:indexPath.row]];
@@ -387,6 +352,7 @@
     }
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
+
 /*
 #pragma mark - Navigation
 
