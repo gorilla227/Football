@@ -20,6 +20,7 @@ enum LoadMoreStatus {
 @property UIActivityIndicatorView *moreActivityIndicator;
 @property enum LoadMoreStatus loadMoreStatus;
 @property BOOL allowAutoRefreshing;
+@property UIColor *topBounceBackgroundColor;
 
 //Configuraion
 - (void)initialWithLabelTexts:(NSString *)labelTextsKey;

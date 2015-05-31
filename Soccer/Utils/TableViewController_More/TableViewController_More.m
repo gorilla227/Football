@@ -11,8 +11,9 @@
 @implementation TableViewController_More {
     NSDictionary *labelTextsDictionary;
     NSDate *lastRefreshingDate;
+    UIView *topBounceBackgroundView;
 }
-@synthesize moreFooterView, moreLabel, moreActivityIndicator, loadMoreStatus, allowAutoRefreshing;
+@synthesize moreFooterView, moreLabel, moreActivityIndicator, loadMoreStatus, allowAutoRefreshing, topBounceBackgroundColor;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -93,8 +94,16 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!topBounceBackgroundColor) {
+        topBounceBackgroundColor = self.tableView.backgroundColor;
+    }
     if (scrollView.contentOffset.y <= 0) {
-        [scrollView setContentOffset:CGPointZero];
+        if (!topBounceBackgroundView) {
+            topBounceBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, scrollView.contentOffset.y, windowSize.width, -scrollView.contentOffset.y)];
+            [topBounceBackgroundView setBackgroundColor:topBounceBackgroundColor];
+            [self.view addSubview:topBounceBackgroundView];
+        }
+        [topBounceBackgroundView setFrame:CGRectMake(0, scrollView.contentOffset.y, windowSize.width, -scrollView.contentOffset.y)];
     }
 }
 

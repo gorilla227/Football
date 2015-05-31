@@ -167,6 +167,7 @@
     [self initialWithLabelTexts:@"PlayerMarket"];
     [self setAllowAutoRefreshing:NO];
     [self setToolbarItems:actionBar.items];
+    [self setTopBounceBackgroundColor:cLightBlue(1.0)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateActionButtonsStatus) name:UITableViewSelectionDidChangeNotification object:nil];
     
     count = [[gSettings objectForKey:@"playersSearchListCount"] integerValue];
