@@ -178,6 +178,7 @@
     [self.tableView setTableHeaderView:searchView];
     [self initialWithLabelTexts:@"TeamMarket"];
     [self setAllowAutoRefreshing:NO];
+    [self setTopBounceBackgroundColor:cLightBlue(1.0)];
     switch (viewType) {
         case TeamMarketViewType_Default:
             
