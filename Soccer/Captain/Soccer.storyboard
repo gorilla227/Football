@@ -3836,11 +3836,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="3re-jj-Jna">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="188"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tEI-DB-ZRJ">
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tEI-DB-ZRJ">
                                     <rect key="frame" x="20" y="8" width="280" height="29"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="28" id="Rx3-bx-GFP"/>
+                                    </constraints>
                                     <segments>
                                         <segment title="队费收入"/>
                                         <segment title="其他收入"/>
@@ -3851,31 +3854,12 @@
                                         <action selector="scTransactionTypeValueChanged:" destination="KKi-Io-HpZ" eventType="valueChanged" id="d8H-t3-QWz"/>
                                     </connections>
                                 </segmentedControl>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择日期" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xvV-0V-WMN">
-                                    <rect key="frame" x="0.0" y="92" width="320" height="40"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <action selector="activeTextField:" destination="KKi-Io-HpZ" eventType="editingDidBegin" id="7bb-Ps-aA2"/>
-                                        <action selector="dismissKeyboard:" destination="KKi-Io-HpZ" eventType="editingDidEndOnExit" id="kMY-8A-s4T"/>
-                                        <outlet property="delegate" destination="KKi-Io-HpZ" id="YTh-dJ-mbH"/>
-                                    </connections>
-                                </textField>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入金额" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ibW-cK-gOt">
-                                    <rect key="frame" x="0.0" y="140" width="320" height="40"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                    <connections>
-                                        <action selector="activeTextField:" destination="KKi-Io-HpZ" eventType="editingDidBegin" id="PrL-4g-03u"/>
-                                        <action selector="dismissKeyboard:" destination="KKi-Io-HpZ" eventType="editingDidEndOnExit" id="Kcu-nt-9lT"/>
-                                        <outlet property="delegate" destination="KKi-Io-HpZ" id="kNz-SB-bkO"/>
-                                    </connections>
-                                </textField>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入项目名" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fb5-qk-4vG">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入项目名" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fb5-qk-4vG">
                                     <rect key="frame" x="0.0" y="44" width="320" height="40"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="Cep-B3-rlq"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
@@ -3884,7 +3868,50 @@
                                         <outlet property="delegate" destination="KKi-Io-HpZ" id="uK8-m2-TX3"/>
                                     </connections>
                                 </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择日期" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xvV-0V-WMN">
+                                    <rect key="frame" x="0.0" y="92" width="320" height="40"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="4ag-a7-TPq"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="activeTextField:" destination="KKi-Io-HpZ" eventType="editingDidBegin" id="7bb-Ps-aA2"/>
+                                        <action selector="dismissKeyboard:" destination="KKi-Io-HpZ" eventType="editingDidEndOnExit" id="kMY-8A-s4T"/>
+                                        <outlet property="delegate" destination="KKi-Io-HpZ" id="YTh-dJ-mbH"/>
+                                    </connections>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入金额" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ibW-cK-gOt">
+                                    <rect key="frame" x="0.0" y="140" width="320" height="40"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="bLd-QX-tCI"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    <connections>
+                                        <action selector="activeTextField:" destination="KKi-Io-HpZ" eventType="editingDidBegin" id="PrL-4g-03u"/>
+                                        <action selector="dismissKeyboard:" destination="KKi-Io-HpZ" eventType="editingDidEndOnExit" id="Kcu-nt-9lT"/>
+                                        <outlet property="delegate" destination="KKi-Io-HpZ" id="kNz-SB-bkO"/>
+                                    </connections>
+                                </textField>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="xvV-0V-WMN" secondAttribute="trailing" id="1ws-iA-Tac"/>
+                                <constraint firstItem="xvV-0V-WMN" firstAttribute="top" secondItem="fb5-qk-4vG" secondAttribute="bottom" constant="8" id="7Xt-1l-K1L"/>
+                                <constraint firstItem="tEI-DB-ZRJ" firstAttribute="leading" secondItem="3re-jj-Jna" secondAttribute="leading" constant="20" id="B4O-sq-bcM"/>
+                                <constraint firstAttribute="bottom" secondItem="ibW-cK-gOt" secondAttribute="bottom" constant="8" id="BJA-2W-K8b"/>
+                                <constraint firstItem="fb5-qk-4vG" firstAttribute="leading" secondItem="3re-jj-Jna" secondAttribute="leading" id="E9K-Lt-8D5"/>
+                                <constraint firstItem="fb5-qk-4vG" firstAttribute="top" secondItem="tEI-DB-ZRJ" secondAttribute="bottom" constant="8" id="G8q-Nf-UOh"/>
+                                <constraint firstItem="tEI-DB-ZRJ" firstAttribute="top" secondItem="3re-jj-Jna" secondAttribute="top" constant="8" id="NVO-Q7-YfR"/>
+                                <constraint firstItem="ibW-cK-gOt" firstAttribute="top" secondItem="xvV-0V-WMN" secondAttribute="bottom" constant="8" id="YSl-e7-tL4"/>
+                                <constraint firstAttribute="trailing" secondItem="ibW-cK-gOt" secondAttribute="trailing" id="fHJ-gY-vTd"/>
+                                <constraint firstAttribute="trailing" secondItem="fb5-qk-4vG" secondAttribute="trailing" id="gLJ-Jd-V7o"/>
+                                <constraint firstItem="xvV-0V-WMN" firstAttribute="leading" secondItem="3re-jj-Jna" secondAttribute="leading" id="nbm-Ik-kqB"/>
+                                <constraint firstItem="ibW-cK-gOt" firstAttribute="leading" secondItem="3re-jj-Jna" secondAttribute="leading" id="wpO-cB-o05"/>
+                                <constraint firstAttribute="trailing" secondItem="tEI-DB-ZRJ" secondAttribute="trailing" constant="20" id="yw1-yC-SIU"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="StatCell" rowHeight="65" id="jNd-W4-hC9" customClass="BalanceTransactionDetails_StatCell">
@@ -3894,27 +3921,44 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="人" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNZ-v0-pF7">
-                                            <rect key="frame" x="102" y="8" width="198" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本次人数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uel-9F-7T7">
+                                            <rect key="frame" x="20" y="8" width="136" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="本次人数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uel-9F-7T7">
-                                            <rect key="frame" x="20" y="8" width="74" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNZ-v0-pF7">
+                                            <rect key="frame" x="164" y="8" width="136" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="本次队费" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJ1-5W-gEn">
-                                            <rect key="frame" x="20" y="37" width="74" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本次队费" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJ1-5W-gEn">
+                                            <rect key="frame" x="20" y="36" width="136" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsS-S5-sES">
-                                            <rect key="frame" x="102" y="37" width="198" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsS-S5-sES">
+                                            <rect key="frame" x="164" y="36" width="136" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="SJ1-5W-gEn" firstAttribute="leading" secondItem="xWf-95-xL7" secondAttribute="leading" constant="20" id="HRh-Dr-T1m"/>
+                                        <constraint firstItem="uel-9F-7T7" firstAttribute="top" secondItem="xWf-95-xL7" secondAttribute="top" constant="8" id="Iol-gn-8K8"/>
+                                        <constraint firstItem="uel-9F-7T7" firstAttribute="leading" secondItem="xWf-95-xL7" secondAttribute="leading" constant="20" id="Mb9-iu-HlI"/>
+                                        <constraint firstItem="qsS-S5-sES" firstAttribute="centerY" secondItem="SJ1-5W-gEn" secondAttribute="centerY" id="NCV-PM-9zS"/>
+                                        <constraint firstItem="qsS-S5-sES" firstAttribute="width" secondItem="SJ1-5W-gEn" secondAttribute="width" id="Vrb-29-iBs"/>
+                                        <constraint firstItem="qNZ-v0-pF7" firstAttribute="height" secondItem="uel-9F-7T7" secondAttribute="height" id="Zur-G4-8cM"/>
+                                        <constraint firstItem="qsS-S5-sES" firstAttribute="height" secondItem="SJ1-5W-gEn" secondAttribute="height" id="aio-gy-8sy"/>
+                                        <constraint firstItem="qsS-S5-sES" firstAttribute="leading" secondItem="SJ1-5W-gEn" secondAttribute="trailing" constant="8" id="avw-Q6-oaK"/>
+                                        <constraint firstAttribute="trailing" secondItem="qNZ-v0-pF7" secondAttribute="trailing" constant="20" id="eEZ-al-b4N"/>
+                                        <constraint firstItem="qNZ-v0-pF7" firstAttribute="width" secondItem="uel-9F-7T7" secondAttribute="width" id="mUj-i9-hPh"/>
+                                        <constraint firstItem="qNZ-v0-pF7" firstAttribute="leading" secondItem="uel-9F-7T7" secondAttribute="trailing" constant="8" id="pqs-5Q-Ogr"/>
+                                        <constraint firstAttribute="bottom" secondItem="SJ1-5W-gEn" secondAttribute="bottom" constant="8" id="qza-Ss-wox"/>
+                                        <constraint firstItem="SJ1-5W-gEn" firstAttribute="top" secondItem="uel-9F-7T7" secondAttribute="bottom" constant="8" id="rrd-mU-a10"/>
+                                        <constraint firstItem="qNZ-v0-pF7" firstAttribute="centerY" secondItem="uel-9F-7T7" secondAttribute="centerY" id="uAw-qQ-bMq"/>
+                                        <constraint firstAttribute="trailing" secondItem="qsS-S5-sES" secondAttribute="trailing" constant="20" id="vhR-Yr-SY3"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="lbNumberOfPlayers" destination="qNZ-v0-pF7" id="na9-ld-A0K"/>
