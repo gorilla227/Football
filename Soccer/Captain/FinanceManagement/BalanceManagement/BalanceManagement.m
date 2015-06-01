@@ -100,15 +100,17 @@
     [self.view setBackgroundColor:[UIColor clearColor]];
     [self setToolbarItems:actionBar.items];
     
+    //Initial data
+    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
+}
+
+- (void)viewDidLayoutSubviews {
     //Set the teamLogo
     [teamLogo.layer setBorderColor:[UIColor whiteColor].CGColor];
     [teamLogo.layer setBorderWidth:2.0f];
     [teamLogo.layer setCornerRadius:teamLogo.bounds.size.width/2];
     [teamLogo.layer setMasksToBounds:YES];
     [teamLogo setImage:gMyUserInfo.team.teamLogo?gMyUserInfo.team.teamLogo:def_defaultTeamLogo];
-    
-    //Initial data
-    connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
 }
 
 - (void)didReceiveMemoryWarning {
