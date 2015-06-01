@@ -55,14 +55,14 @@
     [dpStartDate setMaximumDate:[NSDate date]];
     [dpStartDate addTarget:self action:@selector(datePickerDidSelected:) forControlEvents:UIControlEventValueChanged];
     [tfStartDate setInputView:dpStartDate];
-    [tfStartDate initialLeftViewWithLabelName:[gUIStrings objectForKey:@"UI_TeamFundInquiry_StartDateTitle"] labelWidth:70 iconImage:@"leftIcon_createMatch_time.png"];
+    [tfStartDate initialLeftViewWithLabelName:[gUIStrings objectForKey:@"UI_TeamFundInquiry_StartDateTitle"] labelWidth:90 iconImage:@"leftIcon_createMatch_time.png"];
     
     dpEndDate = [[UIDatePicker alloc] init];
     [dpEndDate setDatePickerMode:UIDatePickerModeDate];
     [dpEndDate setMaximumDate:[NSDate date]];
     [dpEndDate addTarget:self action:@selector(datePickerDidSelected:) forControlEvents:UIControlEventValueChanged];
     [tfEndDate setInputView:dpEndDate];
-    [tfEndDate initialLeftViewWithLabelName:[gUIStrings objectForKey:@"UI_TeamFundInquiry_EndDateTitle"] labelWidth:70 iconImage:@"leftIcon_createMatch_time.png"];
+    [tfEndDate initialLeftViewWithLabelName:[gUIStrings objectForKey:@"UI_TeamFundInquiry_EndDateTitle"] labelWidth:90 iconImage:@"leftIcon_createMatch_time.png"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -164,7 +164,6 @@
     [tfStartDate resignFirstResponder];
     [tfEndDate resignFirstResponder];
     
-    [scPlayerList setHidden:NO];
     [scPlayerList setSelectedSegmentIndex:teamFundsWithAmount.count?0:1];
     [scPlayerList setEnabled:teamFundsWithAmount.count forSegmentAtIndex:0];
     [scPlayerList setEnabled:unpaidPlayerList.count forSegmentAtIndex:1];
