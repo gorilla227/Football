@@ -10,6 +10,7 @@ enum PlayerDetails_ViewTypes
 {
     PlayerDetails_MyPlayer,
     PlayerDetails_Applicant,
+    PlayerDetails_Callin,
     PlayerDetails_FromPlayerMarket
 };
 

@@ -107,4 +107,20 @@
     }
 }
 
+- (void)setLoadMoreStatus:(enum LoadMoreStatus)newStatus {
+    switch (newStatus) {
+        case LoadMoreStatus_LoadMore:
+            [moreLabel setText:[labelTextsDictionary objectForKey:@"LoadMore"]];
+            break;
+        case LoadMoreStatus_NoData:
+            [moreLabel setText:[labelTextsDictionary objectForKey:@"NoData"]];
+            break;
+        case LoadMoreStatus_NoMoreData:
+            [moreLabel setText:[labelTextsDictionary objectForKey:@"NoMoreData"]];
+            break;
+        default:
+            break;
+    }
+    loadMoreStatus = newStatus;
+}
 @end

@@ -61,7 +61,10 @@
     [self.navigationController setNavigationBarHidden:NO];
     switch (viewType) {
         case PlayerDetails_Applicant:
-            [self.navigationController setToolbarHidden:message.status !=0 && message.status != 1];
+            [self.navigationController setToolbarHidden:message.status != 0 && message.status != 1];
+            break;
+        case PlayerDetails_Callin:
+            [self.navigationController setToolbarHidden:YES];
             break;
         default:
             [self.navigationController setToolbarHidden:!gMyUserInfo.userType];
@@ -93,6 +96,9 @@
             break;
         case PlayerDetails_Applicant:
             [self setToolbarItems:applicantActionBar.items];
+            if (message.status == 0) {
+                [connection readMessages:@[[NSNumber numberWithInteger:message.messageId]]];
+            }
             break;
         case PlayerDetails_MyPlayer:
             [self setToolbarItems:myPlayerActionBar.items];
@@ -161,6 +167,7 @@
     // Return the number of sections.
     switch (viewType) {
         case PlayerDetails_Applicant:
+        case PlayerDetails_Callin:
             return 1;
         case PlayerDetails_MyPlayer:
             return 3;
@@ -229,8 +236,26 @@
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView isEqual:acceptConfirm]) {
+        if (buttonIndex == 1) {
+            [connection replyApplyinMessage:message.messageId response:2];
+        }
+    }
+    else if ([alertView isEqual:declineConfirm]) {
+        if (buttonIndex == 1) {
+            [connection replyApplyinMessage:message.messageId response:3];
+        }
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma JSONConnectDelegate
 - (void)replyApplyinMessageSuccessfully:(NSInteger)responseCode {
     [message setStatus:responseCode];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:message];
     NSString *responseString;
     switch (responseCode) {
         case 2:
@@ -246,23 +271,10 @@
     [alertView show];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([alertView isEqual:acceptConfirm]) {
-        if (buttonIndex == 1) {
-            [connection replyApplyinMessage:message.messageId response:2];
-        }
-    }
-    else if ([alertView isEqual:declineConfirm]) {
-        if (buttonIndex == 1) {
-            [connection replyApplyinMessage:message.messageId response:3];
-        }
-    }
-    else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+- (void)readMessagesSuccessfully:(NSArray *)messageIdList {
+    [message setStatus:1];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:message];
 }
-
 /*
 #pragma mark - Navigation
 

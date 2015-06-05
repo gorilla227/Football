@@ -129,3 +129,4 @@ NSMutableDictionary *gUnreadMessageAmount;
 NSMutableDictionary *gSettings;
 NSString *gSettingsFile;
 CGSize windowSize;
+UINavigationController *mainNavigationController;

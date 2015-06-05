@@ -164,8 +164,11 @@
     NSMutableArray *tableViews = [NSMutableArray new];
     for (NSDictionary *tabInfo in [gUIStrings objectForKey:@"UI_MatchArrangement_Tab"]) {
         MatchArrangementTableView *tableView = [self.storyboard instantiateViewControllerWithIdentifier:@"MatchListTableView"];
-        [tableView.tabBarItem setTitle:[tabInfo objectForKey:@"Title"]];
-//        [tableView.tabBarItem setImage:[tabInfo objectForKey:@"Icon"]];
+        UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:[tabInfo objectForKey:@"Title"] image:[UIImage imageNamed:[tabInfo objectForKey:@"Icon"]] selectedImage:[[UIImage imageNamed:[tabInfo objectForKey:@"Icon"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [tableView setTabBarItem:tabBarItem];
+//        [tableView.tabBarItem setTitle:[tabInfo objectForKey:@"Title"]];
+//        [tableView.tabBarItem setSelectedImage:[[UIImage imageNamed:[tabInfo objectForKey:@"Icon"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+//        [tableView.tabBarItem setImage:[UIImage imageNamed:[tabInfo objectForKey:@"Icon"]]];
         [tableViews addObject:tableView];
     }
     [self setViewControllers:tableViews];

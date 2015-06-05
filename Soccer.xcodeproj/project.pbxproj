@@ -57,7 +57,7 @@
 		A1818972194CD9A600BE18BC /* EditPlayerProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A1818971194CD9A600BE18BC /* EditPlayerProfile.m */; };
 		A1818977194D671E00BE18BC /* EditTeamProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A1818976194D671E00BE18BC /* EditTeamProfile.m */; };
 		A18D7F7A1903912D003028FE /* Soccer_BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D7F791903912D003028FE /* Soccer_BaseNavigationController.m */; };
-		A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A18E469518EE678500784A48 /* Captain_NewPlayer.m */; };
+		A18E469618EE678500784A48 /* NewPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A18E469518EE678500784A48 /* NewPlayer.m */; };
 		A1940B12197787EC00B152AC /* MessageBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A1940B11197787EC00B152AC /* MessageBarButtonItem.m */; };
 		A1940B14197794B000B152AC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1940B13197794B000B152AC /* MessageUI.framework */; };
 		A1940B161977955E00B152AC /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1940B151977955E00B152AC /* AddressBookUI.framework */; };
@@ -69,6 +69,13 @@
 		A1ACC3461B03288700BB08B4 /* LaunchScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = A1ACC3451B03288700BB08B4 /* LaunchScreen.m */; };
 		A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */; };
 		A1B401131ABE737000194E91 /* UITextFieldForMatchDetailScore.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B401121ABE737000194E91 /* UITextFieldForMatchDetailScore.m */; };
+		A1BAE3A21B1EBF4F00B6D625 /* tabIcon_Ended.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BAE39C1B1EBF4F00B6D625 /* tabIcon_Ended.png */; };
+		A1BAE3A31B1EBF4F00B6D625 /* tabIcon_Ended@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BAE39D1B1EBF4F00B6D625 /* tabIcon_Ended@2x.png */; };
+		A1BAE3A41B1EBF4F00B6D625 /* tabIcon_Ended@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BAE39E1B1EBF4F00B6D625 /* tabIcon_Ended@3x.png */; };
+		A1BAE3A51B1EBF4F00B6D625 /* tabIcon_NotStart.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BAE39F1B1EBF4F00B6D625 /* tabIcon_NotStart.png */; };
+		A1BAE3A61B1EBF4F00B6D625 /* tabIcon_NotStart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BAE3A01B1EBF4F00B6D625 /* tabIcon_NotStart@2x.png */; };
+		A1BAE3A71B1EBF4F00B6D625 /* tabIcon_NotStart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BAE3A11B1EBF4F00B6D625 /* tabIcon_NotStart@3x.png */; };
+		A1BAE3A91B1EC53F00B6D625 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BAE3A81B1EC53F00B6D625 /* test.png */; };
 		A1BB0E7819987CBB0082E91A /* MessageCenter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1BB0E7719987CBB0082E91A /* MessageCenter.storyboard */; };
 		A1BB0E7B1998852B0082E91A /* MessageCenter_CallinTeamProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB0E7A1998852B0082E91A /* MessageCenter_CallinTeamProfile.m */; };
 		A1C2802D18F79CED004C644E /* login_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C2802418F79CED004C644E /* login_logo.png */; };
@@ -252,8 +259,8 @@
 		A1818976194D671E00BE18BC /* EditTeamProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditTeamProfile.m; path = EditProfile/EditTeamProfile.m; sourceTree = "<group>"; };
 		A18D7F781903912D003028FE /* Soccer_BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Soccer_BaseNavigationController.h; path = Captain/Soccer_BaseNavigationController.h; sourceTree = "<group>"; };
 		A18D7F791903912D003028FE /* Soccer_BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Soccer_BaseNavigationController.m; path = Captain/Soccer_BaseNavigationController.m; sourceTree = "<group>"; };
-		A18E469418EE678500784A48 /* Captain_NewPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captain_NewPlayer.h; path = Captain/MyTeam/NewPlayer/Captain_NewPlayer.h; sourceTree = "<group>"; };
-		A18E469518EE678500784A48 /* Captain_NewPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captain_NewPlayer.m; path = Captain/MyTeam/NewPlayer/Captain_NewPlayer.m; sourceTree = "<group>"; };
+		A18E469418EE678500784A48 /* NewPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewPlayer.h; path = Captain/MyTeam/NewPlayer/NewPlayer.h; sourceTree = "<group>"; };
+		A18E469518EE678500784A48 /* NewPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewPlayer.m; path = Captain/MyTeam/NewPlayer/NewPlayer.m; sourceTree = "<group>"; };
 		A1940B10197787EC00B152AC /* MessageBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageBarButtonItem.h; path = Soccer/Utils/MessageBarButtonItem/MessageBarButtonItem.h; sourceTree = "<group>"; };
 		A1940B11197787EC00B152AC /* MessageBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageBarButtonItem.m; path = Soccer/Utils/MessageBarButtonItem/MessageBarButtonItem.m; sourceTree = "<group>"; };
 		A1940B13197794B000B152AC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -274,6 +281,13 @@
 		A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_MatchArrangement.m; sourceTree = "<group>"; };
 		A1B401111ABE737000194E91 /* UITextFieldForMatchDetailScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextFieldForMatchDetailScore.h; path = Soccer/Utils/TextFieldCustomize/UITextFieldForMatchDetailScore.h; sourceTree = "<group>"; };
 		A1B401121ABE737000194E91 /* UITextFieldForMatchDetailScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITextFieldForMatchDetailScore.m; path = Soccer/Utils/TextFieldCustomize/UITextFieldForMatchDetailScore.m; sourceTree = "<group>"; };
+		A1BAE39C1B1EBF4F00B6D625 /* tabIcon_Ended.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabIcon_Ended.png; path = Resource/TabIcon/tabIcon_Ended.png; sourceTree = "<group>"; };
+		A1BAE39D1B1EBF4F00B6D625 /* tabIcon_Ended@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIcon_Ended@2x.png"; path = "Resource/TabIcon/tabIcon_Ended@2x.png"; sourceTree = "<group>"; };
+		A1BAE39E1B1EBF4F00B6D625 /* tabIcon_Ended@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIcon_Ended@3x.png"; path = "Resource/TabIcon/tabIcon_Ended@3x.png"; sourceTree = "<group>"; };
+		A1BAE39F1B1EBF4F00B6D625 /* tabIcon_NotStart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabIcon_NotStart.png; path = Resource/TabIcon/tabIcon_NotStart.png; sourceTree = "<group>"; };
+		A1BAE3A01B1EBF4F00B6D625 /* tabIcon_NotStart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIcon_NotStart@2x.png"; path = "Resource/TabIcon/tabIcon_NotStart@2x.png"; sourceTree = "<group>"; };
+		A1BAE3A11B1EBF4F00B6D625 /* tabIcon_NotStart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIcon_NotStart@3x.png"; path = "Resource/TabIcon/tabIcon_NotStart@3x.png"; sourceTree = "<group>"; };
+		A1BAE3A81B1EC53F00B6D625 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = Resource/TabIcon/test.png; sourceTree = "<group>"; };
 		A1BB0E7719987CBB0082E91A /* MessageCenter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MessageCenter.storyboard; path = Captain/MessageCenter/MessageCenter.storyboard; sourceTree = "<group>"; };
 		A1BB0E791998852B0082E91A /* MessageCenter_CallinTeamProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCenter_CallinTeamProfile.h; path = Captain/MessageCenter/MessageCenter_CallinTeamProfile.h; sourceTree = "<group>"; };
 		A1BB0E7A1998852B0082E91A /* MessageCenter_CallinTeamProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCenter_CallinTeamProfile.m; path = Captain/MessageCenter/MessageCenter_CallinTeamProfile.m; sourceTree = "<group>"; };
@@ -456,6 +470,7 @@
 		A103339818D6BF8600050A61 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A1BAE39B1B1EBF2000B6D625 /* TabIcon */,
 				A17397E91A3193FC00048C21 /* Match */,
 				A1E596DE19C65E6500829AB1 /* Stadium */,
 				A1CF194719B19F1F0097E1DB /* PlayerMarket */,
@@ -759,6 +774,20 @@
 			name = TeamFundInquiry;
 			sourceTree = "<group>";
 		};
+		A1BAE39B1B1EBF2000B6D625 /* TabIcon */ = {
+			isa = PBXGroup;
+			children = (
+				A1BAE3A81B1EC53F00B6D625 /* test.png */,
+				A1BAE39C1B1EBF4F00B6D625 /* tabIcon_Ended.png */,
+				A1BAE39D1B1EBF4F00B6D625 /* tabIcon_Ended@2x.png */,
+				A1BAE39E1B1EBF4F00B6D625 /* tabIcon_Ended@3x.png */,
+				A1BAE39F1B1EBF4F00B6D625 /* tabIcon_NotStart.png */,
+				A1BAE3A01B1EBF4F00B6D625 /* tabIcon_NotStart@2x.png */,
+				A1BAE3A11B1EBF4F00B6D625 /* tabIcon_NotStart@3x.png */,
+			);
+			name = TabIcon;
+			sourceTree = "<group>";
+		};
 		A1C8FA3D18DFB1C500BE42D4 /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -934,8 +963,8 @@
 		A1F4230E1926AE8800A13C52 /* NewPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				A18E469418EE678500784A48 /* Captain_NewPlayer.h */,
-				A18E469518EE678500784A48 /* Captain_NewPlayer.m */,
+				A18E469418EE678500784A48 /* NewPlayer.h */,
+				A18E469518EE678500784A48 /* NewPlayer.m */,
 			);
 			name = NewPlayer;
 			sourceTree = "<group>";
@@ -1268,11 +1297,15 @@
 				A16EECBE197A32B000F59621 /* UIStrings.plist in Resources */,
 				A104EECB1B05BD5300E49B2C /* LaunchScreen.xib in Resources */,
 				A1E170A119562ED700826610 /* TextFieldIcon_Account.png in Resources */,
+				A1BAE3A51B1EBF4F00B6D625 /* tabIcon_NotStart.png in Resources */,
+				A1BAE3A91B1EC53F00B6D625 /* test.png in Resources */,
 				B2D13972194A7B53008E6CE9 /* Launch.storyboard in Resources */,
 				A12293051A33C5BA000F0E45 /* matchCell_fillMatchData.png in Resources */,
 				A1370A591904D7CC00E64949 /* leftIcon_createMatch_cost.png in Resources */,
 				A1C2802E18F79CED004C644E /* login_textfield_title_pwd.png in Resources */,
 				A1370A5C1904D7CC00E64949 /* leftIcon_createMatch_place.png in Resources */,
+				A1BAE3A71B1EBF4F00B6D625 /* tabIcon_NotStart@3x.png in Resources */,
+				A1BAE3A61B1EBF4F00B6D625 /* tabIcon_NotStart@2x.png in Resources */,
 				B262D2F6192813110079526E /* icon_opponentAccepted.png in Resources */,
 				A17A73DE198217BE00AAE4A2 /* TextFieldIcon_Style.png in Resources */,
 				A1FE233919763DA5004A7622 /* FillAdditional_CallFriends.png in Resources */,
@@ -1295,6 +1328,7 @@
 				A10BACB7190D9AA1000FA5A7 /* leftIcon_createMatch_score.png in Resources */,
 				A106EEA8198A089200F9765C /* Icon_NumOfTeamMember.png in Resources */,
 				A1370A5D1904D7CC00E64949 /* leftIcon_createMatch_time.png in Resources */,
+				A1BAE3A21B1EBF4F00B6D625 /* tabIcon_Ended.png in Resources */,
 				B229B34719C50A6000D46D02 /* SearchViewSwitchButtonHide.png in Resources */,
 				B2026506191C25E7004B8D74 /* menuIcon_myMatches.png in Resources */,
 				A169F7421915F3AF00361796 /* enterScore_VS.png in Resources */,
@@ -1308,6 +1342,7 @@
 				A1C2802F18F79CED004C644E /* login_textfield_title_user.png in Resources */,
 				B251F9EA1953B3610031E4A8 /* ActivityRegions.json in Resources */,
 				A17D3CD11960D82F0090F624 /* TextFieldIcon_Email.png in Resources */,
+				A1BAE3A31B1EBF4F00B6D625 /* tabIcon_Ended@2x.png in Resources */,
 				A1E170A319562ED700826610 /* TextFieldIcon_Birthday.png in Resources */,
 				B20264B4191BF081004B8D74 /* menu_bg@2x.png in Resources */,
 				A1FF897319DBC66700BF06EF /* Cancel_Icon.png in Resources */,
@@ -1325,6 +1360,7 @@
 				A1E170A219562ED700826610 /* TextFieldIcon_ActivityRegion.png in Resources */,
 				A10723221933026100F26A39 /* icon_like.png in Resources */,
 				A1C2803118F79CED004C644E /* register_birthday.png in Resources */,
+				A1BAE3A41B1EBF4F00B6D625 /* tabIcon_Ended@3x.png in Resources */,
 				B262D2FA1928131C0079526E /* stamp_cancelled.png in Resources */,
 				B2168BEB198304B500F91C4B /* MenuList_Captain.plist in Resources */,
 				A103338A18D419A300050A61 /* Soccer.storyboard in Resources */,
@@ -1352,7 +1388,7 @@
 				A1F428DC191209DB00567A02 /* AFHTTPRequestOperation.m in Sources */,
 				A1D07BE218CC1E4800FA3A8D /* AppDelegate.m in Sources */,
 				A177A7AC1A74BE0100A3D450 /* UITextFieldForMatchScore.m in Sources */,
-				A18E469618EE678500784A48 /* Captain_NewPlayer.m in Sources */,
+				A18E469618EE678500784A48 /* NewPlayer.m in Sources */,
 				B251F9ED1953B4830031E4A8 /* UITextFieldForActivityRegion.m in Sources */,
 				A1F428E3191209DB00567A02 /* AFURLResponseSerialization.m in Sources */,
 				B2D542B319452ECD008E6DE4 /* Register.m in Sources */,

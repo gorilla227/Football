@@ -25,8 +25,7 @@
     return self;
 }
 
--(void)showErrorAlertView:(NSError *)error otherInfo:(NSString *)otherInfo
-{
+- (void)showErrorAlertView:(NSError *)error otherInfo:(NSString *)otherInfo {
     UIAlertView *errorAlertView;
     if (error.code < 0) {
         errorAlertView = [[UIAlertView alloc] initWithTitle:@"杯具了" message:error.localizedDescription delegate:self cancelButtonTitle:@"好吧" otherButtonTitles:nil];
@@ -54,8 +53,7 @@
     [errorAlertView show];
 }
 
--(void)cancelAllOperations
-{
+- (void)cancelAllOperations {
     [manager.operationQueue cancelAllOperations];
 }
 
@@ -602,7 +600,9 @@
     NSString *urlString = [CONNECT_ServerURL stringByAppendingPathComponent:CONNECT_ReadMessages_Suffix];
     NSDictionary *parameters = CONNECT_ReadMessages_Parameters([messageIdList componentsJoinedByString:@","]);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [delegate readMessagesSuccessfully:messageIdList];
+        if ([delegate respondsToSelector:@selector(readMessagesSuccessfully:)]) {
+            [delegate readMessagesSuccessfully:messageIdList];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];

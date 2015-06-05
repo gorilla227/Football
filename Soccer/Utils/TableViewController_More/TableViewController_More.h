@@ -18,7 +18,7 @@ enum LoadMoreStatus {
 @property UIView *moreFooterView;
 @property UILabel *moreLabel;
 @property UIActivityIndicatorView *moreActivityIndicator;
-@property enum LoadMoreStatus loadMoreStatus;
+@property (nonatomic)enum LoadMoreStatus loadMoreStatus;
 @property BOOL allowAutoRefreshing;
 @property UIColor *topBounceBackgroundColor;
 

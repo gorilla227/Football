@@ -31,7 +31,7 @@ enum RequestMessageSourceType
 
 @protocol JSONConnectDelegate <NSObject>
 @optional
-#pragma new Server
+#pragma Response Functions
 //Login & Register & Update Profile
 -(void)loginVerificationSuccessfully:(NSInteger)userId;//登录验证成功
 -(void)loginVerificationFailed;//登录验证失败
@@ -88,7 +88,7 @@ enum RequestMessageSourceType
 
 
 
-#pragma new Server
+#pragma Request Functions
 @interface JSONConnect : NSObject
 @property id<JSONConnectDelegate>delegate;
 @property id<BusyIndicatorDelegate>busyIndicatorDelegate;

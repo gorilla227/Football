@@ -22,24 +22,15 @@
 }
 @synthesize menuButton, messageButton;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    mainNavigationController = self;
     //Set the background image
     UIImage *backgroundImage = [UIImage imageNamed:@"soccer_grass_bg@2x.png"];
     [self.view.layer setContents:(id)backgroundImage.CGImage];
 
-    mainMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"Captain_MainMenu"];
+    mainMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"MainMenu"];
     [mainMenu setDelegateOfMenuAppearance:self];
     [mainMenu setDelegateOfViewSwitch:self];
     [self.view addSubview:mainMenu.view];
@@ -83,13 +74,11 @@
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
 
--(void)refreshUnreadMessageAmount
-{
+- (void)refreshUnreadMessageAmount {
     [connection requestUnreadMessageAmount:gMyUserInfo messageTypes:unreadMessageTypes];
 }
 
--(void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount
-{
+- (void)receiveUnreadMessageAmount:(NSDictionary *)unreadMessageAmount {
     if (gUnreadMessageAmount) {
         for (NSString *key in unreadMessageAmount.allKeys) {
             [gUnreadMessageAmount setObject:[unreadMessageAmount objectForKey:key] forKey:key];
@@ -114,8 +103,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)menuSwitch
-{
+- (void)menuSwitch {
     [UIView beginAnimations:@"ShowMenu" context:nil];
     [UIView setAnimationDuration:0.3f];
     CGAffineTransform tShowMenu = CGAffineTransformMakeTranslation(mainMenu.view.bounds.size.width, 0);
@@ -147,22 +135,19 @@
     [UIView commitAnimations];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
     if (isMenuShow) {
         [self menuSwitch];
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)switchSelectMenuView:(NSString *)selectedView
-{
+- (void)switchSelectMenuView:(NSString *)selectedView {
     if(![self.visibleViewController.restorationIdentifier isEqualToString:selectedView]) {
         UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:selectedView];
         [targetViewController.navigationItem setLeftBarButtonItem:menuButton];
@@ -171,13 +156,11 @@
     }
 }
 
--(IBAction)menuButtonOnClicked:(id)sender
-{
+- (IBAction)menuButtonOnClicked:(id)sender {
     [self menuSwitch];
 }
 
--(void)messageButtonOnClicked
-{
+- (void)messageButtonOnClicked {
     UIViewController *messageCenter = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateInitialViewController];
     if (isMenuShow) {
         [self menuSwitch];
@@ -186,14 +169,12 @@
 }
 
 //BusyIndicatorDelegate
--(void)lockView
-{
+- (void)lockView {
     [self.view.window setUserInteractionEnabled:NO];
     [busyIndicator startAnimating];
 }
 
--(void)unlockView
-{
+- (void)unlockView {
     [self.view.window setUserInteractionEnabled:YES];
     [busyIndicator stopAnimating];
 }

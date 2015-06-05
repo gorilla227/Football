@@ -448,13 +448,13 @@
 			<key>Title</key>
 			<string>未开始</string>
 			<key>Icon</key>
-			<string>TeamIcon.jpg</string>
+			<string>test.png</string>
 		</dict>
 		<dict>
 			<key>Title</key>
 			<string>已结束</string>
 			<key>Icon</key>
-			<string>TeamIcon.jpg</string>
+			<string>tabIcon_Ended.png</string>
 		</dict>
 	</array>
 	<key>UI_ReplyMatchNoticeAlertView_Title_Succ</key>
