@@ -33,7 +33,6 @@
 @implementation FillAdditionalProfile{
     NSArray *actionButtons;
     CallFriends *callFriends;
-    ABPeoplePickerNavigationController *addressbookPeoplePicker;
     NSInteger roleCode;
 }
 @synthesize toolBar;
@@ -49,7 +48,7 @@
     //Get UI strings
     actionButtons = [gUIStrings objectForKey:@"UI_FillAdditionalProfile_Actions"];
     
-    callFriends = [[CallFriends alloc] initWithDelegate:self];
+    callFriends = [[CallFriends alloc] initWithPresentingViewController:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,7 +64,6 @@
 - (IBAction)cancelButtonOnClicked:(id)sender {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.navigationController popToRootViewControllerAnimated:YES];
-//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)completeButtonOnClicked:(id)sender {
@@ -158,70 +156,6 @@
         UIViewController *targetViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"FindTeam"];
         [self.navigationController pushViewController:targetViewController animated:YES];
     }
-}
-
-//CallFriends
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"%@", [actionSheet buttonTitleAtIndex:buttonIndex]);
-    if (buttonIndex == 0) {
-        //Phone_Message
-        addressbookPeoplePicker = [[ABPeoplePickerNavigationController alloc] init];
-        [addressbookPeoplePicker setPeoplePickerDelegate:self];
-        [addressbookPeoplePicker setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-        [self presentViewController:addressbookPeoplePicker animated:YES completion:nil];
-    }
-}
-
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
-    [peoplePicker dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
-    NSArray *displayedProperties = @[[NSNumber numberWithInt:kABPersonPhoneProperty], [NSNumber numberWithInt:kABPersonEmailProperty]];
-    [peoplePicker setDisplayedProperties:displayedProperties];
-    return YES;
-}
-
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
-    if (property == kABPersonPhoneProperty) {
-        //MFMessage
-        if ([MFMessageComposeViewController canSendText]) {
-            ABMutableMultiValueRef phoneProperties = ABRecordCopyValue(person, property);
-            NSString *phoneNumber = CFBridgingRelease(ABMultiValueCopyValueAtIndex(phoneProperties, ABMultiValueGetIndexForIdentifier(phoneProperties, identifier)));
-            MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-            NSString *messageTemplateFile = [[NSBundle mainBundle] pathForResource:@"MessageTemplate" ofType:@"plist"];
-            NSDictionary *messageTemplate = [NSDictionary dictionaryWithContentsOfFile:messageTemplateFile];
-            [messageController setMessageComposeDelegate:self];
-            [messageController setRecipients:@[phoneNumber]];
-            [messageController setBody:[messageTemplate objectForKey:@"SMS_InviteFriends"]];
-            [peoplePicker presentViewController:messageController animated:YES completion:nil];
-        }
-        else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Unsupported"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
-            [alertView show];
-        }
-    }
-    return NO;
-}
-
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-    UIAlertView *alertView;
-    switch (result) {
-        case MessageComposeResultCancelled:
-            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Cancelled"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
-            break;
-        case MessageComposeResultFailed:
-            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Failed"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
-            break;
-        case MessageComposeResultSent:
-            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Successful"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
-        default:
-            break;
-    }
-    [alertView show];
-    [controller dismissViewControllerAnimated:NO completion:^{
-        [addressbookPeoplePicker dismissViewControllerAnimated:NO completion:nil];
-    }];
 }
 
 /*

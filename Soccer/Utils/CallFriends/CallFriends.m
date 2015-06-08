@@ -10,21 +10,13 @@
 
 @implementation CallFriends{
     NSArray *callFriendsMenuList;
+    UIViewController *presentingViewController;
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
+- (id)initWithPresentingViewController:(UIViewController *)viewController {
+    self = [super initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
--(id)initWithDelegate:(id)delegate
-{
-    self = [super initWithTitle:nil delegate:delegate cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    if (self) {
+        presentingViewController = viewController;
         NSString *callFriendsMenuListFile = [[NSBundle mainBundle] pathForResource:@"ActionSheetMenu" ofType:@"plist"];
         callFriendsMenuList = [[[NSDictionary alloc] initWithContentsOfFile:callFriendsMenuListFile] objectForKey:@"CallFriendsMenu"];
         
@@ -32,9 +24,45 @@
             [self addButtonWithTitle:[menuItem objectForKey:@"Title"]];
             [[self.subviews lastObject] setImage:[UIImage imageNamed:[menuItem objectForKey:@"Icon"]] forState:UIControlStateNormal];
         }
-        [self setCancelButtonIndex:[self addButtonWithTitle:@"取消"]];
+        [self setCancelButtonIndex:[self addButtonWithTitle:[gUIStrings objectForKey:@"UI_CallFriends_Cancel"]]];
     }
     return self;
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"%@", [actionSheet buttonTitleAtIndex:buttonIndex]);
+    
+    //MFMessage
+    if ([MFMessageComposeViewController canSendText]) {
+        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+        NSString *messageTemplateFile = [[NSBundle mainBundle] pathForResource:@"MessageTemplate" ofType:@"plist"];
+        NSDictionary *messageTemplate = [NSDictionary dictionaryWithContentsOfFile:messageTemplateFile];
+        [messageController setMessageComposeDelegate:(id)self];
+        [messageController setBody:[messageTemplate objectForKey:@"SMS_InviteFriends"]];
+        [presentingViewController presentViewController:messageController animated:YES completion:nil];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Unsupported"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    UIAlertView *alertView;
+    switch (result) {
+        case MessageComposeResultCancelled:
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Cancelled"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+            break;
+        case MessageComposeResultFailed:
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Failed"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+            break;
+        case MessageComposeResultSent:
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Successful"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+        default:
+            break;
+    }
+    [alertView show];
+    [controller dismissViewControllerAnimated:NO completion:nil];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

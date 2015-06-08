@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@import MessageUI;
 
-@interface CallFriends : UIActionSheet
--(id)initWithDelegate:(id)delegate;
+@interface CallFriends : UIActionSheet<MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
+-(id)initWithPresentingViewController:(UIViewController *)viewController;
 
 @end

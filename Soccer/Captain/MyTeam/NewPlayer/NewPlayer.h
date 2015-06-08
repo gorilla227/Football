@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CallFriends.h"
+@import MessageUI;
 
 @interface NewPlayer_Cell : UITableViewCell<UIAlertViewDelegate, JSONConnectDelegate>
 @property Message *message;
@@ -17,6 +19,6 @@
 
 @end
 
-@interface NewPlayer : UIViewController<UIActionSheetDelegate, JSONConnectDelegate>
+@interface NewPlayer : UIViewController<UIActionSheetDelegate, JSONConnectDelegate, MFMessageComposeViewControllerDelegate>
 
 @end

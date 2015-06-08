@@ -535,5 +535,7 @@
 	<string>赛制</string>
 	<key>UI_MatchDetails_Cost</key>
 	<string>费用</string>
+	<key>UI_CallFriends_Cancel</key>
+	<string>取消</string>
 </dict>
 </plist>

@@ -10,12 +10,6 @@
 			<key>Icon</key>
 			<string>callFriendsIcon_phone.png</string>
 		</dict>
-		<dict>
-			<key>Title</key>
-			<string>微信/微信群</string>
-			<key>Icon</key>
-			<string>callFriendsIcon_wechat.png</string>
-		</dict>
 	</array>
 	<key>InviteOpponentMenu</key>
 	<array>

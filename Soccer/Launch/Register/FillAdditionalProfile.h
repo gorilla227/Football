@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AddressBookUI/AddressBookUI.h>
-#import <MessageUI/MessageUI.h>
 #import "CallFriends.h"
 
 @interface FillAdditionalProfile_Cell : UICollectionViewCell
 
 @end
 
-@interface FillAdditionalProfile : UICollectionViewController<ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
+@interface FillAdditionalProfile : UICollectionViewController
+
 @end

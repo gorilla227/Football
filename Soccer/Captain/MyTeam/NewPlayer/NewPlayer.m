@@ -7,7 +7,6 @@
 //
 
 #import "NewPlayer.h"
-#import "CallFriends.h"
 #import "PlayerDetails.h"
 #import "MessageCenter_ApplyinPlayerProfile.h"
 #import "MessageCenter_Compose.h"
@@ -444,6 +443,7 @@
     NSArray *applyinList;
     NSArray *callinList;
     NSMutableDictionary *messageReferenceDictionary;
+    CallFriends *callFriends;
 }
 @synthesize teamLogoImageView, typeSegement, numOfApplyinLabel, numOfCallinLabel, numOfTeamMemberLabel, actionBar;
 
@@ -454,6 +454,7 @@
     messageReferenceDictionary = [NSMutableDictionary new];
     [self.view setBackgroundColor:[UIColor clearColor]];
     [self setToolbarItems:actionBar.items];
+    callFriends = [[CallFriends alloc] initWithPresentingViewController:self];
     
     //Set TeamLogo ImageView
     [teamLogoImageView.layer setCornerRadius:10.0f];
@@ -478,17 +479,48 @@
     [self.navigationController setToolbarHidden:NO];
 }
 
--(IBAction)callFriendsButtonOnClicked:(id)sender
-{
-    CallFriends *callFriends = [[CallFriends alloc] initWithDelegate:self];
+- (IBAction)callFriendsButtonOnClicked:(id)sender {
     [callFriends showInView:self.view];
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"%@", [actionSheet buttonTitleAtIndex:buttonIndex]);
+//    addressbookPeoplePicker = [[ABPeoplePickerNavigationController alloc] init];
+//    [addressbookPeoplePicker setPeoplePickerDelegate:self];
+//    [self presentViewController:addressbookPeoplePicker animated:YES completion:nil];
+    
+    //MFMessage
+    if ([MFMessageComposeViewController canSendText]) {
+        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+        NSString *messageTemplateFile = [[NSBundle mainBundle] pathForResource:@"MessageTemplate" ofType:@"plist"];
+        NSDictionary *messageTemplate = [NSDictionary dictionaryWithContentsOfFile:messageTemplateFile];
+        [messageController setMessageComposeDelegate:(id)self];
+        [messageController setBody:[messageTemplate objectForKey:@"SMS_InviteFriends"]];
+        [self presentViewController:messageController animated:YES completion:nil];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Unsupported"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    UIAlertView *alertView;
+    switch (result) {
+        case MessageComposeResultCancelled:
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Cancelled"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+            break;
+        case MessageComposeResultFailed:
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Failed"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+            break;
+        case MessageComposeResultSent:
+            alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Successful"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+        default:
+            break;
+    }
+    [alertView show];
+    [controller dismissViewControllerAnimated:NO completion:nil];
+}
 /*
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
