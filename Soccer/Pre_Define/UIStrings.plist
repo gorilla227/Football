@@ -448,7 +448,7 @@
 			<key>Title</key>
 			<string>未开始</string>
 			<key>Icon</key>
-			<string>test.png</string>
+			<string>tabIcon_NotStart.png</string>
 		</dict>
 		<dict>
 			<key>Title</key>
