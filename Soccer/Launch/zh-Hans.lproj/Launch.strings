@@ -1,0 +1,72 @@
+
+/* Class = "UIBarButtonItem"; title = "返回"; ObjectID = "27g-L7-kdm"; */
+"27g-L7-kdm.title" = "返回";
+
+/* Class = "UITextField"; placeholder = "邮箱"; ObjectID = "6CG-E8-kLA"; */
+"6CG-E8-kLA.placeholder" = "邮箱";
+
+/* Class = "UIButton"; normalTitle = "密码找回"; ObjectID = "7e3-Qx-IWn"; */
+"7e3-Qx-IWn.normalTitle" = "密码找回";
+
+/* Class = "UITextField"; placeholder = "密码"; ObjectID = "9LN-mN-jpy"; */
+"9LN-mN-jpy.placeholder" = "密码";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "HJ6-rP-sGs"; */
+"HJ6-rP-sGs.normalTitle" = "登录";
+
+/* Class = "UITableViewSection"; headerTitle = "球员资料"; ObjectID = "JZX-uk-3Nw"; */
+"JZX-uk-3Nw.headerTitle" = "球员资料";
+
+/* Class = "UIViewController"; title = "Login"; ObjectID = "P6b-ds-GMJ"; */
+"P6b-ds-GMJ.title" = "Login";
+
+/* Class = "UIBarButtonItem"; title = "返回"; ObjectID = "T5z-Vo-TaJ"; */
+"T5z-Vo-TaJ.title" = "返回";
+
+/* Class = "UINavigationItem"; title = "补充资料"; ObjectID = "Z8Z-XX-3Eb"; */
+"Z8Z-XX-3Eb.title" = "补充资料";
+
+/* Class = "UIBarButtonItem"; title = "注册"; ObjectID = "abX-t5-IPq"; */
+"abX-t5-IPq.title" = "注册";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "bOD-aF-adB"; */
+"bOD-aF-adB.normalTitle" = "注册";
+
+/* Class = "UINavigationController"; title = "登录"; ObjectID = "bWS-B6-q9m"; */
+"bWS-B6-q9m.title" = "登录";
+
+/* Class = "UITextField"; placeholder = "昵称"; ObjectID = "e87-tg-8jW"; */
+"e87-tg-8jW.placeholder" = "昵称";
+
+/* Class = "UITextView"; text = "￼1、队长/领队身份具有球队管理功能 2、如果是球员身份，请点击上方的“我是球员”，注册球员账户"; ObjectID = "iAl-uY-u95"; */
+"iAl-uY-u95.text" = "￼1、队长/领队身份具有球队管理功能 2、如果是球员身份，请点击上方的“我是球员”，注册球员账户";
+
+/* Class = "UIBarButtonItem"; title = "登录系统"; ObjectID = "nxs-Dn-LQU"; */
+"nxs-Dn-LQU.title" = "登录系统";
+
+/* Class = "UILabel"; text = "完善球队资料"; ObjectID = "oJM-lF-kv5"; */
+"oJM-lF-kv5.text" = "完善球队资料";
+
+/* Class = "UITextField"; placeholder = "手机号码"; ObjectID = "qjm-Ko-e2i"; */
+"qjm-Ko-e2i.placeholder" = "手机号码";
+
+/* Class = "UITextField"; placeholder = "球队名称"; ObjectID = "rxi-Jj-BoD"; */
+"rxi-Jj-BoD.placeholder" = "球队名称";
+
+/* Class = "UITextField"; placeholder = "手机号码，登录时的凭证"; ObjectID = "swk-gl-lTM"; */
+"swk-gl-lTM.placeholder" = "手机号码，登录时的凭证";
+
+/* Class = "UISegmentedControl"; usU-S2-oUp.segmentTitles[0] = "我是队长"; ObjectID = "usU-S2-oUp"; */
+"usU-S2-oUp.segmentTitles[0]" = "我是队长";
+
+/* Class = "UISegmentedControl"; usU-S2-oUp.segmentTitles[1] = "我是球员"; ObjectID = "usU-S2-oUp"; */
+"usU-S2-oUp.segmentTitles[1]" = "我是球员";
+
+/* Class = "UILabel"; text = "还没有账号？"; ObjectID = "xxY-zW-Z9C"; */
+"xxY-zW-Z9C.text" = "还没有账号？";
+
+/* Class = "UITextField"; placeholder = "密码"; ObjectID = "you-sL-TRE"; */
+"you-sL-TRE.placeholder" = "密码";
+
+/* Class = "UITableViewSection"; headerTitle = "球队资料"; ObjectID = "zIU-A7-KkP"; */
+"zIU-A7-KkP.headerTitle" = "球队资料";

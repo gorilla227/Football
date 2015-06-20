@@ -1,0 +1,1089 @@
+
+/* Class = "UITextField"; placeholder = "请选择比赛场地"; ObjectID = "0Oq-Rr-iGE"; */
+"0Oq-Rr-iGE.placeholder" = "请选择比赛场地";
+
+/* Class = "UILabel"; text = "TeamName"; ObjectID = "0fd-77-66X"; */
+"0fd-77-66X.text" = "TeamName";
+
+/* Class = "UITextField"; placeholder = "主要活动区域"; ObjectID = "0vg-DO-bCx"; */
+"0vg-DO-bCx.placeholder" = "主要活动区域";
+
+/* Class = "UITextField"; placeholder = "QQ"; ObjectID = "0xi-0A-5ru"; */
+"0xi-0A-5ru.placeholder" = "QQ";
+
+/* Class = "UILabel"; text = "参赛场数"; ObjectID = "1Fg-DR-TGF"; */
+"1Fg-DR-TGF.text" = "参赛场数";
+
+/* Class = "UIViewController"; title = "新人入队"; ObjectID = "1KA-6F-QpJ"; */
+"1KA-6F-QpJ.title" = "新人入队";
+
+/* Class = "UINavigationItem"; title = "设置"; ObjectID = "1UN-rU-0k2"; */
+"1UN-rU-0k2.title" = "设置";
+
+/* Class = "UILabel"; text = "88"; ObjectID = "1ZT-3p-7GT"; */
+"1ZT-3p-7GT.text" = "88";
+
+/* Class = "UIViewController"; title = "选择球场"; ObjectID = "1jn-PF-RVR"; */
+"1jn-PF-RVR.title" = "选择球场";
+
+/* Class = "UILabel"; text = "队员人数"; ObjectID = "1nw-Sp-mao"; */
+"1nw-Sp-mao.text" = "队员人数";
+
+/* Class = "UILabel"; text = "约球公告"; ObjectID = "1qY-sT-Vkf"; */
+"1qY-sT-Vkf.text" = "约球公告";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "22S-w4-QSz"; */
+"22S-w4-QSz.text" = "Detail";
+
+/* Class = "UILabel"; text = "球场名称"; ObjectID = "25r-ik-B63"; */
+"25r-ik-B63.text" = "球场名称";
+
+/* Class = "UITextField"; placeholder = "请选择比赛时间"; ObjectID = "27b-de-ijJ"; */
+"27b-de-ijJ.placeholder" = "请选择比赛时间";
+
+/* Class = "UILabel"; text = "个人风格"; ObjectID = "27n-6e-8l1"; */
+"27n-6e-8l1.text" = "个人风格";
+
+/* Class = "UILabel"; text = "招新开关"; ObjectID = "29Y-7B-GLQ"; */
+"29Y-7B-GLQ.text" = "招新开关";
+
+/* Class = "UIBarButtonItem"; title = "建立球队"; ObjectID = "2t8-Ao-jg0"; */
+"2t8-Ao-jg0.title" = "建立球队";
+
+/* Class = "UINavigationItem"; title = "选择球场"; ObjectID = "2u0-zX-xVl"; */
+"2u0-zX-xVl.title" = "选择球场";
+
+/* Class = "UILabel"; text = "AverageAge"; ObjectID = "2y7-Y1-cH9"; */
+"2y7-Y1-cH9.text" = "AverageAge";
+
+/* Class = "UILabel"; text = "场上位置"; ObjectID = "33z-WG-piG"; */
+"33z-WG-piG.text" = "场上位置";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "3Lb-Of-Cn0"; */
+"3Lb-Of-Cn0.title" = "保存";
+
+/* Class = "UITableViewSection"; headerTitle = "基本资料"; ObjectID = "3b2-72-GWd"; */
+"3b2-72-GWd.headerTitle" = "基本资料";
+
+/* Class = "UITextField"; placeholder = "出生日期"; ObjectID = "3kP-rQ-yno"; */
+"3kP-rQ-yno.placeholder" = "出生日期";
+
+/* Class = "UIButton"; normalTitle = "通知球员"; ObjectID = "4Fi-xq-Zv6"; */
+"4Fi-xq-Zv6.normalTitle" = "通知球员";
+
+/* Class = "UIBarButtonItem"; title = "临时帮忙"; ObjectID = "4MJ-oT-NRP"; */
+"4MJ-oT-NRP.title" = "临时帮忙";
+
+/* Class = "UIButton"; normalTitle = "同意"; ObjectID = "4V7-io-7JL"; */
+"4V7-io-7JL.normalTitle" = "同意";
+
+/* Class = "UILabel"; text = "招新公告"; ObjectID = "4Vr-Tc-zy0"; */
+"4Vr-Tc-zy0.text" = "招新公告";
+
+/* Class = "UIBarButtonItem"; title = "拒绝挑战"; ObjectID = "4Yv-H4-xzc"; */
+"4Yv-H4-xzc.title" = "拒绝挑战";
+
+/* Class = "UIButton"; normalTitle = "建立比赛"; ObjectID = "54L-xV-FLG"; */
+"54L-xV-FLG.normalTitle" = "建立比赛";
+
+/* Class = "UIButton"; normalTitle = "搜索"; ObjectID = "5JO-JB-K9h"; */
+"5JO-JB-K9h.normalTitle" = "搜索";
+
+/* Class = "UILabel"; text = "球队宣言"; ObjectID = "5TI-pF-fVD"; */
+"5TI-pF-fVD.text" = "球队宣言";
+
+/* Class = "UILabel"; text = "Place"; ObjectID = "5mN-sh-XmM"; */
+"5mN-sh-XmM.text" = "Place";
+
+/* Class = "UIButton"; normalTitle = "通知球员"; ObjectID = "5xR-r5-or2"; */
+"5xR-r5-or2.normalTitle" = "通知球员";
+
+/* Class = "UIBarButtonItem"; title = "邀请对手"; ObjectID = "6E2-Sv-85J"; */
+"6E2-Sv-85J.title" = "邀请对手";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "6Ek-c4-uPh"; */
+"6Ek-c4-uPh.title" = "保存";
+
+/* Class = "UIBarButtonItem"; title = "同意参赛"; ObjectID = "6Hm-Hb-aGK"; */
+"6Hm-Hb-aGK.title" = "同意参赛";
+
+/* Class = "UILabel"; text = "昵称"; ObjectID = "6Jb-my-4xP"; */
+"6Jb-my-4xP.text" = "昵称";
+
+/* Class = "UILabel"; text = "QQ"; ObjectID = "6Ru-fT-0xx"; */
+"6Ru-fT-0xx.text" = "QQ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "6SJ-87-1Gm"; */
+"6SJ-87-1Gm.text" = "0";
+
+/* Class = "UILabel"; text = "有队上钩"; ObjectID = "6sd-ab-MFk"; */
+"6sd-ab-MFk.text" = "有队上钩";
+
+/* Class = "UILabel"; text = "GameTime"; ObjectID = "6tf-Pc-pwI"; */
+"6tf-Pc-pwI.text" = "GameTime";
+
+/* Class = "UINavigationItem"; title = "建立比赛"; ObjectID = "7DI-on-Rae"; */
+"7DI-on-Rae.title" = "建立比赛";
+
+/* Class = "UILabel"; text = "球场名称"; ObjectID = "7cD-xB-GdW"; */
+"7cD-xB-GdW.text" = "球场名称";
+
+/* Class = "UIBarButtonItem"; title = "招募队员"; ObjectID = "7td-Eu-78Y"; */
+"7td-Eu-78Y.title" = "招募队员";
+
+/* Class = "UILabel"; text = "\"对手队名“邀请我队比赛"; ObjectID = "7v2-h3-Pnb"; */
+"7v2-h3-Pnb.text" = "\"对手队名“邀请我队比赛";
+
+/* Class = "UIButton"; normalTitle = "约战"; ObjectID = "7yL-f6-u4E"; */
+"7yL-f6-u4E.normalTitle" = "约战";
+
+/* Class = "UIButton"; selectedTitle = "已选择该队"; ObjectID = "7yL-f6-u4E"; */
+"7yL-f6-u4E.selectedTitle" = "已选择该队";
+
+/* Class = "UILabel"; text = "申请加入本队人数"; ObjectID = "87Y-ve-j3G"; */
+"87Y-ve-j3G.text" = "申请加入本队人数";
+
+/* Class = "UIBarButtonItem"; title = "球员超市"; ObjectID = "8CZ-1O-Kn2"; */
+"8CZ-1O-Kn2.title" = "球员超市";
+
+/* Class = "UIButton"; normalTitle = "拒绝"; ObjectID = "8G1-de-FYQ"; */
+"8G1-de-FYQ.normalTitle" = "拒绝";
+
+/* Class = "UITextField"; placeholder = "请选择比赛赛制"; ObjectID = "8Hr-qf-mix"; */
+"8Hr-qf-mix.placeholder" = "请选择比赛赛制";
+
+/* Class = "UIButton"; normalTitle = "选择球场"; ObjectID = "8na-5h-avx"; */
+"8na-5h-avx.normalTitle" = "选择球场";
+
+/* Class = "UILabel"; text = "人"; ObjectID = "8wx-im-zIl"; */
+"8wx-im-zIl.text" = "人";
+
+/* Class = "UILabel"; text = "球场名称"; ObjectID = "8xE-Xh-vhh"; */
+"8xE-Xh-vhh.text" = "球场名称";
+
+/* Class = "UILabel"; text = "邮箱"; ObjectID = "92I-7Z-3h8"; */
+"92I-7Z-3h8.text" = "邮箱";
+
+/* Class = "UIBarButtonItem"; title = "申请入队"; ObjectID = "96Z-cN-DvT"; */
+"96Z-cN-DvT.title" = "申请入队";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "9Sf-aa-XNE"; */
+"9Sf-aa-XNE.text" = "Title";
+
+/* Class = "UILabel"; text = "总比赛数："; ObjectID = "9il-E7-hAV"; */
+"9il-E7-hAV.text" = "总比赛数：";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "A3S-CE-rk6"; */
+"A3S-CE-rk6.text" = "无";
+
+/* Class = "UILabel"; text = "场地名称"; ObjectID = "AEa-iE-q2O"; */
+"AEa-iE-q2O.text" = "场地名称";
+
+/* Class = "UILabel"; text = "20"; ObjectID = "AIJ-As-W8Q"; */
+"AIJ-As-W8Q.text" = "20";
+
+/* Class = "UILabel"; text = "昵称"; ObjectID = "Aof-ZY-Tc5"; */
+"Aof-ZY-Tc5.text" = "昵称";
+
+/* Class = "UILabel"; text = "点击上传群二维码"; ObjectID = "BAW-gV-APE"; */
+"BAW-gV-APE.text" = "点击上传群二维码";
+
+/* Class = "UITextField"; placeholder = "主要活动区域"; ObjectID = "BZJ-7g-zXb"; */
+"BZJ-7g-zXb.placeholder" = "主要活动区域";
+
+/* Class = "UILabel"; text = "发送时间"; ObjectID = "Bmr-IO-wa0"; */
+"Bmr-IO-wa0.text" = "发送时间";
+
+/* Class = "UIViewController"; title = "热身赛"; ObjectID = "C9b-P3-Oec"; */
+"C9b-P3-Oec.title" = "热身赛";
+
+/* Class = "UILabel"; text = "上次缴费日期"; ObjectID = "CIj-uB-BgB"; */
+"CIj-uB-BgB.text" = "上次缴费日期";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "CKa-Mu-sFB"; */
+"CKa-Mu-sFB.text" = "无";
+
+/* Class = "UILabel"; text = "裁判"; ObjectID = "Cch-Dh-W4n"; */
+"Cch-Dh-W4n.text" = "裁判";
+
+/* Class = "UILabel"; text = "微信"; ObjectID = "CuO-Ei-9ot"; */
+"CuO-Ei-9ot.text" = "微信";
+
+/* Class = "UILabel"; text = "平均年龄"; ObjectID = "D0E-Q5-tyA"; */
+"D0E-Q5-tyA.text" = "平均年龄";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "D1D-Wv-Rdl"; */
+"D1D-Wv-Rdl.text" = "无";
+
+/* Class = "UIViewController"; title = "输入对手"; ObjectID = "D47-h1-sYj"; */
+"D47-h1-sYj.title" = "输入对手";
+
+/* Class = "UITextField"; placeholder = "输入场地名"; ObjectID = "DE2-8u-1a7"; */
+"DE2-8u-1a7.placeholder" = "输入场地名";
+
+/* Class = "UITextField"; placeholder = "比分"; ObjectID = "Dyv-iz-CSq"; */
+"Dyv-iz-CSq.placeholder" = "比分";
+
+/* Class = "UILabel"; text = "裁判"; ObjectID = "E66-eQ-lNP"; */
+"E66-eQ-lNP.text" = "裁判";
+
+/* Class = "UITextField"; placeholder = "输入对手"; ObjectID = "EEW-uu-add"; */
+"EEW-uu-add.placeholder" = "输入对手";
+
+/* Class = "UILabel"; text = "出场"; ObjectID = "EN0-nL-ndD"; */
+"EN0-nL-ndD.text" = "出场";
+
+/* Class = "UILabel"; text = "开赛时间：20XX-XX-XX XX:XX:XX"; ObjectID = "EQp-tf-jcD"; */
+"EQp-tf-jcD.text" = "开赛时间：20XX-XX-XX XX:XX:XX";
+
+/* Class = "UILabel"; text = "个人队费总额"; ObjectID = "Es8-TY-rLQ"; */
+"Es8-TY-rLQ.text" = "个人队费总额";
+
+/* Class = "UILabel"; text = "电话"; ObjectID = "FO4-oP-fkU"; */
+"FO4-oP-fkU.text" = "电话";
+
+/* Class = "UILabel"; text = "时间："; ObjectID = "Fht-rm-m4E"; */
+"Fht-rm-m4E.text" = "时间：";
+
+/* Class = "UILabel"; text = "制式："; ObjectID = "Frz-WS-Lv8"; */
+"Frz-WS-Lv8.text" = "制式：";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "FvN-E6-Bna"; */
+"FvN-E6-Bna.text" = "10";
+
+/* Class = "UIBarButtonItem"; title = "接受挑战"; ObjectID = "GQH-29-Frr"; */
+"GQH-29-Frr.title" = "接受挑战";
+
+/* Class = "UILabel"; text = "个人风格"; ObjectID = "GRu-N1-J5e"; */
+"GRu-N1-J5e.text" = "个人风格";
+
+/* Class = "UILabel"; text = "进球"; ObjectID = "GTv-yB-Hbh"; */
+"GTv-yB-Hbh.text" = "进球";
+
+/* Class = "UILabel"; text = "球队主场"; ObjectID = "Gdw-1p-zQU"; */
+"Gdw-1p-zQU.text" = "球队主场";
+
+/* Class = "UIButton"; selectedTitle = "s"; ObjectID = "GgF-SF-vtI"; */
+"GgF-SF-vtI.selectedTitle" = "s";
+
+/* Class = "UITableViewSection"; headerTitle = "比赛数据"; ObjectID = "Gso-9x-cwH"; */
+"Gso-9x-cwH.headerTitle" = "比赛数据";
+
+/* Class = "UINavigationItem"; title = "球员超市"; ObjectID = "H1c-Fc-coQ"; */
+"H1c-Fc-coQ.title" = "球员超市";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "HL8-C8-9eY"; */
+"HL8-C8-9eY.text" = "0";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "He1-B8-xeC"; */
+"He1-B8-xeC.text" = "无";
+
+/* Class = "UILabel"; text = "主要活动区域"; ObjectID = "Hn8-m4-xOt"; */
+"Hn8-m4-xOt.text" = "主要活动区域";
+
+/* Class = "UITextField"; placeholder = "请选择场地"; ObjectID = "Hwb-56-4Tz"; */
+"Hwb-56-4Tz.placeholder" = "请选择场地";
+
+/* Class = "UILabel"; text = "30"; ObjectID = "I7w-Dw-2PK"; */
+"I7w-Dw-2PK.text" = "30";
+
+/* Class = "UILabel"; text = "活动区域"; ObjectID = "IY7-1I-wFe"; */
+"IY7-1I-wFe.text" = "活动区域";
+
+/* Class = "UILabel"; text = "水"; ObjectID = "Id1-PQ-vk6"; */
+"Id1-PQ-vk6.text" = "水";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "JGE-E1-Tsq"; */
+"JGE-E1-Tsq.text" = "0";
+
+/* Class = "UILabel"; text = "30000.0元"; ObjectID = "JIi-uE-Hxh"; */
+"JIi-uE-Hxh.text" = "30000.0元";
+
+/* Class = "UITextField"; placeholder = "选择起始时间"; ObjectID = "JQD-vk-cQk"; */
+"JQD-vk-cQk.placeholder" = "选择起始时间";
+
+/* Class = "UITextField"; placeholder = "请选择比赛对手"; ObjectID = "Jez-VY-cRV"; */
+"Jez-VY-cRV.placeholder" = "请选择比赛对手";
+
+/* Class = "UITableViewSection"; headerTitle = "比赛数据"; ObjectID = "Jjc-5V-lNj"; */
+"Jjc-5V-lNj.headerTitle" = "比赛数据";
+
+/* Class = "UILabel"; text = "入队时间"; ObjectID = "Jmp-ds-Wla"; */
+"Jmp-ds-Wla.text" = "入队时间";
+
+/* Class = "UIBarButtonItem"; title = "约战"; ObjectID = "JwH-Qp-m9b"; */
+"JwH-Qp-m9b.title" = "约战";
+
+/* Class = "UILabel"; text = "进球"; ObjectID = "K0A-Y8-LO1"; */
+"K0A-Y8-LO1.text" = "进球";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "KMI-rU-2Pm"; */
+"KMI-rU-2Pm.title" = "保存";
+
+/* Class = "UILabel"; text = "进球队员"; ObjectID = "Kqf-6W-38X"; */
+"Kqf-6W-38X.text" = "进球队员";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Kre-Ob-xjZ"; */
+"Kre-Ob-xjZ.text" = "0";
+
+/* Class = "UINavigationItem"; title = "比分详情"; ObjectID = "KuN-CK-JO0"; */
+"KuN-CK-JO0.title" = "比分详情";
+
+/* Class = "UILabel"; text = "胜场/胜率："; ObjectID = "L4J-qu-gJr"; */
+"L4J-qu-gJr.text" = "胜场/胜率：";
+
+/* Class = "UITableViewSection"; headerTitle = "基本资料"; ObjectID = "Lhy-mY-dRm"; */
+"Lhy-mY-dRm.headerTitle" = "基本资料";
+
+/* Class = "UILabel"; text = "上次缴费金额"; ObjectID = "LiT-JE-mi9"; */
+"LiT-JE-mi9.text" = "上次缴费金额";
+
+/* Class = "UIBarButtonItem"; title = "确定建立"; ObjectID = "Lps-HG-YoU"; */
+"Lps-HG-YoU.title" = "确定建立";
+
+/* Class = "UINavigationItem"; title = "球场详情"; ObjectID = "LwW-qw-9K0"; */
+"LwW-qw-9K0.title" = "球场详情";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "MBN-cE-PKT"; */
+"MBN-cE-PKT.title" = "保存";
+
+/* Class = "UITextField"; placeholder = "球队名称"; ObjectID = "MO4-LH-aZP"; */
+"MO4-LH-aZP.placeholder" = "球队名称";
+
+/* Class = "UILabel"; text = "再找对手"; ObjectID = "MSo-Zm-2qE"; */
+"MSo-Zm-2qE.text" = "再找对手";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "MYo-cL-MWz"; */
+"MYo-cL-MWz.text" = "5";
+
+/* Class = "UILabel"; text = "队名"; ObjectID = "MfV-q0-oo3"; */
+"MfV-q0-oo3.text" = "队名";
+
+/* Class = "UITableViewController"; title = "队费查询"; ObjectID = "Mg6-CW-sYC"; */
+"Mg6-CW-sYC.title" = "队费查询";
+
+/* Class = "UISegmentedControl"; N4R-qe-51o.segmentTitles[0] = "同意"; ObjectID = "N4R-qe-51o"; */
+"N4R-qe-51o.segmentTitles[0]" = "同意";
+
+/* Class = "UISegmentedControl"; N4R-qe-51o.segmentTitles[1] = "试训"; ObjectID = "N4R-qe-51o"; */
+"N4R-qe-51o.segmentTitles[1]" = "试训";
+
+/* Class = "UISegmentedControl"; N4R-qe-51o.segmentTitles[2] = "拒绝"; ObjectID = "N4R-qe-51o"; */
+"N4R-qe-51o.segmentTitles[2]" = "拒绝";
+
+/* Class = "UILabel"; text = "宣言/公告名称"; ObjectID = "Nhw-ay-cZd"; */
+"Nhw-ay-cZd.text" = "宣言/公告名称";
+
+/* Class = "UINavigationItem"; title = "球队资料"; ObjectID = "NuM-Eq-Eih"; */
+"NuM-Eq-Eih.title" = "球队资料";
+
+/* Class = "UITableViewController"; title = "设置"; ObjectID = "O33-mm-IGB"; */
+"O33-mm-IGB.title" = "设置";
+
+/* Class = "UILabel"; text = "年龄"; ObjectID = "OT3-Lt-fSd"; */
+"OT3-Lt-fSd.text" = "年龄";
+
+/* Class = "UILabel"; text = "球队平均年龄："; ObjectID = "P8z-gA-Igy"; */
+"P8z-gA-Igy.text" = "球队平均年龄：";
+
+/* Class = "UITextField"; placeholder = "球员昵称"; ObjectID = "PMx-K7-M75"; */
+"PMx-K7-M75.placeholder" = "球员昵称";
+
+/* Class = "UILabel"; text = "人数"; ObjectID = "PNw-TY-M1R"; */
+"PNw-TY-M1R.text" = "人数";
+
+/* Class = "UILabel"; text = "TeamA"; ObjectID = "PU7-44-XUh"; */
+"PU7-44-XUh.text" = "TeamA";
+
+/* Class = "UIBarButtonItem"; title = "提交"; ObjectID = "Pa0-jF-NZu"; */
+"Pa0-jF-NZu.title" = "提交";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "QFh-Xv-SaU"; */
+"QFh-Xv-SaU.text" = "无";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "QT9-mP-rXM"; */
+"QT9-mP-rXM.text" = "0";
+
+/* Class = "UITextView"; text = "招新公告"; ObjectID = "QmY-A4-Qk7"; */
+"QmY-A4-Qk7.text" = "招新公告";
+
+/* Class = "UITextField"; placeholder = "主要活动区域"; ObjectID = "R0C-9N-Iiq"; */
+"R0C-9N-Iiq.placeholder" = "主要活动区域";
+
+/* Class = "UIBarButtonItem"; title = "球队超市"; ObjectID = "R4k-VB-0zB"; */
+"R4k-VB-0zB.title" = "球队超市";
+
+/* Class = "UIViewController"; title = "建立比赛"; ObjectID = "R6J-gK-DLQ"; */
+"R6J-gK-DLQ.title" = "建立比赛";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "RHb-yS-Tcc"; */
+"RHb-yS-Tcc.text" = "无";
+
+/* Class = "UITextField"; placeholder = "邮箱"; ObjectID = "Rap-I0-xcC"; */
+"Rap-I0-xcC.placeholder" = "邮箱";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "RcA-7l-zQV"; */
+"RcA-7l-zQV.text" = "2";
+
+/* Class = "UITextField"; placeholder = "真实姓名"; ObjectID = "Rug-Kr-IIm"; */
+"Rug-Kr-IIm.placeholder" = "真实姓名";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "SIT-IN-TB6"; */
+"SIT-IN-TB6.text" = "无";
+
+/* Class = "UILabel"; text = "本次队费"; ObjectID = "SJ1-5W-gEn"; */
+"SJ1-5W-gEn.text" = "本次队费";
+
+/* Class = "UILabel"; text = "队名："; ObjectID = "SNQ-Vc-MaU"; */
+"SNQ-Vc-MaU.text" = "队名：";
+
+/* Class = "UILabel"; text = "TeamB"; ObjectID = "SVa-R2-jp4"; */
+"SVa-R2-jp4.text" = "TeamB";
+
+/* Class = "UILabel"; text = "主要活动区域"; ObjectID = "SfN-mD-Zb3"; */
+"SfN-mD-Zb3.text" = "主要活动区域";
+
+/* Class = "UIBarButtonItem"; title = "拒绝"; ObjectID = "SgU-o7-Kos"; */
+"SgU-o7-Kos.title" = "拒绝";
+
+/* Class = "UILabel"; text = "主要活动区域："; ObjectID = "T0j-uX-uK5"; */
+"T0j-uX-uK5.text" = "主要活动区域：";
+
+/* Class = "UILabel"; text = "总进球："; ObjectID = "TBk-mr-8R9"; */
+"TBk-mr-8R9.text" = "总进球：";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "TEc-hw-00l"; */
+"TEc-hw-00l.text" = "0";
+
+/* Class = "UITableViewController"; title = "球队超市"; ObjectID = "TJj-lJ-1UK"; */
+"TJj-lJ-1UK.title" = "球队超市";
+
+/* Class = "UILabel"; text = "地址"; ObjectID = "TRy-H6-W4t"; */
+"TRy-H6-W4t.text" = "地址";
+
+/* Class = "UIButton"; normalTitle = "搜索"; ObjectID = "TST-lL-Lf6"; */
+"TST-lL-Lf6.normalTitle" = "搜索";
+
+/* Class = "UILabel"; text = "场地："; ObjectID = "TVi-h9-Cje"; */
+"TVi-h9-Cje.text" = "场地：";
+
+/* Class = "UILabel"; text = "队内名字"; ObjectID = "Td4-BU-zep"; */
+"Td4-BU-zep.text" = "队内名字";
+
+/* Class = "UISegmentedControl"; TdC-B5-cvJ.segmentTitles[0] = "队费收入"; ObjectID = "TdC-B5-cvJ"; */
+"TdC-B5-cvJ.segmentTitles[0]" = "队费收入";
+
+/* Class = "UISegmentedControl"; TdC-B5-cvJ.segmentTitles[1] = "其他收入"; ObjectID = "TdC-B5-cvJ"; */
+"TdC-B5-cvJ.segmentTitles[1]" = "其他收入";
+
+/* Class = "UISegmentedControl"; TdC-B5-cvJ.segmentTitles[2] = "支出"; ObjectID = "TdC-B5-cvJ"; */
+"TdC-B5-cvJ.segmentTitles[2]" = "支出";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "TdF-Qk-laW"; */
+"TdF-Qk-laW.text" = "Title";
+
+/* Class = "UILabel"; text = "收入"; ObjectID = "Tdf-gJ-Vlt"; */
+"Tdf-gJ-Vlt.text" = "收入";
+
+/* Class = "UINavigationController"; title = "主界面"; ObjectID = "TjK-OM-Yjn"; */
+"TjK-OM-Yjn.title" = "主界面";
+
+/* Class = "UISearchBar"; placeholder = "关键词搜索"; ObjectID = "U5u-aN-xby"; */
+"U5u-aN-xby.placeholder" = "关键词搜索";
+
+/* Class = "UILabel"; text = "1000"; ObjectID = "UAo-RF-YUV"; */
+"UAo-RF-YUV.text" = "1000";
+
+/* Class = "UIBarButtonItem"; title = "登出"; ObjectID = "UWs-SG-oNb"; */
+"UWs-SG-oNb.title" = "登出";
+
+/* Class = "UILabel"; text = "本队人数"; ObjectID = "UxI-pQ-eHR"; */
+"UxI-pQ-eHR.text" = "本队人数";
+
+/* Class = "UIButton"; normalTitle = "寻找组织"; ObjectID = "V9t-zQ-IGL"; */
+"V9t-zQ-IGL.normalTitle" = "寻找组织";
+
+/* Class = "UILabel"; text = "约球公告"; ObjectID = "VfF-dI-Y3B"; */
+"VfF-dI-Y3B.text" = "约球公告";
+
+/* Class = "UIBarButtonItem"; title = "通知缴费"; ObjectID = "VjF-f6-LZx"; */
+"VjF-f6-LZx.title" = "通知缴费";
+
+/* Class = "UIBarButtonItem"; title = "临时帮忙"; ObjectID = "W9h-6c-mx6"; */
+"W9h-6c-mx6.title" = "临时帮忙";
+
+/* Class = "UIBarButtonItem"; title = "招募队员"; ObjectID = "W9j-Gr-3xj"; */
+"W9j-Gr-3xj.title" = "招募队员";
+
+/* Class = "UILabel"; text = "球队宣言"; ObjectID = "WRq-Gs-UZd"; */
+"WRq-Gs-UZd.text" = "球队宣言";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "WVF-2K-Nhy"; */
+"WVF-2K-Nhy.title" = "保存";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "X1H-fF-JDv"; */
+"X1H-fF-JDv.text" = "0";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "XII-db-QYK"; */
+"XII-db-QYK.text" = "Detail";
+
+/* Class = "UITextView"; text = "AcceptOrRejectInvitation"; ObjectID = "XUi-Ou-RKt"; */
+"XUi-Ou-RKt.text" = "AcceptOrRejectInvitation";
+
+/* Class = "UILabel"; text = "队名"; ObjectID = "Xdw-bF-jxV"; */
+"Xdw-bF-jxV.text" = "队名";
+
+/* Class = "UINavigationItem"; title = "建立比赛"; ObjectID = "Y3F-lL-NL6"; */
+"Y3F-lL-NL6.title" = "建立比赛";
+
+/* Class = "UILabel"; text = "88"; ObjectID = "Y67-li-2hP"; */
+"Y67-li-2hP.text" = "88";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "YBF-Yj-eAK"; */
+"YBF-Yj-eAK.text" = "Detail";
+
+/* Class = "UIButton"; normalTitle = "球队超市"; ObjectID = "YOX-kx-G0w"; */
+"YOX-kx-G0w.normalTitle" = "球队超市";
+
+/* Class = "UIBarButtonItem"; title = "通知试训"; ObjectID = "YjL-p4-1Nq"; */
+"YjL-p4-1Nq.title" = "通知试训";
+
+/* Class = "UILabel"; text = "昵称"; ObjectID = "YqU-1F-bVZ"; */
+"YqU-1F-bVZ.text" = "昵称";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "Ywm-re-iWE"; */
+"Ywm-re-iWE.text" = "Detail";
+
+/* Class = "UIBarButtonItem"; title = "同意"; ObjectID = "Yxf-NS-Rl5"; */
+"Yxf-NS-Rl5.title" = "同意";
+
+/* Class = "UILabel"; text = "元"; ObjectID = "Z3Y-fh-ic3"; */
+"Z3Y-fh-ic3.text" = "元";
+
+/* Class = "UILabel"; text = "场上位置"; ObjectID = "ZFt-tV-grr"; */
+"ZFt-tV-grr.text" = "场上位置";
+
+/* Class = "UILabel"; text = "总失球："; ObjectID = "ZKo-DE-fol"; */
+"ZKo-DE-fol.text" = "总失球：";
+
+/* Class = "UILabel"; text = "球队主场名"; ObjectID = "Zl9-3L-eij"; */
+"Zl9-3L-eij.text" = "球队主场名";
+
+/* Class = "UILabel"; text = "个人风格"; ObjectID = "a1s-Ks-Saz"; */
+"a1s-Ks-Saz.text" = "个人风格";
+
+/* Class = "UINavigationItem"; title = "选择对手"; ObjectID = "a4G-WN-jty"; */
+"a4G-WN-jty.title" = "选择对手";
+
+/* Class = "UILabel"; text = "活动区域"; ObjectID = "aAX-hS-pTy"; */
+"aAX-hS-pTy.text" = "活动区域";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "aGn-TT-IPo"; */
+"aGn-TT-IPo.text" = "无";
+
+/* Class = "UINavigationItem"; title = "添加球场"; ObjectID = "aMj-S6-hOo"; */
+"aMj-S6-hOo.title" = "添加球场";
+
+/* Class = "UILabel"; text = "球队名称"; ObjectID = "ail-on-HIA"; */
+"ail-on-HIA.text" = "球队名称";
+
+/* Class = "UITextField"; placeholder = "请输入比赛费用"; ObjectID = "ajt-UE-MY8"; */
+"ajt-UE-MY8.placeholder" = "请输入比赛费用";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "an7-1B-NWa"; */
+"an7-1B-NWa.text" = "Subtitle";
+
+/* Class = "UINavigationItem"; title = "输入对手"; ObjectID = "bH6-iV-7Uw"; */
+"bH6-iV-7Uw.title" = "输入对手";
+
+/* Class = "UILabel"; text = "QQ"; ObjectID = "bRp-Ce-EOE"; */
+"bRp-Ce-EOE.text" = "QQ";
+
+/* Class = "UILabel"; text = "个人风格"; ObjectID = "bVk-ef-6oF"; */
+"bVk-ef-6oF.text" = "个人风格";
+
+/* Class = "UILabel"; text = "30+"; ObjectID = "c29-vl-h0o"; */
+"c29-vl-h0o.text" = "30+";
+
+/* Class = "UILabel"; text = "我要踢球"; ObjectID = "cBn-jc-psT"; */
+"cBn-jc-psT.text" = "我要踢球";
+
+/* Class = "UILabel"; text = "ActivityRegion"; ObjectID = "cIU-Uv-oQL"; */
+"cIU-Uv-oQL.text" = "ActivityRegion";
+
+/* Class = "UILabel"; text = "球队名称"; ObjectID = "cJZ-Hb-iJs"; */
+"cJZ-Hb-iJs.text" = "球队名称";
+
+/* Class = "UITableViewSection"; headerTitle = "队费数据"; ObjectID = "cKK-Ju-wVx"; */
+"cKK-Ju-wVx.headerTitle" = "队费数据";
+
+/* Class = "UILabel"; text = "主要活动区域"; ObjectID = "cKi-cF-z2B"; */
+"cKi-cF-z2B.text" = "主要活动区域";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "cZC-ms-Bb3"; */
+"cZC-ms-Bb3.text" = "无";
+
+/* Class = "UIBarButtonItem"; title = "拒绝参赛"; ObjectID = "ceC-Bb-lDB"; */
+"ceC-Bb-lDB.title" = "拒绝参赛";
+
+/* Class = "UIBarButtonItem"; title = "通知队员"; ObjectID = "cmy-HC-c3U"; */
+"cmy-HC-c3U.title" = "通知队员";
+
+/* Class = "UITableViewSection"; headerTitle = "关于"; ObjectID = "d8L-fI-VOg"; */
+"d8L-fI-VOg.headerTitle" = "关于";
+
+/* Class = "UIBarButtonItem"; title = "球队超市"; ObjectID = "dbB-ce-k1U"; */
+"dbB-ce-k1U.title" = "球队超市";
+
+/* Class = "UISegmentedControl"; dgH-gU-DZq.segmentTitles[0] = "已缴纳名单"; ObjectID = "dgH-gU-DZq"; */
+"dgH-gU-DZq.segmentTitles[0]" = "已缴纳名单";
+
+/* Class = "UISegmentedControl"; dgH-gU-DZq.segmentTitles[1] = "未缴纳名单"; ObjectID = "dgH-gU-DZq"; */
+"dgH-gU-DZq.segmentTitles[1]" = "未缴纳名单";
+
+/* Class = "UILabel"; text = "其他信息"; ObjectID = "dlc-QI-sEv"; */
+"dlc-QI-sEv.text" = "其他信息";
+
+/* Class = "UILabel"; text = "Opponent"; ObjectID = "e3a-N7-03X"; */
+"e3a-N7-03X.text" = "Opponent";
+
+/* Class = "UINavigationItem"; title = "个人资料"; ObjectID = "eHG-4c-XKn"; */
+"eHG-4c-XKn.title" = "个人资料";
+
+/* Class = "UILabel"; text = "活动区域"; ObjectID = "eID-J8-YzO"; */
+"eID-J8-YzO.text" = "活动区域";
+
+/* Class = "UILabel"; text = "GameType"; ObjectID = "eJj-Mo-Ghg"; */
+"eJj-Mo-Ghg.text" = "GameType";
+
+/* Class = "UITextView"; text = "Pronouncement"; ObjectID = "eRK-ca-yah"; */
+"eRK-ca-yah.text" = "Pronouncement";
+
+/* Class = "UILabel"; text = "地址"; ObjectID = "f0c-6b-8TB"; */
+"f0c-6b-8TB.text" = "地址";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "f7n-13-2IW"; */
+"f7n-13-2IW.text" = "Detail";
+
+/* Class = "UILabel"; text = "平"; ObjectID = "fQ6-Yh-vUk"; */
+"fQ6-Yh-vUk.text" = "平";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "fSX-Ox-vBV"; */
+"fSX-Ox-vBV.text" = "5";
+
+/* Class = "UITextField"; placeholder = "请输入项目名"; ObjectID = "fb5-qk-4vG"; */
+"fb5-qk-4vG.placeholder" = "请输入项目名";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "flM-gb-bDb"; */
+"flM-gb-bDb.text" = "无";
+
+/* Class = "UILabel"; text = "助攻队员"; ObjectID = "fqY-CX-pp5"; */
+"fqY-CX-pp5.text" = "助攻队员";
+
+/* Class = "UITextField"; placeholder = "选择结束时间"; ObjectID = "ftL-Xl-D5K"; */
+"ftL-Xl-D5K.placeholder" = "选择结束时间";
+
+/* Class = "UILabel"; text = "年龄范围"; ObjectID = "g8V-Y3-ANc"; */
+"g8V-Y3-ANc.text" = "年龄范围";
+
+/* Class = "UITextField"; placeholder = "请选择比赛时间"; ObjectID = "gHj-aE-BkZ"; */
+"gHj-aE-BkZ.placeholder" = "请选择比赛时间";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "gVy-ty-b8W"; */
+"gVy-ty-b8W.text" = "无";
+
+/* Class = "UITextView"; text = "招新公告"; ObjectID = "grY-sZ-n2Q"; */
+"grY-sZ-n2Q.text" = "招新公告";
+
+/* Class = "UILabel"; text = "Place"; ObjectID = "gsF-6m-KmL"; */
+"gsF-6m-KmL.text" = "Place";
+
+/* Class = "UILabel"; text = "约赛公告信息"; ObjectID = "gym-Zn-LCc"; */
+"gym-Zn-LCc.text" = "约赛公告信息";
+
+/* Class = "UILabel"; text = "助攻"; ObjectID = "h1b-oX-yWA"; */
+"h1b-oX-yWA.text" = "助攻";
+
+/* Class = "UILabel"; text = "五人制"; ObjectID = "hE5-PB-bwB"; */
+"hE5-PB-bwB.text" = "五人制";
+
+/* Class = "UILabel"; text = "50"; ObjectID = "hME-s9-8Iw"; */
+"hME-s9-8Iw.text" = "50";
+
+/* Class = "UILabel"; text = "电话号码"; ObjectID = "hgE-wZ-ZXv"; */
+"hgE-wZ-ZXv.text" = "电话号码";
+
+/* Class = "UILabel"; text = "人"; ObjectID = "hp6-7t-Atk"; */
+"hp6-7t-Atk.text" = "人";
+
+/* Class = "UILabel"; text = "电话"; ObjectID = "i3Q-EN-r2c"; */
+"i3Q-EN-r2c.text" = "电话";
+
+/* Class = "UIBarButtonItem"; title = "设置"; ObjectID = "i9t-Zg-TdH"; */
+"i9t-Zg-TdH.title" = "设置";
+
+/* Class = "UINavigationItem"; title = "我的队员"; ObjectID = "iDo-0c-KvF"; */
+"iDo-0c-KvF.title" = "我的队员";
+
+/* Class = "UIBarButtonItem"; title = "+ 添加收支项目"; ObjectID = "iKV-OB-iQk"; */
+"iKV-OB-iQk.title" = "+ 添加收支项目";
+
+/* Class = "UILabel"; text = "我的球队"; ObjectID = "iLm-np-PMk"; */
+"iLm-np-PMk.text" = "我的球队";
+
+/* Class = "UITextField"; placeholder = "主要活动区域"; ObjectID = "iXS-R0-gul"; */
+"iXS-R0-gul.placeholder" = "主要活动区域";
+
+/* Class = "UITextField"; placeholder = "请输入金额"; ObjectID = "ibW-cK-gOt"; */
+"ibW-cK-gOt.placeholder" = "请输入金额";
+
+/* Class = "UILabel"; text = "胜"; ObjectID = "iyF-jv-D9B"; */
+"iyF-jv-D9B.text" = "胜";
+
+/* Class = "UITextField"; placeholder = "请选择人数"; ObjectID = "jSA-jH-6tk"; */
+"jSA-jH-6tk.placeholder" = "请选择人数";
+
+/* Class = "UILabel"; text = "约球公告"; ObjectID = "jxf-xu-PPA"; */
+"jxf-xu-PPA.text" = "约球公告";
+
+/* Class = "UILabel"; text = "仅招新"; ObjectID = "k4d-rn-s0G"; */
+"k4d-rn-s0G.text" = "仅招新";
+
+/* Class = "UITextField"; placeholder = "场上位置"; ObjectID = "kGN-Ke-I5K"; */
+"kGN-Ke-I5K.placeholder" = "场上位置";
+
+/* Class = "UILabel"; text = "进球"; ObjectID = "kJx-vd-eBx"; */
+"kJx-vd-eBx.text" = "进球";
+
+/* Class = "UILabel"; text = "费用："; ObjectID = "kLz-0U-VtA"; */
+"kLz-0U-VtA.text" = "费用：";
+
+/* Class = "UILabel"; text = "其他信息"; ObjectID = "kOK-RH-83Q"; */
+"kOK-RH-83Q.text" = "其他信息";
+
+/* Class = "UILabel"; text = "10/3"; ObjectID = "kP8-gw-ZXJ"; */
+"kP8-gw-ZXJ.text" = "10/3";
+
+/* Class = "UIButton"; normalTitle = "搜索"; ObjectID = "khY-lR-J51"; */
+"khY-lR-J51.normalTitle" = "搜索";
+
+/* Class = "UILabel"; text = "20"; ObjectID = "kjU-1l-zbq"; */
+"kjU-1l-zbq.text" = "20";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "kyR-C7-XHJ"; */
+"kyR-C7-XHJ.text" = "无";
+
+/* Class = "UITextField"; placeholder = "请选择对手"; ObjectID = "l7m-d1-2C2"; */
+"l7m-d1-2C2.placeholder" = "请选择对手";
+
+/* Class = "UITabBarItem"; title = "MatchTableView"; ObjectID = "lAj-Wo-d9p"; */
+"lAj-Wo-d9p.title" = "MatchTableView";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "lIP-1S-CM0"; */
+"lIP-1S-CM0.text" = "0";
+
+/* Class = "UIViewController"; title = "输入比分"; ObjectID = "lPb-eJ-rbZ"; */
+"lPb-eJ-rbZ.title" = "输入比分";
+
+/* Class = "UIBarButtonItem"; title = "拒绝"; ObjectID = "lSC-uU-Zyr"; */
+"lSC-uU-Zyr.title" = "拒绝";
+
+/* Class = "UILabel"; text = "Cost"; ObjectID = "lTG-7q-MzI"; */
+"lTG-7q-MzI.text" = "Cost";
+
+/* Class = "UILabel"; text = "自动登录"; ObjectID = "laH-Bg-1gF"; */
+"laH-Bg-1gF.text" = "自动登录";
+
+/* Class = "UINavigationItem"; title = "球场超市"; ObjectID = "lcd-DM-vlb"; */
+"lcd-DM-vlb.title" = "球场超市";
+
+/* Class = "UILabel"; text = "Opponent"; ObjectID = "mKa-Yg-tr7"; */
+"mKa-Yg-tr7.text" = "Opponent";
+
+/* Class = "UILabel"; text = "Stadium"; ObjectID = "mRG-ia-0bu"; */
+"mRG-ia-0bu.text" = "Stadium";
+
+/* Class = "UILabel"; text = "场上位置"; ObjectID = "mVz-NT-QkB"; */
+"mVz-NT-QkB.text" = "场上位置";
+
+/* Class = "UILabel"; text = "真实姓名"; ObjectID = "mgD-ps-TJu"; */
+"mgD-ps-TJu.text" = "真实姓名";
+
+/* Class = "UILabel"; text = "有队踢馆"; ObjectID = "nAq-Mj-IFt"; */
+"nAq-Mj-IFt.text" = "有队踢馆";
+
+/* Class = "UILabel"; text = "GameDate"; ObjectID = "nF9-xr-ClU"; */
+"nF9-xr-ClU.text" = "GameDate";
+
+/* Class = "UITextField"; placeholder = "手机号码"; ObjectID = "nGi-2L-uT9"; */
+"nGi-2L-uT9.placeholder" = "手机号码";
+
+/* Class = "UILabel"; text = "助攻"; ObjectID = "nNC-jf-aS7"; */
+"nNC-jf-aS7.text" = "助攻";
+
+/* Class = "UINavigationItem"; title = "寻找组织"; ObjectID = "nO8-dr-mqX"; */
+"nO8-dr-mqX.title" = "寻找组织";
+
+/* Class = "UITextField"; placeholder = "球队名称"; ObjectID = "naR-LL-Lnj"; */
+"naR-LL-Lnj.placeholder" = "球队名称";
+
+/* Class = "UILabel"; text = "可约战"; ObjectID = "njw-u1-eBw"; */
+"njw-u1-eBw.text" = "可约战";
+
+/* Class = "UILabel"; text = "昵称"; ObjectID = "nrw-bb-FeI"; */
+"nrw-bb-FeI.text" = "昵称";
+
+/* Class = "UIBarButtonItem"; title = "发出约赛请求"; ObjectID = "nwf-8q-kfi"; */
+"nwf-8q-kfi.title" = "发出约赛请求";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "o5S-Ve-c4Z"; */
+"o5S-Ve-c4Z.text" = "Detail";
+
+/* Class = "UITextField"; placeholder = "主场"; ObjectID = "oLe-Im-kPd"; */
+"oLe-Im-kPd.placeholder" = "主场";
+
+/* Class = "UILabel"; text = "2014.3.26"; ObjectID = "oVY-wY-ZPn"; */
+"oVY-wY-ZPn.text" = "2014.3.26";
+
+/* Class = "UITextField"; placeholder = "选择队员"; ObjectID = "ofu-Kl-F3r"; */
+"ofu-Kl-F3r.placeholder" = "选择队员";
+
+/* Class = "UILabel"; text = "距离"; ObjectID = "opv-WO-I2M"; */
+"opv-WO-I2M.text" = "距离";
+
+/* Class = "UITextField"; placeholder = "个人风格"; ObjectID = "otL-pg-VnN"; */
+"otL-pg-VnN.placeholder" = "个人风格";
+
+/* Class = "UILabel"; text = "所属球队"; ObjectID = "p6q-Rq-Jvk"; */
+"p6q-Rq-Jvk.text" = "所属球队";
+
+/* Class = "UILabel"; text = "价格"; ObjectID = "p8f-t0-g2f"; */
+"p8f-t0-g2f.text" = "价格";
+
+/* Class = "UILabel"; text = "球队宣言："; ObjectID = "pE2-Vi-1y1"; */
+"pE2-Vi-1y1.text" = "球队宣言：";
+
+/* Class = "UILabel"; text = "水"; ObjectID = "pIg-09-xUn"; */
+"pIg-09-xUn.text" = "水";
+
+/* Class = "UILabel"; text = "五人制"; ObjectID = "pNO-5w-h1B"; */
+"pNO-5w-h1B.text" = "五人制";
+
+/* Class = "UILabel"; text = "开赛时间：20XX-XX-XX XX:XX:XX"; ObjectID = "pfP-y3-07V"; */
+"pfP-y3-07V.text" = "开赛时间：20XX-XX-XX XX:XX:XX";
+
+/* Class = "UIBarButtonItem"; title = "同意"; ObjectID = "pl1-qP-tgO"; */
+"pl1-qP-tgO.title" = "同意";
+
+/* Class = "UITextField"; placeholder = "选择球员"; ObjectID = "puh-Uo-SON"; */
+"puh-Uo-SON.placeholder" = "选择球员";
+
+/* Class = "UILabel"; text = "年龄"; ObjectID = "q8K-Ep-sx9"; */
+"q8K-Ep-sx9.text" = "年龄";
+
+/* Class = "UILabel"; text = "人"; ObjectID = "qNZ-v0-pF7"; */
+"qNZ-v0-pF7.text" = "人";
+
+/* Class = "UITextField"; placeholder = "请输入费用"; ObjectID = "qbP-tt-1kj"; */
+"qbP-tt-1kj.placeholder" = "请输入费用";
+
+/* Class = "UILabel"; text = "年龄"; ObjectID = "qf2-B5-JSs"; */
+"qf2-B5-JSs.text" = "年龄";
+
+/* Class = "UINavigationItem"; title = "比赛安排"; ObjectID = "qlI-sc-nOJ"; */
+"qlI-sc-nOJ.title" = "比赛安排";
+
+/* Class = "UILabel"; text = "元"; ObjectID = "qsS-S5-sES"; */
+"qsS-S5-sES.text" = "元";
+
+/* Class = "UILabel"; text = "球队主场"; ObjectID = "qxF-Z3-yfw"; */
+"qxF-Z3-yfw.text" = "球队主场";
+
+/* Class = "UITextField"; placeholder = "比分"; ObjectID = "rOt-PI-dTd"; */
+"rOt-PI-dTd.placeholder" = "比分";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "rQ5-Gq-CR7"; */
+"rQ5-Gq-CR7.text" = "Title";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "raC-S6-TmX"; */
+"raC-S6-TmX.text" = "0";
+
+/* Class = "UILabel"; text = "无缴费记录"; ObjectID = "rav-wO-zc9"; */
+"rav-wO-zc9.text" = "无缴费记录";
+
+/* Class = "UILabel"; text = "人"; ObjectID = "rbV-Tr-yMr"; */
+"rbV-Tr-yMr.text" = "人";
+
+/* Class = "UILabel"; text = "30"; ObjectID = "rdI-tL-4Jw"; */
+"rdI-tL-4Jw.text" = "30";
+
+/* Class = "UILabel"; text = "球队微博"; ObjectID = "rgI-gx-YNI"; */
+"rgI-gx-YNI.text" = "球队微博";
+
+/* Class = "UILabel"; text = "受邀加入本队人数"; ObjectID = "rjO-Jb-z5t"; */
+"rjO-Jb-z5t.text" = "受邀加入本队人数";
+
+/* Class = "UILabel"; text = "年龄"; ObjectID = "rsI-BZ-bfa"; */
+"rsI-BZ-bfa.text" = "年龄";
+
+/* Class = "UINavigationItem"; title = "球队数据"; ObjectID = "rxJ-oN-RQw"; */
+"rxJ-oN-RQw.title" = "球队数据";
+
+/* Class = "UILabel"; text = "场上位置"; ObjectID = "sgB-P8-HjC"; */
+"sgB-P8-HjC.text" = "场上位置";
+
+/* Class = "UILabel"; text = "电话"; ObjectID = "shg-Ey-Kuu"; */
+"shg-Ey-Kuu.text" = "电话";
+
+/* Class = "UIBarButtonItem"; title = "设为主场"; ObjectID = "t7t-T5-1hb"; */
+"t7t-T5-1hb.title" = "设为主场";
+
+/* Class = "UISegmentedControl"; tEI-DB-ZRJ.segmentTitles[0] = "队费收入"; ObjectID = "tEI-DB-ZRJ"; */
+"tEI-DB-ZRJ.segmentTitles[0]" = "队费收入";
+
+/* Class = "UISegmentedControl"; tEI-DB-ZRJ.segmentTitles[1] = "其他收入"; ObjectID = "tEI-DB-ZRJ"; */
+"tEI-DB-ZRJ.segmentTitles[1]" = "其他收入";
+
+/* Class = "UISegmentedControl"; tEI-DB-ZRJ.segmentTitles[2] = "支出"; ObjectID = "tEI-DB-ZRJ"; */
+"tEI-DB-ZRJ.segmentTitles[2]" = "支出";
+
+/* Class = "UINavigationItem"; title = "输入比分"; ObjectID = "tEP-9q-QXB"; */
+"tEP-9q-QXB.title" = "输入比分";
+
+/* Class = "UILabel"; text = "场地费"; ObjectID = "tGf-MW-R7V"; */
+"tGf-MW-R7V.text" = "场地费";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "tQR-vK-x2T"; */
+"tQR-vK-x2T.text" = "无";
+
+/* Class = "UILabel"; text = "价格"; ObjectID = "tSC-V8-bhC"; */
+"tSC-V8-bhC.text" = "价格";
+
+/* Class = "UILabel"; text = "招新公告："; ObjectID = "tVF-k1-7Hk"; */
+"tVF-k1-7Hk.text" = "招新公告：";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "u3p-aR-Ueb"; */
+"u3p-aR-Ueb.text" = "无";
+
+/* Class = "UILabel"; text = "负"; ObjectID = "u8M-3u-Vvv"; */
+"u8M-3u-Vvv.text" = "负";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "uGM-eC-riO"; */
+"uGM-eC-riO.text" = "无";
+
+/* Class = "UILabel"; text = "24"; ObjectID = "uGU-00-DrM"; */
+"uGU-00-DrM.text" = "24";
+
+/* Class = "UISegmentedControl"; uTM-Qx-wCl.segmentTitles[0] = "所有球员"; ObjectID = "uTM-Qx-wCl"; */
+"uTM-Qx-wCl.segmentTitles[0]" = "所有球员";
+
+/* Class = "UISegmentedControl"; uTM-Qx-wCl.segmentTitles[1] = "有球队球员"; ObjectID = "uTM-Qx-wCl"; */
+"uTM-Qx-wCl.segmentTitles[1]" = "有球队球员";
+
+/* Class = "UISegmentedControl"; uTM-Qx-wCl.segmentTitles[2] = "无球队球员"; ObjectID = "uTM-Qx-wCl"; */
+"uTM-Qx-wCl.segmentTitles[2]" = "无球队球员";
+
+/* Class = "UIViewController"; title = "收支管理"; ObjectID = "ubl-cF-H7E"; */
+"ubl-cF-H7E.title" = "收支管理";
+
+/* Class = "UILabel"; text = "本次人数"; ObjectID = "uel-9F-7T7"; */
+"uel-9F-7T7.text" = "本次人数";
+
+/* Class = "UITextView"; text = "招新条件输入，输入后保存。打开开关则开始发布招新信息。显示在“球员-我的球员-寻找组织”界面中"; ObjectID = "ui4-jB-nhf"; */
+"ui4-jB-nhf.text" = "招新条件输入，输入后保存。打开开关则开始发布招新信息。显示在“球员-我的球员-寻找组织”界面中";
+
+/* Class = "UILabel"; text = "助攻"; ObjectID = "uoV-9l-jio"; */
+"uoV-9l-jio.text" = "助攻";
+
+/* Class = "UINavigationItem"; title = "球员数据"; ObjectID = "upU-zH-Uqt"; */
+"upU-zH-Uqt.title" = "球员数据";
+
+/* Class = "UILabel"; text = "1.0"; ObjectID = "v85-5d-rqG"; */
+"v85-5d-rqG.text" = "1.0";
+
+/* Class = "UISegmentedControl"; vAo-Ur-0qj.segmentTitles[0] = "入队申请"; ObjectID = "vAo-Ur-0qj"; */
+"vAo-Ur-0qj.segmentTitles[0]" = "入队申请";
+
+/* Class = "UISegmentedControl"; vAo-Ur-0qj.segmentTitles[1] = "邀请入队"; ObjectID = "vAo-Ur-0qj"; */
+"vAo-Ur-0qj.segmentTitles[1]" = "邀请入队";
+
+/* Class = "UITextField"; placeholder = "昵称"; ObjectID = "vOq-vf-lFo"; */
+"vOq-vf-lFo.placeholder" = "昵称";
+
+/* Class = "UILabel"; text = "队费余额"; ObjectID = "vYg-IP-XYh"; */
+"vYg-IP-XYh.text" = "队费余额";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "vlm-kw-7lK"; */
+"vlm-kw-7lK.text" = "无";
+
+/* Class = "UILabel"; text = "球队名称"; ObjectID = "w43-yg-dTF"; */
+"w43-yg-dTF.text" = "球队名称";
+
+/* Class = "UINavigationItem"; title = "球队超市"; ObjectID = "w5H-EL-R5m"; */
+"w5H-EL-R5m.title" = "球队超市";
+
+/* Class = "UILabel"; text = "招新公告"; ObjectID = "wAv-NU-IpB"; */
+"wAv-NU-IpB.text" = "招新公告";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "wGI-5Q-1GV"; */
+"wGI-5Q-1GV.text" = "0";
+
+/* Class = "UITableViewController"; title = "我的队员"; ObjectID = "wUp-3y-ZBH"; */
+"wUp-3y-ZBH.title" = "我的队员";
+
+/* Class = "UITextField"; placeholder = "选择球员"; ObjectID = "wfm-ga-8Wq"; */
+"wfm-ga-8Wq.placeholder" = "选择球员";
+
+/* Class = "UIButton"; normalTitle = "申请入队"; ObjectID = "wi9-rB-qaq"; */
+"wi9-rB-qaq.normalTitle" = "申请入队";
+
+/* Class = "UILabel"; text = "平均年龄"; ObjectID = "wid-ml-LJR"; */
+"wid-ml-LJR.text" = "平均年龄";
+
+/* Class = "UIBarButtonItem"; title = "通知队员"; ObjectID = "wvX-KT-pcW"; */
+"wvX-KT-pcW.title" = "通知队员";
+
+/* Class = "UILabel"; text = "基友球队"; ObjectID = "wxI-l3-MPE"; */
+"wxI-l3-MPE.text" = "基友球队";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "xCm-Bb-xV5"; */
+"xCm-Bb-xV5.text" = "1";
+
+/* Class = "UILabel"; text = "地址"; ObjectID = "xJq-41-i32"; */
+"xJq-41-i32.text" = "地址";
+
+/* Class = "UILabel"; text = "24"; ObjectID = "xQA-i3-tvT"; */
+"xQA-i3-tvT.text" = "24";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "xYC-QK-hdV"; */
+"xYC-QK-hdV.text" = "0";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "xat-L9-4HP"; */
+"xat-L9-4HP.text" = "Title";
+
+/* Class = "UILabel"; text = "点击上传群二维码"; ObjectID = "xiY-iv-9GT"; */
+"xiY-iv-9GT.text" = "点击上传群二维码";
+
+/* Class = "UITextField"; placeholder = "请选择日期"; ObjectID = "xvV-0V-WMN"; */
+"xvV-0V-WMN.placeholder" = "请选择日期";
+
+/* Class = "UITextField"; placeholder = "比分"; ObjectID = "yNC-ra-4R3"; */
+"yNC-ra-4R3.placeholder" = "比分";
+
+/* Class = "UIViewController"; title = "球队资料"; ObjectID = "yWa-wn-o1w"; */
+"yWa-wn-o1w.title" = "球队资料";
+
+/* Class = "UILabel"; text = "昵称"; ObjectID = "ycl-MF-1mq"; */
+"ycl-MF-1mq.text" = "昵称";
+
+/* Class = "UIBarButtonItem"; title = "联系球场"; ObjectID = "ys9-Wx-dbi"; */
+"ys9-Wx-dbi.title" = "联系球场";
+
+/* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "z2m-5m-ula"; */
+"z2m-5m-ula.title" = "保存";
+
+/* Class = "UIBarButtonItem"; title = "召唤队员"; ObjectID = "zKG-Ef-1cb"; */
+"zKG-Ef-1cb.title" = "召唤队员";
+
+/* Class = "UIButton"; normalTitle = "建立球队"; ObjectID = "znb-Cv-Jxl"; */
+"znb-Cv-Jxl.normalTitle" = "建立球队";

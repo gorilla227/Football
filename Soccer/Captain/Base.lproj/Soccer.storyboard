@@ -176,7 +176,7 @@
             </objects>
             <point key="canvasLocation" x="-494" y="697"/>
         </scene>
-        <!--比赛安排-->
+        <!--Match Arrangement-->
         <scene sceneID="MTU-M8-xaR">
             <objects>
                 <viewController storyboardIdentifier="MatchArrangement" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6lf-6e-dtl" customClass="MatchArrangement" sceneMemberID="viewController">
@@ -254,14 +254,14 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RZF-Sp-ZGb">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TeamIcon.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fAd-7c-RFj">
-                                        <rect key="frame" x="30" y="16" width="121" height="121"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="TeamIcon.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fAd-7c-RFj">
+                                        <rect key="frame" x="29" y="15" width="121" height="121"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9t-zQ-IGL">
-                                        <rect key="frame" x="171" y="66" width="119" height="30"/>
+                                        <rect key="frame" x="171" y="65" width="119" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <state key="normal" title="寻找组织">
+                                        <state key="normal" title="Find Team">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -270,16 +270,16 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ycl-MF-1mq">
-                                        <rect key="frame" x="159" y="18" width="131" height="41"/>
+                                        <rect key="frame" x="159" y="17" width="131" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znb-Cv-Jxl">
-                                        <rect key="frame" x="171" y="105" width="119" height="30"/>
+                                        <rect key="frame" x="171" y="104" width="119" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <state key="normal" title="建立球队">
+                                        <state key="normal" title="Create Team">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -331,7 +331,7 @@
                             <constraint firstItem="fAd-7c-RFj" firstAttribute="centerY" secondItem="62e-ld-570" secondAttribute="centerY" id="y7U-xm-qjO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="比赛安排" id="qlI-sc-nOJ"/>
+                    <navigationItem key="navigationItem" title="Match Arrangement" id="qlI-sc-nOJ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="createMatchButton" destination="54L-xV-FLG" id="0SV-Vk-Vuc"/>
@@ -2648,10 +2648,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldIcon_Birthday.png" translatesAutoresizingMaskIntoConstraints="NO" id="dD4-YA-eba">
-                                            <rect key="frame" x="200" y="5" width="20" height="20"/>
+                                            <rect key="frame" x="199" y="5" width="20" height="20"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年龄" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8K-Ep-sx9">
-                                            <rect key="frame" x="228" y="5" width="46" height="20"/>
+                                            <rect key="frame" x="227" y="5" width="46" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -4110,7 +4110,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本次人数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uel-9F-7T7">
-                                            <rect key="frame" x="20" y="8" width="136" height="20"/>
+                                            <rect key="frame" x="20" y="8" width="136" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>

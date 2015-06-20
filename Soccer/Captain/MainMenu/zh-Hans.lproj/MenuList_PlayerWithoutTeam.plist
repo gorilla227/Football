@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>RootMenu</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>我的球队</string>
+			<key>Icon</key>
+			<string>menuIcon_myTeams.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>超市</string>
+			<key>Icon</key>
+			<string>menuIcon_superMarket.png</string>
+		</dict>
+	</array>
+	<key>0</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>比赛安排</string>
+			<key>Identifier</key>
+			<string>MatchArrangement</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>寻找组织</string>
+			<key>Identifier</key>
+			<string>FindTeam</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>建立球队</string>
+			<key>Identifier</key>
+			<string>EditTeamProfile</string>
+		</dict>
+	</array>
+	<key>1</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>球队</string>
+			<key>Identifier</key>
+			<string>TeamMarket</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>球员</string>
+			<key>Identifier</key>
+			<string>PlayerMarket</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>球场</string>
+			<key>Identifier</key>
+			<string>StadiumListView</string>
+		</dict>
+	</array>
+</dict>
+</plist>

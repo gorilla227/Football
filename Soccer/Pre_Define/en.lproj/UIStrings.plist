@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UI_FillAdditionalProfile_Actions</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>Fill Additional Player Profile</string>
+			<key>Icon</key>
+			<string>FillAdditional_PlayerProfile.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Fill Additional Team Profile</string>
+			<key>Icon</key>
+			<string>FillAdditional_TeamProfile.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Call Friends</string>
+			<key>Icon</key>
+			<string>FillAdditional_CallFriends.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Find Team</string>
+			<key>Icon</key>
+			<string>FillAdditional_LookingForTeam.png</string>
+		</dict>
+	</array>
+	<key>UI_FillAdditionalProfile_Header_Captain</key>
+	<string>, call your buddies and fill additional team profile</string>
+	<key>UI_FillAdditionalProfile_Header_Player</key>
+	<string>, fill additional player profile, integrate to team easily</string>
+	<key>UI_AlertView_OnlyKnown</key>
+	<string>Got It</string>
+	<key>UI_EditPlayerProfile_Successful</key>
+	<string>Update player profile successfully!</string>
+	<key>UI_EditPlayerProfile_NoChange</key>
+	<string>You didn&apos;t change any player profile!</string>
+	<key>UI_SMS_Unsupported</key>
+	<string>This device doesn&apos;t support SMS.</string>
+	<key>UI_SMS_Cancelled</key>
+	<string>SMS cancelled.</string>
+	<key>UI_SMS_Failed</key>
+	<string>Fail to send SMS!</string>
+	<key>UI_SMS_Successful</key>
+	<string>SMS sent successfully!</string>
+	<key>UI_RegisterViewTitle_Captain</key>
+	<string>I&apos;m Captain</string>
+	<key>UI_RegisterViewTitle_Player</key>
+	<string>I&apos;m Player</string>
+	<key>UI_LoginViewAccountPH</key>
+	<string>Phone/Email</string>
+	<key>UI_RegisterView_Captain_Section_01</key>
+	<string>Team Profile</string>
+	<key>UI_RegisterView_Captain_Section_02</key>
+	<string>Captain Profile</string>
+	<key>UI_RegisterView_Player_Section_01</key>
+	<string>Player Profile</string>
+	<key>UI_FillTeamProfile_teamLogoButton_New</key>
+	<string>Select Team Logo</string>
+	<key>UI_LoginView_VerificationFailed_Title</key>
+	<string>Fail to login!</string>
+	<key>UI_LoginView_VerificationFailed_Message</key>
+	<string>Login information is incorrect!</string>
+	<key>UI_LoginView_VerificationFailed_Cancel</key>
+	<string>Confirm</string>
+	<key>UI_RegisterView_Success_Title</key>
+	<string>Register successfully!</string>
+	<key>UI_RegisterView_Success_Message</key>
+	<string>Congz! You have already joined &quot;Soccer&quot; family!</string>
+	<key>UI_RegisterView_Success_OK</key>
+	<string>Fill Additional Profile</string>
+	<key>UI_Positions</key>
+	<array>
+		<string>Unknown</string>
+		<string>Forward</string>
+		<string>Middle</string>
+		<string>Defend</string>
+		<string>Gate Keeper</string>
+	</array>
+	<key>UI_StadiumDistanceUnit</key>
+	<string>km</string>
+	<key>UI_HomeStadiumSetButtonTitle</key>
+	<string>Set as Home Stadium</string>
+	<key>UI_HomeStadiumSetButtonOwnTitle</key>
+	<string>My Home Stadium</string>
+	<key>UI_HomeStadiumSetConfirm</key>
+	<string>Yes</string>
+	<key>UI_HomeStadiumSetCancel</key>
+	<string>No</string>
+	<key>UI_HomeStadiumSetConfirmationMessage</key>
+	<string>Do you want to set it as your Home Stadium?</string>
+	<key>UI_TableViewMore</key>
+	<dict>
+		<key>BalanceManagement</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>Load More</string>
+			<key>Loading</key>
+			<string>Loading...</string>
+			<key>NoData</key>
+			<string>No Data</string>
+			<key>NoMoreData</key>
+			<string>No More Data</string>
+		</dict>
+		<key>FindTeam</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>Load More Teams</string>
+			<key>Loading</key>
+			<string>Loading...</string>
+			<key>NoData</key>
+			<string>No Team</string>
+			<key>NoMoreData</key>
+			<string>No More Team</string>
+		</dict>
+		<key>PlayerMarket</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>Load More Players</string>
+			<key>Loading</key>
+			<string>Loading...</string>
+			<key>NoData</key>
+			<string>No Player</string>
+			<key>NoMoreData</key>
+			<string>No More Player</string>
+		</dict>
+		<key>TeamMarket</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>Load More Teams</string>
+			<key>Loading</key>
+			<string>Loading...</string>
+			<key>NoData</key>
+			<string>No Team</string>
+			<key>NoMoreData</key>
+			<string>No More Team</string>
+		</dict>
+		<key>MessageCenter</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>Load More Messages</string>
+			<key>Loading</key>
+			<string>Loading...</string>
+			<key>NoData</key>
+			<string>No Message</string>
+			<key>NoMoreData</key>
+			<string>No More Message</string>
+		</dict>
+		<key>Default</key>
+		<dict>
+			<key>LoadMore</key>
+			<string>Load More</string>
+			<key>Loading</key>
+			<string>Loading...</string>
+			<key>NoData</key>
+			<string>No Data</string>
+			<key>NoMoreData</key>
+			<string>No More Data</string>
+		</dict>
+	</dict>
+	<key>UI_FindTeam_SendingResultMessage</key>
+	<string>%@/%@applications sent, please wait responses.</string>
+	<key>UI_Callin_SendingResultMessage</key>
+	<string>%@/%@invitaions sent, please wait responses.</string>
+	<key>UI_MatchNotice_SendingResultMessage</key>
+	<string>%@/%@match notices sent, please wait responses.</string>
+	<key>UI_TeamFundNotice_SendingResultMessage</key>
+	<string>%@/%@team fund notices sent, please wait responses.</string>
+	<key>UI_MessageTypeSelection_Confirm</key>
+	<string>Confirm</string>
+	<key>UI_MessageTypes</key>
+	<dict>
+		<key>1</key>
+		<string>Invitation</string>
+		<key>2</key>
+		<string>Application</string>
+		<key>3</key>
+		<string>Match Notice</string>
+		<key>4</key>
+		<string>Temporary Favor</string>
+		<key>5</key>
+		<string>Match Challenge</string>
+		<key>6</key>
+		<string>Team Fund Notice</string>
+	</dict>
+	<key>UI_MessageTypes_ForCaptain</key>
+	<array>
+		<dict>
+			<key>TabBarItemName</key>
+			<string>Inbox</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>Team Message</string>
+					<key>Types</key>
+					<array>
+						<string>2</string>
+						<string>5</string>
+						<string>6</string>
+					</array>
+				</dict>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>Personal Message</string>
+					<key>Types</key>
+					<array>
+						<string>4</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>TabBarItemName</key>
+			<string>Outbox</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>Team Message</string>
+					<key>Types</key>
+					<array>
+						<string>1</string>
+						<string>3</string>
+						<string>4</string>
+						<string>5</string>
+						<string>6</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>UI_MessageTypes_ForPlayerWithTeam</key>
+	<array>
+		<dict>
+			<key>TabBarItemName</key>
+			<string>Inbox</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>Team Message</string>
+					<key>Types</key>
+					<array>
+						<string>3</string>
+						<string>6</string>
+					</array>
+				</dict>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>Personal Message</string>
+					<key>Types</key>
+					<array>
+						<string>4</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>TabBarItemName</key>
+			<string>Outbox</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array/>
+		</dict>
+	</array>
+	<key>UI_MessageTypes_ForPlayerWithoutTeam</key>
+	<array>
+		<dict>
+			<key>TabBarItemName</key>
+			<string>Inbox</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>Personal Message</string>
+					<key>Types</key>
+					<array>
+						<string>4</string>
+						<string>1</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>TabBarItemName</key>
+			<string>Outbox</string>
+			<key>TabBarItemImage</key>
+			<string>menuIcon_MyMatches.png</string>
+			<key>TypeGroups</key>
+			<array>
+				<dict>
+					<key>TypeGroupName</key>
+					<string>Personal Message</string>
+					<key>Types</key>
+					<array>
+						<string>2</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>UI_MessageStatusType</key>
+	<array>
+		<string>Unread</string>
+		<string>Read</string>
+		<string>Accepted</string>
+		<string>Declined</string>
+		<string>Expired</string>
+	</array>
+	<key>UI_MessageHead_Format</key>
+	<string>%@:%@ Sent at %@</string>
+	<key>UI_MessageHead_Sent</key>
+	<string>Receiver</string>
+	<key>UI_MessageHead_Received</key>
+	<string>Sender</string>
+	<key>UI_ReplayApplyin_Accepted</key>
+	<string>You have accepted &apos;%@&apos; as a team member!</string>
+	<key>UI_ReplayApplyin_Declined</key>
+	<string>You have declined %@&apos;s application.</string>
+	<key>UI_ReplayCallin_Accepted</key>
+	<string>You have agreed to join the team.</string>
+	<key>UI_ReplayCallin_Declined</key>
+	<string>You have declined to join the team.</string>
+	<key>UI_NewPlayer_AcceptMessage</key>
+	<string>Do you accept &apos;%@&apos; to join the team?</string>
+	<key>UI_NewPlayer_DeclineMessage</key>
+	<string>Do you decline &apos;%@&apos; to join the team?</string>
+	<key>UI_NewPlayer_AcceptTitle</key>
+	<string>Agree</string>
+	<key>UI_NewPlayer_DeclineTitle</key>
+	<string>Decline</string>
+	<key>UI_NewPlayer_AcceptButton</key>
+	<string>Agree</string>
+	<key>UI_NewPlayer_DeclineButton</key>
+	<string>Decline</string>
+	<key>UI_NewPlayer_CancelButton</key>
+	<string>Cancel</string>
+	<key>UI_ActivityRegion_UnselectedTitle</key>
+	<string>&lt;N/A&gt;</string>
+	<key>UI_TeamMarket_BoardName_Slogan</key>
+	<string>Slogan</string>
+	<key>UI_TeamMarket_BoardName_Recruit</key>
+	<string>Recruit Announcement</string>
+	<key>UI_TeamMarket_BoardName_Challenge</key>
+	<string>Challenge Announcement</string>
+	<key>UI_Message_SendingProgress_Label</key>
+	<string>Sending - %@/%@</string>
+	<key>UI_EditTeamProfile_Title</key>
+	<string>Team Profile</string>
+	<key>UI_CreateTeam_Title</key>
+	<string>Create Team</string>
+	<key>UI_CreateTeamSucc_AlertView_Title</key>
+	<string>Congratulations.</string>
+	<key>UI_CreateTeamSucc_AlertView_Message</key>
+	<string>Create team successfully!</string>
+	<key>UI_CreateTeamSucc_AlertView_Button</key>
+	<string>Re-login</string>
+	<key>UI_MatchArrangement_MatchType</key>
+	<string>%@men</string>
+	<key>UI_MatchArrangement_CancelTitle</key>
+	<string>Cancel</string>
+	<key>UI_MatchArrangement_ConfirmMessage</key>
+	<string>Do you want to cancel the match?</string>
+	<key>UI_MatchArrangement_ConfirmOK</key>
+	<string>Yes</string>
+	<key>UI_MatchArrangement_ConfirmCancel</key>
+	<string>Cancel</string>
+	<key>UI_MatchArrangement_CancelFailedMessage</key>
+	<string>Can not cancel the match.</string>
+	<key>UI_MatchArrangement_BeginTimeString</key>
+	<string>Match Time: %@</string>
+	<key>Hint_CreateMatch_MatchTime</key>
+	<string>Please select mathc time. If match began, it would turn to Enter Match Score view. If not, it would turn to Create Match view.</string>
+	<key>Hint_CreateMatch_MatchOpponent</key>
+	<string>Please enter match opponent. There are two ways: 1. Opponent is not in &quot;Soccer&quot;. Entering opponent manully would creating match directly.
+2. If opponent is already in &quot;Soccer&quot;, select opponent from &quot;Team Market&quot; then wait response.</string>
+	<key>UI_MatchDetails_ActionButton_CreateRegularMatch</key>
+	<string>Sent Match Challenge</string>
+	<key>UI_MatchDetails_ActionButton_CreateFinishedMatch</key>
+	<string>Create Team</string>
+	<key>UI_MatchArrangement_NoticeString_Desc</key>
+	<string> - Attended/Temp/Notified</string>
+	<key>UI_MatchArrangement_ActionButton_NoticePlayer</key>
+	<string>Notify Player</string>
+	<key>UI_MatchArrangement_ActionButton_EnterScore</key>
+	<string>Enter Score</string>
+	<key>UI_MatchArrangement_ActionButton_ResponseNotice</key>
+	<string>Respond Invitation</string>
+	<key>UI_MatchArrangement_ActionButton_ResponseInvitation</key>
+	<string>Respond Challenge</string>
+	<key>UI_MatchArrangement_ActionButton_Pending</key>
+	<string>Wait Response</string>
+	<key>UI_MatchArrangement_ActionButton_NotInvited</key>
+	<string>Not been Invited</string>
+	<key>UI_MatchArrangement_ActionButton_Accepted</key>
+	<string>Agree</string>
+	<key>UI_MatchArrangement_ActionButton_Refused</key>
+	<string>Decline</string>
+	<key>UI_MatchArrangement_ActionButton_Expired</key>
+	<string>Expired</string>
+	<key>UI_MatchArrangement_ActionButton_OpponentRefused</key>
+	<string>Opponent Declined</string>
+	<key>UI_MatchArrangement_NoticePlayerTitle</key>
+	<string>Please select person you want to notify</string>
+	<key>UI_MatchArrangement_NoticePlayerCancel</key>
+	<string>Cancel</string>
+	<key>UI_MatchArrangement_NoticePlayerMyTeamates</key>
+	<string>Team Members</string>
+	<key>UI_MatchArrangement_NoticePlayerTempFavor</key>
+	<string>Temporary Favor</string>
+	<key>UI_MatchArrangement_PlayerResponseTitle</key>
+	<string>Respond Attend Invitation</string>
+	<key>UI_MatchArrangement_PlayerResponseCancel</key>
+	<string>Cancel</string>
+	<key>UI_MatchArrangement_PlayerResponseAccept</key>
+	<string>Agree</string>
+	<key>UI_MatchArrangement_PlayerResponseRefuse</key>
+	<string>Decline</string>
+	<key>UI_MatchArrangement_InvitationResponseTitle</key>
+	<string>Respond Challenge</string>
+	<key>UI_MatchArrangement_InvitationResponseCancel</key>
+	<string>Cancel</string>
+	<key>UI_MatchArrangement_InvitationResponseAccept</key>
+	<string>Accept</string>
+	<key>UI_MatchArrangement_InvitationResponseRefuse</key>
+	<string>Decline</string>
+	<key>UI_MatchDetails_Title_CreateMatch</key>
+	<string>Create Match</string>
+	<key>UI_MatchDetails_Title_ViewDetails</key>
+	<string>Match Details</string>
+	<key>UI_MatchArrangement_Tab</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>Match Not Start</string>
+			<key>Icon</key>
+			<string>tabIcon_NotStart.png</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Match Completed</string>
+			<key>Icon</key>
+			<string>tabIcon_Ended.png</string>
+		</dict>
+	</array>
+	<key>UI_ReplyMatchNoticeAlertView_Title_Succ</key>
+	<string>Successfully!</string>
+	<key>UI_ReplyMatchNoticeAlertView_Title_Fail</key>
+	<string>Failed!</string>
+	<key>UI_ReplyMatchNoticeAlertView_Message</key>
+	<string>You have confirmed to %@ this match.</string>
+	<key>UI_ReplyMatchNoticeAlertView_Message_Accept</key>
+	<string>attend</string>
+	<key>UI_ReplyMatchNoticeAlertView_Message_Refuse</key>
+	<string>not attend</string>
+	<key>UI_ReplyMatchInvitationAlertView_Title_Succ</key>
+	<string>Successfully!</string>
+	<key>UI_ReplyMatchInvitationAlertView_Title_Fail</key>
+	<string>Failed!</string>
+	<key>UI_ReplyMatchInvitationAlertView_Message</key>
+	<string>You have confirmed to %@ the challenge from %@.</string>
+	<key>UI_ReplyMatchInvitationAlertView_Message_Accept</key>
+	<string>accept</string>
+	<key>UI_ReplyMatchInvitationAlertView_Message_Refuse</key>
+	<string>decline</string>
+	<key>DateFormatter_BalanceTransaction</key>
+	<string>yyyy-MM-dd</string>
+	<key>UI_BalanceTransaction_Title_Add</key>
+	<string>Add Transaction</string>
+	<key>UI_BalanceTransaction_Title_View</key>
+	<string>Transaction Details</string>
+	<key>UI_BalanceTransaction_AmountUnit</key>
+	<string>dollar</string>
+	<key>UI_BalanceTransaction_Type_TeamFund</key>
+	<string>Team Fund</string>
+	<key>UI_BalanceTransaction_AlertView_Added_Title</key>
+	<string>Successfully!</string>
+	<key>UI_BalanceTransaction_AlertView_Added_Message</key>
+	<string>Add transaction successfully.</string>
+	<key>UI_BalanceTransaction_PlayerUnit</key>
+	<string>men</string>
+	<key>UI_BalanceTransaction_HistoryTitle</key>
+	<string>Team Fund History:</string>
+	<key>UI_BalanceTransaction_PlayerListTitle_Add</key>
+	<string>Select player</string>
+	<key>UI_BalanceTransaction_PlayerListTitle_View</key>
+	<string>Paid Player</string>
+	<key>UI_BalanceManagement_Type_Credit</key>
+	<string>Expense</string>
+	<key>UI_BalanceManagement_Type_Debit</key>
+	<string>Income</string>
+	<key>UI_TeamFundInquiry_StartDateTitle</key>
+	<string>Start Date</string>
+	<key>UI_TeamFundInquiry_EndDateTitle</key>
+	<string>End Date</string>
+	<key>UI_TeamFundInquiry_PaidSectionTitle</key>
+	<string>Team Fund Amount Per Person: </string>
+	<key>UI_MatchScoreDetails_OwnGoal</key>
+	<string>Owngoal</string>
+	<key>UI_MatchScoreDetails_None</key>
+	<string>None</string>
+	<key>UI_MatchScoreDetails_Placeholder</key>
+	<string>Select Player</string>
+	<key>UI_MatchScoreDetails_ScoreTitle</key>
+	<string>Match Score</string>
+	<key>UI_StadiumSelection_Home</key>
+	<string>My Home Stadium</string>
+	<key>UI_StadiumSelection_None</key>
+	<string>None</string>
+	<key>UI_LocationDisableWarning_Title</key>
+	<string>Location Disabled</string>
+	<key>UI_LocationDisableWarning_Message</key>
+	<string>Disable location would cause some features unavailable. Please go to &quot;Settings&quot;-&quot;Privacy&quot;-&quot;Location Services&quot; to enable it.</string>
+	<key>UI_MatchDetails_Time</key>
+	<string>Time</string>
+	<key>UI_MatchDetails_Opponent</key>
+	<string>Opponent</string>
+	<key>UI_MatchDetails_Stadium</key>
+	<string>Stadium</string>
+	<key>UI_MatchDetails_Standard</key>
+	<string>Standard</string>
+	<key>UI_MatchDetails_Cost</key>
+	<string>Cost</string>
+	<key>UI_CallFriends_Cancel</key>
+	<string>Cancel</string>
+</dict>
+</plist>
