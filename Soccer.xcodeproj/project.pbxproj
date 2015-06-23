@@ -107,6 +107,10 @@
 		A1E170A619562ED700826610 /* TextFieldIcon_QQ.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E1709F19562ED700826610 /* TextFieldIcon_QQ.png */; };
 		A1E170A719562ED700826610 /* TextFieldIcon_TeamName.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E170A019562ED700826610 /* TextFieldIcon_TeamName.png */; };
 		A1E170A91956648E00826610 /* TextFieldIcon_Stadium.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E170A81956648E00826610 /* TextFieldIcon_Stadium.png */; };
+		A1E56B551B3908AF006EE256 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E56B511B3908AF006EE256 /* AppIcon.png */; };
+		A1E56B561B3908AF006EE256 /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E56B521B3908AF006EE256 /* AppIcon@2x.png */; };
+		A1E56B571B3908AF006EE256 /* AppIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E56B531B3908AF006EE256 /* AppIcon@3x.png */; };
+		A1E56B581B3908AF006EE256 /* AppIcon_ForStore.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E56B541B3908AF006EE256 /* AppIcon_ForStore.png */; };
 		A1E596E019C65E6500829AB1 /* UserLocation_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E596DF19C65E6500829AB1 /* UserLocation_Icon.png */; };
 		A1ED00A319B03F1E00C669D1 /* PositionCheckboxView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1ED00A219B03F1E00C669D1 /* PositionCheckboxView.m */; };
 		A1F428DC191209DB00567A02 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428C9191209DB00567A02 /* AFHTTPRequestOperation.m */; };
@@ -326,6 +330,10 @@
 		A1E1709F19562ED700826610 /* TextFieldIcon_QQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextFieldIcon_QQ.png; sourceTree = "<group>"; };
 		A1E170A019562ED700826610 /* TextFieldIcon_TeamName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextFieldIcon_TeamName.png; sourceTree = "<group>"; };
 		A1E170A81956648E00826610 /* TextFieldIcon_Stadium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextFieldIcon_Stadium.png; sourceTree = "<group>"; };
+		A1E56B511B3908AF006EE256 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		A1E56B521B3908AF006EE256 /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@2x.png"; sourceTree = "<group>"; };
+		A1E56B531B3908AF006EE256 /* AppIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@3x.png"; sourceTree = "<group>"; };
+		A1E56B541B3908AF006EE256 /* AppIcon_ForStore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_ForStore.png; sourceTree = "<group>"; };
 		A1E596DF19C65E6500829AB1 /* UserLocation_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserLocation_Icon.png; sourceTree = "<group>"; };
 		A1ED00A119B03F1E00C669D1 /* PositionCheckboxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PositionCheckboxView.h; path = Captain/Miscellaneous/PlayerMarket/PositionCheckboxView.h; sourceTree = "<group>"; };
 		A1ED00A219B03F1E00C669D1 /* PositionCheckboxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PositionCheckboxView.m; path = Captain/Miscellaneous/PlayerMarket/PositionCheckboxView.m; sourceTree = "<group>"; };
@@ -470,6 +478,7 @@
 		A103339818D6BF8600050A61 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A1E56B501B3908AF006EE256 /* AppIcon */,
 				A1BAE39B1B1EBF2000B6D625 /* TabIcon */,
 				A17397E91A3193FC00048C21 /* Match */,
 				A1E596DE19C65E6500829AB1 /* Stadium */,
@@ -941,6 +950,18 @@
 			path = Resource/LoginAndRegister;
 			sourceTree = "<group>";
 		};
+		A1E56B501B3908AF006EE256 /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				A1E56B511B3908AF006EE256 /* AppIcon.png */,
+				A1E56B521B3908AF006EE256 /* AppIcon@2x.png */,
+				A1E56B531B3908AF006EE256 /* AppIcon@3x.png */,
+				A1E56B541B3908AF006EE256 /* AppIcon_ForStore.png */,
+			);
+			name = AppIcon;
+			path = Resource/AppIcon;
+			sourceTree = "<group>";
+		};
 		A1E596DE19C65E6500829AB1 /* Stadium */ = {
 			isa = PBXGroup;
 			children = (
@@ -1287,6 +1308,7 @@
 			files = (
 				A135B14E1927242B001CB0EC /* rightArrow_white.png in Resources */,
 				A1FC44581935B058007C4B68 /* callFriendsIcon_phone.png in Resources */,
+				A1E56B581B3908AF006EE256 /* AppIcon_ForStore.png in Resources */,
 				A1D07C0E18CD177F00FA3A8D /* Setting.plist in Resources */,
 				B262D2F7192813110079526E /* icon_opponentRejected.png in Resources */,
 				A1E170A91956648E00826610 /* TextFieldIcon_Stadium.png in Resources */,
@@ -1297,12 +1319,14 @@
 				A16EECBE197A32B000F59621 /* UIStrings.plist in Resources */,
 				A104EECB1B05BD5300E49B2C /* LaunchScreen.xib in Resources */,
 				A1E170A119562ED700826610 /* TextFieldIcon_Account.png in Resources */,
+				A1E56B571B3908AF006EE256 /* AppIcon@3x.png in Resources */,
 				A1BAE3A51B1EBF4F00B6D625 /* tabIcon_NotStart.png in Resources */,
 				A1BAE3A91B1EC53F00B6D625 /* test.png in Resources */,
 				B2D13972194A7B53008E6CE9 /* Launch.storyboard in Resources */,
 				A12293051A33C5BA000F0E45 /* matchCell_fillMatchData.png in Resources */,
 				A1370A591904D7CC00E64949 /* leftIcon_createMatch_cost.png in Resources */,
 				A1C2802E18F79CED004C644E /* login_textfield_title_pwd.png in Resources */,
+				A1E56B551B3908AF006EE256 /* AppIcon.png in Resources */,
 				A1370A5C1904D7CC00E64949 /* leftIcon_createMatch_place.png in Resources */,
 				A1BAE3A71B1EBF4F00B6D625 /* tabIcon_NotStart@3x.png in Resources */,
 				A1BAE3A61B1EBF4F00B6D625 /* tabIcon_NotStart@2x.png in Resources */,
@@ -1333,6 +1357,7 @@
 				B2026506191C25E7004B8D74 /* menuIcon_myMatches.png in Resources */,
 				A169F7421915F3AF00361796 /* enterScore_VS.png in Resources */,
 				B23C4F891936B59C00FC73F2 /* TeamIcon.jpg in Resources */,
+				A1E56B561B3908AF006EE256 /* AppIcon@2x.png in Resources */,
 				B2168BF31983180C00F91C4B /* MenuList_PlayerWithTeam.plist in Resources */,
 				B2168BF5198319F200F91C4B /* MenuList_PlayerWithoutTeam.plist in Resources */,
 				A17397ED1A3193FC00048C21 /* matchCell_Opponent.png in Resources */,
