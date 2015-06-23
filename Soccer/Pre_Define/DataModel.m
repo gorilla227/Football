@@ -404,9 +404,6 @@
     else if (playerPortrait && ![UIImagePNGRepresentation(playerPortrait) isEqual:UIImagePNGRepresentation(originalUserInfo.playerPortrait)]){
         [output setObject:playerPortrait forKey:kUserInfo_playerPortrait];
     }
-    if (![teamFundHistory isEqual:originalUserInfo.teamFundHistory]) {
-        [output setObject:teamFundHistory forKey:kUserInfo_teamFundHistory];
-    }
     return output;
 }
 @end

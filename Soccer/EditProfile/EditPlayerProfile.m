@@ -42,24 +42,8 @@
 @synthesize viewType;
 @synthesize saveBar, playerPortraitImageView, nickNameTextField, qqTextField, birthdateTextField, activityRegionTextField, legalNameTextField, mobileTextField, mailTextField, positionTextField, styleTextField;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:saveBar.items];
     textFieldArray = @[legalNameTextField, nickNameTextField, mobileTextField, qqTextField, birthdateTextField, activityRegionTextField, mailTextField, legalNameTextField, positionTextField, styleTextField];
@@ -140,14 +124,12 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)fillInitialPlayerProfile
-{
+- (void)fillInitialPlayerProfile {
     if (gMyUserInfo) {
         [mobileTextField setText:gMyUserInfo.mobile];
         [mailTextField setText:gMyUserInfo.email];
@@ -168,8 +150,7 @@
     }
 }
 
--(IBAction)saveButtonOnClicked:(id)sender
-{
+- (IBAction)saveButtonOnClicked:(id)sender {
     UserInfo *userInfo = [gMyUserInfo copy];
     [userInfo setMobile:mobileTextField.text];
     [userInfo setEmail:mailTextField.text];
@@ -201,14 +182,12 @@
 }
 
 //Update PlayerProfile Sucessfully
--(void)updatePlayerProfileSuccessfully
-{
+- (void)updatePlayerProfileSuccessfully {
     [connection requestUserInfo:gMyUserInfo.userId withTeam:YES withReference:nil];
 }
 
 //Receive updated UserInfo
--(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
-{
+- (void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference {
     gMyUserInfo = userInfo;
     if (viewType == EditProfileViewType_Register) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -234,29 +213,24 @@
 }
 
 //Position Selections
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
 
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     return [Position positionList].count;
 }
 
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return [Position positionList][row];
 }
 
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     [positionTextField setText:[Position positionList][row]];
 }
 
 //Portrait Methods
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([actionSheet isEqual:editPlayerPortraitMenu]) {
         switch (buttonIndex) {
             case 0://Reset playerPortrait
@@ -271,8 +245,7 @@
     }
 }
 
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSString *imageType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([imageType isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
@@ -281,29 +254,25 @@
     }
 }
 
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 //Protocol DismissKeyboard
--(void)dismissKeyboard
-{
+- (void)dismissKeyboard {
     for (UITextField *textField in textFieldArray) {
         [textField resignFirstResponder];
     }
 }
 
 //TextField
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
 }
 
 #pragma DatePicker
--(void)finishDateEditing
-{
+- (void)finishDateEditing {
     [birthdateTextField setText:[birthdayDateFormatter stringFromDate:datePicker.date]];
 }
 
