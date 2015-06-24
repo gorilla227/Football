@@ -621,10 +621,8 @@
     NSDictionary *parameters = CONNECT_Applyin_Parameters([NSNumber numberWithInteger:playerId], [NSNumber numberWithInteger:teamId], message);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-//        [delegate playerApplyinSent];
         [delegate playerApplyinSent:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        [delegate playerApplyinFailed];
         [delegate playerApplyinSent:NO];
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];

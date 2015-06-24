@@ -409,7 +409,7 @@
     [self updateMessageProgress:result];
     
     if (numOfCompletedMessages + numOfFailedMessages == toList.count) {
-        [self composeSent:@"UI_FindTeam_Successful_Message"];
+        [self composeSent:@"UI_FindTeam_SendingResultMessage"];
     }
 }
 
