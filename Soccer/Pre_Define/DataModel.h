@@ -24,6 +24,7 @@
 @interface Age : NSObject
 +(NSInteger)ageFromDate:(NSDate *)birthday;
 +(NSInteger)ageFromString:(NSString *)birthdayString;
++(NSDate *)dateFromString:(NSString *)birthdayString;
 @end
 
 #pragma Message

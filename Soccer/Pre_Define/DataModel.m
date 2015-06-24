@@ -94,18 +94,22 @@
 
 #pragma Age
 @implementation Age
-+(NSInteger)ageFromDate:(NSDate *)birthday
-{
++ (NSInteger)ageFromDate:(NSDate *)birthday {
     NSDateComponents *ageComponenets = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:birthday toDate:[NSDate date] options:0];
     return ageComponenets.year;
 }
 
-+(NSInteger)ageFromString:(NSString *)birthdayString
-{
++ (NSInteger)ageFromString:(NSString *)birthdayString {
     NSDateFormatter *birthdayDateFormatter = [[NSDateFormatter alloc] init];
     [birthdayDateFormatter setDateFormat:def_MatchDateformat];
     NSDate *birthday = [birthdayDateFormatter dateFromString:birthdayString];
     return [Age ageFromDate:birthday];
+}
+
++ (NSDate *)dateFromString:(NSString *)birthdayString {
+    NSDateFormatter *birthdayDateFormatter = [[NSDateFormatter alloc] init];
+    [birthdayDateFormatter setDateFormat:def_MatchDateformat];
+    return [birthdayDateFormatter dateFromString:birthdayString];
 }
 @end
 
