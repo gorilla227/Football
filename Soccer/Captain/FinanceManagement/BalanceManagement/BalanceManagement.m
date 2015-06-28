@@ -30,6 +30,7 @@
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.parentViewController.navigationController];
     [self initialWithLabelTexts:@"BalanceManagement"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forceLoadTableView) name:@"BalanceTransactionAdded" object:nil];
 }
 
 - (void)receiveTeamBalanceTransactions:(NSArray *)transactions {

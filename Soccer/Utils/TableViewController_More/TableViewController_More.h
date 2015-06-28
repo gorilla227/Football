@@ -28,4 +28,5 @@ enum LoadMoreStatus {
 //Actions
 - (BOOL)startLoadingMore:(BOOL)isReload;
 - (void)finishedLoadingWithNewStatus:(enum LoadMoreStatus)newStatus;
+- (void)forceLoadTableView;
 @end

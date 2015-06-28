@@ -72,6 +72,13 @@
     [birthdateTextField setInputView:datePicker];
     [birthdateTextField setTintColor:[UIColor clearColor]];
     [datePicker addTarget:self action:@selector(finishDateEditing) forControlEvents:UIControlEventValueChanged];
+    UILabel *birthdateTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, windowSize.width, birthdateTextField.bounds.size.height)];
+    [birthdateTitle setText:[gUIStrings objectForKey:@"UI_BirthdatePicker_Title"]];
+    [birthdateTitle setTextAlignment:NSTextAlignmentCenter];
+    [birthdateTitle setBackgroundColor:cDatePickerBG];
+    [birthdateTitle setUserInteractionEnabled:YES];
+    [birthdateTextField setInputAccessoryView:birthdateTitle];
+    
     //Set minimumdate and Maximumdate for datepicker
 //    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];

@@ -81,6 +81,7 @@
 #define cMatchCellMatchTimeFont [UIColor colorWithRed:37/255.0 green:67/255.0 blue:87/255.0 alpha:1]
 #define cBalanceTypeCredit [UIColor orangeColor]
 #define cBalanceTypeDebit cLightBlue(1.0)
+#define cDatePickerBG [UIColor colorWithRed:197.0/255.0 green:209.0/255.0 blue:202.0/255.0 alpha:1.0]
 
 //NotifyPlayers_ViewTypes
 enum NotifyPlayers_ViewTypes

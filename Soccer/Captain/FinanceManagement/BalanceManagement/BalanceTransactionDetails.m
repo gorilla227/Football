@@ -154,6 +154,7 @@
     if (result) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_BalanceTransaction_AlertView_Added_Title"] message:[gUIStrings objectForKey:@"UI_BalanceTransaction_AlertView_Added_Message"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
         [alertView show];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"BalanceTransactionAdded" object:nil];
     }
 }
 

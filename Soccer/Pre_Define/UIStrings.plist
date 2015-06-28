@@ -537,5 +537,7 @@
 	<string>费用</string>
 	<key>UI_CallFriends_Cancel</key>
 	<string>取消</string>
+	<key>UI_BirthdatePicker_Title</key>
+	<string>出生日期</string>
 </dict>
 </plist>

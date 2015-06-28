@@ -41,6 +41,7 @@
         }
     }
 }
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if (scrollView.contentOffset.y > MAX(scrollView.contentSize.height - scrollView.frame.size.height, 0) + 20 && !moreActivityIndicator.isAnimating) {
@@ -122,5 +123,10 @@
             break;
     }
     loadMoreStatus = newStatus;
+}
+
+- (void)forceLoadTableView {
+    [self setLoadMoreStatus:LoadMoreStatus_LoadMore];
+    [self startLoadingMore:YES];
 }
 @end
