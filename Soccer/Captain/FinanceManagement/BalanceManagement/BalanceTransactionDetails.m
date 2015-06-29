@@ -32,11 +32,10 @@
 @implementation BalanceTransactionDetails {
     UIDatePicker *dpTransactionDate;
     NSDateFormatter *dateFormatter;
-    NSArray *playerList;
     NSMutableArray *paidPlayerList;
     JSONConnect *connection;
 }
-@synthesize viewType, transaction;
+@synthesize viewType, transaction, playerList;
 @synthesize scTransactionType, tfTransactionName, tfTransactionDate, tfTransactionAmount, tgrDismissKeyboard, tbActionBar, btnSubmit;
 
 - (void)viewDidLoad {
@@ -85,18 +84,19 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:!self.toolbarItems.count];
-    if (viewType == BalanceTransactionDetailsViewType_Add || ![transaction.paymentPlayers.firstObject isEqualToString:@"0"]) {
-        [connection requestTeamMembers:gMyUserInfo.team.teamId withTeamFundHistory:YES isSync:YES];
-    }
-    else {
-        [self prepareTransactionData];
-    }
-}
-
-- (void)receiveTeamMembers:(NSArray *)players {
-    playerList = players;
+//    if (viewType == BalanceTransactionDetailsViewType_Add || ![transaction.paymentPlayers.firstObject isEqualToString:@"0"]) {
+//        [connection requestTeamMembers:gMyUserInfo.team.teamId withTeamFundHistory:YES isSync:YES];
+//    }
+//    else {
+//        [self prepareTransactionData];
+//    }
     [self prepareTransactionData];
 }
+
+//- (void)receiveTeamMembers:(NSArray *)players {
+//    playerList = players;
+//    [self prepareTransactionData];
+//}
 
 - (void)prepareTransactionData {
     //Initial Data

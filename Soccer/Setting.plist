@@ -18,6 +18,8 @@
 	<string>5</string>
 	<key>autoRefreshPeriod</key>
 	<integer>60</integer>
+	<key>globalTeamPlayersRefreshPeriod</key>
+	<integer>60</integer>
 	<key>isRememberAccount</key>
 	<true/>
 	<key>refreshUnreadMessageAmountDuration</key>

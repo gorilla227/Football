@@ -19,4 +19,5 @@ enum BalanceTransactionDetailsViewType {
 @interface BalanceTransactionDetails : UITableViewController<UITextFieldDelegate, UIAlertViewDelegate, JSONConnectDelegate>
 @property enum BalanceTransactionDetailsViewType viewType;
 @property BalanceTransaction *transaction;
+@property NSArray *playerList;
 @end

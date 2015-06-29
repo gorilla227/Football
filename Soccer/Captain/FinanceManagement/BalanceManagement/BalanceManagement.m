@@ -92,6 +92,8 @@
 @implementation BalanceManagement{
     NSMutableArray *balanceData;
     JSONConnect *connection;
+    NSArray *teamPlayers;
+    NSDate *teamPlayersLastRefreshDate;
 }
 @synthesize teamLogo, lbTeamBalance, actionBar;
 
@@ -127,6 +129,14 @@
 
 - (void)receiveTeamBalance:(NSNumber *)teamBalance {
     [lbTeamBalance setText:[NSString stringWithFormat:@"%@%@", teamBalance, [gUIStrings objectForKey:@"UI_BalanceTransaction_AmountUnit"]]];
+    if (!teamPlayersLastRefreshDate || [[NSDate date] timeIntervalSinceDate:teamPlayersLastRefreshDate] > [[gSettings objectForKey:@"globalTeamPlayersRefreshPeriod"] integerValue]) {
+        [connection requestTeamMembers:gMyUserInfo.team.teamId withTeamFundHistory:YES isSync:YES];
+    }
+}
+
+- (void)receiveTeamMembers:(NSArray *)players {
+    teamPlayers = players;
+    teamPlayersLastRefreshDate = [NSDate date];
 }
 
 - (void)showTransaction:(BalanceTransaction *)transaction {
@@ -142,11 +152,13 @@
     if ([segue.identifier isEqualToString:@"AddTransaction"]) {
         BalanceTransactionDetails *detailsView = segue.destinationViewController;
         [detailsView setViewType:BalanceTransactionDetailsViewType_Add];
+        [detailsView setPlayerList:teamPlayers];
     }
     else if ([segue.identifier isEqualToString:@"ViewTransaction"]) {
         BalanceTransactionDetails *detailsView = segue.destinationViewController;
         [detailsView setViewType:BalanceTransactionDetailsViewType_View];
         [detailsView setTransaction:sender];
+        [detailsView setPlayerList:teamPlayers];
     }
 }
 
