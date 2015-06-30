@@ -37,6 +37,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setContents:(__bridge id)bgImage];
+    
     // Do any additional setup after loading the view.
     //Set the tableview
     [stadiumListTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -52,7 +54,7 @@
     [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
 }
 
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
     

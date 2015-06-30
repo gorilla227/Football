@@ -111,7 +111,6 @@
 		A1E56B561B3908AF006EE256 /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E56B521B3908AF006EE256 /* AppIcon@2x.png */; };
 		A1E56B571B3908AF006EE256 /* AppIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E56B531B3908AF006EE256 /* AppIcon@3x.png */; };
 		A1E56B581B3908AF006EE256 /* AppIcon_ForStore.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E56B541B3908AF006EE256 /* AppIcon_ForStore.png */; };
-		A1E56B611B39206C006EE256 /* PushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E56B601B39206C006EE256 /* PushTransition.m */; };
 		A1E596E019C65E6500829AB1 /* UserLocation_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E596DF19C65E6500829AB1 /* UserLocation_Icon.png */; };
 		A1ED00A319B03F1E00C669D1 /* PositionCheckboxView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1ED00A219B03F1E00C669D1 /* PositionCheckboxView.m */; };
 		A1F428DC191209DB00567A02 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F428C9191209DB00567A02 /* AFHTTPRequestOperation.m */; };
@@ -335,8 +334,6 @@
 		A1E56B521B3908AF006EE256 /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@2x.png"; sourceTree = "<group>"; };
 		A1E56B531B3908AF006EE256 /* AppIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@3x.png"; sourceTree = "<group>"; };
 		A1E56B541B3908AF006EE256 /* AppIcon_ForStore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_ForStore.png; sourceTree = "<group>"; };
-		A1E56B5F1B39206C006EE256 /* PushTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PushTransition.h; path = Soccer/Utils/PushTransition.h; sourceTree = "<group>"; };
-		A1E56B601B39206C006EE256 /* PushTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PushTransition.m; path = Soccer/Utils/PushTransition.m; sourceTree = "<group>"; };
 		A1E596DF19C65E6500829AB1 /* UserLocation_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserLocation_Icon.png; sourceTree = "<group>"; };
 		A1ED00A119B03F1E00C669D1 /* PositionCheckboxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PositionCheckboxView.h; path = Captain/Miscellaneous/PlayerMarket/PositionCheckboxView.h; sourceTree = "<group>"; };
 		A1ED00A219B03F1E00C669D1 /* PositionCheckboxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PositionCheckboxView.m; path = Captain/Miscellaneous/PlayerMarket/PositionCheckboxView.m; sourceTree = "<group>"; };
@@ -638,6 +635,7 @@
 		A13A4E331A1AFE9F00B95D8A /* zzzOld */ = {
 			isa = PBXGroup;
 			children = (
+				B262D2FC192827050079526E /* WarmupMatch */,
 				A1B0DA1B18EA785C00671383 /* Captain_MatchArrangement.h */,
 				A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */,
 				A153ACC0190248F80062EB44 /* Captain_CreateMatch.h */,
@@ -707,8 +705,6 @@
 				A13E20CF19247BAB00A24F8D /* HintView */,
 				A1F428C7191209DB00567A02 /* AFNetworking */,
 				A13E20CE19247B9C00A24F8D /* JSONConnect */,
-				A1E56B5F1B39206C006EE256 /* PushTransition.h */,
-				A1E56B601B39206C006EE256 /* PushTransition.m */,
 			);
 			name = Utils;
 			path = ..;
@@ -1163,6 +1159,7 @@
 				B262D2FE1928297D0079526E /* Captain_WarmupMatch.m */,
 			);
 			name = WarmupMatch;
+			path = ../../..;
 			sourceTree = "<group>";
 		};
 		B2A017821984609F00ACDDD2 /* Miscellaneous */ = {
@@ -1224,7 +1221,6 @@
 			children = (
 				A17981AF1980C9680038073A /* FindTeam */,
 				A13E20CD1924784F00A24F8D /* MatchArrangement */,
-				B262D2FC192827050079526E /* WarmupMatch */,
 				A1F4230D1926AE6B00A13C52 /* MyPlayers */,
 				A1F4230E1926AE8800A13C52 /* NewPlayer */,
 			);
@@ -1475,7 +1471,6 @@
 				A1940B12197787EC00B152AC /* MessageBarButtonItem.m in Sources */,
 				A19865FC198DF76A009BA81C /* MessageCenter.m in Sources */,
 				B27F6C0519A001E5006EBE40 /* MessageCenter_ApplyinPlayerProfile.m in Sources */,
-				A1E56B611B39206C006EE256 /* PushTransition.m in Sources */,
 				B2FEC5E41915CADD00B8B74D /* Captain_CreateMatch_EnterScore.m in Sources */,
 				B22B10AE193A9683004BE83F /* BalanceManagement.m in Sources */,
 				A1FC44511935A621007C4B68 /* CallFriends.m in Sources */,

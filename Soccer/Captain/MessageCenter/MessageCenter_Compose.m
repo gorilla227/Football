@@ -34,20 +34,11 @@
 @synthesize composeType, toList, otherParameters, viewControllerAfterSending;
 @synthesize playerListTableView, composeTextView, selectionSegment, actionBar, sendNotificationButton, sendingProgressView, sendingProgressBar, sendingProgressCancelButton, sendingProgressLabel, sendingProgressBackgroundView, matchTextField;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self.view.layer setContents:(__bridge id)bgImage];
+//    [self.view setBackgroundColor:[UIColor clearColor]];
     [self setToolbarItems:actionBar.items];
     [composeTextView initializeUITextFieldRoundCornerStyle];
     [playerListTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -62,29 +53,25 @@
     [self presetNotification];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
     
     [self updateButtonsStatus];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
     [composeTextView resignFirstResponder];
     [matchTextField resignFirstResponder];
 }
 
--(void)presetNotification
-{
+- (void)presetNotification {
     NSString *messageTemplateFile = [[NSBundle mainBundle] pathForResource:@"MessageTemplate" ofType:@"plist"];
     NSDictionary *messageTemplate = [[NSDictionary alloc] initWithContentsOfFile:messageTemplateFile];
     
@@ -153,13 +140,12 @@
     }
 }
 
--(void)updateButtonsStatus
-{
+- (void)updateButtonsStatus {
     [self updateSelectionButtonStatus];
     [self updateSendNotificationButtonStatus];
 }
--(void)updateSendNotificationButtonStatus
-{
+
+- (void)updateSendNotificationButtonStatus {
     NSString *notificationText = [[composeTextView.text stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     switch (composeType) {
         case MessageComposeType_MatchNotice:
@@ -184,8 +170,7 @@
     }
 }
 
--(void)updateSelectionButtonStatus
-{
+- (void)updateSelectionButtonStatus {
     if (toList.count == 0) {
         [selectionSegment setSelectedSegmentIndex:-1];
         [selectionSegment setEnabled:NO];
@@ -204,51 +189,47 @@
     }
 }
 
--(void)textViewDidChange:(UITextView *)textView
-{
+- (void)textViewDidChange:(UITextView *)textView {
     [self updateSendNotificationButtonStatus];
 }
 
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
+- (void)textViewDidBeginEditing:(UITextView *)textView {
     [playerListTableView setUserInteractionEnabled:NO];
 }
 
--(void)textViewDidEndEditing:(UITextView *)textView
-{
+- (void)textViewDidEndEditing:(UITextView *)textView {
     [playerListTableView setUserInteractionEnabled:YES];
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     return NO;
 }
 
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     return !matchData;
 }
 
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
 
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     return matchList.count;
 }
 
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     Match *match = matchList[row];
     return [NSString stringWithFormat:@"%@ - %@", [dateFormatter stringFromDate:match.beginTime], (match.homeTeam.teamId == gMyUserInfo.team.teamId)?match.awayTeam.teamName:match.homeTeam.teamName];
 }
 
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     Match *match = matchList[row];
     [matchTextField setText:[NSString stringWithFormat:@"%@ - %@", [dateFormatter stringFromDate:match.beginTime], (match.homeTeam.teamId == gMyUserInfo.team.teamId)?match.awayTeam.teamName:match.homeTeam.teamName]];
     [self updateSendNotificationButtonStatus];
     [matchTextField resignFirstResponder];
 }
 
--(IBAction)selectAllOrSelectNone:(id)sender
-{
+- (IBAction)selectAllOrSelectNone:(id)sender {
     switch (selectionSegment.selectedSegmentIndex) {
         case 0:
             [self selectAllInToList];
@@ -261,8 +242,7 @@
     }
 }
 
--(void)selectAllInToList
-{
+- (void)selectAllInToList {
     for (int i = 0; i < toList.count; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         [playerListTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -272,8 +252,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:UITableViewSelectionDidChangeNotification object:nil];
 }
 
--(void)unselectAllInToList
-{
+- (void)unselectAllInToList {
     for (NSIndexPath *indexPath in playerListTableView.indexPathsForSelectedRows) {
         [playerListTableView deselectRowAtIndexPath:indexPath animated:NO];
         UITableViewCell *cell = [playerListTableView cellForRowAtIndexPath:indexPath];
@@ -282,20 +261,18 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:UITableViewSelectionDidChangeNotification object:nil];
 }
 
--(void)receiveTeamMembers:(NSArray *)players
-{
+- (void)receiveTeamMembers:(NSArray *)players {
     toList = players;
     [playerListTableView reloadData];
     [self selectAllInToList];
     [self updateButtonsStatus];
 }
 
--(void)receiveMatchesSuccessfully:(NSArray *)matches {
+- (void)receiveMatchesSuccessfully:(NSArray *)matches {
     matchList = matches;
 }
 
--(IBAction)sendNotificationButtonOnClicked:(id)sender
-{
+- (IBAction)sendNotificationButtonOnClicked:(id)sender {
     [sendingProgressBackgroundView setHidden:NO];
     [sendingProgressBackgroundView setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
     [sendingProgressView setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.85]];
@@ -347,8 +324,7 @@
     }
 }
 
--(IBAction)sendingProgressCancelButtonOnClicked:(id)sender
-{
+- (IBAction)sendingProgressCancelButtonOnClicked:(id)sender {
     [connection cancelAllOperations];
     [sendingProgressBackgroundView setHidden:YES];
     [self.navigationController.navigationBar setUserInteractionEnabled:YES];
@@ -437,8 +413,7 @@
     }
 }
 
--(void)updateMessageProgress:(BOOL)messageResult
-{
+- (void)updateMessageProgress:(BOOL)messageResult {
     if (messageResult) {
         numOfCompletedMessages++;
         [sendingProgressLabel setText:[NSString stringWithFormat:[gUIStrings objectForKey:@"UI_Message_SendingProgress_Label"], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]]];
@@ -449,15 +424,13 @@
     }
 }
 
--(void)composeSent:(NSString *)alertMessageKey
-{
+- (void)composeSent:(NSString *)alertMessageKey {
     [sendingProgressBackgroundView setHidden:YES];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:[gUIStrings objectForKey:alertMessageKey], [NSNumber numberWithInteger:numOfCompletedMessages], [NSNumber numberWithInteger:toList.count]] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
     [alertView show];
 }
 
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     [self.navigationController.navigationBar setUserInteractionEnabled:YES];
     [self.navigationController.toolbar setUserInteractionEnabled:YES];
     if (viewControllerAfterSending) {
@@ -469,18 +442,15 @@
 }
 
 #pragma TableView
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return toList.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"ToCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (composeType == MessageComposeType_Applyin) {
@@ -506,14 +476,12 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
 }

@@ -68,9 +68,9 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setContents:(__bridge id)bgImage];
     
     [self.searchDisplayController.searchResultsTableView setRowHeight:self.tableView.rowHeight];
     [self.searchDisplayController.searchResultsTableView setAllowsSelection:NO];
@@ -83,21 +83,18 @@
     [self startLoadingMore:NO];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 //Receive TeamList
--(void)receiveAllTeams:(NSArray *)teams
-{
+- (void)receiveAllTeams:(NSArray *)teams {
     [teamList addObjectsFromArray:teams];
     
     if (teamList.count == 0) {
@@ -110,14 +107,12 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if ([tableView isEqual:self.tableView]) {
         return teamList.count;
@@ -127,8 +122,7 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"FindTeamCell";
     FindTeam_Cell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -171,19 +165,16 @@
     return YES;
 }
 
--(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [searchBar setSearchBarStyle:UISearchBarStyleDefault];
 }
 
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     [searchBar setSearchBarStyle:UISearchBarStyleMinimal];
 }
 
 //Send Applying
--(IBAction)sendApplication:(id)sender
-{
+- (IBAction)sendApplication:(id)sender {
     UIButton *button = sender;
     Team *applyinTeam;
     if (self.searchDisplayController.isActive) {

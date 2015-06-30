@@ -40,6 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setContents:(__bridge id)bgImage];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
     [self.tableView setBackgroundColor:[UIColor clearColor]];

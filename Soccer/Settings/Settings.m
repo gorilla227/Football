@@ -18,6 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setContents:(__bridge id)bgImage];
+    
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     
     [swAutoLogin setOn:[[gSettings objectForKey:@"isRememberAccount"] boolValue]];

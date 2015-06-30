@@ -44,6 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setContents:(__bridge id)bgImage];
     [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:saveBar.items];
     textFieldArray = @[legalNameTextField, nickNameTextField, mobileTextField, qqTextField, birthdateTextField, activityRegionTextField, mailTextField, legalNameTextField, positionTextField, styleTextField];

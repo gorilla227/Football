@@ -19,18 +19,10 @@
 }
 @synthesize composeButton;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setContents:(__bridge id)bgImage];
+    
     // Do any additional setup after loading the view.
     messageTypes = [gUIStrings objectForKey:@"UI_MessageTypes_ForCaptain"];
     NSMutableArray *tabBarViewControllers = [NSMutableArray new];
@@ -46,8 +38,7 @@
     [composeButton setEnabled:gMyUserInfo.team];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

@@ -40,7 +40,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView setBackgroundColor:[UIColor clearColor]];
+    [self.view.layer setContents:(__bridge id)bgImage];
+//    [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
@@ -91,8 +92,7 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:!self.toolbarItems.count];
 }
@@ -102,14 +102,13 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)receiveTeam:(Team *)team {
+- (void)receiveTeam:(Team *)team {
     teamData = team;
     [self initWithTeamData];
     [self.tableView reloadData];
 }
 
--(void)initWithTeamData
-{
+- (void)initWithTeamData {
     [teamNameLabel setText:teamData.teamName];
     [teamLogoImageView setImage:teamData.teamLogo?teamData.teamLogo:def_defaultTeamLogo];
     [teamNumberLabel setText:[NSNumber numberWithInteger:teamData.numOfMember].stringValue];
@@ -137,16 +136,14 @@
     [challengeFlagSwitch setOn:teamData.challengeFlag];
 }
 
--(IBAction)applyInButtonOnClicked:(id)sender
-{
+- (IBAction)applyInButtonOnClicked:(id)sender {
     MessageCenter_Compose *composeViewController = [[UIStoryboard storyboardWithName:@"MessageCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageCompose"];
     [composeViewController setComposeType:MessageComposeType_Applyin];
     [composeViewController setToList:@[teamData]];
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
--(IBAction)challengeButtonOnClicked:(id)sender
-{
+- (IBAction)challengeButtonOnClicked:(id)sender {
     switch (viewType) {
         case TeamDetailsViewType_CreateMatch:
             delegate = (id)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3];
@@ -164,8 +161,7 @@
     return 1;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     if ([cell isEqual:homeStadiumMapCell] && !teamData.homeStadium) {
         return 0;

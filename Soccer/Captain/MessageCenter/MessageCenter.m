@@ -47,9 +47,9 @@
 }
 @synthesize messageTypeTextField, dismissKeyboardGestureRecognizer;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setContents:(__bridge id)bgImage];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:@"MessageStatusUpdated" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleTapGesture) name:UITextFieldTextDidBeginEditingNotification object:nil];
@@ -80,25 +80,22 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
     [super viewWillAppear:animated];
 }
 
--(void)refreshTableView
-{
+- (void)refreshTableView {
     [self.tableView reloadData];
 }
 
--(void)refreshUnreadMessageAmount {
+- (void)refreshUnreadMessageAmount {
     if (gUnreadMessageAmount) {
         if ([[gUnreadMessageAmount.allValues valueForKeyPath:@"@sum.self"] integerValue] == 0) {
             [self.tabBarItem setBadgeValue:nil];
@@ -109,12 +106,11 @@
     }
 }
 
--(void)toggleTapGesture {
+- (void)toggleTapGesture {
     [dismissKeyboardGestureRecognizer setEnabled:messageTypeTextField.isFirstResponder];
 }
 
--(void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType
-{
+- (void)receiveMessages:(NSArray *)messages sourceType:(enum RequestMessageSourceType)sourceType {
     if (messageList) {
         [messageList addObjectsFromArray:messages];
     }
@@ -130,8 +126,7 @@
     [self.tableView reloadData];
 }
 
--(void)readMessagesSuccessfully:(NSArray *)messageIdList
-{
+- (void)readMessagesSuccessfully:(NSArray *)messageIdList {
     for (NSNumber *messageId in messageIdList) {
         for (Message *message in messageList) {
             if (message.messageId == messageId.integerValue) {
@@ -144,20 +139,17 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return messageList.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     [dateFormatter setDateFormat:def_MessageDateformat];
     static NSString *CellIdentifier = @"MessageCell";
@@ -183,8 +175,7 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Message *message = [messageList objectAtIndex:indexPath.row];
     PlayerDetails *playerDetails;
     TeamDetails *teamDetails;

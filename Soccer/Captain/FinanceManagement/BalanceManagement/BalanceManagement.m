@@ -100,7 +100,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self.view.layer setContents:(__bridge id)bgImage];
+//    [self.view setBackgroundColor:[UIColor clearColor]];
     [self setToolbarItems:actionBar.items];
     
     //Initial data

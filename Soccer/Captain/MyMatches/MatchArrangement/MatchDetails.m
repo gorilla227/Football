@@ -48,7 +48,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView setBackgroundColor:[UIColor clearColor]];
+//    [self.tableView setBackgroundColor:[UIColor clearColor]];
+    [self.view.layer setContents:(__bridge id)bgImage];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     //Set dateformatter

@@ -36,7 +36,8 @@
 @synthesize tfStartDate, tfEndDate, btnSearch, scPlayerList, tbNotice, btnNotice, lbNoRecord;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView setBackgroundColor:[UIColor clearColor]];
+    [self.view.layer setContents:(__bridge id)bgImage];
+//    [self.tableView setBackgroundColor:[UIColor clearColor]];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [btnSearch.layer setCornerRadius:5.0f];
     [btnSearch.layer setMasksToBounds:YES];

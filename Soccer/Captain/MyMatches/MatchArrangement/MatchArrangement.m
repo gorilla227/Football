@@ -34,6 +34,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setContents:(__bridge id)bgImage];
+    
     // Do any additional setup after loading the view.
     if (gMyUserInfo.team) {
         [teamSummaryView setHidden:NO];

@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setContents:(__bridge id)bgImage];
     [self setToolbarItems:actionBar.items];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
@@ -47,20 +48,17 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Table view data source
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     CGFloat height = self.tableView.bounds.size.height - self.tableView.contentSize.height;
     CGRect frame = stadiumMapView.frame;
     frame.size.height = height;
@@ -68,18 +66,15 @@
     return height;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return stadiumMapView;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     firstResponseTextField = textField;
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *potentousString = [[textField.text stringByReplacingCharactersInRange:range withString:string] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     if ([textField isEqual:stadiumPriceTextField]) {
@@ -97,16 +92,14 @@
     return YES;
 }
 
--(IBAction)dismissKeyboard:(UITapGestureRecognizer *)tapGestureRecognizer
-{
+- (IBAction)dismissKeyboard:(UITapGestureRecognizer *)tapGestureRecognizer {
     if (firstResponseTextField) {
         [firstResponseTextField resignFirstResponder];
         firstResponseTextField = nil;
     }
 }
 
--(IBAction)saveButtonOnClicked:(id)sender
-{
+- (IBAction)saveButtonOnClicked:(id)sender {
     [potentousStadium setStadiumName:stadiumNameTextField.text];
     [potentousStadium setAddress:stadiumAddressTextField.text];
     [potentousStadium setPhoneNumber:stadiumPhoneTextField.text];
@@ -115,8 +108,7 @@
     [connection addStadium:potentousStadium];
 }
 
--(void)addStadiumSuccessfully:(NSInteger)stadiumId
-{
+- (void)addStadiumSuccessfully:(NSInteger)stadiumId {
     [potentousStadium setStadiumId:stadiumId];
     [self.navigationController popViewControllerAnimated:YES];
 }

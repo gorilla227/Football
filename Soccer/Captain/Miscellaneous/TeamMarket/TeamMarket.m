@@ -173,6 +173,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setContents:(__bridge id)bgImage];
     
     [self.navigationItem setRightBarButtonItem:self.navigationController.navigationBar.topItem.rightBarButtonItem];
     [self.tableView setTableHeaderView:searchView];
@@ -201,8 +202,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
     [super viewWillAppear:animated];
@@ -219,8 +219,7 @@
     return NO;
 }
 
--(IBAction)searchViewSwitchButtonOnClicked:(id)sender
-{
+- (IBAction)searchViewSwitchButtonOnClicked:(id)sender {
     [searchViewSwitchButton setSelected:!searchViewSwitchButton.isSelected];
     [self.tableView setTableHeaderView:searchViewSwitchButton.isSelected?searchView:[[UIView alloc] initWithFrame:CGRectZero]];
     if (teamList.count) {
@@ -228,8 +227,7 @@
     }
 }
 
--(IBAction)searchButtonOnClicked:(id)sender
-{
+- (IBAction)searchButtonOnClicked:(id)sender {
     [searchView.teamNameSearchTextField resignFirstResponder];
     [searchView.activityRegionSearchTextField resignFirstResponder];
     [teamList removeAllObjects];
@@ -237,8 +235,7 @@
     [self startLoadingMore:YES];
 }
 
--(void)receiveTeams:(NSArray *)teams
-{
+- (void)receiveTeams:(NSArray *)teams {
     [teamList addObjectsFromArray:teams];
     if (teamList.count == 0) {
         [self finishedLoadingWithNewStatus:LoadMoreStatus_NoData];
@@ -298,13 +295,11 @@
     return cell;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return searchViewSwitchButton;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return searchViewSwitchButton.frame.size.height;
 }
 

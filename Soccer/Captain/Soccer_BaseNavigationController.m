@@ -7,6 +7,7 @@
 //
 
 #import "Soccer_BaseNavigationController.h"
+//#import "PushTransition.h"
 
 @interface Soccer_BaseNavigationController ()
 @property IBOutlet UIBarButtonItem *menuButton;
@@ -26,9 +27,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     mainNavigationController = self;
+
     //Set the background image
-    UIImage *backgroundImage = [UIImage imageNamed:@"soccer_grass_bg@2x.png"];
+    UIImage *backgroundImage = [UIImage imageNamed:@"soccer_grass_bg.png"];
     [self.view.layer setContents:(id)backgroundImage.CGImage];
+    bgImage= backgroundImage.CGImage;
 
     mainMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"MainMenu"];
     [mainMenu setDelegateOfMenuAppearance:self];
@@ -178,6 +181,7 @@
     [self.view.window setUserInteractionEnabled:YES];
     [busyIndicator stopAnimating];
 }
+
 /*
 #pragma mark - Navigation
 

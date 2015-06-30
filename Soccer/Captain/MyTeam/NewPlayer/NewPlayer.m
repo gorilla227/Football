@@ -447,12 +447,12 @@
 }
 @synthesize teamLogoImageView, typeSegement, numOfApplyinLabel, numOfCallinLabel, numOfTeamMemberLabel, actionBar;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     messageReferenceDictionary = [NSMutableDictionary new];
-    [self.view setBackgroundColor:[UIColor clearColor]];
+//    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self.view.layer setContents:(__bridge id)bgImage];
     [self setToolbarItems:actionBar.items];
     callFriends = [[CallFriends alloc] initWithPresentingViewController:self];
     
