@@ -144,8 +144,10 @@
         [nickNameTextField setText:gMyUserInfo.nickName];
         [legalNameTextField setText:gMyUserInfo.legalName];
         [qqTextField setText:gMyUserInfo.qq];
-        [birthdateTextField setText:gMyUserInfo.birthday];
-        [datePicker setDate:[Age dateFromString:gMyUserInfo.birthday]];
+        if ([Age dateFromString:gMyUserInfo.birthday]) {
+            [birthdateTextField setText:gMyUserInfo.birthday];
+            [datePicker setDate:[Age dateFromString:gMyUserInfo.birthday]];
+        }
         [activityRegionTextField presetActivityRegionCode:gMyUserInfo.activityRegion];
         [positionTextField setText:[Position stringWithCode:gMyUserInfo.position]];
         [positionPicker selectRow:gMyUserInfo.position inComponent:0 animated:NO];
