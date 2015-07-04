@@ -321,21 +321,21 @@
         //MatchTime is Passed now
         if (creationProgress == MatchDetailsCreationProgress_Future_WithOppo) {
             //MatchTime is changed from Future
-            [matchOpponentTextField setText:nil];
+            [matchOpponentTextField setText:@""];
         }
         creationProgress = MatchDetailsCreationProgress_Passed;
     }
     else {
         //MatchTime is Future now
         if (creationProgress == MatchDetailsCreationProgress_Passed) {
-            [matchOpponentTextField setText:nil];
+            [matchOpponentTextField setText:@""];
             [self formatMatchOpponent:NO];
         }
         if (creationProgress != MatchDetailsCreationProgress_Future_WithOppo) {
             creationProgress = MatchDetailsCreationProgress_Future_WithoutOppo;
         }
     }
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
 - (void)standardStepperChanged {
@@ -414,6 +414,9 @@
     }
     else if ([textField isEqual:costTextField]) {
         [costTextField setText:[NSString stringWithFormat:@"%.2f", costTextField.text.floatValue]];
+    }
+    else if ([textField isEqual:matchTimeTextField]) {
+        [self.tableView reloadData];
     }
     [dismissKeyboardGestureRecognizer setEnabled:NO];
     [self checkCreateMatchButtonStatus];
@@ -576,15 +579,15 @@
 - (void)formatMatchOpponent:(BOOL)isRealTeam {
     if (isRealTeam) {
         [matchOpponentTextField setTextColor:[UIColor orangeColor]];
-        UIImageView *selectedTeamLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, matchOpponentTextField.frame.size.height, matchOpponentTextField.frame.size.height)];
-        [selectedTeamLogo setImage:selectedOpponentTeam.teamLogo?selectedOpponentTeam.teamLogo:def_defaultTeamLogo];
-        [selectedTeamLogo.layer setCornerRadius:5.0f];
-        [selectedTeamLogo.layer setMasksToBounds:YES];
-        [matchOpponentTextField setLeftView:selectedTeamLogo];
+//        UIImageView *selectedTeamLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, matchOpponentTextField.frame.size.height, matchOpponentTextField.frame.size.height)];
+//        [selectedTeamLogo setImage:selectedOpponentTeam.teamLogo?selectedOpponentTeam.teamLogo:def_defaultTeamLogo];
+//        [selectedTeamLogo.layer setCornerRadius:5.0f];
+//        [selectedTeamLogo.layer setMasksToBounds:YES];
+//        [matchOpponentTextField setLeftView:selectedTeamLogo];
     }
     else {
         [matchOpponentTextField setTextColor:[UIColor blackColor]];
-        [matchOpponentTextField setLeftView:nil];
+//        [matchOpponentTextField setLeftView:nil];
     }
 }
 
