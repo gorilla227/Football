@@ -121,9 +121,8 @@
 }
 
 - (IBAction)forgetPasswordButtonOnClicked:(id)sender {
-    //FillAdditionProfile
-    UIViewController *targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FillAdditionalProfile"];
-    [self.navigationController pushViewController:targetViewController animated:YES];
+//    UIViewController *targetViewController = [[UIStoryboard storyboardWithName:@"Soccer" bundle:nil] instantiateViewControllerWithIdentifier:@"Test"];
+//    [self.navigationController pushViewController:targetViewController animated:YES];
 }
 //DissmissKeyboard
 -(void)dismissKeyboard

@@ -335,6 +335,7 @@
             creationProgress = MatchDetailsCreationProgress_Future_WithoutOppo;
         }
     }
+    selectedOpponentTeam = nil;
 //    [self.tableView reloadData];
 }
 
@@ -389,7 +390,7 @@
     switch (creationProgress) {
         case MatchDetailsCreationProgress_Future_WithOppo:
         case MatchDetailsCreationProgress_Passed:
-            [createMatchButton setEnabled:(matchTimeTextField.text.length && matchOpponentTextField.text.length && costTextField.text.length && matchStadiumTextFiedld.selectedStadium)];
+            [createMatchButton setEnabled:(matchTimeTextField.text.length && matchOpponentTextField.text.length && matchStadiumTextFiedld.selectedStadium)];
             break;
         default:
             [createMatchButton setEnabled:NO];
@@ -516,11 +517,21 @@
                 case MatchDetailsCreationProgress_Initial:
                     return 1;
                 case MatchDetailsCreationProgress_Passed:
-                    return [super tableView:tableView numberOfRowsInSection:section];
+                    if (section == 1) {
+                        return 0;
+                    }
+                    else {
+                        return [super tableView:tableView numberOfRowsInSection:section];
+                    }
                 case MatchDetailsCreationProgress_Future_WithoutOppo:
                     return 2;
                 case MatchDetailsCreationProgress_Future_WithOppo:
-                    return [super tableView:tableView numberOfRowsInSection:section];
+                    if (!selectedOpponentTeam && section == 1) {
+                        return 0;
+                    }
+                    else {
+                        return [super tableView:tableView numberOfRowsInSection:section];
+                    }
                 default:
                     return 0;
             }
@@ -597,6 +608,8 @@
     selectedOpponentTeam = selectedTeam;
     [self formatMatchOpponent:YES];
     [self textFieldDidEndEditing:matchOpponentTextField];
+    [matchOpponentTextField resignFirstResponder];
+    [self.tableView reloadData];
 }
 
 //SaveScoreForNewMatchDelegate

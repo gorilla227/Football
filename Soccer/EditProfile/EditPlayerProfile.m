@@ -9,8 +9,7 @@
 #import "EditPlayerProfile.h"
 
 @implementation EditPlayerProfile_TableView
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self setDelegateForDismissKeyboard:(id)self.delegate];
     [self.delegateForDismissKeyboard dismissKeyboard];
 }
@@ -30,7 +29,7 @@
 @property IBOutlet UITextField *styleTextField;
 @end
 
-@implementation EditPlayerProfile{
+@implementation EditPlayerProfile {
     UIDatePicker *datePicker;
     UIImagePickerController *imagePicker;
     UIActionSheet *editPlayerPortraitMenu;
@@ -48,7 +47,7 @@
     [self.navigationController setToolbarHidden:NO];
     [self setToolbarItems:saveBar.items];
     textFieldArray = @[legalNameTextField, nickNameTextField, mobileTextField, qqTextField, birthdateTextField, activityRegionTextField, mailTextField, legalNameTextField, positionTextField, styleTextField];
-    [self.tableView setBackgroundColor:[UIColor clearColor]];
+//    [self.tableView setBackgroundColor:[UIColor clearColor]];
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
     
     //Set DateFormatter
@@ -93,7 +92,7 @@
     //Set imagePicker
     imagePicker = [[UIImagePickerController alloc] init];
     [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    [imagePicker setDelegate:self];
+    [imagePicker setDelegate:(id)self];
     [imagePicker setAllowsEditing:YES];
     [imagePicker.navigationBar setTitleTextAttributes:self.navigationController.navigationBar.titleTextAttributes];
     
@@ -213,8 +212,7 @@
     }
 }
 
--(IBAction)selectplayerPortraitButtonOnClicked:(id)sender
-{
+- (IBAction)selectplayerPortraitButtonOnClicked:(id)sender {
     if (![playerPortraitImageView.image isEqual:def_defaultPlayerPortrait]) {
         [editPlayerPortraitMenu showInView:self.view];
     }

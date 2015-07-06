@@ -7,11 +7,9 @@
 //
 
 #import "EditTeamProfile.h"
-#import "UITextView+UITextFieldRoundCornerStyle.h"
 
 @implementation EditTeamProfile_TableView
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self setDelegateForDismissKeyboard:(id)self.delegate];
     [self.delegateForDismissKeyboard dismissKeyboard];
 }
@@ -35,7 +33,7 @@
 @property IBOutlet UITextView *challengeAnnouncementTextView;
 @end
 
-@implementation EditTeamProfile{
+@implementation EditTeamProfile {
     NSArray *textFieldArray;
     UIImagePickerController *imagePicker;
     UIActionSheet *editTeamLogoMenu;
@@ -44,22 +42,12 @@
 @synthesize viewType;
 @synthesize saveBar, createTeamBar, createTeamButton, teamLogoImageView, teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, selectTeamLogoButton, numOfTeamMemberView, numOfTeamMemberLabel, recruitFlagSwitch, recruitAnnouncementTextView, challengeFlagSwitch, challengeAnnouncementTextView;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self.view.layer setContents:(__bridge id)bgImage];
     
     connection = [[JSONConnect alloc] initWithDelegate:self andBusyIndicatorDelegate:self.navigationController];
-    [self.tableView setBackgroundColor:[UIColor clearColor]];
+//    [self.tableView setBackgroundColor:[UIColor clearColor]];
     textFieldArray = @[teamNameTextField, activityRegionTextField, homeStadiumTextField, sloganTextView, recruitAnnouncementTextView, challengeAnnouncementTextView];
     
     //Set the controls enable status
@@ -106,7 +94,7 @@
     //Set imagePicker
     imagePicker = [[UIImagePickerController alloc] init];
     [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    [imagePicker setDelegate:self];
+    [imagePicker setDelegate:(id)self];
     [imagePicker setAllowsEditing:YES];
     [imagePicker.navigationBar setTranslucent:NO];
     [imagePicker.navigationBar setTitleTextAttributes:self.navigationController.navigationBar.titleTextAttributes];
@@ -129,24 +117,23 @@
     [homeStadiumTextField initialLeftViewWithIconImage:@"TextFieldIcon_Stadium.png"];
     [activityRegionTextField initialLeftViewWithIconImage:@"TextFieldIcon_ActivityRegion.png"];
     
-    //Get all stadiums
-    [connection requestAllStadiums];
+    //Fill Initial TeamInfo
+    [self fillInitialTeamProfile];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:!self.toolbarItems.count];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)fillInitialTeamProfile
-{
+- (void)fillInitialTeamProfile {
+    [homeStadiumTextField textFieldInitialization:gStadiums homeStadium:nil showSelectHomeStadium:NO];
     if (gMyUserInfo.team) {
         [teamNameTextField setText:gMyUserInfo.team.teamName];
         [activityRegionTextField presetActivityRegionCode:gMyUserInfo.team.activityRegion];
@@ -177,8 +164,7 @@
     }
 }
 
--(IBAction)saveButtonOnClicked:(id)sender
-{
+- (IBAction)saveButtonOnClicked:(id)sender {
     Team *teamInfo = [gMyUserInfo.team copy];
     [teamInfo setTeamName:teamNameTextField.text];
     [teamInfo setActivityRegion:activityRegionTextField.selectedActivityRegionCode];
@@ -198,8 +184,7 @@
     }
 }
 
--(IBAction)createTeamButtonOnClicked:(id)sender
-{
+- (IBAction)createTeamButtonOnClicked:(id)sender {
     Team *newTeamProfile = [Team new];
     [newTeamProfile setTeamLogo:[teamLogoImageView.image isEqual:def_defaultTeamLogo]?nil:teamLogoImageView.image];
     [newTeamProfile setTeamName:teamNameTextField.text];
@@ -215,14 +200,12 @@
 }
 
 //Update TeamProfile Sucessfully
--(void)updateTeamProfileSuccessfully
-{
+- (void)updateTeamProfileSuccessfully {
     [connection requestUserInfo:gMyUserInfo.userId withTeam:YES withReference:nil];
 }
 
 //Receive updated UserInfo
--(void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference
-{
+- (void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference {
     if (userInfo.team && !gMyUserInfo.team) {
         //Create new team successfully
         gMyUserInfo = userInfo;
@@ -239,8 +222,7 @@
     }
 }
 
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 0) {
         [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
         UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
@@ -249,17 +231,7 @@
     }
 }
 
-//Receive all stadiums
--(void)receiveAllStadiums:(NSArray *)stadiums
-{
-    [homeStadiumTextField textFieldInitialization:stadiums homeStadium:nil showSelectHomeStadium:NO];
-    
-    //Fill Initial TeamInfo
-    [self fillInitialTeamProfile];
-}
-
--(IBAction)selectTeamLogoButtonOnClicked:(id)sender
-{
+- (IBAction)selectTeamLogoButtonOnClicked:(id)sender {
     if (![teamLogoImageView.image isEqual:def_defaultTeamLogo]) {
         [editTeamLogoMenu showInView:self.view];
     }
@@ -268,8 +240,7 @@
     }
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([actionSheet isEqual:editTeamLogoMenu]) {
         switch (buttonIndex) {
             case 0://Reset teamLogo
@@ -284,8 +255,7 @@
     }
 }
 
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSString *imageType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([imageType isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
@@ -294,28 +264,24 @@
     }
 }
 
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 //Protocol DismissKeyboard
--(void)dismissKeyboard
-{
-    for (UITextField *textField in textFieldArray) {
-        [textField resignFirstResponder];
+- (void)dismissKeyboard {
+    for (UIControl *control in textFieldArray) {
+        [control resignFirstResponder];
     }
 }
 
 //TextField
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if ([textField isEqual:teamNameTextField]) {
         NSString *teamNameString = [teamNameTextField.text stringByReplacingCharactersInRange:range withString:string];
         [createTeamButton setEnabled:[teamNameString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length];
