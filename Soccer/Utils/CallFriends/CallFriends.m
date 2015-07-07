@@ -30,20 +30,20 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"%@", [actionSheet buttonTitleAtIndex:buttonIndex]);
-    
-    //MFMessage
-    if ([MFMessageComposeViewController canSendText]) {
-        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-        NSString *messageTemplateFile = [[NSBundle mainBundle] pathForResource:@"MessageTemplate" ofType:@"plist"];
-        NSDictionary *messageTemplate = [NSDictionary dictionaryWithContentsOfFile:messageTemplateFile];
-        [messageController setMessageComposeDelegate:(id)self];
-        [messageController setBody:[messageTemplate objectForKey:@"SMS_InviteFriends"]];
-        [presentingViewController presentViewController:messageController animated:YES completion:nil];
-    }
-    else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Unsupported"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
-        [alertView show];
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        //MFMessage
+        if ([MFMessageComposeViewController canSendText]) {
+            MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+            NSString *messageTemplateFile = [[NSBundle mainBundle] pathForResource:@"MessageTemplate" ofType:@"plist"];
+            NSDictionary *messageTemplate = [NSDictionary dictionaryWithContentsOfFile:messageTemplateFile];
+            [messageController setMessageComposeDelegate:(id)self];
+            [messageController setBody:[messageTemplate objectForKey:@"SMS_InviteFriends"]];
+            [presentingViewController presentViewController:messageController animated:YES completion:nil];
+        }
+        else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[gUIStrings objectForKey:@"UI_SMS_Unsupported"] delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+            [alertView show];
+        }
     }
 }
 
