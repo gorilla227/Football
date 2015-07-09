@@ -257,7 +257,7 @@
     
     myScore = homeScore;
     opponentScore = awayScore;
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self checkSaveButtonStatus];
 }
 

@@ -23,8 +23,7 @@
 }
 */
 
--(void)initialTextFieldForMatchScore:(BOOL)regularMatchFlag
-{
+- (void)initialTextFieldForMatchScore:(BOOL)regularMatchFlag {
     scorePicker = [[UIPickerView alloc] init];
     [scorePicker setDelegate:self];
     [scorePicker setDataSource:self];
@@ -33,8 +32,7 @@
     [self setTintColor:[UIColor clearColor]];
 }
 
--(void)presetHomeScore:(NSInteger)homeScore andAwayScore:(NSInteger)awayScore
-{
+- (void)presetHomeScore:(NSInteger)homeScore andAwayScore:(NSInteger)awayScore {
     homeTeamScore = homeScore;
     awayTeamScore = awayScore;
     [self setText:[NSString stringWithFormat:@"%@ : %@", (homeTeamScore < 0)?@"-":[NSNumber numberWithInteger:homeTeamScore], (awayTeamScore < 0)?@"-":[NSNumber numberWithInteger:awayTeamScore]]];
@@ -59,19 +57,19 @@
 }
 
 //UIPickerViewDelegate
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return isRegularMatch?1:2;
 }
 
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     return 30;
 }
 
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return [NSNumber numberWithInteger:row].stringValue;
 }
 
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (component == 0) {
         homeTeamScore = [pickerView selectedRowInComponent:0];
     }
