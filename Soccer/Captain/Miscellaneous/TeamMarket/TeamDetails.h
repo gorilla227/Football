@@ -18,7 +18,7 @@ enum TeamDetailsViewType {
 -(void)selectedOpponentTeam:(Team *)selectedTeam;
 @end
 
-@interface TeamDetails : UITableViewController<JSONConnectDelegate>
+@interface TeamDetails : UITableViewController<JSONConnectDelegate, UIAlertViewDelegate>
 @property Team *teamData;
 @property enum TeamDetailsViewType viewType;
 @property id<TeamMarketSelectionDelegate>delegate;

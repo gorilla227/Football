@@ -5344,9 +5344,17 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="089-fF-SCy"/>
-                        <barButtonItem title="同意" id="Yxf-NS-Rl5"/>
+                        <barButtonItem title="同意" id="Yxf-NS-Rl5">
+                            <connections>
+                                <action selector="acceptButtonOnClicked:" destination="W3k-vZ-ced" id="hBX-fn-9Wf"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="7CL-3B-4yP"/>
-                        <barButtonItem title="拒绝" id="lSC-uU-Zyr"/>
+                        <barButtonItem title="拒绝" id="lSC-uU-Zyr">
+                            <connections>
+                                <action selector="declineButtonOnClicked:" destination="W3k-vZ-ced" id="ryP-gs-4Fa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="P2h-Vh-Mw0"/>
                     </items>
                 </toolbar>

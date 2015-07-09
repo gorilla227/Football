@@ -155,6 +155,45 @@
     }
 }
 
+- (IBAction)acceptButtonOnClicked:(id)sender {
+    [connection replyCallinMessage:message.messageId response:2];
+}
+
+- (IBAction)declineButtonOnClicked:(id)sender {
+    [connection replyCallinMessage:message.messageId response:3];
+}
+
+- (void)replyCallinMessageSuccessfully:(NSInteger)responseCode {
+    [message setStatus:responseCode];
+    NSString *responseString;
+    switch (responseCode) {
+        case 2:
+            responseString = [gUIStrings objectForKey:@"UI_ReplayCallin_Accepted"];
+            break;
+        case 3:
+            responseString = [gUIStrings objectForKey:@"UI_ReplayCallin_Declined"];
+            break;
+        default:
+            break;
+    }
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:responseString delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"] otherButtonTitles:nil];
+    [alertView setTag:responseCode];
+    [alertView show];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MessageStatusUpdated" object:nil];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == 2) {
+        [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+        UIStoryboard *captainStoryboard = [UIStoryboard storyboardWithName:@"Soccer" bundle:nil];
+        UIViewController *mainController = [captainStoryboard instantiateInitialViewController];
+        [self.view.window.rootViewController presentViewController:mainController animated:YES completion:nil];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.

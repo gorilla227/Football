@@ -654,10 +654,8 @@
     NSDictionary *parameters = CONNECT_Callin_Parameters([NSNumber numberWithInteger:teamId], [NSNumber numberWithInteger:playerId], message);
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [busyIndicatorDelegate unlockView];
-//        [delegate teamCallinSent];
         [delegate teamCallinSent:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        [delegate teamCallinFailed];
         [delegate teamCallinSent:NO];
         [self showErrorAlertView:error otherInfo:operation.responseString];
     }];
