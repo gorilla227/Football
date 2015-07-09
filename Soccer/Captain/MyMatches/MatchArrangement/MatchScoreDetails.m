@@ -255,9 +255,15 @@
         }
     }
     
-    myScore = homeScore;
-    opponentScore = awayScore;
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+    if (myScore != homeScore) {
+        myScore = homeScore;
+        opponentScore = awayScore;
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else {
+        myScore = homeScore;
+        opponentScore = awayScore;
+    }
     [self checkSaveButtonStatus];
 }
 
