@@ -39,6 +39,10 @@
 	<string>已成功修改个人资料！</string>
 	<key>UI_EditPlayerProfile_NoChange</key>
 	<string>你没有修改任何个人资料！</string>
+	<key>UI_EditTeamProfile_Successful</key>
+	<string>已成功修改球队资料！</string>
+	<key>UI_EditTeamProfile_NoChange</key>
+	<string>你没有修改任何球队资料！</string>
 	<key>UI_SMS_Unsupported</key>
 	<string>该设备不支持短信。</string>
 	<key>UI_SMS_Cancelled</key>

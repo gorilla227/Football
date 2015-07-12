@@ -180,7 +180,13 @@
         [connection updateTeamProfile:updateDictionary];
     }
     else {
-        [self.navigationController popViewControllerAnimated:YES];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:[gUIStrings objectForKey:@"UI_EditTeamProfile_NoChange"]
+                                                           delegate:nil
+                                                  cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
+                                                  otherButtonTitles:nil];
+        [alertView setTag:1];
+        [alertView show];
     }
 }
 
@@ -206,19 +212,31 @@
 
 //Receive updated UserInfo
 - (void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference {
-    if (userInfo.team && !gMyUserInfo.team) {
-        //Create new team successfully
-        gMyUserInfo = userInfo;
-        UIAlertView *createTeamSuccessAleartView = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_CreateTeamSucc_AlertView_Title"]
-                                                                              message:[gUIStrings objectForKey:@"UI_CreateTeamSucc_AlertView_Message"]
-                                                                             delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_CreateTeamSucc_AlertView_Button"]
-                                                                    otherButtonTitles:nil];
-        [createTeamSuccessAleartView setTag:0];
-        [createTeamSuccessAleartView show];
+    gMyUserInfo = userInfo;
+    if (viewType == EditProfileViewType_Register) {
+        if (userInfo.team && !gMyUserInfo.team) {
+            //Create new team successfully
+            gMyUserInfo = userInfo;
+            UIAlertView *createTeamSuccessAleartView = [[UIAlertView alloc] initWithTitle:[gUIStrings objectForKey:@"UI_CreateTeamSucc_AlertView_Title"]
+                                                                                  message:[gUIStrings objectForKey:@"UI_CreateTeamSucc_AlertView_Message"]
+                                                                                 delegate:self cancelButtonTitle:[gUIStrings objectForKey:@"UI_CreateTeamSucc_AlertView_Button"]
+                                                                        otherButtonTitles:nil];
+            [createTeamSuccessAleartView setTag:0];
+            [createTeamSuccessAleartView show];
+        }
+        else {
+            gMyUserInfo = userInfo;
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
     else {
-        gMyUserInfo = userInfo;
-        [self.navigationController popViewControllerAnimated:YES];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:[gUIStrings objectForKey:@"UI_EditTeamProfile_Successful"]
+                                                           delegate:nil
+                                                  cancelButtonTitle:[gUIStrings objectForKey:@"UI_AlertView_OnlyKnown"]
+                                                  otherButtonTitles:nil];
+        [alertView setTag:1];
+        [alertView show];
     }
 }
 

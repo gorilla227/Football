@@ -16,21 +16,20 @@
 
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
-     //Load ActivityRegions.json
-     NSString *fileString = [[NSBundle mainBundle] pathForResource:@"ActivityRegions" ofType:@"json"];
-     NSData *data = [NSData dataWithContentsOfFile:fileString];
-     locationList = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-     
-     locationPicker = [[ActivityRegionPicker alloc] init];
-     [locationPicker setDelegate:self];
-     [locationPicker setDataSource:self];
-     [self setInputView:locationPicker];
- }
 
--(void)presetActivityRegionCode:(NSArray *)activityRegionCode
-{
+- (void)awakeFromNib {
+    //Load ActivityRegions.json
+    NSString *fileString = [[NSBundle mainBundle] pathForResource:@"ActivityRegions" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:fileString];
+    locationList = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    locationPicker = [[ActivityRegionPicker alloc] init];
+    [locationPicker setDelegate:self];
+    [locationPicker setDataSource:self];
+    [self setInputView:locationPicker];
+}
+
+- (void)presetActivityRegionCode:(NSArray *)activityRegionCode {
     NSMutableString *regionString;
     selectedActivityRegionCode = activityRegionCode;
     NSMutableArray *selectedRows;
@@ -52,9 +51,15 @@
                                 }
                             }
                         }
+                        else {
+                            [selectedRows addObject:[NSNumber numberWithInteger:0]];
+                        }
                         break;
                     }
                 }
+            }
+            else {
+                [selectedRows addObjectsFromArray:@[[NSNumber numberWithInteger:0], [NSNumber numberWithInteger:0]]];
             }
             break;
         }
@@ -70,13 +75,11 @@
 }
 
 #pragma UIPickerView Methods
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 3;
 }
 
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     switch (component) {
         case 0:
             return locationList.count + 1;
@@ -99,8 +102,7 @@
     }
 }
 
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     switch (component) {
         case 0:
             [pickerView reloadComponent:1];
@@ -137,8 +139,7 @@
     [locationPicker setSelectedRows:@[[NSNumber numberWithInteger:[locationPicker selectedRowInComponent:0]], [NSNumber numberWithInteger:[locationPicker selectedRowInComponent:1]], [NSNumber numberWithInteger:[locationPicker selectedRowInComponent:2]]]];
 }
 
--(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
-{
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
     UILabel *label = (UILabel *)view;
     if (!label) {
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [pickerView rowSizeForComponent:component].width, [pickerView rowSizeForComponent:component].height)];
@@ -168,13 +169,12 @@
     
     return label;
 }
-
 @end
 
 @implementation ActivityRegionPicker
 @synthesize selectedRows;
 
--(void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     if (selectedRows) {
         for (int i = 0; i < selectedRows.count; i++) {
@@ -185,5 +185,4 @@
         }
     }
 }
-
 @end
