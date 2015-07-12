@@ -32,6 +32,7 @@
     NSArray *stadiumList;
     NSArray *filteredStadiumList;
     Stadium *newStadium;
+    BOOL initialLoaded;
 }
 @synthesize grandMapView, stadiumListTableView, stadiumFilterBar, cancelAddStadiumButton;
 
@@ -49,9 +50,7 @@
     
     stadiumList = gStadiums;
     filteredStadiumList = gStadiums;
-    [self calculateAndSortStadiumsByDistance];
-    [grandMapView addAnnotations:filteredStadiumList];
-    [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
+    [grandMapView setUserTrackingMode:MKUserTrackingModeNone];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,15 +107,17 @@
     NSSortDescriptor *sortByDistance = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
     filteredStadiumList = [filteredStadiumList sortedArrayUsingDescriptors:@[sortByDistance]];
     [stadiumListTableView reloadData];
-}
-
-- (IBAction)returnToUserLocation:(id)sender {
+    
     if (filteredStadiumList.count) {
         [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
     }
     else {
         [grandMapView showAnnotations:@[grandMapView.userLocation] animated:YES];
     }
+}
+
+- (IBAction)returnToUserLocation:(id)sender {
+    [self calculateAndSortStadiumsByDistance];
 }
 
 #pragma UITableView Methods
@@ -168,9 +169,9 @@
 
 #pragma MapViewDelegate
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    [self calculateAndSortStadiumsByDistance];
-    if (filteredStadiumList.count > 0) {
-        [grandMapView showAnnotations:@[filteredStadiumList.firstObject, grandMapView.userLocation] animated:YES];
+    if (!initialLoaded) {
+        [self calculateAndSortStadiumsByDistance];
+        initialLoaded = YES;
     }
 }
 
