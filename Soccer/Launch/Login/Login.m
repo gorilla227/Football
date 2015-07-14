@@ -138,6 +138,9 @@
                                                                   delegate:self
                                                          cancelButtonTitle:[gUIStrings objectForKey:@"UI_LoginView_VerificationFailed_Cancel"] otherButtonTitles:nil];
     [loginFailedAlertView show];
+    [appLogoImageView setTransform:CGAffineTransformMakeTranslation(0, 0)];
+    [loginAndRegisterView setTransform:CGAffineTransformMakeTranslation(0, 0)];
+    [loginAndRegisterView setAlpha:1.0f];
 }
 
 - (void)receiveUserInfo:(UserInfo *)userInfo withReference:(id)reference {
