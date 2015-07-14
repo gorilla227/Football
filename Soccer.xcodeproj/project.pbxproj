@@ -66,7 +66,6 @@
 		A1A3DB7A190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB79190CB30E00DAB8D0 /* Captain_CreateMatch_EnterOpponent.m */; };
 		A1A3DB7D190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */; };
 		A1AA7E8C198F4CFD002D638A /* MessageCenterTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AA7E8B198F4CFD002D638A /* MessageCenterTabBarController.m */; };
-		A1ACC3461B03288700BB08B4 /* LaunchScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = A1ACC3451B03288700BB08B4 /* LaunchScreen.m */; };
 		A1B0DA1D18EA785C00671383 /* Captain_MatchArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */; };
 		A1B401131ABE737000194E91 /* UITextFieldForMatchDetailScore.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B401121ABE737000194E91 /* UITextFieldForMatchDetailScore.m */; };
 		A1BAE3A21B1EBF4F00B6D625 /* tabIcon_Ended.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BAE39C1B1EBF4F00B6D625 /* tabIcon_Ended.png */; };
@@ -278,8 +277,6 @@
 		A1A3DB7C190CB54700DAB8D0 /* Captain_CreateMatch_SelectMatchStadium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_CreateMatch_SelectMatchStadium.m; sourceTree = "<group>"; };
 		A1AA7E8A198F4CFD002D638A /* MessageCenterTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCenterTabBarController.h; path = Captain/MessageCenter/MessageCenterTabBarController.h; sourceTree = "<group>"; };
 		A1AA7E8B198F4CFD002D638A /* MessageCenterTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCenterTabBarController.m; path = Captain/MessageCenter/MessageCenterTabBarController.m; sourceTree = "<group>"; };
-		A1ACC3441B03288700BB08B4 /* LaunchScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreen.h; sourceTree = "<group>"; };
-		A1ACC3451B03288700BB08B4 /* LaunchScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreen.m; sourceTree = "<group>"; };
 		A1AF6330193B06BA00997255 /* BalanceManagement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BalanceManagement.h; path = Captain/FinanceManagement/BalanceManagement/BalanceManagement.h; sourceTree = "<group>"; };
 		A1B0DA1B18EA785C00671383 /* Captain_MatchArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captain_MatchArrangement.h; sourceTree = "<group>"; };
 		A1B0DA1C18EA785C00671383 /* Captain_MatchArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captain_MatchArrangement.m; sourceTree = "<group>"; };
@@ -744,8 +741,6 @@
 		A194DEDD1B042CF000364B9E /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
-				A1ACC3441B03288700BB08B4 /* LaunchScreen.h */,
-				A1ACC3451B03288700BB08B4 /* LaunchScreen.m */,
 				A104EECA1B05BD5300E49B2C /* LaunchScreen.xib */,
 			);
 			path = LaunchScreen;
@@ -1434,7 +1429,6 @@
 				A1009A73192888F1008A125D /* UIImage+ImageConvert.m in Sources */,
 				A18D7F7A1903912D003028FE /* Soccer_BaseNavigationController.m in Sources */,
 				A153ACBB19023ECF0062EB44 /* HintTextView.m in Sources */,
-				A1ACC3461B03288700BB08B4 /* LaunchScreen.m in Sources */,
 				A1B401131ABE737000194E91 /* UITextFieldForMatchDetailScore.m in Sources */,
 				B2793E8119A952DD00441F3A /* MessageCenter_Compose.m in Sources */,
 				A1FFD1C21941737100C6F7CF /* Login.m in Sources */,

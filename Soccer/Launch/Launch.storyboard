@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KWP-3A-5Au">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bWS-B6-q9m">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -156,6 +156,7 @@
                     <navigationItem key="navigationItem" id="NLA-fw-TTy"/>
                     <connections>
                         <outlet property="accountField" destination="qjm-Ko-e2i" id="oSb-Hb-PBu"/>
+                        <outlet property="appLogoImageView" destination="uhU-RM-H1H" id="gc8-CI-2wu"/>
                         <outlet property="loginAndRegisterView" destination="2Ha-HJ-kjK" id="FK2-ex-7LU"/>
                         <outlet property="loginButton" destination="HJ6-rP-sGs" id="9hW-uE-cpc"/>
                         <outlet property="loginContentView" destination="yMO-8n-3b1" id="4Hp-qK-mON"/>
@@ -393,12 +394,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="P6b-ds-GMJ" kind="relationship" relationship="rootViewController" id="HBH-ZO-mdd"/>
+                        <segue destination="P6b-ds-GMJ" kind="relationship" relationship="rootViewController" id="5ZW-wP-Gf7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CiP-Nj-UV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2174" y="-2322"/>
+            <point key="canvasLocation" x="-2216" y="-2322"/>
         </scene>
         <!--补充资料-->
         <scene sceneID="MFR-qV-5fP">
@@ -491,47 +492,6 @@
                 </toolbar>
             </objects>
             <point key="canvasLocation" x="-855" y="-2322"/>
-        </scene>
-        <!--Launch Screen-->
-        <scene sceneID="FbS-Nq-x1s">
-            <objects>
-                <viewController id="KWP-3A-5Au" customClass="LaunchScreen" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qWk-Kq-Bho"/>
-                        <viewControllerLayoutGuide type="bottom" id="Chy-On-ujO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nTy-0A-hWt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xon-bh-Noc">
-                                <rect key="frame" x="107" y="87" width="107" height="110"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Xon-bh-Noc" secondAttribute="height" multiplier="97:99" id="ecR-90-Osi"/>
-                                </constraints>
-                            </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="PoI-OK-Dll">
-                                <rect key="frame" x="142" y="265" width="37" height="37"/>
-                                <color key="color" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Xon-bh-Noc" firstAttribute="centerY" secondItem="nTy-0A-hWt" secondAttribute="centerY" multiplier="1/2" id="P6Q-dR-y9c"/>
-                            <constraint firstAttribute="centerX" secondItem="PoI-OK-Dll" secondAttribute="centerX" constant="-0.5" id="Pa3-Hf-Omb"/>
-                            <constraint firstAttribute="centerY" secondItem="PoI-OK-Dll" secondAttribute="centerY" constant="0.5" id="Sa7-ri-SQq"/>
-                            <constraint firstAttribute="centerX" secondItem="Xon-bh-Noc" secondAttribute="centerX" id="Us5-e5-2ha"/>
-                            <constraint firstItem="Xon-bh-Noc" firstAttribute="width" secondItem="nTy-0A-hWt" secondAttribute="width" multiplier="1/3" constant="1" id="tab-Gj-LdV"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="sfK-n9-iNM"/>
-                    <connections>
-                        <outlet property="aiLoading" destination="PoI-OK-Dll" id="HQZ-Z3-yXR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gGm-aa-APl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2597" y="-2322"/>
         </scene>
     </scenes>
     <resources>

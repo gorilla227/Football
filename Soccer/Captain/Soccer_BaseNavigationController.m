@@ -28,9 +28,7 @@
     mainNavigationController = self;
 
     //Set the background image
-    UIImage *backgroundImage = [UIImage imageNamed:@"soccer_grass_bg.png"];
-    [self.view.layer setContents:(id)backgroundImage.CGImage];
-    bgImage= backgroundImage.CGImage;
+    [self.view.layer setContents:(__bridge id)bgImage];
 
     mainMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"MainMenu"];
     [mainMenu setDelegateOfMenuAppearance:self];

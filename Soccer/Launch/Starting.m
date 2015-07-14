@@ -27,8 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIImage *backgroundImage = [UIImage imageNamed:@"soccer_grass_bg@2x.png"];
-    [self.view.layer setContents:(id)backgroundImage.CGImage];
+    UIImage *backgroundImage = [UIImage imageNamed:@"soccer_grass_bg.png"];
+    bgImage= backgroundImage.CGImage;
+    [self.view.layer setContents:(__bridge id)bgImage];
     
     //Set busyIndicator
     busyIndicator = [[UIActivityIndicatorView alloc] init];
